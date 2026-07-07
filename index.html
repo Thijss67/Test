@@ -1,824 +1,1119 @@
-<style>
-  :root {
-    /* Deep ink-blue ground with warm ochre/terracotta accents */
-    --ink-900: #0b1a33;
-    --ink-800: #0f2444;
-    --ink-700: #163256;
-    --ink-600: #21426b;
-    --line: rgba(224, 190, 138, 0.18);
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VD Heide Service &amp; Techniek — Specialist in weerstandlasmachines</title>
+  <meta name="description" content="VD Heide Service & Techniek is specialist in onderhoud, reparatie en revisie van weerstandlasmachines. Ruim 60 jaar ervaring, persoonlijke service en eerlijk advies." />
+  <meta name="theme-color" content="#16324F" />
+  <meta name="author" content="VD Heide Service & Techniek" />
 
-    --paper: #f4ede0;
-    --paper-2: #ece2d1;
-    --sand: #d9c7a8;
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="nl_NL" />
+  <meta property="og:title" content="VD Heide Service & Techniek — Specialist in weerstandlasmachines" />
+  <meta property="og:description" content="Ruim 60 jaar ervaring in onderhoud, reparatie en revisie van weerstandlasmachines. Persoonlijke service en eerlijk advies." />
 
-    --ochre: #e0a33e;
-    --ochre-soft: #f0c876;
-    --terra: #cd6a45;
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" />
 
-    /* Semantic tokens (dark is the default visual world here) */
-    --bg: var(--ink-900);
-    --surface: var(--ink-800);
-    --surface-2: var(--ink-700);
-    --text: #f3ecdd;
-    --text-dim: #a9b8d2;
-    --accent: var(--ochre);
-    --accent-2: var(--terra);
-    --on-accent: #17130a;
-    --hairline: var(--line);
-    --card-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.75);
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2316324F'/%3E%3Cpath d='M8 9l4.5 14L17 9' fill='none' stroke='%23F58220' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M18.5 9h6M18.5 16h5M18.5 23h6' stroke='%23F58220' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E" />
 
-    --font-display: "Playfair Display", "Iowan Old Style", "Palatino Linotype",
-      Palatino, Georgia, "Times New Roman", serif;
-    --font-body: "Inter", ui-sans-serif, system-ui, -apple-system,
-      "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-
-    --maxw: 1140px;
-    --step-0: clamp(0.95rem, 0.9rem + 0.2vw, 1.02rem);
-    --step-1: clamp(1.1rem, 1rem + 0.5vw, 1.3rem);
-    --step-2: clamp(1.4rem, 1.2rem + 1vw, 1.9rem);
-    --step-3: clamp(2rem, 1.5rem + 2.4vw, 3.1rem);
-    --step-4: clamp(2.7rem, 1.8rem + 4.4vw, 5rem);
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "VD Heide Service & Techniek",
+    "description": "Specialist in onderhoud, reparatie en revisie van weerstandlasmachines.",
+    "email": "Thomas@vdheideservicetechniek.nl",
+    "areaServed": "Nederland",
+    "knowsAbout": ["Weerstandlasmachines", "Lasbesturingen", "Elektroden", "Onderhoud", "Revisie", "Storingsdiagnose"]
   }
+  </script>
 
-  :root[data-theme="light"] {
-    --bg: var(--paper);
-    --surface: #ffffff;
-    --surface-2: var(--paper-2);
-    --text: #16233b;
-    --text-dim: #5a6478;
-    --accent: #b9772a;
-    --accent-2: #b4522f;
-    --on-accent: #fdf6e8;
-    --hairline: rgba(24, 40, 66, 0.14);
-    --card-shadow: 0 24px 50px -30px rgba(20, 32, 60, 0.35);
-  }
-
-  @media (prefers-color-scheme: light) {
+  <style>
     :root {
-      --bg: var(--paper);
-      --surface: #ffffff;
-      --surface-2: var(--paper-2);
-      --text: #16233b;
-      --text-dim: #5a6478;
-      --accent: #b9772a;
-      --accent-2: #b4522f;
-      --on-accent: #fdf6e8;
-      --hairline: rgba(24, 40, 66, 0.14);
-      --card-shadow: 0 24px 50px -30px rgba(20, 32, 60, 0.35);
+      --blue-900: #0f2338;
+      --blue-800: #16324F;
+      --blue-700: #1e4266;
+      --anthracite: #2F343A;
+      --anthracite-2: #3a4047;
+
+      --orange: #F58220;
+      --orange-600: #d96f14;
+      --orange-soft: #ffb772;
+
+      --white: #ffffff;
+      --paper: #f6f7f9;
+      --paper-2: #eef1f4;
+      --ink: #1c2530;
+      --muted: #5c6672;
+      --line: rgba(22, 50, 79, 0.12);
+
+      --card-shadow: 0 24px 60px -32px rgba(15, 35, 56, 0.35);
+      --card-shadow-sm: 0 12px 34px -22px rgba(15, 35, 56, 0.4);
+
+      --font-display: "Sora", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      --font-body: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+      --maxw: 1180px;
+      --radius: 18px;
+
+      --step--1: clamp(0.82rem, 0.8rem + 0.1vw, 0.9rem);
+      --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.08rem);
+      --step-1: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+      --step-2: clamp(1.5rem, 1.25rem + 1.1vw, 2.1rem);
+      --step-3: clamp(2rem, 1.55rem + 2.1vw, 3.1rem);
+      --step-4: clamp(2.6rem, 1.9rem + 3.6vw, 4.6rem);
     }
-  }
-  :root[data-theme="dark"] {
-    --bg: var(--ink-900);
-    --surface: var(--ink-800);
-    --surface-2: var(--ink-700);
-    --text: #f3ecdd;
-    --text-dim: #a9b8d2;
-    --accent: var(--ochre);
-    --accent-2: var(--terra);
-    --on-accent: #17130a;
-    --hairline: var(--line);
-    --card-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.75);
-  }
 
-  * { box-sizing: border-box; }
+    * { box-sizing: border-box; }
 
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
-    font-size: var(--step-0);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    overflow-x: hidden;
-  }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 
-  .wrap {
-    width: 100%;
-    max-width: var(--maxw);
-    margin-inline: auto;
-    padding-inline: clamp(1.1rem, 4vw, 2.5rem);
-  }
+    body {
+      margin: 0;
+      background: var(--white);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: var(--step-0);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
 
-  h1, h2, h3 {
-    font-family: var(--font-display);
-    font-weight: 600;
-    line-height: 1.08;
-    text-wrap: balance;
-    margin: 0;
-  }
+    img { max-width: 100%; display: block; }
 
-  a { color: inherit; text-decoration: none; }
+    .wrap {
+      width: 100%;
+      max-width: var(--maxw);
+      margin-inline: auto;
+      padding-inline: clamp(1.1rem, 4vw, 2.5rem);
+    }
 
-  .eyebrow {
-    font-family: var(--font-body);
-    font-size: 0.76rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--accent);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6em;
-  }
-  .eyebrow::before {
-    content: "";
-    width: 26px;
-    height: 1px;
-    background: var(--accent);
-    opacity: 0.7;
-  }
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      text-wrap: balance;
+      margin: 0;
+      color: var(--blue-800);
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
 
-  /* Buttons */
-  .btn {
-    --pad-y: 0.85em;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55em;
-    padding: var(--pad-y) 1.5em;
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    letter-spacing: 0.01em;
-    cursor: pointer;
-    border: 1px solid transparent;
-    transition: transform 0.18s ease, box-shadow 0.18s ease,
-      background 0.18s ease, border-color 0.18s ease;
-    white-space: nowrap;
-  }
-  .btn-primary {
-    background: var(--accent);
-    color: var(--on-accent);
-    box-shadow: 0 10px 26px -12px color-mix(in srgb, var(--accent) 80%, transparent);
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 30px -12px color-mix(in srgb, var(--accent) 80%, transparent); }
-  .btn-ghost {
-    background: transparent;
-    color: var(--text);
-    border-color: var(--hairline);
-  }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    a { color: inherit; text-decoration: none; }
+    ul { margin: 0; padding: 0; list-style: none; }
 
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+    .eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange-600);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7em;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--orange);
+    }
+    .eyebrow.on-dark { color: var(--orange-soft); }
 
-  /* Header */
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    backdrop-filter: blur(12px);
-    background: color-mix(in srgb, var(--bg) 82%, transparent);
-    border-bottom: 1px solid var(--hairline);
-  }
-  .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    height: 72px;
-  }
-  .brand {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    font-family: var(--font-display);
-    font-size: 1.35rem;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-  }
-  .brand .dot { color: var(--accent); }
-  .brand small {
-    font-family: var(--font-body);
-    font-size: 0.62rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    align-self: center;
-  }
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    font-size: 0.92rem;
-    font-weight: 500;
-    color: var(--text-dim);
-  }
-  .nav-links a { position: relative; transition: color 0.15s ease; }
-  .nav-links a::after {
-    content: "";
-    position: absolute;
-    left: 0; bottom: -6px;
-    width: 0; height: 2px;
-    background: var(--accent);
-    transition: width 0.2s ease;
-  }
-  .nav-links a:hover { color: var(--text); }
-  .nav-links a:hover::after { width: 100%; }
-  .nav-right { display: flex; align-items: center; gap: 1rem; }
-  .theme-toggle {
-    background: transparent;
-    border: 1px solid var(--hairline);
-    color: var(--text);
-    width: 40px; height: 40px;
-    border-radius: 999px;
-    cursor: pointer;
-    display: grid; place-items: center;
-    font-size: 1rem;
-    transition: border-color 0.15s ease, transform 0.15s ease;
-  }
-  .theme-toggle:hover { border-color: var(--accent); transform: rotate(-12deg); }
-  @media (max-width: 820px) {
-    .nav-links { display: none; }
-  }
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55em;
+      padding: 0.9em 1.6em;
+      border-radius: 999px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.98rem;
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease,
+        border-color 0.2s ease, color 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn svg { width: 1.05em; height: 1.05em; }
+    .btn-primary {
+      background: var(--orange);
+      color: #fff;
+      box-shadow: 0 14px 30px -14px rgba(245, 130, 32, 0.75);
+    }
+    .btn-primary:hover { background: var(--orange-600); transform: translateY(-2px); box-shadow: 0 20px 36px -14px rgba(245, 130, 32, 0.8); }
+    .btn-primary .arrow { transition: transform 0.2s ease; }
+    .btn-primary:hover .arrow { transform: translateX(4px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--blue-800);
+      border-color: var(--line);
+    }
+    .btn-outline:hover { border-color: var(--orange); color: var(--orange-600); transform: translateY(-2px); }
+    .btn-ghost-light {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(4px);
+    }
+    .btn-ghost-light:hover { background: rgba(255, 255, 255, 0.16); border-color: #fff; transform: translateY(-2px); }
 
-  /* Hero */
-  .hero {
-    position: relative;
-    padding-top: clamp(3.5rem, 8vw, 6.5rem);
-    padding-bottom: clamp(3.5rem, 8vw, 6rem);
-    overflow: hidden;
-  }
-  .hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(60% 55% at 78% 12%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%),
-      radial-gradient(50% 50% at 8% 90%, color-mix(in srgb, var(--accent-2) 18%, transparent), transparent 55%);
-    opacity: 0.9;
-    pointer-events: none;
-  }
-  .hero-grid {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: clamp(2rem, 5vw, 4rem);
-    align-items: center;
-  }
-  @media (max-width: 900px) {
-    .hero-grid { grid-template-columns: 1fr; }
-  }
-  .hero h1 {
-    font-size: var(--step-4);
-    margin-top: 1.2rem;
-    letter-spacing: -0.01em;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--accent);
-  }
-  .hero p.lead {
-    font-size: var(--step-1);
-    color: var(--text-dim);
-    max-width: 34ch;
-    margin: 1.4rem 0 2rem;
-  }
-  .hero-cta { display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; }
-  .hero-trust {
-    margin-top: 2.4rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.6rem 2.2rem;
-    align-items: center;
-    color: var(--text-dim);
-    font-size: 0.82rem;
-  }
-  .hero-trust b { color: var(--text); font-size: 1.5rem; font-family: var(--font-display); font-weight: 700; display: block; }
+    :focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; border-radius: 6px; }
 
-  /* Browser mockup */
-  .mock {
-    position: relative;
-    border-radius: 16px;
-    background: var(--surface);
-    border: 1px solid var(--hairline);
-    box-shadow: var(--card-shadow);
-    overflow: hidden;
-    transform: perspective(1200px) rotateY(-6deg) rotateX(2deg);
-    transition: transform 0.4s ease;
-  }
-  .mock:hover { transform: perspective(1200px) rotateY(-2deg) rotateX(1deg); }
-  .mock-bar {
-    display: flex; align-items: center; gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    background: color-mix(in srgb, var(--surface-2) 70%, var(--surface));
-    border-bottom: 1px solid var(--hairline);
-  }
-  .mock-bar span { width: 11px; height: 11px; border-radius: 50%; background: var(--text-dim); opacity: 0.4; }
-  .mock-bar span:nth-child(1){ background: var(--accent-2); opacity: 0.8; }
-  .mock-bar span:nth-child(2){ background: var(--accent); opacity: 0.8; }
-  .mock-bar .url {
-    margin-left: 0.6rem;
-    font-size: 0.72rem;
-    color: var(--text-dim);
-    background: color-mix(in srgb, var(--bg) 40%, transparent);
-    padding: 0.25rem 0.7rem;
-    border-radius: 999px;
-    letter-spacing: 0.03em;
-  }
-  .mock-body { padding: 1.4rem 1.4rem 1.7rem; }
-  .mock-hero {
-    height: 92px;
-    border-radius: 10px;
-    background: linear-gradient(120deg, color-mix(in srgb, var(--accent) 65%, var(--surface)), color-mix(in srgb, var(--accent-2) 60%, var(--surface)));
-    display: flex; flex-direction: column; justify-content: center; gap: 8px;
-    padding: 0 1.1rem;
-    margin-bottom: 1.1rem;
-  }
-  .mock-line { height: 9px; border-radius: 6px; background: color-mix(in srgb, var(--text) 22%, transparent); }
-  .mock-hero .mock-line { background: rgba(255,255,255,0.85); }
-  .mock-hero .mock-line.short { width: 55%; opacity: 0.7; }
-  .mock-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; }
-  .mock-card { background: var(--surface-2); border: 1px solid var(--hairline); border-radius: 8px; padding: 0.7rem; display: grid; gap: 7px; }
-  .mock-card .chip { width: 22px; height: 22px; border-radius: 6px; background: color-mix(in srgb, var(--accent) 50%, var(--surface)); }
-  .mock-card .mock-line.short { width: 70%; }
-  .mock-badge {
-    position: absolute;
-    right: -14px; bottom: 22px;
-    background: var(--accent);
-    color: var(--on-accent);
-    font-family: var(--font-body);
-    font-weight: 700;
-    font-size: 0.78rem;
-    padding: 0.6rem 0.95rem;
-    border-radius: 12px;
-    box-shadow: 0 14px 28px -12px rgba(0,0,0,0.5);
-    transform: rotate(4deg);
-    letter-spacing: 0.02em;
-  }
-  @media (max-width: 900px) { .mock { transform: none; } .mock:hover { transform: none; } .mock-badge { right: 8px; } }
+    /* ---------- Header ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: color-mix(in srgb, var(--white) 86%, transparent);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    header.scrolled { border-bottom-color: var(--line); box-shadow: 0 8px 30px -22px rgba(15, 35, 56, 0.4); }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      height: 76px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 0.7rem; }
+    .brand .logo {
+      width: 42px; height: 42px; border-radius: 11px; flex: none;
+      background: var(--blue-800);
+      display: grid; place-items: center;
+      box-shadow: var(--card-shadow-sm);
+    }
+    .brand .logo svg { width: 24px; height: 24px; }
+    .brand .brand-text { display: flex; flex-direction: column; line-height: 1.05; }
+    .brand .brand-text b { font-family: var(--font-display); font-size: 1.02rem; font-weight: 700; color: var(--blue-800); letter-spacing: -0.01em; }
+    .brand .brand-text small { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
 
-  /* Section shell */
-  section { position: relative; }
-  .section-pad { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
-  .section-head { max-width: 60ch; margin-bottom: clamp(2rem, 4vw, 3.2rem); }
-  .section-head h2 { font-size: var(--step-3); margin-top: 0.9rem; }
-  .section-head p { color: var(--text-dim); font-size: var(--step-1); margin: 1rem 0 0; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; font-size: 0.95rem; font-weight: 500; color: var(--anthracite); }
+    .nav-links a { position: relative; padding: 0.2rem 0; transition: color 0.15s ease; }
+    .nav-links a::after {
+      content: ""; position: absolute; left: 0; bottom: -3px;
+      width: 0; height: 2px; border-radius: 2px; background: var(--orange);
+      transition: width 0.22s ease;
+    }
+    .nav-links a:hover { color: var(--blue-800); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { display: flex; align-items: center; gap: 0.9rem; }
+    .nav-phone { font-weight: 600; color: var(--blue-800); font-size: 0.95rem; display: inline-flex; align-items: center; gap: 0.5rem; }
+    .nav-phone svg { width: 1.05em; height: 1.05em; color: var(--orange); }
 
-  .divider { height: 1px; background: var(--hairline); border: 0; margin: 0; }
+    .menu-btn { display: none; background: transparent; border: 1px solid var(--line); border-radius: 10px; width: 44px; height: 44px; cursor: pointer; place-items: center; color: var(--blue-800); }
+    .menu-btn svg { width: 24px; height: 24px; }
 
-  /* Benefits */
-  .benefits { background: var(--surface); }
-  .grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.4rem;
-  }
-  @media (max-width: 860px) { .grid-3 { grid-template-columns: 1fr; } }
-  .card {
-    background: var(--bg);
-    border: 1px solid var(--hairline);
-    border-radius: 14px;
-    padding: 1.9rem 1.7rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    transition: transform 0.2s ease, border-color 0.2s ease;
-  }
-  .benefits .card { background: var(--surface-2); }
-  .card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 55%, var(--hairline)); }
-  .card .num {
-    font-family: var(--font-display);
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-  }
-  .icon {
-    width: 46px; height: 46px;
-    border-radius: 12px;
-    display: grid; place-items: center;
-    background: color-mix(in srgb, var(--accent) 16%, transparent);
-    color: var(--accent);
-    margin-bottom: 0.3rem;
-  }
-  .icon svg { width: 24px; height: 24px; }
-  .card h3 { font-size: var(--step-2); }
-  .card p { color: var(--text-dim); margin: 0; }
+    @media (max-width: 940px) {
+      .nav-links, .nav-phone { display: none; }
+      .menu-btn { display: grid; }
+    }
+    @media (max-width: 560px) {
+      .nav-cta .btn-primary { display: none; }
+    }
 
-  /* Process strip */
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 2.5rem; }
-  @media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
-  .step { display: flex; gap: 1rem; align-items: flex-start; }
-  .step .step-n {
-    flex: none;
-    width: 42px; height: 42px; border-radius: 50%;
-    display: grid; place-items: center;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    font-family: var(--font-display);
-    font-weight: 700;
-  }
-  .step h4 { margin: 0 0 0.25rem; font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; }
-  .step p { margin: 0; color: var(--text-dim); font-size: 0.92rem; }
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed; inset: 76px 0 auto 0; z-index: 99;
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+      box-shadow: var(--card-shadow);
+      transform: translateY(-120%);
+      transition: transform 0.3s ease;
+      padding: 1.2rem clamp(1.1rem, 4vw, 2.5rem) 1.6rem;
+    }
+    .mobile-menu.open { transform: translateY(0); }
+    .mobile-menu a { display: block; padding: 0.85rem 0; font-size: 1.05rem; font-weight: 600; color: var(--anthracite); border-bottom: 1px solid var(--line); }
+    .mobile-menu a:last-of-type { border-bottom: 0; }
+    .mobile-menu .btn { margin-top: 1rem; width: 100%; }
 
-  /* Pricing */
-  .pricing { background: var(--surface); }
-  .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; align-items: stretch; }
-  @media (max-width: 860px) { .price-grid { grid-template-columns: 1fr; } }
-  .plan {
-    background: var(--bg);
-    border: 1px solid var(--hairline);
-    border-radius: 16px;
-    padding: 2rem 1.8rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.1rem;
-  }
-  .plan.featured {
-    background: linear-gradient(180deg, var(--surface-2), var(--bg));
-    border-color: color-mix(in srgb, var(--accent) 60%, transparent);
-    box-shadow: var(--card-shadow);
-    position: relative;
-  }
-  .plan.featured::before {
-    content: "Meest gekozen";
-    position: absolute;
-    top: -12px; left: 1.8rem;
-    background: var(--accent);
-    color: var(--on-accent);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 0.35rem 0.8rem;
-    border-radius: 999px;
-  }
-  .plan .plan-name { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; }
-  .plan .plan-desc { color: var(--text-dim); font-size: 0.9rem; margin-top: -0.6rem; }
-  .plan .price { font-family: var(--font-display); font-weight: 700; line-height: 1; display: flex; align-items: baseline; gap: 0.4rem; }
-  .plan .price .amt { font-size: 2.7rem; }
-  .plan .price .per { font-family: var(--font-body); font-size: 0.85rem; color: var(--text-dim); font-weight: 500; }
-  .plan ul { list-style: none; margin: 0.4rem 0 0; padding: 0; display: grid; gap: 0.7rem; }
-  .plan li { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.92rem; color: var(--text); }
-  .plan li svg { flex: none; width: 18px; height: 18px; color: var(--accent); margin-top: 3px; }
-  .plan .btn { margin-top: auto; justify-content: center; }
-  .price-note { text-align: center; color: var(--text-dim); font-size: 0.85rem; margin-top: 1.8rem; }
+    /* ---------- Reveal animation ---------- */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.16,0.84,0.44,1), transform 0.7s cubic-bezier(0.16,0.84,0.44,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal[data-delay="1"] { transition-delay: 0.08s; }
+    .reveal[data-delay="2"] { transition-delay: 0.16s; }
+    .reveal[data-delay="3"] { transition-delay: 0.24s; }
+    .reveal[data-delay="4"] { transition-delay: 0.32s; }
+    .reveal[data-delay="5"] { transition-delay: 0.4s; }
 
-  /* Footer + contact */
-  footer { background: var(--bg); border-top: 1px solid var(--hairline); }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: clamp(2rem, 6vw, 4.5rem);
-    padding-block: clamp(3rem, 7vw, 5rem);
-  }
-  @media (max-width: 880px) { .footer-grid { grid-template-columns: 1fr; } }
-  .footer-intro h2 { font-size: var(--step-3); }
-  .footer-intro p { color: var(--text-dim); max-width: 40ch; }
-  .contact-list { display: grid; gap: 0.7rem; margin-top: 1.6rem; font-size: 0.95rem; }
-  .contact-list a { display: inline-flex; gap: 0.6rem; align-items: center; color: var(--text); }
-  .contact-list a:hover { color: var(--accent); }
-  .contact-list svg { width: 18px; height: 18px; color: var(--accent); }
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      color: #fff;
+      background:
+        linear-gradient(120deg, rgba(15, 35, 56, 0.94) 0%, rgba(22, 50, 79, 0.86) 42%, rgba(47, 52, 58, 0.78) 100%),
+        radial-gradient(120% 120% at 85% -10%, rgba(245, 130, 32, 0.32), transparent 55%),
+        url("https://images.unsplash.com/photo-1565043666747-69f6646db940?auto=format&fit=crop&w=1920&q=80");
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 39.5H40M39.5 0V40' stroke='%23ffffff' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+      padding-block: clamp(4rem, 9vw, 7rem);
+    }
+    .hero-copy, .hero-visual { min-width: 0; }
+    @media (max-width: 960px) { .hero-inner { grid-template-columns: 1fr; } }
 
-  form { display: grid; gap: 1rem; }
-  .field { display: grid; gap: 0.4rem; }
-  .field label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); }
-  .field input, .field textarea {
-    font-family: inherit;
-    font-size: 0.95rem;
-    color: var(--text);
-    background: var(--surface);
-    border: 1px solid var(--hairline);
-    border-radius: 10px;
-    padding: 0.8rem 0.9rem;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    width: 100%;
-  }
-  .field input::placeholder, .field textarea::placeholder { color: color-mix(in srgb, var(--text-dim) 80%, transparent); }
-  .field input:focus, .field textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
-  }
-  .field textarea { resize: vertical; min-height: 120px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
-  form .btn { justify-content: center; margin-top: 0.3rem; }
-  .form-status { font-size: 0.88rem; color: var(--accent); min-height: 1.2em; }
+    .hero .badge-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.6rem; }
+    .hero .pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.02em;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.45rem 0.9rem; border-radius: 999px; color: #fff;
+    }
+    .hero .pill svg { width: 1em; height: 1em; color: var(--orange-soft); }
+    .hero h1 { color: #fff; font-size: var(--step-4); font-weight: 800; margin-bottom: 1.3rem; }
+    .hero h1 span { color: var(--orange-soft); }
+    .hero .lead { font-size: var(--step-1); color: rgba(255,255,255,0.82); max-width: 42ch; margin: 0 0 2.2rem; font-weight: 400; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 0.9rem; }
 
-  .footer-bottom {
-    border-top: 1px solid var(--hairline);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: space-between;
-    align-items: center;
-    padding-block: 1.6rem;
-    color: var(--text-dim);
-    font-size: 0.82rem;
-  }
-  .socials { display: flex; gap: 0.7rem; }
-  .socials a {
-    width: 40px; height: 40px; border-radius: 50%;
-    display: grid; place-items: center;
-    border: 1px solid var(--hairline);
-    color: var(--text);
-    transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
-  }
-  .socials a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
-  .socials svg { width: 18px; height: 18px; }
+    .hero-stats {
+      margin-top: 3rem;
+      display: flex; flex-wrap: wrap; gap: 2rem 2.6rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.16);
+    }
+    .hero-stats .stat b { display: block; font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: #fff; line-height: 1; }
+    .hero-stats .stat span { font-size: 0.85rem; color: rgba(255,255,255,0.7); }
 
-  @media (prefers-reduced-motion: reduce) {
-    * { animation: none !important; transition: none !important; }
-  }
-</style>
+    /* Hero owner card */
+    .owner-card {
+      position: relative;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 22px;
+      padding: 1.2rem;
+      backdrop-filter: blur(6px);
+      box-shadow: var(--card-shadow);
+    }
+    .owner-photo {
+      border-radius: 16px; overflow: hidden; aspect-ratio: 4/5;
+      background:
+        linear-gradient(180deg, rgba(15,35,56,0) 40%, rgba(15,35,56,0.55) 100%),
+        linear-gradient(135deg, var(--blue-700), var(--anthracite));
+      position: relative;
+    }
+    .owner-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .owner-tag {
+      position: absolute; left: 1.6rem; bottom: 1.5rem; z-index: 2; color: #fff;
+    }
+    .owner-tag b { font-family: var(--font-display); font-size: 1.05rem; display: block; }
+    .owner-tag span { font-size: 0.8rem; color: rgba(255,255,255,0.82); }
+    .owner-float {
+      position: absolute; right: -14px; top: 26px;
+      background: var(--orange); color: #fff;
+      border-radius: 14px; padding: 0.7rem 1rem;
+      box-shadow: 0 16px 30px -14px rgba(245,130,32,0.8);
+      transform: rotate(3deg);
+      text-align: center;
+    }
+    .owner-float b { font-family: var(--font-display); font-size: 1.5rem; display: block; line-height: 1; }
+    .owner-float span { font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    @media (max-width: 960px) { .owner-card { max-width: 420px; } }
 
-<header>
-  <div class="wrap nav">
-    <a class="brand" href="#top" aria-label="DH-studio home">
-      DH<span class="dot">·</span>studio <small>webdesign</small>
-    </a>
-    <nav class="nav-links" aria-label="Hoofdmenu">
-      <a href="#voordelen">Voordelen</a>
-      <a href="#werkwijze">Werkwijze</a>
-      <a href="#tarieven">Tarieven</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div class="nav-right">
-      <button class="theme-toggle" id="themeToggle" aria-label="Wissel tussen licht en donker">◐</button>
-      <a href="#contact" class="btn btn-primary">Gratis adviesgesprek</a>
-    </div>
-  </div>
-</header>
+    /* ---------- Logos / trust strip ---------- */
+    .trust-strip { background: var(--blue-800); color: rgba(255,255,255,0.9); }
+    .trust-strip .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem 2.6rem; padding-block: 1.1rem; text-align: center; }
+    .trust-strip .item { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.92rem; font-weight: 500; }
+    .trust-strip svg { width: 1.15em; height: 1.15em; color: var(--orange-soft); flex: none; }
 
-<main id="top">
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow">Voor ondernemers zonder (goede) website</span>
-        <h1>Je website houdt je nu <em>klanten kwijt</em>. Wij draaien dat om.</h1>
-        <p class="lead">
-          Geen website — of een die traag, verouderd of onvindbaar is — kost je
-          elke maand omzet. DH-studio bouwt een snelle, moderne site die
-          bezoekers omzet in klanten. In twee weken live.
-        </p>
-        <div class="hero-cta">
-          <a href="#contact" class="btn btn-primary">Plan een gratis adviesgesprek →</a>
-          <a href="#tarieven" class="btn btn-ghost">Bekijk de tarieven</a>
-        </div>
-        <div class="hero-trust">
-          <div><b>14 dagen</b>van eerste gesprek tot live</div>
-          <div><b>100%</b>op maat, geen template-gevoel</div>
-          <div><b>&lt; 1,5s</b>gemiddelde laadtijd</div>
-        </div>
+    /* ---------- Section shell ---------- */
+    section { position: relative; }
+    .section-pad { padding-block: clamp(4rem, 9vw, 7rem); }
+    .section-head { max-width: 62ch; margin-bottom: clamp(2.4rem, 5vw, 3.6rem); }
+    .section-head.center { margin-inline: auto; text-align: center; }
+    .section-head.center .eyebrow { justify-content: center; }
+    .section-head h2 { font-size: var(--step-3); margin-top: 1rem; }
+    .section-head p { color: var(--muted); font-size: var(--step-1); margin: 1.1rem 0 0; font-weight: 400; }
+
+    /* ---------- About ---------- */
+    .about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 6vw, 4.5rem); align-items: center; }
+    @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } }
+    .about-visual { position: relative; }
+    .about-visual .frame {
+      border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/5;
+      box-shadow: var(--card-shadow);
+      background: linear-gradient(135deg, var(--blue-700), var(--anthracite));
+    }
+    .about-visual .frame img { width: 100%; height: 100%; object-fit: cover; }
+    .about-visual .exp-badge {
+      position: absolute; right: -18px; bottom: -18px;
+      background: var(--white); border-radius: 16px; padding: 1.2rem 1.4rem;
+      box-shadow: var(--card-shadow); border: 1px solid var(--line);
+      text-align: center;
+    }
+    .about-visual .exp-badge b { font-family: var(--font-display); font-size: 2.4rem; color: var(--orange); display: block; line-height: 1; }
+    .about-visual .exp-badge span { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+    @media (max-width: 480px) { .about-visual .exp-badge { right: 8px; bottom: -14px; padding: 0.9rem 1.1rem; } }
+
+    .about-copy h2 { font-size: var(--step-3); margin-top: 1rem; }
+    .about-copy p { color: var(--anthracite); margin: 1.2rem 0 0; }
+    .about-copy p.intro { font-size: var(--step-1); color: var(--ink); font-weight: 500; }
+    .about-values { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.6rem; margin-top: 2rem; }
+    @media (max-width: 520px) { .about-values { grid-template-columns: 1fr; } }
+    .about-values li { display: flex; gap: 0.7rem; align-items: flex-start; font-weight: 600; color: var(--blue-800); }
+    .about-values li svg { width: 22px; height: 22px; flex: none; color: var(--orange); margin-top: 2px; }
+    .about-copy .signature { margin-top: 2.2rem; display: flex; align-items: center; gap: 1rem; }
+    .about-copy .signature .name { font-family: var(--font-display); font-weight: 700; color: var(--blue-800); }
+    .about-copy .signature .role { font-size: 0.85rem; color: var(--muted); }
+
+    /* ---------- Services ---------- */
+    .services { background: var(--paper); }
+    .grid-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.3rem; }
+    @media (max-width: 1040px) { .grid-cards { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .grid-cards { grid-template-columns: 1fr; } }
+    .s-card {
+      background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 1.7rem 1.5rem; box-shadow: var(--card-shadow-sm);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      position: relative; overflow: hidden;
+    }
+    .s-card::before {
+      content: ""; position: absolute; left: 0; top: 0; height: 3px; width: 0;
+      background: var(--orange); transition: width 0.3s ease;
+    }
+    .s-card:hover { transform: translateY(-6px); box-shadow: var(--card-shadow); border-color: color-mix(in srgb, var(--orange) 45%, var(--line)); }
+    .s-card:hover::before { width: 100%; }
+    .s-icon {
+      width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center;
+      background: color-mix(in srgb, var(--orange) 12%, transparent);
+      color: var(--orange-600); margin-bottom: 1.1rem;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+    .s-card:hover .s-icon { background: var(--orange); color: #fff; }
+    .s-icon svg { width: 26px; height: 26px; }
+    .s-card h3 { font-size: 1.2rem; }
+    .s-card p { color: var(--muted); font-size: 0.94rem; margin: 0.5rem 0 0; }
+
+    /* ---------- When to contact ---------- */
+    .signals { background: var(--white); }
+    .signal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
+    @media (max-width: 900px) { .signal-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .signal-grid { grid-template-columns: 1fr; } }
+    .signal {
+      display: flex; gap: 1.1rem; align-items: flex-start;
+      background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
+      padding: 1.4rem 1.4rem; transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .signal:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--orange) 40%, var(--line)); }
+    .signal .sig-icon { flex: none; width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: var(--blue-800); color: var(--orange-soft); }
+    .signal .sig-icon svg { width: 24px; height: 24px; }
+    .signal h4 { font-size: 1.05rem; font-family: var(--font-display); color: var(--blue-800); }
+    .signal p { margin: 0.3rem 0 0; font-size: 0.9rem; color: var(--muted); }
+
+    /* ---------- Why choose (stats) ---------- */
+    .why { background: var(--blue-800); color: #fff; position: relative; overflow: hidden; }
+    .why::before {
+      content: ""; position: absolute; inset: 0;
+      background:
+        radial-gradient(50% 60% at 90% 8%, rgba(245,130,32,0.22), transparent 60%),
+        radial-gradient(45% 55% at 5% 95%, rgba(245,130,32,0.14), transparent 60%);
+      pointer-events: none;
+    }
+    .why .wrap { position: relative; z-index: 2; }
+    .why .section-head h2 { color: #fff; }
+    .why .section-head p { color: rgba(255,255,255,0.78); }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
+    @media (max-width: 900px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .why-grid { grid-template-columns: 1fr; } }
+    .why-card {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--radius); padding: 1.8rem 1.6rem;
+      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    }
+    .why-card:hover { transform: translateY(-6px); background: rgba(255,255,255,0.09); border-color: rgba(245,130,32,0.5); }
+    .why-card .w-icon { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; background: rgba(245,130,32,0.16); color: var(--orange-soft); margin-bottom: 1.1rem; }
+    .why-card .w-icon svg { width: 25px; height: 25px; }
+    .why-card b.big { font-family: var(--font-display); font-size: 2.6rem; font-weight: 800; color: var(--orange-soft); display: block; line-height: 1; }
+    .why-card h3 { color: #fff; font-size: 1.2rem; margin-top: 0.4rem; }
+    .why-card p { color: rgba(255,255,255,0.74); font-size: 0.93rem; margin: 0.5rem 0 0; }
+
+    /* ---------- Process timeline ---------- */
+    .process { background: var(--paper); }
+    .timeline { position: relative; margin-top: 1rem; }
+    .timeline::before {
+      content: ""; position: absolute; left: 27px; top: 10px; bottom: 10px; width: 2px;
+      background: linear-gradient(var(--orange), color-mix(in srgb, var(--orange) 20%, transparent));
+    }
+    .t-step { position: relative; display: grid; grid-template-columns: 56px 1fr; gap: 1.4rem; padding-block: 1.1rem; align-items: flex-start; }
+    .t-step .t-num {
+      position: relative; z-index: 2; width: 56px; height: 56px; border-radius: 50%;
+      display: grid; place-items: center; background: var(--white); border: 2px solid var(--orange);
+      font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; color: var(--orange-600);
+      box-shadow: var(--card-shadow-sm);
+    }
+    .t-step .t-body {
+      background: var(--white); border: 1px solid var(--line); border-radius: 14px;
+      padding: 1.1rem 1.4rem; box-shadow: var(--card-shadow-sm);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .t-step:hover .t-body { transform: translateX(6px); border-color: color-mix(in srgb, var(--orange) 40%, var(--line)); }
+    .t-step h4 { font-size: 1.15rem; color: var(--blue-800); }
+    .t-step p { margin: 0.35rem 0 0; color: var(--muted); font-size: 0.94rem; }
+    @media (min-width: 760px) {
+      .timeline { display: grid; grid-template-columns: 1fr 1fr; column-gap: 3.4rem; }
+      .timeline::before { left: 50%; transform: translateX(-1px); }
+      .t-step:nth-child(odd) { grid-column: 1; direction: rtl; }
+      .t-step:nth-child(odd) > * { direction: ltr; }
+      .t-step:nth-child(even) { grid-column: 2; }
+      .t-step:nth-child(odd) { justify-self: end; }
+    }
+
+    /* ---------- Contact ---------- */
+    .contact { background: var(--white); }
+    .contact-shell {
+      display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 0;
+      border-radius: 26px; overflow: hidden; box-shadow: var(--card-shadow); border: 1px solid var(--line);
+    }
+    @media (max-width: 900px) { .contact-shell { grid-template-columns: 1fr; } }
+    .contact-info {
+      background: var(--blue-800); color: #fff; padding: clamp(2rem, 5vw, 3.4rem);
+      position: relative; overflow: hidden;
+    }
+    .contact-info::before {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(60% 60% at 100% 0%, rgba(245,130,32,0.24), transparent 60%);
+      pointer-events: none;
+    }
+    .contact-info > * { position: relative; z-index: 2; }
+    .contact-info h2 { color: #fff; font-size: var(--step-2); margin-top: 0.9rem; }
+    .contact-info p { color: rgba(255,255,255,0.8); margin-top: 1rem; }
+    .contact-methods { margin-top: 2rem; display: grid; gap: 1.1rem; }
+    .contact-methods a, .contact-methods .cm {
+      display: flex; gap: 0.9rem; align-items: center; color: #fff;
+    }
+    .contact-methods .cm-icon { flex: none; width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); color: var(--orange-soft); }
+    .contact-methods .cm-icon svg { width: 22px; height: 22px; }
+    .contact-methods .cm-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+    .contact-methods .cm-value { font-weight: 600; font-size: 0.98rem; word-break: break-word; }
+    .contact-methods a:hover .cm-value { color: var(--orange-soft); }
+    .contact-usps { margin-top: 2.2rem; padding-top: 1.6rem; border-top: 1px solid rgba(255,255,255,0.16); display: grid; gap: 0.7rem; }
+    .contact-usps li { display: flex; gap: 0.6rem; align-items: center; font-size: 0.9rem; color: rgba(255,255,255,0.85); }
+    .contact-usps svg { width: 18px; height: 18px; color: var(--orange-soft); flex: none; }
+
+    .contact-form { background: var(--white); padding: clamp(2rem, 5vw, 3.4rem); }
+    .contact-form h3 { font-size: var(--step-1); }
+    .contact-form > p { color: var(--muted); margin: 0.5rem 0 1.8rem; font-size: 0.95rem; }
+    form { display: grid; gap: 1.1rem; }
+    .field { display: grid; gap: 0.45rem; }
+    .field label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--anthracite); }
+    .field label .req { color: var(--orange); }
+    .field input, .field textarea, .field select {
+      font-family: inherit; font-size: 0.98rem; color: var(--ink);
+      background: var(--paper); border: 1.5px solid var(--line); border-radius: 12px;
+      padding: 0.85rem 1rem; width: 100%;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+    .field input::placeholder, .field textarea::placeholder { color: color-mix(in srgb, var(--muted) 85%, transparent); }
+    .field input:focus, .field textarea:focus, .field select:focus {
+      outline: none; background: var(--white); border-color: var(--orange);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--orange) 18%, transparent);
+    }
+    .field textarea { resize: vertical; min-height: 130px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
+    form .btn { justify-content: center; margin-top: 0.4rem; }
+    .form-status { font-size: 0.9rem; min-height: 1.3em; font-weight: 600; }
+    .privacy-note { font-size: 0.78rem; color: var(--muted); margin: 0; }
+
+    /* ---------- Footer ---------- */
+    footer.site-footer { background: var(--anthracite); color: rgba(255,255,255,0.75); }
+    .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2.4rem; padding-block: clamp(2.6rem, 6vw, 4rem); }
+    @media (max-width: 820px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 520px) { .footer-top { grid-template-columns: 1fr; } }
+    .footer-brand .brand .logo { background: var(--blue-800); }
+    .footer-brand .brand-text b { color: #fff; }
+    .footer-brand p { margin: 1.2rem 0 0; font-size: 0.92rem; max-width: 34ch; color: rgba(255,255,255,0.65); }
+    .footer-col h5 { color: #fff; font-family: var(--font-display); font-size: 0.95rem; letter-spacing: 0.02em; margin: 0 0 1rem; }
+    .footer-col ul { display: grid; gap: 0.6rem; }
+    .footer-col a, .footer-col li { font-size: 0.9rem; color: rgba(255,255,255,0.7); transition: color 0.15s ease; }
+    .footer-col a:hover { color: var(--orange-soft); }
+    .footer-col .cm { display: flex; gap: 0.6rem; align-items: flex-start; }
+    .footer-col .cm svg { width: 16px; height: 16px; color: var(--orange-soft); flex: none; margin-top: 3px; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.12); padding-block: 1.5rem;
+      display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: space-between; align-items: center;
+      font-size: 0.82rem; color: rgba(255,255,255,0.55);
+    }
+    .footer-bottom a:hover { color: var(--orange-soft); }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body id="top">
+
+  <!-- ============ HEADER ============ -->
+  <header id="siteHeader">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="VD Heide Service & Techniek — naar boven">
+        <span class="logo" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none"><path d="M8 9l4.5 14L17 9" stroke="#F58220" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.5 9h6M18.5 16h5M18.5 23h6" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>
+        </span>
+        <span class="brand-text">
+          <b>VD Heide</b>
+          <small>Service &amp; Techniek</small>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Hoofdmenu">
+        <a href="#over">Over ons</a>
+        <a href="#diensten">Diensten</a>
+        <a href="#signalen">Wanneer bellen</a>
+        <a href="#waarom">Waarom wij</a>
+        <a href="#werkwijze">Werkwijze</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="nav-phone" href="mailto:Thomas@vdheideservicetechniek.nl">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          E-mail ons
+        </a>
+        <a href="#contact" class="btn btn-primary">Neem contact op</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Menu openen" aria-expanded="false" aria-controls="mobileMenu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
       </div>
+    </div>
+  </header>
 
-      <div class="hero-visual" aria-hidden="true">
-        <div class="mock">
-          <div class="mock-bar">
-            <span></span><span></span><span></span>
-            <span class="url">jouwbedrijf.nl</span>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobiel menu">
+    <a href="#over">Over ons</a>
+    <a href="#diensten">Diensten</a>
+    <a href="#signalen">Wanneer bellen</a>
+    <a href="#waarom">Waarom wij</a>
+    <a href="#werkwijze">Werkwijze</a>
+    <a href="#contact" class="btn btn-primary">Neem contact op</a>
+  </nav>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <div class="badge-row reveal in">
+            <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1L12 16.6 5.7 21l2.3-7.1-6-4.5h7.6z"/></svg>Ruim 60 jaar ervaring</span>
+            <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Persoonlijke service</span>
           </div>
-          <div class="mock-body">
-            <div class="mock-hero">
-              <div class="mock-line"></div>
-              <div class="mock-line short"></div>
+          <h1 class="reveal in" data-delay="1">Specialist in service, onderhoud en revisie van <span>weerstandlasmachines</span></h1>
+          <p class="lead reveal in" data-delay="2">Ruim 60 jaar ervaring. Betrouwbare service, persoonlijk contact en vakmanschap waar u op kunt bouwen.</p>
+          <div class="hero-cta reveal in" data-delay="3">
+            <a href="#contact" class="btn btn-primary">Neem contact op <span class="arrow" aria-hidden="true">→</span></a>
+            <a href="#diensten" class="btn btn-ghost-light">Onze diensten</a>
+            <a href="#over" class="btn btn-ghost-light">Over ons</a>
+          </div>
+          <div class="hero-stats reveal in" data-delay="4">
+            <div class="stat"><b>60+</b><span>jaar vakervaring</span></div>
+            <div class="stat"><b>40+</b><span>jaar klantrelaties</span></div>
+            <div class="stat"><b>100%</b><span>persoonlijke aandacht</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal in" data-delay="2">
+          <div class="owner-card">
+            <div class="owner-photo">
+              <img src="https://images.unsplash.com/photo-1622021142947-da7dedc7c39a?auto=format&fit=crop&w=800&q=80"
+                   alt="Ervaren servicemonteur aan het werk aan een weerstandlasmachine" loading="lazy" width="800" height="1000" />
+              <div class="owner-tag">
+                <b>Thomas van der Heide</b>
+                <span>Eigenaar &amp; servicespecialist</span>
+              </div>
             </div>
-            <div class="mock-cards">
-              <div class="mock-card"><div class="chip"></div><div class="mock-line"></div><div class="mock-line short"></div></div>
-              <div class="mock-card"><div class="chip"></div><div class="mock-line"></div><div class="mock-line short"></div></div>
-              <div class="mock-card"><div class="chip"></div><div class="mock-line"></div><div class="mock-line short"></div></div>
+            <div class="owner-float">
+              <b>60+</b>
+              <span>jaar ervaring</span>
             </div>
           </div>
-          <div class="mock-badge">In 2 weken live ✦</div>
         </div>
+      </div>
+    </section>
+
+    <!-- ============ TRUST STRIP ============ -->
+    <div class="trust-strip">
+      <div class="wrap">
+        <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5z"/><path d="m9 12 2 2 4-4"/></svg>Betrouwbaar &amp; eerlijk advies</span>
+        <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg>Snelle ondersteuning bij storingen</span>
+        <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2z"/></svg>Specialist in weerstandlassen</span>
+        <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 9 18l-5-5"/></svg>Alleen service, onderhoud &amp; reparatie</span>
       </div>
     </div>
-  </section>
 
-  <!-- BENEFITS -->
-  <section class="benefits section-pad" id="voordelen">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Waarom DH-studio</span>
-        <h2>Een website die wérkt — niet alleen mooi is</h2>
-        <p>Drie dingen waar we onvermurwbaar in zijn, omdat ze bepalen of je online klanten wint of verliest.</p>
-      </div>
-      <div class="grid-3">
-        <article class="card">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg>
+    <!-- ============ ABOUT ============ -->
+    <section class="about section-pad" id="over">
+      <div class="wrap about-grid">
+        <div class="about-visual reveal">
+          <div class="frame">
+            <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=900&q=80"
+                 alt="Servicemonteur controleert en onderhoudt een industriële lasmachine in de werkplaats" loading="lazy" width="900" height="1125" />
           </div>
-          <div class="num">01</div>
-          <h3>Bliksemsnel &amp; vindbaar</h3>
-          <p>Techniek die in milliseconden laadt en netjes scoort in Google. Bezoekers haken niet af en vinden je vóór je concurrent.</p>
-        </article>
-        <article class="card">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/><path d="M7 9h10M7 13h6"/></svg>
-          </div>
-          <div class="num">02</div>
-          <h3>Overtuigende copy &amp; design</h3>
-          <p>Geen holle teksten. We schrijven en ontwerpen zó dat de juiste bezoeker denkt: "dit is precies wat ik zocht" — en contact opneemt.</p>
-        </article>
-        <article class="card">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M21 3l-9 9"/><path d="M15 3h6v6"/></svg>
-          </div>
-          <div class="num">03</div>
-          <h3>Zelf makkelijk te beheren</h3>
-          <p>Prijzen, foto's of teksten aanpassen doe je zelf, zonder ons of technische kennis. Jouw website blijft van jou.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider" />
-
-  <!-- PROCESS -->
-  <section class="section-pad" id="werkwijze">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Werkwijze</span>
-        <h2>Van "ik heb niks" naar live in drie stappen</h2>
-        <p>Een helder traject zonder verrassingen. Jij levert je verhaal aan, wij doen de rest.</p>
-      </div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-n">1</div>
-          <div>
-            <h4>Gratis adviesgesprek</h4>
-            <p>We bespreken je bedrijf, je klanten en je doelen. Je krijgt meteen een eerlijk plan en een vaste prijs.</p>
+          <div class="exp-badge">
+            <b>60+</b>
+            <span>jaar in het vak</span>
           </div>
         </div>
-        <div class="step">
-          <div class="step-n">2</div>
-          <div>
-            <h4>Ontwerp &amp; bouw</h4>
-            <p>Binnen een week zie je een live ontwerp. Jij geeft feedback, wij verfijnen tot het klopt.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-n">3</div>
-          <div>
-            <h4>Live &amp; groeien</h4>
-            <p>We zetten alles online, koppelen je domein en leggen uit hoe je zelf verder kunt. Klaar om klanten te winnen.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- PRICING -->
-  <section class="pricing section-pad" id="tarieven">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Tarieven</span>
-        <h2>Duidelijke prijzen. Geen verrassingen achteraf.</h2>
-        <p>Kies wat past bij waar je nu staat. Elk pakket is inclusief hosting-advies, mobielvriendelijk ontwerp en persoonlijke begeleiding.</p>
-      </div>
-      <div class="price-grid">
-        <div class="plan">
-          <div class="plan-name">Starter</div>
-          <p class="plan-desc">Voor wie eindelijk online wil met een strak visitekaartje.</p>
-          <div class="price"><span class="amt">€695</span><span class="per">eenmalig</span></div>
-          <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>One-page website op maat</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Mobiel- &amp; Google-vriendelijk</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Contactformulier &amp; kaart</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Live binnen 2 weken</li>
+        <div class="about-copy">
+          <span class="eyebrow reveal">Over VD Heide Service &amp; Techniek</span>
+          <h2 class="reveal" data-delay="1">Een leven lang vakmanschap in weerstandlassen</h2>
+          <p class="intro reveal" data-delay="1">Achter VD Heide Service &amp; Techniek staat een monteur met ruim 60 jaar ervaring. Zijn loopbaan begon op de serviceafdeling van AWL, waarna hij zijn eigen bedrijf startte.</p>
+          <p class="reveal" data-delay="2">In al die jaren draaide alles om één ding: uw machines betrouwbaar laten draaien. Geen verkooppraatjes, maar eerlijk advies, kundig werk en persoonlijk contact. Klanten weten precies wie er langskomt — en dat is precies waarom sommige van hen al meer dan 40 jaar op hem vertrouwen.</p>
+          <p class="reveal" data-delay="2">Of het nu gaat om een storing, een revisie of preventief onderhoud: u heeft direct contact met de specialist zelf. Kort de lijnen, duidelijke afspraken en werk dat klopt.</p>
+
+          <ul class="about-values reveal" data-delay="3">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Persoonlijke service</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Betrouwbaarheid</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Technische expertise</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Eerlijk advies</li>
           </ul>
-          <a href="#contact" class="btn btn-ghost">Kies Starter</a>
-        </div>
 
-        <div class="plan featured">
-          <div class="plan-name">Professional</div>
-          <p class="plan-desc">Voor ondernemers die serieus online klanten willen winnen.</p>
-          <div class="price"><span class="amt">€1.450</span><span class="per">eenmalig</span></div>
-          <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Meerdere pagina's op maat</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Conversie-copy inbegrepen</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>SEO-basis &amp; snelheid-optimalisatie</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Zelf te beheren (CMS)</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>30 dagen nazorg</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary">Kies Professional</a>
-        </div>
-
-        <div class="plan">
-          <div class="plan-name">Op maat</div>
-          <p class="plan-desc">Webshop, boekingssysteem of iets bijzonders? We bouwen het.</p>
-          <div class="price"><span class="amt">Vanaf €2.900</span></div>
-          <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Webshop of maatwerk-functies</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Integraties &amp; automatisering</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Doorlopend onderhoud mogelijk</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Persoonlijk projectplan</li>
-          </ul>
-          <a href="#contact" class="btn btn-ghost">Vraag offerte aan</a>
-        </div>
-      </div>
-      <p class="price-note">Alle prijzen zijn excl. btw. Liever in termijnen betalen? Vraag ernaar in het adviesgesprek.</p>
-    </div>
-  </section>
-
-  <!-- FOOTER + CONTACT -->
-  <footer id="contact">
-    <div class="wrap footer-grid">
-      <div class="footer-intro">
-        <span class="eyebrow">Contact</span>
-        <h2>Klaar om online klanten te winnen?</h2>
-        <p>Vertel kort waar je nu staat. Binnen één werkdag krijg je een persoonlijke reactie — geen verkooppraatje, wel een eerlijk advies.</p>
-        <div class="contact-list">
-          <a href="mailto:info.dhstudionl@gmail.com">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            info.dhstudionl@gmail.com
-          </a>
-          <a href="https://dh-studio.nl">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
-            dh-studio.nl
-          </a>
-        </div>
-      </div>
-
-      <form id="contactForm" novalidate>
-        <div class="form-row">
-          <div class="field">
-            <label for="name">Naam</label>
-            <input id="name" name="name" type="text" placeholder="Jouw naam" required />
-          </div>
-          <div class="field">
-            <label for="email">E-mail</label>
-            <input id="email" name="email" type="email" placeholder="jij@bedrijf.nl" required />
+          <div class="signature reveal" data-delay="3">
+            <div>
+              <div class="name">Thomas van der Heide</div>
+              <div class="role">Eigenaar VD Heide Service &amp; Techniek</div>
+            </div>
           </div>
         </div>
-        <div class="field">
-          <label for="website">Huidige website (optioneel)</label>
-          <input id="website" name="website" type="text" placeholder="bijv. jouwbedrijf.nl — of laat leeg" />
+      </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <section class="services section-pad" id="diensten">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="eyebrow">Diensten</span>
+          <h2>Alles voor het onderhoud van uw lasmachines</h2>
+          <p>VD Heide Service &amp; Techniek verzorgt uitsluitend service, onderhoud en reparatie. Van een acute storing tot de jaarlijkse keuring — u bent bij één specialist aan het juiste adres.</p>
         </div>
-        <div class="field">
-          <label for="message">Waar loop je tegenaan?</label>
-          <textarea id="message" name="message" placeholder="Ik heb nog geen website / mijn site is verouderd en levert niks op…" required></textarea>
+        <div class="grid-cards">
+          <article class="s-card reveal">
+            <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2z"/></svg></div>
+            <h3>Reparaties</h3>
+            <p>Snel en vakkundig verhelpen van defecten, zodat uw productie zo kort mogelijk stilstaat.</p>
+          </article>
+          <article class="s-card reveal" data-delay="1">
+            <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 6.6 19l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 4 13.6H3.9a2 2 0 1 1 0-4H4a1.6 1.6 0 0 0 1.7-2.7l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 11 4.4V3.9a2 2 0 1 1 4 0V4a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1A1.6 1.6 0 0 0 20 11h.1a2 2 0 1 1 0 4H20a1.6 1.6 0 0 0-1.5 1z"/></svg></div>
+            <h3>Onderhoud</h3>
+            <p>Regelmatig onderhoud houdt uw machines betrouwbaar, veilig en op volle capaciteit.</p>
+          </article>
+          <article class="s-card reveal" data-delay="2">
+            <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></div>
+            <h3>Revisies</h3>
+            <p>Complete revisie van uw weerstandlasmachine, zodat deze weer jaren meegaat als nieuw.</p>
+          </article>
+          <article class="s-card reveal" data-delay="3">
+            <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+            <h3>Storingzoeken</h3>
+            <p>Doelgericht opsporen van de oorzaak — geen gokwerk, maar een gerichte diagnose.</p>
+          </article>
+          <article class="s-card reveal">
+            <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg></div>
+            <h3>Lasbesturingen</h3>
+            <p>Afstellen, controleren en repareren van lasbesturingen voor een constant lasresultaat.</p>
+          </article>
+          <article class="s-card reveal" data-delay="1">
+            <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 8l-3 3v9h6v-9z"/><path d="M9 20h6"/></svg></div>
+            <h3>Elektroden &amp; houders</h3>
+            <p>Vervangen en leveren van elektroden en elektrodehouders voor optimale laskwaliteit.</p>
+          </article>
+          <article class="s-card reveal" data-delay="2">
+            <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M7 21V10l5-4 5 4v11M10 21v-5h4v5"/></svg></div>
+            <h3>Lasgereedschap</h3>
+            <p>Advies over en onderhoud van uw lasgereedschap, afgestemd op uw toepassing.</p>
+          </article>
+          <article class="s-card reveal" data-delay="3">
+            <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+            <h3>Jaarlijkse keuringen</h3>
+            <p>Preventief onderhoud en jaarlijkse inspecties houden uw machinepark veilig en in topconditie.</p>
+          </article>
         </div>
-        <button type="submit" class="btn btn-primary">Verstuur &amp; ontvang advies →</button>
-        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-      </form>
+      </div>
+    </section>
+
+    <!-- ============ WHEN TO CONTACT ============ -->
+    <section class="signals section-pad" id="signalen">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="eyebrow">Wanneer neemt u contact op?</span>
+          <h2>Herkent u een van deze situaties?</h2>
+          <p>Twijfelt u of iets de moeite waard is om te bellen? Doe het gerust. Vroeg ingrijpen voorkomt vaak grotere en duurdere problemen.</p>
+        </div>
+        <div class="signal-grid">
+          <div class="signal reveal">
+            <div class="sig-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.2 1.8 18a1.9 1.9 0 0 0 1.7 2.9h17a1.9 1.9 0 0 0 1.7-2.9L13.7 3.2a1.9 1.9 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div>
+            <div>
+              <h4>Storing aan de lasmachine</h4>
+              <p>De machine valt uit, geeft foutmeldingen of doet het niet meer zoals het hoort.</p>
+            </div>
+          </div>
+          <div class="signal reveal" data-delay="1">
+            <div class="sig-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div>
+              <h4>Slechte laskwaliteit</h4>
+              <p>De lassen zijn niet meer constant of voldoen niet aan uw kwaliteitseisen.</p>
+            </div>
+          </div>
+          <div class="signal reveal" data-delay="2">
+            <div class="sig-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2"/></svg></div>
+            <div>
+              <h4>Problemen met de besturing</h4>
+              <p>De lasbesturing reageert onvoorspelbaar of moet opnieuw worden afgesteld.</p>
+            </div>
+          </div>
+          <div class="signal reveal">
+            <div class="sig-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 8l-3 3v9h6v-9z"/><path d="M9 20h6"/></svg></div>
+            <div>
+              <h4>Versleten elektroden</h4>
+              <p>Elektroden of houders zijn versleten en moeten worden vervangen.</p>
+            </div>
+          </div>
+          <div class="signal reveal" data-delay="1">
+            <div class="sig-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></div>
+            <div>
+              <h4>Preventief onderhoud</h4>
+              <p>U wilt storingen vóór zijn en uw machines planmatig laten nakijken.</p>
+            </div>
+          </div>
+          <div class="signal reveal" data-delay="2">
+            <div class="sig-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></div>
+            <div>
+              <h4>Revisie van de machine</h4>
+              <p>Uw machine is toe aan een grondige opknapbeurt om weer jaren mee te gaan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHY CHOOSE ============ -->
+    <section class="why section-pad" id="waarom">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="eyebrow on-dark">Waarom VD Heide Service &amp; Techniek</span>
+          <h2>Vakmanschap dat zich al decennia bewijst</h2>
+          <p>Geen groot bedrijf met wisselende monteurs, maar één specialist die u kent en die zijn woord houdt.</p>
+        </div>
+        <div class="why-grid">
+          <article class="why-card reveal">
+            <div class="w-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1L12 16.6 5.7 21l2.3-7.1-6-4.5h7.6z"/></svg></div>
+            <b class="big">60+</b>
+            <h3>Jaar ervaring</h3>
+            <p>Meer dan zes decennia praktijkervaring met weerstandlasmachines van uiteenlopende merken.</p>
+          </article>
+          <article class="why-card reveal" data-delay="1">
+            <div class="w-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></div>
+            <b class="big">40+</b>
+            <h3>Jaar klantrelaties</h3>
+            <p>Sommige klanten vertrouwen al meer dan veertig jaar op zijn kennis en betrouwbaarheid.</p>
+          </article>
+          <article class="why-card reveal" data-delay="2">
+            <div class="w-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2z"/></svg></div>
+            <b class="big">1</b>
+            <h3>Specialist in weerstandlassen</h3>
+            <p>Volledig gericht op weerstandlasmachines — geen manusje-van-alles, maar een echte vakman.</p>
+          </article>
+          <article class="why-card reveal">
+            <div class="w-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+            <h3>Persoonlijke service</h3>
+            <p>U heeft altijd direct contact met de specialist zelf. Korte lijnen en duidelijke afspraken.</p>
+          </article>
+          <article class="why-card reveal" data-delay="1">
+            <div class="w-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></div>
+            <h3>Snelle ondersteuning</h3>
+            <p>Bij een storing wordt snel geschakeld, zodat uw productie zo min mogelijk stilstaat.</p>
+          </article>
+          <article class="why-card reveal" data-delay="2">
+            <div class="w-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5z"/><path d="m9 12 2 2 4-4"/></svg></div>
+            <h3>Betrouwbare partner</h3>
+            <p>Eerlijk advies en werk dat klopt. Afspraken worden nagekomen, ook op de lange termijn.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROCESS ============ -->
+    <section class="process section-pad" id="werkwijze">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="eyebrow">Werkwijze</span>
+          <h2>Van storing tot draaiende machine</h2>
+          <p>Een heldere werkwijze zonder verrassingen. U weet steeds waar u aan toe bent.</p>
+        </div>
+        <div class="timeline">
+          <div class="t-step reveal">
+            <div class="t-num">1</div>
+            <div class="t-body">
+              <h4>Contact</h4>
+              <p>U neemt contact op en vertelt wat er speelt. Samen bepalen we de urgentie en de vervolgstap.</p>
+            </div>
+          </div>
+          <div class="t-step reveal">
+            <div class="t-num">2</div>
+            <div class="t-body">
+              <h4>Inspectie</h4>
+              <p>De machine wordt ter plaatse bekeken en beoordeeld — grondig en met oog voor detail.</p>
+            </div>
+          </div>
+          <div class="t-step reveal">
+            <div class="t-num">3</div>
+            <div class="t-body">
+              <h4>Diagnose</h4>
+              <p>U krijgt een duidelijke diagnose en een eerlijk advies over de beste oplossing.</p>
+            </div>
+          </div>
+          <div class="t-step reveal">
+            <div class="t-num">4</div>
+            <div class="t-body">
+              <h4>Reparatie of onderhoud</h4>
+              <p>Het werk wordt vakkundig uitgevoerd, met de juiste onderdelen en zorg voor kwaliteit.</p>
+            </div>
+          </div>
+          <div class="t-step reveal">
+            <div class="t-num">5</div>
+            <div class="t-body">
+              <h4>Machine weer operationeel</h4>
+              <p>De machine draait weer zoals het hoort. U kunt vooruit, met een aanspreekpunt voor de toekomst.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="contact section-pad" id="contact">
+      <div class="wrap">
+        <div class="contact-shell reveal">
+          <div class="contact-info">
+            <span class="eyebrow on-dark">Contact</span>
+            <h2>Machine aan onderhoud toe of storing? Neem contact op.</h2>
+            <p>Vertel kort wat er speelt en met welke machine. U krijgt een persoonlijke reactie van de specialist zelf — geen verkooppraatje, wel eerlijk advies.</p>
+
+            <div class="contact-methods">
+              <a href="mailto:Thomas@vdheideservicetechniek.nl">
+                <span class="cm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+                <span>
+                  <span class="cm-label">E-mail</span>
+                  <span class="cm-value">Thomas@vdheideservicetechniek.nl</span>
+                </span>
+              </a>
+              <div class="cm">
+                <span class="cm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2z"/></svg></span>
+                <span>
+                  <span class="cm-label">Specialisme</span>
+                  <span class="cm-value">Service, onderhoud &amp; revisie van weerstandlasmachines</span>
+                </span>
+              </div>
+            </div>
+
+            <ul class="contact-usps">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Direct contact met de specialist</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Ruim 60 jaar ervaring</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Eerlijk advies, geen verrassingen</li>
+            </ul>
+          </div>
+
+          <div class="contact-form">
+            <h3>Stuur een bericht</h3>
+            <p>Vul het formulier in en beschrijf kort uw situatie. U hoort zo snel mogelijk van ons.</p>
+            <form id="contactForm" novalidate>
+              <div class="form-row">
+                <div class="field">
+                  <label for="name">Naam <span class="req">*</span></label>
+                  <input id="name" name="name" type="text" autocomplete="name" placeholder="Uw naam" required />
+                </div>
+                <div class="field">
+                  <label for="company">Bedrijf</label>
+                  <input id="company" name="company" type="text" autocomplete="organization" placeholder="Uw bedrijf" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="email">E-mail <span class="req">*</span></label>
+                  <input id="email" name="email" type="email" autocomplete="email" placeholder="u@bedrijf.nl" required />
+                </div>
+                <div class="field">
+                  <label for="phone">Telefoon</label>
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="06 12 34 56 78" />
+                </div>
+              </div>
+              <div class="field">
+                <label for="subject">Onderwerp</label>
+                <select id="subject" name="subject">
+                  <option value="Storing">Storing aan lasmachine</option>
+                  <option value="Onderhoud">Onderhoud</option>
+                  <option value="Reparatie">Reparatie</option>
+                  <option value="Revisie">Revisie</option>
+                  <option value="Keuring">Jaarlijkse keuring</option>
+                  <option value="Overig">Overig</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="message">Uw bericht <span class="req">*</span></label>
+                <textarea id="message" name="message" placeholder="Beschrijf kort uw machine en waar u tegenaan loopt…" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Verstuur bericht <span class="arrow" aria-hidden="true">→</span></button>
+              <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+              <p class="privacy-note">Uw gegevens worden alleen gebruikt om op uw aanvraag te reageren.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="wrap footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="#top" aria-label="VD Heide Service & Techniek — naar boven">
+          <span class="logo" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M8 9l4.5 14L17 9" stroke="#F58220" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.5 9h6M18.5 16h5M18.5 23h6" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>
+          </span>
+          <span class="brand-text">
+            <b>VD Heide</b>
+            <small>Service &amp; Techniek</small>
+          </span>
+        </a>
+        <p>Specialist in service, onderhoud en revisie van weerstandlasmachines. Ruim 60 jaar ervaring, persoonlijk contact en eerlijk advies.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Diensten</h5>
+        <ul>
+          <li><a href="#diensten">Reparaties</a></li>
+          <li><a href="#diensten">Onderhoud &amp; revisies</a></li>
+          <li><a href="#diensten">Storingzoeken</a></li>
+          <li><a href="#diensten">Lasbesturingen</a></li>
+          <li><a href="#diensten">Jaarlijkse keuringen</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li class="cm">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <a href="mailto:Thomas@vdheideservicetechniek.nl">Thomas@vdheideservicetechniek.nl</a>
+          </li>
+          <li class="cm">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2z"/></svg>
+            <span>Weerstandlasmachines &amp; toebehoren</span>
+          </li>
+          <li style="margin-top:0.4rem"><a href="#contact" class="btn btn-primary" style="padding:0.6em 1.2em;font-size:0.9rem">Neem contact op</a></li>
+        </ul>
+      </div>
     </div>
 
     <div class="wrap footer-bottom">
-      <div>© <span id="year"></span> DH-studio · Webdesign uit Nederland · KvK op aanvraag</div>
-      <div class="socials">
-        <a href="https://instagram.com" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="https://linkedin.com" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v6M8 7v.01M12 16v-3a2 2 0 0 1 4 0v3"/></svg>
-        </a>
-        <a href="https://facebook.com" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 8h2V5h-2a3 3 0 0 0-3 3v2H9v3h2v6h3v-6h2l1-3h-3V8a1 1 0 0 1 1-1z"/></svg>
-        </a>
-      </div>
+      <div>© <span id="year"></span> VD Heide Service &amp; Techniek — Alle rechten voorbehouden</div>
+      <div>Specialist in weerstandlasmachines · Nederland</div>
     </div>
   </footer>
-</main>
 
-<script>
-  (function () {
-    // Theme toggle — respects OS default, overrides on click
-    var root = document.documentElement;
-    var toggle = document.getElementById("themeToggle");
-    toggle.addEventListener("click", function () {
-      var isDark = getComputedStyle(root).getPropertyValue("--bg").trim() === "#0b1a33"
-        || root.getAttribute("data-theme") === "dark";
-      var current = root.getAttribute("data-theme");
-      if (!current) {
-        // no explicit theme yet: flip away from whatever the media query shows
-        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        current = prefersDark ? "dark" : "light";
+  <script>
+    (function () {
+      // Year
+      var yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // Header shadow on scroll
+      var header = document.getElementById("siteHeader");
+      var onScroll = function () {
+        if (window.scrollY > 8) header.classList.add("scrolled");
+        else header.classList.remove("scrolled");
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      // Mobile menu
+      var menuBtn = document.getElementById("menuBtn");
+      var mobileMenu = document.getElementById("mobileMenu");
+      var closeMenu = function () {
+        mobileMenu.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.setAttribute("aria-label", "Menu openen");
+      };
+      menuBtn.addEventListener("click", function () {
+        var open = mobileMenu.classList.toggle("open");
+        menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        menuBtn.setAttribute("aria-label", open ? "Menu sluiten" : "Menu openen");
+      });
+      mobileMenu.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", closeMenu);
+      });
+
+      // Reveal on scroll
+      var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var reveals = document.querySelectorAll(".reveal:not(.in)");
+      if (reduceMotion || !("IntersectionObserver" in window)) {
+        reveals.forEach(function (el) { el.classList.add("in"); });
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+        reveals.forEach(function (el) { io.observe(el); });
       }
-      root.setAttribute("data-theme", current === "dark" ? "light" : "dark");
-    });
 
-    // Year
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Contact form — front-end handling with mailto fallback
-    var form = document.getElementById("contactForm");
-    var status = document.getElementById("formStatus");
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var name = form.name.value.trim();
-      var email = form.email.value.trim();
-      var msg = form.message.value.trim();
-      if (!name || !email || !msg) {
-        status.style.color = "var(--accent-2)";
-        status.textContent = "Vul je naam, e-mail en bericht in.";
-        return;
-      }
-      var body = encodeURIComponent(
-        "Naam: " + name + "\n" +
-        "E-mail: " + email + "\n" +
-        "Huidige website: " + (form.website.value.trim() || "—") + "\n\n" +
-        msg
-      );
-      var subject = encodeURIComponent("Website-aanvraag via dh-studio.nl — " + name);
-      status.style.color = "var(--accent)";
-      status.textContent = "Bedankt " + name + "! Je mailprogramma opent nu om te versturen.";
-      window.location.href =
-        "mailto:info.dhstudionl@gmail.com?subject=" + subject + "&body=" + body;
-      form.reset();
-    });
-  })();
-</script>
+      // Contact form — mailto fallback (no backend)
+      var form = document.getElementById("contactForm");
+      var status = document.getElementById("formStatus");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var name = form.name.value.trim();
+        var email = form.email.value.trim();
+        var msg = form.message.value.trim();
+        if (!name || !email || !msg) {
+          status.style.color = "var(--orange-600)";
+          status.textContent = "Vul uw naam, e-mail en bericht in.";
+          return;
+        }
+        var body = encodeURIComponent(
+          "Naam: " + name + "\n" +
+          "Bedrijf: " + (form.company.value.trim() || "—") + "\n" +
+          "E-mail: " + email + "\n" +
+          "Telefoon: " + (form.phone.value.trim() || "—") + "\n" +
+          "Onderwerp: " + form.subject.value + "\n\n" +
+          msg
+        );
+        var subject = encodeURIComponent("Aanvraag via website — " + form.subject.value + " — " + name);
+        status.style.color = "var(--orange-600)";
+        status.textContent = "Bedankt " + name + "! Uw e-mailprogramma wordt geopend om te versturen.";
+        window.location.href =
+          "mailto:Thomas@vdheideservicetechniek.nl?subject=" + subject + "&body=" + body;
+        form.reset();
+      });
+    })();
+  </script>
+</body>
+</html>
