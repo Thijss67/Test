@@ -311,7 +311,6 @@
 
     /* ================= Trust-strip ================= */
     .trust-strip { background: var(--blue-900); color: rgba(255,255,255,0.92); position: relative; }
-    .trust-strip::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--seam); opacity: 0.9; }
     .trust-strip .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem 2.7rem; padding-block: 1.15rem; text-align: center; }
     .trust-strip .item { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.92rem; font-weight: 600; }
     .trust-strip svg { width: 1.15em; height: 1.15em; color: var(--orange-soft); flex: none; }
@@ -405,6 +404,7 @@
     .why::before {
       content: ""; position: absolute; inset: 0; pointer-events: none;
       background:
+        repeating-linear-gradient(115deg, rgba(255,255,255,0.022) 0 2px, transparent 2px 9px),
         radial-gradient(50% 60% at 92% 6%, rgba(245,130,32,0.22), transparent 60%),
         radial-gradient(45% 55% at 4% 96%, rgba(245,130,32,0.13), transparent 60%);
     }
@@ -547,7 +547,6 @@
 
     /* ================= Footer ================= */
     .site-footer { background: var(--anthracite); color: rgba(255,255,255,0.75); position: relative; }
-    .site-footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--seam); opacity: 0.8; }
     .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2.4rem; padding-block: clamp(2.6rem, 6vw, 4rem); }
     @media (max-width: 820px) { .footer-top { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 520px) { .footer-top { grid-template-columns: 1fr; } }
@@ -565,10 +564,79 @@
       font-size: 0.82rem; color: rgba(255,255,255,0.55);
     }
 
+    /* ================= Sfeer: vonken, jargon, bouwmarkering ================= */
+    .embers { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+
+    /* Gevarenstrepen — bouwplaats-markering */
+    .hazard-edge::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 7px;
+      background: repeating-linear-gradient(-45deg, var(--orange) 0 16px, var(--blue-950) 16px 32px);
+    }
+
+    /* Vakjargon-band: gestanste weerstandlas-termen */
+    .ticker {
+      background: var(--paper);
+      border-top: 1px solid var(--line);
+      overflow: hidden;
+      padding-block: 1.4rem;
+      user-select: none;
+    }
+    .ticker-track {
+      display: flex; width: max-content;
+      animation: tickerMove 38s linear infinite;
+    }
+    .ticker-seq { display: flex; align-items: center; gap: 1.6rem; padding-right: 1.6rem; white-space: nowrap; }
+    .tk {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.9rem, 4.6vw, 3.2rem);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(22, 50, 79, 0.22);
+      paint-order: stroke;
+    }
+    @supports not (-webkit-text-stroke: 1px black) {
+      .tk { color: rgba(22, 50, 79, 0.13); }
+    }
+    .tk-dot { color: var(--orange); font-size: 1.4rem; line-height: 1; }
+    @keyframes tickerMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* Sectiekop last zichzelf vast */
+    .reveal.in .eyebrow::before, .eyebrow.reveal.in::before {
+      animation: weldIn 0.9s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+    }
+    @keyframes weldIn {
+      0% { width: 0; box-shadow: 0 0 0 0 rgba(245, 130, 32, 0); }
+      55% { box-shadow: 0 0 14px 3px rgba(245, 130, 32, 0.6); }
+      100% { width: 34px; box-shadow: 0 0 0 0 rgba(245, 130, 32, 0); }
+    }
+
+    /* Nagloeiend staal: hitte-gradiënt op grote cijfers */
+    @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+      .why-card b.big, .exp-badge b, .hero-stats .stat b {
+        background-image: linear-gradient(180deg, #ffe4c2 0%, #ffb772 38%, #F58220 72%, #d96f14 100%);
+        -webkit-background-clip: text; background-clip: text;
+        color: transparent; -webkit-text-fill-color: transparent;
+      }
+    }
+
+    /* Lichtglans over de primaire knop */
+    .btn-primary { position: relative; overflow: hidden; }
+    .btn-primary::after {
+      content: ""; position: absolute; top: 0; left: -70%; width: 45%; height: 100%;
+      background: linear-gradient(100deg, transparent, rgba(255,255,255,0.4), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.5s ease;
+      pointer-events: none;
+    }
+    .btn-primary:hover::after { left: 130%; }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation: none !important; transition: none !important; }
       .reveal { opacity: 1 !important; transform: none !important; }
+      .embers { display: none; }
     }
   </style>
 </head>
@@ -620,6 +688,7 @@
   <main>
     <!-- ============ HERO ============ -->
     <section class="hero">
+      <canvas class="embers" id="embers" aria-hidden="true"></canvas>
       <div class="wrap hero-inner">
         <div class="hero-copy">
           <div class="badge-row reveal in">
@@ -699,7 +768,7 @@
     </section>
 
     <!-- ============ TRUST-STRIP ============ -->
-    <div class="trust-strip">
+    <div class="trust-strip hazard-edge">
       <div class="wrap">
         <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5z"/><path d="m9 12 2 2 4-4"/></svg>Betrouwbaar &amp; eerlijk advies</span>
         <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg>Snelle ondersteuning bij storingen</span>
@@ -775,6 +844,28 @@
         </div>
       </div>
     </section>
+
+    <!-- ============ VAKJARGON-BAND ============ -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <div class="ticker-seq">
+          <span class="tk">Puntlassen</span><span class="tk-dot">✕</span>
+          <span class="tk">Rolnaadlassen</span><span class="tk-dot">✕</span>
+          <span class="tk">Projectielassen</span><span class="tk-dot">✕</span>
+          <span class="tk">Stuiklassen</span><span class="tk-dot">✕</span>
+          <span class="tk">Lasbesturingen</span><span class="tk-dot">✕</span>
+          <span class="tk">Elektroden</span><span class="tk-dot">✕</span>
+        </div>
+        <div class="ticker-seq">
+          <span class="tk">Puntlassen</span><span class="tk-dot">✕</span>
+          <span class="tk">Rolnaadlassen</span><span class="tk-dot">✕</span>
+          <span class="tk">Projectielassen</span><span class="tk-dot">✕</span>
+          <span class="tk">Stuiklassen</span><span class="tk-dot">✕</span>
+          <span class="tk">Lasbesturingen</span><span class="tk-dot">✕</span>
+          <span class="tk">Elektroden</span><span class="tk-dot">✕</span>
+        </div>
+      </div>
+    </div>
 
     <!-- ============ DIENSTEN ============ -->
     <section class="services section-pad" id="diensten">
@@ -1144,7 +1235,7 @@
   </main>
 
   <!-- ============ FOOTER ============ -->
-  <footer class="site-footer">
+  <footer class="site-footer hazard-edge">
     <div class="wrap footer-top">
       <div class="footer-brand">
         <a class="brand" href="#top" aria-label="VD Heide Service & Techniek — naar boven">
@@ -1239,6 +1330,68 @@
           });
         }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
         reveals.forEach(function (el) { io.observe(el); });
+      }
+
+      // Lasvonken in de hero — canvas-deeltjes, pauzeert buiten beeld
+      var emberCanvas = document.getElementById("embers");
+      if (emberCanvas && !reduceMotion && emberCanvas.getContext) {
+        var ectx = emberCanvas.getContext("2d");
+        var hero = emberCanvas.parentElement;
+        var eW = 0, eH = 0;
+        var sizeEmbers = function () {
+          var dpr = Math.min(window.devicePixelRatio || 1, 2);
+          eW = hero.clientWidth; eH = hero.clientHeight;
+          emberCanvas.width = eW * dpr; emberCanvas.height = eH * dpr;
+          ectx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        };
+        sizeEmbers();
+        window.addEventListener("resize", sizeEmbers);
+
+        var EMBERS = 34, parts = [];
+        var resetEmber = function (p) {
+          p.x = Math.random() * eW;
+          p.y = eH * 0.45 + Math.random() * eH * 0.6;
+          p.r = 0.8 + Math.random() * 2.0;
+          p.vy = 0.22 + Math.random() * 0.6;
+          p.vx = (Math.random() - 0.5) * 0.25;
+          p.life = 0;
+          p.max = 260 + Math.random() * 280;
+          p.tw = Math.random() * 6.28;
+          p.g = 140 + Math.floor(Math.random() * 60);
+        };
+        for (var e = 0; e < EMBERS; e++) {
+          var pt = {};
+          resetEmber(pt);
+          pt.life = Math.random() * pt.max;
+          parts.push(pt);
+        }
+        var emberRun = false, emberRaf = null;
+        var emberTick = function () {
+          if (!emberRun) return;
+          ectx.clearRect(0, 0, eW, eH);
+          for (var i = 0; i < parts.length; i++) {
+            var p = parts[i];
+            p.life++;
+            if (p.life > p.max || p.y < -8) resetEmber(p);
+            p.x += p.vx + Math.sin((p.life + p.tw * 60) / 55) * 0.16;
+            p.y -= p.vy;
+            var a = Math.sin(Math.PI * p.life / p.max) * (0.3 + 0.28 * Math.sin(p.life / 7 + p.tw));
+            if (a <= 0) continue;
+            ectx.beginPath();
+            ectx.arc(p.x, p.y, p.r, 0, 6.29);
+            ectx.fillStyle = "rgba(255," + p.g + ",80," + a.toFixed(3) + ")";
+            ectx.fill();
+          }
+          emberRaf = requestAnimationFrame(emberTick);
+        };
+        if ("IntersectionObserver" in window) {
+          new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting && !emberRun) { emberRun = true; emberTick(); }
+              else if (!en.isIntersecting && emberRun) { emberRun = false; if (emberRaf) cancelAnimationFrame(emberRaf); }
+            });
+          }, { threshold: 0.05 }).observe(hero);
+        } else { emberRun = true; emberTick(); }
       }
 
       // Werkwijze — automatisch wisselende gallerij
