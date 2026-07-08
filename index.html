@@ -13,7 +13,7 @@
   <meta property="og:title" content="VD Heide Service & Techniek — Specialist in weerstandlasmachines" />
   <meta property="og:description" content="Ruim 60 jaar ervaring in service, onderhoud en revisie van weerstandlasmachines. Persoonlijke service en eerlijk advies." />
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2316324F'/%3E%3Cpath d='M8 9l4.5 14L17 9' fill='none' stroke='%23F58220' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M18.5 9h6M18.5 16h5M18.5 23h6' stroke='%23F58220' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2316324F'/%3E%3Ctext x='16' y='20' font-family='Arial Black, Arial, sans-serif' font-size='13' font-style='italic' font-weight='900' fill='white' text-anchor='middle'%3EVD%3C/text%3E%3Crect x='8' y='23.5' width='16' height='2.5' rx='1.2' fill='%23F58220'/%3E%3C/svg%3E" />
 
   <script type="application/ld+json">
   {
@@ -21,7 +21,7 @@
     "@type": "LocalBusiness",
     "name": "VD Heide Service & Techniek",
     "description": "Specialist in service, onderhoud en revisie van weerstandlasmachines.",
-    "email": "Thomas@vdheideservicetechniek.nl",
+    "email": "thomas@vdheideservicetechniek.nl",
     "areaServed": "Nederland",
     "knowsAbout": ["Weerstandlasmachines", "Lasbesturingen", "Elektroden", "Onderhoud", "Revisie", "Storingsdiagnose", "Jaarlijkse keuringen"]
   }
@@ -159,16 +159,17 @@
     }
     header.scrolled { border-bottom-color: var(--line); box-shadow: 0 10px 34px -26px rgba(15,35,56,0.5); }
     .nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 78px; }
-    .brand { display: inline-flex; align-items: center; gap: 0.7rem; }
-    .brand .logo {
-      width: 42px; height: 42px; border-radius: 11px; flex: none;
-      background: var(--blue-900); display: grid; place-items: center;
-      box-shadow: var(--shadow-sm);
+    .brand { display: inline-flex; align-items: center; }
+    /* Wordmark naar het visitekaartje: vet cursief, & TECHNIEK gespatieerd eronder */
+    .wordmark {
+      display: flex; flex-direction: column;
+      font-family: var(--font-display); font-style: italic; font-weight: 800;
+      text-transform: uppercase; line-height: 0.98; letter-spacing: -0.01em;
+      color: var(--blue-950);
     }
-    .brand .logo svg { width: 24px; height: 24px; }
-    .brand-text { display: flex; flex-direction: column; line-height: 1.05; }
-    .brand-text b { font-family: var(--font-display); font-size: 1.04rem; font-weight: 800; color: var(--blue-900); letter-spacing: -0.01em; }
-    .brand-text small { font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+    .wm-line1 { font-size: 1.24rem; white-space: nowrap; }
+    .wm-vd { font-size: 0.72em; margin-right: 0.1em; }
+    .wm-line2 { font-size: 0.64rem; letter-spacing: 0.4em; font-weight: 700; color: var(--anthracite-2); margin-top: 3px; }
 
     .nav-links { display: flex; align-items: center; gap: 2rem; font-size: 0.94rem; font-weight: 600; color: var(--anthracite); }
     .nav-links a { position: relative; padding: 0.25rem 0; transition: color 0.15s ease; }
@@ -577,7 +578,8 @@
     .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2.4rem; padding-block: clamp(2.6rem, 6vw, 4rem); }
     @media (max-width: 820px) { .footer-top { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 520px) { .footer-top { grid-template-columns: 1fr; } }
-    .footer-brand .brand-text b { color: #fff; }
+    .footer-brand .wordmark { color: #fff; }
+    .footer-brand .wm-line2 { color: rgba(255, 255, 255, 0.65); }
     .footer-brand p { margin: 1.2rem 0 0; font-size: 0.92rem; max-width: 34ch; color: rgba(255,255,255,0.65); }
     .footer-col h5 { color: #fff; font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; margin: 0 0 1rem; }
     .footer-col ul { display: grid; gap: 0.6rem; }
@@ -673,25 +675,22 @@
   <header id="siteHeader">
     <div class="wrap nav">
       <a class="brand" href="#top" aria-label="VD Heide Service & Techniek — naar boven">
-        <span class="logo" aria-hidden="true">
-          <svg viewBox="0 0 32 32" fill="none"><path d="M8 9l4.5 14L17 9" stroke="#F58220" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.5 9h6M18.5 16h5M18.5 23h6" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>
-        </span>
-        <span class="brand-text">
-          <b>VD Heide</b>
-          <small>Service &amp; Techniek</small>
+        <span class="wordmark">
+          <span class="wm-line1"><span class="wm-vd">VD</span> Heide Service</span>
+          <span class="wm-line2">&amp; Techniek</span>
         </span>
       </a>
 
       <nav class="nav-links" aria-label="Hoofdmenu">
         <a href="#over">Over ons</a>
         <a href="#diensten">Diensten</a>
-        <a href="#signalen">Wanneer bellen</a>
+        <a href="#signalen">Wanneer mailen</a>
         <a href="#waarom">Waarom wij</a>
         <a href="#werkwijze">Werkwijze</a>
       </nav>
 
       <div class="nav-cta">
-        <a class="nav-mail" href="mailto:Thomas@vdheideservicetechniek.nl">
+        <a class="nav-mail" href="mailto:thomas@vdheideservicetechniek.nl">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
           E-mail ons
         </a>
@@ -706,7 +705,7 @@
   <nav class="mobile-menu" id="mobileMenu" aria-label="Mobiel menu">
     <a href="#over">Over ons</a>
     <a href="#diensten">Diensten</a>
-    <a href="#signalen">Wanneer bellen</a>
+    <a href="#signalen">Wanneer mailen</a>
     <a href="#waarom">Waarom wij</a>
     <a href="#werkwijze">Werkwijze</a>
     <a href="#contact" class="btn btn-primary">Neem contact op</a>
@@ -764,7 +763,7 @@
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Ruim 60 jaar ervaring aan uw machine</li>
             </ul>
             <a class="btn btn-primary wc-btn" href="#contact">Plan direct contact <span class="arrow" aria-hidden="true">&rarr;</span></a>
-            <a class="wc-mail" href="mailto:Thomas@vdheideservicetechniek.nl">Thomas@vdheideservicetechniek.nl</a>
+            <a class="wc-mail" href="mailto:thomas@vdheideservicetechniek.nl">thomas@vdheideservicetechniek.nl</a>
             <span class="wc-stamp" aria-hidden="true">60+ jaar<br>vakwerk</span>
           </aside>
         </div>
@@ -939,7 +938,7 @@
         <div class="section-head center reveal">
           <span class="eyebrow">Wanneer neemt u contact op?</span>
           <h2>Herkent u een van deze situaties?</h2>
-          <p>Twijfelt u of iets de moeite waard is om te bellen? Doe het gerust. Vroeg ingrijpen voorkomt vaak grotere en duurdere problemen.</p>
+          <p>Twijfelt u of iets de moeite waard is om te mailen? Stuur gerust een bericht. Vroeg ingrijpen voorkomt vaak grotere en duurdere problemen.</p>
         </div>
         <div class="signal-grid">
           <div class="signal reveal">
@@ -1175,11 +1174,11 @@
             <p>Vertel kort wat er speelt en met welke machine. U krijgt een persoonlijke reactie van de specialist zelf — geen verkooppraatje, wel eerlijk advies.</p>
 
             <div class="contact-methods">
-              <a href="mailto:Thomas@vdheideservicetechniek.nl">
+              <a href="mailto:thomas@vdheideservicetechniek.nl">
                 <span class="cm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
                 <span>
                   <span class="cm-label">E-mail</span>
-                  <span class="cm-value">Thomas@vdheideservicetechniek.nl</span>
+                  <span class="cm-value">thomas@vdheideservicetechniek.nl</span>
                 </span>
               </a>
               <div class="cm">
@@ -1218,20 +1217,16 @@
                   <input id="email" name="email" type="email" autocomplete="email" placeholder="u@bedrijf.nl" required />
                 </div>
                 <div class="field">
-                  <label for="phone">Telefoon</label>
-                  <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="06 12 34 56 78" />
+                  <label for="subject">Onderwerp</label>
+                  <select id="subject" name="subject">
+                    <option value="Storing">Storing aan lasmachine</option>
+                    <option value="Onderhoud">Onderhoud</option>
+                    <option value="Reparatie">Reparatie</option>
+                    <option value="Revisie">Revisie</option>
+                    <option value="Keuring">Jaarlijkse keuring</option>
+                    <option value="Overig">Overig</option>
+                  </select>
                 </div>
-              </div>
-              <div class="field">
-                <label for="subject">Onderwerp</label>
-                <select id="subject" name="subject">
-                  <option value="Storing">Storing aan lasmachine</option>
-                  <option value="Onderhoud">Onderhoud</option>
-                  <option value="Reparatie">Reparatie</option>
-                  <option value="Revisie">Revisie</option>
-                  <option value="Keuring">Jaarlijkse keuring</option>
-                  <option value="Overig">Overig</option>
-                </select>
               </div>
               <div class="field">
                 <label for="message">Uw bericht <span class="req">*</span></label>
@@ -1252,12 +1247,9 @@
     <div class="wrap footer-top">
       <div class="footer-brand">
         <a class="brand" href="#top" aria-label="VD Heide Service & Techniek — naar boven">
-          <span class="logo" aria-hidden="true">
-            <svg viewBox="0 0 32 32" fill="none"><path d="M8 9l4.5 14L17 9" stroke="#F58220" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.5 9h6M18.5 16h5M18.5 23h6" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>
-          </span>
-          <span class="brand-text">
-            <b>VD Heide</b>
-            <small>Service &amp; Techniek</small>
+          <span class="wordmark">
+            <span class="wm-line1"><span class="wm-vd">VD</span> Heide Service</span>
+            <span class="wm-line2">&amp; Techniek</span>
           </span>
         </a>
         <p>Specialist in service, onderhoud en revisie van weerstand&shy;lasmachines. Ruim 60 jaar ervaring, persoonlijk contact en eerlijk advies.</p>
@@ -1279,7 +1271,7 @@
         <ul>
           <li class="cm">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            <a href="mailto:Thomas@vdheideservicetechniek.nl">Thomas@vdheideservicetechniek.nl</a>
+            <a href="mailto:thomas@vdheideservicetechniek.nl">thomas@vdheideservicetechniek.nl</a>
           </li>
           <li class="cm">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2z"/></svg>
@@ -1510,7 +1502,6 @@
           "Naam: " + name + "\n" +
           "Bedrijf: " + (form.company.value.trim() || "—") + "\n" +
           "E-mail: " + email + "\n" +
-          "Telefoon: " + (form.phone.value.trim() || "—") + "\n" +
           "Onderwerp: " + form.subject.value + "\n\n" +
           msg
         );
@@ -1518,7 +1509,7 @@
         status.style.color = "var(--orange-deep)";
         status.textContent = "Bedankt " + name + "! Uw e-mailprogramma wordt geopend om te versturen.";
         window.location.href =
-          "mailto:Thomas@vdheideservicetechniek.nl?subject=" + subject + "&body=" + body;
+          "mailto:thomas@vdheideservicetechniek.nl?subject=" + subject + "&body=" + body;
         form.reset();
       });
     })();
