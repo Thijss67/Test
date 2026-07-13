@@ -136,12 +136,12 @@
     <div class="stappen">
       <div class="stap"><span class="n">1</span><span><b>Bewerk</b> hieronder de teksten per onderdeel en upload eventueel eigen foto&rsquo;s.</span></div>
       <div class="stap"><span class="n">2</span><span><b>Bekijk het voorbeeld</b> om te controleren of alles klopt.</span></div>
-      <div class="stap"><span class="n">3</span><span><b>Download</b> het nieuwe bestand <code>index.html</code> en zet het op uw hosting (vervang het oude bestand). Bewaar voor de zekerheid eerst een kopie van het oude bestand.</span></div>
+      <div class="stap"><span class="n">3</span><span><b>Download</b> het nieuwe bestand <code>index.html</code> en zet het in de hoofdmap van uw hosting (<code>public_html</code>, vervang het oude bestand). Bewaar voor de zekerheid eerst een kopie van het oude bestand.</span></div>
     </div>
 
     <div class="kaart" id="laadFout">
       <h2>Website laden</h2>
-      <p>Het bestand <code>index.html</code> kon niet automatisch worden geladen. Kies het hieronder zelf (het staat in dezelfde map als dit beheerbestand).</p>
+      <p>Het bestand <code>index.html</code> kon niet automatisch worden geladen. Kies het hieronder zelf (het staat in de hoofdmap van uw website, <code>public_html</code>).</p>
       <label class="btn btn-blauw" for="bestandKiezer">Kies index.html</label>
       <input type="file" id="bestandKiezer" accept=".html,.htm" />
     </div>
@@ -458,7 +458,7 @@
         lezer.readAsText(f);
       });
 
-      fetch("index.html", { cache: "no-store" })
+      fetch("../index.html", { cache: "no-store" })
         .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
         .then(verwerkTekst)
         .catch(function () {
