@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beheer — VD Heide Service &amp; Techniek</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232F343A'/%3E%3Ctext x='16' y='20' font-family='Arial Black, Arial, sans-serif' font-size='13' font-style='italic' font-weight='900' fill='white' text-anchor='middle'%3EVD%3C/text%3E%3Crect x='8' y='23.5' width='16' height='2.5' rx='1.2' fill='%23F58220'/%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --blue-950: #0f2338;
+      --blue-900: #16324F;
+      --anthracite: #2F343A;
+      --orange: #F58220;
+      --orange-deep: #d96f14;
+      --paper: #f6f7f9;
+      --ink: #1b2531;
+      --muted: #5a6572;
+      --line: rgba(22, 50, 79, 0.14);
+      --ok: #2e9e4f;
+      --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--paper); color: var(--ink);
+      font-family: var(--font); font-size: 15px; line-height: 1.6;
+      padding-bottom: 110px;
+    }
+    .wrap { max-width: 880px; margin-inline: auto; padding-inline: 1.2rem; }
+
+    header.top {
+      background: var(--blue-900); color: #fff;
+      padding: 1.1rem 0;
+      border-bottom: 6px solid transparent;
+      border-image: repeating-linear-gradient(-45deg, var(--orange) 0 14px, var(--blue-950) 14px 28px) 1;
+    }
+    .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .wordmark { font-style: italic; font-weight: 800; text-transform: uppercase; line-height: 1; }
+    .wordmark .l1 { font-size: 1.15rem; }
+    .wordmark .l1 .vd { font-size: 0.72em; }
+    .wordmark .l2 { display: block; font-size: 0.6rem; letter-spacing: 0.4em; font-weight: 700; color: rgba(255,255,255,0.7); margin-top: 4px; }
+    .top .tag { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; background: var(--orange); padding: 0.35rem 0.8rem; border-radius: 999px; }
+
+    h1 { font-size: 1.5rem; margin: 1.8rem 0 0.4rem; letter-spacing: -0.01em; }
+    .uitleg { color: var(--muted); margin: 0 0 1.4rem; }
+    .stappen { display: grid; gap: 0.5rem; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 1.1rem 1.2rem; margin-bottom: 1.6rem; font-size: 0.92rem; }
+    .stappen b { color: var(--blue-900); }
+    .stappen .stap { display: flex; gap: 0.7rem; align-items: baseline; }
+    .stappen .n { flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--orange); color: #fff; font-weight: 800; font-size: 0.78rem; display: grid; place-items: center; align-self: center; }
+
+    .kaart { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 1.2rem 1.3rem; margin-bottom: 1rem; }
+    .kaart h2 { font-size: 1.02rem; margin: 0 0 0.9rem; }
+
+    #laadFout { display: none; border-color: var(--orange); }
+    #laadFout p { margin: 0 0 0.8rem; }
+
+    details.groep { background: #fff; border: 1px solid var(--line); border-radius: 14px; margin-bottom: 0.7rem; overflow: hidden; }
+    details.groep summary {
+      cursor: pointer; padding: 0.95rem 1.2rem; font-weight: 700; color: var(--blue-900);
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      user-select: none; list-style: none;
+    }
+    details.groep summary::-webkit-details-marker { display: none; }
+    details.groep summary::after { content: "▾"; color: var(--muted); transition: transform 0.2s ease; }
+    details.groep[open] summary::after { transform: rotate(180deg); }
+    details.groep summary .aantal { font-size: 0.75rem; font-weight: 600; color: var(--muted); }
+    .groep-body { padding: 0.2rem 1.2rem 1.2rem; display: grid; gap: 0.9rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+
+    .veld { display: grid; gap: 0.3rem; }
+    .veld label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+    .veld input[type="text"], .veld input[type="email"], .veld textarea {
+      font-family: inherit; font-size: 0.95rem; color: var(--ink);
+      background: var(--paper); border: 1.5px solid var(--line); border-radius: 10px;
+      padding: 0.65rem 0.8rem; width: 100%;
+    }
+    .veld textarea { resize: vertical; min-height: 74px; }
+    .veld input:focus, .veld textarea:focus { outline: none; border-color: var(--orange); background: #fff; box-shadow: 0 0 0 3px rgba(245,130,32,0.18); }
+    .veld.gewijzigd label::after { content: " — gewijzigd"; color: var(--orange-deep); }
+
+    .img-slot { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; padding: 0.8rem; border: 1.5px dashed var(--line); border-radius: 12px; }
+    .img-slot .voorbeeld {
+      width: 110px; height: 82px; border-radius: 8px; overflow: hidden; flex: none;
+      background: linear-gradient(135deg, var(--blue-900), var(--anthracite));
+      display: grid; place-items: center; position: relative;
+    }
+    .img-slot .voorbeeld > * { width: 100%; height: 100%; object-fit: cover; }
+    .img-slot .info { flex: 1; min-width: 180px; }
+    .img-slot .info b { display: block; font-size: 0.9rem; color: var(--blue-900); }
+    .img-slot .info span { font-size: 0.78rem; color: var(--muted); }
+    .img-slot .acties { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5em;
+      padding: 0.65em 1.25em; border-radius: 999px; cursor: pointer;
+      font-family: inherit; font-weight: 700; font-size: 0.9rem;
+      border: 1.5px solid transparent; transition: transform 0.15s ease, background 0.15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-oranje { background: var(--orange); color: #fff; }
+    .btn-oranje:hover { background: var(--orange-deep); }
+    .btn-blauw { background: var(--blue-900); color: #fff; }
+    .btn-rand { background: #fff; color: var(--blue-900); border-color: var(--line); }
+    .btn-rand:hover { border-color: var(--orange); color: var(--orange-deep); }
+    .btn[disabled] { opacity: 0.45; pointer-events: none; }
+    input[type="file"] { display: none; }
+
+    .balk {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+      background: #fff; border-top: 1px solid var(--line);
+      box-shadow: 0 -12px 34px -24px rgba(15,35,56,0.5);
+      padding: 0.9rem 0;
+    }
+    .balk .wrap { display: flex; gap: 0.7rem; align-items: center; flex-wrap: wrap; }
+    .balk .status { margin-left: auto; font-size: 0.85rem; color: var(--muted); }
+    .balk .status.ok { color: var(--ok); font-weight: 700; }
+
+    .hint { font-size: 0.78rem; color: var(--muted); margin-top: 0.3rem; }
+    :focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <div class="wordmark">
+        <span class="l1"><span class="vd">VD</span> Heide Service</span>
+        <span class="l2">&amp; Techniek</span>
+      </div>
+      <span class="tag">Beheer</span>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <h1>Website aanpassen</h1>
+    <p class="uitleg">Pas hier zelf de teksten en afbeeldingen van uw website aan. U heeft geen technische kennis nodig.</p>
+
+    <div class="stappen">
+      <div class="stap"><span class="n">1</span><span><b>Bewerk</b> hieronder de teksten per onderdeel en upload eventueel eigen foto&rsquo;s.</span></div>
+      <div class="stap"><span class="n">2</span><span><b>Bekijk het voorbeeld</b> om te controleren of alles klopt.</span></div>
+      <div class="stap"><span class="n">3</span><span><b>Download</b> het nieuwe bestand <code>index.html</code> en zet het op uw hosting (vervang het oude bestand). Bewaar voor de zekerheid eerst een kopie van het oude bestand.</span></div>
+    </div>
+
+    <div class="kaart" id="laadFout">
+      <h2>Website laden</h2>
+      <p>Het bestand <code>index.html</code> kon niet automatisch worden geladen. Kies het hieronder zelf (het staat in dezelfde map als dit beheerbestand).</p>
+      <label class="btn btn-blauw" for="bestandKiezer">Kies index.html</label>
+      <input type="file" id="bestandKiezer" accept=".html,.htm" />
+    </div>
+
+    <div class="kaart" id="algemeen" style="display:none">
+      <h2>Algemeen</h2>
+      <div class="groep-body" style="border-top:0;padding:0">
+        <div class="veld">
+          <label for="algTitel">Paginatitel (browsertabblad &amp; Google)</label>
+          <input type="text" id="algTitel" />
+        </div>
+        <div class="veld">
+          <label for="algOmschrijving">Omschrijving voor Google</label>
+          <textarea id="algOmschrijving"></textarea>
+        </div>
+        <div class="veld">
+          <label for="algEmail">E-mailadres (wordt overal op de site bijgewerkt)</label>
+          <input type="email" id="algEmail" />
+        </div>
+      </div>
+    </div>
+
+    <div id="groepen"></div>
+
+    <div class="kaart" id="afbeeldingenKaart" style="display:none">
+      <h2>Afbeeldingen</h2>
+      <p class="hint" style="margin:0 0 0.9rem">Upload eigen foto&rsquo;s (liefst kleiner dan 1&nbsp;MB per foto). De foto vervangt de tekening op die plek. Met &ldquo;Herstel&rdquo; zet u de originele tekening terug.</p>
+      <div id="afbeeldingen" style="display:grid;gap:0.8rem"></div>
+    </div>
+  </div>
+
+  <div class="balk">
+    <div class="wrap">
+      <button class="btn btn-rand" id="knopVoorbeeld" disabled>Bekijk voorbeeld</button>
+      <button class="btn btn-oranje" id="knopDownload" disabled>Download index.html</button>
+      <span class="status" id="statusTekst">Website wordt geladen…</span>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var GROEP_NAMEN = {
+        hero: "Openingsscherm",
+        voordelen: "Voordelenbalk (donkerblauwe strook)",
+        over: "Over ons",
+        jargon: "Vaktermen-band",
+        diensten: "Diensten",
+        signalen: "Wanneer mailen (situaties)",
+        waarom: "Waarom VD Heide",
+        werkwijze: "Werkwijze",
+        contact: "Contact",
+        footer: "Onderkant (footer)"
+      };
+      var IMG_NAMEN = {
+        "over.afbeelding": ["Over ons", "De grote afbeelding naast het verhaal"],
+        "werkwijze.afbeelding-1": ["Werkwijze — stap 1: Contact", "Afbeelding in de wisselende gallerij"],
+        "werkwijze.afbeelding-2": ["Werkwijze — stap 2: Inspectie", "Afbeelding in de wisselende gallerij"],
+        "werkwijze.afbeelding-3": ["Werkwijze — stap 3: Diagnose", "Afbeelding in de wisselende gallerij"],
+        "werkwijze.afbeelding-4": ["Werkwijze — stap 4: Reparatie", "Afbeelding in de wisselende gallerij"],
+        "werkwijze.afbeelding-5": ["Werkwijze — stap 5: Operationeel", "Afbeelding in de wisselende gallerij"]
+      };
+
+      var doc = null;
+      var origineleEmail = "";
+      var origineleAfbeeldingen = {};
+      var aantalWijzigingen = 0;
+
+      var statusEl = document.getElementById("statusTekst");
+      var knopVoorbeeld = document.getElementById("knopVoorbeeld");
+      var knopDownload = document.getElementById("knopDownload");
+
+      function zetStatus(tekst, ok) {
+        statusEl.textContent = tekst;
+        statusEl.className = "status" + (ok ? " ok" : "");
+      }
+
+      function veldLabel(sleutel) {
+        var deel = sleutel.split(".").slice(1).join(".");
+        deel = deel.replace(/-/g, " ");
+        return deel.charAt(0).toUpperCase() + deel.slice(1);
+      }
+
+      function gewijzigd() {
+        aantalWijzigingen++;
+        zetStatus(aantalWijzigingen + " wijziging" + (aantalWijzigingen === 1 ? "" : "en") + " — nog niet gedownload");
+      }
+
+      function bouwFormulier() {
+        // Algemeen
+        var alg = document.getElementById("algemeen");
+        alg.style.display = "";
+        var inpTitel = document.getElementById("algTitel");
+        var inpOms = document.getElementById("algOmschrijving");
+        var inpMail = document.getElementById("algEmail");
+        inpTitel.value = doc.title;
+        var meta = doc.querySelector('meta[name="description"]');
+        inpOms.value = meta ? meta.getAttribute("content") : "";
+        var mailLink = doc.querySelector('a[href^="mailto:"]');
+        origineleEmail = mailLink ? mailLink.getAttribute("href").replace(/^mailto:/, "") : "";
+        inpMail.value = origineleEmail;
+        inpTitel.addEventListener("input", function () { doc.title = inpTitel.value; gewijzigd(); });
+        inpOms.addEventListener("input", function () {
+          if (meta) meta.setAttribute("content", inpOms.value);
+          gewijzigd();
+        });
+        inpMail.addEventListener("input", gewijzigd);
+
+        // Tekstvelden per groep
+        var velden = doc.querySelectorAll("[data-edit]");
+        var groepen = {};
+        velden.forEach(function (node) {
+          var sleutel = node.getAttribute("data-edit");
+          var groep = sleutel.split(".")[0];
+          if (!groepen[groep]) groepen[groep] = [];
+          groepen[groep].push(node);
+        });
+
+        var houder = document.getElementById("groepen");
+        Object.keys(groepen).forEach(function (groep) {
+          var det = document.createElement("details");
+          det.className = "groep";
+          var sum = document.createElement("summary");
+          sum.innerHTML = "<span>" + (GROEP_NAMEN[groep] || groep) + "</span><span class='aantal'>" + groepen[groep].length + " velden</span>";
+          det.appendChild(sum);
+          var body = document.createElement("div");
+          body.className = "groep-body";
+
+          groepen[groep].forEach(function (node, idx) {
+            var sleutel = node.getAttribute("data-edit");
+            var huidig = node.textContent;
+            var veld = document.createElement("div");
+            veld.className = "veld";
+            var id = "veld-" + groep + "-" + idx;
+            var lab = document.createElement("label");
+            lab.setAttribute("for", id);
+            lab.textContent = veldLabel(sleutel);
+            var inp = huidig.length > 70 ? document.createElement("textarea") : document.createElement("input");
+            if (inp.tagName === "INPUT") inp.type = "text";
+            inp.id = id;
+            inp.value = huidig;
+            inp.addEventListener("input", function () {
+              node.textContent = inp.value;
+              veld.classList.add("gewijzigd");
+              gewijzigd();
+            });
+            veld.appendChild(lab);
+            veld.appendChild(inp);
+            body.appendChild(veld);
+          });
+
+          det.appendChild(body);
+          houder.appendChild(det);
+        });
+
+        // Afbeeldingen
+        var slots = doc.querySelectorAll("[data-edit-img]");
+        if (slots.length) {
+          document.getElementById("afbeeldingenKaart").style.display = "";
+          var imgHouder = document.getElementById("afbeeldingen");
+          slots.forEach(function (slot, i) {
+            var sleutel = slot.getAttribute("data-edit-img");
+            origineleAfbeeldingen[sleutel] = slot.innerHTML;
+            var naam = IMG_NAMEN[sleutel] || [sleutel, ""];
+
+            var rij = document.createElement("div");
+            rij.className = "img-slot";
+            var vb = document.createElement("div");
+            vb.className = "voorbeeld";
+            var info = document.createElement("div");
+            info.className = "info";
+            info.innerHTML = "<b>" + naam[0] + "</b><span>" + naam[1] + "</span>";
+            var acties = document.createElement("div");
+            acties.className = "acties";
+            var kiesLabel = document.createElement("label");
+            kiesLabel.className = "btn btn-blauw";
+            kiesLabel.textContent = "Kies foto";
+            var file = document.createElement("input");
+            file.type = "file";
+            file.accept = "image/*";
+            file.id = "foto-" + i;
+            kiesLabel.setAttribute("for", file.id);
+            var herstel = document.createElement("button");
+            herstel.className = "btn btn-rand";
+            herstel.textContent = "Herstel";
+            herstel.disabled = true;
+
+            function toonVoorbeeld() {
+              vb.innerHTML = "";
+              var eerste = slot.querySelector(".illus");
+              if (eerste) {
+                var kloon = eerste.cloneNode(true);
+                kloon.removeAttribute("class");
+                kloon.style.width = "100%";
+                kloon.style.height = "100%";
+                kloon.style.objectFit = "cover";
+                if (kloon.tagName.toLowerCase() === "svg") kloon.setAttribute("preserveAspectRatio", "xMidYMid slice");
+                vb.appendChild(kloon);
+              }
+            }
+            toonVoorbeeld();
+
+            file.addEventListener("change", function () {
+              var f = file.files && file.files[0];
+              if (!f) return;
+              if (f.size > 2.5 * 1024 * 1024) {
+                alert("Deze foto is groter dan 2,5 MB. Kies een kleinere foto, anders wordt de website traag.");
+                file.value = "";
+                return;
+              }
+              var lezer = new FileReader();
+              lezer.onload = function () {
+                var oudAlt = "";
+                var oudIllus = slot.querySelector(".illus");
+                if (oudIllus) oudAlt = oudIllus.getAttribute("aria-label") || oudIllus.getAttribute("alt") || "";
+                var img = doc.createElement("img");
+                img.className = "illus";
+                img.src = lezer.result;
+                img.alt = oudAlt;
+                img.loading = "lazy";
+                slot.innerHTML = "";
+                slot.appendChild(img);
+                herstel.disabled = false;
+                toonVoorbeeld();
+                gewijzigd();
+              };
+              lezer.readAsDataURL(f);
+            });
+
+            herstel.addEventListener("click", function () {
+              slot.innerHTML = origineleAfbeeldingen[sleutel];
+              herstel.disabled = true;
+              file.value = "";
+              toonVoorbeeld();
+              gewijzigd();
+            });
+
+            acties.appendChild(kiesLabel);
+            acties.appendChild(file);
+            acties.appendChild(herstel);
+            rij.appendChild(vb);
+            rij.appendChild(info);
+            rij.appendChild(acties);
+            imgHouder.appendChild(rij);
+          });
+        }
+
+        knopVoorbeeld.disabled = false;
+        knopDownload.disabled = false;
+        zetStatus("Website geladen — u kunt nu bewerken", true);
+      }
+
+      function serialiseer() {
+        // Vaktermen-band: tweede reeks gelijk maken aan de eerste (naadloze loop)
+        var reeksen = doc.querySelectorAll(".ticker-track .ticker-seq");
+        if (reeksen.length === 2) {
+          reeksen[1].innerHTML = reeksen[0].innerHTML;
+          reeksen[1].querySelectorAll("[data-edit]").forEach(function (n) { n.removeAttribute("data-edit"); });
+        }
+        // Open Graph gelijktrekken met titel/omschrijving
+        var ogT = doc.querySelector('meta[property="og:title"]');
+        if (ogT) ogT.setAttribute("content", doc.title);
+        var ogO = doc.querySelector('meta[property="og:description"]');
+        var metaO = doc.querySelector('meta[name="description"]');
+        if (ogO && metaO) ogO.setAttribute("content", metaO.getAttribute("content"));
+
+        var uit = "<!DOCTYPE html>\n" + doc.documentElement.outerHTML;
+
+        var nieuweEmail = document.getElementById("algEmail").value.trim();
+        if (origineleEmail && nieuweEmail && nieuweEmail !== origineleEmail) {
+          uit = uit.split(origineleEmail).join(nieuweEmail);
+        }
+        return uit;
+      }
+
+      knopVoorbeeld.addEventListener("click", function () {
+        var blob = new Blob([serialiseer()], { type: "text/html" });
+        var url = URL.createObjectURL(blob);
+        window.open(url, "_blank");
+        setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+      });
+
+      knopDownload.addEventListener("click", function () {
+        var blob = new Blob([serialiseer()], { type: "text/html" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = "index.html";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+        zetStatus("Gedownload! Zet het bestand op uw hosting (vervang het oude index.html).", true);
+        aantalWijzigingen = 0;
+      });
+
+      function verwerkTekst(tekst) {
+        doc = new DOMParser().parseFromString(tekst, "text/html");
+        if (!doc.querySelector("[data-edit]")) {
+          zetStatus("Dit bestand bevat geen bewerkbare velden. Kies de juiste index.html.");
+          document.getElementById("laadFout").style.display = "";
+          return;
+        }
+        document.getElementById("laadFout").style.display = "none";
+        bouwFormulier();
+      }
+
+      document.getElementById("bestandKiezer").addEventListener("change", function (e) {
+        var f = e.target.files && e.target.files[0];
+        if (!f) return;
+        var lezer = new FileReader();
+        lezer.onload = function () { verwerkTekst(lezer.result); };
+        lezer.readAsText(f);
+      });
+
+      fetch("index.html", { cache: "no-store" })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+        .then(verwerkTekst)
+        .catch(function () {
+          zetStatus("Kies het bestand index.html om te beginnen");
+          document.getElementById("laadFout").style.display = "";
+        });
+    })();
+  </script>
+</body>
+</html>

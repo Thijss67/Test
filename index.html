@@ -510,6 +510,7 @@
     }
     .ps-slide[data-active="true"] { opacity: 1; transform: scale(1); }
     .ps-slide .illus { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    img.illus { object-fit: cover; }
     .ps-caption {
       position: absolute; left: 0; right: 0; bottom: 0; z-index: 3;
       display: flex; align-items: center; gap: 0.9rem;
@@ -743,26 +744,26 @@
 
       <div class="wrap hero-inner">
         <div class="hero-copy">
-          <span class="eyebrow on-dark reveal in">Specialist in weerstand&shy;lasmachines &middot; sinds de jaren zestig</span>
-          <h1 class="reveal in" data-delay="1">Uw machine moet <em>lassen</em> &mdash; niet stilstaan.</h1>
-          <p class="lead reveal in" data-delay="2">Service, onderhoud en revisie van weerstand&shy;las&shy;machines door &eacute;&eacute;n vakman. Ruim 60 jaar ervaring, persoonlijk contact en eerlijk advies.</p>
+          <span class="eyebrow on-dark reveal in" data-edit="hero.label">Specialist in weerstand&shy;lasmachines &middot; sinds de jaren zestig</span>
+          <h1 class="reveal in" data-delay="1"><span data-edit="hero.titel-begin">Uw machine moet </span><em data-edit="hero.titel-accent">lassen</em><span data-edit="hero.titel-eind"> &mdash; niet stilstaan.</span></h1>
+          <p class="lead reveal in" data-delay="2" data-edit="hero.tekst">Service, onderhoud en revisie van weerstand&shy;las&shy;machines door &eacute;&eacute;n vakman. Ruim 60 jaar ervaring, persoonlijk contact en eerlijk advies.</p>
           <div class="hero-cta reveal in" data-delay="3">
-            <a href="#contact" class="btn btn-primary">Neem contact op <span class="arrow" aria-hidden="true">&rarr;</span></a>
-            <a href="#diensten" class="btn btn-glass">Onze diensten</a>
-            <a href="#over" class="hero-link">Maak kennis met Thomas <span aria-hidden="true">&rarr;</span></a>
+            <a href="#contact" class="btn btn-primary"><span data-edit="hero.knop-1">Neem contact op</span> <span class="arrow" aria-hidden="true">&rarr;</span></a>
+            <a href="#diensten" class="btn btn-glass" data-edit="hero.knop-2">Onze diensten</a>
+            <a href="#over" class="hero-link"><span data-edit="hero.link-over">Maak kennis met Thomas</span> <span aria-hidden="true">&rarr;</span></a>
           </div>
         </div>
 
         <div class="hero-side reveal in" data-delay="2">
           <aside class="workcard" aria-label="Direct contact bij storing of onderhoud">
-            <span class="wc-label">Werkbon</span>
-            <h2 class="wc-title">Storing of onderhoud nodig?</h2>
+            <span class="wc-label" data-edit="hero.werkbon-label">Werkbon</span>
+            <h2 class="wc-title" data-edit="hero.werkbon-titel">Storing of onderhoud nodig?</h2>
             <ul class="wc-list">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Vandaag nog reactie van de specialist zelf</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Heldere diagnose en eerlijk advies</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Ruim 60 jaar ervaring aan uw machine</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-edit="hero.werkbon-punt-1">Vandaag nog reactie van de specialist zelf</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-edit="hero.werkbon-punt-2">Heldere diagnose en eerlijk advies</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-edit="hero.werkbon-punt-3">Ruim 60 jaar ervaring aan uw machine</span></li>
             </ul>
-            <a class="btn btn-primary wc-btn" href="#contact">Plan direct contact <span class="arrow" aria-hidden="true">&rarr;</span></a>
+            <a class="btn btn-primary wc-btn" href="#contact"><span data-edit="hero.werkbon-knop">Plan direct contact</span> <span class="arrow" aria-hidden="true">&rarr;</span></a>
             <a class="wc-mail" href="mailto:thomas@vdheideservicetechniek.nl">thomas@vdheideservicetechniek.nl</a>
             <span class="wc-stamp" aria-hidden="true">60+ jaar<br>vakwerk</span>
           </aside>
@@ -771,10 +772,10 @@
 
       <div class="hero-band">
         <div class="wrap hb-row reveal in" data-delay="4">
-          <div class="hb-stat"><b class="num">60+</b><span>jaar vakervaring</span></div>
-          <div class="hb-stat"><b class="num">40+</b><span>jaar klantrelaties</span></div>
-          <div class="hb-stat"><b class="num">100%</b><span>persoonlijke aandacht</span></div>
-          <p class="hb-note">U schakelt direct met <strong>Thomas van der Heide</strong> &mdash; eigenaar &amp; servicespecialist</p>
+          <div class="hb-stat"><b class="num" data-edit="hero.stat-1-getal">60+</b><span data-edit="hero.stat-1-label">jaar vakervaring</span></div>
+          <div class="hb-stat"><b class="num" data-edit="hero.stat-2-getal">40+</b><span data-edit="hero.stat-2-label">jaar klantrelaties</span></div>
+          <div class="hb-stat"><b class="num" data-edit="hero.stat-3-getal">100%</b><span data-edit="hero.stat-3-label">persoonlijke aandacht</span></div>
+          <p class="hb-note"><span data-edit="hero.notitie-begin">U schakelt direct met </span><strong data-edit="hero.notitie-naam">Thomas van der Heide</strong><span data-edit="hero.notitie-eind"> &mdash; eigenaar &amp; servicespecialist</span></p>
         </div>
       </div>
     </section>
@@ -782,10 +783,10 @@
     <!-- ============ TRUST-STRIP ============ -->
     <div class="trust-strip hazard-edge">
       <div class="wrap">
-        <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5z"/><path d="m9 12 2 2 4-4"/></svg>Betrouwbaar &amp; eerlijk advies</span>
-        <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg>Snelle ondersteuning bij storingen</span>
-        <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2z"/></svg>Specialist in weerstandlassen</span>
-        <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 9 18l-5-5"/></svg>Alleen service, onderhoud &amp; reparatie</span>
+        <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5z"/><path d="m9 12 2 2 4-4"/></svg><span data-edit="voordelen.punt-1">Betrouwbaar &amp; eerlijk advies</span></span>
+        <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg><span data-edit="voordelen.punt-2">Snelle ondersteuning bij storingen</span></span>
+        <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2z"/></svg><span data-edit="voordelen.punt-3">Specialist in weerstandlassen</span></span>
+        <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 9 18l-5-5"/></svg><span data-edit="voordelen.punt-4">Alleen service, onderhoud &amp; reparatie</span></span>
       </div>
     </div>
 
@@ -793,7 +794,7 @@
     <section class="section-pad" id="over">
       <div class="wrap about-grid">
         <div class="about-visual reveal">
-          <div class="frame">
+          <div class="frame" data-edit-img="over.afbeelding">
             <svg class="illus" viewBox="0 0 400 500" role="img" aria-label="Illustratie van onderhoud aan een industriële lasmachine" preserveAspectRatio="xMidYMid slice">
               <defs>
                 <linearGradient id="ag" x1="0" y1="0" x2="1" y2="1">
@@ -830,28 +831,28 @@
             </svg>
           </div>
           <div class="exp-badge">
-            <b>60+</b>
-            <span>jaar in het vak</span>
+            <b data-edit="over.badge-getal">60+</b>
+            <span data-edit="over.badge-label">jaar in het vak</span>
           </div>
         </div>
 
         <div class="about-copy">
-          <span class="eyebrow reveal">Over VD Heide Service &amp; Techniek</span>
-          <h2 class="reveal" data-delay="1">Een leven lang vakmanschap in weerstand&shy;lassen</h2>
-          <p class="intro reveal" data-delay="1">Achter VD Heide Service &amp; Techniek staat een monteur met ruim 60 jaar ervaring. Zijn loopbaan begon op de serviceafdeling van AWL, waarna hij zijn eigen bedrijf startte.</p>
-          <p class="reveal" data-delay="2">In al die jaren draaide alles om één ding: uw machines betrouwbaar laten draaien. Geen verkooppraatjes, maar eerlijk advies, kundig werk en persoonlijk contact. Klanten weten precies wie er langskomt — en dat is precies waarom sommige van hen al meer dan 40 jaar op hem vertrouwen.</p>
-          <p class="reveal" data-delay="2">Of het nu gaat om een storing, een revisie of preventief onderhoud: u heeft direct contact met de specialist zelf. Korte lijnen, duidelijke afspraken en werk dat klopt.</p>
+          <span class="eyebrow reveal" data-edit="over.label">Over VD Heide Service &amp; Techniek</span>
+          <h2 class="reveal" data-delay="1" data-edit="over.titel">Een leven lang vakmanschap in weerstand&shy;lassen</h2>
+          <p class="intro reveal" data-delay="1" data-edit="over.intro">Achter VD Heide Service &amp; Techniek staat een monteur met ruim 60 jaar ervaring. Zijn loopbaan begon op de serviceafdeling van AWL, waarna hij zijn eigen bedrijf startte.</p>
+          <p class="reveal" data-delay="2" data-edit="over.alinea-1">In al die jaren draaide alles om één ding: uw machines betrouwbaar laten draaien. Geen verkooppraatjes, maar eerlijk advies, kundig werk en persoonlijk contact. Klanten weten precies wie er langskomt — en dat is precies waarom sommige van hen al meer dan 40 jaar op hem vertrouwen.</p>
+          <p class="reveal" data-delay="2" data-edit="over.alinea-2">Of het nu gaat om een storing, een revisie of preventief onderhoud: u heeft direct contact met de specialist zelf. Korte lijnen, duidelijke afspraken en werk dat klopt.</p>
 
           <ul class="about-values reveal" data-delay="3">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Persoonlijke service</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Betrouwbaarheid</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Technische expertise</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Eerlijk advies</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-edit="over.kernwaarde-1">Persoonlijke service</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-edit="over.kernwaarde-2">Betrouwbaarheid</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-edit="over.kernwaarde-3">Technische expertise</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-edit="over.kernwaarde-4">Eerlijk advies</span></li>
           </ul>
 
           <div class="signature reveal" data-delay="3">
-            <div class="name">Thomas van der Heide</div>
-            <div class="role">Eigenaar VD Heide Service &amp; Techniek</div>
+            <div class="name" data-edit="over.naam">Thomas van der Heide</div>
+            <div class="role" data-edit="over.functie">Eigenaar VD Heide Service &amp; Techniek</div>
           </div>
         </div>
       </div>
@@ -861,12 +862,12 @@
     <div class="ticker" aria-hidden="true">
       <div class="ticker-track">
         <div class="ticker-seq">
-          <span class="tk">Puntlassen</span><span class="tk-dot">✕</span>
-          <span class="tk">Rolnaadlassen</span><span class="tk-dot">✕</span>
-          <span class="tk">Projectielassen</span><span class="tk-dot">✕</span>
-          <span class="tk">Stuiklassen</span><span class="tk-dot">✕</span>
-          <span class="tk">Lasbesturingen</span><span class="tk-dot">✕</span>
-          <span class="tk">Elektroden</span><span class="tk-dot">✕</span>
+          <span class="tk" data-edit="jargon.term-1">Puntlassen</span><span class="tk-dot">✕</span>
+          <span class="tk" data-edit="jargon.term-2">Rolnaadlassen</span><span class="tk-dot">✕</span>
+          <span class="tk" data-edit="jargon.term-3">Projectielassen</span><span class="tk-dot">✕</span>
+          <span class="tk" data-edit="jargon.term-4">Stuiklassen</span><span class="tk-dot">✕</span>
+          <span class="tk" data-edit="jargon.term-5">Lasbesturingen</span><span class="tk-dot">✕</span>
+          <span class="tk" data-edit="jargon.term-6">Elektroden</span><span class="tk-dot">✕</span>
         </div>
         <div class="ticker-seq">
           <span class="tk">Puntlassen</span><span class="tk-dot">✕</span>
@@ -883,50 +884,50 @@
     <section class="services section-pad" id="diensten">
       <div class="wrap">
         <div class="section-head center reveal">
-          <span class="eyebrow">Diensten</span>
-          <h2>Alles voor het onderhoud van uw lasmachines</h2>
-          <p>VD Heide Service &amp; Techniek verzorgt uitsluitend service, onderhoud en reparatie. Van een acute storing tot de jaarlijkse keuring — u bent bij één specialist aan het juiste adres.</p>
+          <span class="eyebrow" data-edit="diensten.label">Diensten</span>
+          <h2 data-edit="diensten.titel">Alles voor het onderhoud van uw lasmachines</h2>
+          <p data-edit="diensten.tekst">VD Heide Service &amp; Techniek verzorgt uitsluitend service, onderhoud en reparatie. Van een acute storing tot de jaarlijkse keuring — u bent bij één specialist aan het juiste adres.</p>
         </div>
         <div class="grid-cards">
           <article class="s-card reveal">
             <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2z"/></svg></div>
-            <h3>Reparaties</h3>
-            <p>Snel en vakkundig verhelpen van defecten, zodat uw productie zo kort mogelijk stilstaat.</p>
+            <h3 data-edit="diensten.kaart-1-titel">Reparaties</h3>
+            <p data-edit="diensten.kaart-1-tekst">Snel en vakkundig verhelpen van defecten, zodat uw productie zo kort mogelijk stilstaat.</p>
           </article>
           <article class="s-card reveal" data-delay="1">
             <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 6.6 19l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 4 13.6H3.9a2 2 0 1 1 0-4H4a1.6 1.6 0 0 0 1.7-2.7l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 11 4.4V3.9a2 2 0 1 1 4 0V4a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1A1.6 1.6 0 0 0 20 11h.1a2 2 0 1 1 0 4H20a1.6 1.6 0 0 0-1.5 1z"/></svg></div>
-            <h3>Onderhoud</h3>
-            <p>Regelmatig onderhoud houdt uw machines betrouwbaar, veilig en op volle capaciteit.</p>
+            <h3 data-edit="diensten.kaart-2-titel">Onderhoud</h3>
+            <p data-edit="diensten.kaart-2-tekst">Regelmatig onderhoud houdt uw machines betrouwbaar, veilig en op volle capaciteit.</p>
           </article>
           <article class="s-card reveal" data-delay="2">
             <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></div>
-            <h3>Revisies</h3>
-            <p>Complete revisie van uw weerstand&shy;lasmachine, zodat deze weer jaren meegaat als nieuw.</p>
+            <h3 data-edit="diensten.kaart-3-titel">Revisies</h3>
+            <p data-edit="diensten.kaart-3-tekst">Complete revisie van uw weerstand&shy;lasmachine, zodat deze weer jaren meegaat als nieuw.</p>
           </article>
           <article class="s-card reveal" data-delay="3">
             <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
-            <h3>Storingzoeken</h3>
-            <p>Doelgericht opsporen van de oorzaak — geen gokwerk, maar een gerichte diagnose.</p>
+            <h3 data-edit="diensten.kaart-4-titel">Storingzoeken</h3>
+            <p data-edit="diensten.kaart-4-tekst">Doelgericht opsporen van de oorzaak — geen gokwerk, maar een gerichte diagnose.</p>
           </article>
           <article class="s-card reveal">
             <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg></div>
-            <h3>Lasbesturingen</h3>
-            <p>Afstellen, controleren en repareren van lasbesturingen voor een constant lasresultaat.</p>
+            <h3 data-edit="diensten.kaart-5-titel">Lasbesturingen</h3>
+            <p data-edit="diensten.kaart-5-tekst">Afstellen, controleren en repareren van lasbesturingen voor een constant lasresultaat.</p>
           </article>
           <article class="s-card reveal" data-delay="1">
             <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 8l-3 3v9h6v-9z"/><path d="M9 20h6"/></svg></div>
-            <h3>Elektroden &amp; houders</h3>
-            <p>Vervangen en leveren van elektroden en elektrodehouders voor optimale laskwaliteit.</p>
+            <h3 data-edit="diensten.kaart-6-titel">Elektroden &amp; houders</h3>
+            <p data-edit="diensten.kaart-6-tekst">Vervangen en leveren van elektroden en elektrodehouders voor optimale laskwaliteit.</p>
           </article>
           <article class="s-card reveal" data-delay="2">
             <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M7 21V10l5-4 5 4v11M10 21v-5h4v5"/></svg></div>
-            <h3>Lasgereedschap</h3>
-            <p>Advies over en onderhoud van uw lasgereedschap, afgestemd op uw toepassing.</p>
+            <h3 data-edit="diensten.kaart-7-titel">Lasgereedschap</h3>
+            <p data-edit="diensten.kaart-7-tekst">Advies over en onderhoud van uw lasgereedschap, afgestemd op uw toepassing.</p>
           </article>
           <article class="s-card reveal" data-delay="3">
             <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-            <h3>Jaarlijkse keuringen</h3>
-            <p>Preventief onderhoud en jaarlijkse inspecties houden uw machinepark veilig en in topconditie.</p>
+            <h3 data-edit="diensten.kaart-8-titel">Jaarlijkse keuringen</h3>
+            <p data-edit="diensten.kaart-8-tekst">Preventief onderhoud en jaarlijkse inspecties houden uw machinepark veilig en in topconditie.</p>
           </article>
         </div>
       </div>
@@ -936,51 +937,51 @@
     <section class="section-pad" id="signalen">
       <div class="wrap">
         <div class="section-head center reveal">
-          <span class="eyebrow">Wanneer neemt u contact op?</span>
-          <h2>Herkent u een van deze situaties?</h2>
-          <p>Twijfelt u of iets de moeite waard is om te mailen? Stuur gerust een bericht. Vroeg ingrijpen voorkomt vaak grotere en duurdere problemen.</p>
+          <span class="eyebrow" data-edit="signalen.label">Wanneer neemt u contact op?</span>
+          <h2 data-edit="signalen.titel">Herkent u een van deze situaties?</h2>
+          <p data-edit="signalen.tekst">Twijfelt u of iets de moeite waard is om te mailen? Stuur gerust een bericht. Vroeg ingrijpen voorkomt vaak grotere en duurdere problemen.</p>
         </div>
         <div class="signal-grid">
           <div class="signal reveal">
             <div class="sig-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.2 1.8 18a1.9 1.9 0 0 0 1.7 2.9h17a1.9 1.9 0 0 0 1.7-2.9L13.7 3.2a1.9 1.9 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div>
             <div>
-              <h4>Storing aan de lasmachine</h4>
-              <p>De machine valt uit, geeft foutmeldingen of doet het niet meer zoals het hoort.</p>
+              <h4 data-edit="signalen.kaart-1-titel">Storing aan de lasmachine</h4>
+              <p data-edit="signalen.kaart-1-tekst">De machine valt uit, geeft foutmeldingen of doet het niet meer zoals het hoort.</p>
             </div>
           </div>
           <div class="signal reveal" data-delay="1">
             <div class="sig-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3"/></svg></div>
             <div>
-              <h4>Slechte laskwaliteit</h4>
-              <p>De lassen zijn niet meer constant of voldoen niet aan uw kwaliteitseisen.</p>
+              <h4 data-edit="signalen.kaart-2-titel">Slechte laskwaliteit</h4>
+              <p data-edit="signalen.kaart-2-tekst">De lassen zijn niet meer constant of voldoen niet aan uw kwaliteitseisen.</p>
             </div>
           </div>
           <div class="signal reveal" data-delay="2">
             <div class="sig-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2"/></svg></div>
             <div>
-              <h4>Problemen met de besturing</h4>
-              <p>De lasbesturing reageert onvoorspelbaar of moet opnieuw worden afgesteld.</p>
+              <h4 data-edit="signalen.kaart-3-titel">Problemen met de besturing</h4>
+              <p data-edit="signalen.kaart-3-tekst">De lasbesturing reageert onvoorspelbaar of moet opnieuw worden afgesteld.</p>
             </div>
           </div>
           <div class="signal reveal">
             <div class="sig-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 8l-3 3v9h6v-9z"/><path d="M9 20h6"/></svg></div>
             <div>
-              <h4>Versleten elektroden</h4>
-              <p>Elektroden of houders zijn versleten en moeten worden vervangen.</p>
+              <h4 data-edit="signalen.kaart-4-titel">Versleten elektroden</h4>
+              <p data-edit="signalen.kaart-4-tekst">Elektroden of houders zijn versleten en moeten worden vervangen.</p>
             </div>
           </div>
           <div class="signal reveal" data-delay="1">
             <div class="sig-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></div>
             <div>
-              <h4>Preventief onderhoud</h4>
-              <p>U wilt storingen vóór zijn en uw machines planmatig laten nakijken.</p>
+              <h4 data-edit="signalen.kaart-5-titel">Preventief onderhoud</h4>
+              <p data-edit="signalen.kaart-5-tekst">U wilt storingen vóór zijn en uw machines planmatig laten nakijken.</p>
             </div>
           </div>
           <div class="signal reveal" data-delay="2">
             <div class="sig-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></div>
             <div>
-              <h4>Revisie van de machine</h4>
-              <p>Uw machine is toe aan een grondige opknapbeurt om weer jaren mee te gaan.</p>
+              <h4 data-edit="signalen.kaart-6-titel">Revisie van de machine</h4>
+              <p data-edit="signalen.kaart-6-tekst">Uw machine is toe aan een grondige opknapbeurt om weer jaren mee te gaan.</p>
             </div>
           </div>
         </div>
@@ -991,43 +992,43 @@
     <section class="why section-pad" id="waarom">
       <div class="wrap">
         <div class="section-head center reveal">
-          <span class="eyebrow on-dark">Waarom VD Heide Service &amp; Techniek</span>
-          <h2>Vakmanschap dat zich al decennia bewijst</h2>
-          <p>Geen groot bedrijf met wisselende monteurs, maar één specialist die u kent en die zijn woord houdt.</p>
+          <span class="eyebrow on-dark" data-edit="waarom.label">Waarom VD Heide Service &amp; Techniek</span>
+          <h2 data-edit="waarom.titel">Vakmanschap dat zich al decennia bewijst</h2>
+          <p data-edit="waarom.tekst">Geen groot bedrijf met wisselende monteurs, maar één specialist die u kent en die zijn woord houdt.</p>
         </div>
         <div class="why-grid">
           <article class="why-card reveal">
             <div class="w-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1L12 16.6 5.7 21l2.3-7.1-6-4.5h7.6z"/></svg></div>
-            <b class="big">60+</b>
-            <h3>Jaar ervaring</h3>
-            <p>Meer dan zes decennia praktijkervaring met weerstand&shy;lasmachines van uiteenlopende merken.</p>
+            <b class="big" data-edit="waarom.kaart-1-getal">60+</b>
+            <h3 data-edit="waarom.kaart-1-titel">Jaar ervaring</h3>
+            <p data-edit="waarom.kaart-1-tekst">Meer dan zes decennia praktijkervaring met weerstand&shy;lasmachines van uiteenlopende merken.</p>
           </article>
           <article class="why-card reveal" data-delay="1">
             <div class="w-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></div>
-            <b class="big">40+</b>
-            <h3>Jaar klantrelaties</h3>
-            <p>Sommige klanten vertrouwen al meer dan veertig jaar op zijn kennis en betrouwbaarheid.</p>
+            <b class="big" data-edit="waarom.kaart-2-getal">40+</b>
+            <h3 data-edit="waarom.kaart-2-titel">Jaar klantrelaties</h3>
+            <p data-edit="waarom.kaart-2-tekst">Sommige klanten vertrouwen al meer dan veertig jaar op zijn kennis en betrouwbaarheid.</p>
           </article>
           <article class="why-card reveal" data-delay="2">
             <div class="w-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2z"/></svg></div>
-            <b class="big">1</b>
-            <h3>Specialist in weerstand&shy;lassen</h3>
-            <p>Volledig gericht op weerstand&shy;lasmachines — geen manusje-van-alles, maar een echte vakman.</p>
+            <b class="big" data-edit="waarom.kaart-3-getal">1</b>
+            <h3 data-edit="waarom.kaart-3-titel">Specialist in weerstand&shy;lassen</h3>
+            <p data-edit="waarom.kaart-3-tekst">Volledig gericht op weerstand&shy;lasmachines — geen manusje-van-alles, maar een echte vakman.</p>
           </article>
           <article class="why-card reveal">
             <div class="w-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
-            <h3>Persoonlijke service</h3>
-            <p>U heeft altijd direct contact met de specialist zelf. Korte lijnen en duidelijke afspraken.</p>
+            <h3 data-edit="waarom.kaart-4-titel">Persoonlijke service</h3>
+            <p data-edit="waarom.kaart-4-tekst">U heeft altijd direct contact met de specialist zelf. Korte lijnen en duidelijke afspraken.</p>
           </article>
           <article class="why-card reveal" data-delay="1">
             <div class="w-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></div>
-            <h3>Snelle ondersteuning</h3>
-            <p>Bij een storing wordt snel geschakeld, zodat uw productie zo min mogelijk stilstaat.</p>
+            <h3 data-edit="waarom.kaart-5-titel">Snelle ondersteuning</h3>
+            <p data-edit="waarom.kaart-5-tekst">Bij een storing wordt snel geschakeld, zodat uw productie zo min mogelijk stilstaat.</p>
           </article>
           <article class="why-card reveal" data-delay="2">
             <div class="w-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5z"/><path d="m9 12 2 2 4-4"/></svg></div>
-            <h3>Betrouwbare partner</h3>
-            <p>Eerlijk advies en werk dat klopt. Afspraken worden nagekomen, ook op de lange termijn.</p>
+            <h3 data-edit="waarom.kaart-6-titel">Betrouwbare partner</h3>
+            <p data-edit="waarom.kaart-6-tekst">Eerlijk advies en werk dat klopt. Afspraken worden nagekomen, ook op de lange termijn.</p>
           </article>
         </div>
       </div>
@@ -1037,9 +1038,9 @@
     <section class="process section-pad" id="werkwijze">
       <div class="wrap">
         <div class="section-head center reveal">
-          <span class="eyebrow">Werkwijze</span>
-          <h2>Van storing tot draaiende machine</h2>
-          <p>Een heldere werkwijze zonder verrassingen. U weet steeds waar u aan toe bent.</p>
+          <span class="eyebrow" data-edit="werkwijze.label">Werkwijze</span>
+          <h2 data-edit="werkwijze.titel">Van storing tot draaiende machine</h2>
+          <p data-edit="werkwijze.tekst">Een heldere werkwijze zonder verrassingen. U weet steeds waar u aan toe bent.</p>
         </div>
 
         <div class="process-showcase reveal" id="processShowcase">
@@ -1047,40 +1048,40 @@
             <button type="button" class="ps-step" role="tab" id="pstab-0" aria-controls="psslide-0" aria-selected="true" data-i="0">
               <span class="ps-num num">1</span>
               <span class="ps-text">
-                <span class="ps-title">Contact</span>
-                <span class="ps-desc">U neemt contact op en vertelt wat er speelt. Samen bepalen we de urgentie en de vervolgstap.</span>
+                <span class="ps-title" data-edit="werkwijze.stap-1-titel">Contact</span>
+                <span class="ps-desc" data-edit="werkwijze.stap-1-tekst">U neemt contact op en vertelt wat er speelt. Samen bepalen we de urgentie en de vervolgstap.</span>
               </span>
               <span class="ps-progress" aria-hidden="true"><i></i></span>
             </button>
             <button type="button" class="ps-step" role="tab" id="pstab-1" aria-controls="psslide-1" aria-selected="false" data-i="1" tabindex="-1">
               <span class="ps-num num">2</span>
               <span class="ps-text">
-                <span class="ps-title">Inspectie</span>
-                <span class="ps-desc">De machine wordt ter plaatse bekeken en beoordeeld — grondig en met oog voor detail.</span>
+                <span class="ps-title" data-edit="werkwijze.stap-2-titel">Inspectie</span>
+                <span class="ps-desc" data-edit="werkwijze.stap-2-tekst">De machine wordt ter plaatse bekeken en beoordeeld — grondig en met oog voor detail.</span>
               </span>
               <span class="ps-progress" aria-hidden="true"><i></i></span>
             </button>
             <button type="button" class="ps-step" role="tab" id="pstab-2" aria-controls="psslide-2" aria-selected="false" data-i="2" tabindex="-1">
               <span class="ps-num num">3</span>
               <span class="ps-text">
-                <span class="ps-title">Diagnose</span>
-                <span class="ps-desc">U krijgt een duidelijke diagnose en een eerlijk advies over de beste oplossing.</span>
+                <span class="ps-title" data-edit="werkwijze.stap-3-titel">Diagnose</span>
+                <span class="ps-desc" data-edit="werkwijze.stap-3-tekst">U krijgt een duidelijke diagnose en een eerlijk advies over de beste oplossing.</span>
               </span>
               <span class="ps-progress" aria-hidden="true"><i></i></span>
             </button>
             <button type="button" class="ps-step" role="tab" id="pstab-3" aria-controls="psslide-3" aria-selected="false" data-i="3" tabindex="-1">
               <span class="ps-num num">4</span>
               <span class="ps-text">
-                <span class="ps-title">Reparatie of onderhoud</span>
-                <span class="ps-desc">Het werk wordt vakkundig uitgevoerd, met de juiste onderdelen en zorg voor kwaliteit.</span>
+                <span class="ps-title" data-edit="werkwijze.stap-4-titel">Reparatie of onderhoud</span>
+                <span class="ps-desc" data-edit="werkwijze.stap-4-tekst">Het werk wordt vakkundig uitgevoerd, met de juiste onderdelen en zorg voor kwaliteit.</span>
               </span>
               <span class="ps-progress" aria-hidden="true"><i></i></span>
             </button>
             <button type="button" class="ps-step" role="tab" id="pstab-4" aria-controls="psslide-4" aria-selected="false" data-i="4" tabindex="-1">
               <span class="ps-num num">5</span>
               <span class="ps-text">
-                <span class="ps-title">Machine weer operationeel</span>
-                <span class="ps-desc">De machine draait weer zoals het hoort. U kunt vooruit, met een aanspreekpunt voor de toekomst.</span>
+                <span class="ps-title" data-edit="werkwijze.stap-5-titel">Machine weer operationeel</span>
+                <span class="ps-desc" data-edit="werkwijze.stap-5-tekst">De machine draait weer zoals het hoort. U kunt vooruit, met een aanspreekpunt voor de toekomst.</span>
               </span>
               <span class="ps-progress" aria-hidden="true"><i></i></span>
             </button>
@@ -1088,7 +1089,7 @@
 
           <div class="ps-stage">
             <!-- 1. Contact -->
-            <div class="ps-slide" role="tabpanel" id="psslide-0" aria-labelledby="pstab-0" data-active="true">
+            <div class="ps-slide" role="tabpanel" id="psslide-0" aria-labelledby="pstab-0" data-edit-img="werkwijze.afbeelding-1" data-active="true">
               <svg class="illus" viewBox="0 0 480 360" role="img" aria-label="Illustratie: contact opnemen" preserveAspectRatio="xMidYMid slice">
                 <defs><linearGradient id="pg0" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1e4266"/><stop offset="1" stop-color="#2F343A"/></linearGradient></defs>
                 <rect width="480" height="360" fill="url(#pg0)"/>
@@ -1100,7 +1101,7 @@
               </svg>
             </div>
             <!-- 2. Inspectie -->
-            <div class="ps-slide" role="tabpanel" id="psslide-1" aria-labelledby="pstab-1" data-active="false">
+            <div class="ps-slide" role="tabpanel" id="psslide-1" aria-labelledby="pstab-1" data-edit-img="werkwijze.afbeelding-2" data-active="false">
               <svg class="illus" viewBox="0 0 480 360" role="img" aria-label="Illustratie: inspectie van de machine" preserveAspectRatio="xMidYMid slice">
                 <defs><linearGradient id="pg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#16324F"/><stop offset="1" stop-color="#2F343A"/></linearGradient></defs>
                 <rect width="480" height="360" fill="url(#pg1)"/>
@@ -1113,7 +1114,7 @@
               </svg>
             </div>
             <!-- 3. Diagnose -->
-            <div class="ps-slide" role="tabpanel" id="psslide-2" aria-labelledby="pstab-2" data-active="false">
+            <div class="ps-slide" role="tabpanel" id="psslide-2" aria-labelledby="pstab-2" data-edit-img="werkwijze.afbeelding-3" data-active="false">
               <svg class="illus" viewBox="0 0 480 360" role="img" aria-label="Illustratie: diagnose stellen" preserveAspectRatio="xMidYMid slice">
                 <defs><linearGradient id="pg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1e4266"/><stop offset="1" stop-color="#2F343A"/></linearGradient></defs>
                 <rect width="480" height="360" fill="url(#pg2)"/>
@@ -1125,7 +1126,7 @@
               </svg>
             </div>
             <!-- 4. Reparatie of onderhoud -->
-            <div class="ps-slide" role="tabpanel" id="psslide-3" aria-labelledby="pstab-3" data-active="false">
+            <div class="ps-slide" role="tabpanel" id="psslide-3" aria-labelledby="pstab-3" data-edit-img="werkwijze.afbeelding-4" data-active="false">
               <svg class="illus" viewBox="0 0 480 360" role="img" aria-label="Illustratie: reparatie of onderhoud" preserveAspectRatio="xMidYMid slice">
                 <defs>
                   <linearGradient id="pg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#16324F"/><stop offset="1" stop-color="#2F343A"/></linearGradient>
@@ -1139,7 +1140,7 @@
               </svg>
             </div>
             <!-- 5. Operationeel -->
-            <div class="ps-slide" role="tabpanel" id="psslide-4" aria-labelledby="pstab-4" data-active="false">
+            <div class="ps-slide" role="tabpanel" id="psslide-4" aria-labelledby="pstab-4" data-edit-img="werkwijze.afbeelding-5" data-active="false">
               <svg class="illus" viewBox="0 0 480 360" role="img" aria-label="Illustratie: machine weer operationeel" preserveAspectRatio="xMidYMid slice">
                 <defs><linearGradient id="pg4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1e4266"/><stop offset="1" stop-color="#2F343A"/></linearGradient></defs>
                 <rect width="480" height="360" fill="url(#pg4)"/>
@@ -1169,9 +1170,9 @@
       <div class="wrap">
         <div class="contact-shell reveal">
           <div class="contact-info">
-            <span class="eyebrow on-dark">Contact</span>
-            <h2>Machine aan onderhoud toe of storing? Neem contact op.</h2>
-            <p>Vertel kort wat er speelt en met welke machine. U krijgt een persoonlijke reactie van de specialist zelf — geen verkooppraatje, wel eerlijk advies.</p>
+            <span class="eyebrow on-dark" data-edit="contact.label">Contact</span>
+            <h2 data-edit="contact.titel">Machine aan onderhoud toe of storing? Neem contact op.</h2>
+            <p data-edit="contact.tekst">Vertel kort wat er speelt en met welke machine. U krijgt een persoonlijke reactie van de specialist zelf — geen verkooppraatje, wel eerlijk advies.</p>
 
             <div class="contact-methods">
               <a href="mailto:thomas@vdheideservicetechniek.nl">
@@ -1185,21 +1186,21 @@
                 <span class="cm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2z"/></svg></span>
                 <span>
                   <span class="cm-label">Specialisme</span>
-                  <span class="cm-value">Service, onderhoud &amp; revisie van weerstand&shy;lasmachines</span>
+                  <span class="cm-value" data-edit="contact.specialisme">Service, onderhoud &amp; revisie van weerstand&shy;lasmachines</span>
                 </span>
               </div>
             </div>
 
             <ul class="contact-usps">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Direct contact met de specialist</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Ruim 60 jaar ervaring</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Eerlijk advies, geen verrassingen</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-edit="contact.usp-1">Direct contact met de specialist</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-edit="contact.usp-2">Ruim 60 jaar ervaring</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-edit="contact.usp-3">Eerlijk advies, geen verrassingen</span></li>
             </ul>
           </div>
 
           <div class="contact-form">
-            <h3>Stuur een bericht</h3>
-            <p>Vul het formulier in en beschrijf kort uw situatie. U hoort zo snel mogelijk van ons.</p>
+            <h3 data-edit="contact.form-titel">Stuur een bericht</h3>
+            <p data-edit="contact.form-tekst">Vul het formulier in en beschrijf kort uw situatie. U hoort zo snel mogelijk van ons.</p>
             <form id="contactForm" novalidate>
               <div class="form-row">
                 <div class="field">
@@ -1232,9 +1233,9 @@
                 <label for="message">Uw bericht <span class="req">*</span></label>
                 <textarea id="message" name="message" placeholder="Beschrijf kort uw machine en waar u tegenaan loopt…" required></textarea>
               </div>
-              <button type="submit" class="btn btn-primary">Verstuur bericht <span class="arrow" aria-hidden="true">→</span></button>
+              <button type="submit" class="btn btn-primary"><span data-edit="contact.form-knop">Verstuur bericht</span> <span class="arrow" aria-hidden="true">→</span></button>
               <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-              <p class="privacy-note">Uw gegevens worden alleen gebruikt om op uw aanvraag te reageren.</p>
+              <p class="privacy-note" data-edit="contact.privacy">Uw gegevens worden alleen gebruikt om op uw aanvraag te reageren.</p>
             </form>
           </div>
         </div>
@@ -1252,22 +1253,22 @@
             <span class="wm-line2">&amp; Techniek</span>
           </span>
         </a>
-        <p>Specialist in service, onderhoud en revisie van weerstand&shy;lasmachines. Ruim 60 jaar ervaring, persoonlijk contact en eerlijk advies.</p>
+        <p data-edit="footer.omschrijving">Specialist in service, onderhoud en revisie van weerstand&shy;lasmachines. Ruim 60 jaar ervaring, persoonlijk contact en eerlijk advies.</p>
       </div>
 
       <div class="footer-col">
-        <h5>Diensten</h5>
+        <h5 data-edit="footer.kop-1">Diensten</h5>
         <ul>
-          <li><a href="#diensten">Reparaties</a></li>
-          <li><a href="#diensten">Onderhoud &amp; revisies</a></li>
-          <li><a href="#diensten">Storingzoeken</a></li>
-          <li><a href="#diensten">Lasbesturingen</a></li>
-          <li><a href="#diensten">Jaarlijkse keuringen</a></li>
+          <li><a href="#diensten" data-edit="footer.link-1">Reparaties</a></li>
+          <li><a href="#diensten" data-edit="footer.link-2">Onderhoud &amp; revisies</a></li>
+          <li><a href="#diensten" data-edit="footer.link-3">Storingzoeken</a></li>
+          <li><a href="#diensten" data-edit="footer.link-4">Lasbesturingen</a></li>
+          <li><a href="#diensten" data-edit="footer.link-5">Jaarlijkse keuringen</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
-        <h5>Contact</h5>
+        <h5 data-edit="footer.kop-2">Contact</h5>
         <ul>
           <li class="cm">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
@@ -1275,16 +1276,16 @@
           </li>
           <li class="cm">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2z"/></svg>
-            <span>Weerstand&shy;lasmachines &amp; toebehoren</span>
+            <span data-edit="footer.contact-regel">Weerstand&shy;lasmachines &amp; toebehoren</span>
           </li>
-          <li style="margin-top:0.4rem"><a href="#contact" class="btn btn-primary" style="padding:0.6em 1.2em;font-size:0.9rem">Neem contact op</a></li>
+          <li style="margin-top:0.4rem"><a href="#contact" class="btn btn-primary" style="padding:0.6em 1.2em;font-size:0.9rem" data-edit="footer.knop">Neem contact op</a></li>
         </ul>
       </div>
     </div>
 
     <div class="wrap footer-bottom">
-      <div>© <span id="year" class="num"></span> VD Heide Service &amp; Techniek — Alle rechten voorbehouden</div>
-      <div>Specialist in weerstand&shy;lasmachines · Nederland</div>
+      <div>© <span id="year" class="num"></span> <span data-edit="footer.regel-1">VD Heide Service &amp; Techniek — Alle rechten voorbehouden</span></div>
+      <div data-edit="footer.regel-2">Specialist in weerstand&shy;lasmachines · Nederland</div>
     </div>
   </footer>
 
