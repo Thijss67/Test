@@ -206,15 +206,32 @@
       box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.15);
     }
 
-    /* Frietzakje illustratie */
+    /* Gevelfoto */
     .hero-visual {
       display: grid;
       place-items: center;
     }
 
-    .frietzak {
-      width: min(320px, 80%);
-      filter: drop-shadow(0 24px 40px rgba(59, 42, 26, 0.25));
+    .hero-foto {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 30px 60px -25px rgba(59, 42, 26, 0.5);
+      transform: rotate(1.5deg);
+      border: 6px solid var(--wit);
+    }
+
+    .hero-foto img { display: block; width: 100%; height: auto; }
+
+    .foto-credit {
+      position: absolute;
+      right: 0.6rem;
+      bottom: 0.5rem;
+      background: rgba(59, 42, 26, 0.65);
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.68rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
     }
 
     /* ---------- Secties ---------- */
@@ -454,6 +471,22 @@
     .info-item a { font-weight: 600; }
     .info-item a:hover { color: var(--goud-licht); }
 
+    .bezoek-media {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .bezoek-foto {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--schaduw);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .bezoek-foto img { display: block; width: 100%; height: auto; }
+
     .kaart-embed {
       border-radius: var(--radius);
       overflow: hidden;
@@ -541,29 +574,11 @@
           <span class="bol"></span> Vandaag geopend tot 20:00 uur
         </div>
       </div>
-      <div class="hero-visual" aria-hidden="true">
-        <!-- Frietzakje illustratie -->
-        <svg class="frietzak" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
-          <g>
-            <!-- frietjes -->
-            <rect x="62" y="30" width="14" height="90" rx="5" fill="#f2b52e" transform="rotate(-8 69 75)"/>
-            <rect x="86" y="18" width="14" height="100" rx="5" fill="#ffd166"/>
-            <rect x="110" y="26" width="14" height="95" rx="5" fill="#f2b52e" transform="rotate(7 117 73)"/>
-            <rect x="74" y="38" width="14" height="85" rx="5" fill="#e8a41c" transform="rotate(-3 81 80)"/>
-            <rect x="100" y="34" width="14" height="88" rx="5" fill="#ffd166" transform="rotate(3 107 78)"/>
-            <!-- zakje -->
-            <path d="M45 100 L155 100 L140 225 Q100 238 60 225 Z" fill="#c8361f"/>
-            <path d="M45 100 L155 100 L151 135 L49 135 Z" fill="#a32a18"/>
-            <path d="M60 148 L140 148 L137 172 L63 172 Z" fill="#fdf8ef" opacity="0.95"/>
-            <text x="100" y="166" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#c8361f">VEEN</text>
-            <!-- vorkje -->
-            <g transform="rotate(18 150 60)">
-              <rect x="146" y="55" width="7" height="60" rx="3" fill="#fdf8ef" stroke="#d9c7a8" stroke-width="1"/>
-              <rect x="141" y="38" width="5" height="24" rx="2" fill="#fdf8ef" stroke="#d9c7a8" stroke-width="1"/>
-              <rect x="153" y="38" width="5" height="24" rx="2" fill="#fdf8ef" stroke="#d9c7a8" stroke-width="1"/>
-            </g>
-          </g>
-        </svg>
+      <div class="hero-visual">
+        <div class="hero-foto">
+          <img src="images/gevel.jpg" alt="De gevel van Snackbar Veen aan de Van Noortstraat in Nijkerkerveen, met picknicktafels voor de deur" width="1024" height="682">
+          <span class="foto-credit">Foto: Google Street View</span>
+        </div>
       </div>
     </div>
   </div>
@@ -716,13 +731,19 @@
             </div>
           </div>
         </div>
-        <div class="kaart-embed">
-          <iframe
-            title="Snackbar Veen op de kaart"
-            src="https://maps.google.com/maps?q=Van%20Noortstraat%201b%2C%203864%20ES%20Nijkerkerveen&amp;z=16&amp;output=embed"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            allowfullscreen></iframe>
+        <div class="bezoek-media">
+          <div class="bezoek-foto">
+            <img src="images/gevel-breed.jpg" alt="Snackbar Veen van buiten, met terrastafels op het plein voor de zaak" width="1024" height="682" loading="lazy">
+            <span class="foto-credit">Foto: Google Street View</span>
+          </div>
+          <div class="kaart-embed">
+            <iframe
+              title="Snackbar Veen op de kaart"
+              src="https://maps.google.com/maps?q=Van%20Noortstraat%201b%2C%203864%20ES%20Nijkerkerveen&amp;z=16&amp;output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen></iframe>
+          </div>
         </div>
       </div>
     </div>
