@@ -60,6 +60,9 @@
   --line-soft:rgba(0,0,0,.07);
   --blue:#0071e3;
   --blue-h:#0077ed;
+  /* Bijna-zwart met blauw erin: draagt het donkere blok zonder hard zwart */
+  --blue-deep:#0a1f38;
+  --blue-tint:#eaf2fd;
   --green:#0a7c5e;
   --green-bg:#e8f4f0;
   --nav-h:56px;
@@ -147,11 +150,11 @@ header.stuck{border-bottom-color:var(--line-soft);background:rgba(251,251,253,.8
 .menu a[aria-current="true"]{opacity:1;font-weight:500}
 .menu a[aria-current="true"]::after{transform:scaleX(1)}
 .navcta{
-  flex:none;margin-left:10px;background:var(--ink);color:#fff;
+  flex:none;margin-left:10px;background:var(--blue);color:#fff;
   font-size:14px;font-weight:500;padding:8px 16px;border-radius:980px;
-  transition:background .22s var(--e),opacity .22s var(--e);
+  transition:background .22s var(--e),box-shadow .28s var(--e);
 }
-.navcta:hover{background:#000}
+.navcta:hover{background:var(--blue-h);box-shadow:0 4px 14px -4px rgba(0,113,227,.55)}
 
 .burger{
   display:none;margin-left:auto;background:none;border:0;cursor:pointer;
@@ -207,9 +210,15 @@ header.stuck{border-bottom-color:var(--line-soft);background:rgba(251,251,253,.8
 section{padding:var(--pad-s) 0}
 .on-white{background:var(--white)}
 .on-grey{background:var(--grey)}
+/* Elke sectie opent met hetzelfde blauwe merkteken: een kort streepje
+   gevolgd door het label. Dat geeft de pagina een herkenbaar ritme. */
 .eyebrow{
-  font-size:13.5px;font-weight:500;color:var(--sub);
+  display:flex;align-items:center;gap:10px;
+  font-size:13.5px;font-weight:600;color:var(--blue);
   letter-spacing:.02em;text-transform:uppercase;margin-bottom:18px;
+}
+.eyebrow::before{
+  content:"";width:22px;height:2px;background:var(--blue);border-radius:2px;flex:none;
 }
 .head{max-width:660px;margin-bottom:clamp(48px,6vw,76px)}
 .head.center{margin-left:auto;margin-right:auto;text-align:center}
@@ -224,6 +233,19 @@ section{padding:var(--pad-s) 0}
   font-size:clamp(36px,5.2vw,60px);letter-spacing:-.036em;line-height:1.06;
   max-width:15em;margin:0 auto;text-wrap:balance;
 }
+/* Accentwoord in de kop: blauw, met een streep die zichzelf eenmalig zet. */
+.accent{position:relative;color:var(--blue);white-space:nowrap}
+.accent svg{
+  position:absolute;left:0;bottom:-.16em;width:100%;height:.17em;overflow:visible;
+}
+.accent path{
+  fill:none;stroke:var(--blue);stroke-width:3.2;stroke-linecap:round;
+  vector-effect:non-scaling-stroke;opacity:.55;
+  stroke-dasharray:310;stroke-dashoffset:310;
+  animation:draw 1s var(--e) .7s forwards;
+}
+@keyframes draw{to{stroke-dashoffset:0}}
+
 .hero .lede{
   color:var(--sub);font-size:clamp(18px,2vw,21px);line-height:1.5;
   max-width:46ch;margin:24px auto 0;
@@ -234,7 +256,7 @@ section{padding:var(--pad-s) 0}
   margin-top:26px;font-size:14px;color:var(--sub);
 }
 .hero .micro span{display:inline-flex;align-items:center;gap:7px}
-.hero .micro svg{width:13px;height:13px;color:var(--green);flex:none}
+.hero .micro svg{width:13px;height:13px;color:var(--blue);flex:none}
 
 /* --- Showcase: browser + telefoon --- */
 .showcase{position:relative;max-width:900px;margin:clamp(52px,7vw,84px) auto 0;padding-bottom:clamp(0px,4vw,44px)}
@@ -458,8 +480,8 @@ section{padding:var(--pad-s) 0}
 .reasons{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(40px,6vw,84px)}
 .reason{display:flex;gap:15px;padding:24px 0;border-top:1px solid var(--line-soft)}
 .check{
-  width:22px;height:22px;flex:none;border-radius:50%;background:var(--green-bg);
-  color:var(--green);display:grid;place-items:center;margin-top:2px;
+  width:22px;height:22px;flex:none;border-radius:50%;background:var(--blue-tint);
+  color:var(--blue);display:grid;place-items:center;margin-top:2px;
 }
 .check svg{width:12px;height:12px}
 .reason b{display:block;font-size:16.5px;font-weight:600;letter-spacing:-.018em}
@@ -476,10 +498,14 @@ section{padding:var(--pad-s) 0}
 }
 .on-white .plan{background:var(--bg)}
 .plan:hover{transform:translateY(-3px);border-color:var(--line)}
-.plan.pick{border-color:rgba(0,113,227,.4);position:relative}
+.plan.pick{border-color:rgba(0,113,227,.42);position:relative;overflow:hidden}
 .plan.pick:hover{border-color:var(--blue)}
+/* Blauwe rand bovenlangs markeert het aanbevolen pakket rustig */
+.plan.pick::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);
+}
 .flag{
-  position:absolute;top:22px;right:24px;font-size:11.5px;font-weight:500;
+  position:absolute;top:22px;right:24px;font-size:11.5px;font-weight:600;
   color:var(--blue);letter-spacing:.01em;
 }
 .plan h3{font-size:18px;letter-spacing:-.022em}
@@ -489,7 +515,7 @@ section{padding:var(--pad-s) 0}
 .plan .for{font-size:15px;color:var(--sub);margin-top:16px;line-height:1.55;min-height:48px}
 .plan ul{margin:26px 0 0;padding-top:22px;border-top:1px solid var(--line-soft);display:grid;gap:12px;flex:1}
 .plan li{display:flex;gap:11px;align-items:flex-start;font-size:15.5px;color:var(--ink-2)}
-.plan li svg{width:14px;height:14px;color:var(--green);flex:none;margin-top:5px}
+.plan li svg{width:14px;height:14px;color:var(--blue);flex:none;margin-top:5px}
 .plan .btn{margin-top:28px;width:100%}
 .pricefoot{
   margin-top:clamp(32px,4vw,46px);display:grid;grid-template-columns:1fr 1fr;
@@ -502,10 +528,18 @@ section{padding:var(--pad-s) 0}
    12b. CTA-BLOKKEN
    ========================================================= */
 .ctaband{
-  background:var(--ink);color:#fff;border-radius:var(--r-l);
+  position:relative;overflow:hidden;
+  background:var(--blue-deep);color:#fff;border-radius:var(--r-l);
   padding:clamp(38px,5vw,64px) clamp(28px,4vw,60px);
   display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,52px);align-items:center;
 }
+/* Zachte blauwe gloed in de hoek, zodat het blok blauw draagt zonder vlak te worden */
+.ctaband::before{
+  content:"";position:absolute;right:-140px;top:-180px;width:520px;height:520px;
+  border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(0,113,227,.42),rgba(0,113,227,0) 68%);
+}
+.ctaband > *{position:relative}
 .ctaband .ct-title{font-size:clamp(25px,3vw,36px);font-weight:600;line-height:1.14;letter-spacing:-.03em;color:#fff}
 .ctaband p{color:rgba(255,255,255,.72);font-size:17.5px;margin-top:14px;line-height:1.6;max-width:48ch}
 .ctaband .acts{display:flex;flex-direction:column;gap:12px}
@@ -629,27 +663,27 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
 .logo i{transition:transform .45s var(--e)}
 .logo:hover i{transform:rotate(-7deg) scale(1.07)}
 
-/* Dienst: de haarlijn erboven loopt vol en het icoon komt naar voren */
+/* Dienst: de haarlijn erboven loopt blauw vol en het icoon komt naar voren */
 .svc{position:relative}
 .svc::after{
   content:"";position:absolute;top:-1px;left:0;right:0;height:1px;
-  background:var(--ink);transform:scaleX(0);transform-origin:left;
+  background:var(--blue);transform:scaleX(0);transform-origin:left;
   transition:transform .55s var(--e);
 }
 .svc:hover::after{transform:scaleX(1)}
-.svc svg{transition:transform .45s var(--e),opacity .35s var(--e)}
-.svc:hover svg{transform:translateY(-3px);opacity:1}
+.svc svg{transition:transform .45s var(--e),color .35s var(--e),opacity .35s var(--e)}
+.svc:hover svg{transform:translateY(-3px);color:var(--blue);opacity:1}
 
-/* Stap: het nummer kleurt bij en de lijn erboven loopt vol */
+/* Stap: het nummer kleurt blauw bij en de lijn erboven loopt vol */
 .step{position:relative}
 .step::after{
   content:"";position:absolute;top:-1px;left:0;right:0;height:1px;
-  background:var(--ink);transform:scaleX(0);transform-origin:left;
+  background:var(--blue);transform:scaleX(0);transform-origin:left;
   transition:transform .55s var(--e);
 }
 .step:hover::after{transform:scaleX(1)}
 .step .num{transition:color .4s var(--e),transform .45s var(--e)}
-.step:hover .num{color:var(--ink);transform:translateY(-2px)}
+.step:hover .num{color:var(--blue);transform:translateY(-2px)}
 
 /* Vinkjes: kleine pop bij aanwijzen van de regel */
 .reason .check,.workpanel .check{transition:transform .4s var(--e),background .3s var(--e)}
@@ -721,6 +755,7 @@ label{transition:color .25s var(--e)}
   *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
   html{scroll-behavior:auto}
   .load{opacity:1!important;transform:none!important}
+  .accent path{animation:none!important;stroke-dashoffset:0!important}
 }
 </style>
 <noscript><style>
@@ -768,7 +803,7 @@ label{transition:color .25s var(--e)}
 <!-- ============================ HERO ============================ -->
 <section class="hero" aria-labelledby="hero-title">
   <div class="wrap">
-    <h1 id="hero-title" class="load d1">Een moderne website voor je bedrijf, zonder gedoe.</h1>
+    <h1 id="hero-title" class="load d1">Een moderne website voor je bedrijf, <span class="accent">zonder gedoe<svg viewBox="0 0 300 10" preserveAspectRatio="none" aria-hidden="true"><path d="M3 7.2C58 3.4 143 2.2 297 4.6"/></svg></span>.</h1>
     <p class="lede load d2">DH Studio ontwerpt en bouwt websites en webshops voor ondernemers. Vaste prijs vooraf, één aanspreekpunt en een planning die klopt.</p>
     <div class="cta-row load d3">
       <a class="btn btn-p" href="#contact">Plan een kennismaking
