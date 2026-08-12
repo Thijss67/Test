@@ -534,10 +534,6 @@ section{padding:var(--pad-s) 0}
 .check-offer li{display:flex;align-items:center;gap:8px;font-size:15px;color:var(--ink-2)}
 .check-offer li svg{width:13px;height:13px;color:var(--green);flex:none}
 
-/* Pijl die meebeweegt bij hover op de knop */
-.btn .arw{transition:transform .3s var(--e)}
-.btn:hover .arw{transform:translateX(4px)}
-
 /* =========================================================
    13. FAQ
    ========================================================= */
@@ -619,48 +615,54 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
 /* =========================================================
    16. ANIMATIES
    ========================================================= */
-/* Basis-reveal: opkomen met een lichte onscherpte, wat de beweging zachter
-   maakt dan een kale translate. Varianten voor richting en schaal. */
-.rv{
-  opacity:0;transform:translateY(20px);filter:blur(5px);
-  transition:opacity .85s var(--e),transform .85s var(--e),filter .85s var(--e);
-}
-.rv.in{opacity:1;transform:none;filter:none}
-.rv-l{transform:translateX(-28px)}
-.rv-r{transform:translateX(28px)}
-.rv-scale{transform:scale(.975) translateY(20px)}
+/* De pagina animeert niet mee met het scrollen: inhoud staat er gewoon.
+   Alleen de hero komt eenmalig op bij het laden, en losse elementen
+   reageren op aanwijzen en focus. */
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.load{opacity:0;animation:rise .8s var(--e) forwards}
+.d1{animation-delay:.04s}.d2{animation-delay:.12s}.d3{animation-delay:.2s}
+.d4{animation-delay:.28s}.d5{animation-delay:.38s}
 
-.stag > *{
-  opacity:0;transform:translateY(18px);filter:blur(4px);
-  transition:opacity .7s var(--e),transform .7s var(--e),filter .7s var(--e);
-}
-.stag.in > *{opacity:1;transform:none;filter:none}
-.stag.in > *:nth-child(2){transition-delay:.07s}
-.stag.in > *:nth-child(3){transition-delay:.14s}
-.stag.in > *:nth-child(4){transition-delay:.21s}
-.stag.in > *:nth-child(5){transition-delay:.28s}
-.stag.in > *:nth-child(6){transition-delay:.35s}
+/* --- Losse micro-animaties op interactie --- */
 
-/* Haarlijnen die zich links naar rechts opbouwen, zodat de raster-secties
-   zich "tekenen" in plaats van gewoon te verschijnen. De basisrand is
-   transparant zodat alleen de getekende lijn zichtbaar is. */
-.svc,.step{position:relative;border-top-color:transparent}
-.svc::after,.step::after{
+/* Logo: het merkteken kantelt licht mee */
+.logo i{transition:transform .45s var(--e)}
+.logo:hover i{transform:rotate(-7deg) scale(1.07)}
+
+/* Dienst: de haarlijn erboven loopt vol en het icoon komt naar voren */
+.svc{position:relative}
+.svc::after{
   content:"";position:absolute;top:-1px;left:0;right:0;height:1px;
-  background:var(--line);transform:scaleX(0);transform-origin:left;
-  transition:transform 1s var(--e);
+  background:var(--ink);transform:scaleX(0);transform-origin:left;
+  transition:transform .55s var(--e);
 }
-.stag.in .svc::after,.stag.in .step::after{transform:scaleX(1)}
-.stag.in > *:nth-child(2)::after{transition-delay:.07s}
-.stag.in > *:nth-child(3)::after{transition-delay:.14s}
-.stag.in > *:nth-child(4)::after{transition-delay:.21s}
-.stag.in > *:nth-child(5)::after{transition-delay:.28s}
-.stag.in > *:nth-child(6)::after{transition-delay:.35s}
+.svc:hover::after{transform:scaleX(1)}
+.svc svg{transition:transform .45s var(--e),opacity .35s var(--e)}
+.svc:hover svg{transform:translateY(-3px);opacity:1}
 
-@keyframes rise{from{opacity:0;transform:translateY(22px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
-.load{opacity:0;animation:rise .95s var(--e) forwards}
-.d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.23s}
-.d4{animation-delay:.32s}.d5{animation-delay:.44s}
+/* Stap: het nummer kleurt bij en de lijn erboven loopt vol */
+.step{position:relative}
+.step::after{
+  content:"";position:absolute;top:-1px;left:0;right:0;height:1px;
+  background:var(--ink);transform:scaleX(0);transform-origin:left;
+  transition:transform .55s var(--e);
+}
+.step:hover::after{transform:scaleX(1)}
+.step .num{transition:color .4s var(--e),transform .45s var(--e)}
+.step:hover .num{color:var(--ink);transform:translateY(-2px)}
+
+/* Vinkjes: kleine pop bij aanwijzen van de regel */
+.reason .check,.workpanel .check{transition:transform .4s var(--e),background .3s var(--e)}
+.reason:hover .check,.workpanel .incl li:hover .check{transform:scale(1.12)}
+
+/* Knoppen: pijl schuift, knop veert licht in bij indrukken */
+.btn .arw{transition:transform .3s var(--e)}
+.btn:hover .arw{transform:translateX(4px)}
+.btn:active{transform:translateY(0) scale(.985)}
+
+/* Formuliervelden: label licht mee op bij focus */
+.field:focus-within label{color:var(--blue)}
+label{transition:color .25s var(--e)}
 
 /* =========================================================
    17. RESPONSIVE
@@ -718,14 +720,12 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
   html{scroll-behavior:auto}
-  .rv,.stag > *,.load{opacity:1!important;transform:none!important;filter:none!important}
-  .svc::after,.step::after{transform:scaleX(1)!important}
+  .load{opacity:1!important;transform:none!important}
 }
 </style>
 <noscript><style>
-/* Zonder JavaScript worden de reveals nooit geactiveerd; toon dan alles direct. */
-.rv,.stag > *,.load{opacity:1!important;transform:none!important;filter:none!important;animation:none!important}
-.svc::after,.step::after{transform:scaleX(1)!important}
+/* De website-preview wordt door JavaScript op maat geschaald; zonder JS
+   tonen we in plaats daarvan een neutraal vlak. */
 .pv{display:none}
 .preview{background:var(--grey)}
 </style></noscript>
@@ -823,7 +823,7 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
 <!-- ============================ AANPAK ============================ -->
 <section class="on-white" aria-labelledby="aanpak-title">
   <div class="wrap">
-    <div class="statement rv">
+    <div class="statement">
       <h2 id="aanpak-title" class="vh">Onze aanpak</h2>
       <p class="big">De meeste ondernemers hebben geen tijd voor een websitetraject. <em>Daarom nemen wij het hele traject over: ontwerp, techniek, teksten en livegang — met vaste momenten waarop we iets van je nodig hebben.</em></p>
       <p class="sup">Je hoeft niet te schakelen met een ontwerper, een bouwer en een hostingpartij. Je hebt één aanspreekpunt, één planning en één prijs. Wat je krijgt is geen template, maar een site die past bij jouw bedrijf en die je daarna zelf kunt beheren.</p>
@@ -834,12 +834,12 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
 <!-- ============================ DIENSTEN ============================ -->
 <section id="diensten" aria-labelledby="diensten-title">
   <div class="wrap">
-    <div class="head rv">
+    <div class="head">
       <p class="eyebrow">Diensten</p>
       <h2 id="diensten-title">Alles onder één dak</h2>
       <p>Van eerste schets tot een site die online staat en onderhouden wordt.</p>
     </div>
-    <div class="services stag rv">
+    <div class="services">
       <article class="svc">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2.5"/><path d="M3 9h18M9.5 22h5"/></svg>
         <h3>Webdesign</h3>
@@ -871,7 +871,7 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
         <p>Updates, back-ups, beveiliging en kleine aanpassingen. Eén aanspreekpunt dat je gewoon kunt mailen of bellen.</p>
       </article>
     </div>
-    <p class="sectioncta rv">
+    <p class="sectioncta">
       Niet zeker welke diensten je nodig hebt?
       <a class="tlink" href="#contact">Leg je situatie voor
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h13M12.5 6l6 6-6 6"/></svg>
@@ -883,12 +883,12 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
 <!-- ============================ WERKWIJZE ============================ -->
 <section id="werkwijze" class="on-white" aria-labelledby="werkwijze-title">
   <div class="wrap">
-    <div class="head rv">
+    <div class="head">
       <p class="eyebrow">Werkwijze</p>
       <h2 id="werkwijze-title">Vier stappen, geen verrassingen</h2>
       <p>Je weet vooraf wat er gebeurt, wanneer we iets van je nodig hebben en wat het kost.</p>
     </div>
-    <div class="steps stag rv">
+    <div class="steps">
       <div class="step">
         <span class="num" aria-hidden="true">01</span>
         <h3>Kennismaking</h3>
@@ -910,8 +910,8 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
         <p>Domein, e-mail, SSL en statistieken worden gekoppeld. Je krijgt uitleg in gewone taal en dertig dagen nazorg na de livegang.</p>
       </div>
     </div>
-    <p class="steps-note rv">Een standaardtraject plannen we in ongeveer twee weken, gerekend vanaf het moment dat we je materiaal binnen hebben. Webshops en grotere projecten duren langer — je krijgt vooraf een planning met vaste momenten.</p>
-    <p class="sectioncta rv">
+    <p class="steps-note">Een standaardtraject plannen we in ongeveer twee weken, gerekend vanaf het moment dat we je materiaal binnen hebben. Webshops en grotere projecten duren langer — je krijgt vooraf een planning met vaste momenten.</p>
+    <p class="sectioncta">
       Stap 1 kost je een half uur en verplicht je tot niets.
       <a class="tlink" href="#contact">Plan de kennismaking
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h13M12.5 6l6 6-6 6"/></svg>
@@ -923,13 +923,13 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
 <!-- ============================ WERK ============================ -->
 <section id="werk" aria-labelledby="werk-title">
   <div class="wrap">
-    <div class="head rv">
+    <div class="head">
       <p class="eyebrow">Werk</p>
       <h2 id="werk-title">Recent opgeleverd</h2>
       <p>Een website die past bij een bedrijf met zestig jaar vakmanschap.</p>
     </div>
 
-    <article class="feature rv rv-scale">
+    <article class="feature">
       <a class="shot" href="https://vdheideservicetechniek.nl" target="_blank" rel="noopener"
          aria-label="Bekijk de website van VD Heide Service &amp; Techniek in een nieuw tabblad">
         <div class="preview" role="img" aria-label="Homepage van VD Heide Service &amp; Techniek: donkerblauwe hero met de kop 'Al 60 jaar specialist in weerstandlasmachines' en een witte werkbon-kaart met contactgegevens.">
@@ -993,9 +993,9 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
       </div>
     </article>
 
-    <p class="worknote rv">Meer voorbeelden laten we graag zien tijdens de kennismaking — bij voorkeur uit een branche die op de jouwe lijkt.</p>
+    <p class="worknote">Meer voorbeelden laten we graag zien tijdens de kennismaking — bij voorkeur uit een branche die op de jouwe lijkt.</p>
 
-    <div class="ctaband rv rv-scale" style="margin-top:clamp(48px,6vw,76px)">
+    <div class="ctaband" style="margin-top:clamp(48px,6vw,76px)">
       <div>
         <p class="ct-title">Benieuwd wat jouw website zou kosten?</p>
         <p>Dertig minuten aan de telefoon en je weet het precies: een vaste prijs, een planning en een eerlijk advies over wat je wel en niet nodig hebt.</p>
@@ -1022,12 +1022,12 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
 <!-- ============================ VERTROUWEN ============================ -->
 <section id="waarom" class="on-white" aria-labelledby="waarom-title">
   <div class="wrap">
-    <div class="head rv">
+    <div class="head">
       <p class="eyebrow">Afspraken</p>
       <h2 id="waarom-title">Waarom ondernemers voor DH Studio kiezen</h2>
       <p>Geen sterren en geen scores, maar afspraken die we vooraf op papier zetten.</p>
     </div>
-    <div class="reasons stag rv">
+    <div class="reasons">
       <div class="reason">
         <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg></span>
         <span><b>Vaste prijs vooraf</b><span>De prijs die je krijgt, is de prijs die je betaalt. Geen nagekomen uren.</span></span>
@@ -1059,13 +1059,13 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
 <!-- ============================ PRIJZEN ============================ -->
 <section id="prijzen" aria-labelledby="prijzen-title">
   <div class="wrap">
-    <div class="head rv">
+    <div class="head">
       <p class="eyebrow">Prijzen</p>
       <h2 id="prijzen-title">Duidelijk vooraf, geen kleine lettertjes</h2>
       <p>Elk project is anders, dus je krijgt altijd een prijs op maat. Deze pakketten geven vooraf een eerlijk beeld.</p>
     </div>
 
-    <div class="plans stag rv">
+    <div class="plans">
       <div class="plan">
         <h3>Start</h3>
         <p class="price">€749</p>
@@ -1113,12 +1113,12 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
       </div>
     </div>
 
-    <div class="pricefoot rv">
+    <div class="pricefoot">
       <p><b>Maandelijks (optioneel).</b> Hosting, onderhoud, back-ups, beveiliging en support vanaf €29 per maand. Maandelijks opzegbaar, geen langlopend contract.</p>
       <p><b>Optioneel bij te bestellen.</b> Extra pagina's, fotografie, meertaligheid, koppelingen met externe systemen en losse SEO-begeleiding. Altijd vooraf geprijsd.</p>
     </div>
 
-    <div class="check-offer rv" style="margin-top:clamp(44px,6vw,72px)">
+    <div class="check-offer" style="margin-top:clamp(44px,6vw,72px)">
       <div>
         <span class="tagline">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg>
@@ -1144,11 +1144,11 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
 <!-- ============================ FAQ ============================ -->
 <section id="faq" class="on-white" aria-labelledby="faq-title">
   <div class="wrap">
-    <div class="head rv">
+    <div class="head">
       <p class="eyebrow">Vragen</p>
       <h2 id="faq-title">Veelgestelde vragen</h2>
     </div>
-    <div class="faq rv">
+    <div class="faq">
       <div class="q" data-open="true">
         <h3><button type="button" id="q1" aria-expanded="true" aria-controls="a1">Wat kost een website bij DH Studio?<span class="plus" aria-hidden="true"></span></button></h3>
         <div class="a" id="a1" role="region" aria-labelledby="q1"><div><p>Je krijgt altijd een vaste prijs vooraf, gebaseerd op wat je nodig hebt. De pakketten hierboven geven de richting: een eenvoudige website start bij €749, een uitgebreidere website bij €1.495 en een webshop vanaf €2.950. Na een kennismaking van dertig minuten weet je precies waar je aan toe bent.</p></div></div>
@@ -1180,14 +1180,14 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
 <!-- ============================ CONTACT ============================ -->
 <section id="contact" aria-labelledby="contact-title">
   <div class="wrap">
-    <div class="head rv">
+    <div class="head">
       <p class="eyebrow">Contact</p>
       <h2 id="contact-title">Vraag een vrijblijvende offerte aan</h2>
       <p>Vertel kort wat je nodig hebt. Je krijgt binnen één werkdag een reactie met een concreet voorstel — zonder verkooppraatje.</p>
     </div>
 
     <div class="cgrid">
-      <form id="quote" class="rv rv-l" novalidate>
+      <form id="quote" class="" novalidate>
         <div class="two">
           <div class="field">
             <label for="naam">Naam</label>
@@ -1222,7 +1222,7 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
         <p class="formnote" id="formnote" role="status">We gebruiken je gegevens alleen om je vraag te beantwoorden. Geen nieuwsbrief, geen doorverkoop.</p>
       </form>
 
-      <div class="side rv rv-r">
+      <div class="side">
         <h3>Liever direct contact?</h3>
         <p>Mailen mag altijd, ook als je nog aan het begin staat en eerst wilt sparren over wat je nodig hebt.</p>
         <ul class="direct">
@@ -1312,22 +1312,6 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
     } else {
       window.addEventListener("resize", fit, {passive:true});
     }
-  }
-
-  /* --- Elementen faden in zodra ze in beeld komen --- */
-  var reveals = document.querySelectorAll(".rv");
-  if(reduce || !("IntersectionObserver" in window)){
-    reveals.forEach(function(el){ el.classList.add("in"); });
-  } else {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){
-          entry.target.classList.add("in");
-          io.unobserve(entry.target);
-        }
-      });
-    }, {rootMargin:"0px 0px -12% 0px", threshold:.12});
-    reveals.forEach(function(el){ io.observe(el); });
   }
 
   /* --- Actief menu-item tijdens scrollen --- */
