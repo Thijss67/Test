@@ -338,36 +338,115 @@ section{padding:var(--pad-s) 0}
 /* =========================================================
    10. WERK
    ========================================================= */
-.workpanel{
-  border:1px solid var(--line-soft);border-radius:var(--r-l);
-  padding:clamp(30px,4vw,48px);background:var(--white);max-width:880px;
-}
-.on-white .workpanel{background:var(--grey);border-color:transparent}
-.workpanel h3{font-size:22px;letter-spacing:-.026em}
-.workpanel > p{color:var(--sub);font-size:16.5px;margin-top:12px;max-width:56ch;line-height:1.6}
-.workpanel .incl{margin-top:30px;display:grid;gap:0}
-.workpanel .incl li{
-  display:flex;gap:13px;align-items:flex-start;
-  padding:15px 0;border-top:1px solid var(--line-soft);font-size:15.5px;
-}
-.workpanel .incl li:first-child{border-top:0;padding-top:0}
-.workpanel .incl b{font-weight:500}
-.workpanel .incl span{color:var(--sub);display:block;font-size:14.5px;margin-top:2px}
-.workpanel .actions{margin-top:30px}
-
-/* --- Klaar voor echte projecten (zie HTML-comment in sectie Werk) --- */
-.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,3vw,34px);margin-top:clamp(34px,4vw,48px)}
-.project{display:block}
-.project figure{margin:0}
-.project .shot{
-  aspect-ratio:16/10;border-radius:var(--r-m);overflow:hidden;background:var(--grey);
+.feature{display:block}
+.feature .shot{
+  display:block;border-radius:var(--r-l);overflow:hidden;background:var(--grey);
   border:1px solid var(--line-soft);
+  box-shadow:0 1px 2px rgba(0,0,0,.04),0 26px 54px -34px rgba(0,0,0,.3);
+  transition:transform .5s var(--e),box-shadow .5s var(--e);
 }
-.project .shot img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--e)}
-.project:hover .shot img{transform:scale(1.02)}
-.project figcaption{margin-top:16px}
-.project .kind{font-size:13px;color:var(--sub)}
-.project h3{font-size:19px;letter-spacing:-.024em;margin-top:6px}
+.feature .shot:hover{transform:translateY(-3px);box-shadow:0 1px 2px rgba(0,0,0,.04),0 34px 64px -34px rgba(0,0,0,.34)}
+.feature .meta{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px clamp(30px,5vw,64px);
+  margin-top:clamp(26px,3vw,34px);align-items:start;
+}
+.feature .kind{font-size:13.5px;color:var(--sub)}
+.feature h3{font-size:clamp(22px,2.4vw,27px);letter-spacing:-.028em;margin-top:8px}
+.feature .meta p.desc{color:var(--sub);font-size:16.5px;line-height:1.6}
+.feature .links{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:18px}
+.worknote{
+  margin-top:clamp(38px,5vw,56px);padding-top:26px;border-top:1px solid var(--line-soft);
+  color:var(--sub);font-size:16px;max-width:62ch;line-height:1.6;
+}
+
+/* --- Website-preview: vaste 1440px-opmaak die meeschaalt met de container --- */
+.preview{
+  display:block;position:relative;
+  aspect-ratio:1440/900;overflow:hidden;background:#16293f;
+}
+/* De preview is opgemaakt op een vast canvas van 1440x900 en wordt met een
+   schaalfactor (--s, gezet in JS) passend gemaakt. Zo klopt elke verhouding
+   op elk schermformaat en blijft het beeld scherp. */
+.pv{
+  position:absolute;top:0;left:0;width:1440px;height:900px;
+  transform:scale(var(--s,.25));transform-origin:top left;
+  font-family:var(--font);color:#fff;
+}
+
+.pv-bar{
+  height:90px;display:flex;align-items:center;gap:44px;padding:0 90px;
+  background:linear-gradient(180deg,#eef0f3,#fbfbfc);color:#16293f;
+}
+.pv-logo .a{display:flex;align-items:baseline;gap:5px}
+.pv-logo .vd{font-size:11px;font-weight:600;opacity:.6}
+.pv-logo .nm{font-style:italic;font-size:20px;font-weight:700;letter-spacing:-.02em}
+.pv-logo .b{font-size:10px;letter-spacing:.34em;opacity:.75;margin-top:2px;padding-left:22px}
+.pv-nav{display:flex;gap:34px;font-size:15px;margin-left:26px}
+.pv-right{display:flex;align-items:center;gap:26px;margin-left:auto}
+.pv-mail{display:flex;align-items:center;gap:9px;font-size:15px}
+.pv-mail .env{
+  width:15px;height:11px;border:1.6px solid #16293f;border-radius:2px;
+  display:block;opacity:.85;flex:none;
+}
+.pv-btn{background:#f0871f;color:#fff;font-size:15px;font-weight:600;padding:15px 30px;border-radius:980px}
+
+.pv-hero{position:relative;height:810px;background:#17293f;overflow:hidden}
+.pv-hero::before{
+  content:"";position:absolute;inset:0;opacity:.5;
+  background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:74px 74px;
+}
+.pv-hero::after{
+  content:"";position:absolute;right:60px;top:340px;width:420px;height:420px;
+  border:2px solid rgba(255,255,255,.05);border-radius:26px;
+}
+.pv-copy{position:absolute;left:90px;top:62px;width:640px}
+.pv-eyebrow{
+  display:flex;align-items:flex-start;gap:14px;color:#f0871f;
+  font-size:13px;font-weight:700;letter-spacing:.2em;line-height:1.7;
+}
+.pv-eyebrow .dash{width:22px;height:2px;background:#f0871f;display:block;margin-top:10px;flex:none}
+.pv-h1{margin-top:38px;font-size:82px;font-weight:700;line-height:.99;letter-spacing:-.035em;color:#fff}
+.pv-h1 .hl{color:#f0871f;position:relative}
+.pv-h1 .hl::after{
+  content:"";position:absolute;left:0;right:0;bottom:-14px;height:4px;
+  background:repeating-linear-gradient(90deg,#f0871f 0 16px,transparent 16px 28px);
+}
+.pv-lede{margin-top:44px;font-size:22px;line-height:1.65;color:#c3cddb;max-width:560px}
+.pv-cta{display:flex;align-items:center;gap:18px;margin-top:48px}
+.pv-cta .p{background:#f0871f;color:#fff;font-size:17px;font-weight:700;padding:20px 34px;border-radius:980px}
+.pv-cta .s{border:1.6px solid rgba(255,255,255,.28);color:#fff;font-size:17px;font-weight:700;padding:19px 32px;border-radius:980px}
+.pv-cta .t{font-size:16px;font-weight:600;color:#fff;border-bottom:2px dashed rgba(255,255,255,.5);padding-bottom:4px;margin-left:10px}
+
+.pv-card{
+  position:absolute;right:118px;top:196px;width:428px;background:#fdfcfa;
+  border-radius:20px;color:#16293f;transform:rotate(-1.4deg);overflow:hidden;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.55);
+}
+.pv-card .tape{height:16px;background:repeating-linear-gradient(45deg,#f0871f 0 14px,#16293f 14px 28px)}
+.pv-card .in{padding:34px 38px 34px}
+.pv-chip{
+  display:inline-block;border:1.4px solid rgba(0,0,0,.14);border-radius:7px;
+  padding:9px 15px;font-size:12px;font-weight:700;letter-spacing:.22em;
+}
+.pv-h2{margin-top:22px;font-size:26px;font-weight:700;letter-spacing:-.028em}
+.pv-card .list{margin-top:24px;display:grid;gap:16px}
+.pv-card .li{display:flex;gap:14px;align-items:center;font-size:16px;color:#2c3d54}
+.pv-card .ck{color:#f0871f;font-size:17px;font-weight:700;flex:none}
+.pv-card .rule{margin-top:26px;border-top:2px dashed rgba(0,0,0,.13)}
+.pv-card .go{
+  display:block;margin-top:26px;background:#f0871f;color:#fff;text-align:center;
+  font-size:17px;font-weight:700;padding:19px 0;border-radius:980px;
+}
+.pv-card .mail{margin-top:16px;text-align:center;font-size:14px;color:#5d6b7e}
+.pv-seal{
+  position:absolute;right:78px;top:158px;width:104px;height:104px;border-radius:50%;
+  background:#fdfcfa;border:2px solid #f0871f;color:#16293f;
+  display:grid;place-content:center;text-align:center;
+  font-size:11px;font-weight:700;letter-spacing:.09em;line-height:1.5;
+  box-shadow:0 14px 30px -12px rgba(0,0,0,.45);transform:rotate(-1.4deg);
+}
 
 /* =========================================================
    11. VERTROUWEN
@@ -538,7 +617,7 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
   .site-nav .links{display:none}
   .site-band{margin:0 22px;height:104px}
   .site-cols{padding:22px 22px 0;gap:16px}
-  .projects{grid-template-columns:1fr}
+  .feature .meta{grid-template-columns:1fr;gap:14px}
   .reasons{grid-template-columns:1fr;gap:0}
   .pricefoot{grid-template-columns:1fr;gap:12px}
 }
@@ -747,42 +826,83 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
   <div class="wrap">
     <div class="head rv">
       <p class="eyebrow">Werk</p>
-      <h2 id="werk-title">Liever echt werk dan verzonnen cijfers</h2>
-      <p>We laten geen cases zien die we niet kunnen onderbouwen.</p>
+      <h2 id="werk-title">Recent opgeleverd</h2>
+      <p>Een website die past bij een bedrijf met zestig jaar vakmanschap.</p>
     </div>
 
-    <div class="workpanel rv">
-      <h3>Portfolio in opbouw</h3>
-      <p>DH Studio is een jonge studio. In plaats van bedachte resultaten of voorbeeldprojecten die op klantwerk lijken, laten we tijdens de kennismaking graag live zien waar we aan werken — bij voorkeur voorbeelden uit een branche die op de jouwe lijkt.</p>
-      <ul class="incl">
-        <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg></span><span><b>Ontwerp op maat</b><span>Geen thema uit de winkel, maar een ontwerp dat bij jouw bedrijf hoort.</span></span></li>
-        <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg></span><span><b>Snel en toegankelijk gebouwd</b><span>Getest op mobiel, tablet en desktop, met aandacht voor leesbaarheid en toetsenbordgebruik.</span></span></li>
-        <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg></span><span><b>Zelf aanpasbaar</b><span>Je kunt teksten, foto's en pagina's zelf bijwerken, met uitleg bij oplevering.</span></span></li>
-      </ul>
-      <div class="actions">
-        <a class="tlink" href="#contact">Vraag voorbeelden aan tijdens de kennismaking
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h13M12.5 6l6 6-6 6"/></svg>
-        </a>
+    <article class="feature rv">
+      <a class="shot" href="https://vdheideservicetechniek.nl" target="_blank" rel="noopener"
+         aria-label="Bekijk de website van VD Heide Service &amp; Techniek in een nieuw tabblad">
+        <div class="preview" role="img" aria-label="Homepage van VD Heide Service &amp; Techniek: donkerblauwe hero met de kop 'Al 60 jaar specialist in weerstandlasmachines' en een witte werkbon-kaart met contactgegevens.">
+          <div class="pv" aria-hidden="true">
+            <div class="pv-bar">
+              <div class="pv-logo">
+                <div class="a"><span class="vd">VD</span><span class="nm">HEIDE SERVICE</span></div>
+                <div class="b">&amp; TECHNIEK</div>
+              </div>
+              <div class="pv-nav"><span>Over ons</span><span>Diensten</span><span>Werkwijze</span></div>
+              <div class="pv-right">
+                <div class="pv-mail"><span class="env"></span>E-mail ons</div>
+                <div class="pv-btn">Neem contact op</div>
+              </div>
+            </div>
+            <div class="pv-hero">
+              <div class="pv-copy">
+                <div class="pv-eyebrow"><span class="dash"></span>SPECIALIST IN WEERSTANDLASMACHINES · SINDS DE JAREN ZESTIG</div>
+                <div class="pv-h1">Al <span class="hl">60 jaar</span><br>specialist in<br>weerstand-<br>lasmachines</div>
+                <div class="pv-lede">Service, onderhoud en revisie van weerstandlasmachines door één vakman. Ruim 60 jaar ervaring, persoonlijk contact en eerlijk advies.</div>
+                <div class="pv-cta">
+                  <span class="p">Neem contact op →</span>
+                  <span class="s">Onze diensten</span>
+                  <span class="t">Wie ben ik →</span>
+                </div>
+              </div>
+              <div class="pv-card">
+                <div class="tape"></div>
+                <div class="in">
+                  <div class="pv-chip">WERKBON</div>
+                  <div class="pv-h2">Storing of onderhoud nodig?</div>
+                  <div class="list">
+                    <div class="li"><span class="ck">✓</span>Reactie binnen 48 uur</div>
+                    <div class="li"><span class="ck">✓</span>Heldere diagnose en eerlijk advies</div>
+                    <div class="li"><span class="ck">✓</span>Ruim 60 jaar aan ervaring</div>
+                  </div>
+                  <div class="rule"></div>
+                  <div class="go">Plan direct contact →</div>
+                  <div class="mail">thomas@vdheideservicetechniek.nl</div>
+                </div>
+              </div>
+              <div class="pv-seal">60+ JAAR<br>VAKWERK</div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <div class="meta">
+        <div>
+          <p class="kind">Techniek &amp; industrie · Website</p>
+          <h3>VD Heide Service &amp; Techniek</h3>
+        </div>
+        <div>
+          <p class="desc">Een eenmanszaak die al sinds de jaren zestig weerstandlasmachines onderhoudt en reviseert. De site brengt die ervaring naar voren en maakt één ding heel makkelijk: contact opnemen bij storing of onderhoud.</p>
+          <p class="links">
+            <a class="tlink" href="https://vdheideservicetechniek.nl" target="_blank" rel="noopener">Bekijk de website
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h13M12.5 6l6 6-6 6"/></svg>
+            </a>
+          </p>
+        </div>
       </div>
-    </div>
+    </article>
+
+    <p class="worknote rv">Meer voorbeelden laten we graag zien tijdens de kennismaking — bij voorkeur uit een branche die op de jouwe lijkt.</p>
 
     <!--
-      ECHTE PROJECTEN TOEVOEGEN
-      Verwijder het blok "workpanel" hierboven zodra er echte, opgeleverde projecten zijn
-      en haal onderstaande grid uit commentaar. Gebruik echte screenshots (bij voorkeur
-      1600x1000 px, WebP) en schrijf alleen resultaten op die je kunt aantonen.
-
-      <div class="projects stag rv">
-        <a class="project" href="https://voorbeeld.nl" target="_blank" rel="noopener">
-          <figure>
-            <div class="shot"><img src="werk/projectnaam.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Homepage van de website die DH Studio bouwde voor Projectnaam."></div>
-            <figcaption>
-              <p class="kind">Branche · Website</p>
-              <h3>Projectnaam</h3>
-            </figcaption>
-          </figure>
-        </a>
-      </div>
+      VOLGEND PROJECT TOEVOEGEN
+      Kopieer het <article class="feature"> hierboven en vervang de inhoud. Heb je een echte
+      screenshot? Vervang dan de hele <span class="preview">...</span> door:
+        <img src="werk/projectnaam.webp" width="1440" height="900" loading="lazy" decoding="async"
+             alt="Homepage van de website die DH Studio bouwde voor Projectnaam." style="width:100%;height:auto">
+      Schrijf alleen resultaten op die je kunt aantonen.
     -->
   </div>
 </section>
@@ -1042,6 +1162,23 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
   window.addEventListener("resize", function(){
     if(window.innerWidth > 920 && burger.getAttribute("aria-expanded") === "true") setDrawer(false);
   });
+
+  /* --- Website-previews schalen mee met hun container --- */
+  var previews = document.querySelectorAll(".preview");
+  if(previews.length){
+    var fit = function(){
+      previews.forEach(function(box){
+        box.style.setProperty("--s", box.clientWidth / 1440);
+      });
+    };
+    fit();
+    if("ResizeObserver" in window){
+      var ro = new ResizeObserver(fit);
+      previews.forEach(function(box){ ro.observe(box); });
+    } else {
+      window.addEventListener("resize", fit, {passive:true});
+    }
+  }
 
   /* --- Elementen faden in zodra ze in beeld komen --- */
   var reveals = document.querySelectorAll(".rv");
