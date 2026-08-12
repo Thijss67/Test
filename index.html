@@ -17,7 +17,782 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* =========================================================
+   1. TOKENS
+   ========================================================= */
+:root{
+  --white:#ffffff;
+  --bg:#fbfbfd;
+  --grey:#f5f5f7;
+  --ink:#1d1d1f;
+  --ink-2:#3f3f43;
+  --sub:#6e6e73;
+  --faint:#d2d2d7;
+  --line:rgba(0,0,0,.11);
+  --line-soft:rgba(0,0,0,.07);
+  --blue:#0071e3;
+  --blue-h:#0077ed;
+  /* Bijna-zwart met blauw erin: draagt het donkere blok zonder hard zwart */
+  --blue-deep:#0a1f38;
+  --blue-tint:#eaf2fd;
+  --green:#0a7c5e;
+  --green-bg:#e8f4f0;
+  --nav-h:56px;
+  --r-s:10px;
+  --r-m:14px;
+  --r-l:18px;
+  --font:"Inter",-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --e:cubic-bezier(.32,.08,.24,1);
+  --pad-s:clamp(84px,10vw,140px);
+}
+
+/* =========================================================
+   2. BASE
+   ========================================================= */
+*,*::before,*::after{box-sizing:border-box}
+html{
+  -webkit-text-size-adjust:100%;
+  scroll-behavior:smooth;
+  scroll-padding-top:calc(var(--nav-h) + 16px);
+}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font);
+  font-size:17px;
+  line-height:1.6;
+  letter-spacing:-.011em;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+body.locked{overflow:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+h1,h2,h3{margin:0;font-weight:600;line-height:1.08;letter-spacing:-.028em}
+svg{display:block}
+::selection{background:#cfe4ff}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+.skip{position:fixed;left:-9999px;z-index:300}
+.skip:focus{left:16px;top:16px;background:var(--ink);color:#fff;padding:11px 18px;border-radius:var(--r-s)}
+.vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.narrow{max-width:740px;margin:0 auto}
+
+/* =========================================================
+   3. HEADER + NAV
+   ========================================================= */
+header{
+  position:fixed;inset:0 0 auto 0;height:var(--nav-h);z-index:200;
+  background:rgba(251,251,253,.75);
+  -webkit-backdrop-filter:saturate(180%) blur(18px);
+  backdrop-filter:saturate(180%) blur(18px);
+  border-bottom:1px solid transparent;
+  transition:border-color .35s var(--e),background .35s var(--e);
+}
+header.stuck{border-bottom-color:var(--line-soft);background:rgba(251,251,253,.88)}
+.nav{max-width:1080px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;gap:20px}
+.logo{
+  display:flex;align-items:center;gap:10px;flex:none;
+  font-size:16.5px;font-weight:600;letter-spacing:-.02em;
+  padding:9px 0;
+}
+.logo i{
+  width:26px;height:26px;border-radius:8px;background:var(--ink);color:#fff;
+  font-style:normal;font-size:10.5px;font-weight:600;letter-spacing:-.02em;
+  display:grid;place-items:center;
+}
+.menu{display:flex;align-items:center;gap:2px;margin-left:auto}
+.menu a{
+  position:relative;font-size:14px;color:var(--ink);opacity:.78;
+  padding:8px 13px;border-radius:var(--r-s);
+  transition:opacity .22s var(--e);
+}
+.menu a::after{
+  content:"";position:absolute;left:13px;right:13px;bottom:2px;height:1.5px;
+  background:currentColor;border-radius:2px;transform:scaleX(0);
+  transition:transform .3s var(--e);
+}
+.menu a:hover{opacity:1}
+.menu a:hover::after{transform:scaleX(1)}
+.menu a[aria-current="true"]{opacity:1;font-weight:500}
+.menu a[aria-current="true"]::after{transform:scaleX(1)}
+.navcta{
+  flex:none;margin-left:10px;background:var(--blue);color:#fff;
+  font-size:14px;font-weight:500;padding:8px 16px;border-radius:980px;
+  transition:background .22s var(--e),box-shadow .28s var(--e);
+}
+.navcta:hover{background:var(--blue-h);box-shadow:0 4px 14px -4px rgba(0,113,227,.55)}
+
+.burger{
+  display:none;margin-left:auto;background:none;border:0;cursor:pointer;
+  width:44px;height:44px;margin-right:-11px;padding:0;
+  flex-direction:column;align-items:center;justify-content:center;
+  border-radius:var(--r-s);
+}
+.burger span{display:block;width:20px;height:1.5px;background:var(--ink);border-radius:2px;transition:transform .34s var(--e),opacity .2s}
+.burger span+span{margin-top:6px}
+.burger[aria-expanded="true"] span:first-child{transform:translateY(3.75px) rotate(45deg)}
+.burger[aria-expanded="true"] span:last-child{transform:translateY(-3.75px) rotate(-45deg)}
+
+.drawer{
+  position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;z-index:190;
+  background:var(--bg);
+  display:none;flex-direction:column;padding:10px 24px 40px;
+  overflow-y:auto;overscroll-behavior:contain;
+  opacity:0;transform:translateY(-8px);
+  transition:opacity .28s var(--e),transform .3s var(--e),visibility .28s;
+  visibility:hidden;
+}
+.drawer.open{opacity:1;transform:none;visibility:visible}
+.drawer a{
+  padding:17px 2px;border-bottom:1px solid var(--line-soft);
+  font-size:20px;font-weight:500;letter-spacing:-.024em;
+}
+.drawer .drawer-cta{
+  margin-top:26px;border-bottom:0;background:var(--blue);color:#fff;
+  text-align:center;border-radius:980px;padding:15px 20px;font-size:17px;
+}
+
+/* =========================================================
+   4. BUTTONS + LINKS
+   ========================================================= */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:inherit;font-size:16px;font-weight:500;letter-spacing:-.012em;
+  padding:13px 26px;border-radius:980px;border:1px solid transparent;cursor:pointer;
+  transition:background .22s var(--e),border-color .22s var(--e),color .22s var(--e),transform .28s var(--e);
+}
+.btn-p{background:var(--blue);color:#fff}
+.btn-p:hover{background:var(--blue-h);transform:translateY(-1px)}
+.btn-s{border-color:var(--line);color:var(--ink);background:transparent}
+.btn-s:hover{border-color:var(--ink);transform:translateY(-1px)}
+.tlink{display:inline-flex;align-items:center;gap:6px;color:var(--blue);font-size:16px;font-weight:500}
+.tlink svg{transition:transform .3s var(--e)}
+.tlink:hover svg{transform:translateX(4px)}
+.tlink:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* =========================================================
+   5. SECTIE-RITME
+   ========================================================= */
+section{padding:var(--pad-s) 0}
+.on-white{background:var(--white)}
+.on-grey{background:var(--grey)}
+/* Elke sectie opent met hetzelfde blauwe merkteken: een kort streepje
+   gevolgd door het label. Dat geeft de pagina een herkenbaar ritme. */
+.eyebrow{
+  display:flex;align-items:center;gap:10px;
+  font-size:13.5px;font-weight:600;color:var(--blue);
+  letter-spacing:.02em;text-transform:uppercase;margin-bottom:18px;
+}
+.eyebrow::before{
+  content:"";width:22px;height:2px;background:var(--blue);border-radius:2px;flex:none;
+}
+.head{max-width:660px;margin-bottom:clamp(48px,6vw,76px)}
+.head.center{margin-left:auto;margin-right:auto;text-align:center}
+.head h2{font-size:clamp(29px,3.8vw,44px);letter-spacing:-.032em}
+.head p{color:var(--sub);font-size:19px;margin-top:18px;line-height:1.55}
+
+/* =========================================================
+   6. HERO
+   ========================================================= */
+/* Paginakop op de losse pagina's: zelfde ritme als de hero, maar links
+   uitgelijnd en zonder showcase. */
+.pagehead{padding:calc(var(--nav-h) + clamp(52px,7vw,88px)) 0 clamp(8px,2vw,20px)}
+.pagehead h1{font-size:clamp(34px,4.6vw,54px);letter-spacing:-.034em;line-height:1.07;max-width:18em}
+.pagehead .lede{color:var(--sub);font-size:clamp(17px,1.9vw,20px);line-height:1.55;max-width:56ch;margin-top:20px}
+
+.hero{padding:calc(var(--nav-h) + clamp(56px,8vw,96px)) 0 0;text-align:center;overflow:hidden}
+.hero-eyebrow{
+  display:inline-block;font-size:13.5px;font-weight:600;color:var(--blue);
+  letter-spacing:.02em;text-transform:uppercase;
+  background:var(--blue-tint);padding:7px 15px;border-radius:980px;margin-bottom:26px;
+}
+.hero h1{
+  font-size:clamp(36px,5.2vw,60px);letter-spacing:-.036em;line-height:1.06;
+  max-width:15em;margin:0 auto;text-wrap:balance;
+}
+/* Accentwoord in de kop: blauw, met een streep die zichzelf eenmalig zet. */
+.accent{position:relative;color:var(--blue);white-space:nowrap}
+.accent svg{
+  position:absolute;left:0;bottom:-.16em;width:100%;height:.17em;overflow:visible;
+}
+.accent path{
+  fill:none;stroke:var(--blue);stroke-width:3.2;stroke-linecap:round;
+  vector-effect:non-scaling-stroke;opacity:.55;
+  stroke-dasharray:310;stroke-dashoffset:310;
+  animation:draw 1s var(--e) .7s forwards;
+}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+.hero .lede{
+  color:var(--sub);font-size:clamp(18px,2vw,21px);line-height:1.5;
+  max-width:46ch;margin:24px auto 0;
+}
+.hero .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+.hero .micro{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:8px 22px;
+  margin-top:26px;font-size:14px;color:var(--sub);
+}
+.hero .micro span{display:inline-flex;align-items:center;gap:7px}
+.hero .micro svg{width:13px;height:13px;color:var(--blue);flex:none}
+
+/* --- Showcase: browser + telefoon --- */
+.showcase{position:relative;max-width:900px;margin:clamp(52px,7vw,84px) auto 0;padding-bottom:clamp(0px,4vw,44px)}
+.browser{
+  background:var(--white);border-radius:var(--r-l);overflow:hidden;text-align:left;
+  box-shadow:0 1px 2px rgba(0,0,0,.05),0 32px 64px -34px rgba(0,0,0,.34);
+}
+.browser-bar{
+  height:36px;background:#f6f6f8;border-bottom:1px solid var(--line-soft);
+  display:flex;align-items:center;gap:6px;padding:0 14px;
+}
+.browser-bar i{width:9px;height:9px;border-radius:50%;background:#dcdce1;flex:none}
+.browser-bar b{
+  margin-left:12px;font-size:10.5px;font-weight:400;color:#9a9aa1;
+  background:#fff;border:1px solid var(--line-soft);border-radius:6px;padding:3px 14px;
+}
+.site{padding:0 0 30px}
+.site-nav{
+  display:flex;align-items:center;gap:10px;padding:16px 30px;
+  border-bottom:1px solid var(--line-soft);
+}
+.site-nav .mark{
+  width:19px;height:19px;border-radius:6px;background:var(--ink);flex:none;
+}
+.site-nav .name{font-size:12.5px;font-weight:600;letter-spacing:-.02em}
+.site-nav .links{display:flex;gap:15px;margin-left:auto;font-size:10.5px;color:var(--sub)}
+.site-nav .pill{
+  font-size:10px;color:#fff;background:var(--ink);border-radius:980px;padding:5px 11px;font-weight:500;
+}
+.site-hero{padding:34px 30px 26px;max-width:70%}
+.site-hero .t{font-size:23px;font-weight:600;letter-spacing:-.032em;line-height:1.14}
+.site-hero .s{font-size:11.5px;color:var(--sub);margin-top:11px;line-height:1.5}
+.site-hero .row{display:flex;align-items:center;gap:12px;margin-top:18px}
+.site-hero .cta{font-size:10.5px;color:#fff;background:var(--blue);border-radius:980px;padding:7px 15px;font-weight:500}
+.site-hero .alt{font-size:10.5px;color:var(--ink);opacity:.7}
+.site-band{
+  margin:0 30px;height:132px;border-radius:12px;
+  background:linear-gradient(155deg,#eef0f4 0%,#e4e8ee 52%,#dfe4ec 100%);
+  position:relative;overflow:hidden;
+}
+.site-band::after{
+  content:"";position:absolute;right:-40px;bottom:-70px;width:210px;height:210px;
+  border-radius:50%;background:rgba(255,255,255,.55);
+}
+.site-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:26px 30px 0}
+.site-cols div{border-top:1px solid var(--line-soft);padding-top:12px}
+.site-cols b{display:block;font-size:11px;font-weight:600;letter-spacing:-.015em}
+.site-cols span{display:block;font-size:10px;color:var(--sub);margin-top:4px;line-height:1.45}
+
+.phone{
+  position:absolute;left:-14px;bottom:-6px;width:158px;
+  border:6px solid var(--ink);border-radius:26px;background:var(--white);
+  overflow:hidden;box-shadow:0 20px 40px -22px rgba(0,0,0,.4);
+}
+.phone-top{height:20px;display:grid;place-items:center}
+.phone-top i{width:44px;height:4px;border-radius:3px;background:#e8e8ec;display:block}
+.phone-body{padding:0 13px 16px}
+.phone-body .t{font-size:13px;font-weight:600;letter-spacing:-.03em;line-height:1.16}
+.phone-body .s{font-size:8.5px;color:var(--sub);margin-top:6px;line-height:1.5}
+.phone-body .cta{
+  display:block;font-size:8.5px;color:#fff;background:var(--blue);
+  border-radius:980px;padding:6px 0;text-align:center;margin-top:11px;font-weight:500;
+}
+.phone-body .band{
+  height:58px;border-radius:8px;margin-top:12px;
+  background:linear-gradient(155deg,#eef0f4,#e0e5ec);
+}
+
+/* =========================================================
+   7. AANPAK (probleem -> oplossing)
+   ========================================================= */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,56px)}
+.pillar{position:relative;padding-top:26px;border-top:1px solid var(--line)}
+.pillar::after{
+  content:"";position:absolute;top:-1px;left:0;right:0;height:1px;
+  background:var(--blue);transform:scaleX(0);transform-origin:left;
+  transition:transform .55s var(--e);
+}
+.pillar:hover::after{transform:scaleX(1)}
+.pnum{
+  display:block;font-size:13px;font-weight:600;color:var(--blue);
+  letter-spacing:.08em;margin-bottom:14px;
+}
+.pillar h3{font-size:clamp(19px,2vw,22px);letter-spacing:-.026em}
+.pillar p{color:var(--sub);font-size:16px;line-height:1.6;margin-top:11px}
+
+/* =========================================================
+   8. DIENSTEN
+   ========================================================= */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:2px 44px}
+.svc{padding:30px 0 34px;border-top:1px solid var(--line-soft)}
+.svc svg{width:21px;height:21px;color:var(--ink);opacity:.72;margin-bottom:16px}
+.svc h3{font-size:19px;letter-spacing:-.024em}
+.svc p{color:var(--sub);font-size:15.5px;line-height:1.58;margin-top:9px}
+
+/* =========================================================
+   9. WERKWIJZE
+   ========================================================= */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px clamp(28px,4vw,52px)}
+.step{padding:26px 0 4px;border-top:1px solid var(--line)}
+.step .num{
+  font-size:clamp(34px,4vw,46px);font-weight:600;letter-spacing:-.045em;
+  line-height:1;color:var(--faint);display:block;margin-bottom:20px;
+}
+.step h3{font-size:19px;letter-spacing:-.024em}
+.step p{color:var(--sub);font-size:15.5px;line-height:1.58;margin-top:9px}
+.steps-note{margin-top:clamp(40px,5vw,58px);color:var(--sub);font-size:16px}
+.sectioncta{
+  margin-top:clamp(28px,3.5vw,40px);color:var(--sub);font-size:16.5px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;
+}
+
+/* =========================================================
+   10. WERK
+   ========================================================= */
+.feature{display:block}
+.feature .shot{
+  display:block;border-radius:var(--r-l);overflow:hidden;background:var(--grey);
+  border:1px solid var(--line-soft);
+  box-shadow:0 1px 2px rgba(0,0,0,.04),0 26px 54px -34px rgba(0,0,0,.3);
+  transition:transform .5s var(--e),box-shadow .5s var(--e);
+}
+.feature .shot:hover{transform:translateY(-3px);box-shadow:0 1px 2px rgba(0,0,0,.04),0 34px 64px -34px rgba(0,0,0,.34)}
+.feature .meta{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px clamp(30px,5vw,64px);
+  margin-top:clamp(26px,3vw,34px);align-items:start;
+}
+.feature .kind{font-size:13.5px;color:var(--sub)}
+.feature h3{font-size:clamp(22px,2.4vw,27px);letter-spacing:-.028em;margin-top:8px}
+.feature .meta p.desc{color:var(--sub);font-size:16.5px;line-height:1.6}
+.feature .links{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:18px}
+.worknote{
+  margin-top:clamp(38px,5vw,56px);padding-top:26px;border-top:1px solid var(--line-soft);
+  color:var(--sub);font-size:16px;max-width:62ch;line-height:1.6;
+}
+
+/* --- Website-preview: vaste 1440px-opmaak die meeschaalt met de container --- */
+.preview{
+  display:block;position:relative;
+  aspect-ratio:1440/900;overflow:hidden;background:#16293f;
+}
+/* De preview is opgemaakt op een vast canvas van 1440x900 en wordt met een
+   schaalfactor (--s, gezet in JS) passend gemaakt. Zo klopt elke verhouding
+   op elk schermformaat en blijft het beeld scherp. */
+.pv{
+  position:absolute;top:0;left:0;width:1440px;height:900px;
+  transform:scale(var(--s,.25));transform-origin:top left;
+  font-family:var(--font);color:#fff;
+}
+
+.pv-bar{
+  height:90px;display:flex;align-items:center;gap:44px;padding:0 90px;
+  background:linear-gradient(180deg,#eef0f3,#fbfbfc);color:#16293f;
+}
+.pv-logo .a{display:flex;align-items:baseline;gap:5px}
+.pv-logo .vd{font-size:11px;font-weight:600;opacity:.6}
+.pv-logo .nm{font-style:italic;font-size:20px;font-weight:700;letter-spacing:-.02em}
+.pv-logo .b{font-size:10px;letter-spacing:.34em;opacity:.75;margin-top:2px;padding-left:22px}
+.pv-nav{display:flex;gap:34px;font-size:15px;margin-left:26px}
+.pv-right{display:flex;align-items:center;gap:26px;margin-left:auto}
+.pv-mail{display:flex;align-items:center;gap:9px;font-size:15px}
+.pv-mail .env{
+  width:15px;height:11px;border:1.6px solid #16293f;border-radius:2px;
+  display:block;opacity:.85;flex:none;
+}
+.pv-btn{background:#f0871f;color:#fff;font-size:15px;font-weight:600;padding:15px 30px;border-radius:980px}
+
+.pv-hero{position:relative;height:810px;background:#17293f;overflow:hidden}
+.pv-hero::before{
+  content:"";position:absolute;inset:0;opacity:.5;
+  background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:74px 74px;
+}
+.pv-hero::after{
+  content:"";position:absolute;right:60px;top:340px;width:420px;height:420px;
+  border:2px solid rgba(255,255,255,.05);border-radius:26px;
+}
+.pv-copy{position:absolute;left:90px;top:62px;width:640px}
+.pv-eyebrow{
+  display:flex;align-items:flex-start;gap:14px;color:#f0871f;
+  font-size:13px;font-weight:700;letter-spacing:.2em;line-height:1.7;
+}
+.pv-eyebrow .dash{width:22px;height:2px;background:#f0871f;display:block;margin-top:10px;flex:none}
+.pv-h1{margin-top:38px;font-size:82px;font-weight:700;line-height:.99;letter-spacing:-.035em;color:#fff}
+.pv-h1 .hl{color:#f0871f;position:relative}
+.pv-h1 .hl::after{
+  content:"";position:absolute;left:0;right:0;bottom:-14px;height:4px;
+  background:repeating-linear-gradient(90deg,#f0871f 0 16px,transparent 16px 28px);
+}
+.pv-lede{margin-top:44px;font-size:22px;line-height:1.65;color:#c3cddb;max-width:560px}
+.pv-cta{display:flex;align-items:center;gap:18px;margin-top:48px}
+.pv-cta .p{background:#f0871f;color:#fff;font-size:17px;font-weight:700;padding:20px 34px;border-radius:980px}
+.pv-cta .s{border:1.6px solid rgba(255,255,255,.28);color:#fff;font-size:17px;font-weight:700;padding:19px 32px;border-radius:980px}
+.pv-cta .t{font-size:16px;font-weight:600;color:#fff;border-bottom:2px dashed rgba(255,255,255,.5);padding-bottom:4px;margin-left:10px}
+
+.pv-card{
+  position:absolute;right:118px;top:196px;width:428px;background:#fdfcfa;
+  border-radius:20px;color:#16293f;transform:rotate(-1.4deg);overflow:hidden;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.55);
+}
+.pv-card .tape{height:16px;background:repeating-linear-gradient(45deg,#f0871f 0 14px,#16293f 14px 28px)}
+.pv-card .in{padding:34px 38px 34px}
+.pv-chip{
+  display:inline-block;border:1.4px solid rgba(0,0,0,.14);border-radius:7px;
+  padding:9px 15px;font-size:12px;font-weight:700;letter-spacing:.22em;
+}
+.pv-h2{margin-top:22px;font-size:26px;font-weight:700;letter-spacing:-.028em}
+.pv-card .list{margin-top:24px;display:grid;gap:16px}
+.pv-card .li{display:flex;gap:14px;align-items:center;font-size:16px;color:#2c3d54}
+.pv-card .ck{color:#f0871f;font-size:17px;font-weight:700;flex:none}
+.pv-card .rule{margin-top:26px;border-top:2px dashed rgba(0,0,0,.13)}
+.pv-card .go{
+  display:block;margin-top:26px;background:#f0871f;color:#fff;text-align:center;
+  font-size:17px;font-weight:700;padding:19px 0;border-radius:980px;
+}
+.pv-card .mail{margin-top:16px;text-align:center;font-size:14px;color:#5d6b7e}
+.pv-seal{
+  position:absolute;right:78px;top:158px;width:104px;height:104px;border-radius:50%;
+  background:#fdfcfa;border:2px solid #f0871f;color:#16293f;
+  display:grid;place-content:center;text-align:center;
+  font-size:11px;font-weight:700;letter-spacing:.09em;line-height:1.5;
+  box-shadow:0 14px 30px -12px rgba(0,0,0,.45);transform:rotate(-1.4deg);
+}
+
+/* =========================================================
+   11. VERTROUWEN
+   ========================================================= */
+.reasons{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(40px,6vw,84px)}
+.reason{display:flex;gap:15px;padding:24px 0;border-top:1px solid var(--line-soft)}
+.check{
+  width:22px;height:22px;flex:none;border-radius:50%;background:var(--blue-tint);
+  color:var(--blue);display:grid;place-items:center;margin-top:2px;
+}
+.check svg{width:12px;height:12px}
+.reason b{display:block;font-size:16.5px;font-weight:600;letter-spacing:-.018em}
+.reason span{display:block;color:var(--sub);font-size:15.5px;line-height:1.55;margin-top:5px}
+
+/* =========================================================
+   12. PRIJZEN
+   ========================================================= */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.plan{
+  background:var(--white);border:1px solid var(--line-soft);border-radius:var(--r-l);
+  padding:32px 28px;display:flex;flex-direction:column;
+  transition:border-color .3s var(--e),transform .35s var(--e);
+}
+.on-white .plan{background:var(--bg)}
+.plan:hover{transform:translateY(-3px);border-color:var(--line)}
+.plan.pick{border-color:rgba(0,113,227,.42);position:relative;overflow:hidden}
+.plan.pick:hover{border-color:var(--blue)}
+/* Blauwe rand bovenlangs markeert het aanbevolen pakket rustig */
+.plan.pick::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);
+}
+.flag{
+  position:absolute;top:22px;right:24px;font-size:11.5px;font-weight:600;
+  color:var(--blue);letter-spacing:.01em;
+}
+.plan h3{font-size:18px;letter-spacing:-.022em}
+.plan .price{margin-top:18px;font-size:38px;font-weight:600;letter-spacing:-.04em;line-height:1}
+.plan .price sup{font-size:17px;font-weight:400;color:var(--sub);vertical-align:5px;letter-spacing:-.015em;margin-right:2px}
+.plan .terms{font-size:13.5px;color:var(--sub);margin-top:10px}
+.plan .for{font-size:15px;color:var(--sub);margin-top:16px;line-height:1.55;min-height:48px}
+.plan ul{margin:26px 0 0;padding-top:22px;border-top:1px solid var(--line-soft);display:grid;gap:12px;flex:1}
+.plan li{display:flex;gap:11px;align-items:flex-start;font-size:15.5px;color:var(--ink-2)}
+.plan li svg{width:14px;height:14px;color:var(--blue);flex:none;margin-top:5px}
+.plan .btn{margin-top:28px;width:100%}
+.pricefoot{
+  margin-top:clamp(32px,4vw,46px);display:grid;grid-template-columns:1fr 1fr;
+  gap:14px clamp(30px,5vw,64px);max-width:880px;
+}
+.pricefoot p{color:var(--sub);font-size:15.5px;line-height:1.6}
+.pricefoot b{color:var(--ink);font-weight:500}
+
+/* =========================================================
+   12b. CTA-BLOKKEN
+   ========================================================= */
+.ctaband{
+  position:relative;overflow:hidden;
+  background:var(--blue-deep);color:#fff;border-radius:var(--r-l);
+  padding:clamp(38px,5vw,64px) clamp(28px,4vw,60px);
+  display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,52px);align-items:center;
+}
+/* Zachte blauwe gloed in de hoek, zodat het blok blauw draagt zonder vlak te worden */
+.ctaband::before{
+  content:"";position:absolute;right:-140px;top:-180px;width:520px;height:520px;
+  border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(0,113,227,.42),rgba(0,113,227,0) 68%);
+}
+.ctaband > *{position:relative}
+.ctaband .ct-title{font-size:clamp(25px,3vw,36px);font-weight:600;line-height:1.14;letter-spacing:-.03em;color:#fff}
+.ctaband p{color:rgba(255,255,255,.72);font-size:17.5px;margin-top:14px;line-height:1.6;max-width:48ch}
+.ctaband .acts{display:flex;flex-direction:column;gap:12px}
+.ctaband .acts .btn{justify-content:center}
+.ctaband .btn-p{background:var(--blue)}
+.ctaband .btn-p:hover{background:var(--blue-h)}
+.ctaband .btn-w{background:#fff;color:var(--ink)}
+.ctaband .btn-w:hover{background:#f0f0f2;transform:translateY(-1px)}
+.ctaband .btn-g{border:1px solid rgba(255,255,255,.3);color:#fff}
+.ctaband .btn-g:hover{border-color:#fff;background:rgba(255,255,255,.07);transform:translateY(-1px)}
+
+/* Laagdrempelige instap voor wie nog niet aan een offerte toe is */
+.check-offer{
+  border:1px solid var(--line-soft);border-radius:var(--r-l);background:var(--white);
+  padding:clamp(28px,4vw,48px);display:grid;grid-template-columns:1fr auto;
+  gap:clamp(22px,3vw,48px);align-items:center;
+}
+.on-white .check-offer{background:var(--bg)}
+.check-offer .tagline{
+  display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;
+  color:var(--green);background:var(--green-bg);padding:6px 12px;border-radius:980px;
+}
+.check-offer h3{font-size:clamp(21px,2.3vw,26px);letter-spacing:-.028em;margin-top:16px}
+.check-offer > div > p{color:var(--sub);font-size:16.5px;margin-top:12px;max-width:58ch;line-height:1.6}
+.check-offer ul{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:18px}
+.check-offer li{display:flex;align-items:center;gap:8px;font-size:15px;color:var(--ink-2)}
+.check-offer li svg{width:13px;height:13px;color:var(--green);flex:none}
+
+/* --- Tarieven in het kort (homepage) --- */
+.pricepeek{display:grid;grid-template-columns:repeat(3,1fr);gap:2px clamp(28px,4vw,52px)}
+.peek{
+  position:relative;display:block;padding:26px 0 4px;border-top:1px solid var(--line);color:inherit;
+}
+.peek::after{
+  content:"";position:absolute;top:-1px;left:0;right:0;height:1px;
+  background:var(--blue);transform:scaleX(0);transform-origin:left;
+  transition:transform .55s var(--e);
+}
+.peek:hover::after,.peek:focus-visible::after{transform:scaleX(1)}
+.peek.is-pick::after{transform:scaleX(1);height:3px;top:-2px}
+/* Het label staat absoluut, en elke kop houdt dezelfde regel vrij, zodat de
+   drie pakketten op één lijn beginnen. */
+.peek-flag{position:absolute;top:26px;left:0;font-size:11.5px;font-weight:600;color:var(--blue)}
+.peek h3{font-size:18px;letter-spacing:-.022em;margin-top:22px}
+.peek .p{font-size:clamp(28px,3vw,34px);font-weight:600;letter-spacing:-.04em;line-height:1;margin-top:14px}
+.peek .p sup{font-size:15px;font-weight:400;color:var(--sub);vertical-align:5px;letter-spacing:-.015em;margin-right:2px}
+.peek .d{color:var(--sub);font-size:15.5px;line-height:1.55;margin-top:12px}
+.peek h3,.peek .p{transition:color .3s var(--e)}
+.peek:hover .p{color:var(--blue)}
+
+/* --- Afsluitend blok (homepage) --- */
+.closing{max-width:620px;margin:0 auto;text-align:center}
+.closing .eyebrow{justify-content:center}
+.closing h2{font-size:clamp(29px,3.8vw,44px);letter-spacing:-.032em}
+.closing > p{color:var(--sub);font-size:19px;margin-top:18px;line-height:1.55}
+.closing .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.mailline{margin-top:24px;font-size:15.5px;color:var(--sub)}
+.mailline a{color:var(--blue);font-weight:500}
+.mailline a:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* =========================================================
+   13. FAQ
+   ========================================================= */
+.faq{max-width:760px}
+.q{border-bottom:1px solid var(--line-soft)}
+.q:first-child{border-top:1px solid var(--line-soft)}
+.q button{
+  all:unset;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;
+  gap:24px;width:100%;padding:24px 2px;cursor:pointer;
+  font-family:inherit;font-size:18.5px;font-weight:500;letter-spacing:-.024em;color:var(--ink);
+}
+.q button:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:6px}
+.plus{width:15px;height:15px;flex:none;position:relative}
+.plus::before,.plus::after{
+  content:"";position:absolute;top:50%;left:0;right:0;height:1.5px;margin-top:-.75px;
+  background:var(--sub);border-radius:2px;transition:transform .34s var(--e);
+}
+.plus::after{transform:rotate(90deg)}
+.q[data-open="true"] .plus::after{transform:rotate(0)}
+.a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .38s var(--e)}
+.q[data-open="true"] .a{grid-template-rows:1fr}
+.a > div{overflow:hidden}
+.a p{color:var(--sub);font-size:16.5px;line-height:1.62;padding:0 44px 26px 2px}
+
+/* =========================================================
+   14. CONTACT
+   ========================================================= */
+.cgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,4vw,60px);align-items:start}
+form{
+  background:var(--white);border:1px solid var(--line-soft);border-radius:var(--r-l);
+  padding:clamp(26px,3vw,36px);
+}
+.on-white form{background:var(--bg)}
+.field{margin-bottom:16px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:block;font-size:13.5px;font-weight:500;color:var(--sub);margin-bottom:7px}
+label .opt{font-weight:400;opacity:.72}
+input,textarea,select{
+  width:100%;font-family:inherit;font-size:16px;color:var(--ink);
+  background:var(--white);border:1px solid var(--line);border-radius:var(--r-s);
+  padding:12px 14px;transition:border-color .2s var(--e),box-shadow .2s var(--e);
+}
+.on-white input,.on-white textarea,.on-white select{background:var(--white)}
+select{
+  appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%236e6e73' stroke-width='1.6'%3E%3Cpath d='M1 1.5L6 6.5l5-5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;
+}
+input:focus,textarea:focus,select:focus{
+  outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,113,227,.14);
+}
+textarea{min-height:112px;resize:vertical;line-height:1.55}
+form .btn{width:100%;margin-top:6px}
+.formnote{font-size:13.5px;color:var(--sub);margin-top:14px;line-height:1.55}
+.formnote.err{color:#b3261e}
+.formnote.ok{color:var(--green)}
+
+.side h3{font-size:19px;letter-spacing:-.024em}
+.side > p{color:var(--sub);font-size:16px;margin-top:12px;line-height:1.6}
+.direct{margin-top:26px}
+.direct li{display:flex;gap:14px;align-items:flex-start;padding:18px 0;border-top:1px solid var(--line-soft)}
+.direct svg{width:17px;height:17px;color:var(--sub);flex:none;margin-top:3px}
+.direct a,.direct b{font-size:16px;font-weight:500;letter-spacing:-.015em}
+.direct a{color:var(--blue)}
+.direct a:hover{text-decoration:underline;text-underline-offset:3px}
+.direct em{display:block;font-style:normal;color:var(--sub);font-size:14px;margin-top:3px;line-height:1.5}
+
+/* =========================================================
+   15. FOOTER
+   ========================================================= */
+footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0}
+.foot{
+  max-width:1080px;margin:0 auto;padding:0 24px;
+  display:grid;gap:20px;font-size:14px;color:var(--sub);
+}
+.foot a{color:var(--sub)}
+.foot a:hover{color:var(--ink)}
+.footnav{
+  display:flex;flex-wrap:wrap;gap:10px 26px;
+  padding-bottom:20px;border-bottom:1px solid var(--line-soft);
+}
+.footnav a{font-weight:500;color:var(--ink)}
+.footnav a:hover{color:var(--blue)}
+
+/* =========================================================
+   16. ANIMATIES
+   ========================================================= */
+/* De pagina animeert niet mee met het scrollen: inhoud staat er gewoon.
+   Alleen de hero komt eenmalig op bij het laden, en losse elementen
+   reageren op aanwijzen en focus. */
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.load{opacity:0;animation:rise .8s var(--e) forwards}
+.d1{animation-delay:.04s}.d2{animation-delay:.12s}.d3{animation-delay:.2s}
+.d4{animation-delay:.28s}.d5{animation-delay:.38s}
+
+/* --- Losse micro-animaties op interactie --- */
+
+/* Logo: het merkteken kantelt licht mee */
+.logo i{transition:transform .45s var(--e)}
+.logo:hover i{transform:rotate(-7deg) scale(1.07)}
+
+/* Dienst: de haarlijn erboven loopt blauw vol en het icoon komt naar voren */
+.svc{position:relative}
+.svc::after{
+  content:"";position:absolute;top:-1px;left:0;right:0;height:1px;
+  background:var(--blue);transform:scaleX(0);transform-origin:left;
+  transition:transform .55s var(--e);
+}
+.svc:hover::after{transform:scaleX(1)}
+.svc svg{transition:transform .45s var(--e),color .35s var(--e),opacity .35s var(--e)}
+.svc:hover svg{transform:translateY(-3px);color:var(--blue);opacity:1}
+
+/* Stap: het nummer kleurt blauw bij en de lijn erboven loopt vol */
+.step{position:relative}
+.step::after{
+  content:"";position:absolute;top:-1px;left:0;right:0;height:1px;
+  background:var(--blue);transform:scaleX(0);transform-origin:left;
+  transition:transform .55s var(--e);
+}
+.step:hover::after{transform:scaleX(1)}
+.step .num{transition:color .4s var(--e),transform .45s var(--e)}
+.step:hover .num{color:var(--blue);transform:translateY(-2px)}
+
+/* Vinkjes: kleine pop bij aanwijzen van de regel */
+.reason .check,.workpanel .check{transition:transform .4s var(--e),background .3s var(--e)}
+.reason:hover .check,.workpanel .incl li:hover .check{transform:scale(1.12)}
+
+/* Knoppen: pijl schuift, knop veert licht in bij indrukken */
+.btn .arw{transition:transform .3s var(--e)}
+.btn:hover .arw{transform:translateX(4px)}
+.btn:active{transform:translateY(0) scale(.985)}
+
+/* Formuliervelden: label licht mee op bij focus */
+.field:focus-within label{color:var(--blue)}
+label{transition:color .25s var(--e)}
+
+/* =========================================================
+   17. RESPONSIVE
+   ========================================================= */
+@media(max-width:1040px){
+  .menu a{padding:8px 10px;font-size:13.5px}
+  .menu a::after{left:10px;right:10px}
+}
+@media(max-width:920px){
+  .menu,.navcta{display:none}
+  .burger{display:flex}
+  .drawer{display:flex}
+  .services{grid-template-columns:1fr 1fr;gap:0 40px}
+  .pricepeek{grid-template-columns:1fr;gap:0}
+  .peek{padding-bottom:26px}
+  .steps,.pillars{grid-template-columns:1fr;gap:0 40px}
+  .pillars{gap:0}
+  .pillar{padding-bottom:26px}
+  .plans{grid-template-columns:1fr;max-width:520px;margin:0 auto}
+  .plan .for{min-height:0}
+  .cgrid{grid-template-columns:1fr;gap:40px}
+  .phone{width:132px;left:-6px}
+  .site-hero{max-width:80%}
+}
+@media(max-width:760px){
+  :root{--nav-h:54px}
+  .showcase{padding-bottom:0}
+  .phone{display:none}
+  .site-hero{max-width:100%;padding:28px 22px 22px}
+  .site-nav{padding:14px 22px}
+  .site-nav .links{display:none}
+  .site-band{margin:0 22px;height:104px}
+  .site-cols{padding:22px 22px 0;gap:16px}
+  .feature .meta{grid-template-columns:1fr;gap:14px}
+  .ctaband{grid-template-columns:1fr;gap:26px}
+  .ctaband .acts{flex-direction:row;flex-wrap:wrap}
+  .check-offer{grid-template-columns:1fr;gap:24px}
+  .check-offer .btn{width:100%}
+  .reasons{grid-template-columns:1fr;gap:0}
+  .pricefoot{grid-template-columns:1fr;gap:12px}
+}
+@media(max-width:600px){
+  body{font-size:16.5px}
+  .wrap,.nav,.foot{padding-left:20px;padding-right:20px}
+  .services,.steps,.pillars,.pricepeek{grid-template-columns:1fr;gap:0}
+  .foot{gap:16px}
+  .step{padding-top:22px}
+  .step .num{margin-bottom:12px}
+  .hero .micro{gap:6px 18px}
+  .site-cols{grid-template-columns:1fr;gap:12px}
+  .two{grid-template-columns:1fr;gap:0}
+  .q button{font-size:17px;padding:21px 2px}
+  .a p{padding-right:20px}
+  .foot{flex-direction:column}
+}
+@media(max-width:380px){
+  .hero .cta-row{flex-direction:column;align-items:stretch}
+  .hero .cta-row .btn{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  html{scroll-behavior:auto}
+  .load{opacity:1!important;transform:none!important}
+  .accent path{animation:none!important;stroke-dashoffset:0!important}
+}
+</style>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -412,6 +1187,166 @@
   </div>
 </footer>
 
-<script src="assets/script.js" defer></script>
+<script>
+/* DH-studio — gedeeld script voor alle pagina's.
+   Elk blok controleert eerst of de betreffende elementen op deze pagina
+   staan, zodat hetzelfde bestand op de homepage én op losse pagina's werkt. */
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* --- Jaartal in de footer --- */
+  var jaar = document.getElementById("jaar");
+  if(jaar) jaar.textContent = new Date().getFullYear();
+
+  /* --- Header krijgt een lijn zodra je scrollt --- */
+  var hdr = document.getElementById("hdr");
+  if(hdr){
+    var ticking = false;
+    var onScroll = function(){
+      if(ticking) return;
+      ticking = true;
+      requestAnimationFrame(function(){
+        hdr.classList.toggle("stuck", window.scrollY > 8);
+        ticking = false;
+      });
+    };
+    window.addEventListener("scroll", onScroll, {passive:true});
+    onScroll();
+  }
+
+  /* --- Mobiel menu --- */
+  var burger = document.getElementById("burger"), drawer = document.getElementById("drawer");
+  if(burger && drawer){
+    var setDrawer = function(open){
+      burger.setAttribute("aria-expanded", String(open));
+      burger.setAttribute("aria-label", open ? "Menu sluiten" : "Menu openen");
+      drawer.classList.toggle("open", open);
+      document.body.classList.toggle("locked", open);
+    };
+    burger.addEventListener("click", function(){
+      setDrawer(burger.getAttribute("aria-expanded") !== "true");
+    });
+    drawer.addEventListener("click", function(e){
+      if(e.target.closest("a")) setDrawer(false);
+    });
+    document.addEventListener("keydown", function(e){
+      if(e.key === "Escape" && burger.getAttribute("aria-expanded") === "true"){
+        setDrawer(false);
+        burger.focus();
+      }
+    });
+    window.addEventListener("resize", function(){
+      if(window.innerWidth > 920 && burger.getAttribute("aria-expanded") === "true") setDrawer(false);
+    });
+  }
+
+  /* --- Website-previews schalen mee met hun container --- */
+  var previews = document.querySelectorAll(".preview");
+  if(previews.length){
+    var fit = function(){
+      previews.forEach(function(box){
+        box.style.setProperty("--s", box.clientWidth / 1440);
+      });
+    };
+    fit();
+    if("ResizeObserver" in window){
+      var ro = new ResizeObserver(fit);
+      previews.forEach(function(box){ ro.observe(box); });
+    } else {
+      window.addEventListener("resize", fit, {passive:true});
+    }
+  }
+
+  /* --- Anker-navigatie binnen één pagina: markeer het actieve menu-item.
+         Op pagina's waar het menu naar andere bestanden wijst, staat
+         aria-current al in de HTML en doet dit blok niets. --- */
+  var anchorLinks = document.querySelectorAll('.menu a[href^="#"]');
+  if(anchorLinks.length && "IntersectionObserver" in window){
+    var links = {}, targets = [];
+    anchorLinks.forEach(function(a){
+      var el = document.getElementById(a.getAttribute("href").slice(1));
+      if(el){ links[el.id] = a; targets.push(el); }
+    });
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(!entry.isIntersecting) return;
+        Object.keys(links).forEach(function(id){ links[id].removeAttribute("aria-current"); });
+        links[entry.target.id].setAttribute("aria-current", "true");
+      });
+    }, {rootMargin:"-45% 0px -50% 0px"});
+    targets.forEach(function(el){ spy.observe(el); });
+  }
+
+  /* --- FAQ-accordeon --- */
+  document.querySelectorAll(".q button").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var item = btn.closest(".q"), isOpen = item.dataset.open === "true";
+      document.querySelectorAll(".q").forEach(function(other){
+        other.dataset.open = "false";
+        other.querySelector("button").setAttribute("aria-expanded", "false");
+      });
+      if(!isOpen){
+        item.dataset.open = "true";
+        btn.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+
+  /* --- Contactformulier ---
+         Opent een vooringevulde e-mail. Vervang dit door een eigen endpoint
+         (Formspree, Netlify Forms of PHP) zodra dat beschikbaar is. */
+  var form = document.getElementById("quote");
+  if(form){
+    var note   = document.getElementById("formnote"),
+        select = document.getElementById("pakket");
+
+    /* Kwam de bezoeker via een knop als "Kies Professional" of
+       "Vraag je websitecheck aan"? Dan staat het onderwerp in de URL:
+       contact.html?pakket=Professional */
+    if(select){
+      var wanted = new URLSearchParams(window.location.search).get("pakket");
+      if(wanted){
+        var match = [].slice.call(select.options).filter(function(o){
+          return o.value.toLowerCase() === wanted.toLowerCase();
+        })[0];
+        if(match){
+          select.value = match.value;
+          window.setTimeout(function(){
+            var naam = document.getElementById("naam");
+            if(naam) naam.focus({preventScroll:true});
+          }, reduce ? 0 : 400);
+        }
+      }
+    }
+
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      var naam = form.naam.value.trim(), email = form.email.value.trim();
+      note.className = "formnote";
+
+      if(!naam || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+        note.className = "formnote err";
+        note.textContent = "Vul je naam en een geldig e-mailadres in, dan kunnen we je antwoorden.";
+        (!naam ? form.naam : form.email).focus();
+        return;
+      }
+
+      var body = "Naam: " + naam +
+                 "\nE-mail: " + email +
+                 "\nHuidige website: " + (form.site.value.trim() || "—") +
+                 "\nNodig: " + form.pakket.value +
+                 "\n\n" + form.bericht.value.trim();
+
+      window.location.href = "mailto:info.dhstudionl@gmail.com" +
+        "?subject=" + encodeURIComponent("Aanvraag via dh-studio.nl — " + naam) +
+        "&body=" + encodeURIComponent(body);
+
+      note.className = "formnote ok";
+      note.textContent = "Je e-mailprogramma opent met de aanvraag erin. Versturen en je hoort binnen 1 werkdag van ons.";
+    });
+  }
+})();
+</script>
 </body>
 </html>
