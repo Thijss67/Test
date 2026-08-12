@@ -334,6 +334,10 @@ section{padding:var(--pad-s) 0}
 .step h3{font-size:19px;letter-spacing:-.024em}
 .step p{color:var(--sub);font-size:15.5px;line-height:1.58;margin-top:9px}
 .steps-note{margin-top:clamp(40px,5vw,58px);color:var(--sub);font-size:16px}
+.sectioncta{
+  margin-top:clamp(28px,3.5vw,40px);color:var(--sub);font-size:16.5px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;
+}
 
 /* =========================================================
    10. WERK
@@ -495,6 +499,46 @@ section{padding:var(--pad-s) 0}
 .pricefoot b{color:var(--ink);font-weight:500}
 
 /* =========================================================
+   12b. CTA-BLOKKEN
+   ========================================================= */
+.ctaband{
+  background:var(--ink);color:#fff;border-radius:var(--r-l);
+  padding:clamp(38px,5vw,64px) clamp(28px,4vw,60px);
+  display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,52px);align-items:center;
+}
+.ctaband .ct-title{font-size:clamp(25px,3vw,36px);font-weight:600;line-height:1.14;letter-spacing:-.03em;color:#fff}
+.ctaband p{color:rgba(255,255,255,.72);font-size:17.5px;margin-top:14px;line-height:1.6;max-width:48ch}
+.ctaband .acts{display:flex;flex-direction:column;gap:12px}
+.ctaband .acts .btn{justify-content:center}
+.ctaband .btn-p{background:var(--blue)}
+.ctaband .btn-p:hover{background:var(--blue-h)}
+.ctaband .btn-w{background:#fff;color:var(--ink)}
+.ctaband .btn-w:hover{background:#f0f0f2;transform:translateY(-1px)}
+.ctaband .btn-g{border:1px solid rgba(255,255,255,.3);color:#fff}
+.ctaband .btn-g:hover{border-color:#fff;background:rgba(255,255,255,.07);transform:translateY(-1px)}
+
+/* Laagdrempelige instap voor wie nog niet aan een offerte toe is */
+.check-offer{
+  border:1px solid var(--line-soft);border-radius:var(--r-l);background:var(--white);
+  padding:clamp(28px,4vw,48px);display:grid;grid-template-columns:1fr auto;
+  gap:clamp(22px,3vw,48px);align-items:center;
+}
+.on-white .check-offer{background:var(--bg)}
+.check-offer .tagline{
+  display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;
+  color:var(--green);background:var(--green-bg);padding:6px 12px;border-radius:980px;
+}
+.check-offer h3{font-size:clamp(21px,2.3vw,26px);letter-spacing:-.028em;margin-top:16px}
+.check-offer > div > p{color:var(--sub);font-size:16.5px;margin-top:12px;max-width:58ch;line-height:1.6}
+.check-offer ul{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:18px}
+.check-offer li{display:flex;align-items:center;gap:8px;font-size:15px;color:var(--ink-2)}
+.check-offer li svg{width:13px;height:13px;color:var(--green);flex:none}
+
+/* Pijl die meebeweegt bij hover op de knop */
+.btn .arw{transition:transform .3s var(--e)}
+.btn:hover .arw{transform:translateX(4px)}
+
+/* =========================================================
    13. FAQ
    ========================================================= */
 .faq{max-width:760px}
@@ -575,19 +619,48 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
 /* =========================================================
    16. ANIMATIES
    ========================================================= */
-.rv{opacity:0;transform:translateY(16px);transition:opacity .7s var(--e),transform .7s var(--e)}
-.rv.in{opacity:1;transform:none}
-.stag > *{opacity:0;transform:translateY(14px);transition:opacity .6s var(--e),transform .6s var(--e)}
-.stag.in > *{opacity:1;transform:none}
-.stag.in > *:nth-child(2){transition-delay:.06s}
-.stag.in > *:nth-child(3){transition-delay:.12s}
-.stag.in > *:nth-child(4){transition-delay:.18s}
-.stag.in > *:nth-child(5){transition-delay:.24s}
-.stag.in > *:nth-child(6){transition-delay:.3s}
-@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-.load{opacity:0;animation:rise .85s var(--e) forwards}
-.d1{animation-delay:.04s}.d2{animation-delay:.12s}.d3{animation-delay:.2s}
-.d4{animation-delay:.28s}.d5{animation-delay:.4s}
+/* Basis-reveal: opkomen met een lichte onscherpte, wat de beweging zachter
+   maakt dan een kale translate. Varianten voor richting en schaal. */
+.rv{
+  opacity:0;transform:translateY(20px);filter:blur(5px);
+  transition:opacity .85s var(--e),transform .85s var(--e),filter .85s var(--e);
+}
+.rv.in{opacity:1;transform:none;filter:none}
+.rv-l{transform:translateX(-28px)}
+.rv-r{transform:translateX(28px)}
+.rv-scale{transform:scale(.975) translateY(20px)}
+
+.stag > *{
+  opacity:0;transform:translateY(18px);filter:blur(4px);
+  transition:opacity .7s var(--e),transform .7s var(--e),filter .7s var(--e);
+}
+.stag.in > *{opacity:1;transform:none;filter:none}
+.stag.in > *:nth-child(2){transition-delay:.07s}
+.stag.in > *:nth-child(3){transition-delay:.14s}
+.stag.in > *:nth-child(4){transition-delay:.21s}
+.stag.in > *:nth-child(5){transition-delay:.28s}
+.stag.in > *:nth-child(6){transition-delay:.35s}
+
+/* Haarlijnen die zich links naar rechts opbouwen, zodat de raster-secties
+   zich "tekenen" in plaats van gewoon te verschijnen. De basisrand is
+   transparant zodat alleen de getekende lijn zichtbaar is. */
+.svc,.step{position:relative;border-top-color:transparent}
+.svc::after,.step::after{
+  content:"";position:absolute;top:-1px;left:0;right:0;height:1px;
+  background:var(--line);transform:scaleX(0);transform-origin:left;
+  transition:transform 1s var(--e);
+}
+.stag.in .svc::after,.stag.in .step::after{transform:scaleX(1)}
+.stag.in > *:nth-child(2)::after{transition-delay:.07s}
+.stag.in > *:nth-child(3)::after{transition-delay:.14s}
+.stag.in > *:nth-child(4)::after{transition-delay:.21s}
+.stag.in > *:nth-child(5)::after{transition-delay:.28s}
+.stag.in > *:nth-child(6)::after{transition-delay:.35s}
+
+@keyframes rise{from{opacity:0;transform:translateY(22px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.load{opacity:0;animation:rise .95s var(--e) forwards}
+.d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.23s}
+.d4{animation-delay:.32s}.d5{animation-delay:.44s}
 
 /* =========================================================
    17. RESPONSIVE
@@ -618,6 +691,10 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
   .site-band{margin:0 22px;height:104px}
   .site-cols{padding:22px 22px 0;gap:16px}
   .feature .meta{grid-template-columns:1fr;gap:14px}
+  .ctaband{grid-template-columns:1fr;gap:26px}
+  .ctaband .acts{flex-direction:row;flex-wrap:wrap}
+  .check-offer{grid-template-columns:1fr;gap:24px}
+  .check-offer .btn{width:100%}
   .reasons{grid-template-columns:1fr;gap:0}
   .pricefoot{grid-template-columns:1fr;gap:12px}
 }
@@ -641,9 +718,17 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
   html{scroll-behavior:auto}
-  .rv,.stag > *,.load{opacity:1!important;transform:none!important}
+  .rv,.stag > *,.load{opacity:1!important;transform:none!important;filter:none!important}
+  .svc::after,.step::after{transform:scaleX(1)!important}
 }
 </style>
+<noscript><style>
+/* Zonder JavaScript worden de reveals nooit geactiveerd; toon dan alles direct. */
+.rv,.stag > *,.load{opacity:1!important;transform:none!important;filter:none!important;animation:none!important}
+.svc::after,.step::after{transform:scaleX(1)!important}
+.pv{display:none}
+.preview{background:var(--grey)}
+</style></noscript>
 </head>
 <body>
 <a class="skip" href="#main">Naar hoofdinhoud</a>
@@ -686,7 +771,9 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
     <h1 id="hero-title" class="load d1">Een moderne website voor je bedrijf, zonder gedoe.</h1>
     <p class="lede load d2">DH Studio ontwerpt en bouwt websites en webshops voor ondernemers. Vaste prijs vooraf, één aanspreekpunt en een planning die klopt.</p>
     <div class="cta-row load d3">
-      <a class="btn btn-p" href="#contact">Plan een kennismaking</a>
+      <a class="btn btn-p" href="#contact">Plan een kennismaking
+        <svg class="arw" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h13M12.5 6l6 6-6 6"/></svg>
+      </a>
       <a class="btn btn-s" href="#werk">Bekijk ons werk</a>
     </div>
     <p class="micro load d4">
@@ -784,6 +871,12 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
         <p>Updates, back-ups, beveiliging en kleine aanpassingen. Eén aanspreekpunt dat je gewoon kunt mailen of bellen.</p>
       </article>
     </div>
+    <p class="sectioncta rv">
+      Niet zeker welke diensten je nodig hebt?
+      <a class="tlink" href="#contact">Leg je situatie voor
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h13M12.5 6l6 6-6 6"/></svg>
+      </a>
+    </p>
   </div>
 </section>
 
@@ -818,6 +911,12 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
       </div>
     </div>
     <p class="steps-note rv">Een standaardtraject plannen we in ongeveer twee weken, gerekend vanaf het moment dat we je materiaal binnen hebben. Webshops en grotere projecten duren langer — je krijgt vooraf een planning met vaste momenten.</p>
+    <p class="sectioncta rv">
+      Stap 1 kost je een half uur en verplicht je tot niets.
+      <a class="tlink" href="#contact">Plan de kennismaking
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h13M12.5 6l6 6-6 6"/></svg>
+      </a>
+    </p>
   </div>
 </section>
 
@@ -830,7 +929,7 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
       <p>Een website die past bij een bedrijf met zestig jaar vakmanschap.</p>
     </div>
 
-    <article class="feature rv">
+    <article class="feature rv rv-scale">
       <a class="shot" href="https://vdheideservicetechniek.nl" target="_blank" rel="noopener"
          aria-label="Bekijk de website van VD Heide Service &amp; Techniek in een nieuw tabblad">
         <div class="preview" role="img" aria-label="Homepage van VD Heide Service &amp; Techniek: donkerblauwe hero met de kop 'Al 60 jaar specialist in weerstandlasmachines' en een witte werkbon-kaart met contactgegevens.">
@@ -895,6 +994,19 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
     </article>
 
     <p class="worknote rv">Meer voorbeelden laten we graag zien tijdens de kennismaking — bij voorkeur uit een branche die op de jouwe lijkt.</p>
+
+    <div class="ctaband rv rv-scale" style="margin-top:clamp(48px,6vw,76px)">
+      <div>
+        <p class="ct-title">Benieuwd wat jouw website zou kosten?</p>
+        <p>Dertig minuten aan de telefoon en je weet het precies: een vaste prijs, een planning en een eerlijk advies over wat je wel en niet nodig hebt.</p>
+      </div>
+      <div class="acts">
+        <a class="btn btn-w" href="#contact">Plan een kennismaking
+          <svg class="arw" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h13M12.5 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-g" href="#prijzen">Bekijk de prijzen</a>
+      </div>
+    </div>
 
     <!--
       VOLGEND PROJECT TOEVOEGEN
@@ -1005,6 +1117,27 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
       <p><b>Maandelijks (optioneel).</b> Hosting, onderhoud, back-ups, beveiliging en support vanaf €29 per maand. Maandelijks opzegbaar, geen langlopend contract.</p>
       <p><b>Optioneel bij te bestellen.</b> Extra pagina's, fotografie, meertaligheid, koppelingen met externe systemen en losse SEO-begeleiding. Altijd vooraf geprijsd.</p>
     </div>
+
+    <div class="check-offer rv" style="margin-top:clamp(44px,6vw,72px)">
+      <div>
+        <span class="tagline">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg>
+          Gratis en vrijblijvend
+        </span>
+        <h3>Nog niet toe aan een offerte? Begin met een websitecheck.</h3>
+        <p>Stuur je huidige website en je krijgt binnen twee werkdagen een eerlijke beoordeling met drie concrete verbeterpunten. Ook als daar geen opdracht uit komt.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg>Snelheid en mobiel gebruik</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg>Vindbaarheid in Google</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg>Wat bezoekers tegenhoudt</li>
+        </ul>
+      </div>
+      <div>
+        <a class="btn btn-p" href="#contact" data-preset="Gratis websitecheck">Vraag je websitecheck aan
+          <svg class="arw" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h13M12.5 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1053,8 +1186,8 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
       <p>Vertel kort wat je nodig hebt. Je krijgt binnen één werkdag een reactie met een concreet voorstel — zonder verkooppraatje.</p>
     </div>
 
-    <div class="cgrid rv">
-      <form id="quote" novalidate>
+    <div class="cgrid">
+      <form id="quote" class="rv rv-l" novalidate>
         <div class="two">
           <div class="field">
             <label for="naam">Naam</label>
@@ -1077,6 +1210,7 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
             <option>Website — Groei</option>
             <option>Webshop</option>
             <option>Bestaande website verbeteren</option>
+            <option>Gratis websitecheck</option>
             <option>Onderhoud of hosting</option>
           </select>
         </div>
@@ -1088,7 +1222,7 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
         <p class="formnote" id="formnote" role="status">We gebruiken je gegevens alleen om je vraag te beantwoorden. Geen nieuwsbrief, geen doorverkoop.</p>
       </form>
 
-      <div class="side">
+      <div class="side rv rv-r">
         <h3>Liever direct contact?</h3>
         <p>Mailen mag altijd, ook als je nog aan het begin staat en eerst wilt sparren over wat je nodig hebt.</p>
         <ul class="direct">
@@ -1212,6 +1346,18 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:38px 0
     }, {rootMargin:"-45% 0px -50% 0px"});
     targets.forEach(function(el){ spy.observe(el); });
   }
+
+  /* --- CTA's die het contactformulier alvast op het juiste onderwerp zetten --- */
+  document.querySelectorAll("a[data-preset]").forEach(function(link){
+    link.addEventListener("click", function(){
+      var wanted = link.dataset.preset,
+          select = document.getElementById("pakket"),
+          match = [].slice.call(select.options).filter(function(o){ return o.value === wanted; })[0];
+      if(match){ select.value = match.value; }
+      // Focus pas verplaatsen als het scrollen klaar is, anders springt de pagina.
+      window.setTimeout(function(){ document.getElementById("naam").focus({preventScroll:true}); }, reduce ? 0 : 700);
+    });
+  });
 
   /* --- FAQ-accordeon --- */
   document.querySelectorAll(".q button").forEach(function(btn){
