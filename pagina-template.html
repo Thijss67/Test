@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  DH-studio — sjabloon voor een losse pagina
+  ============================================================
+  Zo maak je een nieuwe pagina:
+
+  1. Kopieer dit bestand naar de juiste naam. De navigatie verwijst al naar:
+       diensten.html
+       werkwijze.html
+       werk.html
+       tarieven.html
+       veelgestelde-vragen.html
+       contact.html
+  2. Pas <title>, de meta description en de canonical-URL aan.
+  3. Zet aria-current="page" op het menu-item van deze pagina (zie hieronder)
+     en haal het weg bij de andere.
+  4. Vul <main> met je secties. Bruikbare bouwstenen staan in index.html:
+       <section>            sectie met standaard ruimte boven en onder
+       <section class="on-white">  sectie met witte achtergrond (afwisselen)
+       <div class="wrap">   inhoudsbreedte 1080px
+       <div class="head">   eyebrow + h2 + introzin
+       .services / .pillars / .steps   rasters met haarlijnen
+       .plans .plan         prijskaarten
+       .faq .q              accordeon
+       .ctaband             donker CTA-blok
+       .check-offer         blok met de gratis websitecheck
+  5. Eén <h1> per pagina, daarna h2 en h3 in volgorde.
+
+  De opmaak en het script staan in assets/ en worden door elke pagina gedeeld.
+  Pas je daar iets aan, dan verandert het op de hele site.
+
+  Let op bij de FAQ-pagina: onderaan dit bestand staat het FAQPage-blok voor
+  structured data. Plak dat alleen op de pagina waar die vragen ook echt
+  zichtbaar staan, anders klopt het niet met wat Google op de pagina vindt.
+-->
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAGINATITEL — DH-studio</title>
+<meta name="description" content="Eén zin die deze pagina beschrijft, geschreven voor mensen en niet volgestopt met zoekwoorden.">
+<meta name="theme-color" content="#fbfbfd">
+<link rel="canonical" href="https://dh-studio.nl/BESTANDSNAAM.html">
+<meta property="og:title" content="PAGINATITEL — DH-studio">
+<meta property="og:description" content="Eén zin die deze pagina beschrijft.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dh-studio.nl/BESTANDSNAAM.html">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:site_name" content="DH-studio">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<noscript><style>
+.pv{display:none}
+.preview{background:var(--grey)}
+</style></noscript>
+</head>
+<body>
+<a class="skip" href="#main">Naar hoofdinhoud</a>
+
+<!-- ============================ HEADER ============================ -->
+<header id="hdr">
+  <div class="nav">
+    <a class="logo" href="index.html"><i aria-hidden="true">DH</i>DH-studio</a>
+    <nav class="menu" id="menu" aria-label="Hoofdmenu">
+      <!-- Zet aria-current="page" op het item van déze pagina -->
+      <a href="diensten.html">Diensten</a>
+      <a href="werkwijze.html">Werkwijze</a>
+      <a href="werk.html">Werk</a>
+      <a href="tarieven.html">Tarieven</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="navcta" href="contact.html">Gratis adviesgesprek</a>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Menu openen">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="drawer" id="drawer" aria-label="Mobiel menu">
+  <a href="diensten.html">Diensten</a>
+  <a href="werkwijze.html">Werkwijze</a>
+  <a href="werk.html">Werk</a>
+  <a href="tarieven.html">Tarieven</a>
+  <a href="veelgestelde-vragen.html">Veelgestelde vragen</a>
+  <a href="contact.html">Contact</a>
+  <a class="drawer-cta" href="contact.html">Gratis adviesgesprek</a>
+</nav>
+
+<main id="main">
+
+  <!-- Paginakop: vervangt de hero van de homepage -->
+  <section class="pagehead" aria-labelledby="paginatitel">
+    <div class="wrap">
+      <p class="eyebrow">RUBRIEK</p>
+      <h1 id="paginatitel" class="load d1">De kop van deze pagina</h1>
+      <p class="lede load d2">Eén of twee zinnen die uitleggen waar deze pagina over gaat en wat de bezoeker hier vindt.</p>
+    </div>
+  </section>
+
+  <!-- Vanaf hier je eigen secties -->
+  <section class="on-white">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Rubriek</p>
+        <h2>Kop van deze sectie</h2>
+        <p>Introzin onder de kop.</p>
+      </div>
+      <p>Inhoud.</p>
+    </div>
+  </section>
+
+  <!-- Sluit elke pagina af met een duidelijke vervolgstap -->
+  <section>
+    <div class="wrap">
+      <div class="ctaband">
+        <div>
+          <p class="ct-title">Klaar om je website klanten te laten opleveren?</p>
+          <p>Dertig minuten aan de telefoon en je weet het precies: een vaste prijs, een planning en een eerlijk advies.</p>
+        </div>
+        <div class="acts">
+          <a class="btn btn-w" href="contact.html">Plan een gratis adviesgesprek
+            <svg class="arw" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h13M12.5 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-g" href="tarieven.html">Bekijk de tarieven</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="foot">
+    <nav class="footnav" aria-label="Paginanavigatie">
+      <a href="diensten.html">Diensten</a>
+      <a href="werkwijze.html">Werkwijze</a>
+      <a href="werk.html">Werk</a>
+      <a href="tarieven.html">Tarieven</a>
+      <a href="veelgestelde-vragen.html">Veelgestelde vragen</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <p>© <span id="jaar">2026</span> DH-studio · Webdesign uit Nederland · KvK op aanvraag · <a href="mailto:info.dhstudionl@gmail.com">info.dhstudionl@gmail.com</a></p>
+  </div>
+</footer>
+
+<script src="assets/script.js" defer></script>
+
+<!--
+  ============================================================
+  Structured data voor de FAQ-pagina
+  ============================================================
+  Plak onderstaand blok in de <head> van veelgestelde-vragen.html, en alleen
+  daar. De vragen en antwoorden moeten woordelijk overeenkomen met wat er
+  zichtbaar op die pagina staat.
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Wat kost een website bij DH-studio?","acceptedAnswer":{"@type":"Answer","text":"Je krijgt altijd een vaste prijs vooraf. Starter is €695, Professional €1.450 en maatwerk begint bij €2.900, allemaal eenmalig en exclusief btw. Na het gratis adviesgesprek weet je precies waar je aan toe bent. Liever in termijnen betalen? Vraag ernaar in het adviesgesprek."}},
+    {"@type":"Question","name":"Hoe lang duurt het voordat mijn website live staat?","acceptedAnswer":{"@type":"Answer","text":"Een standaardtraject plannen we in ongeveer twee weken, gerekend vanaf het moment dat we je logo, foto's en teksten hebben. Webshops en maatwerk duren langer; je krijgt vooraf een planning met vaste momenten."}},
+    {"@type":"Question","name":"Ben ik eigenaar van mijn website en domein?","acceptedAnswer":{"@type":"Answer","text":"Ja, volledig. Het domein staat op jouw naam en de website is jouw eigendom. Wil je later overstappen naar een andere partij, dan dragen we alles over zonder kosten of drempels."}},
+    {"@type":"Question","name":"Kan ik zelf teksten en foto's aanpassen?","acceptedAnswer":{"@type":"Answer","text":"Bij Professional en maatwerk krijg je een eenvoudig beheersysteem waarin je zelf prijzen, foto's, teksten en pagina's aanpast, zonder technische kennis en zonder ons. Je krijgt uitleg bij de oplevering."}},
+    {"@type":"Question","name":"Ik heb al een website. Kan die worden overgezet?","acceptedAnswer":{"@type":"Answer","text":"Dat kan. We kijken eerst wat behouden kan blijven — teksten, foto's en bestaande posities in Google — en zorgen bij de overstap voor de juiste doorverwijzingen. Je oude site blijft online tot de nieuwe klaar is."}},
+    {"@type":"Question","name":"Wat gebeurt er na de oplevering?","acceptedAnswer":{"@type":"Answer","text":"Bij Professional krijg je dertig dagen nazorg voor kleine aanpassingen. Daarna is doorlopend onderhoud mogelijk: updates, back-ups, beveiliging en een vast aanspreekpunt. Je zit nergens aan vast."}}
+  ]
+}
+</script>
+
+-->
+</body>
+</html>
