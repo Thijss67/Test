@@ -58,8 +58,8 @@
     --ghost: rgba(157, 186, 230, 0.09);
 
     /* Achtergrondstructuur */
-    --dot: rgba(148, 178, 224, 0.1);
-    --rule: rgba(148, 178, 224, 0.055);
+    --dot: rgba(148, 178, 224, 0.07);
+    --rule: rgba(148, 178, 224, 0.04);
     --glow: rgba(59, 130, 246, 0.16);
 
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
@@ -104,8 +104,8 @@
     --tint: rgba(37, 99, 235, 0.09);
     --tint-line: rgba(37, 99, 235, 0.25);
     --ghost: rgba(11, 18, 32, 0.07);
-    --dot: rgba(11, 18, 32, 0.11);
-    --rule: rgba(11, 18, 32, 0.06);
+    --dot: rgba(11, 18, 32, 0.075);
+    --rule: rgba(11, 18, 32, 0.045);
     --glow: rgba(59, 130, 246, 0.16);
     --shadow-sm: 0 1px 2px rgba(11, 18, 32, 0.05);
     --shadow-md: 0 12px 40px -20px rgba(11, 18, 32, 0.3);
@@ -132,8 +132,8 @@
       --tint: rgba(37, 99, 235, 0.09);
       --tint-line: rgba(37, 99, 235, 0.25);
       --ghost: rgba(11, 18, 32, 0.07);
-      --dot: rgba(11, 18, 32, 0.11);
-      --rule: rgba(11, 18, 32, 0.06);
+      --dot: rgba(11, 18, 32, 0.075);
+      --rule: rgba(11, 18, 32, 0.045);
       --glow: rgba(59, 130, 246, 0.16);
       --shadow-sm: 0 1px 2px rgba(11, 18, 32, 0.05);
       --shadow-md: 0 12px 40px -20px rgba(11, 18, 32, 0.3);
@@ -192,7 +192,7 @@
     font-family: var(--font-display);
     font-weight: 700;
     line-height: 1.05;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.035em;
     text-wrap: balance;
     margin: 0;
   }
@@ -239,8 +239,8 @@
     align-items: center;
     justify-content: center;
     gap: 0.5em;
-    padding: 0.78em 1.4em;
-    border-radius: 12px;
+    padding: 0.82em 1.55em;
+    border-radius: 980px;
     font-family: inherit;
     font-weight: 600;
     font-size: 0.95rem;
@@ -257,16 +257,15 @@
   .btn-primary {
     background: var(--btn-bg);
     color: var(--btn-fg);
-    box-shadow: var(--btn-glow);
   }
-  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-primary:hover { opacity: 0.88; }
   .btn-ghost {
-    background: var(--surface);
+    background: transparent;
     color: var(--text);
     border-color: var(--hairline);
   }
-  .btn-ghost:hover { border-color: var(--accent); }
-  .btn-sm { padding: 0.55em 1.05em; font-size: 0.85rem; border-radius: 10px; }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-sm { padding: 0.58em 1.15em; font-size: 0.85rem; }
 
   :focus-visible {
     outline: 2px solid var(--accent);
@@ -289,15 +288,15 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    height: 60px;
+    height: 56px;
     padding-inline: 0.6rem 0.6rem;
     padding-left: 1.15rem;
-    border-radius: 16px;
+    border-radius: 18px;
     border: 1px solid var(--hairline);
     background: color-mix(in srgb, var(--surface) 78%, transparent);
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-sm);
   }
   .brand {
     display: inline-flex;
@@ -320,8 +319,8 @@
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 1.9rem;
-    font-size: 0.86rem;
+    gap: 2rem;
+    font-size: 0.83rem;
     font-weight: 500;
     color: var(--text-dim);
   }
@@ -334,7 +333,7 @@
     color: var(--text-dim);
     width: 36px;
     height: 36px;
-    border-radius: 10px;
+    border-radius: 980px;
     cursor: pointer;
     display: grid;
     place-items: center;
@@ -357,9 +356,9 @@
 
   /* Secties */
   section { position: relative; }
-  .section-pad { padding-block: clamp(4rem, 9vw, 7rem); }
+  .section-pad { padding-block: clamp(5rem, 11vw, 9rem); }
 
-  .section-head { margin-bottom: clamp(2.25rem, 4.5vw, 3.5rem); }
+  .section-head { margin-bottom: clamp(2.75rem, 5.5vw, 4.25rem); }
   .section-head h2 { font-size: var(--step-3); margin-top: 1rem; }
   .section-head p { margin: 1.1rem 0 0; max-width: 46ch; }
   .section-head.center { text-align: center; }
@@ -431,7 +430,7 @@
     grid-template-columns: repeat(3, 1fr);
     background: var(--surface);
     border: 1px solid var(--hairline-soft);
-    border-radius: 18px;
+    border-radius: 22px;
     overflow: hidden;
   }
   .stat {
@@ -457,7 +456,7 @@
   /* Browser-mockup */
   .mock {
     position: relative;
-    border-radius: 18px;
+    border-radius: 22px;
     background: var(--surface);
     border: 1px solid var(--hairline);
     box-shadow: var(--shadow-lg);
@@ -550,8 +549,8 @@
   .card {
     background: var(--surface);
     border: 1px solid var(--hairline-soft);
-    border-radius: 18px;
-    padding: clamp(1.6rem, 3vw, 2.1rem);
+    border-radius: 22px;
+    padding: clamp(1.8rem, 3.2vw, 2.4rem);
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
@@ -584,6 +583,50 @@
   .card-wide .icon { margin-bottom: 0; }
   .card-wide h3 { font-size: clamp(1.45rem, 1.15rem + 1.1vw, 2rem); }
   .card-wide p { font-size: var(--step-1); max-width: 56ch; }
+
+  /* Klanten — compacte strip, geen volledige sectie */
+  .section-tight { padding-block: clamp(2.5rem, 5vw, 4rem); }
+  .section-tight .section-head { margin-bottom: 1.5rem; }
+  .clients {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.1rem;
+    max-width: 560px;
+    margin-inline: auto;
+  }
+  .client {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    background: var(--surface);
+    border: 1px solid var(--hairline-soft);
+    border-radius: 22px;
+    padding: 1.4rem 1.6rem;
+    transition: border-color 0.3s var(--ease);
+  }
+  .client:hover { border-color: var(--tint-line); }
+  .client-mark {
+    flex: none;
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    background: var(--tint);
+    border: 1px solid var(--tint-line);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: -0.02em;
+  }
+  .client-name { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.025em; }
+
+  /* Rustige scroll-animatie, alleen als er beweging gewenst is */
+  .reveal { opacity: 0; transform: translateY(16px); }
+  .reveal-on {
+    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  }
+  .reveal.is-in { opacity: 1; transform: none; }
 
   /* Werkwijze — verticale tijdlijn */
   .process { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
@@ -621,8 +664,8 @@
     position: relative;
     background: var(--surface);
     border: 1px solid var(--hairline-soft);
-    border-radius: 16px;
-    padding: 1.35rem 1.6rem;
+    border-radius: 20px;
+    padding: 1.5rem 1.75rem;
     overflow: hidden;
     transition: border-color 0.3s var(--ease);
   }
@@ -660,8 +703,8 @@
     position: relative;
     background: var(--surface);
     border: 1px solid var(--hairline-soft);
-    border-radius: 18px;
-    padding: clamp(1.6rem, 3vw, 2.1rem);
+    border-radius: 22px;
+    padding: clamp(1.8rem, 3.2vw, 2.4rem);
     display: flex;
     flex-direction: column;
     gap: 0.95rem;
@@ -672,8 +715,8 @@
     background:
       radial-gradient(90% 60% at 50% 0%, var(--tint), transparent 70%),
       var(--surface);
-    box-shadow: var(--btn-glow);
-    padding-block: clamp(2rem, 3.6vw, 2.7rem);
+    box-shadow: var(--shadow-md);
+    padding-block: clamp(2.2rem, 4vw, 3rem);
   }
   .plan-badge {
     position: absolute;
@@ -760,8 +803,8 @@
     gap: 0.85rem;
     background: var(--surface);
     border: 1px solid var(--hairline-soft);
-    border-radius: 18px;
-    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: 22px;
+    padding: clamp(1.7rem, 3.2vw, 2.2rem);
   }
   .field { display: grid; gap: 0.35rem; }
   .field label { font-size: 0.78rem; font-weight: 500; color: var(--text-dim); }
@@ -936,6 +979,21 @@
           </div>
           <h3>Zelf makkelijk te beheren</h3>
           <p>Prijzen, foto's of teksten aanpassen doe je zelf, zonder ons of technische kennis. Jouw website blijft van jou.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- KLANTEN -->
+  <section class="section-tight" id="klanten">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="pill">Onze klant</span>
+      </div>
+      <div class="clients">
+        <article class="client">
+          <div class="client-mark" aria-hidden="true">VH</div>
+          <div class="client-name">Van der Heide Service en Techniek</div>
         </article>
       </div>
     </div>
@@ -1123,6 +1181,29 @@
 
     // Jaartal
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Rustig invaden bij scrollen — alleen als de browser het ondersteunt
+    // en de bezoeker geen beperkte beweging heeft ingesteld
+    var stil = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if ("IntersectionObserver" in window && !stil) {
+      var doelen = document.querySelectorAll(
+        ".section-head, .card, .stats, .client, .proc, .plan, .price-note, form"
+      );
+      var kijker = new IntersectionObserver(function (regels) {
+        regels.forEach(function (regel) {
+          if (regel.isIntersecting) {
+            regel.target.classList.add("is-in");
+            kijker.unobserve(regel.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+
+      doelen.forEach(function (el, i) {
+        el.classList.add("reveal", "reveal-on");
+        el.style.transitionDelay = (i % 3) * 60 + "ms";
+        kijker.observe(el);
+      });
+    }
 
     // Contactformulier — front-end afhandeling met mailto-fallback
     var form = document.getElementById("contactForm");
