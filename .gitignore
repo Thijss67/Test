@@ -1,0 +1,11 @@
+# Agent-/tooling-bestanden — horen niet bij de website die gedeployed wordt
+.agents/
+.claude/
+skills-lock.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/

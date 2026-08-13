@@ -1,824 +1,924 @@
-<style>
-  :root {
-    /* Deep ink-blue ground with warm ochre/terracotta accents */
-    --ink-900: #0b1a33;
-    --ink-800: #0f2444;
-    --ink-700: #163256;
-    --ink-600: #21426b;
-    --line: rgba(224, 190, 138, 0.18);
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    --paper: #f4ede0;
-    --paper-2: #ece2d1;
-    --sand: #d9c7a8;
+<title>DH Studio — Websites laten maken die klanten opleveren</title>
+<meta name="description" content="DH Studio ontwerpt en bouwt snelle, moderne websites voor ondernemers. Direct contact met de makers, een vaste prijs vooraf en een site die vertrouwen wekt, gevonden wordt en aanvragen oplevert.">
+<link rel="canonical" href="https://dh-studio.nl/">
+<meta name="theme-color" content="#06070c">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="index, follow, max-image-preview:large">
 
-    --ochre: #e0a33e;
-    --ochre-soft: #f0c876;
-    --terra: #cd6a45;
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:site_name" content="DH Studio">
+<meta property="og:url" content="https://dh-studio.nl/">
+<meta property="og:title" content="DH Studio — Websites laten maken die klanten opleveren">
+<meta property="og:description" content="Snelle, moderne websites voor ondernemers. Direct contact met de makers, een vaste prijs vooraf en een site die aanvragen oplevert.">
+<meta property="og:image" content="https://dh-studio.nl/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DH Studio — websites voor ondernemers">
+<meta name="twitter:card" content="summary_large_image">
 
-    /* Semantic tokens (dark is the default visual world here) */
-    --bg: var(--ink-900);
-    --surface: var(--ink-800);
-    --surface-2: var(--ink-700);
-    --text: #f3ecdd;
-    --text-dim: #a9b8d2;
-    --accent: var(--ochre);
-    --accent-2: var(--terra);
-    --on-accent: #17130a;
-    --hairline: var(--line);
-    --card-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.75);
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 
-    --font-display: "Playfair Display", "Iowan Old Style", "Palatino Linotype",
-      Palatino, Georgia, "Times New Roman", serif;
-    --font-body: "Inter", ui-sans-serif, system-ui, -apple-system,
-      "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+<link rel="stylesheet" href="/assets/css/site.css">
 
-    --maxw: 1140px;
-    --step-0: clamp(0.95rem, 0.9rem + 0.2vw, 1.02rem);
-    --step-1: clamp(1.1rem, 1rem + 0.5vw, 1.3rem);
-    --step-2: clamp(1.4rem, 1.2rem + 1vw, 1.9rem);
-    --step-3: clamp(2rem, 1.5rem + 2.4vw, 3.1rem);
-    --step-4: clamp(2.7rem, 1.8rem + 4.4vw, 5rem);
-  }
+<!-- Markeert dat JS beschikbaar is, vóór de eerste paint: voorkomt dat
+     animatie-startstaten blijven hangen als JS uitstaat. -->
+<script>document.documentElement.classList.add('js');</script>
 
-  :root[data-theme="light"] {
-    --bg: var(--paper);
-    --surface: #ffffff;
-    --surface-2: var(--paper-2);
-    --text: #16233b;
-    --text-dim: #5a6478;
-    --accent: #b9772a;
-    --accent-2: #b4522f;
-    --on-accent: #fdf6e8;
-    --hairline: rgba(24, 40, 66, 0.14);
-    --card-shadow: 0 24px 50px -30px rgba(20, 32, 60, 0.35);
-  }
-
-  @media (prefers-color-scheme: light) {
-    :root {
-      --bg: var(--paper);
-      --surface: #ffffff;
-      --surface-2: var(--paper-2);
-      --text: #16233b;
-      --text-dim: #5a6478;
-      --accent: #b9772a;
-      --accent-2: #b4522f;
-      --on-accent: #fdf6e8;
-      --hairline: rgba(24, 40, 66, 0.14);
-      --card-shadow: 0 24px 50px -30px rgba(20, 32, 60, 0.35);
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://dh-studio.nl/#studio",
+      "name": "DH Studio",
+      "description": "Webdesign- en developmentstudio uit Nederland. Wij ontwerpen en bouwen snelle, moderne websites voor ondernemers, inclusief hosting, SEO en onderhoud.",
+      "url": "https://dh-studio.nl/",
+      "email": "info@dh-studio.nl",
+      "image": "https://dh-studio.nl/assets/img/og.png",
+      "priceRange": "€€",
+      "areaServed": { "@type": "Country", "name": "Nederland" },
+      "availableLanguage": ["nl", "en"],
+      "founder": [
+        { "@type": "Person", "name": "Thijs" },
+        { "@type": "Person", "name": "Lucas" }
+      ],
+      "knowsAbout": [
+        "webdesign",
+        "webdevelopment",
+        "zoekmachineoptimalisatie",
+        "webhosting",
+        "websiteonderhoud"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Websitepakketten",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Starter",
+            "description": "Professionele website voor kleine bedrijven en zzp'ers.",
+            "price": "995",
+            "priceCurrency": "EUR",
+            "valueAddedTaxIncluded": false
+          },
+          {
+            "@type": "Offer",
+            "name": "Professional",
+            "description": "Complete online oplossing voor groeiende bedrijven.",
+            "price": "1495",
+            "priceCurrency": "EUR",
+            "valueAddedTaxIncluded": false
+          },
+          {
+            "@type": "Offer",
+            "name": "Business Enterprise",
+            "description": "Complexe digitale oplossingen voor grote ondernemingen.",
+            "price": "2495",
+            "priceCurrency": "EUR",
+            "valueAddedTaxIncluded": false
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://dh-studio.nl/#website",
+      "url": "https://dh-studio.nl/",
+      "name": "DH Studio",
+      "inLanguage": "nl-NL",
+      "publisher": { "@id": "https://dh-studio.nl/#studio" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://dh-studio.nl/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Wat onderscheidt DH Studio van andere bureaus?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Je praat direct met de mensen die je website bouwen. Geen accountmanager die je wensen doorgeeft aan een developer, maar Thijs of Lucas aan tafel. Dat scheelt tijd, ruis en kosten."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bouwen jullie websites met standaard templates?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nee. We ontwerpen en bouwen elke site vanaf de basis, afgestemd op je vak, je klanten en je doelen. Geen thema met een ander kleurtje."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wat kost een website bij DH Studio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Starter kost €995, Professional €1495 en Business Enterprise €2495, eenmalig en exclusief btw. Maatwerk gaat op aanvraag en doorlopend onderhoud start vanaf €49 per maand. Je hoort de prijs voordat we beginnen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hoe lang duurt het voordat mijn website live staat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dat hangt af van de omvang en van hoe snel we teksten en beeldmateriaal hebben. In de strategiefase krijg je een concrete planning met een opleverdatum, en daar houden we ons aan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Moet ik zelf hosting en een domeinnaam regelen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nee. We regelen domein, hosting, SSL en beveiliging voor je en houden het draaiend. Heb je al een domein of hostingpakket, dan werken we daar gewoon mee."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wat gebeurt er nadat de website live is gegaan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We blijven betrokken. Met onderhoud houden we je site veilig, snel en up-to-date, en na livegang kijken we samen wat de site doet en wat er beter kan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Helpen jullie ook om meer klanten te bereiken?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja. We optimaliseren voor laadsnelheid, vindbaarheid en conversie, en zetten waar het loont Google Ads in. Een website is voor ons geen doel op zich, maar een middel om je bedrijf te laten groeien."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kan ik de website daarna zelf aanpassen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja. Je krijgt een gebruiksvriendelijk CMS waarmee je teksten en afbeeldingen zelf bijwerkt. Liever niet zelf doen? Dan doen wij het."
+          }
+        }
+      ]
     }
-  }
-  :root[data-theme="dark"] {
-    --bg: var(--ink-900);
-    --surface: var(--ink-800);
-    --surface-2: var(--ink-700);
-    --text: #f3ecdd;
-    --text-dim: #a9b8d2;
-    --accent: var(--ochre);
-    --accent-2: var(--terra);
-    --on-accent: #17130a;
-    --hairline: var(--line);
-    --card-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.75);
-  }
+  ]
+}
+</script>
+</head>
 
-  * { box-sizing: border-box; }
+<body>
 
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
-    font-size: var(--step-0);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    overflow-x: hidden;
-  }
+<a class="skip" href="#main">Naar hoofdinhoud</a>
 
-  .wrap {
-    width: 100%;
-    max-width: var(--maxw);
-    margin-inline: auto;
-    padding-inline: clamp(1.1rem, 4vw, 2.5rem);
-  }
-
-  h1, h2, h3 {
-    font-family: var(--font-display);
-    font-weight: 600;
-    line-height: 1.08;
-    text-wrap: balance;
-    margin: 0;
-  }
-
-  a { color: inherit; text-decoration: none; }
-
-  .eyebrow {
-    font-family: var(--font-body);
-    font-size: 0.76rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--accent);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6em;
-  }
-  .eyebrow::before {
-    content: "";
-    width: 26px;
-    height: 1px;
-    background: var(--accent);
-    opacity: 0.7;
-  }
-
-  /* Buttons */
-  .btn {
-    --pad-y: 0.85em;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55em;
-    padding: var(--pad-y) 1.5em;
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    letter-spacing: 0.01em;
-    cursor: pointer;
-    border: 1px solid transparent;
-    transition: transform 0.18s ease, box-shadow 0.18s ease,
-      background 0.18s ease, border-color 0.18s ease;
-    white-space: nowrap;
-  }
-  .btn-primary {
-    background: var(--accent);
-    color: var(--on-accent);
-    box-shadow: 0 10px 26px -12px color-mix(in srgb, var(--accent) 80%, transparent);
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 30px -12px color-mix(in srgb, var(--accent) 80%, transparent); }
-  .btn-ghost {
-    background: transparent;
-    color: var(--text);
-    border-color: var(--hairline);
-  }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-
-  /* Header */
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    backdrop-filter: blur(12px);
-    background: color-mix(in srgb, var(--bg) 82%, transparent);
-    border-bottom: 1px solid var(--hairline);
-  }
-  .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    height: 72px;
-  }
-  .brand {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    font-family: var(--font-display);
-    font-size: 1.35rem;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-  }
-  .brand .dot { color: var(--accent); }
-  .brand small {
-    font-family: var(--font-body);
-    font-size: 0.62rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    align-self: center;
-  }
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    font-size: 0.92rem;
-    font-weight: 500;
-    color: var(--text-dim);
-  }
-  .nav-links a { position: relative; transition: color 0.15s ease; }
-  .nav-links a::after {
-    content: "";
-    position: absolute;
-    left: 0; bottom: -6px;
-    width: 0; height: 2px;
-    background: var(--accent);
-    transition: width 0.2s ease;
-  }
-  .nav-links a:hover { color: var(--text); }
-  .nav-links a:hover::after { width: 100%; }
-  .nav-right { display: flex; align-items: center; gap: 1rem; }
-  .theme-toggle {
-    background: transparent;
-    border: 1px solid var(--hairline);
-    color: var(--text);
-    width: 40px; height: 40px;
-    border-radius: 999px;
-    cursor: pointer;
-    display: grid; place-items: center;
-    font-size: 1rem;
-    transition: border-color 0.15s ease, transform 0.15s ease;
-  }
-  .theme-toggle:hover { border-color: var(--accent); transform: rotate(-12deg); }
-  @media (max-width: 820px) {
-    .nav-links { display: none; }
-  }
-
-  /* Hero */
-  .hero {
-    position: relative;
-    padding-top: clamp(3.5rem, 8vw, 6.5rem);
-    padding-bottom: clamp(3.5rem, 8vw, 6rem);
-    overflow: hidden;
-  }
-  .hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(60% 55% at 78% 12%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%),
-      radial-gradient(50% 50% at 8% 90%, color-mix(in srgb, var(--accent-2) 18%, transparent), transparent 55%);
-    opacity: 0.9;
-    pointer-events: none;
-  }
-  .hero-grid {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: clamp(2rem, 5vw, 4rem);
-    align-items: center;
-  }
-  @media (max-width: 900px) {
-    .hero-grid { grid-template-columns: 1fr; }
-  }
-  .hero h1 {
-    font-size: var(--step-4);
-    margin-top: 1.2rem;
-    letter-spacing: -0.01em;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--accent);
-  }
-  .hero p.lead {
-    font-size: var(--step-1);
-    color: var(--text-dim);
-    max-width: 34ch;
-    margin: 1.4rem 0 2rem;
-  }
-  .hero-cta { display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; }
-  .hero-trust {
-    margin-top: 2.4rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.6rem 2.2rem;
-    align-items: center;
-    color: var(--text-dim);
-    font-size: 0.82rem;
-  }
-  .hero-trust b { color: var(--text); font-size: 1.5rem; font-family: var(--font-display); font-weight: 700; display: block; }
-
-  /* Browser mockup */
-  .mock {
-    position: relative;
-    border-radius: 16px;
-    background: var(--surface);
-    border: 1px solid var(--hairline);
-    box-shadow: var(--card-shadow);
-    overflow: hidden;
-    transform: perspective(1200px) rotateY(-6deg) rotateX(2deg);
-    transition: transform 0.4s ease;
-  }
-  .mock:hover { transform: perspective(1200px) rotateY(-2deg) rotateX(1deg); }
-  .mock-bar {
-    display: flex; align-items: center; gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    background: color-mix(in srgb, var(--surface-2) 70%, var(--surface));
-    border-bottom: 1px solid var(--hairline);
-  }
-  .mock-bar span { width: 11px; height: 11px; border-radius: 50%; background: var(--text-dim); opacity: 0.4; }
-  .mock-bar span:nth-child(1){ background: var(--accent-2); opacity: 0.8; }
-  .mock-bar span:nth-child(2){ background: var(--accent); opacity: 0.8; }
-  .mock-bar .url {
-    margin-left: 0.6rem;
-    font-size: 0.72rem;
-    color: var(--text-dim);
-    background: color-mix(in srgb, var(--bg) 40%, transparent);
-    padding: 0.25rem 0.7rem;
-    border-radius: 999px;
-    letter-spacing: 0.03em;
-  }
-  .mock-body { padding: 1.4rem 1.4rem 1.7rem; }
-  .mock-hero {
-    height: 92px;
-    border-radius: 10px;
-    background: linear-gradient(120deg, color-mix(in srgb, var(--accent) 65%, var(--surface)), color-mix(in srgb, var(--accent-2) 60%, var(--surface)));
-    display: flex; flex-direction: column; justify-content: center; gap: 8px;
-    padding: 0 1.1rem;
-    margin-bottom: 1.1rem;
-  }
-  .mock-line { height: 9px; border-radius: 6px; background: color-mix(in srgb, var(--text) 22%, transparent); }
-  .mock-hero .mock-line { background: rgba(255,255,255,0.85); }
-  .mock-hero .mock-line.short { width: 55%; opacity: 0.7; }
-  .mock-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; }
-  .mock-card { background: var(--surface-2); border: 1px solid var(--hairline); border-radius: 8px; padding: 0.7rem; display: grid; gap: 7px; }
-  .mock-card .chip { width: 22px; height: 22px; border-radius: 6px; background: color-mix(in srgb, var(--accent) 50%, var(--surface)); }
-  .mock-card .mock-line.short { width: 70%; }
-  .mock-badge {
-    position: absolute;
-    right: -14px; bottom: 22px;
-    background: var(--accent);
-    color: var(--on-accent);
-    font-family: var(--font-body);
-    font-weight: 700;
-    font-size: 0.78rem;
-    padding: 0.6rem 0.95rem;
-    border-radius: 12px;
-    box-shadow: 0 14px 28px -12px rgba(0,0,0,0.5);
-    transform: rotate(4deg);
-    letter-spacing: 0.02em;
-  }
-  @media (max-width: 900px) { .mock { transform: none; } .mock:hover { transform: none; } .mock-badge { right: 8px; } }
-
-  /* Section shell */
-  section { position: relative; }
-  .section-pad { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
-  .section-head { max-width: 60ch; margin-bottom: clamp(2rem, 4vw, 3.2rem); }
-  .section-head h2 { font-size: var(--step-3); margin-top: 0.9rem; }
-  .section-head p { color: var(--text-dim); font-size: var(--step-1); margin: 1rem 0 0; }
-
-  .divider { height: 1px; background: var(--hairline); border: 0; margin: 0; }
-
-  /* Benefits */
-  .benefits { background: var(--surface); }
-  .grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.4rem;
-  }
-  @media (max-width: 860px) { .grid-3 { grid-template-columns: 1fr; } }
-  .card {
-    background: var(--bg);
-    border: 1px solid var(--hairline);
-    border-radius: 14px;
-    padding: 1.9rem 1.7rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    transition: transform 0.2s ease, border-color 0.2s ease;
-  }
-  .benefits .card { background: var(--surface-2); }
-  .card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 55%, var(--hairline)); }
-  .card .num {
-    font-family: var(--font-display);
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-  }
-  .icon {
-    width: 46px; height: 46px;
-    border-radius: 12px;
-    display: grid; place-items: center;
-    background: color-mix(in srgb, var(--accent) 16%, transparent);
-    color: var(--accent);
-    margin-bottom: 0.3rem;
-  }
-  .icon svg { width: 24px; height: 24px; }
-  .card h3 { font-size: var(--step-2); }
-  .card p { color: var(--text-dim); margin: 0; }
-
-  /* Process strip */
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 2.5rem; }
-  @media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
-  .step { display: flex; gap: 1rem; align-items: flex-start; }
-  .step .step-n {
-    flex: none;
-    width: 42px; height: 42px; border-radius: 50%;
-    display: grid; place-items: center;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    font-family: var(--font-display);
-    font-weight: 700;
-  }
-  .step h4 { margin: 0 0 0.25rem; font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; }
-  .step p { margin: 0; color: var(--text-dim); font-size: 0.92rem; }
-
-  /* Pricing */
-  .pricing { background: var(--surface); }
-  .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; align-items: stretch; }
-  @media (max-width: 860px) { .price-grid { grid-template-columns: 1fr; } }
-  .plan {
-    background: var(--bg);
-    border: 1px solid var(--hairline);
-    border-radius: 16px;
-    padding: 2rem 1.8rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.1rem;
-  }
-  .plan.featured {
-    background: linear-gradient(180deg, var(--surface-2), var(--bg));
-    border-color: color-mix(in srgb, var(--accent) 60%, transparent);
-    box-shadow: var(--card-shadow);
-    position: relative;
-  }
-  .plan.featured::before {
-    content: "Meest gekozen";
-    position: absolute;
-    top: -12px; left: 1.8rem;
-    background: var(--accent);
-    color: var(--on-accent);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 0.35rem 0.8rem;
-    border-radius: 999px;
-  }
-  .plan .plan-name { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; }
-  .plan .plan-desc { color: var(--text-dim); font-size: 0.9rem; margin-top: -0.6rem; }
-  .plan .price { font-family: var(--font-display); font-weight: 700; line-height: 1; display: flex; align-items: baseline; gap: 0.4rem; }
-  .plan .price .amt { font-size: 2.7rem; }
-  .plan .price .per { font-family: var(--font-body); font-size: 0.85rem; color: var(--text-dim); font-weight: 500; }
-  .plan ul { list-style: none; margin: 0.4rem 0 0; padding: 0; display: grid; gap: 0.7rem; }
-  .plan li { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.92rem; color: var(--text); }
-  .plan li svg { flex: none; width: 18px; height: 18px; color: var(--accent); margin-top: 3px; }
-  .plan .btn { margin-top: auto; justify-content: center; }
-  .price-note { text-align: center; color: var(--text-dim); font-size: 0.85rem; margin-top: 1.8rem; }
-
-  /* Footer + contact */
-  footer { background: var(--bg); border-top: 1px solid var(--hairline); }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: clamp(2rem, 6vw, 4.5rem);
-    padding-block: clamp(3rem, 7vw, 5rem);
-  }
-  @media (max-width: 880px) { .footer-grid { grid-template-columns: 1fr; } }
-  .footer-intro h2 { font-size: var(--step-3); }
-  .footer-intro p { color: var(--text-dim); max-width: 40ch; }
-  .contact-list { display: grid; gap: 0.7rem; margin-top: 1.6rem; font-size: 0.95rem; }
-  .contact-list a { display: inline-flex; gap: 0.6rem; align-items: center; color: var(--text); }
-  .contact-list a:hover { color: var(--accent); }
-  .contact-list svg { width: 18px; height: 18px; color: var(--accent); }
-
-  form { display: grid; gap: 1rem; }
-  .field { display: grid; gap: 0.4rem; }
-  .field label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); }
-  .field input, .field textarea {
-    font-family: inherit;
-    font-size: 0.95rem;
-    color: var(--text);
-    background: var(--surface);
-    border: 1px solid var(--hairline);
-    border-radius: 10px;
-    padding: 0.8rem 0.9rem;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    width: 100%;
-  }
-  .field input::placeholder, .field textarea::placeholder { color: color-mix(in srgb, var(--text-dim) 80%, transparent); }
-  .field input:focus, .field textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
-  }
-  .field textarea { resize: vertical; min-height: 120px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
-  form .btn { justify-content: center; margin-top: 0.3rem; }
-  .form-status { font-size: 0.88rem; color: var(--accent); min-height: 1.2em; }
-
-  .footer-bottom {
-    border-top: 1px solid var(--hairline);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: space-between;
-    align-items: center;
-    padding-block: 1.6rem;
-    color: var(--text-dim);
-    font-size: 0.82rem;
-  }
-  .socials { display: flex; gap: 0.7rem; }
-  .socials a {
-    width: 40px; height: 40px; border-radius: 50%;
-    display: grid; place-items: center;
-    border: 1px solid var(--hairline);
-    color: var(--text);
-    transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
-  }
-  .socials a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
-  .socials svg { width: 18px; height: 18px; }
-
-  @media (prefers-reduced-motion: reduce) {
-    * { animation: none !important; transition: none !important; }
-  }
-</style>
-
-<header>
-  <div class="wrap nav">
-    <a class="brand" href="#top" aria-label="DH-studio home">
-      DH<span class="dot">·</span>studio <small>webdesign</small>
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a class="brand" href="#top" aria-label="DH Studio — naar boven">
+      <svg class="brand__mark" viewBox="0 0 40 32" aria-hidden="true" focusable="false">
+        <path fill="currentColor" fill-rule="evenodd" d="M3 5h8a11 11 0 0 1 0 22H3V5Zm3.2 3.2v15.6H11a7.8 7.8 0 0 0 0-15.6H6.2Z"/>
+        <path fill="currentColor" d="M25 5h3.4v8.4h5.2V5H37v22h-3.4v-9.6h-5.2V27H25V5Z"/>
+      </svg>
+      <span class="brand__name">DH Studio</span>
     </a>
-    <nav class="nav-links" aria-label="Hoofdmenu">
-      <a href="#voordelen">Voordelen</a>
-      <a href="#werkwijze">Werkwijze</a>
-      <a href="#tarieven">Tarieven</a>
-      <a href="#contact">Contact</a>
+
+    <nav class="nav" aria-label="Hoofdnavigatie">
+      <a class="nav__link" href="#diensten">Diensten</a>
+      <a class="nav__link" href="#werkwijze">Werkwijze</a>
+      <a class="nav__link" href="#tarieven">Tarieven</a>
+      <a class="nav__link" href="#studio">Studio</a>
     </nav>
-    <div class="nav-right">
-      <button class="theme-toggle" id="themeToggle" aria-label="Wissel tussen licht en donker">◐</button>
-      <a href="#contact" class="btn btn-primary">Gratis adviesgesprek</a>
+
+    <div class="header__actions">
+      <a class="btn btn--primary header__cta" href="#contact">Plan een kennismaking</a>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu openen">
+        <span class="burger__box" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
     </div>
   </div>
 </header>
 
-<main id="top">
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow">Voor ondernemers zonder (goede) website</span>
-        <h1>Je website houdt je nu <em>klanten kwijt</em>. Wij draaien dat om.</h1>
+<div class="menu" id="menu" hidden>
+  <nav aria-label="Mobiele navigatie">
+    <ul class="menu__list">
+      <li><a href="#diensten" style="--i:0">Diensten <span>01</span></a></li>
+      <li><a href="#werkwijze" style="--i:1">Werkwijze <span>02</span></a></li>
+      <li><a href="#tarieven" style="--i:2">Tarieven <span>03</span></a></li>
+      <li><a href="#studio" style="--i:3">Studio <span>04</span></a></li>
+      <li><a href="#veelgestelde-vragen" style="--i:4">Vragen <span>05</span></a></li>
+    </ul>
+  </nav>
+  <div class="menu__foot">
+    <a class="btn btn--primary btn--lg btn--full" href="#contact">Plan een kennismaking</a>
+    <a class="copy" href="mailto:info@dh-studio.nl">info@dh-studio.nl</a>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="top">
+    <div class="hero__bg" aria-hidden="true">
+      <div class="hero__grid"></div>
+      <div class="hero__glow" id="heroGlow"></div>
+    </div>
+
+    <div class="container hero__inner">
+      <p class="eyebrow hero__fade" style="--i:0">Webdesign &amp; development · Nederland</p>
+
+      <h1 class="hero__title">
+        <span class="reveal-line" style="--i:0"><span>Deze website</span></span>
+        <span class="reveal-line" style="--i:1"><span>is ons portfolio.</span></span>
+      </h1>
+
+      <p class="lead hero__fade" style="--i:1">
+        DH Studio ontwerpt en bouwt websites voor ondernemers. De snelheid die je nu
+        ervaart, de rust in het ontwerp, het gemak waarmee je zo contact opneemt —
+        precies dát bouwen we voor jouw bedrijf.
+      </p>
+
+      <div class="btn-row hero__fade" style="--i:2">
+        <a class="btn btn--primary btn--lg" href="#contact">
+          Plan een kennismaking
+          <svg class="btn__arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m0 0-4-4m4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn--ghost btn--lg" href="#diensten">Bekijk wat we doen</a>
+      </div>
+
+      <div class="hero__meta hero__fade" style="--i:3">
+        <span class="hero__status"><i class="dot" aria-hidden="true"></i> Beschikbaar voor nieuwe projecten in 2026</span>
+        <span class="mono" id="heroTiming" hidden>Deze pagina stond in <b id="heroMs">0</b> ms op je scherm.</span>
+      </div>
+    </div>
+
+    <p class="hero__hint" aria-hidden="true"><i></i> Scroll</p>
+  </section>
+
+  <!-- ================= WAAROM ================= -->
+  <section class="section outcomes" aria-labelledby="waarom-titel">
+    <div class="container outcomes__grid">
+      <div class="outcomes__aside">
+        <div class="section-head reveal">
+          <p class="eyebrow">Waarom dit ertoe doet</p>
+          <h2 class="d2" id="waarom-titel">Een website is geen kostenpost.<br>Het is je eerste verkoper.</h2>
+          <p class="lead">
+            Bezoekers vormen razendsnel een oordeel over je bedrijf — vaak nog voordat
+            ze je gesproken hebben. Dat oordeel bepaalt of ze bellen, of doorklikken
+            naar de volgende in de rij.
+          </p>
+        </div>
+      </div>
+
+      <ol class="outcomes__list">
+        <li class="outcome" data-outcome>
+          <span class="outcome__num" aria-hidden="true"></span>
+          <div>
+            <h3>Vertrouwen</h3>
+            <p>Een verzorgde website zegt iets voordat jij iets zegt: hier werkt iemand die zijn vak serieus neemt. Dat vertrouwen win je niet meer terug met een mooie offerte achteraf.</p>
+          </div>
+        </li>
+        <li class="outcome" data-outcome>
+          <span class="outcome__num" aria-hidden="true"></span>
+          <div>
+            <h3>Uitstraling</h3>
+            <p>Je concurrent is misschien niet beter dan jij. Hij ziet er online alleen zo uit. Een professionele uitstraling zet je meteen in de categorie waar je thuishoort.</p>
+          </div>
+        </li>
+        <li class="outcome" data-outcome>
+          <span class="outcome__num" aria-hidden="true"></span>
+          <div>
+            <h3>Zichtbaarheid</h3>
+            <p>Onvindbaar is online hetzelfde als niet bestaan. Wij bouwen op een technisch fundament dat zoekmachines begrijpen: snel, schoon en logisch opgebouwd.</p>
+          </div>
+        </li>
+        <li class="outcome" data-outcome>
+          <span class="outcome__num" aria-hidden="true"></span>
+          <div>
+            <h3>Interesse</h3>
+            <p>Een bezoeker die binnen een paar tellen snapt wat je doet en voor wie, blijft hangen. Heldere taal en een rustige opbouw houden precies de juiste mensen vast.</p>
+          </div>
+        </li>
+        <li class="outcome" data-outcome>
+          <span class="outcome__num" aria-hidden="true"></span>
+          <div>
+            <h3>Aanvragen</h3>
+            <p>Alles hierboven heeft één doel: dat iemand het formulier invult of je nummer intoetst. Daar ontwerpen we naartoe — niet als opdringerige knop, maar als logische volgende stap.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= DIENSTEN ================= -->
+  <section class="section paper" id="diensten" aria-labelledby="diensten-titel">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Diensten</p>
+        <h2 class="d2" id="diensten-titel">Van eerste schets tot een site die blijft draaien</h2>
         <p class="lead">
-          Geen website — of een die traag, verouderd of onvindbaar is — kost je
-          elke maand omzet. DH-studio bouwt een snelle, moderne site die
-          bezoekers omzet in klanten. In twee weken live.
+          Vier onderdelen. Samen zorgen ze dat je online staat, gevonden wordt en
+          online blijft werken — zonder dat je er zelf omkijken naar hebt.
         </p>
-        <div class="hero-cta">
-          <a href="#contact" class="btn btn-primary">Plan een gratis adviesgesprek →</a>
-          <a href="#tarieven" class="btn btn-ghost">Bekijk de tarieven</a>
-        </div>
-        <div class="hero-trust">
-          <div><b>14 dagen</b>van eerste gesprek tot live</div>
-          <div><b>100%</b>op maat, geen template-gevoel</div>
-          <div><b>&lt; 1,5s</b>gemiddelde laadtijd</div>
-        </div>
       </div>
 
-      <div class="hero-visual" aria-hidden="true">
-        <div class="mock">
-          <div class="mock-bar">
-            <span></span><span></span><span></span>
-            <span class="url">jouwbedrijf.nl</span>
-          </div>
-          <div class="mock-body">
-            <div class="mock-hero">
-              <div class="mock-line"></div>
-              <div class="mock-line short"></div>
+      <div class="services reveal">
+
+        <details class="service" open>
+          <summary class="service__head">
+            <span class="service__idx" aria-hidden="true">01</span>
+            <span class="service__title">Webdesign &amp; development</span>
+            <span class="service__toggle" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
+          </summary>
+          <div class="service__panel">
+            <div class="service__body">
+              <span aria-hidden="true"></span>
+              <div>
+                <p>
+                  Een website die voelt als een verlengstuk van je bedrijf. We ontwerpen
+                  en bouwen 'm vanaf de basis: snel, gebruiksvriendelijk en gericht op
+                  één ding — bezoekers omzetten in klanten. Geen bestaand thema dat we
+                  een ander kleurtje geven, maar een ontwerp dat past bij jouw vak en
+                  jouw klanten.
+                </p>
+                <ul class="tags">
+                  <li class="tag">Maatwerkontwerp</li>
+                  <li class="tag">Responsive</li>
+                  <li class="tag">Gebruiksvriendelijk CMS</li>
+                  <li class="tag">Conversiegericht</li>
+                  <li class="tag">Landingspagina's</li>
+                </ul>
+              </div>
             </div>
-            <div class="mock-cards">
-              <div class="mock-card"><div class="chip"></div><div class="mock-line"></div><div class="mock-line short"></div></div>
-              <div class="mock-card"><div class="chip"></div><div class="mock-line"></div><div class="mock-line short"></div></div>
-              <div class="mock-card"><div class="chip"></div><div class="mock-line"></div><div class="mock-line short"></div></div>
+          </div>
+        </details>
+
+        <details class="service">
+          <summary class="service__head">
+            <span class="service__idx" aria-hidden="true">02</span>
+            <span class="service__title">Domeinbeheer &amp; hosting</span>
+            <span class="service__toggle" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
+          </summary>
+          <div class="service__panel">
+            <div class="service__body">
+              <span aria-hidden="true"></span>
+              <div>
+                <p>
+                  Een betrouwbare website begint bij een sterke basis. We regelen je
+                  domein, hosting, SSL en beveiliging en houden het draaiend. Jij hoeft
+                  er nooit meer over na te denken — en als er iets is, weet je precies
+                  wie je belt.
+                </p>
+                <ul class="tags">
+                  <li class="tag">Domeinregistratie</li>
+                  <li class="tag">Snelle hosting</li>
+                  <li class="tag">SSL-certificaat</li>
+                  <li class="tag">Zakelijke e-mail</li>
+                  <li class="tag">Beveiliging</li>
+                </ul>
+              </div>
             </div>
           </div>
-          <div class="mock-badge">In 2 weken live ✦</div>
-        </div>
+        </details>
+
+        <details class="service">
+          <summary class="service__head">
+            <span class="service__idx" aria-hidden="true">03</span>
+            <span class="service__title">Zichtbaarheid (SEO &amp; SEA)</span>
+            <span class="service__toggle" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
+          </summary>
+          <div class="service__panel">
+            <div class="service__body">
+              <span aria-hidden="true"></span>
+              <div>
+                <p>
+                  Gevonden worden door de mensen die al naar je zoeken. We leggen het
+                  technische SEO-fundament, structureren je teksten rond de zoekwoorden
+                  die er voor jouw vak toe doen, en zetten Google Ads in waar dat sneller
+                  rendeert dan wachten op organische groei.
+                </p>
+                <ul class="tags">
+                  <li class="tag">Technische SEO</li>
+                  <li class="tag">Zoekwoordonderzoek</li>
+                  <li class="tag">Lokale vindbaarheid</li>
+                  <li class="tag">Google Ads</li>
+                  <li class="tag">Statistieken</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="service">
+          <summary class="service__head">
+            <span class="service__idx" aria-hidden="true">04</span>
+            <span class="service__title">Onderhoud &amp; support</span>
+            <span class="service__toggle" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
+          </summary>
+          <div class="service__panel">
+            <div class="service__body">
+              <span aria-hidden="true"></span>
+              <div>
+                <p>
+                  Een website is nooit af. We monitoren, maken back-ups, voeren updates
+                  door en pakken je vragen snel op. Je praat daarbij met dezelfde mensen
+                  die je site gebouwd hebben — die hoeven niet eerst te ontdekken hoe
+                  alles in elkaar zit.
+                </p>
+                <ul class="tags">
+                  <li class="tag">Monitoring</li>
+                  <li class="tag">Dagelijkse back-ups</li>
+                  <li class="tag">Updates</li>
+                  <li class="tag">Snelle support</li>
+                  <li class="tag">Doorontwikkeling</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
       </div>
     </div>
   </section>
 
-  <!-- BENEFITS -->
-  <section class="benefits section-pad" id="voordelen">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Waarom DH-studio</span>
-        <h2>Een website die wérkt — niet alleen mooi is</h2>
-        <p>Drie dingen waar we onvermurwbaar in zijn, omdat ze bepalen of je online klanten wint of verliest.</p>
+  <!-- ================= WERKWIJZE ================= -->
+  <section class="section paper section--tight" id="werkwijze" aria-labelledby="werkwijze-titel">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Werkwijze</p>
+        <h2 class="d2" id="werkwijze-titel">Zes stappen. Geen verrassingen.</h2>
+        <p class="lead">
+          Je weet vooraf wat er gebeurt, wat het kost en wanneer je online staat. Van
+          het eerste gesprek tot de evaluatie na livegang.
+        </p>
       </div>
-      <div class="grid-3">
-        <article class="card">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg>
-          </div>
-          <div class="num">01</div>
-          <h3>Bliksemsnel &amp; vindbaar</h3>
-          <p>Techniek die in milliseconden laadt en netjes scoort in Google. Bezoekers haken niet af en vinden je vóór je concurrent.</p>
-        </article>
-        <article class="card">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/><path d="M7 9h10M7 13h6"/></svg>
-          </div>
-          <div class="num">02</div>
-          <h3>Overtuigende copy &amp; design</h3>
-          <p>Geen holle teksten. We schrijven en ontwerpen zó dat de juiste bezoeker denkt: "dit is precies wat ik zocht" — en contact opneemt.</p>
-        </article>
-        <article class="card">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M21 3l-9 9"/><path d="M15 3h6v6"/></svg>
-          </div>
-          <div class="num">03</div>
-          <h3>Zelf makkelijk te beheren</h3>
-          <p>Prijzen, foto's of teksten aanpassen doe je zelf, zonder ons of technische kennis. Jouw website blijft van jou.</p>
-        </article>
-      </div>
-    </div>
-  </section>
 
-  <hr class="divider" />
+      <ol class="process" id="process">
+        <div class="process__rail" aria-hidden="true"><i id="processFill"></i></div>
 
-  <!-- PROCESS -->
-  <section class="section-pad" id="werkwijze">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Werkwijze</span>
-        <h2>Van "ik heb niks" naar live in drie stappen</h2>
-        <p>Een helder traject zonder verrassingen. Jij levert je verhaal aan, wij doen de rest.</p>
-      </div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-n">1</div>
+        <li class="step reveal" data-step>
+          <span class="step__dot" aria-hidden="true">01</span>
           <div>
-            <h4>Gratis adviesgesprek</h4>
-            <p>We bespreken je bedrijf, je klanten en je doelen. Je krijgt meteen een eerlijk plan en een vaste prijs.</p>
+            <h3>Persoonlijk contact</h3>
+            <p>We beginnen met een gesprek. Wat doe je, voor wie, en wat moet die website eigenlijk opleveren? Vrijblijvend, en zonder verkooppraat.</p>
           </div>
-        </div>
-        <div class="step">
-          <div class="step-n">2</div>
+        </li>
+
+        <li class="step reveal" data-step>
+          <span class="step__dot" aria-hidden="true">02</span>
           <div>
-            <h4>Ontwerp &amp; bouw</h4>
-            <p>Binnen een week zie je een live ontwerp. Jij geeft feedback, wij verfijnen tot het klopt.</p>
+            <h3>Strategie en ontdekking</h3>
+            <p>We bepalen de structuur, de boodschap en de zoekwoorden die ertoe doen. Je krijgt een helder plan, een planning en een vaste prijs — vóórdat we beginnen.</p>
           </div>
-        </div>
-        <div class="step">
-          <div class="step-n">3</div>
+        </li>
+
+        <li class="step reveal" data-step>
+          <span class="step__dot" aria-hidden="true">03</span>
           <div>
-            <h4>Live &amp; groeien</h4>
-            <p>We zetten alles online, koppelen je domein en leggen uit hoe je zelf verder kunt. Klaar om klanten te winnen.</p>
+            <h3>Realisatie</h3>
+            <p>Ontwerp en code in één beweging. Je ziet tussentijds waar we staan en stuurt bij — daar zijn de correctierondes voor.</p>
           </div>
+        </li>
+
+        <li class="step reveal" data-step>
+          <span class="step__dot" aria-hidden="true">04</span>
+          <div>
+            <h3>Testen en optimalisatie</h3>
+            <p>Op elk scherm en in elke browser. We meten laadsnelheid, controleren toegankelijkheid en halen eruit wat de site vertraagt.</p>
+          </div>
+        </li>
+
+        <li class="step reveal" data-step>
+          <span class="step__dot" aria-hidden="true">05</span>
+          <div>
+            <h3>Lancering &amp; groei</h3>
+            <p>We zetten alles live, koppelen je domein, e-mail en statistieken. Vanaf dag één werkt alles zoals bedoeld — inclusief de formulieren.</p>
+          </div>
+        </li>
+
+        <li class="step reveal" data-step>
+          <span class="step__dot" aria-hidden="true">06</span>
+          <div>
+            <h3>Evaluatie</h3>
+            <p>Na livegang kijken we samen wat de site doet en wat er beter kan. Zo groeit je website mee met je bedrijf, in plaats van erop achter te lopen.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= TARIEVEN ================= -->
+  <section class="section paper" id="tarieven" aria-labelledby="tarieven-titel">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Tarieven</p>
+        <h2 class="d2" id="tarieven-titel">Transparante tarieven. Vooraf, niet achteraf.</h2>
+        <p class="lead">
+          Je weet wat je betaalt voordat we beginnen. Geen uurtje-factuurtje en geen
+          meerwerk dat je niet zag aankomen.
+        </p>
+      </div>
+
+      <div class="plans">
+
+        <article class="plan reveal" style="--i:0">
+          <header>
+            <h3 class="plan__name">Starter</h3>
+            <p class="plan__desc">Professionele website voor kleine bedrijven en zzp'ers.</p>
+          </header>
+          <p class="plan__price">
+            <span class="plan__amount">€995</span>
+            <span class="plan__unit">eenmalig, excl. btw</span>
+          </p>
+          <hr class="hr">
+          <ul class="plan__list">
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Professioneel webdesign (max. 1 pagina)</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Responsive design (mobiel, tablet, desktop)</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Basis SEO-optimalisatie</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Contactformulier &amp; Google Maps</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Gebruiksvriendelijk CMS</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>1 correctieronde</li>
+          </ul>
+          <a class="btn btn--ghost btn--full" href="#contact" data-plan="Starter (€995)">Offerte aanvragen</a>
+        </article>
+
+        <article class="plan plan--featured reveal" style="--i:1">
+          <p class="plan__badge">Meest gekozen</p>
+          <header>
+            <h3 class="plan__name">Professional</h3>
+            <p class="plan__desc">Complete online oplossing voor groeiende bedrijven.</p>
+          </header>
+          <p class="plan__price">
+            <span class="plan__amount">€1495</span>
+            <span class="plan__unit">eenmalig, excl. btw</span>
+          </p>
+          <hr class="hr">
+          <ul class="plan__list">
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Uniek premium webdesign (max. 5 pagina's)</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Uitgebreide SEO- &amp; snelheidsoptimalisatie</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Conversiegerichte landingspagina's</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Koppeling met Google Analytics</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>3 correctierondes</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Gepersonaliseerde foto's op aanvraag</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>1 maand gratis support na livegang</li>
+          </ul>
+          <a class="btn btn--primary btn--full" href="#contact" data-plan="Professional (€1495)">Offerte aanvragen</a>
+        </article>
+
+        <article class="plan reveal" style="--i:2">
+          <header>
+            <h3 class="plan__name">Business Enterprise</h3>
+            <p class="plan__desc">Complexe digitale oplossingen voor grote ondernemingen.</p>
+          </header>
+          <p class="plan__price">
+            <span class="plan__amount">€2495</span>
+            <span class="plan__unit">eenmalig, excl. btw</span>
+          </p>
+          <hr class="hr">
+          <ul class="plan__list">
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Volledig maatwerkontwerp &amp; UX/UI-strategie</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Enterprise webdesign</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>API-koppelingen op aanvraag</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Premium SEO-pakket &amp; concurrentieanalyse</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Onbeperkte correctierondes tijdens project</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Gepersonaliseerde foto's op aanvraag</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>3 maanden gratis prioriteitssupport</li>
+          </ul>
+          <a class="btn btn--ghost btn--full" href="#contact" data-plan="Business Enterprise (€2495)">Offerte aanvragen</a>
+        </article>
+
+      </div>
+
+      <div class="extras">
+        <article class="extra reveal">
+          <h3>Maatwerk &amp; webapplicaties</h3>
+          <p>Voor complexe platformen, portalen en uitgebreide e-commerce bouwen we volledig op maat. Eerst een gesprek, dan een plan, dan pas een prijs.</p>
+          <div class="extra__foot">
+            <p class="extra__price"><span>Investering</span><b>Op aanvraag</b></p>
+            <a class="link" href="#contact" data-plan="Maatwerk / webapplicatie">Offerte aanvragen <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m0 0-4-4m4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </article>
+
+        <article class="extra reveal">
+          <h3>Doorlopend onderhoud</h3>
+          <p>Houd je website veilig, snel en up-to-date. Inclusief dagelijkse back-ups, updates en maandelijkse optimalisatie — zonder dat je er iets voor hoeft te doen.</p>
+          <div class="extra__foot">
+            <p class="extra__price"><span>Vanaf</span><b>€49 per maand</b></p>
+            <a class="link" href="#contact" data-plan="Doorlopend onderhoud (vanaf €49/mnd)">Offerte aanvragen <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m0 0-4-4m4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </article>
+      </div>
+
+      <p class="note">
+        Alle bedragen zijn eenmalig en exclusief btw. Twijfel je welk pakket past?
+        Vraag het in het kennismakingsgesprek — we sturen je liever naar het juiste
+        pakket dan naar het duurste.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= STUDIO ================= -->
+  <section class="section paper section--tight" id="studio" aria-labelledby="studio-titel">
+    <div class="container split split--sticky">
+      <div>
+        <div class="section-head reveal">
+          <p class="eyebrow">Studio</p>
+          <h2 class="d2" id="studio-titel">Door Thijs &amp; Lucas, voor ondernemers.</h2>
+          <p class="lead">
+            DH Studio begon met een simpele frustratie: te veel bedrijven hebben een
+            trage website — of helemaal geen. Terwijl dat vaak het eerste contactmoment
+            met een klant is.
+          </p>
+          <p class="muted">
+            Wij zijn Thijs en Lucas. Met een achtergrond in ICT en een passie voor
+            webdesign bouwen we moderne websites voor ondernemers die online willen
+            groeien. Geen groot bureau met onnodige lagen, maar directe lijnen en
+            premium kwaliteit zonder de agency-prijs.
+          </p>
         </div>
+
+        <blockquote class="quote reveal" style="margin-top:2.5rem">
+          “Geen accountmanager die je wensen doorgeeft aan een developer. Je zit direct
+          met de makers aan tafel.”
+          <footer class="quote__by"><i aria-hidden="true"></i> Thijs &amp; Lucas · DH Studio</footer>
+        </blockquote>
+      </div>
+
+      <div class="principles reveal">
+        <article class="principle">
+          <h3><span>01</span> Direct contact met de makers</h3>
+          <p>Bij veel bureaus schakel je met een accountmanager die het weer doorgeeft aan een developer. Bij ons niet. Dat scheelt tijd, ruis en misverstanden — en het is de reden dat je visie precies zo wordt vertaald als je hem bedoelde.</p>
+        </article>
+        <article class="principle">
+          <h3><span>02</span> Resultaat boven mooi</h3>
+          <p>Een website is geen doel op zich, maar een middel om je bedrijf te laten groeien. We kijken verder dan een mooi digitaal visitekaartje en optimaliseren voor laadsnelheid, vindbaarheid en conversie.</p>
+        </article>
+        <article class="principle">
+          <h3><span>03</span> Klein, wendbaar en betrokken</h3>
+          <p>Omdat we een kleine studio zijn, denken we actief met je mee. Geen externe partij die uurtje-factuurtje werkt, maar een betrokken partner die ook nog belt als er iets beter kan.</p>
+        </article>
+        <article class="principle">
+          <h3><span>04</span> Beloftes die we nakomen</h3>
+          <p>Geen loze woorden, maar concrete afspraken. We werken door tot het eindresultaat klopt, en we bouwen een fundament dat sterk genoeg is voor waar je over twee jaar wilt staan.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- PRICING -->
-  <section class="pricing section-pad" id="tarieven">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Tarieven</span>
-        <h2>Duidelijke prijzen. Geen verrassingen achteraf.</h2>
-        <p>Kies wat past bij waar je nu staat. Elk pakket is inclusief hosting-advies, mobielvriendelijk ontwerp en persoonlijke begeleiding.</p>
+  <!-- ================= BEWIJS ================= -->
+  <section class="section proof" aria-labelledby="bewijs-titel">
+    <div class="proof__glow" aria-hidden="true"></div>
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Het bewijs</p>
+        <h2 class="d2" id="bewijs-titel">Vraag niet om ons portfolio.<br>Je staat erop.</h2>
+        <p class="lead">
+          We kunnen vertellen dat we snelle, nette websites bouwen. Je kunt het ook
+          gewoon nameten — op deze pagina, op jouw apparaat, nu.
+        </p>
       </div>
-      <div class="price-grid">
-        <div class="plan">
-          <div class="plan-name">Starter</div>
-          <p class="plan-desc">Voor wie eindelijk online wil met een strak visitekaartje.</p>
-          <div class="price"><span class="amt">€695</span><span class="per">eenmalig</span></div>
-          <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>One-page website op maat</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Mobiel- &amp; Google-vriendelijk</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Contactformulier &amp; kaart</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Live binnen 2 weken</li>
-          </ul>
-          <a href="#contact" class="btn btn-ghost">Kies Starter</a>
-        </div>
 
-        <div class="plan featured">
-          <div class="plan-name">Professional</div>
-          <p class="plan-desc">Voor ondernemers die serieus online klanten willen winnen.</p>
-          <div class="price"><span class="amt">€1.450</span><span class="per">eenmalig</span></div>
-          <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Meerdere pagina's op maat</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Conversie-copy inbegrepen</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>SEO-basis &amp; snelheid-optimalisatie</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Zelf te beheren (CMS)</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>30 dagen nazorg</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary">Kies Professional</a>
+      <div class="metrics reveal">
+        <div class="metric">
+          <p class="metric__value"><span data-metric="ms">—</span><small>ms</small></p>
+          <p class="metric__label">Klaar om te lezen</p>
+          <p class="metric__hint">Gemeten door je eigen browser, van eerste verzoek tot leesbare pagina.</p>
         </div>
-
-        <div class="plan">
-          <div class="plan-name">Op maat</div>
-          <p class="plan-desc">Webshop, boekingssysteem of iets bijzonders? We bouwen het.</p>
-          <div class="price"><span class="amt">Vanaf €2.900</span></div>
-          <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Webshop of maatwerk-functies</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Integraties &amp; automatisering</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Doorlopend onderhoud mogelijk</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Persoonlijk projectplan</li>
-          </ul>
-          <a href="#contact" class="btn btn-ghost">Vraag offerte aan</a>
+        <div class="metric">
+          <p class="metric__value"><span data-metric="kb">—</span><small>KB</small></p>
+          <p class="metric__label">Totaal gedownload</p>
+          <p class="metric__hint">De hele pagina bij elkaar: tekst, opmaak, gedrag en logo.</p>
+        </div>
+        <div class="metric">
+          <p class="metric__value">0</p>
+          <p class="metric__label">Externe verzoeken</p>
+          <p class="metric__hint">Geen CDN's, geen externe lettertypen, geen scripts van derden.</p>
+        </div>
+        <div class="metric">
+          <p class="metric__value">0</p>
+          <p class="metric__label">Trackers &amp; cookies</p>
+          <p class="metric__hint">Daarom zie je hier ook geen cookiebanner. Die hebben we niet nodig.</p>
         </div>
       </div>
-      <p class="price-note">Alle prijzen zijn excl. btw. Liever in termijnen betalen? Vraag ernaar in het adviesgesprek.</p>
+
+      <p class="proof__foot reveal">
+        Deze pagina werkt volledig met JavaScript uitgeschakeld, schaalt van 320 tot
+        3840 pixels en is met het toetsenbord te bedienen. Dat is niet ons hoogtepunt —
+        dat is onze standaard.
+      </p>
     </div>
   </section>
 
-  <!-- FOOTER + CONTACT -->
-  <footer id="contact">
-    <div class="wrap footer-grid">
-      <div class="footer-intro">
-        <span class="eyebrow">Contact</span>
-        <h2>Klaar om online klanten te winnen?</h2>
-        <p>Vertel kort waar je nu staat. Binnen één werkdag krijg je een persoonlijke reactie — geen verkooppraatje, wel een eerlijk advies.</p>
-        <div class="contact-list">
-          <a href="mailto:info.dhstudionl@gmail.com">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            info.dhstudionl@gmail.com
+  <!-- ================= FAQ ================= -->
+  <section class="section paper" id="veelgestelde-vragen" aria-labelledby="faq-titel">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Veelgestelde vragen</p>
+        <h2 class="d2" id="faq-titel">Wat ondernemers ons meestal eerst vragen</h2>
+      </div>
+
+      <div class="faq reveal">
+        <details class="faq__item">
+          <summary class="faq__q">Wat onderscheidt DH Studio van andere bureaus? <span class="faq__icon" aria-hidden="true"></span></summary>
+          <div class="faq__a"><p>Je praat direct met de mensen die je website bouwen. Geen accountmanager die je wensen doorgeeft aan een developer, maar Thijs of Lucas aan tafel. Dat scheelt tijd, ruis en kosten — en het betekent dat de persoon die je idee hoort, ook degene is die het uitvoert.</p></div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">Bouwen jullie websites met standaard templates? <span class="faq__icon" aria-hidden="true"></span></summary>
+          <div class="faq__a"><p>Nee. We ontwerpen en bouwen elke site vanaf de basis, afgestemd op je vak, je klanten en je doelen. De website waar je nu op kijkt is er zelf het voorbeeld van: handgeschreven, zonder kant-en-klaar thema.</p></div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">Wat kost een website? <span class="faq__icon" aria-hidden="true"></span></summary>
+          <div class="faq__a"><p>Starter kost €995, Professional €1495 en Business Enterprise €2495 — eenmalig en exclusief btw. Maatwerk gaat op aanvraag, doorlopend onderhoud start vanaf €49 per maand. Je hoort de prijs voordat we beginnen, niet erna.</p></div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">Hoe lang duurt het voordat mijn website live staat? <span class="faq__icon" aria-hidden="true"></span></summary>
+          <div class="faq__a"><p>Dat hangt af van de omvang en van hoe snel we teksten en beeldmateriaal hebben. In de strategiefase krijg je een concrete planning met een opleverdatum — en daar houden we ons aan.</p></div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">Moet ik zelf hosting en een domeinnaam regelen? <span class="faq__icon" aria-hidden="true"></span></summary>
+          <div class="faq__a"><p>Nee. We regelen domein, hosting, SSL en beveiliging voor je en houden het draaiend. Heb je al een domein of een hostingpakket, dan werken we daar gewoon mee — je zit nergens aan vast.</p></div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">Kan ik de website daarna zelf aanpassen? <span class="faq__icon" aria-hidden="true"></span></summary>
+          <div class="faq__a"><p>Ja. Je krijgt een gebruiksvriendelijk CMS waarmee je teksten en afbeeldingen zelf bijwerkt, zonder technische kennis. Liever niet zelf doen? Dan pakken wij het op via het onderhoudspakket.</p></div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">Wat gebeurt er nadat de website live is gegaan? <span class="faq__icon" aria-hidden="true"></span></summary>
+          <div class="faq__a"><p>We blijven betrokken. Met onderhoud houden we je site veilig, snel en up-to-date, en na livegang kijken we samen wat de site doet en wat er beter kan. Een website is nooit af — hij groeit mee met je bedrijf.</p></div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">Helpen jullie ook om meer klanten te bereiken? <span class="faq__icon" aria-hidden="true"></span></summary>
+          <div class="faq__a"><p>Ja. We optimaliseren voor laadsnelheid, vindbaarheid en conversie, en zetten Google Ads in waar dat sneller rendeert dan wachten op organische groei. Wat we niet doen: beloven hoeveel klanten je erbij krijgt. Dat kan niemand eerlijk voorspellen.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="section contact" id="contact" aria-labelledby="contact-titel">
+    <div class="contact__glow" aria-hidden="true"></div>
+    <div class="container contact__grid">
+
+      <div class="contact__aside">
+        <div class="section-head reveal">
+          <p class="eyebrow">Contact</p>
+          <h2 class="d2" id="contact-titel">Vertel wat je wilt bereiken.</h2>
+          <p class="lead">
+            Eén vrijblijvend gesprek. Je hoort wat er mogelijk is, wat het kost en wat
+            het je oplevert — ook als het antwoord is: dit heb je nog niet nodig.
+          </p>
+        </div>
+
+        <div class="contact__direct reveal">
+          <a class="contact__mail" href="mailto:info@dh-studio.nl">
+            <svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="m4 7.5 8 5 8-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            info@dh-studio.nl
           </a>
-          <a href="https://dh-studio.nl">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
-            dh-studio.nl
-          </a>
+          <button class="copy" type="button" id="copyMail" data-mail="info@dh-studio.nl">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M10.5 3.5h-6a2 2 0 0 0-2 2v6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+            E-mailadres kopiëren
+          </button>
         </div>
       </div>
 
-      <form id="contactForm" novalidate>
-        <div class="form-row">
+      <form class="form reveal" id="contactForm" novalidate
+            action="mailto:info@dh-studio.nl" method="post" enctype="text/plain">
+        <div class="form__row">
           <div class="field">
-            <label for="name">Naam</label>
-            <input id="name" name="name" type="text" placeholder="Jouw naam" required />
+            <label for="f-naam">Naam</label>
+            <input id="f-naam" name="naam" type="text" autocomplete="name" placeholder="Jouw naam" required>
+            <p class="field__error" id="err-naam" aria-live="polite"></p>
           </div>
           <div class="field">
-            <label for="email">E-mail</label>
-            <input id="email" name="email" type="email" placeholder="jij@bedrijf.nl" required />
+            <label for="f-bedrijf">Bedrijf</label>
+            <input id="f-bedrijf" name="bedrijf" type="text" autocomplete="organization" placeholder="Bedrijfsnaam">
           </div>
         </div>
-        <div class="field">
-          <label for="website">Huidige website (optioneel)</label>
-          <input id="website" name="website" type="text" placeholder="bijv. jouwbedrijf.nl — of laat leeg" />
+
+        <div class="form__row">
+          <div class="field">
+            <label for="f-email">E-mailadres</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" placeholder="jij@bedrijf.nl" required>
+            <p class="field__error" id="err-email" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="f-tel">Telefoon <span class="muted">(optioneel)</span></label>
+            <input id="f-tel" name="telefoon" type="tel" autocomplete="tel" placeholder="06 12 34 56 78">
+          </div>
         </div>
+
+        <fieldset class="choices" id="choices">
+          <legend>Waar gaat het over?</legend>
+          <label class="choice"><input type="radio" name="onderwerp" value="Nieuwe website" checked><span>Nieuwe website</span></label>
+          <label class="choice"><input type="radio" name="onderwerp" value="Bestaande site vernieuwen"><span>Bestaande site vernieuwen</span></label>
+          <label class="choice"><input type="radio" name="onderwerp" value="Webshop of maatwerk"><span>Webshop of maatwerk</span></label>
+          <label class="choice"><input type="radio" name="onderwerp" value="Onderhoud &amp; hosting"><span>Onderhoud &amp; hosting</span></label>
+          <label class="choice"><input type="radio" name="onderwerp" value="Iets anders"><span>Iets anders</span></label>
+        </fieldset>
+
         <div class="field">
-          <label for="message">Waar loop je tegenaan?</label>
-          <textarea id="message" name="message" placeholder="Ik heb nog geen website / mijn site is verouderd en levert niks op…" required></textarea>
+          <label for="f-bericht">Waar wil je naartoe?</label>
+          <textarea id="f-bericht" name="bericht" placeholder="Vertel kort wat je doet, wie je klanten zijn en wat er nu misgaat of ontbreekt." required></textarea>
+          <p class="field__error" id="err-bericht" aria-live="polite"></p>
         </div>
-        <button type="submit" class="btn btn-primary">Verstuur &amp; ontvang advies →</button>
-        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+
+        <div class="form__foot">
+          <button class="btn btn--primary btn--lg btn--full" type="submit">
+            Verstuur aanvraag
+            <svg class="btn__arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m0 0-4-4m4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+          <p class="form__legal">
+            Je e-mailprogramma opent met alles al ingevuld, zodat je bericht rechtstreeks
+            bij ons aankomt zonder tussenpartij. Liever direct mailen? Dat mag ook:
+            <a class="link" href="mailto:info@dh-studio.nl">info@dh-studio.nl</a>
+          </p>
+        </div>
       </form>
-    </div>
 
-    <div class="wrap footer-bottom">
-      <div>© <span id="year"></span> DH-studio · Webdesign uit Nederland · KvK op aanvraag</div>
-      <div class="socials">
-        <a href="https://instagram.com" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="https://linkedin.com" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v6M8 7v.01M12 16v-3a2 2 0 0 1 4 0v3"/></svg>
-        </a>
-        <a href="https://facebook.com" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 8h2V5h-2a3 3 0 0 0-3 3v2H9v3h2v6h3v-6h2l1-3h-3V8a1 1 0 0 1 1-1z"/></svg>
-        </a>
-      </div>
     </div>
-  </footer>
+  </section>
+
 </main>
 
-<script>
-  (function () {
-    // Theme toggle — respects OS default, overrides on click
-    var root = document.documentElement;
-    var toggle = document.getElementById("themeToggle");
-    toggle.addEventListener("click", function () {
-      var isDark = getComputedStyle(root).getPropertyValue("--bg").trim() === "#0b1a33"
-        || root.getAttribute("data-theme") === "dark";
-      var current = root.getAttribute("data-theme");
-      if (!current) {
-        // no explicit theme yet: flip away from whatever the media query shows
-        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        current = prefersDark ? "dark" : "light";
-      }
-      root.setAttribute("data-theme", current === "dark" ? "light" : "dark");
-    });
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="brand" href="#top" aria-label="DH Studio — naar boven">
+          <svg class="brand__mark" viewBox="0 0 40 32" aria-hidden="true" focusable="false">
+            <path fill="currentColor" fill-rule="evenodd" d="M3 5h8a11 11 0 0 1 0 22H3V5Zm3.2 3.2v15.6H11a7.8 7.8 0 0 0 0-15.6H6.2Z"/>
+            <path fill="currentColor" d="M25 5h3.4v8.4h5.2V5H37v22h-3.4v-9.6h-5.2V27H25V5Z"/>
+          </svg>
+          <span class="brand__name">DH Studio</span>
+        </a>
+        <p class="footer__tag">
+          Wij ontwerpen en bouwen moderne, snelle websites die bezoekers omzetten in
+          klanten. Direct contact met de makers, van eerste schets tot ver na livegang.
+        </p>
+      </div>
 
-    // Year
-    document.getElementById("year").textContent = new Date().getFullYear();
+      <div class="footer__cols">
+        <nav aria-labelledby="foot-diensten">
+          <h2 id="foot-diensten">Diensten</h2>
+          <ul class="footer__list">
+            <li><a href="#diensten">Webdesign &amp; development</a></li>
+            <li><a href="#diensten">Domeinbeheer &amp; hosting</a></li>
+            <li><a href="#diensten">Zichtbaarheid (SEO &amp; SEA)</a></li>
+            <li><a href="#diensten">Onderhoud &amp; support</a></li>
+          </ul>
+        </nav>
 
-    // Contact form — front-end handling with mailto fallback
-    var form = document.getElementById("contactForm");
-    var status = document.getElementById("formStatus");
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var name = form.name.value.trim();
-      var email = form.email.value.trim();
-      var msg = form.message.value.trim();
-      if (!name || !email || !msg) {
-        status.style.color = "var(--accent-2)";
-        status.textContent = "Vul je naam, e-mail en bericht in.";
-        return;
-      }
-      var body = encodeURIComponent(
-        "Naam: " + name + "\n" +
-        "E-mail: " + email + "\n" +
-        "Huidige website: " + (form.website.value.trim() || "—") + "\n\n" +
-        msg
-      );
-      var subject = encodeURIComponent("Website-aanvraag via dh-studio.nl — " + name);
-      status.style.color = "var(--accent)";
-      status.textContent = "Bedankt " + name + "! Je mailprogramma opent nu om te versturen.";
-      window.location.href =
-        "mailto:info.dhstudionl@gmail.com?subject=" + subject + "&body=" + body;
-      form.reset();
-    });
-  })();
-</script>
+        <nav aria-labelledby="foot-studio">
+          <h2 id="foot-studio">Studio</h2>
+          <ul class="footer__list">
+            <li><a href="#werkwijze">Werkwijze</a></li>
+            <li><a href="#tarieven">Tarieven</a></li>
+            <li><a href="#studio">Over DH Studio</a></li>
+            <li><a href="#veelgestelde-vragen">Veelgestelde vragen</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <h2 id="foot-contact">Contact</h2>
+          <ul class="footer__list" aria-labelledby="foot-contact">
+            <li><a href="mailto:info@dh-studio.nl">info@dh-studio.nl</a></li>
+            <li><a href="#contact">Plan een kennismaking</a></li>
+            <li class="muted">Beschikbaar voor nieuwe projecten in 2026</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© <span id="year">2026</span> DH Studio · Webdesign uit Nederland</p>
+      <p><a href="/privacy.html">Privacy</a> · Geen cookies, geen trackers</p>
+    </div>
+  </div>
+</footer>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>
