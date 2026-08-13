@@ -134,6 +134,46 @@
   }
 
   /* ---------------------------------------------------------------------
+     5b. Ons werk: de screenshot scrollt mee met de bezoeker
+         De afbeelding schuift binnen een vast venster, dus er verandert
+         niets aan de layout. Ontbreekt de afbeelding, dan verschijnt een
+         nette terugvaloptie in plaats van een gebroken beeld.
+     --------------------------------------------------------------------- */
+  var caseFrame = document.getElementById("caseFrame");
+  var caseShot = document.getElementById("caseShot");
+  var caseFallback = document.getElementById("caseFallback");
+
+  function showCaseFallback() {
+    if (caseShot) caseShot.hidden = true;
+    if (caseFallback) caseFallback.hidden = false;
+  }
+
+  if (caseShot) {
+    caseShot.addEventListener("error", showCaseFallback);
+    // Al mislukt voordat de listener bestond?
+    if (caseShot.complete && caseShot.naturalWidth === 0) showCaseFallback();
+  }
+
+  function updateCase() {
+    if (!caseFrame || !caseShot || caseShot.hidden) return;
+
+    var view = caseFrame.querySelector(".case-view");
+    if (!view) return;
+
+    var travel = caseShot.offsetHeight - view.clientHeight;
+    if (travel <= 0) return; // screenshot past al in het venster
+
+    var rect = caseFrame.getBoundingClientRect();
+    var vh = window.innerHeight;
+
+    // 0 zodra het frame onderin verschijnt, 1 wanneer het bovenlangs vertrekt
+    var raw = (vh - rect.top) / (vh + rect.height);
+    var progress = Math.max(0, Math.min(1, raw));
+
+    caseShot.style.setProperty("--shot-y", (-travel * progress).toFixed(1) + "px");
+  }
+
+  /* ---------------------------------------------------------------------
      6. Eén rAF-lus voor alle scroll-afhankelijke effecten
      --------------------------------------------------------------------- */
   var ticking = false;
@@ -145,6 +185,7 @@
       updateHeader();
       updateParallax();
       updateWords();
+      updateCase();
       ticking = false;
     });
   }

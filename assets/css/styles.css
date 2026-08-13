@@ -913,6 +913,104 @@ button { font: inherit; color: inherit; }
   .outcome-index { padding-top: 0; }
 }
 
+/* ---- Ons werk ---- */
+
+.work { background: var(--paper); color: var(--text-on-light); }
+
+.case {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.8fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+@media (max-width: 900px) { .case { grid-template-columns: 1fr; } }
+
+.case-frame {
+  margin: 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--ink-800);
+  border: 1px solid var(--paper-line-soft);
+  box-shadow: 0 40px 90px -40px rgba(11, 15, 25, 0.45);
+}
+
+.case-view {
+  position: relative;
+  /* Vast venster: de screenshot schuift erdoorheen, dus geen layout shift */
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #0f1b33;
+}
+
+.case-shot {
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: block;
+  translate: 0 var(--shot-y, 0px);
+  will-change: translate;
+}
+
+.case-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  text-align: center;
+  background: linear-gradient(140deg, #16233f, #0b1220);
+  color: #fff;
+}
+.case-fallback[hidden] { display: none; }
+.case-fallback-name { font-size: var(--fs-h3); font-weight: 600; letter-spacing: -0.03em; }
+.case-fallback-note { font-size: var(--fs-small); color: rgba(255, 255, 255, 0.55); }
+
+.case-info { padding-top: 0.5rem; }
+.case-client { font-size: var(--fs-h3); font-weight: 600; letter-spacing: -0.03em; }
+.case-sector {
+  margin-top: 0.35rem;
+  font-size: var(--fs-small);
+  color: var(--text-on-light-faint);
+}
+.case-text {
+  margin-top: 1.25rem;
+  color: var(--text-on-light-dim);
+  max-width: 42ch;
+}
+
+.case-tags {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.case-tags li {
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--paper-line);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  color: var(--text-on-light-dim);
+}
+
+.case-link {
+  margin-top: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--accent);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  padding-bottom: 2px;
+  transition: color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+}
+.case-link:hover { color: var(--accent-deep); border-bottom-color: var(--accent-deep); }
+.case-link:hover .btn-arrow { transform: translateX(3px); }
+
 /* ---- Diensten ---- */
 
 .service-list { display: grid; }
