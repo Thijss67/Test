@@ -1,0 +1,1816 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Studio Kompas</title>
+<style>
+  /* ============================================================
+     Studio Kompas — klantportaal voor DH-studio
+     Ontwerpvoorbeeld met voorbeelddata. Tokens komen 1-op-1 uit
+     de huisstijl van dh-studio.nl (inktblauw + oker/terracotta).
+     ============================================================ */
+
+  :root {
+    /* Merkbasis */
+    --ink-900: #0b1a33;
+    --ink-800: #0f2444;
+    --ink-700: #163256;
+    --ink-600: #21426b;
+    --paper:   #f4ede0;
+    --paper-2: #ece2d1;
+    --ochre:   #e0a33e;
+    --terra:   #cd6a45;
+
+    /* Semantische tokens — donker is de standaardwereld */
+    --bg: var(--ink-900);
+    --surface: var(--ink-800);
+    --surface-2: var(--ink-700);
+    --surface-3: var(--ink-600);
+    --text: #f3ecdd;
+    --text-dim: #a9b8d2;
+    --text-mute: #7d8fae;
+    --accent: var(--ochre);
+    --accent-2: var(--terra);
+    --on-accent: #17130a;
+    --hairline: rgba(224, 190, 138, 0.18);
+    --hairline-strong: rgba(224, 190, 138, 0.32);
+    --card-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.75);
+    --tint: rgba(224, 190, 138, 0.07);
+
+    /* Datakleuren — gevalideerd tegen het donkere vlak (#0f2444) */
+    --dv-1: #bd8228; /* oker  */
+    --dv-2: #3f92d4; /* blauw */
+    --dv-3: #2ba579; /* groen */
+    --dv-4: #cf6440; /* terra */
+    --dv-0: #6a7d9c; /* neutraal */
+
+    --font-display: "Playfair Display", "Iowan Old Style", "Palatino Linotype",
+      Palatino, Georgia, "Times New Roman", serif;
+    --font-body: "Inter", ui-sans-serif, system-ui, -apple-system,
+      "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+      "Liberation Mono", monospace;
+
+    --rail: 252px;
+    --r-sm: 8px;
+    --r-md: 12px;
+    --r-lg: 16px;
+  }
+
+  /* Licht: OS-voorkeur, tenzij expliciet donker gekozen */
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: var(--paper);
+      --surface: #ffffff;
+      --surface-2: var(--paper-2);
+      --surface-3: #e2d5bd;
+      --text: #16233b;
+      --text-dim: #5a6478;
+      --text-mute: #7c8698;
+      --accent: #b9772a;
+      --accent-2: #b4522f;
+      --on-accent: #fdf6e8;
+      --hairline: rgba(24, 40, 66, 0.14);
+      --hairline-strong: rgba(24, 40, 66, 0.26);
+      --card-shadow: 0 24px 50px -30px rgba(20, 32, 60, 0.35);
+      --tint: rgba(24, 40, 66, 0.04);
+      --dv-1: #b9772a;
+      --dv-2: #2f7fbf;
+      --dv-3: #1f8a63;
+      --dv-4: #b4522f;
+      --dv-0: #6c7890;
+    }
+  }
+
+  /* Licht: expliciet gekozen */
+  :root[data-theme="light"] {
+    --bg: var(--paper);
+    --surface: #ffffff;
+    --surface-2: var(--paper-2);
+    --surface-3: #e2d5bd;
+    --text: #16233b;
+    --text-dim: #5a6478;
+    --text-mute: #7c8698;
+    --accent: #b9772a;
+    --accent-2: #b4522f;
+    --on-accent: #fdf6e8;
+    --hairline: rgba(24, 40, 66, 0.14);
+    --hairline-strong: rgba(24, 40, 66, 0.26);
+    --card-shadow: 0 24px 50px -30px rgba(20, 32, 60, 0.35);
+    --tint: rgba(24, 40, 66, 0.04);
+    --dv-1: #b9772a;
+    --dv-2: #2f7fbf;
+    --dv-3: #1f8a63;
+    --dv-4: #b4522f;
+    --dv-0: #6c7890;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.12;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* ---------- App-schil ---------- */
+
+  .app {
+    display: grid;
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+    min-height: 100vh;
+    /* vult de zijbalkkolom over de volle hoogte, ook als de pagina langer is */
+    background: linear-gradient(90deg, var(--surface) 0 var(--rail), var(--bg) var(--rail));
+  }
+  @media (max-width: 900px) { .app { background: var(--bg); } }
+
+  /* ---------- Zijbalk ---------- */
+
+  .rail {
+    background: var(--surface);
+    border-right: 1px solid var(--hairline);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0 0.5rem;
+  }
+  .brand-mark {
+    flex: none;
+    width: 38px; height: 38px;
+    border-radius: 11px;
+    display: grid; place-items: center;
+    background: linear-gradient(150deg, var(--accent), var(--accent-2));
+    color: var(--on-accent);
+  }
+  .brand-mark svg { width: 21px; height: 21px; }
+  .brand-name {
+    font-family: var(--font-display);
+    font-size: 1.12rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .brand-sub {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+  }
+
+  .rail-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    padding: 0 0.65rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .rail-nav { display: grid; gap: 2px; }
+  .rail-nav button {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.6rem 0.65rem;
+    border: 0;
+    border-radius: var(--r-sm);
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--text-dim);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .rail-nav button svg { width: 18px; height: 18px; flex: none; }
+  .rail-nav button:hover { background: var(--tint); color: var(--text); }
+  .rail-nav button[aria-current="true"] {
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    color: var(--text);
+    font-weight: 600;
+    box-shadow: inset 2px 0 0 var(--accent);
+  }
+  .rail-nav .count {
+    margin-left: auto;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.1rem 0.45rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .rail-nav button[aria-current="true"] .count { background: var(--accent); }
+
+  .rail-foot { margin-top: auto; display: grid; gap: 0.8rem; }
+  .rail-user {
+    display: flex; align-items: center; gap: 0.65rem;
+    padding: 0.6rem;
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-md);
+  }
+  .avatar {
+    flex: none;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--surface-2);
+    border: 1px solid var(--hairline-strong);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+  .rail-user .who { font-size: 0.82rem; font-weight: 600; line-height: 1.2; }
+  .rail-user .role { font-size: 0.7rem; color: var(--text-mute); }
+
+  /* ---------- Bovenbalk ---------- */
+
+  .main { min-width: 0; display: flex; flex-direction: column; }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem clamp(1rem, 3vw, 2rem);
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .topbar h1 { font-size: 1.35rem; }
+  .topbar .sub { font-size: 0.8rem; color: var(--text-mute); margin-top: 2px; }
+  .topbar-tools { margin-left: auto; display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+
+  .select {
+    appearance: none;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    padding: 0.45rem 2rem 0.45rem 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+                      linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position: calc(100% - 17px) 52%, calc(100% - 12px) 52%;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+  }
+  .select:hover { border-color: var(--hairline-strong); }
+
+  .icon-btn {
+    width: 36px; height: 36px;
+    border-radius: 999px;
+    border: 1px solid var(--hairline);
+    background: transparent;
+    cursor: pointer;
+    display: grid; place-items: center;
+    transition: border-color 0.15s ease, transform 0.2s ease;
+  }
+  .icon-btn svg { width: 17px; height: 17px; }
+  .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ---------- Inhoud ---------- */
+
+  .view { padding: clamp(1.2rem, 3vw, 2rem); display: none; gap: 1.1rem; }
+  .view[data-active="true"] { display: grid; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: 1.25rem;
+    min-width: 0;
+  }
+  .card-head {
+    display: flex; align-items: baseline; gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .card-head h2 { font-size: 1.05rem; }
+  .card-head .hint { font-size: 0.78rem; color: var(--text-mute); }
+  .card-head .spacer { margin-left: auto; }
+
+  .grid-kpi { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
+  .grid-2 { display: grid; grid-template-columns: 1.45fr 1fr; gap: 1.1rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+  @media (max-width: 1100px) {
+    .grid-kpi { grid-template-columns: repeat(2, 1fr); }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  /* KPI-tegel */
+  .kpi { display: grid; gap: 0.55rem; }
+  .kpi .label {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--text-mute);
+  }
+  .kpi .value {
+    font-family: var(--font-display);
+    font-size: 2.15rem;
+    font-weight: 700;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .kpi .value small { font-size: 1rem; font-family: var(--font-body); color: var(--text-dim); font-weight: 500; }
+  .kpi-foot { display: flex; align-items: center; gap: 0.6rem; }
+  .spark { flex: none; }
+  .delta {
+    display: inline-flex; align-items: center; gap: 0.25rem;
+    font-size: 0.78rem; font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .delta svg { width: 12px; height: 12px; }
+  .delta.up { color: var(--dv-3); }
+  .delta.down { color: var(--dv-4); }
+  .delta.flat { color: var(--text-mute); }
+  .kpi .since { font-size: 0.75rem; color: var(--text-mute); }
+
+  /* Grafiek */
+  .chart-wrap { position: relative; }
+  .chart-wrap svg { display: block; width: 100%; height: auto; }
+  .chart-tip {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, -120%);
+    background: var(--surface-2);
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--r-sm);
+    padding: 0.45rem 0.65rem;
+    font-size: 0.78rem;
+    line-height: 1.35;
+    white-space: nowrap;
+    box-shadow: var(--card-shadow);
+    transition: opacity 0.12s ease;
+    z-index: 5;
+  }
+  .chart-tip b { font-variant-numeric: tabular-nums; font-size: 0.92rem; }
+  .chart-tip .tip-day { color: var(--text-mute); font-size: 0.72rem; }
+
+  .legend-note { font-size: 0.75rem; color: var(--text-mute); margin-top: 0.6rem; }
+
+  /* Ranglijst met balken */
+  .ranks { display: grid; gap: 0.75rem; }
+  .rank { display: grid; grid-template-columns: 1fr auto; gap: 0.15rem 0.8rem; align-items: baseline; }
+  .rank .rank-label { font-size: 0.86rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rank .rank-val { font-size: 0.82rem; font-weight: 600; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+  .rank .bar {
+    grid-column: 1 / -1;
+    height: 6px;
+    border-radius: 0 3px 3px 0;
+    background: var(--surface-2);
+    overflow: hidden;
+  }
+  .rank .bar i {
+    display: block; height: 100%;
+    border-radius: 0 3px 3px 0;
+    background: var(--dv-1);
+    transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Tabellen */
+  .table-scroll { overflow-x: auto; margin: 0 -0.35rem; padding: 0 0.35rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.87rem; }
+  th {
+    text-align: left;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    padding: 0 0.7rem 0.6rem;
+    white-space: nowrap;
+  }
+  td { padding: 0.7rem; border-top: 1px solid var(--hairline); vertical-align: middle; }
+  td.right, th.right { text-align: right; font-variant-numeric: tabular-nums; }
+  tbody tr { transition: background 0.12s ease; }
+  tbody tr.clickable { cursor: pointer; }
+  tbody tr.clickable:hover { background: var(--tint); }
+  .cell-strong { font-weight: 600; }
+  .cell-sub { font-size: 0.76rem; color: var(--text-mute); }
+
+  /* Sitebadge */
+  .site-badge {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    font-size: 0.78rem; color: var(--text-dim);
+    white-space: nowrap;
+  }
+  .site-dot { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--dv-0); }
+
+  /* Statuspil — kleur is nooit de enige drager: altijd stip + tekst */
+  .pill {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.18rem 0.6rem 0.18rem 0.45rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: var(--surface-2);
+    border: 1px solid var(--hairline);
+    white-space: nowrap;
+  }
+  .pill::before {
+    content: "";
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--pill-color, var(--dv-0));
+  }
+  .pill[data-status="nieuw"] { --pill-color: var(--dv-2); }
+  .pill[data-status="gesprek"] { --pill-color: var(--dv-1); }
+  .pill[data-status="offerte"] { --pill-color: var(--dv-1); }
+  .pill[data-status="klant"] { --pill-color: var(--dv-3); }
+  .pill[data-status="verloren"] { --pill-color: var(--dv-0); }
+  .pill[data-status="verbonden"] { --pill-color: var(--dv-3); }
+  .pill[data-status="wacht"] { --pill-color: var(--dv-1); }
+  .pill[data-status="offline"] { --pill-color: var(--dv-4); }
+
+  /* Filterchips */
+  .chips { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+  .chip {
+    border: 1px solid var(--hairline);
+    background: transparent;
+    border-radius: 999px;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--text-dim);
+    transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  }
+  .chip:hover { border-color: var(--hairline-strong); color: var(--text); }
+  .chip[aria-pressed="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+    font-weight: 600;
+  }
+
+  /* Activiteitenfeed */
+  .feed { display: grid; gap: 0.1rem; }
+  .feed-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.75rem;
+    align-items: start;
+    padding: 0.7rem 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .feed-item:first-child { border-top: 0; }
+  .feed-ic {
+    width: 28px; height: 28px; border-radius: 8px;
+    display: grid; place-items: center; flex: none;
+    background: var(--surface-2);
+    color: var(--accent);
+  }
+  .feed-ic svg { width: 14px; height: 14px; }
+  .feed-body { min-width: 0; font-size: 0.85rem; line-height: 1.45; }
+  .feed-body .who { font-weight: 600; }
+  .feed-time { font-size: 0.72rem; color: var(--text-mute); white-space: nowrap; }
+
+  /* Berichten: lijst + leespaneel */
+  .inbox { display: grid; grid-template-columns: 340px minmax(0, 1fr); min-height: 540px; }
+  @media (max-width: 980px) { .inbox { grid-template-columns: 1fr; } .inbox-read { display: none; } }
+  .inbox-list {
+    border-right: 1px solid var(--hairline);
+    overflow-y: auto;
+    max-height: 640px;
+  }
+  .msg {
+    display: grid; gap: 0.3rem;
+    width: 100%;
+    text-align: left;
+    padding: 0.85rem 1rem;
+    border: 0;
+    border-bottom: 1px solid var(--hairline);
+    border-left: 2px solid transparent;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.12s ease;
+  }
+  .msg:hover { background: var(--tint); }
+  .msg[aria-selected="true"] {
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border-left-color: var(--accent);
+  }
+  .msg-top { display: flex; align-items: center; gap: 0.5rem; }
+  .msg-from { font-weight: 600; font-size: 0.88rem; }
+  .msg-unread {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent); flex: none;
+  }
+  .msg-time { margin-left: auto; font-size: 0.7rem; color: var(--text-mute); white-space: nowrap; }
+  .msg-prev {
+    font-size: 0.79rem; color: var(--text-mute);
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+  .inbox-read { padding: 1.4rem; overflow-y: auto; max-height: 640px; }
+  .read-head { display: flex; align-items: flex-start; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.1rem; }
+  .read-head h3 { font-size: 1.3rem; }
+  .read-meta { display: grid; gap: 0.55rem; margin: 1.1rem 0 1.4rem; }
+  .meta-row { display: grid; grid-template-columns: 130px 1fr; gap: 0.8rem; font-size: 0.86rem; }
+  .meta-row dt { color: var(--text-mute); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding-top: 2px; }
+  .meta-row dd { margin: 0; }
+  .read-body {
+    background: var(--surface-2);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-md);
+    padding: 1rem 1.1rem;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    white-space: pre-wrap;
+  }
+  .read-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.2rem; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+  .btn svg { width: 15px; height: 15px; }
+  .btn-primary { background: var(--accent); color: var(--on-accent); }
+  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-ghost { background: transparent; border-color: var(--hairline); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-sm { padding: 0.35rem 0.8rem; font-size: 0.78rem; }
+
+  /* Verbeteringen */
+  .imp {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: start;
+    padding: 1.1rem 1.2rem;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-left: 3px solid var(--sev, var(--dv-0));
+    border-radius: var(--r-md);
+  }
+  @media (max-width: 820px) { .imp { grid-template-columns: auto minmax(0, 1fr); } .imp .imp-act { grid-column: 2; } }
+  .imp[data-sev="kritiek"] { --sev: var(--dv-4); }
+  .imp[data-sev="hoog"] { --sev: var(--dv-1); }
+  .imp[data-sev="middel"] { --sev: var(--dv-2); }
+  .imp[data-sev="laag"] { --sev: var(--dv-0); }
+  .imp-ic {
+    width: 34px; height: 34px; border-radius: 10px;
+    display: grid; place-items: center; flex: none;
+    background: color-mix(in srgb, var(--sev) 18%, transparent);
+    color: var(--sev);
+  }
+  .imp-ic svg { width: 18px; height: 18px; }
+  .imp-body { display: grid; gap: 0.35rem; min-width: 0; }
+  .imp-top { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+  .imp h3 { font-family: var(--font-body); font-size: 0.98rem; font-weight: 600; line-height: 1.4; }
+  .sev-tag {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--sev);
+    border: 1px solid color-mix(in srgb, var(--sev) 45%, transparent);
+    border-radius: 999px;
+    padding: 0.1rem 0.5rem;
+  }
+  .imp p { margin: 0; font-size: 0.85rem; color: var(--text-dim); }
+  .imp .fix {
+    margin-top: 0.35rem;
+    font-size: 0.83rem;
+    padding: 0.55rem 0.75rem;
+    background: var(--surface-2);
+    border-radius: var(--r-sm);
+    display: flex; gap: 0.5rem; align-items: flex-start;
+  }
+  .imp .fix b { color: var(--text); font-weight: 600; }
+  .imp .fix svg { width: 15px; height: 15px; flex: none; margin-top: 3px; color: var(--accent); }
+  .imp-act { display: grid; gap: 0.4rem; justify-items: stretch; }
+
+  /* Koppelen */
+  .steps { display: grid; gap: 1rem; counter-reset: step; }
+  .step {
+    display: grid; grid-template-columns: auto 1fr; gap: 0.9rem;
+    align-items: start;
+  }
+  .step-n {
+    width: 30px; height: 30px; border-radius: 50%;
+    display: grid; place-items: center; flex: none;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .step h4 { font-family: var(--font-body); font-size: 0.92rem; font-weight: 600; margin-bottom: 0.15rem; }
+  .step p { margin: 0; font-size: 0.85rem; color: var(--text-dim); }
+
+  .code {
+    position: relative;
+    background: var(--surface-2);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-md);
+    margin: 0.6rem 0 0;
+  }
+  .code pre {
+    margin: 0;
+    padding: 2.9rem 1rem 1rem;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.7;
+  }
+  .code .copy { position: absolute; top: 0.5rem; right: 0.5rem; }
+  .tag { color: var(--accent); }
+  .attr { color: var(--dv-2); }
+  .str { color: var(--dv-3); }
+  .cmt { color: var(--text-mute); font-style: italic; }
+
+  .callout {
+    display: flex; gap: 0.7rem; align-items: flex-start;
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    border-radius: var(--r-md);
+    padding: 0.85rem 1rem;
+    font-size: 0.85rem;
+  }
+  .callout svg { width: 17px; height: 17px; flex: none; color: var(--accent); margin-top: 3px; }
+  .callout b { font-weight: 600; }
+
+  .prose p { color: var(--text-dim); font-size: 0.88rem; margin: 0 0 0.7rem; max-width: 68ch; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  /* Ladeteil voor leaddetails */
+  .drawer-scrim {
+    position: fixed; inset: 0;
+    background: rgba(6, 14, 28, 0.55);
+    backdrop-filter: blur(2px);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 90;
+  }
+  .drawer-scrim[data-open="true"] { opacity: 1; pointer-events: auto; }
+  .drawer {
+    position: fixed; top: 0; right: 0; bottom: 0;
+    width: min(420px, 100%);
+    background: var(--surface);
+    border-left: 1px solid var(--hairline);
+    box-shadow: var(--card-shadow);
+    transform: translateX(100%);
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 91;
+    overflow-y: auto;
+    padding: 1.4rem;
+  }
+  .drawer[data-open="true"] { transform: none; }
+  .drawer-head { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.2rem; }
+  .drawer-head h3 { font-size: 1.3rem; }
+  .timeline { display: grid; gap: 0.9rem; margin-top: 0.4rem; }
+  .tl { display: grid; grid-template-columns: auto 1fr; gap: 0.75rem; }
+  .tl-dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--accent); margin-top: 7px;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+  }
+  .tl-body { font-size: 0.85rem; }
+  .tl-body time { display: block; font-size: 0.72rem; color: var(--text-mute); }
+
+  /* Mobiel */
+  .rail-toggle { display: none; }
+  @media (max-width: 900px) {
+    .app { grid-template-columns: 1fr; }
+    .rail {
+      position: fixed; inset: 0 auto 0 0;
+      width: 262px; z-index: 95;
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
+    }
+    .rail[data-open="true"] { transform: none; }
+    .rail-toggle { display: grid; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============ ZIJBALK ============ -->
+  <aside class="rail" id="rail">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9" /><path d="m15.5 8.5-2.2 5.1-5.1 2.2 2.2-5.1z" />
+        </svg>
+      </div>
+      <div>
+        <div class="brand-name">Studio Kompas</div>
+        <div class="brand-sub">DH·studio</div>
+      </div>
+    </div>
+
+    <nav aria-label="Hoofdmenu">
+      <div class="rail-label">Overzicht</div>
+      <div class="rail-nav">
+        <button type="button" data-view="overzicht" aria-current="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+          Dashboard
+        </button>
+        <button type="button" data-view="bezoekers">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 4-6 5 5"/><path d="M3 21h18"/></svg>
+          Bezoekers
+        </button>
+      </div>
+    </nav>
+
+    <nav aria-label="Klantcontact">
+      <div class="rail-label">Klantcontact</div>
+      <div class="rail-nav">
+        <button type="button" data-view="leads">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="3.5"/><path d="M18 8h4M20 6v4"/></svg>
+          Leads
+          <span class="count num" id="cnt-leads">0</span>
+        </button>
+        <button type="button" data-view="berichten">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          Berichten
+          <span class="count num" id="cnt-msgs">0</span>
+        </button>
+      </div>
+    </nav>
+
+    <nav aria-label="Beheer">
+      <div class="rail-label">Beheer</div>
+      <div class="rail-nav">
+        <button type="button" data-view="verbeteringen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-3.5 10.9V17h7v-3.1A6 6 0 0 0 12 3z"/><path d="M10 21h4"/></svg>
+          Verbeteringen
+          <span class="count num" id="cnt-imps">0</span>
+        </button>
+        <button type="button" data-view="koppelen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 14.5 14.5 9.5"/><path d="M12.5 6.5 14 5a4.2 4.2 0 0 1 6 6l-1.5 1.5"/><path d="M11.5 17.5 10 19a4.2 4.2 0 0 1-6-6l1.5-1.5"/></svg>
+          Koppelen
+        </button>
+      </div>
+    </nav>
+
+    <div class="rail-foot">
+      <div class="rail-user">
+        <div class="avatar" aria-hidden="true">DH</div>
+        <div>
+          <div class="who">DH-studio</div>
+          <div class="role">6 sites in beheer</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============ HOOFDKOLOM ============ -->
+  <div class="main">
+    <header class="topbar">
+      <button type="button" class="icon-btn rail-toggle" id="railToggle" aria-label="Menu openen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <div>
+        <h1 id="viewTitle">Dashboard</h1>
+        <div class="sub" id="viewSub">Alle sites · laatste 30 dagen</div>
+      </div>
+      <div class="topbar-tools">
+        <select class="select" id="siteFilter" aria-label="Filter op site"></select>
+        <select class="select" id="periodFilter" aria-label="Periode">
+          <option value="7">Laatste 7 dagen</option>
+          <option value="30" selected>Laatste 30 dagen</option>
+          <option value="90">Laatste 90 dagen</option>
+        </select>
+        <button type="button" class="icon-btn" id="themeToggle" aria-label="Wissel tussen licht en donker">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- ---------- DASHBOARD ---------- -->
+    <section class="view" data-view="overzicht" data-active="true">
+      <div class="grid-kpi" id="kpiRow"></div>
+
+      <div class="card">
+        <div class="card-head">
+          <h2>Bezoekers per dag</h2>
+          <span class="hint" id="chartHint"></span>
+        </div>
+        <div class="chart-wrap" id="mainChart"></div>
+        <p class="legend-note">Unieke bezoekers, cookieloos gemeten. Beweeg over de grafiek voor een dag.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-head">
+            <h2>Per website</h2>
+            <span class="hint">Klik voor de details van één site</span>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Website</th>
+                  <th class="right">Bezoekers</th>
+                  <th class="right">Berichten</th>
+                  <th class="right">Conversie</th>
+                  <th class="right">Trend</th>
+                </tr>
+              </thead>
+              <tbody id="sitesTable"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h2>Laatste activiteit</h2></div>
+          <div class="feed" id="activityFeed"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h2>Vraagt aandacht</h2>
+          <span class="hint">De drie zwaarste signalen van dit moment</span>
+          <span class="spacer"></span>
+          <button type="button" class="btn btn-ghost btn-sm" data-goto="verbeteringen">Alles bekijken →</button>
+        </div>
+        <div style="display:grid; gap:0.7rem" id="topImprovements"></div>
+      </div>
+    </section>
+
+    <!-- ---------- BEZOEKERS ---------- -->
+    <section class="view" data-view="bezoekers">
+      <div class="grid-kpi" id="kpiRowVisitors"></div>
+
+      <div class="card">
+        <div class="card-head">
+          <h2>Verkeer over tijd</h2>
+          <span class="hint" id="chartHint2"></span>
+        </div>
+        <div class="chart-wrap" id="visitorChart"></div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-head"><h2>Meest bezochte pagina's</h2></div>
+          <div class="ranks" id="topPages"></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2>Waar bezoekers vandaan komen</h2></div>
+          <div class="ranks" id="topSources"></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2>Apparaat</h2></div>
+          <div class="ranks" id="topDevices"></div>
+          <p class="legend-note">Mobiel verkeer bepaalt hoe je pagina's ontworpen moeten worden.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- LEADS ---------- -->
+    <section class="view" data-view="leads">
+      <div class="card">
+        <div class="card-head">
+          <h2>Leads</h2>
+          <span class="hint">Berichten die je hebt opgepakt als kans</span>
+          <span class="spacer"></span>
+          <div class="chips" id="leadFilters">
+            <button type="button" class="chip" data-status="alle" aria-pressed="true">Alle</button>
+            <button type="button" class="chip" data-status="nieuw" aria-pressed="false">Nieuw</button>
+            <button type="button" class="chip" data-status="gesprek" aria-pressed="false">In gesprek</button>
+            <button type="button" class="chip" data-status="offerte" aria-pressed="false">Offerte uit</button>
+            <button type="button" class="chip" data-status="klant" aria-pressed="false">Klant</button>
+            <button type="button" class="chip" data-status="verloren" aria-pressed="false">Verloren</button>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Naam</th>
+                <th>Via</th>
+                <th>Bron</th>
+                <th>Status</th>
+                <th class="right">Waarde</th>
+                <th class="right">Binnengekomen</th>
+              </tr>
+            </thead>
+            <tbody id="leadsTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- BERICHTEN ---------- -->
+    <section class="view" data-view="berichten">
+      <div class="card" style="padding:0; overflow:hidden">
+        <div class="inbox">
+          <div class="inbox-list" id="inboxList" role="listbox" aria-label="Binnengekomen formulieren"></div>
+          <div class="inbox-read" id="inboxRead"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- VERBETERINGEN ---------- -->
+    <section class="view" data-view="verbeteringen">
+      <div class="card prose">
+        <div class="card-head"><h2>Wat er beter kan</h2></div>
+        <p>Kompas kijkt elke nacht mee met de cijfers van elke site en meldt alleen wat afwijkt van normaal. Elk signaal komt met de reden én een concrete vervolgstap — bruikbaar als onderhoudswerk of als voorstel richting de klant.</p>
+      </div>
+      <div style="display:grid; gap:0.7rem" id="improvements"></div>
+    </section>
+
+    <!-- ---------- KOPPELEN ---------- -->
+    <section class="view" data-view="koppelen">
+      <div class="card">
+        <div class="card-head">
+          <h2>Verbonden websites</h2>
+          <span class="hint">Status van de koppeling per klantsite</span>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Website</th>
+                <th>Hosting</th>
+                <th>Meting</th>
+                <th>Formulier</th>
+                <th class="right">Laatste signaal</th>
+              </tr>
+            </thead>
+            <tbody id="connTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card prose">
+          <div class="card-head"><h2>1 · Bezoekers meten</h2></div>
+          <p>Eén regel vóór de sluitende <code>&lt;/body&gt;</code>. Geen cookies, geen banner nodig — bezoekers worden anoniem geteld.</p>
+          <div class="code">
+            <button type="button" class="btn btn-ghost btn-sm copy" data-copy="snippet-track">Kopieer</button>
+<pre id="snippet-track"><span class="cmt">&lt;!-- Studio Kompas · bezoekersmeting --&gt;</span>
+<span class="tag">&lt;script</span> <span class="attr">defer</span> <span class="attr">src</span>=<span class="str">"https://kompas.dh-studio.nl/k.js"</span>
+        <span class="attr">data-site</span>=<span class="str">"bakkerij-vandijk"</span><span class="tag">&gt;&lt;/script&gt;</span></pre>
+          </div>
+        </div>
+
+        <div class="card prose">
+          <div class="card-head"><h2>2 · Formulieren binnenhalen</h2></div>
+          <p>Zet het <code>action</code>-adres van het contactformulier om. Inzendingen komen binnen bij Berichten én worden doorgestuurd naar het mailadres van de klant.</p>
+          <div class="code">
+            <button type="button" class="btn btn-ghost btn-sm copy" data-copy="snippet-form">Kopieer</button>
+<pre id="snippet-form"><span class="tag">&lt;form</span> <span class="attr">method</span>=<span class="str">"POST"</span>
+      <span class="attr">action</span>=<span class="str">"https://kompas.dh-studio.nl/f/bakkerij-vandijk"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">name</span>=<span class="str">"naam"</span> <span class="attr">required</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">name</span>=<span class="str">"email"</span> <span class="attr">type</span>=<span class="str">"email"</span> <span class="attr">required</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;textarea</span> <span class="attr">name</span>=<span class="str">"bericht"</span><span class="tag">&gt;&lt;/textarea&gt;</span>
+<span class="tag">&lt;/form&gt;</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-head"><h2>Hostinger · Bestandsbeheer</h2></div>
+          <div class="steps">
+            <div class="step"><div class="step-n">1</div><div><h4>Open hPanel</h4><p>Ga naar Bestanden → Bestandsbeheer en open de map <code>public_html</code>.</p></div></div>
+            <div class="step"><div class="step-n">2</div><div><h4>Bewerk index.html</h4><p>Plak de meetregel vlak boven <code>&lt;/body&gt;</code> en sla op.</p></div></div>
+            <div class="step"><div class="step-n">3</div><div><h4>Pas het formulier aan</h4><p>Vervang het <code>action</code>-adres door de formulier-URL van deze site.</p></div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h2>Hostinger · WordPress</h2></div>
+          <div class="steps">
+            <div class="step"><div class="step-n">1</div><div><h4>Ga naar het thema</h4><p>Weergave → Thema-bestandsbewerker → <code>footer.php</code>, of gebruik een snippets-plugin.</p></div></div>
+            <div class="step"><div class="step-n">2</div><div><h4>Plak de meetregel</h4><p>Direct vóór <code>&lt;?php wp_footer(); ?&gt;</code>. Werkt ook via Hostinger's "Aangepaste code".</p></div></div>
+            <div class="step"><div class="step-n">3</div><div><h4>Koppel het formulier</h4><p>Bij Contact Form 7 of WPForms: zet de webhook-URL op het formulieradres hierboven.</p></div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h2>Hostinger · Website Builder</h2></div>
+          <div class="steps">
+            <div class="step"><div class="step-n">1</div><div><h4>Open de instellingen</h4><p>In de builder: Website-instellingen → Integraties → Aangepaste code.</p></div></div>
+            <div class="step"><div class="step-n">2</div><div><h4>Plak in "Body"</h4><p>Zet de meetregel in het body-veld en publiceer opnieuw.</p></div></div>
+            <div class="step"><div class="step-n">3</div><div><h4>Formulier doorsturen</h4><p>Builder-formulieren mailen zelf; Kompas leest ze mee via het doorstuuradres.</p></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg>
+        <div>
+          <b>Kompas draait op je eigen Hostinger-account.</b> Maak in hPanel een subdomein aan — bijvoorbeeld <code>kompas.dh-studio.nl</code> — en zet de app daar neer. Alle bezoekcijfers en berichten van je klanten blijven dan op je eigen hosting staan, niet bij een externe dienst.
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- Lade met leaddetails -->
+<div class="drawer-scrim" id="drawerScrim"></div>
+<aside class="drawer" id="drawer" aria-label="Leaddetails" aria-hidden="true"></aside>
+
+<script>
+(function () {
+  "use strict";
+
+  /* =========================================================
+     VOORBEELDDATA — dit is een ontwerpvoorbeeld.
+     De cijfers worden deterministisch gegenereerd zodat de
+     grafieken, totalen en filters onderling kloppen.
+     ========================================================= */
+
+  var SITES = [
+    { id: "bakkerij-vandijk",  naam: "Bakkerij Van Dijk",       domein: "bakkerijvandijk.nl",   basis: 118, groei:  0.22, conv: 0.9, hosting: "Hostinger · Builder",   meting: "verbonden", form: "verbonden", laatst: "2 min geleden" },
+    { id: "peters-loodgieter", naam: "Loodgieter Peters",       domein: "peters-loodgieter.nl", basis:  74, groei:  0.12, conv: 1.9, hosting: "Hostinger · WordPress", meting: "verbonden", form: "verbonden", laatst: "11 min geleden" },
+    { id: "salon-mireille",    naam: "Salon Mireille",          domein: "salonmireille.nl",     basis:  96, groei:  0.07, conv: 1.2, hosting: "Hostinger · Premium",   meting: "verbonden", form: "offline",   laatst: "1 min geleden" },
+    { id: "auto-kramer",       naam: "Autobedrijf Kramer",      domein: "autokramer.nl",        basis: 152, groei: -0.09, conv: 0.6, hosting: "Hostinger · Business",  meting: "verbonden", form: "verbonden", laatst: "4 min geleden" },
+    { id: "degroot-hoveniers", naam: "Hoveniers De Groot",      domein: "degroothoveniers.nl",  basis:  61, groei:  0.31, conv: 2.3, hosting: "Hostinger · Premium",   meting: "verbonden", form: "verbonden", laatst: "26 min geleden" },
+    { id: "tandarts-noord",    naam: "Tandartspraktijk Noord",  domein: "tandartsnoord.nl",     basis:  88, groei:  0.04, conv: 1.4, hosting: "Hostinger · WordPress", meting: "wacht",     form: "wacht",     laatst: "nog geen data" }
+  ];
+
+  var VANDAAG = new Date(2026, 7, 13); // 13 augustus 2026
+
+  // Kleine deterministische ruisgenerator, zodat elke herlaadbeurt
+  // dezelfde cijfers laat zien.
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      var t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function hash(str) {
+    var h = 2166136261;
+    for (var i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return h >>> 0;
+  }
+
+  // 90 dagen verkeer per site: basisniveau + trend + weekritme + ruis
+  function serieVoorSite(site) {
+    var rnd = mulberry32(hash(site.id));
+    var out = [];
+    for (var i = 0; i < 90; i++) {
+      var d = new Date(VANDAAG);
+      d.setDate(d.getDate() - (89 - i));
+      var dag = d.getDay();
+      var week = (dag === 0 || dag === 6) ? 0.62 : (dag === 1 || dag === 2 ? 1.12 : 1.0);
+      var trend = 1 + site.groei * (i / 90);
+      var ruis = 0.82 + rnd() * 0.36;
+      out.push({ datum: d, waarde: Math.max(3, Math.round(site.basis * week * trend * ruis / 3)) });
+    }
+    return out;
+  }
+
+  SITES.forEach(function (s) { s.serie = serieVoorSite(s); });
+
+  var LEADS = [
+    { naam: "Marieke de Wit",   bedrijf: "Praktijk De Wit",       site: "degroot-hoveniers", bron: "Google",     status: "nieuw",    waarde: 1450, dagen: 0, tel: "06 24 88 91 02", mail: "m.dewit@praktijkdewit.nl",
+      notitie: "Wil complete tuinaanleg voor nieuwbouw. Budget genoemd: rond de 8k.",
+      tijdlijn: [["Formulier ingevuld via degroothoveniers.nl", "vandaag 09:14"], ["Automatische bevestigingsmail verstuurd", "vandaag 09:14"]] },
+    { naam: "Jeroen Bakker",    bedrijf: "Bakker Installaties",   site: "peters-loodgieter", bron: "Direct",     status: "gesprek",  waarde: 2900, dagen: 1, tel: "06 41 22 76 30", mail: "jeroen@bakkerinstallaties.nl",
+      notitie: "Belde na het formulier. Wil offerte voor cv-vervanging in 12 woningen.",
+      tijdlijn: [["Formulier ingevuld", "12 aug 16:40"], ["Teruggebeld — 14 minuten", "12 aug 17:05"], ["Offerte ingepland voor deze week", "13 aug 08:30"]] },
+    { naam: "Fatima El Amrani", bedrijf: "Studio Fatima",         site: "salon-mireille",    bron: "Instagram",  status: "offerte",  waarde: 1450, dagen: 3, tel: "06 18 90 55 44", mail: "hallo@studiofatima.nl",
+      notitie: "Wil een eigen website met online agenda. Offerte Professional verstuurd.",
+      tijdlijn: [["Formulier ingevuld", "10 aug 11:02"], ["Kennismaking gepland", "10 aug 15:20"], ["Offerte €1.450 verstuurd", "11 aug 09:45"]] },
+    { naam: "Rob Kramer",       bedrijf: "Kramer Transport",      site: "auto-kramer",       bron: "Google",     status: "klant",    waarde: 2900, dagen: 6, tel: "06 33 71 20 18", mail: "rob@kramertransport.nl",
+      notitie: "Getekend voor maatwerk met wagenparkmodule. Oplevering eind september.",
+      tijdlijn: [["Formulier ingevuld", "7 aug 13:55"], ["Adviesgesprek gevoerd", "8 aug 10:00"], ["Opdracht bevestigd", "11 aug 16:12"]] },
+    { naam: "Sanne Vermeulen",  bedrijf: "Vermeulen Coaching",    site: "bakkerij-vandijk",  bron: "Verwijzing", status: "nieuw",    waarde: 695,  dagen: 0, tel: "06 50 14 62 77", mail: "sanne@vermeulencoaching.nl",
+      notitie: "Doorverwezen door Bakkerij Van Dijk. Wil een eenvoudige one-pager.",
+      tijdlijn: [["Formulier ingevuld via bakkerijvandijk.nl", "vandaag 08:02"]] },
+    { naam: "Peter Hoekstra",   bedrijf: "Hoekstra Dakwerken",    site: "peters-loodgieter", bron: "Google",     status: "verloren", waarde: 695,  dagen: 18, tel: "06 27 40 11 95", mail: "info@hoekstradakwerken.nl",
+      notitie: "Koos voor een goedkopere partij. Over 6 maanden opnieuw benaderen.",
+      tijdlijn: [["Formulier ingevuld", "26 jul 10:20"], ["Offerte verstuurd", "27 jul 14:00"], ["Afgewezen — prijs", "29 jul 09:10"]] },
+    { naam: "Ilse Brouwer",     bedrijf: "Brouwer Fysio",         site: "tandarts-noord",    bron: "Google",     status: "gesprek",  waarde: 1450, dagen: 2, tel: "06 12 66 39 81", mail: "i.brouwer@brouwerfysio.nl",
+      notitie: "Huidige site is 9 jaar oud en niet mobielvriendelijk. Warme lead.",
+      tijdlijn: [["Formulier ingevuld", "11 aug 19:31"], ["Teruggemaild met beschikbaarheid", "12 aug 08:15"]] },
+    { naam: "Daan Visser",      bedrijf: "Visser Klussenbedrijf", site: "degroot-hoveniers", bron: "Direct",     status: "offerte",  waarde: 695,  dagen: 4, tel: "06 45 83 27 60", mail: "daan@visserklussen.nl",
+      notitie: "Wil starterspakket, twijfelt nog over de fotografie erbij.",
+      tijdlijn: [["Formulier ingevuld", "9 aug 20:44"], ["Offerte Starter verstuurd", "10 aug 11:30"]] }
+  ];
+
+  var BERICHTEN = [
+    { id: 1, van: "Marieke de Wit", mail: "m.dewit@praktijkdewit.nl", tel: "06 24 88 91 02", site: "degroot-hoveniers",
+      onderwerp: "Tuinaanleg nieuwbouwwoning", tijd: "09:14", dag: "Vandaag", ongelezen: true,
+      tekst: "Goedemorgen,\n\nWij hebben een nieuwbouwwoning opgeleverd gekregen en de tuin is nog helemaal zand. Ik zag jullie werk op de site en dat spreekt me erg aan.\n\nZouden jullie langs kunnen komen voor een plan en een prijsindicatie? Het gaat om ongeveer 180 m². We denken aan een terras, wat borders en een klein gazon.\n\nMet vriendelijke groet,\nMarieke de Wit" },
+    { id: 2, van: "Sanne Vermeulen", mail: "sanne@vermeulencoaching.nl", tel: "06 50 14 62 77", site: "bakkerij-vandijk",
+      onderwerp: "Website voor mijn coachpraktijk", tijd: "08:02", dag: "Vandaag", ongelezen: true,
+      tekst: "Hoi,\n\nIk kreeg jullie naam door van Bakkerij Van Dijk, die is erg tevreden over de site die jullie gemaakt hebben.\n\nIk begin volgende maand voor mezelf als loopbaancoach en heb iets simpels nodig: wie ik ben, wat ik doe, en een manier om contact op te nemen. Wat kost dat ongeveer?\n\nGroet, Sanne" },
+    { id: 3, van: "Ilse Brouwer", mail: "i.brouwer@brouwerfysio.nl", tel: "06 12 66 39 81", site: "tandarts-noord",
+      onderwerp: "Onze site is echt verouderd", tijd: "19:31", dag: "Gisteren", ongelezen: true,
+      tekst: "Beste,\n\nOnze website is negen jaar geleden gemaakt en op de telefoon is er praktisch niks van te lezen. Patiënten bellen ons omdat ze de openingstijden niet kunnen vinden.\n\nIk wil er dit najaar iets aan doen. Kunnen we een keer bellen om te horen wat er nodig is?\n\nVriendelijke groet,\nIlse Brouwer" },
+    { id: 4, van: "Jeroen Bakker", mail: "jeroen@bakkerinstallaties.nl", tel: "06 41 22 76 30", site: "peters-loodgieter",
+      onderwerp: "Offerte cv-vervanging 12 woningen", tijd: "16:40", dag: "Gisteren", ongelezen: false,
+      tekst: "Hallo,\n\nNaar aanleiding van ons telefoongesprek: het gaat om twaalf woningen in hetzelfde complex, allemaal dezelfde ketel uit 2009.\n\nKunnen jullie een offerte maken voor vervanging inclusief inregelen? Planning zou najaar zijn.\n\nGroet, Jeroen" },
+    { id: 5, van: "Daan Visser", mail: "daan@visserklussen.nl", tel: "06 45 83 27 60", site: "degroot-hoveniers",
+      onderwerp: "Vraag over het starterspakket", tijd: "20:44", dag: "9 augustus", ongelezen: false,
+      tekst: "Goedenavond,\n\nIk twijfel tussen het Starter- en het Professional-pakket. Zit fotografie bij Starter inbegrepen of moet ik dat zelf regelen?\n\nAlvast bedankt,\nDaan Visser" },
+    { id: 6, van: "Fatima El Amrani", mail: "hallo@studiofatima.nl", tel: "06 18 90 55 44", site: "salon-mireille",
+      onderwerp: "Online agenda mogelijk?", tijd: "11:02", dag: "8 augustus", ongelezen: false,
+      tekst: "Hoi!\n\nIk zag de site van Salon Mireille en die is precies wat ik zoek. Ik heb alleen ook een online agenda nodig waar klanten zelf kunnen boeken.\n\nIs dat iets wat jullie kunnen bouwen? En zit dat in het Professional-pakket?\n\nGroetjes, Fatima" }
+  ];
+
+  var VERBETERINGEN = [
+    { sev: "kritiek", site: "salon-mireille", titel: "Het contactformulier komt niet aan op mobiel",
+      waarom: "23 bezoekers begonnen het formulier in te vullen, 3 inzendingen kwamen binnen. Op schermen smaller dan 400px valt de verzendknop buiten beeld.",
+      fix: "Knop full-width maken en de onderrand van het formulier controleren. Kost circa 20 minuten — dit lekt nu direct omzet voor de klant.",
+      actie: "Nu oplossen" },
+    { sev: "hoog", site: "auto-kramer", titel: "De occasionpagina laadt in 4,2 seconden",
+      waarom: "41% van de bezoekers haakt af vóór de pagina geladen is. De oorzaak: 18 foto's van gemiddeld 2,4 MB die op ware grootte worden ingeladen.",
+      fix: "Foto's comprimeren naar WebP en lazy loading aanzetten. Verwachte laadtijd daarna onder de 1,5s.",
+      actie: "Voorstel sturen" },
+    { sev: "hoog", site: "peters-loodgieter", titel: "24 dagen geen enkele lead, terwijl het verkeer stijgt",
+      waarom: "Bezoekers +12% deze maand, maar nul formulieren. Het telefoonnummer staat alleen in de footer en er is geen zichtbare knop op de spoedpagina.",
+      fix: "Vaste belknop onderaan het scherm op mobiel. Bij spoedklussen belt men liever dan dat men typt.",
+      actie: "Voorstel sturen" },
+    { sev: "middel", site: "tandarts-noord", titel: "'Afspraak maken' wordt gezien maar nooit aangeklikt",
+      waarom: "De knop is 210 keer in beeld geweest en 0 keer aangeklikt. Hij staat onder de vouw, in dezelfde kleur als de gewone tekst.",
+      fix: "Knop in de accentkleur en boven de vouw plaatsen, direct naast de openingstijden.",
+      actie: "Voorstel sturen" },
+    { sev: "middel", site: "bakkerij-vandijk", titel: "68% komt via mobiel, openingstijden staan onderaan",
+      waarom: "De meest gezochte informatie op deze site is 'zondag open?'. Mobiele bezoekers moeten daarvoor vier schermen scrollen.",
+      fix: "Openingstijden als eerste blok onder de hero op mobiel tonen.",
+      actie: "Voorstel sturen" },
+    { sev: "laag", site: "degroot-hoveniers", titel: "Vier pagina's missen een omschrijving voor Google",
+      waarom: "Zonder meta-omschrijving kiest Google zelf een willekeurige zin uit de pagina. Dat kost doorklikken vanuit de zoekresultaten.",
+      fix: "Vier korte omschrijvingen schrijven van maximaal 155 tekens. Half uur werk.",
+      actie: "Inplannen" }
+  ];
+
+  var PAGINAS = [
+    ["/", "Homepage", 4820], ["/diensten", "Diensten", 2140], ["/contact", "Contact", 1655],
+    ["/over-ons", "Over ons", 1180], ["/projecten", "Projecten", 940], ["/tarieven", "Tarieven", 610]
+  ];
+  var BRONNEN = [
+    ["Google — organisch", 5940], ["Direct ingetypt", 2810], ["Google Maps", 1520],
+    ["Instagram", 780], ["Facebook", 410], ["Overige sites", 285]
+  ];
+  var APPARATEN = [["Mobiel", 7960], ["Desktop", 3120], ["Tablet", 665]];
+
+  /* =========================================================
+     HULPFUNCTIES
+     ========================================================= */
+
+  var nf = new Intl.NumberFormat("nl-NL");
+  var nf1 = new Intl.NumberFormat("nl-NL", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  var MAANDEN = ["jan", "feb", "mrt", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec"];
+  var DAGEN = ["zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"];
+
+  function $(sel, root) { return (root || document).querySelector(sel); }
+  function el(tag, cls, html) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (html != null) n.innerHTML = html;
+    return n;
+  }
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+  function datumKort(d) { return d.getDate() + " " + MAANDEN[d.getMonth()]; }
+  function siteById(id) {
+    for (var i = 0; i < SITES.length; i++) if (SITES[i].id === id) return SITES[i];
+    return null;
+  }
+
+  /* =========================================================
+     STAAT
+     ========================================================= */
+
+  var state = {
+    view: "overzicht",
+    site: "alle",
+    dagen: 30,
+    leadFilter: "alle",
+    bericht: BERICHTEN[0].id
+  };
+
+  function actieveSites() {
+    return state.site === "alle" ? SITES : [siteById(state.site)];
+  }
+
+  // Opgeteld verkeer voor de huidige selectie, laatste N dagen
+  function huidigeSerie() {
+    var sites = actieveSites();
+    var n = state.dagen;
+    var out = [];
+    for (var i = 90 - n; i < 90; i++) {
+      var som = 0;
+      for (var s = 0; s < sites.length; s++) som += sites[s].serie[i].waarde;
+      out.push({ datum: sites[0].serie[i].datum, waarde: som });
+    }
+    return out;
+  }
+
+  function somVan(serie) {
+    return serie.reduce(function (a, p) { return a + p.waarde; }, 0);
+  }
+
+  // Verandering t.o.v. de direct voorafgaande periode van gelijke lengte
+  function verandering() {
+    var sites = actieveSites();
+    var n = state.dagen;
+    function totaal(van, tot) {
+      var som = 0;
+      for (var s = 0; s < sites.length; s++)
+        for (var i = van; i < tot; i++) som += sites[s].serie[i].waarde;
+      return som;
+    }
+    var nu = totaal(90 - n, 90);
+    var ervoor = totaal(Math.max(0, 90 - 2 * n), 90 - n);
+    if (!ervoor) return 0;
+    return ((nu - ervoor) / ervoor) * 100;
+  }
+
+  /* =========================================================
+     GRAFIEK — vlakdiagram met kruisdraad
+     ========================================================= */
+
+  function tekenGrafiek(container, serie, hoogte) {
+    var w = container.clientWidth || 720;
+    var h = hoogte || 220;
+    var padL = 44, padR = 10, padT = 14, padB = 26;
+    var iw = Math.max(10, w - padL - padR);
+    var ih = h - padT - padB;
+
+    var max = Math.max.apply(null, serie.map(function (p) { return p.waarde; }));
+    var stap = Math.pow(10, Math.floor(Math.log10(max || 1)));
+    var top = Math.ceil((max * 1.12) / (stap / 2)) * (stap / 2) || 10;
+
+    function x(i) { return padL + (serie.length === 1 ? iw / 2 : (i / (serie.length - 1)) * iw); }
+    function y(v) { return padT + ih - (v / top) * ih; }
+
+    var lijn = serie.map(function (p, i) { return (i ? "L" : "M") + x(i).toFixed(1) + " " + y(p.waarde).toFixed(1); }).join(" ");
+    var vlak = lijn + " L" + x(serie.length - 1).toFixed(1) + " " + (padT + ih) + " L" + x(0).toFixed(1) + " " + (padT + ih) + " Z";
+
+    var ticks = [0, 0.5, 1].map(function (f) { return Math.round(top * f); });
+    var gridHtml = ticks.map(function (t) {
+      return '<line x1="' + padL + '" x2="' + (w - padR) + '" y1="' + y(t).toFixed(1) + '" y2="' + y(t).toFixed(1) +
+        '" stroke="var(--hairline)" stroke-width="1"/>' +
+        '<text x="' + (padL - 10) + '" y="' + (y(t) + 4).toFixed(1) + '" text-anchor="end" font-size="10.5" ' +
+        'fill="var(--text-mute)" font-variant-numeric="tabular-nums">' + nf.format(t) + "</text>";
+    }).join("");
+
+    // Datumlabels: begin, midden, eind
+    var idxs = [0, Math.floor((serie.length - 1) / 2), serie.length - 1];
+    var xlab = idxs.map(function (i) {
+      var anchor = i === 0 ? "start" : (i === serie.length - 1 ? "end" : "middle");
+      return '<text x="' + x(i).toFixed(1) + '" y="' + (h - 6) + '" text-anchor="' + anchor +
+        '" font-size="10.5" fill="var(--text-mute)">' + datumKort(serie[i].datum) + "</text>";
+    }).join("");
+
+    var laatste = serie.length - 1;
+    var uid = "g" + Math.random().toString(36).slice(2, 8);
+
+    container.innerHTML =
+      '<svg viewBox="0 0 ' + w + " " + h + '" width="' + w + '" height="' + h + '" role="img" ' +
+        'aria-label="Bezoekers per dag, ' + serie.length + ' dagen">' +
+        '<defs><linearGradient id="' + uid + '" x1="0" y1="0" x2="0" y2="1">' +
+          '<stop offset="0%" stop-color="var(--accent)" stop-opacity="0.34"/>' +
+          '<stop offset="100%" stop-color="var(--accent)" stop-opacity="0.02"/>' +
+        "</linearGradient></defs>" +
+        gridHtml + xlab +
+        '<path d="' + vlak + '" fill="url(#' + uid + ')"/>' +
+        '<path d="' + lijn + '" fill="none" stroke="var(--accent)" stroke-width="2" ' +
+          'stroke-linejoin="round" stroke-linecap="round"/>' +
+        '<line class="cross" x1="0" x2="0" y1="' + padT + '" y2="' + (padT + ih) + '" ' +
+          'stroke="var(--hairline-strong)" stroke-width="1" opacity="0"/>' +
+        '<circle class="cursor" r="4.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2" opacity="0"/>' +
+        '<circle cx="' + x(laatste).toFixed(1) + '" cy="' + y(serie[laatste].waarde).toFixed(1) + '" r="4" ' +
+          'fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/>' +
+        '<rect class="hit" x="' + padL + '" y="' + padT + '" width="' + iw + '" height="' + ih + '" fill="transparent"/>' +
+      "</svg>" +
+      '<div class="chart-tip"></div>';
+
+    var svg = $("svg", container);
+    var cross = $(".cross", svg);
+    var cursor = $(".cursor", svg);
+    var tip = $(".chart-tip", container);
+
+    function beweeg(ev) {
+      var r = svg.getBoundingClientRect();
+      var px = ((ev.clientX - r.left) / r.width) * w;
+      var i = Math.round(((px - padL) / iw) * (serie.length - 1));
+      i = Math.max(0, Math.min(serie.length - 1, i));
+      var p = serie[i];
+      cross.setAttribute("x1", x(i)); cross.setAttribute("x2", x(i)); cross.setAttribute("opacity", "1");
+      cursor.setAttribute("cx", x(i)); cursor.setAttribute("cy", y(p.waarde)); cursor.setAttribute("opacity", "1");
+      tip.innerHTML = "<b>" + nf.format(p.waarde) + "</b> bezoekers<br>" +
+        '<span class="tip-day">' + DAGEN[p.datum.getDay()] + " " + p.datum.getDate() + " " + MAANDEN[p.datum.getMonth()] + "</span>";
+      tip.style.left = ((x(i) / w) * 100) + "%";
+      tip.style.top = ((y(p.waarde) / h) * 100) + "%";
+      tip.style.opacity = "1";
+    }
+    function verlaat() {
+      cross.setAttribute("opacity", "0");
+      cursor.setAttribute("opacity", "0");
+      tip.style.opacity = "0";
+    }
+    svg.addEventListener("mousemove", beweeg);
+    svg.addEventListener("mouseleave", verlaat);
+  }
+
+  function sparkline(serie, kleur) {
+    var w = 76, h = 26, pad = 3;
+    var vals = serie.map(function (p) { return p.waarde; });
+    var min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
+    var span = (max - min) || 1;
+    var d = vals.map(function (v, i) {
+      var x = pad + (i / (vals.length - 1)) * (w - pad * 2);
+      var y = pad + (1 - (v - min) / span) * (h - pad * 2);
+      return (i ? "L" : "M") + x.toFixed(1) + " " + y.toFixed(1);
+    }).join(" ");
+    return '<svg class="spark" width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + " " + h + '" aria-hidden="true">' +
+      '<path d="' + d + '" fill="none" stroke="' + (kleur || "var(--accent)") + '" stroke-width="1.6" ' +
+      'stroke-linejoin="round" stroke-linecap="round" opacity="0.85"/></svg>';
+  }
+
+  function deltaHtml(pct) {
+    var klasse = Math.abs(pct) < 0.5 ? "flat" : (pct > 0 ? "up" : "down");
+    var pijl = klasse === "flat"
+      ? '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6h8"/></svg>'
+      : (klasse === "up"
+        ? '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 10V2M2.5 5.5 6 2l3.5 3.5"/></svg>'
+        : '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2v8M2.5 6.5 6 10l3.5-3.5"/></svg>');
+    return '<span class="delta ' + klasse + '">' + pijl + (pct > 0 ? "+" : "") + nf1.format(pct) + "%</span>";
+  }
+
+  /* =========================================================
+     WEERGAVEN OPBOUWEN
+     ========================================================= */
+
+  function kpiTegels(doel) {
+    var serie = huidigeSerie();
+    var bezoekers = somVan(serie);
+    var pct = verandering();
+    var sites = actieveSites();
+
+    var berichten = sites.reduce(function (a, s) {
+      return a + Math.round((somVan(s.serie.slice(90 - state.dagen)) * s.conv) / 100);
+    }, 0);
+    var leads = Math.max(1, Math.round(berichten * 0.62));
+    var conversie = bezoekers ? (berichten / bezoekers) * 100 : 0;
+
+    var tegels = [
+      { label: "Bezoekers", waarde: nf.format(bezoekers), delta: pct, spark: serie.slice(-14) },
+      { label: "Berichten", waarde: nf.format(berichten), delta: pct * 0.7, spark: serie.slice(-14), suffix: "formulieren" },
+      { label: "Leads", waarde: nf.format(leads), delta: pct * 0.55, spark: serie.slice(-14), suffix: "opgepakt" },
+      { label: "Conversie", waarde: nf1.format(conversie) + "%", delta: pct * 0.2, spark: serie.slice(-14), suffix: "bezoeker → bericht", kort: true }
+    ];
+
+    doel.innerHTML = tegels.map(function (t) {
+      var onder = t.kort ? t.suffix
+        : (t.suffix ? t.suffix + " · " : "") + "t.o.v. vorige " + state.dagen + " dagen";
+      return '<div class="card kpi">' +
+        '<div class="label">' + t.label + "</div>" +
+        '<div class="value">' + t.waarde + "</div>" +
+        '<div class="kpi-foot">' + sparkline(t.spark) + deltaHtml(t.delta) + "</div>" +
+        '<div class="since">' + onder + "</div>" +
+      "</div>";
+    }).join("");
+  }
+
+  function sitesTabel() {
+    var body = $("#sitesTable");
+    body.innerHTML = SITES.map(function (s) {
+      var serie = s.serie.slice(90 - state.dagen);
+      var bez = somVan(serie);
+      var ber = Math.round((bez * s.conv) / 100);
+      var conv = bez ? (ber / bez) * 100 : 0;
+      return '<tr class="clickable" data-site="' + s.id + '">' +
+        "<td>" + '<div class="cell-strong">' + esc(s.naam) + "</div>" +
+          '<div class="cell-sub">' + esc(s.domein) + "</div></td>" +
+        '<td class="right num">' + nf.format(bez) + "</td>" +
+        '<td class="right num">' + nf.format(ber) + "</td>" +
+        '<td class="right num">' + nf1.format(conv) + "%</td>" +
+        '<td class="right">' + sparkline(serie.slice(-14)) + "</td>" +
+      "</tr>";
+    }).join("");
+
+    Array.prototype.forEach.call(body.querySelectorAll("tr"), function (tr) {
+      tr.addEventListener("click", function () {
+        state.site = tr.getAttribute("data-site");
+        $("#siteFilter").value = state.site;
+        ganaar("bezoekers");
+        render();
+      });
+    });
+  }
+
+  function activiteit() {
+    var items = [
+      { ic: "mail", tekst: "<span class='who'>Marieke de Wit</span> vulde het formulier in op degroothoveniers.nl", tijd: "9 min" },
+      { ic: "flag", tekst: "Signaal: <span class='who'>formulier faalt op mobiel</span> bij Salon Mireille", tijd: "1 uur" },
+      { ic: "mail", tekst: "<span class='who'>Sanne Vermeulen</span> vroeg een prijsindicatie via bakkerijvandijk.nl", tijd: "2 uur" },
+      { ic: "up", tekst: "Hoveniers De Groot: <span class='who'>beste dag ooit</span> met 96 bezoekers", tijd: "5 uur" },
+      { ic: "user", tekst: "<span class='who'>Rob Kramer</span> ging van offerte naar klant — €2.900", tijd: "gisteren" },
+      { ic: "mail", tekst: "<span class='who'>Ilse Brouwer</span> stuurde een bericht via tandartsnoord.nl", tijd: "gisteren" }
+    ];
+    var icons = {
+      mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',
+      flag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M12 4h8l-2 4 2 4h-8"/></svg>',
+      up: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>',
+      user: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg>'
+    };
+    $("#activityFeed").innerHTML = items.map(function (i) {
+      return '<div class="feed-item"><div class="feed-ic">' + icons[i.ic] + "</div>" +
+        '<div class="feed-body">' + i.tekst + "</div>" +
+        '<div class="feed-time">' + i.tijd + "</div></div>";
+    }).join("");
+  }
+
+  function verbeteringKaart(v) {
+    var s = siteById(v.site);
+    var icons = {
+      kritiek: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></svg>',
+      hoog: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg>',
+      middel: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>',
+      laag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg>'
+    };
+    return '<article class="imp" data-sev="' + v.sev + '">' +
+      '<div class="imp-ic">' + icons[v.sev] + "</div>" +
+      '<div class="imp-body">' +
+        '<div class="imp-top">' +
+          '<span class="sev-tag">' + v.sev + "</span>" +
+          '<span class="site-badge"><span class="site-dot"></span>' + esc(s.naam) + "</span>" +
+        "</div>" +
+        "<h3>" + esc(v.titel) + "</h3>" +
+        "<p>" + esc(v.waarom) + "</p>" +
+        '<div class="fix">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>' +
+          "<div><b>Aanpak:</b> " + esc(v.fix) + "</div>" +
+        "</div>" +
+      "</div>" +
+      '<div class="imp-act"><button type="button" class="btn btn-ghost btn-sm">' + esc(v.actie) + "</button></div>" +
+    "</article>";
+  }
+
+  function verbeteringen() {
+    $("#improvements").innerHTML = VERBETERINGEN.map(verbeteringKaart).join("");
+    $("#topImprovements").innerHTML = VERBETERINGEN.slice(0, 3).map(verbeteringKaart).join("");
+  }
+
+  function rangLijst(doel, rijen, formatter) {
+    var max = Math.max.apply(null, rijen.map(function (r) { return r[r.length - 1]; }));
+    $(doel).innerHTML = rijen.map(function (r) {
+      var label = r.length === 3 ? r[1] : r[0];
+      var sub = r.length === 3 ? r[0] : null;
+      var val = r[r.length - 1];
+      return '<div class="rank">' +
+        '<div class="rank-label">' + esc(label) + (sub ? ' <span class="cell-sub">' + esc(sub) + "</span>" : "") + "</div>" +
+        '<div class="rank-val">' + (formatter ? formatter(val, max) : nf.format(val)) + "</div>" +
+        '<div class="bar"><i style="width:' + ((val / max) * 100).toFixed(1) + '%"></i></div>' +
+      "</div>";
+    }).join("");
+  }
+
+  function leadsTabel() {
+    var rijen = LEADS.filter(function (l) {
+      return (state.leadFilter === "alle" || l.status === state.leadFilter) &&
+             (state.site === "alle" || l.site === state.site);
+    });
+    var labels = { nieuw: "Nieuw", gesprek: "In gesprek", offerte: "Offerte uit", klant: "Klant", verloren: "Verloren" };
+    var body = $("#leadsTable");
+
+    if (!rijen.length) {
+      body.innerHTML = '<tr><td colspan="6" style="color:var(--text-mute); padding:2rem 0.7rem; text-align:center">' +
+        "Geen leads in deze selectie.</td></tr>";
+      return;
+    }
+
+    body.innerHTML = rijen.map(function (l, i) {
+      var s = siteById(l.site);
+      return '<tr class="clickable" data-lead="' + LEADS.indexOf(l) + '">' +
+        "<td><div class='cell-strong'>" + esc(l.naam) + "</div><div class='cell-sub'>" + esc(l.bedrijf) + "</div></td>" +
+        '<td><span class="site-badge"><span class="site-dot"></span>' + esc(s.naam) + "</span></td>" +
+        "<td>" + esc(l.bron) + "</td>" +
+        '<td><span class="pill" data-status="' + l.status + '">' + labels[l.status] + "</span></td>" +
+        '<td class="right num">€' + nf.format(l.waarde) + "</td>" +
+        '<td class="right cell-sub">' + (l.dagen === 0 ? "vandaag" : l.dagen + " dagen") + "</td>" +
+      "</tr>";
+    }).join("");
+
+    Array.prototype.forEach.call(body.querySelectorAll("tr[data-lead]"), function (tr) {
+      tr.addEventListener("click", function () { openLade(LEADS[+tr.getAttribute("data-lead")]); });
+    });
+  }
+
+  function openLade(l) {
+    var s = siteById(l.site);
+    var labels = { nieuw: "Nieuw", gesprek: "In gesprek", offerte: "Offerte uit", klant: "Klant", verloren: "Verloren" };
+    var d = $("#drawer");
+    d.innerHTML =
+      '<div class="drawer-head">' +
+        "<div>" +
+          '<span class="pill" data-status="' + l.status + '">' + labels[l.status] + "</span>" +
+          "<h3 style='margin-top:0.5rem'>" + esc(l.naam) + "</h3>" +
+          '<div class="cell-sub">' + esc(l.bedrijf) + "</div>" +
+        "</div>" +
+        '<button type="button" class="icon-btn" id="drawerClose" aria-label="Sluiten" style="margin-left:auto">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>' +
+        "</button>" +
+      "</div>" +
+      '<dl class="read-meta">' +
+        '<div class="meta-row"><dt>E-mail</dt><dd><a href="mailto:' + esc(l.mail) + '" style="color:var(--accent)">' + esc(l.mail) + "</a></dd></div>" +
+        '<div class="meta-row"><dt>Telefoon</dt><dd class="num">' + esc(l.tel) + "</dd></div>" +
+        '<div class="meta-row"><dt>Via site</dt><dd>' + esc(s.naam) + "</dd></div>" +
+        '<div class="meta-row"><dt>Bron</dt><dd>' + esc(l.bron) + "</dd></div>" +
+        '<div class="meta-row"><dt>Waarde</dt><dd class="num">€' + nf.format(l.waarde) + "</dd></div>" +
+      "</dl>" +
+      '<div class="read-body">' + esc(l.notitie) + "</div>" +
+      '<h4 style="font-family:var(--font-body); font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-mute); margin:1.5rem 0 0">Verloop</h4>' +
+      '<div class="timeline">' + l.tijdlijn.map(function (t) {
+        return '<div class="tl"><div class="tl-dot"></div><div class="tl-body">' + esc(t[0]) +
+          "<time>" + esc(t[1]) + "</time></div></div>";
+      }).join("") + "</div>" +
+      '<div class="read-actions">' +
+        '<button type="button" class="btn btn-primary">Status bijwerken</button>' +
+        '<button type="button" class="btn btn-ghost">Notitie toevoegen</button>' +
+      "</div>";
+
+    d.setAttribute("data-open", "true");
+    d.setAttribute("aria-hidden", "false");
+    $("#drawerScrim").setAttribute("data-open", "true");
+    $("#drawerClose").addEventListener("click", sluitLade);
+    $("#drawerClose").focus();
+  }
+
+  function sluitLade() {
+    $("#drawer").setAttribute("data-open", "false");
+    $("#drawer").setAttribute("aria-hidden", "true");
+    $("#drawerScrim").setAttribute("data-open", "false");
+  }
+
+  function inbox() {
+    var lijst = BERICHTEN.filter(function (b) { return state.site === "alle" || b.site === state.site; });
+    var lijstEl = $("#inboxList");
+
+    if (!lijst.length) {
+      lijstEl.innerHTML = '<div style="padding:2rem 1rem; color:var(--text-mute); font-size:0.85rem">Geen berichten voor deze site.</div>';
+      $("#inboxRead").innerHTML = "";
+      return;
+    }
+    if (!lijst.some(function (b) { return b.id === state.bericht; })) state.bericht = lijst[0].id;
+
+    lijstEl.innerHTML = lijst.map(function (b) {
+      var s = siteById(b.site);
+      return '<button type="button" class="msg" role="option" data-msg="' + b.id + '" aria-selected="' + (b.id === state.bericht) + '">' +
+        '<div class="msg-top">' +
+          (b.ongelezen ? '<span class="msg-unread" aria-label="ongelezen"></span>' : "") +
+          '<span class="msg-from">' + esc(b.van) + "</span>" +
+          '<span class="msg-time">' + esc(b.dag) + " " + esc(b.tijd) + "</span>" +
+        "</div>" +
+        '<div class="site-badge"><span class="site-dot"></span>' + esc(s.domein) + "</div>" +
+        '<div class="msg-prev">' + esc(b.onderwerp) + " — " + esc(b.tekst.replace(/\n/g, " ").slice(0, 90)) + "…</div>" +
+      "</button>";
+    }).join("");
+
+    Array.prototype.forEach.call(lijstEl.querySelectorAll(".msg"), function (btn) {
+      btn.addEventListener("click", function () {
+        state.bericht = +btn.getAttribute("data-msg");
+        inbox();
+      });
+    });
+
+    var b = null;
+    for (var i = 0; i < lijst.length; i++) if (lijst[i].id === state.bericht) b = lijst[i];
+    var s = siteById(b.site);
+
+    $("#inboxRead").innerHTML =
+      '<div class="read-head">' +
+        "<div><h3>" + esc(b.onderwerp) + "</h3>" +
+        '<div class="cell-sub">Ontvangen ' + esc(b.dag.toLowerCase()) + " om " + esc(b.tijd) +
+        " via " + esc(s.domein) + "</div></div>" +
+        '<span class="pill" data-status="nieuw" style="margin-left:auto">Formulier</span>' +
+      "</div>" +
+      '<dl class="read-meta">' +
+        '<div class="meta-row"><dt>Naam</dt><dd>' + esc(b.van) + "</dd></div>" +
+        '<div class="meta-row"><dt>E-mail</dt><dd><a href="mailto:' + esc(b.mail) + '" style="color:var(--accent)">' + esc(b.mail) + "</a></dd></div>" +
+        '<div class="meta-row"><dt>Telefoon</dt><dd class="num">' + esc(b.tel) + "</dd></div>" +
+        '<div class="meta-row"><dt>Website</dt><dd>' + esc(s.naam) + "</dd></div>" +
+      "</dl>" +
+      '<div class="read-body">' + esc(b.tekst) + "</div>" +
+      '<div class="read-actions">' +
+        '<button type="button" class="btn btn-primary">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H5V7l7 5 7-5v5"/><path d="M15 18h6M18 15v6"/></svg>' +
+          "Beantwoorden</button>" +
+        '<button type="button" class="btn btn-ghost">Markeren als lead</button>' +
+        '<button type="button" class="btn btn-ghost">Doorsturen naar klant</button>' +
+      "</div>";
+  }
+
+  function koppelTabel() {
+    var labels = { verbonden: "Verbonden", wacht: "Wacht op data", offline: "Actie nodig" };
+    $("#connTable").innerHTML = SITES.map(function (s) {
+      return "<tr>" +
+        "<td><div class='cell-strong'>" + esc(s.naam) + "</div><div class='cell-sub'>" + esc(s.domein) + "</div></td>" +
+        "<td class='cell-sub'>" + esc(s.hosting) + "</td>" +
+        '<td><span class="pill" data-status="' + s.meting + '">' + labels[s.meting] + "</span></td>" +
+        '<td><span class="pill" data-status="' + s.form + '">' + labels[s.form] + "</span></td>" +
+        '<td class="right cell-sub">' + esc(s.laatst) + "</td>" +
+      "</tr>";
+    }).join("");
+  }
+
+  /* =========================================================
+     NAVIGATIE + RENDER
+     ========================================================= */
+
+  var TITELS = {
+    overzicht: ["Dashboard", "Hoe je klantsites er nu voor staan"],
+    bezoekers: ["Bezoekers", "Verkeer, pagina's en herkomst"],
+    leads: ["Leads", "Kansen die uit de formulieren komen"],
+    berichten: ["Berichten", "Alles wat via de contactformulieren binnenkomt"],
+    verbeteringen: ["Verbeteringen", "Signalen uit de cijfers van je klanten"],
+    koppelen: ["Koppelen", "Sites aansluiten op Kompas"]
+  };
+
+  function ganaar(view) {
+    state.view = view;
+    Array.prototype.forEach.call(document.querySelectorAll(".view"), function (v) {
+      v.setAttribute("data-active", v.getAttribute("data-view") === view ? "true" : "false");
+    });
+    Array.prototype.forEach.call(document.querySelectorAll(".rail-nav button"), function (b) {
+      b.setAttribute("aria-current", b.getAttribute("data-view") === view ? "true" : "false");
+    });
+    var t = TITELS[view];
+    $("#viewTitle").textContent = t[0];
+    $("#rail").setAttribute("data-open", "false");
+    window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+  }
+
+  function subtitel() {
+    var naam = state.site === "alle" ? "Alle sites" : siteById(state.site).naam;
+    $("#viewSub").textContent = naam + " · laatste " + state.dagen + " dagen";
+  }
+
+  function render() {
+    var serie = huidigeSerie();
+
+    kpiTegels($("#kpiRow"));
+    kpiTegels($("#kpiRowVisitors"));
+    tekenGrafiek($("#mainChart"), serie, 230);
+    tekenGrafiek($("#visitorChart"), serie, 280);
+
+    var hint = nf.format(somVan(serie)) + " bezoekers in " + state.dagen + " dagen";
+    $("#chartHint").textContent = hint;
+    $("#chartHint2").textContent = hint;
+
+    sitesTabel();
+    activiteit();
+    verbeteringen();
+    leadsTabel();
+    inbox();
+    koppelTabel();
+
+    // Ranglijsten schalen mee met de gekozen periode/site
+    var factor = somVan(serie) / 11745;
+    rangLijst("#topPages", PAGINAS.map(function (p) { return [p[0], p[1], Math.max(1, Math.round(p[2] * factor))]; }));
+    rangLijst("#topSources", BRONNEN.map(function (b) { return [b[0], Math.max(1, Math.round(b[1] * factor))]; }));
+    rangLijst("#topDevices", APPARATEN.map(function (a) { return [a[0], Math.max(1, Math.round(a[1] * factor))]; }),
+      function (v, max) { return nf.format(v) + "  ·  " + Math.round((v / (11745 * factor || 1)) * 100) + "%"; });
+
+    $("#cnt-leads").textContent = LEADS.filter(function (l) { return l.status === "nieuw"; }).length;
+    $("#cnt-msgs").textContent = BERICHTEN.filter(function (b) { return b.ongelezen; }).length;
+    $("#cnt-imps").textContent = VERBETERINGEN.filter(function (v) { return v.sev === "kritiek" || v.sev === "hoog"; }).length;
+
+    subtitel();
+  }
+
+  /* =========================================================
+     BEDIENING
+     ========================================================= */
+
+  // Sitefilter vullen
+  var sf = $("#siteFilter");
+  sf.innerHTML = '<option value="alle">Alle sites</option>' +
+    SITES.map(function (s) { return '<option value="' + s.id + '">' + esc(s.naam) + "</option>"; }).join("");
+
+  sf.addEventListener("change", function () { state.site = sf.value; render(); });
+  $("#periodFilter").addEventListener("change", function (e) { state.dagen = +e.target.value; render(); });
+
+  Array.prototype.forEach.call(document.querySelectorAll(".rail-nav button"), function (b) {
+    b.addEventListener("click", function () { ganaar(b.getAttribute("data-view")); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-goto]"), function (b) {
+    b.addEventListener("click", function () { ganaar(b.getAttribute("data-goto")); });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll("#leadFilters .chip"), function (c) {
+    c.addEventListener("click", function () {
+      state.leadFilter = c.getAttribute("data-status");
+      Array.prototype.forEach.call(document.querySelectorAll("#leadFilters .chip"), function (x) {
+        x.setAttribute("aria-pressed", x === c ? "true" : "false");
+      });
+      leadsTabel();
+    });
+  });
+
+  $("#drawerScrim").addEventListener("click", sluitLade);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") sluitLade(); });
+
+  $("#railToggle").addEventListener("click", function () {
+    var r = $("#rail");
+    r.setAttribute("data-open", r.getAttribute("data-open") === "true" ? "false" : "true");
+  });
+
+  // Thema
+  $("#themeToggle").addEventListener("click", function () {
+    var root = document.documentElement;
+    var huidig = root.getAttribute("data-theme");
+    if (!huidig) {
+      huidig = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+    }
+    root.setAttribute("data-theme", huidig === "dark" ? "light" : "dark");
+    render(); // grafieken opnieuw tekenen met de nieuwe tokens
+  });
+
+  // Kopieerknoppen
+  Array.prototype.forEach.call(document.querySelectorAll(".copy"), function (btn) {
+    btn.addEventListener("click", function () {
+      var tekst = $("#" + btn.getAttribute("data-copy")).innerText;
+      var klaar = function () {
+        var oud = btn.textContent;
+        btn.textContent = "Gekopieerd";
+        setTimeout(function () { btn.textContent = oud; }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(tekst).then(klaar, function () {});
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = tekst; document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); klaar(); } catch (err) {}
+        document.body.removeChild(ta);
+      }
+    });
+  });
+
+  // Grafieken meeschalen met het venster
+  var timer;
+  window.addEventListener("resize", function () {
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      var serie = huidigeSerie();
+      tekenGrafiek($("#mainChart"), serie, 230);
+      tekenGrafiek($("#visitorChart"), serie, 280);
+    }, 140);
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
