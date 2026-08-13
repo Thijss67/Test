@@ -108,21 +108,15 @@
   <span id="top"></span>
 
   <!-- ─────────────────────────  HERO  ─────────────────────────
-       Cinematisch en asymmetrisch. De video is een enhancement-laag:
-       zonder video blijft de CSS-achtergrond volwaardig staan.
+       Asymmetrisch, met een levende demonstratie van het product zelf:
+       een complete homepage die door het browserframe scrollt.
+       Volledig in code — geen video, geen afbeeldingen.
   ------------------------------------------------------------------ -->
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-canvas" aria-hidden="true">
       <span class="hero-glow hero-glow-a" data-parallax="0.05"></span>
       <span class="hero-glow hero-glow-b" data-parallax="0.09"></span>
       <span class="hero-grid"></span>
-      <!-- Tijdelijk de Higgsfield-CDN, zodat de hero nu al beweegt.
-           Vervang dit door assets/media/hero-loop.mp4 zodra je het bestand
-           hebt gedownload — zie assets/media/LEESMIJ.md. Meerdere bronnen
-           mogen, gescheiden door "|". -->
-      <div class="hero-film" id="heroFilm"
-           data-video="https://d8j0ntlcm91z4.cloudfront.net/user_3Hrk8NfAcGxoW6V1aEHtFRQ6QqO/hf_20260813_192701_598fa339-f9a0-4f06-b8ed-355cd7af58d3.mp4"></div>
-      <span class="hero-scrim"></span>
     </div>
 
     <div class="shell hero-inner">
@@ -169,15 +163,94 @@
         </span>
       </div>
     </div>
+
+    <!-- Levende demo: dezelfde pagina op desktop en mobiel, doorlopend
+         scrollend. Puur CSS-transform, dus geen bestandsgewicht. -->
+    <div class="showcase reveal" data-delay="4" aria-hidden="true">
+      <div class="showcase-inner">
+
+        <div class="frame frame-desktop" data-parallax="-0.02">
+          <div class="frame-bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="frame-url">jouwbedrijf.nl</span>
+          </div>
+          <div class="frame-view">
+            <div class="page page-desktop">
+              <div class="p-nav">
+                <span class="p-logo"></span>
+                <span class="p-links"><i></i><i></i><i></i><i></i></span>
+                <span class="p-cta"></span>
+              </div>
+              <div class="p-hero">
+                <span class="p-eyebrow"></span>
+                <span class="p-h1"></span>
+                <span class="p-h1 w-70"></span>
+                <span class="p-text"></span>
+                <span class="p-text w-45"></span>
+                <span class="p-btn"></span>
+              </div>
+              <div class="p-media"></div>
+              <div class="p-grid">
+                <span class="p-card"></span>
+                <span class="p-card"></span>
+                <span class="p-card"></span>
+              </div>
+              <div class="p-split">
+                <div class="p-col">
+                  <span class="p-h2"></span>
+                  <span class="p-text"></span>
+                  <span class="p-text w-70"></span>
+                  <span class="p-text w-45"></span>
+                </div>
+                <div class="p-panel"></div>
+              </div>
+              <div class="p-band">
+                <span class="p-h2 light"></span>
+                <span class="p-btn light"></span>
+              </div>
+              <div class="p-foot">
+                <span class="p-fcol"></span>
+                <span class="p-fcol"></span>
+                <span class="p-fcol"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="frame frame-phone" data-parallax="0.05">
+          <div class="frame-view">
+            <div class="page page-phone">
+              <div class="p-nav">
+                <span class="p-logo"></span>
+                <span class="p-burger"><i></i><i></i></span>
+              </div>
+              <div class="p-hero">
+                <span class="p-h1"></span>
+                <span class="p-h1 w-70"></span>
+                <span class="p-text"></span>
+                <span class="p-btn"></span>
+              </div>
+              <div class="p-media"></div>
+              <div class="p-stack">
+                <span class="p-card"></span>
+                <span class="p-card"></span>
+              </div>
+              <div class="p-band">
+                <span class="p-h2 light"></span>
+                <span class="p-btn light"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </section>
 
   <!-- ─────────────────  STATEMENT: het bewijs  ─────────────────
        Full-bleed cinematisch blok. De film is ook hier enhancement.
   ------------------------------------------------------------------ -->
   <section class="statement" aria-labelledby="statement-title">
-    <div class="statement-canvas" aria-hidden="true">
-      <!-- Tijdelijk de Higgsfield-CDN; vervang door assets/media/statement-loop.mp4 -->
-      <div class="film" data-video="https://d8j0ntlcm91z4.cloudfront.net/user_3Hrk8NfAcGxoW6V1aEHtFRQ6QqO/hf_20260813_193621_e0308670-2d10-4be6-ba3d-e4d464c4373a.mp4"></div>
       <span class="statement-scrim"></span>
     </div>
 
