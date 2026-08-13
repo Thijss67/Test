@@ -33,7 +33,92 @@
       },
       { rootMargin: "0px 0px -12% 0px", threshold: 0.1 }
     );
-    revealables.forEach(function (el) { revealObserver.observe(el); });
+
+    revealables.forEach(function (el) {
+      var rect = el.getBoundingClientRect();
+      // Staat het al in beeld bij het laden? Dan meteen tonen. De rootMargin
+      // hierboven sluit de onderste rand van het scherm uit, waardoor zulke
+      // elementen anders pas bij scrollen zouden verschijnen.
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add("is-visible");
+      } else {
+        revealObserver.observe(el);
+      }
+    });
+  }
+
+  /* ---------------------------------------------------------------------
+     2b. Hero-film
+         Progressive enhancement: laadt pas als het zinvol is en faalt stil.
+         Zonder video blijft de CSS-hero volledig overeind.
+         data-video accepteert meerdere bronnen, gescheiden door "|".
+     --------------------------------------------------------------------- */
+  function loadFilm(film) {
+    if (!film) return;
+
+    // Niet laden bij bewegingsvoorkeur, databesparing of trage verbinding
+    if (reduceMotion) return;
+    var conn = navigator.connection;
+    if (conn && (conn.saveData || /2g/.test(conn.effectiveType || ""))) return;
+
+    var sources = (film.getAttribute("data-video") || "")
+      .split("|")
+      .map(function (s) { return s.trim(); })
+      .filter(Boolean);
+    if (!sources.length) return;
+
+    var index = 0;
+
+    function attempt() {
+      if (index >= sources.length) return; // alle bronnen mislukt: stil stoppen
+
+      var video = document.createElement("video");
+      video.muted = true;
+      video.defaultMuted = true;
+      video.loop = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      video.setAttribute("playsinline", "");
+      video.setAttribute("muted", "");
+      video.setAttribute("aria-hidden", "true");
+      video.preload = "auto";
+      video.src = sources[index];
+
+      video.addEventListener("error", function () {
+        video.remove();
+        index += 1;
+        attempt();
+      });
+
+      video.addEventListener("canplay", function () {
+        var p = video.play();
+        if (p && typeof p.catch === "function") p.catch(function () { /* autoplay geweigerd */ });
+        film.classList.add("is-playing");
+      });
+
+      film.appendChild(video);
+    }
+
+    attempt();
+  }
+
+  // Pas laden zodra de betreffende sectie echt in beeld komt
+  var films = Array.prototype.slice.call(document.querySelectorAll("[data-video]"));
+
+  if (films.length && "IntersectionObserver" in window) {
+    var filmObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          filmObserver.unobserve(entry.target);
+          loadFilm(entry.target);
+        });
+      },
+      { rootMargin: "200px 0px" }
+    );
+    films.forEach(function (el) { filmObserver.observe(el); });
+  } else {
+    films.forEach(loadFilm);
   }
 
   /* ---------------------------------------------------------------------

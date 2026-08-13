@@ -107,91 +107,81 @@
 <main id="main">
   <span id="top"></span>
 
-  <!-- ─────────────────────────  HERO  ───────────────────────── -->
+  <!-- ─────────────────────────  HERO  ─────────────────────────
+       Cinematisch en asymmetrisch. De video is een enhancement-laag:
+       zonder video blijft de CSS-achtergrond volwaardig staan.
+  ------------------------------------------------------------------ -->
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-canvas" aria-hidden="true">
       <span class="hero-glow hero-glow-a" data-parallax="0.05"></span>
       <span class="hero-glow hero-glow-b" data-parallax="0.09"></span>
       <span class="hero-grid"></span>
+      <!-- Tijdelijk de Higgsfield-CDN, zodat de hero nu al beweegt.
+           Vervang dit door assets/media/hero-loop.mp4 zodra je het bestand
+           hebt gedownload — zie assets/media/LEESMIJ.md. Meerdere bronnen
+           mogen, gescheiden door "|". -->
+      <div class="hero-film" id="heroFilm"
+           data-video="https://d8j0ntlcm91z4.cloudfront.net/user_3Hrk8NfAcGxoW6V1aEHtFRQ6QqO/hf_20260813_192701_598fa339-f9a0-4f06-b8ed-355cd7af58d3.mp4"></div>
+      <span class="hero-scrim"></span>
     </div>
 
     <div class="shell hero-inner">
-      <p class="availability reveal">
-        <span class="availability-dot" aria-hidden="true"></span>
-        Beschikbaar voor nieuwe projecten in 2026
-      </p>
-
-      <h1 class="hero-title" id="hero-title">
-        <span class="line"><span>Een website die klanten</span></span>
-        <span class="line"><span>oplevert. Niet alleen</span></span>
-        <span class="line"><span>complimenten.</span></span>
-      </h1>
-
-      <p class="hero-lead reveal" data-delay="1">
-        DH Studio ontwerpt en bouwt websites voor bedrijven die online serieus
-        genomen willen worden. Snel, vindbaar, en gemaakt om bezoekers om te
-        zetten in aanvragen.
-      </p>
-
-      <div class="hero-actions reveal" data-delay="2">
-        <a class="btn btn-primary btn-lg" href="#contact">
-          Plan een gratis kennismaking
-          <svg class="btn-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" /></svg>
-        </a>
-        <a class="btn btn-quiet btn-lg" href="#diensten">Bekijk wat we doen</a>
+      <div class="hero-top">
+        <p class="availability reveal">
+          <span class="availability-dot" aria-hidden="true"></span>
+          Beschikbaar voor nieuwe projecten in 2026
+        </p>
       </div>
 
-      <ul class="hero-marks reveal" data-delay="3">
-        <li>Snel &amp; veilig</li>
-        <li>Conversiegericht</li>
-        <li>Maatwerk design</li>
-        <li>Persoonlijk contact</li>
-      </ul>
-    </div>
+      <div class="hero-main">
+        <h1 class="hero-title" id="hero-title">
+          <span class="line"><span>Een website die</span></span>
+          <span class="line"><span>klanten oplevert.</span></span>
+          <span class="line"><span class="muted">Niet alleen complimenten.</span></span>
+        </h1>
 
-    <!-- Self-built browser composition: no image requests, sharp at any DPI -->
-    <div class="hero-stage reveal" data-delay="4">
-      <div class="stage-inner" id="heroStage">
-        <div class="browser" data-parallax="-0.03">
-          <div class="browser-bar">
-            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-            <span class="browser-url">jouwbedrijf.nl</span>
+        <aside class="hero-aside">
+          <p class="hero-lead reveal" data-delay="1">
+            DH Studio ontwerpt en bouwt websites voor bedrijven die online
+            serieus genomen willen worden. Snel, vindbaar, en gemaakt om
+            bezoekers om te zetten in aanvragen.
+          </p>
+          <div class="hero-actions reveal" data-delay="2">
+            <a class="btn btn-primary btn-lg" href="#contact">
+              Plan een gratis kennismaking
+              <svg class="btn-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" /></svg>
+            </a>
+            <a class="btn btn-quiet btn-lg" href="#diensten">Bekijk wat we doen</a>
           </div>
-          <div class="browser-view">
-            <div class="bv-nav">
-              <span class="bv-logo"></span>
-              <span class="bv-links"><i></i><i></i><i></i></span>
-              <span class="bv-cta"></span>
-            </div>
-            <div class="bv-hero">
-              <span class="bv-h1"></span>
-              <span class="bv-h1 short"></span>
-              <span class="bv-p"></span>
-              <span class="bv-btn"></span>
-            </div>
-            <div class="bv-cards">
-              <span class="bv-card"></span>
-              <span class="bv-card"></span>
-              <span class="bv-card"></span>
-            </div>
-          </div>
-        </div>
-        <div class="phone" data-parallax="0.06" aria-hidden="true">
-          <div class="phone-screen">
-            <span class="pv-bar"></span>
-            <span class="pv-hero"></span>
-            <span class="pv-line"></span>
-            <span class="pv-line short"></span>
-            <span class="pv-btn"></span>
-          </div>
-        </div>
+        </aside>
+      </div>
+
+      <div class="hero-foot reveal" data-delay="3">
+        <ul class="hero-marks">
+          <li><span class="mark-i">01</span> Snel &amp; veilig</li>
+          <li><span class="mark-i">02</span> Conversiegericht</li>
+          <li><span class="mark-i">03</span> Maatwerk design</li>
+          <li><span class="mark-i">04</span> Persoonlijk contact</li>
+        </ul>
+        <span class="scroll-hint" aria-hidden="true">
+          <span class="scroll-rail"><span class="scroll-dot"></span></span>
+          Scroll
+        </span>
       </div>
     </div>
   </section>
 
-  <!-- ─────────────────  STATEMENT: the proof  ───────────────── -->
+  <!-- ─────────────────  STATEMENT: het bewijs  ─────────────────
+       Full-bleed cinematisch blok. De film is ook hier enhancement.
+  ------------------------------------------------------------------ -->
   <section class="statement" aria-labelledby="statement-title">
-    <div class="shell">
+    <div class="statement-canvas" aria-hidden="true">
+      <!-- Tijdelijk de Higgsfield-CDN; vervang door assets/media/statement-loop.mp4 -->
+      <div class="film" data-video="https://d8j0ntlcm91z4.cloudfront.net/user_3Hrk8NfAcGxoW6V1aEHtFRQ6QqO/hf_20260813_193621_e0308670-2d10-4be6-ba3d-e4d464c4373a.mp4"></div>
+      <span class="statement-scrim"></span>
+    </div>
+
+    <div class="shell statement-inner">
       <h2 class="statement-title" id="statement-title">
         <span class="word-reveal">Je beoordeelt DH Studio nu al op deze website.</span>
       </h2>
