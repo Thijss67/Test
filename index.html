@@ -352,6 +352,8 @@
     background-position: center;
     color: var(--text);
   }
+  /* Ochre mengt modderig met donkerblauw — hier een neutrale vulling */
+  .section-ink .step-n { background: rgba(255, 255, 255, 0.06); }
   .section-head {
     max-width: 34ch;
     margin-bottom: clamp(2.5rem, 5vw, 4rem);
@@ -365,6 +367,25 @@
   .section-head p { margin: 1rem 0 0; max-width: 46ch; }
   .section-head.center h2 { max-width: 22ch; margin-inline: auto; }
   .section-head.center p { max-width: 42ch; margin-inline: auto; }
+
+  /* Redactionele kop: titel links, intro rechts op de basislijn */
+  .section-head.split {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    column-gap: clamp(2rem, 5vw, 4rem);
+    align-items: end;
+    max-width: none;
+  }
+  .section-head.split .eyebrow { grid-column: 1; grid-row: 1; }
+  .section-head.split h2 { grid-column: 1; grid-row: 2; max-width: 16ch; }
+  .section-head.split p { grid-column: 2; grid-row: 2; margin: 0; max-width: 40ch; }
+  @media (max-width: 860px) {
+    .section-head.split { grid-template-columns: 1fr; }
+    .section-head.split h2,
+    .section-head.split p { grid-column: 1; }
+    .section-head.split h2 { grid-row: 2; max-width: 20ch; }
+    .section-head.split p { grid-row: 3; margin-top: 1rem; }
+  }
 
   /* Hero */
   .hero {
@@ -554,13 +575,24 @@
     .mock-card:first-child { display: grid; }
   }
 
-  /* Cards */
-  .grid-3 {
+  /* Cards — bento: één breed uitgelicht blok boven twee kleinere */
+  .bento {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
   }
-  @media (max-width: 860px) { .grid-3 { grid-template-columns: 1fr; } }
+  .bento .card-wide { grid-column: 1 / -1; }
+  @media (max-width: 860px) { .bento { grid-template-columns: 1fr; } }
+
+  .card-wide .card-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.2rem;
+  }
+  .card-wide .icon { margin-bottom: 0; }
+  .card-wide h3 { font-size: clamp(1.5rem, 1.2rem + 1.1vw, 2.1rem); }
+  .card-wide p { font-size: var(--step-1); max-width: 58ch; }
 
   .card {
     background: var(--surface);
@@ -588,39 +620,48 @@
   .card p { color: var(--text-dim); margin: 0; }
 
   /* Werkwijze */
-  .steps {
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    background: var(--surface);
-    border: 1px solid var(--hairline-soft);
-    border-radius: 20px;
-    overflow: hidden;
+    column-gap: clamp(1.5rem, 4vw, 3rem);
   }
-  .step {
-    padding: clamp(1.75rem, 3vw, 2.25rem);
-    border-left: 1px solid var(--hairline-soft);
+  .step { position: relative; }
+  /* Verbindingslijn loopt van de bol naar de volgende stap */
+  .step::after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 54px;
+    right: calc(clamp(1.5rem, 4vw, 3rem) * -1);
+    height: 1px;
+    background: var(--hairline-soft);
   }
-  .step:first-child { border-left: 0; }
-  @media (max-width: 860px) {
-    .steps { grid-template-columns: 1fr; }
-    .step { border-left: 0; border-top: 1px solid var(--hairline-soft); }
-    .step:first-child { border-top: 0; }
-  }
+  .step:last-child::after { display: none; }
   .step .step-n {
-    display: inline-grid;
+    display: grid;
     place-items: center;
-    width: 28px;
-    height: 28px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
+    border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
     background: color-mix(in srgb, var(--accent) 12%, transparent);
     color: var(--accent);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 600;
     letter-spacing: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 1.4rem;
   }
-  .step h4 { font-size: 1.15rem; margin-bottom: 0.4rem; }
-  .step p { margin: 0; color: var(--text-dim); font-size: 0.95rem; }
+  .step h4 { font-size: 1.2rem; margin-bottom: 0.45rem; }
+  .step p { margin: 0; color: var(--text-dim); font-size: 0.95rem; max-width: 34ch; }
+  @media (max-width: 860px) {
+    .timeline { grid-template-columns: 1fr; row-gap: 2.25rem; }
+    .step::after { display: none; }
+    .step .step-n { margin-bottom: 1rem; }
+    .step p { max-width: none; }
+  }
 
   /* Tarieven */
   .price-grid {
@@ -640,10 +681,22 @@
     gap: 1rem;
     position: relative;
   }
+  /* Uitgelicht pakket in de huisstijlblauw — het duidelijke middelpunt */
   .plan.featured {
-    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
-    box-shadow: var(--shadow-md);
+    --text: #f5f1e8;
+    --text-dim: #b8c6dc;
+    --text-faint: #93a4c0;
+    --accent: var(--ochre-soft);
+    --on-accent: #17130a;
+    --hairline-soft: rgba(255, 255, 255, 0.15);
+    background-color: var(--band);
+    background-image: radial-gradient(70% 60% at 85% 0%, var(--glow-blue), transparent 60%);
+    color: var(--text);
+    border-color: transparent;
+    box-shadow: var(--shadow-lg);
+    padding-block: clamp(2.1rem, 3.6vw, 2.9rem);
   }
+  .plan.featured .plan-name { color: var(--text); }
   .plan .plan-badge {
     position: absolute;
     top: 1.1rem;
@@ -894,17 +947,19 @@
   <!-- VOORDELEN -->
   <section class="section-pad section-alt" id="voordelen">
     <div class="wrap">
-      <div class="section-head center">
+      <div class="section-head split">
         <span class="eyebrow">Waarom DH-studio</span>
         <h2>Een website die wérkt — niet alleen mooi is</h2>
         <p class="lead">Drie dingen waar we onvermurwbaar in zijn, omdat ze bepalen of je online klanten wint of verliest.</p>
       </div>
-      <div class="grid-3">
-        <article class="card">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg>
+      <div class="bento">
+        <article class="card card-wide">
+          <div class="card-top">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg>
+            </div>
+            <h3>Bliksemsnel &amp; vindbaar</h3>
           </div>
-          <h3>Bliksemsnel &amp; vindbaar</h3>
           <p>Techniek die in milliseconden laadt en netjes scoort in Google. Bezoekers haken niet af en vinden je vóór je concurrent.</p>
         </article>
         <article class="card">
@@ -933,23 +988,23 @@
         <h2>Van "ik heb niks" naar live in drie stappen</h2>
         <p class="lead">Een helder traject zonder verrassingen. Jij levert je verhaal aan, wij doen de rest.</p>
       </div>
-      <div class="steps">
-        <div class="step">
+      <ol class="timeline">
+        <li class="step">
           <div class="step-n">1</div>
           <h4>Gratis adviesgesprek</h4>
           <p>We bespreken je bedrijf, je klanten en je doelen. Je krijgt meteen een eerlijk plan en een vaste prijs.</p>
-        </div>
-        <div class="step">
+        </li>
+        <li class="step">
           <div class="step-n">2</div>
           <h4>Ontwerp &amp; bouw</h4>
           <p>Binnen een week zie je een live ontwerp. Jij geeft feedback, wij verfijnen tot het klopt.</p>
-        </div>
-        <div class="step">
+        </li>
+        <li class="step">
           <div class="step-n">3</div>
           <h4>Live &amp; groeien</h4>
           <p>We zetten alles online, koppelen je domein en leggen uit hoe je zelf verder kunt. Klaar om klanten te winnen.</p>
-        </div>
-      </div>
+        </li>
+      </ol>
     </div>
   </section>
 
