@@ -1,0 +1,7 @@
+# robots.txt — DH Studio
+# Alles mag geïndexeerd worden; er is niets afgeschermd.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://dh-studio.nl/sitemap.xml

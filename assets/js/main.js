@@ -53,13 +53,29 @@
   var header = document.getElementById("siteHeader");
   var progress = document.getElementById("headerProgress");
   var darkSections = Array.prototype.slice.call(
-    document.querySelectorAll(".hero, .statement, .process, .contact, .site-footer")
+    document.querySelectorAll(".contact, .site-footer")
   );
+
+  // Vaste actiebalk: verschijnt voorbij de hero, verdwijnt bij het
+  // contactformulier — daar staat de actie zelf al op het scherm.
+  var stickyCta = document.getElementById("stickyCta");
+  var contactSection = document.querySelector(".contact");
+
+  function updateStickyCta(y) {
+    if (!stickyCta) return;
+    var heroEl = document.querySelector(".hero");
+    var past = heroEl ? y > heroEl.offsetHeight * 0.6 : y > 600;
+    var atContact = contactSection
+      ? y + window.innerHeight > contactSection.offsetTop + 120
+      : false;
+    stickyCta.classList.toggle("is-visible", past && !atContact);
+  }
 
   function updateHeader() {
     var y = window.scrollY || window.pageYOffset;
 
     header.classList.toggle("is-stuck", y > 12);
+    updateStickyCta(y);
 
     // Voortgangsbalk
     if (progress) {
