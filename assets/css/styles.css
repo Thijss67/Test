@@ -873,6 +873,227 @@ button { font: inherit; color: inherit; }
   .frame-desktop { transform: none; }
 }
 
+/* =========================================================================
+   Subpagina's — compacte paginakop met kruimelpad
+   ========================================================================= */
+
+.page-head {
+  position: relative;
+  background: var(--paper);
+  padding-top: clamp(8rem, 14vw, 11rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--paper-line-soft);
+}
+.page-head .eyebrow { margin-bottom: 1.25rem; }
+
+.crumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1.75rem;
+  font-size: var(--fs-micro);
+  color: var(--text-on-light-faint);
+}
+.crumbs a {
+  color: var(--text-on-light-dim);
+  transition: color 0.2s var(--ease-out);
+}
+.crumbs a:hover { color: var(--accent); }
+.crumbs span[aria-current] { color: var(--text-on-light); font-weight: 500; }
+
+.page-title {
+  font-size: clamp(2.1rem, 1.3rem + 2.8vw, 3.6rem);
+  letter-spacing: -0.04em;
+  max-width: 22ch;
+}
+.page-lead {
+  margin-top: 1.25rem;
+  max-width: 58ch;
+  font-size: var(--fs-lead);
+  line-height: 1.55;
+  color: var(--text-on-light-dim);
+}
+
+/* =========================================================================
+   Teasers op de homepage — verwijzen door naar de subpagina's
+   ========================================================================= */
+
+.teaser-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: 1.25rem;
+}
+.teaser {
+  display: grid;
+  align-content: start;
+  gap: 0.7rem;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: var(--paper);
+  border: 1px solid var(--paper-line-soft);
+  border-radius: var(--r-lg);
+  transition: transform 0.35s var(--ease-out), border-color 0.35s var(--ease-out),
+    box-shadow 0.35s var(--ease-out);
+}
+.teaser:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-tint);
+  box-shadow: 0 24px 48px -26px rgba(14, 22, 38, 0.18);
+}
+.teaser-index {
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+.teaser h3 { font-size: 1.1rem; letter-spacing: -0.03em; }
+.teaser p { font-size: var(--fs-small); line-height: 1.6; color: var(--text-on-light-dim); }
+.teaser-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.35rem;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--accent);
+}
+.teaser:hover .btn-arrow { transform: translateX(3px); }
+
+/* Tekstlink met pijl, buiten knoppen om */
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--accent);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 32%, transparent);
+  padding-bottom: 2px;
+  transition: color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+}
+.text-link:hover { color: var(--accent-deep); border-bottom-color: var(--accent-deep); }
+.text-link:hover .btn-arrow { transform: translateX(3px); }
+.origin-copy .text-link { margin-top: 1.75rem; }
+
+/* ---- Tariefteasers ---- */
+
+.price-teasers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 1.25rem;
+  align-items: stretch;
+}
+.price-teaser {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 0.4rem;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: var(--paper);
+  border: 1px solid var(--paper-line-soft);
+  border-radius: var(--r-lg);
+  text-align: center;
+  transition: transform 0.35s var(--ease-out), border-color 0.35s var(--ease-out),
+    box-shadow 0.35s var(--ease-out);
+}
+.price-teaser:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-tint);
+  box-shadow: 0 24px 48px -26px rgba(14, 22, 38, 0.18);
+}
+.price-teaser-featured {
+  background: var(--ink-900);
+  border-color: transparent;
+  color: var(--text-on-dark);
+  box-shadow: 0 30px 60px -30px rgba(14, 22, 38, 0.45);
+}
+.price-teaser-badge {
+  justify-self: center;
+  display: inline-flex;
+  align-items: center;
+  height: 1.45rem;
+  margin-bottom: 0.5rem;
+  padding-inline: 0.65rem;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+/* Kaarten zonder badge krijgen dezelfde aanloop, zodat de bedragen uitlijnen */
+.price-teaser:not(.price-teaser-featured)::before {
+  content: "";
+  display: block;
+  height: 1.45rem;
+  margin-bottom: 0.5rem;
+}
+
+.price-teaser-name { font-size: var(--fs-small); font-weight: 600; letter-spacing: -0.02em; }
+.price-teaser-amount {
+  font-size: clamp(1.9rem, 1.5rem + 1.2vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+.price-teaser-note { font-size: var(--fs-micro); color: var(--text-on-light-faint); }
+.price-teaser-featured .price-teaser-note { color: var(--text-on-dark-faint); }
+
+.price-teaser-foot {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: var(--fs-small);
+  color: var(--text-on-light-dim);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================================================
+   CTA-blok — staat onderaan elke pagina
+   ========================================================================= */
+
+.cta-band {
+  background: var(--ink-900);
+  color: var(--text-on-dark);
+  padding-block: clamp(3.5rem, 8vw, 5.5rem);
+}
+.cta-band-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1.75rem, 4vw, 3rem);
+}
+.cta-title {
+  font-size: clamp(1.6rem, 1.1rem + 1.8vw, 2.4rem);
+  letter-spacing: -0.035em;
+}
+.cta-text {
+  margin-top: 0.9rem;
+  max-width: 46ch;
+  color: var(--text-on-dark-dim);
+}
+.cta-actions {
+  display: grid;
+  gap: 0.9rem;
+  justify-items: start;
+}
+.cta-mail {
+  font-size: var(--fs-small);
+  color: var(--text-on-dark-faint);
+  transition: color 0.2s var(--ease-out);
+}
+.cta-mail:hover { color: #fff; }
+
+@media (max-width: 720px) {
+  .cta-band-inner { flex-direction: column; align-items: flex-start; }
+  .cta-actions { width: 100%; }
+  .cta-actions .btn { width: 100%; }
+}
+
 /* ========================= Statement ========================= */
 
 .statement {
@@ -1511,7 +1732,7 @@ button { font: inherit; color: inherit; }
 }
 .footer-inner {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.5fr);
   gap: clamp(2.5rem, 6vw, 5rem);
   padding-bottom: clamp(2.5rem, 5vw, 4rem);
 }
@@ -1527,7 +1748,12 @@ button { font: inherit; color: inherit; }
   color: var(--text-on-dark-faint);
 }
 
-.footer-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.footer-nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem 1.5rem;
+}
+@media (max-width: 620px) { .footer-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .footer-col { display: grid; gap: 0.75rem; align-content: start; }
 .footer-heading {
   font-size: var(--fs-micro);
