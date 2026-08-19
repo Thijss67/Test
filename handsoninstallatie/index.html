@@ -741,6 +741,31 @@ body.is-locked .mobilecta{display:none}
   .footer{background:#fff;color:#000}
   .faq__item[open] .faq__a,.faq__a{display:block}
 }
+
+/* ---------- Beoordeling: 5,0 uit 10 Google-reviews ---------- */
+.ticker__glogo{width:22px;height:22px;flex:none}
+.ticker__rating{display:flex;flex-direction:column;gap:4px;text-transform:none;letter-spacing:normal}
+.ticker__score{display:flex;align-items:center;gap:9px}
+.ticker__score strong{
+  font-family:var(--font-display);font-size:1.22rem;font-weight:600;line-height:1;
+  color:var(--ink);letter-spacing:-.02em;font-variant-numeric:tabular-nums;
+}
+.ticker__rating .ticker__stars svg{width:13px;height:13px}
+.ticker__count{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);font-weight:600}
+
+.hero__meta{flex-direction:column;align-items:flex-start;gap:9px}
+.hero__meta-item{display:inline-flex;align-items:center;gap:10px}
+.hero__rating{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--slate);transition:color .2s var(--ease)}
+.hero__rating:hover{color:var(--ink)}
+.hero__rating strong{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.hero__rating .ticker__stars svg{width:13px;height:13px;color:#E0A32E}
+
+@media (max-width:620px){
+  .ticker__label{padding:0 15px;height:66px;font-size:.82rem;gap:9px}
+  .ticker__glogo{width:19px;height:19px}
+  .ticker__score strong{font-size:1.06rem}
+  .ticker__count{display:none}
+}
 </style>
 </head>
 <body>
@@ -829,8 +854,14 @@ body.is-locked .mobilecta{display:none}
         <a class="btn btn--ghost btn--lg" href="#diensten">Bekijk onze diensten</a>
       </div>
       <p class="hero__meta" data-reveal data-delay="240">
-        <svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>
-        Werkgebied: Nijkerk en omgeving
+        <span class="hero__meta-item">
+          <svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>
+          Werkgebied: Nijkerk en omgeving
+        </span>
+        <a class="hero__rating" href="#reviews">
+          <span class="ticker__stars" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></span>
+          <strong>5,0</strong> uit 10 Google-reviews
+        </a>
       </p>
     </div>
 
@@ -866,7 +897,7 @@ body.is-locked .mobilecta{display:none}
 <!-- ================= REVIEWBALK ================= -->
 <section class="ticker" id="reviews" aria-label="Wat klanten zeggen">
   <!-- Vervang de zoek-URL door de directe link naar het Google-bedrijfsprofiel van HandsOn -->
-  <a class="ticker__label" href="https://www.google.com/maps/search/?api=1&amp;query=HandsOn+Installatie+Nijkerk" target="_blank" rel="noopener" aria-label="Bekijk de Google-reviews van HandsOn Installatie (opent in een nieuw tabblad)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5a5.6 5.6 0 0 1-2.4 3.6v3h3.9c2.3-2.1 3.5-5.2 3.5-8.8z"/><path fill="#34A853" d="M12 24c3.2 0 5.9-1.1 7.9-2.9l-3.9-3a7.2 7.2 0 0 1-10.7-3.8H1.3v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.3a7.1 7.1 0 0 1 0-4.6V6.6H1.3a12 12 0 0 0 0 10.8l4-3.1z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.4.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.3 6.6l4 3.1A7.2 7.2 0 0 1 12 4.8z"/></svg>Reviews</a>
+  <a class="ticker__label" href="https://www.google.com/maps/search/?api=1&amp;query=HandsOn+Installatie+Nijkerk" target="_blank" rel="noopener" aria-label="Gemiddeld 5,0 uit 10 Google-reviews — bekijk het Google-bedrijfsprofiel (opent in een nieuw tabblad)"><svg class="ticker__glogo" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5a5.6 5.6 0 0 1-2.4 3.6v3h3.9c2.3-2.1 3.5-5.2 3.5-8.8z"/><path fill="#34A853" d="M12 24c3.2 0 5.9-1.1 7.9-2.9l-3.9-3a7.2 7.2 0 0 1-10.7-3.8H1.3v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.3a7.1 7.1 0 0 1 0-4.6V6.6H1.3a12 12 0 0 0 0 10.8l4-3.1z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.4.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.3 6.6l4 3.1A7.2 7.2 0 0 1 12 4.8z"/></svg><span class="ticker__rating"><span class="ticker__score"><strong>5,0</strong><span class="ticker__stars" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></span></span><span class="ticker__count">10 Google-reviews</span></span></a>
   <div class="ticker__viewport">
     <div class="ticker__track">
       <ul class="ticker__list"><li><span class="ticker__stars" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></span><span class="ticker__q">“Absolute aanrader!”</span><span class="ticker__n">Stefan B.</span></li><li><span class="ticker__stars" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></span><span class="ticker__q">“Deskundig en allround vakman.”</span><span class="ticker__n">Gerben v.d. S.</span></li><li><span class="ticker__stars" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></span><span class="ticker__q">“Komt zijn afspraken na en levert goed werk.”</span><span class="ticker__n">Niels H.</span></li><li><span class="ticker__stars" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></span><span class="ticker__q">“De samenwerking verliep uitstekend.”</span><span class="ticker__n">Gerrit E.</span></li><li><span class="ticker__stars" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></span><span class="ticker__q">“Heel tevreden over de afwerking.”</span><span class="ticker__n">Peter v. L.</span></li><li><span class="ticker__stars" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></span><span class="ticker__q">“Betrouwbaar, eerlijk en strak in de uitvoering.”</span><span class="ticker__n">Bernard v.d. V.</span></li><li><span class="ticker__stars" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></span><span class="ticker__q">“Vakman met plezier in zijn werk.”</span><span class="ticker__n">C.A. Post</span></li><li><span class="ticker__stars" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></span><span class="ticker__q">“Werkt snel en effectief.”</span><span class="ticker__n">Jaapjan V.</span></li></ul>
