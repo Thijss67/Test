@@ -1,0 +1,43 @@
+# robots.txt — HandsOn Installatie
+# Plaats dit bestand in de hoofdmap van het domein: https://www.handsoninstallatie.nl/robots.txt
+
+User-agent: *
+Allow: /
+
+# Zoek- en AI-assistenten mogen de site lezen en citeren.
+# Wil je dat een van deze partijen de site juist niet gebruikt,
+# zet dan bij die regel "Disallow: /" in plaats van "Allow: /".
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://www.handsoninstallatie.nl/sitemap.xml

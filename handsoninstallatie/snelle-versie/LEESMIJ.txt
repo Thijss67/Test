@@ -1,0 +1,21 @@
+HandsOn Installatie — snelle versie (voor de live website)
+==========================================================
+
+Deze map is de versie die je op de webserver zet. De foto's staan hier als
+losse bestanden in images/, waardoor de pagina van 757 kB naar 106 kB gaat en
+de browser de foto's kan bewaren (cachen). Dat telt mee voor je positie in
+Google.
+
+Uploaden doe je zo — alles in de hoofdmap van het domein:
+
+  index.html          ->  https://www.handsoninstallatie.nl/index.html
+  images/             ->  https://www.handsoninstallatie.nl/images/
+  robots.txt          ->  https://www.handsoninstallatie.nl/robots.txt
+  sitemap.xml         ->  https://www.handsoninstallatie.nl/sitemap.xml
+  llms.txt            ->  https://www.handsoninstallatie.nl/llms.txt
+
+Belangrijk: index.html en de map images/ horen bij elkaar. Upload je alleen
+index.html, dan blijven de fotovlakken leeg.
+
+Wil je één bestand dat overal werkt (mailen, doorsturen, lokaal openen), pak
+dan index.html uit de map erboven — daar zitten de foto's in het bestand zelf.
