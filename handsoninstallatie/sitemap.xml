@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Plaats dit bestand in de hoofdmap van het domein en meld hem aan in Google Search Console. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.handsoninstallatie.nl/</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.handsoninstallatie.nl/images/installatiebedrijf-nijkerk-karel-post-aan-het-werk.webp</image:loc>
+      <image:title>Karel Post van HandsOn Installatie aan het werk</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.handsoninstallatie.nl/images/triple-solar-pvt-warmtepomp-nijkerk.webp</image:loc>
+      <image:title>Triple Solar PVT-warmtepomp</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.handsoninstallatie.nl/images/all-electric-warmtepomp-plaatsen.webp</image:loc>
+      <image:title>All-electric warmtepomp plaatsen</image:title>
+    </image:image>
+  </url>
+</urlset>
