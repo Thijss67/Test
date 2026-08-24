@@ -13,6 +13,28 @@ Eén statische pagina: `index.html`. Geen build, geen dependencies — openen of
 | Privacyverklaring | link in de footer (`privacyverklaring.html`) |
 | Bereikbaarheid/openingstijden | contactblok, regel "Ma t/m vr, plus spoed" |
 
+## Mobile first
+
+De stylesheet is mobile first geschreven: alle basisregels gelden voor het kleinste scherm,
+grotere schermen worden opgebouwd met uitsluitend `min-width` media queries. Er staat geen
+enkele `max-width` breakpoint in het bestand (op één `.mbar`-detail na voor zeer smalle telefoons).
+
+Breakpoints: **sm 560px · md 720/780/820px · lg 900px · xl 1140px**
+
+Wat dat concreet betekent:
+
+- **Telefoon**: CTA staat direct onder de intro (kenmerken volgen daarna), knoppen op volle
+  breedte, minimaal 48px aanraakhoogte, vaste actiebalk onderin met bellen en mailen.
+- **Header** scrollt op telefoon en tablet gewoon mee — de actiebalk houdt contact bereikbaar —
+  en de sectienavigatie is een horizontaal scrollbare strip die tot beide schermranden loopt.
+  Vanaf 1140px past merk + navigatie + belknop op één regel; dan pas wordt de header sticky
+  en verdwijnt de actiebalk.
+- **Reviews** zijn op telefoon een swipebare carrousel met scroll-snap (volgende kaart piept
+  ernaast), vanaf 900px een raster van drie.
+- Rasters schalen 1 → 2 → 3 kolommen; hover-effecten staan in `@media (hover: hover)` zodat
+  ze niet blijven hangen na een tik.
+- Getest van 360px tot 1440px: geen horizontale overflow, CTA boven de vouw op elk formaat.
+
 ## Uitgangspunten van het ontwerp
 
 - **Binnen 5 seconden duidelijk**: H1 noemt beroep + plaats + de drie klussen waarvoor mensen bellen;
@@ -21,7 +43,6 @@ Eén statische pagina: `index.html`. Geen build, geen dependencies — openen of
   "Stuur een e-mail" (`mailto:`). Geen andere knopteksten naar dezelfde bestemming.
 - **Reviews direct zichtbaar**: badge in de hero, reviewsectie meteen onder de hero,
   rest uitklapbaar.
-- Vaste actiebalk onderaan op mobiel, sticky belknop in de header op desktop.
 - Toegankelijkheid: skip-link, zichtbare focus, semantische koppen, `prefers-reduced-motion`.
 - SEO: title/description, canonical, Open Graph en `Plumber`-schema met `aggregateRating`.
 
