@@ -1,69 +1,83 @@
-# deloodgieters.nl — nieuwe website (Van Renselaar)
+# deloodgieters.nl — Van Renselaar
 
-Eén statische pagina: `index.html`. Geen build, geen dependencies — openen of uploaden en klaar.
+Eén statische pagina: `index.html`. Geen build, geen dependencies, geen externe assets
+behalve de webfonts. Openen of uploaden en klaar.
+
+## Ontwerprichting
+
+Werkplaats-editorial in plaats van moderne-website-standaard. De structuur komt van
+**lijnen, kolommaten en typografie**, niet van kaartjes.
+
+Concreet, en meetbaar in de code:
+
+- **0 keer `border-radius`** — alles is haaks. Geen pillen, geen capsules.
+- **0 keer `box-shadow`** — geen zwevende elementen, geen dashboard-look.
+- **Geen kaartcomponenten.** Diensten zijn een lijst met haarlijnen, reviews zijn
+  losse tekstkolommen, de werkwijze zijn drie genummerde alinea's onder een lijn.
+- **Geen iconenset en geen badges.** Vertrouwen zit in de tekst en de compositie:
+  het cijfer 4,9 groot gezet, "sinds 1990" in de feitenregel onder de hero,
+  plaatsnamen als typografie.
+- **Twee lettertypes met een taak.** Archivo voor koppen (strak, zwaar, krappe
+  spatiëring), IBM Plex Sans voor lopende tekst, IBM Plex Mono voor labels,
+  sectienummers en technische bijschriften.
+- **Asymmetrie.** De hero is 1,06 : 0,94 met beeld dat van de rechterrand afloopt;
+  "wie u aan de lijn krijgt" is 4,4 : 7,6 met beeld dat links van de rand afloopt;
+  reviews zijn 4 : 8. Secties verschillen bewust in hoogte, met een donkere
+  rustband tussen de twee drukste secties.
+
+### Kleur
+
+| Rol | Waarde | Gebruik |
+|---|---|---|
+| Papier | `#efece5` | gebroken wit, warm — de basis |
+| Inkt | `#14191c` | hero, rustband, werkgebied, contact, voet |
+| Menie | `#b4451f` | de rode loodmenie van leidingwerk: knop, sectienummers, accenten |
+| Menie licht | `#e0703f` | accent op donkere vlakken |
+| Lijn | `#c9c4b8` | haarlijnen — het belangrijkste structuurmiddel |
+
+### Acties
+
+Eén primaire actie op de hele pagina: **bellen**. Die verschijnt als blokknop in de
+hero, als vaste balk onderaan op mobiel, en in de contactsectie als het telefoonnummer
+zelf, groot gezet. Mailen is overal een tekstlink met pijl. Verder geen knoppen.
+
+## Foto's toevoegen
+
+Er zijn twee beeldplekken, allebei bedoeld voor echte werkfotografie:
+
+| Plek | Waar in de code | Verhouding |
+|---|---|---|
+| Hero, rechts | `<figure class="hero__fig">` — vervang het hele `<svg>`-blok | staand tot vierkant |
+| Bij "wie u aan de lijn krijgt" | `<figure class="slot who__fig">` — zet er een `<img>` in | staand, ±4:5 |
+
+In beide gevallen volstaat één regel, bijvoorbeeld:
+
+```html
+<img src="beeld/gert-van-renselaar.jpg" alt="Gert van Renselaar bij zijn servicewagen">
+```
+
+Bijschrift en snijtekens verdwijnen dan vanzelf. Zolang er geen foto is, staat er een
+technische tekening (hero) of een beeldvlak met snijtekens (portret) — bewust als
+"hier komt beeld", niet als decoratie.
+
+Kies foto's uit echte werksituaties: leidingwerk in een kruipruimte, een kraan halverwege
+de montage, gereedschap op een doek, de servicewagen. Geen lachende monteur met opgestoken duim.
+
+## Mobile first
+
+Alle basisregels gelden voor het kleinste scherm; grotere schermen worden opgebouwd met
+`min-width` queries (620 / 700 / 820 / 900 / 1000 / 1100 px). Getest van 360 tot 1680 px:
+geen horizontale overflow, en de belknop staat op elke breedte boven de vouw.
 
 ## Vóór livegang aanpassen
 
 | Wat | Waar |
 |---|---|
-| E-mailadres (nu placeholder `info@deloodgieters.nl`) | zoek/vervang op `info@deloodgieters.nl` (7×, incl. JSON-LD) |
+| E-mailadres (nu placeholder `info@deloodgieters.nl`) | zoek/vervang op `info@deloodgieters.nl` |
 | Telefoonnummer | zoek/vervang op `tel:+31641223984` en `06 41 22 39 84` |
-| Adres: footer/contact tonen **Gerstekamp 12** — op de huidige contactpagina staat Gerstekamp 17 | zoek op `Gerstekamp` |
-| Foto van Gert bij de bus (nu illustratie) | blok `.about__fig` in `index.html`, comment wijst de weg |
-| Privacyverklaring | link in de footer (`privacyverklaring.html`) |
-| Bereikbaarheid/openingstijden | contactblok, regel "Ma t/m vr, plus spoed" |
-
-## Thema wisselen
-
-Alle kleuren zitten in CSS-tokens bovenin `index.html`. Er staan drie varianten klaar:
-
-| Thema | Sfeer | Zetten |
-|---|---|---|
-| **leisteen** (standaard) | grafietblauw + gedempte klei, wit op de CTA — rustig | niets doen |
-| **messing** | petrol + amber, donkere tekst op de CTA — feller | `<html lang="nl" data-theme="messing">` |
-| **koper** | inktblauw + koper | `<html lang="nl" data-theme="koper">` |
-
-Een eigen variant maak je door één tokenblok te kopiëren en de waarden aan te passen —
-verderop in het bestand staan geen losse kleurcodes meer, ook niet in de illustraties.
-
-De CTA is in elk thema dezelfde knop: gevulde accentkleur, iets donkerder rand voor een
-zichtbare begrenzing, zachte ring eromheen en in de hero één maat groter. De secundaire
-mailknop blijft bewust rustig, zodat er per blok één knop is die de aandacht pakt.
-
-Contrast van het standaardthema is nagerekend: wit op de CTA 4,8:1, kopjes 6,1:1,
-bijschriften 5,5:1, accenttekst op donker 7,3:1 — allemaal ruim boven de WCAG AA-grens.
-
-## Mobile first
-
-De stylesheet is mobile first geschreven: alle basisregels gelden voor het kleinste scherm,
-grotere schermen worden opgebouwd met uitsluitend `min-width` media queries. Er staat geen
-enkele `max-width` breakpoint in het bestand (op één `.mbar`-detail na voor zeer smalle telefoons).
-
-Breakpoints: **sm 560px · md 720/780/820px · lg 900px · xl 1140px**
-
-Wat dat concreet betekent:
-
-- **Telefoon**: CTA staat direct onder de intro (kenmerken volgen daarna), knoppen op volle
-  breedte, minimaal 48px aanraakhoogte, vaste actiebalk onderin met bellen en mailen.
-- **Header** scrollt op telefoon en tablet gewoon mee — de actiebalk houdt contact bereikbaar —
-  en de sectienavigatie is een horizontaal scrollbare strip die tot beide schermranden loopt.
-  Vanaf 1140px past merk + navigatie + belknop op één regel; dan pas wordt de header sticky
-  en verdwijnt de actiebalk.
-- **Reviews** zijn op telefoon een swipebare carrousel met scroll-snap (volgende kaart piept
-  ernaast), vanaf 900px een raster van drie.
-- Rasters schalen 1 → 2 → 3 kolommen; hover-effecten staan in `@media (hover: hover)` zodat
-  ze niet blijven hangen na een tik.
-- Getest van 360px tot 1440px: geen horizontale overflow, CTA boven de vouw op elk formaat.
-
-## Uitgangspunten van het ontwerp
-
-- **Binnen 5 seconden duidelijk**: H1 noemt beroep + plaats + de drie klussen waarvoor mensen bellen;
-  de Google-score (4,9/5, 92 reviews) staat boven de vouw.
-- **Precies twee CTA's, overal dezelfde tekst**: "Bel 06 41 22 39 84" (`tel:`) en
-  "Stuur een e-mail" (`mailto:`). Geen andere knopteksten naar dezelfde bestemming.
-- **Reviews direct zichtbaar**: badge in de hero, reviewsectie meteen onder de hero,
-  rest uitklapbaar.
-- Toegankelijkheid: skip-link, zichtbare focus, semantische koppen, `prefers-reduced-motion`.
-- SEO: title/description, canonical, Open Graph en `Plumber`-schema met `aggregateRating`.
+| Adres: hier **Gerstekamp 12** — op de huidige contactpagina staat Gerstekamp 17 | zoek op `Gerstekamp` |
+| Foto's | zie hierboven |
+| Privacyverklaring | link in de voet (`privacyverklaring.html`) |
+| Bereikbaarheid | contactsectie, regel "Ma t/m vr, plus spoed" |
 
 Reviewteksten komen van Google; namen zijn overgenomen zoals geplaatst.
