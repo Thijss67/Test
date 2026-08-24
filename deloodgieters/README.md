@@ -13,6 +13,22 @@ Eén statische pagina: `index.html`. Geen build, geen dependencies — openen of
 | Privacyverklaring | link in de footer (`privacyverklaring.html`) |
 | Bereikbaarheid/openingstijden | contactblok, regel "Ma t/m vr, plus spoed" |
 
+## Thema wisselen
+
+Alle kleuren zitten in CSS-tokens bovenin `index.html`. Er staan twee varianten klaar:
+
+| Thema | Sfeer | Zetten |
+|---|---|---|
+| **petrol** (standaard) | diep petrolblauw + messing/amber, donkere tekst op de CTA | niets doen |
+| **koper** | inktblauw + koper, witte tekst op de CTA | `<html lang="nl" data-theme="koper">` |
+
+Een eigen variant maak je door één tokenblok te kopiëren en de waarden aan te passen —
+verderop in het bestand staan geen losse kleurcodes meer, ook niet in de illustraties.
+
+De CTA is in beide thema's dezelfde knop: gevulde accentkleur, donkere rand voor een
+zichtbare begrenzing, zachte ring eromheen en in de hero één maat groter. De secundaire
+mailknop blijft bewust rustig, zodat er per blok één knop is die de aandacht pakt.
+
 ## Mobile first
 
 De stylesheet is mobile first geschreven: alle basisregels gelden voor het kleinste scherm,
