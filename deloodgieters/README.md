@@ -15,19 +15,23 @@ Eén statische pagina: `index.html`. Geen build, geen dependencies — openen of
 
 ## Thema wisselen
 
-Alle kleuren zitten in CSS-tokens bovenin `index.html`. Er staan twee varianten klaar:
+Alle kleuren zitten in CSS-tokens bovenin `index.html`. Er staan drie varianten klaar:
 
 | Thema | Sfeer | Zetten |
 |---|---|---|
-| **petrol** (standaard) | diep petrolblauw + messing/amber, donkere tekst op de CTA | niets doen |
-| **koper** | inktblauw + koper, witte tekst op de CTA | `<html lang="nl" data-theme="koper">` |
+| **leisteen** (standaard) | grafietblauw + gedempte klei, wit op de CTA — rustig | niets doen |
+| **messing** | petrol + amber, donkere tekst op de CTA — feller | `<html lang="nl" data-theme="messing">` |
+| **koper** | inktblauw + koper | `<html lang="nl" data-theme="koper">` |
 
 Een eigen variant maak je door één tokenblok te kopiëren en de waarden aan te passen —
 verderop in het bestand staan geen losse kleurcodes meer, ook niet in de illustraties.
 
-De CTA is in beide thema's dezelfde knop: gevulde accentkleur, donkere rand voor een
+De CTA is in elk thema dezelfde knop: gevulde accentkleur, iets donkerder rand voor een
 zichtbare begrenzing, zachte ring eromheen en in de hero één maat groter. De secundaire
 mailknop blijft bewust rustig, zodat er per blok één knop is die de aandacht pakt.
+
+Contrast van het standaardthema is nagerekend: wit op de CTA 4,8:1, kopjes 6,1:1,
+bijschriften 5,5:1, accenttekst op donker 7,3:1 — allemaal ruim boven de WCAG AA-grens.
 
 ## Mobile first
 
