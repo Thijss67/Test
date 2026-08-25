@@ -10,9 +10,21 @@ De beweging draait op ~90 regels eigen JavaScript en CSS-transities.
 element. Alle inhoud hangt aan die lijn; in de marge ernaast staat alleen de nummering
 van de blokken.
 
-**Papier, inkt, menie.** Gebroken wit `#f0ede6`, dieptezwart `#101418`, meniërood
-`#c8441f` — de rode grondverf van leidingwerk. Geen slagschaduwen, geen iconenset,
-geen badges, geen kaarten.
+**Vier kleuren met elk een taak.** Papier `#f2efe7` en inkt `#0e1519` (met een
+petrolzweem) dragen de pagina. Daarbovenop:
+
+| Kleur | Waar |
+|---|---|
+| Menie `#c8441f` | **bellen** — de kantlijn, de belbalk, de nummering, de cirkels op de kaart |
+| Water `#2f6f88` | **mailen** — de e-maillinks, de stappen 01/02/03, de Eem op de kaart |
+| Goud `#e0a33a` | de sterren van de beoordeling |
+| Zand `#e9e1d1` | het getinte paneel van het werkgebied |
+
+Bellen is warm en dringend, mailen koel en bedachtzaam: de twee acties zijn overal aan
+hun kleur te herkennen. De hero heeft een verloop met een koele kant links en een warme
+gloed rechtsonder.
+
+Verder geen slagschaduwen, geen iconenset, geen badges, geen kaarten.
 
 **Panelen in plaats van banen.** De donkere en getinte vlakken lopen niet meer van rand
 tot rand: ze liggen als afgeronde panelen op het papier, met het papier zichtbaar
@@ -43,6 +55,7 @@ lange woorden passen), IBM Plex Sans voor lopende tekst, IBM Plex Mono voor de m
 | Belbalk mobiel | schuift pas omhoog ná de hero |
 | Werk | de foto **blijft staan** terwijl de dienstenlijst erlangs schuift en wisselt per dienst |
 | Cijfers | 35 jaar, 92 reviews, 90%, 4,9 lopen op zodra ze in beeld komen |
+| Sterren | 4,9 van 5 staat als sterren in de hero én bij het grote cijfer; de vijfde ster is voor 90% gevuld |
 | Lijnen | tekenen zich van links naar rechts, met vertraging per element |
 | Werkgebied | de cirkels van de kaart zetten zich uit bij binnenkomst |
 | Belbalk | vult zich van onderen met inkt bij hover |
@@ -51,7 +64,18 @@ Alles is uitgeschakeld bij `prefers-reduced-motion: reduce`: geen parallax, geen
 doorlopende namen, geen maskers, cijfers meteen op eindwaarde. De pagina blijft dan
 volledig leesbaar en compleet.
 
-## Beeld — LET OP vóór livegang
+## Eigen beeld
+
+Twee plekken wachten op bestanden uit `beeld/` (zie `beeld/LEESMIJ.md`):
+
+- **`beeld/van-renselaar-bus.jpg`** — de foto van Gert naast de bus, in blok 01. De
+  markup staat er al; zodra het bestand er staat verschijnt hij.
+- **`beeld/logo.svg`** — het orka-merk van de bus. De site heeft nu geen merkteken; de
+  regel staat als opmerking klaar in het `<a class="merk">`-blok in de kopbalk. Een
+  natekening op basis van de foto was niet goed genoeg om te plaatsen, dus dit vraagt om
+  het echte logobestand.
+
+## Gegenereerd beeld — LET OP vóór livegang
 
 De acht foto's zijn **met AI gegenereerd** (Higgsfield, nano-banana) als tussenstand, en
 staan nu nog op de CDN van Higgsfield. Twee dingen zijn nodig:

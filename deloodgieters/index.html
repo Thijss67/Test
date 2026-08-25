@@ -50,15 +50,20 @@
    ========================================================================== */
 
 :root {
-  --bone:      #f0ede6;
-  --bone-2:    #e6e2d8;
-  --ink:       #101418;
-  --ink-2:     #171d22;
-  --menie:     #c8441f;
-  --menie-diep:#a3331424;
-  --grafiet:   #5a6167;
-  --lijn:      #cdc7ba;
-  --lijn-ink:  rgba(240,237,230,.16);
+  --bone:      #f2efe7;   /* papier, iets warmer */
+  --bone-2:    #e9e1d1;   /* zandvlak */
+  --ink:       #0e1519;   /* diepzwart met een petrolzweem */
+  --ink-2:     #16212a;
+  --ink-3:     #0b2a33;   /* koele kant van het heroverloop */
+
+  --menie:     #c8441f;   /* bellen, kantlijn, nummering */
+  --water:     #2f6f88;   /* mailen en alles wat koel hoort */
+  --water-l:   #7ab3c9;   /* water op donkere vlakken */
+  --goud:      #e0a33a;   /* sterren */
+
+  --grafiet:   #57626a;
+  --lijn:      #cdc5b4;
+  --lijn-ink:  rgba(242,239,231,.16);
 
   --f-kop:  "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --f-tekst:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -207,8 +212,27 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
   transition: background-size .4s var(--ease), color .3s var(--ease);
 }
 .mail::after { content: "\00a0\2192"; display: inline-block; transition: transform .35s var(--ease); }
+/* Sterren: vijf vormen, de laatste voor 90% gevuld — 4,9 van 5 */
+.sterren { display: inline-flex; align-items: center; gap: 10px; }
+.sterren svg { display: block; height: 17px; width: auto; }
+.sterren .waarde {
+  font-family: var(--f-kop); font-weight: 700; font-stretch: 104%;
+  font-size: .98rem; letter-spacing: -.01em; font-variant-numeric: tabular-nums;
+}
+.sterren .bron {
+  font-family: var(--f-marge); font-size: .64rem; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--grafiet);
+}
+.donker .sterren .bron, .held .sterren .bron { color: #8b949b; }
+.ster-vol { fill: var(--goud); }
+.ster-leeg { fill: rgba(224,163,58,.26); }
+.held__oordeel { margin-top: clamp(20px, 2.6vw, 28px); }
+
+.mail { color: var(--water); }
+.donker .mail, .held .mail { color: var(--water-l); }
 @media (hover: hover) {
   .mail:hover { color: var(--menie); }
+  .donker .mail:hover, .held .mail:hover { color: var(--goud); }
   .mail:hover::after { transform: translateX(5px); }
 }
 
@@ -228,8 +252,9 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
   display: flex; align-items: center; gap: 16px; min-height: 56px;
   padding-left: calc(var(--rail) + var(--gap)); padding-right: var(--edge);
 }
+.merk__logo { width: 30px; height: auto; flex: none; align-self: center; }
 .merk {
-  margin-right: auto; text-decoration: none; display: flex; align-items: baseline; gap: 10px;
+  margin-right: auto; text-decoration: none; display: flex; align-items: baseline; gap: 11px;
   font-family: var(--f-kop); font-weight: 700; font-stretch: 112%;
   font-size: 1rem; letter-spacing: -.02em; text-transform: uppercase;
 }
@@ -264,8 +289,9 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
 .held__beeld::after {
   content: ""; position: absolute; inset: 0;
   background:
-    linear-gradient(90deg, rgba(16,20,24,.95) 0%, rgba(16,20,24,.78) 42%, rgba(16,20,24,.35) 100%),
-    linear-gradient(0deg, rgba(16,20,24,.96) 0%, rgba(16,20,24,0) 55%);
+    linear-gradient(90deg, rgba(11,42,51,.96) 0%, rgba(14,21,25,.8) 46%, rgba(14,21,25,.3) 100%),
+    linear-gradient(0deg, rgba(14,21,25,.96) 0%, rgba(14,21,25,0) 58%),
+    radial-gradient(70% 60% at 88% 78%, rgba(200,68,31,.22), transparent 70%);
 }
 .held__in {
   position: relative; z-index: 2;
@@ -319,6 +345,16 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
 @media (min-width: 900px) {
   .wie__grid { grid-template-columns: minmax(0, 7.5fr) minmax(0, 4.5fr); gap: clamp(40px, 5vw, 96px); align-items: start; }
   .wie__kolommen { grid-template-columns: 1fr 1fr; }
+}
+.wie__zij { display: grid; gap: clamp(26px, 3vw, 40px); align-content: start; }
+.bus { margin: 0; }
+.bus img {
+  width: 100%; height: auto; display: block;
+  border-radius: var(--rond-b); background: var(--bone-2);
+}
+.bus figcaption {
+  margin-top: 10px; font-family: var(--f-marge); font-size: .62rem;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--grafiet);
 }
 .telbaar { display: grid; gap: 0; }
 .telbaar > div { padding-block: 16px; }
@@ -409,7 +445,7 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
 .k-blob  { fill: rgba(16,20,24,.035); stroke: rgba(16,20,24,.2); stroke-width: 1.5; }
 .k-weg   { fill: none; stroke: rgba(16,20,24,.13); stroke-width: 7; stroke-linecap: round; }
 .k-weg--dun { stroke-width: 3.5; stroke-opacity: .7; }
-.k-water { fill: none; stroke: rgba(64,104,128,.45); stroke-width: 4; stroke-linecap: round; }
+.k-water { fill: none; stroke: var(--water); stroke-opacity: .62; stroke-width: 5; stroke-linecap: round; }
 .k-ring, .k-ring2 { fill: none; stroke: var(--menie); stroke-width: 1.5; transform-origin: 300px 290px; }
 .k-ring  { stroke-opacity: .4; stroke-dasharray: 5 8; }
 .k-ring2 { stroke-opacity: .2; }
@@ -435,7 +471,7 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
 /* ── werkwijze + weten ────────────────────────────────────────────── */
 .stappen { display: grid; margin-top: clamp(26px, 3vw, 44px); }
 .stappen > div { padding-block: clamp(20px, 2.4vw, 30px); }
-.stappen .nr { font-family: var(--f-marge); font-size: .72rem; color: var(--menie); margin: 14px 0 0; }
+.stappen .nr { font-family: var(--f-marge); font-size: .72rem; color: var(--water); margin: 14px 0 0; }
 .stappen h3 { margin: 8px 0 .45em; }
 .stappen p { margin: 0; color: var(--grafiet); font-size: .97rem; }
 @media (min-width: 820px) { .stappen { grid-template-columns: repeat(3, 1fr); gap: 0 clamp(26px, 3vw, 56px); } }
@@ -496,7 +532,10 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
 
 <header class="kop" id="kopbalk">
   <div class="kop__in">
-    <a class="merk" href="#inhoud">Van Renselaar<small>Loodgieter · Amersfoort</small></a>
+    <a class="merk" href="#inhoud">
+      <!-- Ruimte voor het orka-logo van Van Renselaar. Zodra het bestand er is:
+           <img class="merk__logo" src="beeld/logo.svg" alt="" width="30" height="15"> -->
+      Van Renselaar<small>Loodgieter · Amersfoort</small></a>
     <nav aria-label="Hoofdmenu">
       <a href="#werk">Werk</a>
       <a href="#reviews">Reviews</a>
@@ -534,16 +573,34 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
             <span class="nummer">06 41 22 39 84</span>
           </a>
           <a class="mail" href="mailto:info@deloodgieters.nl?subject=Aanvraag%20loodgieter%20Amersfoort">Stuur een e-mail</a>
+
+          <p class="sterren held__oordeel" role="img" aria-label="Beoordeeld met 4,9 van de 5 sterren, op basis van 92 reviews op Google">
+            <svg viewBox="0 0 128 24" aria-hidden="true">
+              <defs>
+                <linearGradient id="ster90" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="90%" stop-color="#e0a33a"/>
+                  <stop offset="90%" stop-color="rgba(224,163,58,.28)"/>
+                </linearGradient>
+              </defs>
+              <path class="ster-vol" d="M12 2.4l3 6 6.6.9-4.8 4.7 1.2 6.6-6-3.1-6 3.1 1.2-6.6L2.4 9.3 9 8.4z"/>
+              <path class="ster-vol" d="M38 2.4l3 6 6.6.9-4.8 4.7 1.2 6.6-6-3.1-6 3.1 1.2-6.6-4.8-4.7 6.6-.9z"/>
+              <path class="ster-vol" d="M64 2.4l3 6 6.6.9-4.8 4.7 1.2 6.6-6-3.1-6 3.1 1.2-6.6-4.8-4.7 6.6-.9z"/>
+              <path class="ster-vol" d="M90 2.4l3 6 6.6.9-4.8 4.7 1.2 6.6-6-3.1-6 3.1 1.2-6.6-4.8-4.7 6.6-.9z"/>
+              <path fill="url(#ster90)" d="M116 2.4l3 6 6.6.9-4.8 4.7 1.2 6.6-6-3.1-6 3.1 1.2-6.6-4.8-4.7 6.6-.9z"/>
+            </svg>
+            <span class="waarde">4,9</span>
+            <span class="bron">92 reviews op Google</span>
+          </p>
         </div>
       </div>
     </div>
 
     <div class="feiten">
       <p class="scrolwenk" aria-hidden="true">Scroll</p>
-      <div class="zw" style="--i:6"><b>4,9 uit 5</b><span>92 Google-reviews</span></div>
-      <div class="zw" style="--i:7"><b>Sinds 1990</b><span>in het vak</span></div>
-      <div class="zw" style="--i:8"><b>Erkend</b><span>installateur gas &amp; water</span></div>
-      <div class="zw" style="--i:9"><b>Eén vakman</b><span>van telefoon tot oplevering</span></div>
+      <div class="zw" style="--i:6"><b>Sinds 1990</b><span>in het vak</span></div>
+      <div class="zw" style="--i:7"><b>Erkend</b><span>installateur gas &amp; water</span></div>
+      <div class="zw" style="--i:8"><b>Eén vakman</b><span>van telefoon tot oplevering</span></div>
+      <div class="zw" style="--i:9"><b>Amersfoort e.o.</b><span>werkgebied</span></div>
     </div>
   </section>
 
@@ -576,10 +633,21 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
         <p class="handtekening tl zw" style="--i:6"><b>Gert van Renselaar</b>Loodgieters- en verwarmingsbedrijf · KvK 32105837</p>
       </div>
 
-      <div class="telbaar">
+      <div class="wie__zij">
+        <!-- De eigen foto van de bus. Zet het bestand neer als
+             beeld/van-renselaar-bus.jpg, dan staat hij goed.            -->
+        <figure class="bus zw" style="--i:3">
+          <img src="beeld/van-renselaar-bus.jpg"
+               alt="Gert van Renselaar naast zijn servicebus met de orka-belettering, in een Amersfoortse straat"
+               loading="lazy" width="1200" height="670" />
+          <figcaption>Gert en de bus — Amersfoort</figcaption>
+        </figure>
+
+        <div class="telbaar">
         <div class="tl tl--dik zw" style="--i:4"><b data-tel="35" data-suffix=" jaar">0 jaar</b><span>in het vak, sinds 1990</span></div>
         <div class="tl zw" style="--i:5"><b data-tel="92">0</b><span>reviews op Google</span></div>
         <div class="tl zw" style="--i:6"><b data-tel="90" data-suffix="%">0%</b><span>van het werk binnen Amersfoort</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -654,7 +722,16 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
     <div class="rev__grid">
       <div>
         <p class="cijfer zw"><span data-tel="4.9" data-decim="1">0,0</span><i>uit 5</i></p>
-        <p class="cijfer-bij zw" style="--i:1">Gemiddelde beoordeling<br>over 92 reviews op Google</p>
+        <p class="sterren zw" style="--i:1" role="img" aria-label="4,9 van de 5 sterren">
+          <svg viewBox="0 0 128 24" aria-hidden="true">
+            <path class="ster-vol" d="M12 2.4l3 6 6.6.9-4.8 4.7 1.2 6.6-6-3.1-6 3.1 1.2-6.6L2.4 9.3 9 8.4z"/>
+            <path class="ster-vol" d="M38 2.4l3 6 6.6.9-4.8 4.7 1.2 6.6-6-3.1-6 3.1 1.2-6.6-4.8-4.7 6.6-.9z"/>
+            <path class="ster-vol" d="M64 2.4l3 6 6.6.9-4.8 4.7 1.2 6.6-6-3.1-6 3.1 1.2-6.6-4.8-4.7 6.6-.9z"/>
+            <path class="ster-vol" d="M90 2.4l3 6 6.6.9-4.8 4.7 1.2 6.6-6-3.1-6 3.1 1.2-6.6-4.8-4.7 6.6-.9z"/>
+            <path fill="url(#ster90)" d="M116 2.4l3 6 6.6.9-4.8 4.7 1.2 6.6-6-3.1-6 3.1 1.2-6.6-4.8-4.7 6.6-.9z"/>
+          </svg>
+        </p>
+        <p class="cijfer-bij zw" style="--i:2">Gemiddelde beoordeling<br>over 92 reviews op Google</p>
       </div>
       <div>
         <blockquote class="citaat">
