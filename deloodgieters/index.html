@@ -4,21 +4,20 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Van Renselaar — loodgieter in Amersfoort sinds 1990</title>
-<meta name="description" content="Lekkage, verstopping of installatiewerk in Amersfoort en omgeving. Gert van Renselaar: erkend installateur, ruim 35 jaar ervaring, 4,9 uit 92 Google-reviews. Bel 06 41 22 39 84." />
-<meta name="theme-color" content="#14191c" />
+<meta name="description" content="Lekkage, verstopping of installatiewerk in Amersfoort en omgeving. U belt Gert van Renselaar: erkend installateur, 35 jaar ervaring, 4,9 uit 92 Google-reviews. Bel 06 41 22 39 84." />
+<meta name="theme-color" content="#f0ede6" />
 <link rel="canonical" href="https://www.deloodgieters.nl/" />
-
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="nl_NL" />
 <meta property="og:title" content="Van Renselaar — loodgieter in Amersfoort sinds 1990" />
-<meta property="og:description" content="Lekkage, verstopping of installatiewerk in Amersfoort e.o. Eén vakman, korte lijnen, vaak nog dezelfde dag ter plaatse." />
+<meta property="og:description" content="Lekkage, verstopping of installatiewerk in Amersfoort e.o. U belt Gert — geen callcenter, geen wisselende monteurs." />
 <meta property="og:url" content="https://www.deloodgieters.nl/" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet" />
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2314191c'/%3E%3Cpath d='M14 20h22a8 8 0 0 1 8 8v22' fill='none' stroke='%23c8501f' stroke-width='8'/%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23f0ede6'/%3E%3Crect x='14' width='4' height='64' fill='%23b03a1e'/%3E%3Ctext x='26' y='46' font-family='Helvetica,Arial' font-size='34' font-weight='700' fill='%23101418'%3EV%3C/text%3E%3C/svg%3E" />
 
 <script type="application/ld+json">
 {
@@ -29,638 +28,496 @@
   "telephone": "+31641223984",
   "email": "info@deloodgieters.nl",
   "foundingDate": "1999",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Gerstekamp 12",
-    "postalCode": "3828 HR",
-    "addressLocality": "Amersfoort",
-    "addressCountry": "NL"
-  },
+  "address": { "@type": "PostalAddress", "streetAddress": "Gerstekamp 12", "postalCode": "3828 HR", "addressLocality": "Amersfoort", "addressCountry": "NL" },
   "areaServed": [
     { "@type": "City", "name": "Amersfoort" },
     { "@type": "Place", "name": "Hoogland" },
     { "@type": "Place", "name": "Hooglanderveen" },
     { "@type": "Place", "name": "Vathorst" }
   ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "92",
-    "bestRating": "5"
-  }
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "92", "bestRating": "5" }
 }
 </script>
 
 <style>
 /* ==========================================================================
    Van Renselaar — deloodgieters.nl
-   Art direction: werkplaats-editorial. Papierwit, dieptezwart, meniërood.
-   Structuur komt van lijnen, kolommaten en typografie — niet van kaartjes.
-   Geen afgeronde hoeken, geen pillen, geen badges, geen iconenset.
-   Eén primaire actie (bellen), één secundaire (mailen als tekstlink).
+
+   HET IDEE: de kantlijn.
+   Eén rode lijn loopt van de bovenrand tot de onderrand van de pagina.
+   Alles hangt aan die lijn: koppen, tekst, beeld. In de marge ernaast
+   staan alleen de nummering en korte aantekeningen — zoals in het
+   werkboek van een installateur. Dat ene gebaar draagt de hele site;
+   er zijn verder geen omlijstingen, kaders of kaartjes nodig.
+
+   Zetwerk: Archivo in een uitgerekte breedte-as (blokkig, breed, zwaar),
+   IBM Plex Sans voor lopende tekst, IBM Plex Mono voor de marge.
    ========================================================================== */
 
 :root {
-  /* papier */
-  --paper:    #efece5;   /* gebroken wit, warm */
-  --paper-2:  #e4e0d7;   /* iets dieper vlak */
-  --paper-3:  #d8d3c8;
+  --bone:     #f0ede6;   /* papier */
+  --bone-2:   #e6e2d8;
+  --ink:      #101418;
+  --ink-2:    #1a2026;
+  --menie:    #b03a1e;   /* stempel- en kantlijnrood */
+  --menie-lit:#dd6b3e;
+  --grafiet:  #5a6167;
+  --lijn:     #cdc7ba;
+  --lijn-ink: rgba(240,237,230,.18);
 
-  /* inkt */
-  --ink:      #14191c;
-  --ink-2:    #1d2429;
-  --ink-3:    #2a3238;
+  --f-kop:  "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --f-tekst:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --f-marge:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  /* menie — de rode loodmenie van leidingwerk */
-  --menie:      #b4451f;
-  --menie-deep: #94371a;
-  --menie-lit:  #e0703f;   /* accent op donker */
-
-  /* tekst */
-  --on-paper:      #14191c;
-  --on-paper-2:    #5c6266;
-  --on-ink:        #efece5;
-  --on-ink-2:      #a9afb3;
-
-  /* lijnen — het belangrijkste structuurmiddel */
-  --rule:      #c9c4b8;
-  --rule-soft: #d9d4c9;
-  --rule-ink:  rgba(239,236,229,.16);
-
-  --f-display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --f-text:    "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --f-mono:    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-
-  --edge: 20px;                 /* schermmarge, groeit mee */
-  --maxw: 1520px;
-  --col-gap: 20px;
+  --rail: 26px;          /* afstand van de kantlijn tot de linkerrand */
+  --gap:  18px;          /* ruimte tussen kantlijn en tekst */
+  --edge: 18px;          /* rechtermarge */
+  --maxw: 1560px;
 }
+@media (min-width: 700px)  { :root { --rail: 60px;  --gap: 30px; --edge: 40px; } }
+@media (min-width: 1100px) { :root { --rail: 108px; --gap: 44px; --edge: 64px; } }
+@media (min-width: 1500px) { :root { --rail: 140px; --gap: 56px; --edge: 88px; } }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
-}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
 body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--on-paper);
-  font-family: var(--f-text);
-  font-size: 17px;
-  line-height: 1.68;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  position: relative; margin: 0;
+  background: var(--bone); color: var(--ink);
+  font-family: var(--f-tekst); font-size: 17px; line-height: 1.66;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
 }
-img { display: block; max-width: 100%; height: auto; }
-p { margin: 0 0 1.1em; }
+img { display: block; max-width: 100%; }
+p { margin: 0 0 1.05em; }
 a { color: inherit; }
 
-h1, h2, h3 {
-  font-family: var(--f-display);
-  font-weight: 800;
-  letter-spacing: -.035em;
-  line-height: .98;
-  margin: 0;
-  text-wrap: balance;
-}
-h1 { font-size: clamp(2.5rem, 1.6rem + 3.6vw, 4.2rem); }
-h2 { font-size: clamp(2.1rem, 1.35rem + 3.1vw, 3.6rem); letter-spacing: -.032em; }
-h3 { font-size: clamp(1.3rem, 1.12rem + .8vw, 1.7rem); letter-spacing: -.025em; line-height: 1.08; }
-
-/* --------------------------------------------------------------------------
-   Bouwstenen: marges, kolommen, lijnen
-   -------------------------------------------------------------------------- */
-.shell { padding-inline: var(--edge); }
-.inner { max-width: var(--maxw); margin-inline: auto; }
-.band  { padding-block: clamp(64px, 9vw, 132px); }
-.ink   { background: var(--ink); color: var(--on-ink); }
-.ink h1, .ink h2, .ink h3 { color: var(--on-ink); }
-.paper-2 { background: var(--paper-2); }
-
-/* mono-label: het enige "labelelement" op de site */
-.mark {
-  font-family: var(--f-mono);
-  font-size: .68rem;
-  font-weight: 500;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--on-paper-2);
-  margin: 0 0 clamp(18px, 2.5vw, 34px);
-  display: block;
-}
-.mark b { color: var(--menie); font-weight: 500; }
-.ink .mark { color: var(--on-ink-2); }
-.ink .mark b { color: var(--menie-lit); }
-
-.lede {
-  font-size: clamp(1.05rem, .98rem + .5vw, 1.3rem);
-  line-height: 1.6;
-  max-width: 48ch;
-  color: var(--on-paper-2);
-}
-.ink .lede { color: var(--on-ink-2); }
-
-/* Grote uitspraak — vervangt de kaartjes met "kernwaarden" */
-.statement {
-  font-family: var(--f-display);
-  font-weight: 600;
-  font-size: clamp(1.45rem, 1.05rem + 1.9vw, 2.5rem);
-  line-height: 1.24;
-  letter-spacing: -.028em;
-  margin: 0 0 1em;
-  text-wrap: pretty;
-}
-.statement em { font-style: normal; color: var(--menie); }
-.ink .statement em { color: var(--menie-lit); }
-
-/* --------------------------------------------------------------------------
-   Acties: één blokknop, verder tekstlinks
-   -------------------------------------------------------------------------- */
-.call {
-  display: inline-flex; align-items: center; gap: 14px;
-  background: var(--menie); color: #fff;
-  font-family: var(--f-display); font-weight: 700; font-size: 1.02rem;
-  letter-spacing: -.01em;
-  padding: 18px 26px;
-  text-decoration: none;
-  border: 0;
-  transition: background-color .16s linear;
-}
-.call span { font-variant-numeric: tabular-nums; }
-.call::after {
-  content: ""; width: 8px; height: 8px; margin-left: 2px;
-  border-top: 2px solid currentColor; border-right: 2px solid currentColor;
-  transform: rotate(45deg);
-  transition: transform .16s ease;
-}
-@media (hover: hover) {
-  .call:hover { background: var(--menie-deep); }
-  .call:hover::after { transform: rotate(45deg) translate(2px, -2px); }
-}
-.call:active { background: var(--menie-deep); }
-
-.tlink {
-  display: inline-block;
-  font-family: var(--f-text); font-weight: 500; font-size: 1rem;
-  text-decoration: none;
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 3px;
-  transition: border-color .16s linear, color .16s linear;
-}
-.tlink::after { content: " \2192"; }
-.ink .tlink { border-color: var(--rule-ink); }
-@media (hover: hover) {
-  .tlink:hover { color: var(--menie); border-color: var(--menie); }
-  .ink .tlink:hover { color: var(--menie-lit); border-color: var(--menie-lit); }
-}
-
-:focus-visible { outline: 2px solid var(--menie); outline-offset: 3px; }
-.ink :focus-visible { outline-color: var(--menie-lit); }
-.skip { position: absolute; left: -9999px; top: 0; background: var(--ink); color: var(--on-ink); padding: 14px 20px; z-index: 200; }
-.skip:focus { left: 0; }
-
-@media (min-width: 700px)  { :root { --edge: 40px; --col-gap: 28px; } }
-@media (min-width: 1100px) { :root { --edge: 64px; --col-gap: 32px; } }
-@media (min-width: 1500px) { :root { --edge: 88px; } }
-@media (min-width: 900px)  { body { font-size: 18px; } .mark { font-size: .72rem; } }
-
-/* tekeningen (tijdelijk beeld, vervangbaar door foto's) */
-.dwg      { fill: none; stroke: var(--menie-lit); stroke-width: 3.5; stroke-linecap: square; }
-.dwg-mid  { fill: none; stroke: rgba(239,236,229,.32); stroke-width: 1.5; }
-.dwg-arrow{ fill: rgba(239,236,229,.32); stroke: none; }
-.dwg-grid { fill: none; stroke: rgba(239,236,229,.07); stroke-width: 1; }
-.dwg-txt  { font-family: var(--f-mono); font-size: 19px; letter-spacing: .14em; fill: rgba(239,236,229,.5); }
-
-/* --------------------------------------------------------------------------
-   Kopbalk — smalle inktstrip, geen knoppen, alleen tekst
-   -------------------------------------------------------------------------- */
-.top { position: sticky; top: 0; z-index: 50; background: var(--ink); color: var(--on-ink); }
-.top__in { display: flex; align-items: center; gap: 18px; min-height: 54px; }
-.wordmark {
-  display: flex; align-items: baseline; gap: 10px;
-  margin-right: auto; text-decoration: none;
-  font-family: var(--f-display); font-weight: 800; letter-spacing: -.03em; font-size: 1.02rem;
-}
-.wordmark i {
-  font-style: normal; color: var(--menie-lit);
-}
-.wordmark small {
-  font-family: var(--f-mono); font-weight: 400; font-size: .64rem;
-  letter-spacing: .16em; text-transform: uppercase; color: var(--on-ink-2);
-  display: none;
-}
-.top__nav { display: none; gap: 26px; }
-.top__nav a {
-  font-family: var(--f-mono); font-size: .72rem; font-weight: 400;
-  letter-spacing: .14em; text-transform: uppercase; text-decoration: none;
-  color: var(--on-ink-2); padding-block: 6px;
-}
-.top__tel {
-  font-family: var(--f-mono); font-size: .84rem; font-weight: 500; letter-spacing: .02em;
-  color: var(--on-ink); text-decoration: none; white-space: nowrap;
-  font-variant-numeric: tabular-nums;
-}
-.top__tel b { color: var(--menie-lit); font-weight: 500; }
-@media (hover: hover) {
-  .top__nav a:hover { color: var(--on-ink); }
-  .top__tel:hover b { color: var(--on-ink); }
-}
-@media (min-width: 620px)  { .wordmark small { display: inline; } }
-@media (min-width: 1000px) { .top__nav { display: flex; } .top__in { min-height: 62px; gap: 40px; } }
-
-/* --------------------------------------------------------------------------
-   Hero — typografische compositie, beeld loopt van de rand af
-   -------------------------------------------------------------------------- */
-.hero { background: var(--ink); color: var(--on-ink); }
-.hero__grid { display: grid; }
-.hero__copy {
-  padding: clamp(34px, 5vw, 66px) var(--edge) clamp(34px, 4.5vw, 56px);
-  max-width: 56ch;
-}
-.hero h1 { margin-bottom: clamp(18px, 2vw, 26px); }
-.hero h1 em { font-style: normal; display: block; color: var(--menie-lit); }
-.hero__lede {
-  font-size: clamp(1.04rem, .98rem + .45vw, 1.24rem);
-  line-height: 1.55; color: var(--on-ink-2); max-width: 44ch;
-  margin-bottom: clamp(26px, 3vw, 36px);
-}
-.hero__act { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 30px; }
-.hero__act .call { flex: 1 1 100%; justify-content: center; }
-
-/* beeldvlak: staat klaar voor een echte foto (zie opmerking in de HTML) */
-.hero__fig { margin: 0; position: relative; background: var(--ink-2); overflow: hidden; aspect-ratio: 5/4; }
-.hero__fig::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 55%, rgba(20,25,28,.85) 100%);
+/* ── de kantlijn zelf ─────────────────────────────────────────────── */
+.kantlijn {
+  position: absolute; z-index: 1; top: 0; bottom: 0;
+  left: var(--rail); width: 2px; background: var(--menie);
   pointer-events: none;
 }
-.hero__fig svg { display: block; width: 100%; height: 100%; }
-.hero__fig img { width: 100%; height: 100%; object-fit: cover; }
-.hero__cap {
-  position: absolute; left: var(--edge); bottom: 16px; z-index: 2; margin: 0;
-  font-family: var(--f-mono); font-size: .68rem; letter-spacing: .16em;
-  text-transform: uppercase; color: var(--on-ink-2);
+
+/* ── blokken hangen aan de kantlijn ───────────────────────────────── */
+.blok {
+  position: relative;
+  padding: clamp(56px, 8vw, 124px) var(--edge) clamp(56px, 8vw, 124px) calc(var(--rail) + var(--gap));
+}
+.blok > * { max-width: var(--maxw); }
+section[id] { scroll-margin-top: 66px; }
+.donker { background: var(--ink); color: var(--bone); }
+.tint { background: var(--bone-2); }
+
+/* ── marge-aantekening: nummer in de marge, tekst tegen de lijn ───── */
+.aantek {
+  font-family: var(--f-marge); font-size: .7rem; font-weight: 500;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--grafiet);
+  margin: 0 0 clamp(20px, 3vw, 40px);
+}
+.donker .aantek { color: #8b949b; }
+.aantek .nr { color: var(--menie); margin-right: 1.1em; }
+.donker .aantek .nr { color: var(--menie-lit); }
+@media (min-width: 700px) {
+  .aantek .nr {
+    position: absolute; left: 0; width: var(--rail);
+    padding-right: var(--gap); text-align: right; margin: 0;
+  }
 }
 
-/* feitenregel onder de hero: tekst met lijnen, geen labels */
-.facts { border-top: 1px solid var(--rule-ink); }
-.facts__in { display: grid; grid-template-columns: repeat(2, 1fr); }
-.facts div {
-  padding: 18px var(--edge) 20px;
-  border-top: 1px solid var(--rule-ink);
+/* ── zetwerk ──────────────────────────────────────────────────────── */
+h1, h2, h3 { margin: 0; font-family: var(--f-kop); font-weight: 700; }
+h1 {
+  font-size: clamp(1.9rem, .2rem + 6.4vw, 5.6rem);
+  font-stretch: 100%; line-height: .92; letter-spacing: -.035em;
+  text-transform: uppercase;
 }
-.facts div:nth-child(-n+2) { border-top: 0; }
-.facts div + div { border-left: 1px solid var(--rule-ink); }
-.facts div:nth-child(odd) { border-left: 0; }
-.facts b {
-  display: block; font-family: var(--f-display); font-weight: 700;
-  font-size: 1.12rem; letter-spacing: -.02em; color: var(--on-ink);
+/* de breedte-as pas inzetten als er ruimte voor is */
+@media (min-width: 900px) { h1 { font-stretch: 112%; letter-spacing: -.03em; } }
+h2 {
+  font-size: clamp(1.8rem, 1.1rem + 3vw, 3.4rem);
+  font-stretch: 108%; line-height: 1.02; letter-spacing: -.028em;
+  text-wrap: balance;
 }
-.facts span {
-  font-family: var(--f-mono); font-size: .68rem; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--on-ink-2);
+h3 {
+  font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem);
+  font-stretch: 108%; line-height: 1.14; letter-spacing: -.018em;
+}
+.uitspraak {
+  font-family: var(--f-kop); font-weight: 600; font-stretch: 106%;
+  font-size: clamp(1.45rem, 1rem + 2.1vw, 2.6rem);
+  line-height: 1.2; letter-spacing: -.025em; margin: 0 0 1em; text-wrap: pretty;
+}
+.uitspraak em { font-style: normal; color: var(--menie); }
+.donker .uitspraak em { color: var(--menie-lit); }
+.intro { font-size: clamp(1.02rem, .96rem + .5vw, 1.24rem); line-height: 1.6; color: var(--grafiet); max-width: 46ch; }
+.donker .intro { color: #9aa2a8; }
+
+/* ── acties ───────────────────────────────────────────────────────── */
+.belbalk {
+  display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  background: var(--menie); color: #fff; text-decoration: none;
+  padding: 16px 20px; max-width: 620px;
+  transition: background-color .15s linear;
+}
+.belbalk .wat {
+  font-family: var(--f-marge); font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+  opacity: .85;
+}
+.belbalk .nummer {
+  font-family: var(--f-kop); font-weight: 700; font-stretch: 112%;
+  font-size: clamp(1.15rem, .9rem + .9vw, 1.6rem); letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+@media (hover: hover) { .belbalk:hover { background: #92300f; } }
+.belbalk:active { background: #92300f; }
+
+.mail {
+  display: inline-block; margin-top: 18px;
+  font-size: .98rem; text-decoration: none;
+  border-bottom: 1px solid var(--lijn); padding-bottom: 2px;
+}
+.mail::after { content: " \2192"; }
+.donker .mail { border-color: var(--lijn-ink); }
+@media (hover: hover) { .mail:hover { color: var(--menie); border-color: var(--menie); } .donker .mail:hover { color: var(--menie-lit); border-color: var(--menie-lit); } }
+
+:focus-visible { outline: 2px solid var(--menie); outline-offset: 3px; }
+.donker :focus-visible { outline-color: var(--menie-lit); }
+.overslaan { position: absolute; left: -9999px; top: 0; z-index: 200; background: var(--ink); color: var(--bone); padding: 14px 20px; }
+.overslaan:focus { left: 0; }
+
+/* ── kopbalk: dun, papier, alleen tekst ───────────────────────────── */
+.kop {
+  position: sticky; top: 0; z-index: 40;
+  background: var(--bone); border-bottom: 1px solid var(--lijn);
+}
+.kop__in {
+  display: flex; align-items: center; gap: 16px; min-height: 52px;
+  padding-left: calc(var(--rail) + var(--gap)); padding-right: var(--edge);
+}
+.merk {
+  margin-right: auto; text-decoration: none; display: flex; align-items: baseline; gap: 10px;
+  font-family: var(--f-kop); font-weight: 700; font-stretch: 114%;
+  font-size: 1rem; letter-spacing: -.02em; text-transform: uppercase;
+}
+.merk small {
+  display: none; font-family: var(--f-marge); font-weight: 400; font-size: .62rem;
+  letter-spacing: .18em; color: var(--grafiet); text-transform: uppercase;
+}
+.kop nav { display: none; gap: 28px; }
+.kop nav a {
+  font-family: var(--f-marge); font-size: .68rem; letter-spacing: .16em;
+  text-transform: uppercase; text-decoration: none; color: var(--grafiet);
+}
+.kop__tel {
+  font-family: var(--f-marge); font-size: .8rem; font-weight: 500; letter-spacing: .04em;
+  text-decoration: none; white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+.kop__tel b { color: var(--menie); }
+@media (hover: hover) { .kop nav a:hover, .kop__tel:hover { color: var(--ink); } }
+@media (min-width: 620px)  { .merk small { display: inline; } }
+@media (min-width: 1000px) { .kop nav { display: flex; } .kop__in { min-height: 60px; gap: 40px; } }
+
+/* ── hero ─────────────────────────────────────────────────────────── */
+.hero { padding-top: clamp(34px, 4.5vw, 74px); padding-bottom: 0; }
+
+/* verticale aantekening in de marge — de kantlijn draagt ook tekst */
+.vertikaal {
+  display: none; position: absolute; left: 0; top: clamp(150px, 20vh, 260px);
+  width: var(--rail); padding-right: 14px;
+  writing-mode: vertical-rl; transform: rotate(180deg); text-align: right;
+  font-family: var(--f-marge); font-size: .64rem; letter-spacing: .3em;
+  text-transform: uppercase; color: var(--grafiet);
+}
+@media (min-width: 1100px) { .vertikaal { display: block; } }
+.hero h1 span { display: block; }
+.hero h1 .rood { color: var(--menie); }
+.hero__na {
+  display: grid; gap: clamp(26px, 4vw, 44px);
+  margin-top: clamp(26px, 4vw, 48px);
+}
+@media (min-width: 940px) {
+  .hero__na { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 96px); align-items: end; }
 }
 
-@media (min-width: 1000px) {
-  .hero__grid { grid-template-columns: minmax(0, 1.06fr) minmax(0, .94fr); align-items: stretch; }
-  .hero__copy { display: flex; flex-direction: column; justify-content: center; padding-right: clamp(32px, 4vw, 72px); }
-  .hero__act .call { flex: 0 0 auto; justify-content: flex-start; }
-  .hero__fig { aspect-ratio: auto; min-height: clamp(440px, 56vh, 640px); }
-  .facts__in { grid-template-columns: repeat(4, 1fr); }
-  .facts div { border-top: 0; }
-  .facts div + div { border-left: 1px solid var(--rule-ink); }
-  .facts div:nth-child(odd) { border-left: 1px solid var(--rule-ink); }
-  .facts div:first-child { border-left: 0; }
+/* stempel: het enige gedraaide element op de pagina */
+.bandwrap { position: relative; }
+.stempel {
+  position: absolute; z-index: 3; top: -20px; right: clamp(14px, 4vw, 64px);
+  background: var(--bone); transform: rotate(-2.4deg);
+  border: 2px solid var(--menie); color: var(--menie);
+  padding: 8px 12px 6px; margin: 0;
+  font-family: var(--f-marge); font-size: .58rem; letter-spacing: .16em;
+  text-transform: uppercase; line-height: 1.5; text-align: center;
 }
+.stempel b { display: block; font-size: .72rem; letter-spacing: .22em; font-weight: 500; }
+@media (min-width: 700px) {
+  .stempel { padding: 10px 16px 8px; font-size: .66rem; letter-spacing: .2em; }
+  .stempel b { font-size: .82rem; letter-spacing: .26em; }
+}
+.stempel i { font-style: normal; display: block; border-top: 1px solid var(--menie); margin-top: 5px; padding-top: 5px; }
 
-/* Ondertekening onder de uitspraak */
-.sig {
-  margin-top: clamp(30px, 4vw, 52px);
-  padding-top: clamp(18px, 2vw, 24px);
-  border-top: 1px solid var(--rule);
-  font-family: var(--f-mono); font-size: .74rem; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--on-paper-2);
+/* beeldband: loopt vanaf de kantlijn de rechterrand uit */
+.band {
+  position: relative; margin: clamp(38px, 6vw, 76px) calc(var(--edge) * -1) 0 0;
+  background: var(--ink-2); overflow: hidden; aspect-ratio: 4/3;
 }
-.sig b { display: block; font-family: var(--f-display); font-size: 1.05rem;
-  letter-spacing: -.02em; text-transform: none; color: var(--on-paper); margin-bottom: 2px; }
-
-/* --------------------------------------------------------------------------
-   Diensten — een lijst met lijnen, geen kaartjes
-   -------------------------------------------------------------------------- */
-.svclist { border-top: 1px solid var(--rule); margin-top: clamp(26px, 4vw, 46px); }
-.svcrow {
-  display: grid; grid-template-columns: 44px 1fr;
-  gap: 4px 16px; align-items: baseline;
-  padding-block: clamp(20px, 2.4vw, 30px);
-  border-bottom: 1px solid var(--rule);
+.band img { width: 100%; height: 100%; object-fit: cover; }
+.band figcaption {
+  position: absolute; left: 18px; bottom: 14px;
+  font-family: var(--f-marge); font-size: .64rem; letter-spacing: .16em;
+  text-transform: uppercase; color: #8b949b;
 }
-.svcrow__no {
-  font-family: var(--f-mono); font-size: .78rem; font-weight: 500;
-  letter-spacing: .1em; color: var(--menie); padding-top: .35em;
-}
-.svcrow__txt { grid-column: 2; }
-.svcrow h3 { margin-bottom: .35em; }
-.svcrow p { margin: 0; color: var(--on-paper-2); max-width: 62ch; font-size: .98rem; }
-.svcnot {
-  margin-top: clamp(24px, 3vw, 36px);
-  font-size: .95rem; color: var(--on-paper-2); max-width: 74ch;
-}
-.svcnot b { color: var(--on-paper); font-weight: 600; }
-@media (min-width: 860px) {
-  .svcrow { grid-template-columns: 64px minmax(240px, 30%) 1fr; gap: 24px; align-items: start; }
-  .svcrow__txt { grid-column: auto; }
-  .svcrow h3 { margin-bottom: 0; }
-  .svcrow p { padding-top: .25em; }
-}
-@media (hover: hover) {
-  .svcrow { transition: background-color .14s linear; }
-  .svcrow:hover { background: var(--paper-2); }
-}
-
-/* --------------------------------------------------------------------------
-   Beeldvlak — staat klaar voor een echte foto. Snijtekens in de hoeken
-   maken duidelijk dat hier beeld hoort, in plaats van een leeg gat.
-   -------------------------------------------------------------------------- */
-.slot {
-  position: relative; margin: 0; overflow: hidden;
-  background-color: var(--ink-2);
+.leeg {
   background-image:
-    linear-gradient(rgba(239,236,229,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(239,236,229,.05) 1px, transparent 1px);
-  background-size: 60px 60px;
+    linear-gradient(rgba(240,237,230,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(240,237,230,.05) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
-.slot::before, .slot::after { content: ""; position: absolute; width: 24px; height: 24px; }
-.slot::before { top: 16px; left: 16px; border-top: 2px solid var(--menie); border-left: 2px solid var(--menie); }
-.slot::after { bottom: 16px; right: 16px; border-bottom: 2px solid var(--menie); border-right: 2px solid var(--menie); }
-.slot img { width: 100%; height: 100%; object-fit: cover; }
-.slot img ~ figcaption, .slot:has(img)::before, .slot:has(img)::after { display: none; }
-.slot figcaption {
-  position: absolute; left: 18px; bottom: 14px; max-width: 60%;
-  font-family: var(--f-mono); font-size: .66rem; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--on-ink-2);
+.leeg::before, .leeg::after { content: ""; position: absolute; width: 22px; height: 22px; }
+.leeg::before { top: 16px; left: 16px; border-top: 2px solid var(--menie); border-left: 2px solid var(--menie); }
+.leeg::after { bottom: 16px; right: 16px; border-bottom: 2px solid var(--menie); border-right: 2px solid var(--menie); }
+@media (min-width: 940px) { .band { aspect-ratio: 21/8; } }
+
+/* feitenregel */
+.feiten {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  margin-right: calc(var(--edge) * -1);
+  border-top: 2px solid var(--ink);
+}
+.feiten div { padding: 16px 18px 18px 0; border-bottom: 1px solid var(--lijn); }
+.feiten div:nth-child(n+3) { border-bottom: 0; }
+.feiten b {
+  display: block; font-family: var(--f-kop); font-weight: 700; font-stretch: 112%;
+  font-size: 1.08rem; letter-spacing: -.02em;
+}
+.feiten span { font-family: var(--f-marge); font-size: .64rem; letter-spacing: .16em; text-transform: uppercase; color: var(--grafiet); }
+@media (min-width: 760px) {
+  .feiten { grid-template-columns: repeat(4, 1fr); }
+  .feiten div { border-bottom: 0; padding-right: 24px; }
 }
 
-/* Wie — beeld loopt links van de rand af, tekst staat ruim rechts */
-.who__grid { display: grid; }
-.who__fig { order: 2; aspect-ratio: 4/3; }
-.who__copy { padding: clamp(40px, 6vw, 88px) var(--edge); }
-.who__copy .statement { max-width: 27ch; }
+/* ── wie ──────────────────────────────────────────────────────────── */
+.wie__grid { display: grid; gap: clamp(30px, 4vw, 56px); }
+.wie__tekst p:last-of-type { margin-bottom: 0; }
+.wie__kolommen { display: grid; gap: clamp(4px, 2vw, 40px); }
+.portret { position: relative; background: var(--ink-2); aspect-ratio: 3/4; margin: 0; }
+.portret figcaption {
+  position: absolute; left: 16px; bottom: 12px;
+  font-family: var(--f-marge); font-size: .62rem; letter-spacing: .16em;
+  text-transform: uppercase; color: #8b949b;
+}
+.handtekening {
+  margin-top: clamp(28px, 4vw, 46px); padding-top: 18px; border-top: 1px solid var(--lijn);
+  font-family: var(--f-marge); font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--grafiet);
+}
+.handtekening b {
+  display: block; margin-bottom: 3px; text-transform: none; letter-spacing: -.02em;
+  font-family: var(--f-kop); font-weight: 700; font-stretch: 110%; font-size: 1.05rem; color: var(--ink);
+}
 @media (min-width: 900px) {
-  .who__grid { grid-template-columns: minmax(0, 4.4fr) minmax(0, 7.6fr); align-items: stretch; }
-  .who__fig { order: 0; aspect-ratio: auto; min-height: clamp(460px, 52vw, 700px); }
-  .who__copy { padding: clamp(64px, 8vw, 128px) var(--edge) clamp(64px, 8vw, 128px) clamp(40px, 5vw, 96px); display: flex; flex-direction: column; justify-content: center; }
-  .who__cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(30px, 4vw, 64px); align-items: start; }
+  .wie__grid { grid-template-columns: minmax(0, 8.6fr) minmax(0, 3.4fr); gap: clamp(40px, 5vw, 88px); align-items: start; }
+  .wie__kolommen { grid-template-columns: 1fr 1fr; }
+  .portret { aspect-ratio: 2/3.4; }
 }
 
-/* Belofte — één rustpunt tussen twee drukke secties */
-.promise { padding-block: clamp(72px, 11vw, 168px); }
-.promise p {
-  font-family: var(--f-display); font-weight: 600;
-  font-size: clamp(1.65rem, 1.05rem + 2.7vw, 3.1rem);
-  line-height: 1.16; letter-spacing: -.03em;
-  max-width: 26ch; margin: 0;
+/* ── diensten: omgekeerd blok, lijst met haarlijnen ───────────────── */
+.lijst { margin-top: clamp(28px, 4vw, 52px); border-top: 1px solid var(--lijn-ink); }
+.regel {
+  display: grid; grid-template-columns: 40px 1fr; gap: 2px 14px;
+  padding-block: clamp(18px, 2.2vw, 26px);
+  border-bottom: 1px solid var(--lijn-ink);
 }
-.promise em { font-style: normal; color: var(--menie-lit); }
+.regel .nr { font-family: var(--f-marge); font-size: .74rem; color: var(--menie-lit); padding-top: .3em; }
+.regel h3 { color: var(--bone); }
+.regel p { grid-column: 2; margin: 4px 0 0; color: #9aa2a8; font-size: .97rem; max-width: 62ch; }
+@media (min-width: 880px) {
+  .regel { grid-template-columns: 60px minmax(220px, 26%) 1fr; gap: 26px; align-items: start; }
+  .regel p { grid-column: auto; margin: 0; padding-top: .2em; }
+}
+.nietdoen { margin-top: clamp(26px, 3vw, 40px); font-size: .95rem; color: #9aa2a8; max-width: 76ch; }
+.nietdoen b { color: var(--bone); font-weight: 500; }
 
-/* --------------------------------------------------------------------------
-   Reviews — één groot citaat, cijfer als typografie
-   -------------------------------------------------------------------------- */
-.score { display: flex; align-items: baseline; gap: 14px; }
-.score b {
-  font-family: var(--f-display); font-weight: 800; letter-spacing: -.05em;
-  font-size: clamp(4.4rem, 3rem + 7vw, 9rem); line-height: .8;
+/* ── reviews: het cijfer als inschrijving in de marge ─────────────── */
+.rev__grid { display: grid; gap: clamp(26px, 4vw, 48px); }
+.cijfer {
+  display: flex; align-items: baseline; gap: 12px;
+  font-family: var(--f-kop); font-weight: 700; font-stretch: 112%;
+  font-size: clamp(3.6rem, 2rem + 7vw, 8rem); line-height: .82; letter-spacing: -.05em;
+  margin: 0;
 }
-.score i {
-  font-style: normal; font-family: var(--f-mono); font-size: .8rem;
-  letter-spacing: .12em; text-transform: uppercase; color: var(--on-paper-2);
+.cijfer i {
+  font-style: normal; font-family: var(--f-marge); font-size: .74rem;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--grafiet);
 }
-.score-note {
-  font-family: var(--f-mono); font-size: .72rem; line-height: 1.9; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--on-paper-2); margin-top: 18px;
+.cijfer-bij {
+  font-family: var(--f-marge); font-size: .7rem; line-height: 1.9; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--grafiet); margin-top: 16px;
 }
-.quote {
-  font-family: var(--f-display); font-weight: 600;
-  font-size: clamp(1.4rem, 1rem + 2vw, 2.35rem);
-  line-height: 1.24; letter-spacing: -.028em; margin: 0;
-  text-wrap: pretty;
+.citaat {
+  font-family: var(--f-kop); font-weight: 600; font-stretch: 104%;
+  font-size: clamp(1.35rem, .95rem + 2vw, 2.4rem);
+  line-height: 1.22; letter-spacing: -.026em; margin: 0; text-wrap: pretty;
 }
-.quote + .by { margin-top: clamp(20px, 2.5vw, 28px); }
-.by {
-  font-family: var(--f-mono); font-size: .74rem; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--on-paper-2);
+.wie-zei {
+  font-family: var(--f-marge); font-size: .7rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--grafiet); margin-top: clamp(18px, 2.5vw, 26px);
 }
-.by b { color: var(--on-paper); font-weight: 500; }
-.more {
-  display: grid; gap: 0;
-  margin-top: clamp(44px, 6vw, 82px);
-  border-top: 1px solid var(--rule);
-}
-.more blockquote {
-  margin: 0; padding-block: clamp(24px, 3vw, 34px);
-  border-bottom: 1px solid var(--rule);
-}
-.more p { font-size: 1rem; margin-bottom: 14px; }
-.more .by { display: block; }
+.wie-zei b { color: var(--ink); font-weight: 500; }
+.korte { display: grid; gap: 0; margin-top: clamp(38px, 5vw, 72px); border-top: 2px solid var(--ink); }
+.korte blockquote { margin: 0; padding-block: clamp(22px, 2.6vw, 30px); border-bottom: 1px solid var(--lijn); }
+.korte p { margin: 0 0 12px; font-size: .99rem; }
+.korte .wie-zei { display: block; margin-top: 0; }
 @media (min-width: 900px) {
-  .rev__grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
-  .more { grid-template-columns: repeat(3, 1fr); gap: 0 clamp(28px, 3vw, 48px); }
-  .more blockquote { border-bottom: 0; }
+  .rev__grid { grid-template-columns: minmax(0, 3.4fr) minmax(0, 8.6fr); gap: clamp(40px, 5vw, 88px); align-items: start; }
+  .korte { grid-template-columns: repeat(3, 1fr); gap: 0 clamp(26px, 3vw, 52px); }
+  .korte blockquote { border-bottom: 0; }
 }
 
-/* --------------------------------------------------------------------------
-   Werkgebied — plaatsnamen als typografie
-   -------------------------------------------------------------------------- */
-.places {
-  font-family: var(--f-display); font-weight: 700; letter-spacing: -.03em;
-  font-size: clamp(1.5rem, 1rem + 2.6vw, 3rem); line-height: 1.24;
-  margin: clamp(24px, 3vw, 38px) 0 0; max-width: 22ch;
+/* ── werkgebied ───────────────────────────────────────────────────── */
+.plaatsen {
+  font-family: var(--f-kop); font-weight: 700; font-stretch: 112%;
+  font-size: clamp(1.45rem, .9rem + 2.7vw, 3.1rem); line-height: 1.2;
+  letter-spacing: -.03em; margin: clamp(24px, 3vw, 40px) 0 0;
 }
-.places .sep { color: var(--menie-lit); font-weight: 500; padding-inline: .1em; }
-.area__grid { display: grid; gap: clamp(28px, 4vw, 52px); }
+.plaatsen .punt { color: var(--menie-lit); font-weight: 400; padding-inline: .12em; }
+.geb__grid { display: grid; gap: clamp(24px, 3vw, 44px); }
 @media (min-width: 900px) {
-  .area__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
-  .places { max-width: none; }
+  .geb__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 5vw, 88px); align-items: start; }
 }
 
-/* --------------------------------------------------------------------------
-   Werkwijze — drie genummerde alinea's, alleen lijnen
-   -------------------------------------------------------------------------- */
-.steps { display: grid; gap: 0; margin-top: clamp(26px, 3.5vw, 44px); }
-.steps > div { padding-block: clamp(22px, 2.6vw, 30px); border-top: 1px solid var(--rule); }
-.steps h3 { margin: 6px 0 .4em; }
-.steps p { margin: 0; color: var(--on-paper-2); font-size: .98rem; }
-.steps .n {
-  font-family: var(--f-mono); font-size: .76rem; font-weight: 500;
-  letter-spacing: .1em; color: var(--menie);
-}
-@media (min-width: 820px) {
-  .steps { grid-template-columns: repeat(3, 1fr); gap: 0 clamp(28px, 3vw, 56px); }
-}
+/* ── hoe het gaat + goed om te weten ──────────────────────────────── */
+.stappen { display: grid; margin-top: clamp(26px, 3vw, 44px); }
+.stappen > div { padding-block: clamp(20px, 2.4vw, 28px); border-top: 2px solid var(--ink); }
+.stappen .nr { font-family: var(--f-marge); font-size: .72rem; color: var(--menie); }
+.stappen h3 { margin: 8px 0 .45em; }
+.stappen p { margin: 0; color: var(--grafiet); font-size: .97rem; }
+@media (min-width: 820px) { .stappen { grid-template-columns: repeat(3, 1fr); gap: 0 clamp(26px, 3vw, 56px); } }
 
-/* --------------------------------------------------------------------------
-   Goed om te weten — vraag/antwoord zonder accordeon
-   -------------------------------------------------------------------------- */
-.qa { display: grid; gap: 0; margin-top: clamp(24px, 3vw, 40px); }
-.qa > div { padding-block: clamp(22px, 2.4vw, 28px); border-top: 1px solid var(--rule); }
-.qa h3 { font-size: clamp(1.08rem, 1rem + .35vw, 1.22rem); margin-bottom: .5em; letter-spacing: -.02em; }
-.qa p { margin: 0; color: var(--on-paper-2); font-size: .97rem; max-width: 56ch; }
-@media (min-width: 820px) { .qa { grid-template-columns: 1fr 1fr; gap: 0 clamp(36px, 5vw, 88px); } }
+.weten { display: grid; margin-top: clamp(44px, 6vw, 86px); }
+.weten > div { padding-block: clamp(20px, 2.2vw, 26px); border-top: 1px solid var(--lijn); }
+.weten h3 { margin-bottom: .5em; }
+.weten p { margin: 0; color: var(--grafiet); font-size: .96rem; max-width: 54ch; }
+@media (min-width: 820px) { .weten { grid-template-columns: 1fr 1fr; gap: 0 clamp(34px, 4vw, 80px); } }
 
-/* --------------------------------------------------------------------------
-   Contact — het telefoonnummer ís het hoofdelement
-   -------------------------------------------------------------------------- */
-.contact__grid { display: grid; gap: clamp(34px, 5vw, 60px); }
-.bignum {
-  display: inline-block; text-decoration: none;
-  font-family: var(--f-display); font-weight: 800; letter-spacing: -.045em;
-  font-size: clamp(2.5rem, 1.2rem + 6.2vw, 5.4rem); line-height: .95;
-  color: var(--on-ink); font-variant-numeric: tabular-nums;
-  border-bottom: 3px solid var(--menie-lit); padding-bottom: 6px;
-  transition: color .16s linear, border-color .16s linear;
+/* ── contact: het nummer is het hoofdelement ──────────────────────── */
+.con__grid { display: grid; gap: clamp(32px, 4vw, 60px); }
+.grootnummer {
+  display: inline-block; text-decoration: none; color: var(--bone);
+  font-family: var(--f-kop); font-weight: 700; font-stretch: 118%;
+  font-size: clamp(2.2rem, .9rem + 6vw, 5.2rem); line-height: .96; letter-spacing: -.04em;
+  font-variant-numeric: tabular-nums;
+  border-bottom: 4px solid var(--menie); padding-bottom: 8px;
+  transition: color .15s linear, border-color .15s linear;
 }
-@media (hover: hover) { .bignum:hover { color: var(--menie-lit); } }
-.contact__act { margin-top: clamp(26px, 3.5vw, 40px); display: flex; flex-wrap: wrap; gap: 18px 30px; align-items: center; }
-.spec { margin: 0; border-top: 1px solid var(--rule-ink); }
-.spec > div { display: grid; grid-template-columns: 1fr; gap: 2px; padding-block: 16px; border-bottom: 1px solid var(--rule-ink); }
-.spec dt {
-  font-family: var(--f-mono); font-size: .68rem; letter-spacing: .16em;
-  text-transform: uppercase; color: var(--on-ink-2);
+@media (hover: hover) { .grootnummer:hover { color: var(--menie-lit); border-color: var(--menie-lit); } }
+.gegevens { margin: 0; border-top: 1px solid var(--lijn-ink); }
+.gegevens > div { display: grid; gap: 3px; padding-block: 15px; border-bottom: 1px solid var(--lijn-ink); }
+.gegevens dt { font-family: var(--f-marge); font-size: .64rem; letter-spacing: .18em; text-transform: uppercase; color: #8b949b; }
+.gegevens dd { margin: 0; font-size: .99rem; }
+.gegevens dd a { text-decoration: none; border-bottom: 1px solid var(--lijn-ink); }
+.gegevens dd small { display: block; font-size: .85rem; color: #8b949b; margin-top: 2px; }
+@media (min-width: 620px) { .gegevens > div { grid-template-columns: 148px 1fr; gap: 16px; align-items: baseline; } }
+@media (min-width: 900px) { .con__grid { grid-template-columns: minmax(0, 6.5fr) minmax(0, 5.5fr); gap: clamp(40px, 5vw, 88px); align-items: start; } }
+
+/* ── voet + vaste belbalk ─────────────────────────────────────────── */
+.voet {
+  background: var(--ink); color: #8b949b; border-top: 1px solid var(--lijn-ink);
+  padding: 24px var(--edge) 100px calc(var(--rail) + var(--gap));
+  font-family: var(--f-marge); font-size: .7rem; letter-spacing: .06em;
 }
-.spec dd { margin: 0; font-size: 1rem; }
-.spec dd a { text-decoration: none; border-bottom: 1px solid var(--rule-ink); }
-.spec dd small { display: block; font-size: .86rem; color: var(--on-ink-2); margin-top: 2px; }
-@media (min-width: 620px) { .spec > div { grid-template-columns: 150px 1fr; gap: 16px; align-items: baseline; } }
+.voet__in { display: grid; gap: 10px; }
+.voet a { color: #8b949b; text-decoration: none; border-bottom: 1px solid var(--lijn-ink); }
+.voet b { color: var(--bone); font-weight: 500; }
+@media (hover: hover) { .voet a:hover { color: var(--bone); } }
 @media (min-width: 900px) {
-  .contact__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+  .voet { padding-bottom: 26px; }
+  .voet__in { grid-auto-flow: column; justify-content: space-between; align-items: center; gap: 28px; }
+  .voet p { margin: 0; }
 }
 
-/* --------------------------------------------------------------------------
-   Voet + vaste belbalk op mobiel
-   -------------------------------------------------------------------------- */
-.foot { background: var(--ink); color: var(--on-ink-2); padding-block: 26px 100px; border-top: 1px solid var(--rule-ink); }
-.foot__in { display: grid; gap: 10px; font-family: var(--f-mono); font-size: .72rem; letter-spacing: .06em; }
-.foot a { color: var(--on-ink-2); text-decoration: none; border-bottom: 1px solid var(--rule-ink); }
-.foot b { color: var(--on-ink); font-weight: 500; }
-@media (hover: hover) { .foot a:hover { color: var(--on-ink); } }
-@media (min-width: 900px) {
-  .foot { padding-block: 30px; }
-  .foot__in { grid-auto-flow: column; justify-content: space-between; align-items: center; gap: 30px; }
+.vastebalk { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: var(--menie); padding-bottom: env(safe-area-inset-bottom); }
+.vastebalk a {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  min-height: 50px; padding: 0 16px; color: #fff; text-decoration: none;
 }
-
-.callbar {
-  position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
-  padding: 0 0 env(safe-area-inset-bottom);
-  background: var(--menie);
-}
-.callbar a {
-  display: flex; align-items: center; justify-content: center; gap: 12px;
-  min-height: 58px; color: #fff; text-decoration: none;
-  font-family: var(--f-display); font-weight: 700; font-size: 1.05rem;
-}
-.callbar span { font-variant-numeric: tabular-nums; }
-@media (min-width: 900px) { .callbar { display: none; } .foot { padding-bottom: 30px; } }
+.vastebalk .wat { font-family: var(--f-marge); font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; opacity: .85; }
+.vastebalk .nummer { font-family: var(--f-kop); font-weight: 700; font-stretch: 108%; font-size: 1.05rem; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+@media (min-width: 900px) { .vastebalk { display: none; } }
 </style>
 </head>
 <body>
-<a class="skip" href="#inhoud">Direct naar de inhoud</a>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
-  <pattern id="ruit" width="60" height="60" patternUnits="userSpaceOnUse">
-    <path class="dwg-grid" d="M60 0H0v60"/>
-  </pattern>
-</defs></svg>
+<a class="overslaan" href="#inhoud">Direct naar de inhoud</a>
+<div class="kantlijn" aria-hidden="true"></div>
 
-<header class="top">
-  <div class="shell"><div class="inner top__in">
-    <a class="wordmark" href="#inhoud">Van Renselaar<small>Loodgieter · Amersfoort</small></a>
-    <nav class="top__nav" aria-label="Hoofdmenu">
+<header class="kop">
+  <div class="kop__in">
+    <a class="merk" href="#inhoud">Van Renselaar<small>Loodgieter · Amersfoort</small></a>
+    <nav aria-label="Hoofdmenu">
       <a href="#diensten">Diensten</a>
       <a href="#reviews">Reviews</a>
       <a href="#werkgebied">Werkgebied</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="top__tel" href="tel:+31641223984"><b>Bel</b> 06 41 22 39 84</a>
-  </div></div>
+    <a class="kop__tel" href="tel:+31641223984"><b>Bel</b> 06 41 22 39 84</a>
+  </div>
 </header>
 
 <main id="inhoud">
 
-  <!-- ══════════════ HERO ══════════════ -->
-  <section class="hero">
-    <div class="hero__grid">
-      <div class="hero__copy">
-        <p class="mark">Loodgieters- en verwarmingsbedrijf · Amersfoort</p>
-        <h1>Lekkage, verstopping of installatiewerk? <em>U belt, Gert komt.</em></h1>
-        <p class="hero__lede">
-          Al ruim 35 jaar de vaste loodgieter van Amersfoort en omgeving. Eén vakman,
-          korte lijnen — bij spoed vaak nog dezelfde dag ter plaatse.
-        </p>
-        <div class="hero__act">
-          <a class="call" href="tel:+31641223984">Bel <span>06 41 22 39 84</span></a>
-          <a class="tlink" href="mailto:info@deloodgieters.nl?subject=Aanvraag%20loodgieter%20Amersfoort">Stuur een e-mail</a>
-        </div>
-      </div>
+  <!-- ───────────── HERO ───────────── -->
+  <section class="blok hero">
+    <p class="vertikaal" aria-hidden="true">deloodgieters.nl</p>
+    <p class="aantek">Loodgieters- en verwarmingsbedrijf · Amersfoort e.o.</p>
+    <h1><span>Lekkage.</span><span>Verstopping.</span><span class="rood">Installatiewerk.</span></h1>
 
-      <!-- Beeldvlak. Vervang het hele <svg>-blok door één regel zodra er een
-           foto is:  <img src="beeld/leidingwerk.jpg" alt="Gert van Renselaar
-           aan het werk aan het leidingwerk in een kruipruimte">            -->
-      <figure class="hero__fig">
-        <svg viewBox="70 70 760 760" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Technische tekening van een leidingstuk met T-stuk en afsluiter">
-          <rect width="900" height="900" fill="url(#ruit)"/>
-          <path class="dwg-mid" d="M450 100v640M450 340h390" stroke-dasharray="26 10 4 10"/>
-          <path class="dwg" d="M410 120v580"/>
-          <path class="dwg" d="M410 120h80"/>
-          <path class="dwg" d="M490 120v180h350"/>
-          <path class="dwg" d="M490 700V380h350"/>
-          <rect class="dwg" x="384" y="702" width="132" height="15"/>
-          <rect class="dwg" x="384" y="725" width="132" height="15"/>
-          <rect class="dwg" x="610" y="278" width="140" height="124"/>
-          <rect class="dwg" x="662" y="222" width="36" height="56"/>
-          <path class="dwg" d="M680 222v-46"/>
-          <ellipse class="dwg" cx="680" cy="170" rx="66" ry="15"/>
-          <ellipse class="dwg" cx="680" cy="170" rx="13" ry="4"/>
-          <path class="dwg-mid" d="M410 196v-58M490 196v-58"/>
-          <path class="dwg-mid" d="M410 158h80"/>
-          <path class="dwg-arrow" d="M410 158l16-6v12zM490 158l-16-6v12z"/>
-          <text class="dwg-txt" x="516" y="165">Ø 22</text>
-          <text class="dwg-txt" x="614" y="452">AFSLUITER</text>
-        </svg>
-        <figcaption class="hero__cap">Foto volgt — leidingwerk in de kruipruimte</figcaption>
-      </figure>
+    <div class="hero__na">
+      <p class="intro">
+        Al 35 jaar de vaste loodgieter van Amersfoort en omgeving. U belt Gert —
+        geen callcenter, geen wisselende monteurs. Bij spoed sta ik er meestal
+        dezelfde dag.
+      </p>
+      <div>
+        <a class="belbalk" href="tel:+31641223984">
+          <span class="wat">Bel direct</span>
+          <span class="nummer">06 41 22 39 84</span>
+        </a>
+        <a class="mail" href="mailto:info@deloodgieters.nl?subject=Aanvraag%20loodgieter%20Amersfoort">Stuur een e-mail</a>
+      </div>
     </div>
 
-    <div class="facts">
-      <div class="facts__in">
-        <div><b>4,9 uit 5</b><span>92 Google-reviews</span></div>
-        <div><b>Sinds 1990</b><span>in het vak</span></div>
-        <div><b>Erkend installateur</b><span>gas &amp; water</span></div>
-        <div><b>Amersfoort e.o.</b><span>werkgebied</span></div>
-      </div>
+    <!-- Hoofdbeeld. Vervang de <figure> door:
+         <figure class="band"><img src="beeld/werk.jpg" alt="Gert van Renselaar aan het werk"></figure> -->
+    <div class="bandwrap">
+      <figure class="band leeg">
+        <figcaption>Foto volgt — werk in uitvoering</figcaption>
+      </figure>
+      <p class="stempel"><b>Van Renselaar</b><i>Amersfoort · sinds 1990</i></p>
+    </div>
+
+    <div class="feiten">
+      <div><b>4,9 uit 5</b><span>92 Google-reviews</span></div>
+      <div><b>Sinds 1990</b><span>in het vak</span></div>
+      <div><b>Erkend</b><span>installateur gas &amp; water</span></div>
+      <div><b>Eén vakman</b><span>van telefoon tot oplevering</span></div>
     </div>
   </section>
 
-  <!-- ══════════════ WIE ══════════════ -->
-  <section class="who">
-    <div class="who__grid">
-      <!-- Hoofdfotoplek. Zet hier <img src="beeld/gert-van-renselaar.jpg"
-           alt="Gert van Renselaar bij zijn servicewagen"> tussen de <figure>-tags;
-           bijschrift en snijtekens verdwijnen dan vanzelf.                     -->
-      <figure class="slot who__fig">
-        <figcaption>Foto volgt — Gert bij zijn servicewagen</figcaption>
-      </figure>
-
-      <div class="who__copy">
-        <p class="mark"><b>01</b> &nbsp;Wie u aan de lijn krijgt</p>
-        <p class="statement">
+  <!-- ───────────── WIE ───────────── -->
+  <section class="blok">
+    <p class="aantek"><span class="nr">01</span>Wie u aan de lijn krijgt</p>
+    <div class="wie__grid">
+      <div class="wie__tekst">
+        <p class="uitspraak">
           Ik ben Gert van Renselaar. Sinds 1990 loodgieter, sinds 1999 voor mezelf.
-          <em>Geen personeel, geen callcenter</em> — u spreekt mij aan de telefoon
-          en u ziet mij voor de deur staan.
+          <em>Wat u aan de telefoon vertelt, hoeft niemand door te geven</em> — ik neem
+          zelf op en ik sta zelf voor de deur.
         </p>
-        <div class="who__cols">
+        <div class="wie__kolommen">
           <p>
-            Dat werkt zo omdat ik het bewust klein houd. Wat u aan de telefoon vertelt,
-            hoeft niemand meer door te geven. En wat ik afspreek, kom ik na — daar hangt
-            in dit vak alles van af.
+            Dat kan omdat ik het bewust klein houd. Geen personeel om aan te sturen,
+            dus alle aandacht gaat naar het werk bij u thuis. En wat ik afspreek, kom ik
+            na — daar hangt in dit vak alles van af.
           </p>
           <p>
             Mijn servicewagen is volledig ingericht, met moderne apparatuur voor het
@@ -668,195 +525,177 @@ h3 { font-size: clamp(1.3rem, 1.12rem + .8vw, 1.7rem); letter-spacing: -.025em; 
             zelf, van kwaliteit waar ik voor sta, met garantie op het werk.
           </p>
         </div>
-        <p class="sig"><b>Gert van Renselaar</b>Loodgieters- en Verwarmingsbedrijf</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════ DIENSTEN ══════════════ -->
-  <section class="band shell paper-2" id="diensten">
-    <div class="inner">
-      <p class="mark"><b>02</b> &nbsp;Diensten</p>
-      <h2>Waarvoor mensen mij bellen</h2>
-
-      <div class="svclist">
-        <article class="svcrow">
-          <p class="svcrow__no">01</p>
-          <h3>Lekkages opsporen<br>en verhelpen</h3>
-          <div class="svcrow__txt"><p>Een vochtplek, een tikkende watermeter of water in de kruipruimte. Ik zoek de oorzaak op en repareer hem — ook als daar een muur of vloer voor open moet.</p></div>
-        </article>
-        <article class="svcrow">
-          <p class="svcrow__no">02</p>
-          <h3>Verstoppingen<br>en riolering</h3>
-          <div class="svcrow__txt"><p>Keuken, badkamer, toilet en rioolleidingen. Met de hogedrukspuit als het moet, en met advies erbij zodat dezelfde verstopping niet volgend jaar terugkomt.</p></div>
-        </article>
-        <article class="svcrow">
-          <p class="svcrow__no">03</p>
-          <h3>Kranen, toiletten<br>en sanitair</h3>
-          <div class="svcrow__txt"><p>Vervangen of repareren van kranen, wastafels, fonteinen, toiletten en spoelsystemen. Inclusief lastige gevallen als een showerpipe die net niet past.</p></div>
-        </article>
-        <article class="svcrow">
-          <p class="svcrow__no">04</p>
-          <h3>Keuken en badkamer<br>aansluiten</h3>
-          <div class="svcrow__txt"><p>Het water- en afvoerwerk voor uw nieuwe keuken of badkamer, afgestemd met de keukenbouwer. Vaatwasser, wasmachine en inbouwapparatuur sluit ik meteen aan.</p></div>
-        </article>
-        <article class="svcrow">
-          <p class="svcrow__no">05</p>
-          <h3>Verwarming<br>en radiatoren</h3>
-          <div class="svcrow__txt"><p>Radiatoren vervangen, verplaatsen of bijplaatsen, cv-leidingwerk aanpassen en verkeerd aangesloten installaties rechtzetten.</p></div>
-        </article>
-        <article class="svcrow">
-          <p class="svcrow__no">06</p>
-          <h3>Gas- en<br>waterleidingen</h3>
-          <div class="svcrow__txt"><p>Als erkend installateur leg ik gas- en waterleidingen aan, sluit ik gastoestellen aan en plaats ik buitenkranen. Veilig en volgens de regels.</p></div>
-        </article>
+        <p class="handtekening"><b>Gert van Renselaar</b>Loodgieters- en verwarmingsbedrijf · KvK 32105837</p>
       </div>
 
-      <p class="svcnot">
-        <b>Wat ik niet doe:</b> service, onderhoud en reparatie aan cv-ketels · dakwerk ·
-        reparatie van inbouwapparatuur, wasmachines en stofzuigers · behangen, schilderen
-        en stukadoren. Liever vooraf duidelijk dan een misgelopen afspraak.
-      </p>
+      <!-- Portret. Vervang door <img src="beeld/gert.jpg" alt="Gert van Renselaar"> -->
+      <figure class="portret leeg">
+        <figcaption>Foto volgt — Gert</figcaption>
+      </figure>
     </div>
   </section>
 
-  <!-- ══════════════ RUSTPUNT ══════════════ -->
-  <section class="promise ink shell">
-    <div class="inner">
-      <p>
-        Erkend installateur. Eigen materialen, met garantie.
-        <em>En de afspraak die ik maak, kom ik na.</em>
-      </p>
+  <!-- ───────────── DIENSTEN ───────────── -->
+  <section class="blok donker" id="diensten">
+    <p class="aantek"><span class="nr">02</span>Diensten</p>
+    <h2>Waarvoor mensen mij bellen</h2>
+
+    <div class="lijst">
+      <article class="regel">
+        <p class="nr">01</p>
+        <h3>Lekkages opsporen<br>en verhelpen</h3>
+        <p>Een vochtplek, een tikkende watermeter of water in de kruipruimte. Ik zoek de oorzaak op en repareer hem — ook als daar een muur of vloer voor open moet.</p>
+      </article>
+      <article class="regel">
+        <p class="nr">02</p>
+        <h3>Verstoppingen<br>en riolering</h3>
+        <p>Keuken, badkamer, toilet en rioolleidingen. Met de hogedrukspuit als het moet, en met advies erbij zodat dezelfde verstopping niet volgend jaar terugkomt.</p>
+      </article>
+      <article class="regel">
+        <p class="nr">03</p>
+        <h3>Kranen, toiletten<br>en sanitair</h3>
+        <p>Vervangen of repareren van kranen, wastafels, fonteinen, toiletten en spoelsystemen. Inclusief lastige gevallen als een showerpipe die net niet past.</p>
+      </article>
+      <article class="regel">
+        <p class="nr">04</p>
+        <h3>Keuken en badkamer<br>aansluiten</h3>
+        <p>Het water- en afvoerwerk voor uw nieuwe keuken of badkamer, afgestemd met de keukenbouwer. Vaatwasser, wasmachine en inbouwapparatuur sluit ik meteen aan.</p>
+      </article>
+      <article class="regel">
+        <p class="nr">05</p>
+        <h3>Verwarming<br>en radiatoren</h3>
+        <p>Radiatoren vervangen, verplaatsen of bijplaatsen, cv-leidingwerk aanpassen en verkeerd aangesloten installaties rechtzetten.</p>
+      </article>
+      <article class="regel">
+        <p class="nr">06</p>
+        <h3>Gas- en<br>waterleidingen</h3>
+        <p>Als erkend installateur leg ik gas- en waterleidingen aan, sluit ik gastoestellen aan en plaats ik buitenkranen. Veilig en volgens de regels.</p>
+      </article>
     </div>
+
+    <p class="nietdoen">
+      <b>Wat ik niet doe:</b> service, onderhoud en reparatie aan cv-ketels · dakwerk ·
+      reparatie van inbouwapparatuur, wasmachines en stofzuigers · behangen, schilderen
+      en stukadoren. Liever vooraf duidelijk dan een misgelopen afspraak.
+    </p>
   </section>
 
-  <!-- ══════════════ REVIEWS ══════════════ -->
-  <section class="band shell" id="reviews">
-    <div class="inner rev__grid">
+  <!-- ───────────── REVIEWS ───────────── -->
+  <section class="blok" id="reviews">
+    <p class="aantek"><span class="nr">03</span>Wat klanten zeggen</p>
+    <div class="rev__grid">
       <div>
-        <p class="mark"><b>03</b> &nbsp;Wat klanten zeggen</p>
-        <p class="score"><b>4,9</b><i>uit 5</i></p>
-        <p class="score-note">Gemiddelde beoordeling<br>over 92 reviews op Google</p>
+        <p class="cijfer">4,9<i>uit 5</i></p>
+        <p class="cijfer-bij">Gemiddelde beoordeling<br>over 92 reviews op Google</p>
       </div>
       <div>
-        <blockquote class="quote">
+        <blockquote class="citaat">
           Hielp mij ’s avonds met een overstroming in huis. Binnen tien minuten was hij er
           en ging aan de slag. Kom er eens om, iemand die zonder woorden voor je klaarstaat.
         </blockquote>
-        <p class="by"><b>Marion Snoek</b> — via Google</p>
+        <p class="wie-zei"><b>Marion Snoek</b> — via Google</p>
       </div>
     </div>
 
-    <div class="inner more">
+    <div class="korte">
       <blockquote>
         <p>Binnen een middag lekkage van het toilet in de kruipruimte verholpen en meteen de verstopping in de keuken ook gevonden en opgelost. Vakman.</p>
-        <span class="by"><b>B. R.</b> — via Google</span>
+        <span class="wie-zei"><b>B. R.</b> — via Google</span>
       </blockquote>
       <blockquote>
         <p>’s Ochtends gebeld in verband met een acute lekkage, dezelfde ochtend kwam Gert al langs en heeft het meteen opgelost.</p>
-        <span class="by"><b>Liz Jonk</b> — via Google</span>
+        <span class="wie-zei"><b>Liz Jonk</b> — via Google</span>
       </blockquote>
       <blockquote>
         <p>Komt afspraken stipt na, heeft de juiste spullen bij zich en levert goed werk. Zonder meer aan te bevelen.</p>
-        <span class="by"><b>J. Pluim</b> — via Google</span>
+        <span class="wie-zei"><b>J. Pluim</b> — via Google</span>
       </blockquote>
     </div>
   </section>
 
-  <!-- ══════════════ WERKGEBIED ══════════════ -->
-  <section class="band shell ink" id="werkgebied">
-    <div class="inner area__grid">
+  <!-- ───────────── WERKGEBIED ───────────── -->
+  <section class="blok tint" id="werkgebied">
+    <p class="aantek"><span class="nr">04</span>Werkgebied</p>
+    <div class="geb__grid">
+      <h2>Ruim 90% van mijn werk ligt binnen Amersfoort</h2>
       <div>
-        <p class="mark"><b>04</b> &nbsp;Werkgebied</p>
-        <h2>Ruim 90% van mijn werk ligt binnen Amersfoort</h2>
-      </div>
-      <div>
-        <p class="lede">
+        <p class="intro">
           Daardoor ben ik snel ter plaatse — bij spoed vaak binnen een uur. De meeste klanten
           zijn particulier, maar ik werk ook voor plaatselijke bedrijven zoals restaurants en
           winkels. Woont u er net buiten? Bel gerust, vaak kan het gewoon.
         </p>
-        <p class="places">
-          Amersfoort <span class="sep">·</span> Hoogland <span class="sep">·</span> Hooglanderveen
-          <span class="sep">·</span> Vathorst <span class="sep">·</span> Kattenbroek
-          <span class="sep">·</span> Nieuwland <span class="sep">·</span> Schothorst
-          <span class="sep">·</span> Zielhorst <span class="sep">·</span> Randenbroek
-          <span class="sep">·</span> Soesterkwartier
+        <p class="plaatsen">
+          Amersfoort <span class="punt">·</span> Hoogland <span class="punt">·</span> Hooglanderveen
+          <span class="punt">·</span> Vathorst <span class="punt">·</span> Kattenbroek
+          <span class="punt">·</span> Nieuwland <span class="punt">·</span> Schothorst
+          <span class="punt">·</span> Zielhorst <span class="punt">·</span> Randenbroek
+          <span class="punt">·</span> Soesterkwartier
         </p>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════ WERKWIJZE ══════════════ -->
-  <section class="band shell">
-    <div class="inner">
-      <p class="mark"><b>05</b> &nbsp;Zo gaat het</p>
-      <h2>Van telefoontje tot opgeloste klus</h2>
-      <div class="steps">
-        <div>
-          <p class="n">01</p>
-          <h3>U belt of mailt</h3>
-          <p>U krijgt mij zelf aan de lijn. U vertelt wat er aan de hand is en hoort meteen een eerlijke inschatting van de oplossing en de kosten.</p>
-        </div>
-        <div>
-          <p class="n">02</p>
-          <h3>We plannen een moment</h3>
-          <p>Spoed gaat voor. Voor werk dat kan wachten spreken we een vast tijdstip af — en dat wordt nagekomen.</p>
-        </div>
-        <div>
-          <p class="n">03</p>
-          <h3>In één keer klaar</h3>
-          <p>Ik heb de juiste materialen bij me, werk netjes en ruim op. U hoort wat ik heb gedaan en krijgt garantie op het werk.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- ───────────── HOE HET GAAT ───────────── -->
+  <section class="blok">
+    <p class="aantek"><span class="nr">05</span>Hoe het gaat</p>
+    <h2>Van telefoontje tot opgeloste klus</h2>
 
-  <!-- ══════════════ GOED OM TE WETEN ══════════════ -->
-  <section class="band shell paper-2">
-    <div class="inner">
-      <p class="mark"><b>06</b> &nbsp;Goed om te weten</p>
-      <div class="qa">
-        <div>
-          <h3>Kunt u met spoed komen?</h3>
-          <p>Meestal wel. Spoedgevallen in Amersfoort en omgeving pak ik zoveel mogelijk dezelfde dag op. Bellen gaat dan het snelst.</p>
-        </div>
-        <div>
-          <h3>Wat gaat het kosten?</h3>
-          <p>Dat hoort u vooraf. Aan de telefoon geef ik een heldere indicatie, en tref ik ter plaatse iets anders aan, dan overleg ik dat eerst.</p>
-        </div>
-        <div>
-          <h3>Doet u cv-ketels?</h3>
-          <p>Geen service en onderhoud aan ketels. Wel het installatiewerk eromheen: radiatoren, leidingwerk en verkeerd aangesloten installaties.</p>
-        </div>
-        <div>
-          <h3>Werkt u ook voor bedrijven?</h3>
-          <p>Ja. De meeste klanten zijn particulier, maar restaurants en winkels in Amersfoort weten mij ook te vinden.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════ CONTACT ══════════════ -->
-  <section class="band shell ink" id="contact">
-    <div class="inner contact__grid">
+    <div class="stappen">
       <div>
-        <p class="mark"><b>07</b> &nbsp;Contact</p>
-        <h2>Loodgieter nodig in Amersfoort?</h2>
-        <p class="lede" style="margin-top:1em">
+        <p class="nr">01</p>
+        <h3>U belt of mailt</h3>
+        <p>U krijgt mij zelf aan de lijn. U vertelt wat er aan de hand is en hoort meteen een eerlijke inschatting van de oplossing en de kosten.</p>
+      </div>
+      <div>
+        <p class="nr">02</p>
+        <h3>We plannen een moment</h3>
+        <p>Spoed gaat voor. Voor werk dat kan wachten spreken we een vast tijdstip af — en dat wordt nagekomen.</p>
+      </div>
+      <div>
+        <p class="nr">03</p>
+        <h3>In één keer klaar</h3>
+        <p>Ik heb de juiste materialen bij me, werk netjes en ruim op. U hoort wat ik heb gedaan en krijgt garantie op het werk.</p>
+      </div>
+    </div>
+
+    <div class="weten">
+      <div>
+        <h3>Kunt u met spoed komen?</h3>
+        <p>Meestal wel. Spoedgevallen in Amersfoort en omgeving pak ik zoveel mogelijk dezelfde dag op. Bellen gaat dan het snelst.</p>
+      </div>
+      <div>
+        <h3>Wat gaat het kosten?</h3>
+        <p>Dat hoort u vooraf. Aan de telefoon geef ik een heldere indicatie, en tref ik ter plaatse iets anders aan, dan overleg ik dat eerst.</p>
+      </div>
+      <div>
+        <h3>Doet u cv-ketels?</h3>
+        <p>Geen service en onderhoud aan ketels. Wel het installatiewerk eromheen: radiatoren, leidingwerk en verkeerd aangesloten installaties.</p>
+      </div>
+      <div>
+        <h3>Werkt u ook voor bedrijven?</h3>
+        <p>Ja. De meeste klanten zijn particulier, maar restaurants en winkels in Amersfoort weten mij ook te vinden.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── CONTACT ───────────── -->
+  <section class="blok donker" id="contact">
+    <p class="aantek"><span class="nr">06</span>Contact</p>
+    <div class="con__grid">
+      <div>
+        <h2>Loodgieter nodig<br>in Amersfoort?</h2>
+        <p class="intro" style="margin-top:1.1em">
           Voor spoed of een snelle vraag is bellen het beste — dan heeft u meteen antwoord.
           Liever mailen? Beschrijf uw situatie, stuur gerust een foto mee, en ik reageer
           binnen 24 uur.
         </p>
-        <p style="margin:clamp(28px,4vw,44px) 0 0">
-          <a class="bignum" href="tel:+31641223984">06 41 22 39 84</a>
+        <p style="margin:clamp(30px,4vw,48px) 0 0">
+          <a class="grootnummer" href="tel:+31641223984">06 41 22 39 84</a>
         </p>
-        <div class="contact__act">
-          <a class="tlink" href="mailto:info@deloodgieters.nl?subject=Aanvraag%20loodgieter%20Amersfoort">Stuur een e-mail</a>
-        </div>
+        <a class="mail" href="mailto:info@deloodgieters.nl?subject=Aanvraag%20loodgieter%20Amersfoort">Stuur een e-mail</a>
       </div>
 
-      <dl class="spec">
+      <dl class="gegevens">
         <div>
           <dt>Bereikbaarheid</dt>
           <dd>Ma t/m vr, plus spoed<small>Spoed in de avond of het weekend? Bel gerust — vaak is er iets te regelen.</small></dd>
@@ -878,10 +717,10 @@ h3 { font-size: clamp(1.3rem, 1.12rem + .8vw, 1.7rem); letter-spacing: -.025em; 
   </section>
 </main>
 
-<footer class="foot shell">
-  <div class="inner foot__in">
-    <p style="margin:0"><b>Van Renselaar</b> — Loodgieters- en Verwarmingsbedrijf · Amersfoort</p>
-    <p style="margin:0">
+<footer class="voet">
+  <div class="voet__in">
+    <p><b>Van Renselaar</b> — loodgieters- en verwarmingsbedrijf · Amersfoort</p>
+    <p>
       <a href="tel:+31641223984">06 41 22 39 84</a> ·
       <a href="mailto:info@deloodgieters.nl">info@deloodgieters.nl</a> ·
       <!-- koppelen aan de bestaande privacyverklaring -->
@@ -890,8 +729,11 @@ h3 { font-size: clamp(1.3rem, 1.12rem + .8vw, 1.7rem); letter-spacing: -.025em; 
   </div>
 </footer>
 
-<div class="callbar">
-  <a href="tel:+31641223984">Bel <span>06 41 22 39 84</span></a>
+<div class="vastebalk">
+  <a href="tel:+31641223984">
+    <span class="wat">Bel direct</span>
+    <span class="nummer">06 41 22 39 84</span>
+  </a>
 </div>
 
 </body>
