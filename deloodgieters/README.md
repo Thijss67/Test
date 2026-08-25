@@ -14,11 +14,21 @@ van de blokken.
 `#c8441f` — de rode grondverf van leidingwerk. Geen slagschaduwen, geen iconenset,
 geen badges, geen kaarten.
 
-**Maatvoering van de ronding.** Twee waarden, verder niets: `--rond: 4px` voor knoppen
-en `--rond-b: 10px` voor beeld. Genoeg om de hoeken te breken, te weinig om richting
-capsules te gaan. De kantlijn en de accentstrepen hebben ronde uiteinden, de scheiding
-tussen plaatsnamen is een rond stipje, en het meelopende beeld bij Werk staat als paneel
-in het raster in plaats van als vlak tegen de schermrand.
+**Panelen in plaats van banen.** De donkere en getinte vlakken lopen niet meer van rand
+tot rand: ze liggen als afgeronde panelen op het papier, met het papier zichtbaar
+eromheen. De hero krult onderaan weg, contact en voet vormen samen één paneel dat de
+pagina afsluit. Dat haalt de stapel rechthoeken uit de compositie.
+
+**Maatvoering van de ronding.** Vier waarden, verder niets: `--rond: 4px` voor knoppen,
+`--rond-b: 14px` voor beeld, `--rondp: 18–30px` voor panelen en `--inzet: 10–22px` voor
+hoeveel een paneel van de schermrand blijft. De kantlijn en de accentstrepen hebben ronde
+uiteinden.
+
+**De kaart.** Het werkgebied is een schematische kaart: de gemeentecontour als organische
+vorm, twee cirkels voor de straal, de Eem en de doorgaande wegen als gebogen lijnen
+binnen de contour, en vijf wijken benoemd. De cirkels zetten zich uit zodra de kaart in
+beeld komt. Alle wijknamen staan als tekst in de kolom ernaast, dus de informatie hangt
+niet aan het beeld.
 
 **Zetwerk.** Archivo op de variabele breedte-as (112% op desktop, 100% daaronder zodat
 lange woorden passen), IBM Plex Sans voor lopende tekst, IBM Plex Mono voor de marge.
@@ -34,7 +44,7 @@ lange woorden passen), IBM Plex Sans voor lopende tekst, IBM Plex Mono voor de m
 | Werk | de foto **blijft staan** terwijl de dienstenlijst erlangs schuift en wisselt per dienst |
 | Cijfers | 35 jaar, 92 reviews, 90%, 4,9 lopen op zodra ze in beeld komen |
 | Lijnen | tekenen zich van links naar rechts, met vertraging per element |
-| Werkgebied | plaatsnamen lopen door in twee richtingen — massief heen, contour terug; pauzeert bij hover |
+| Werkgebied | de cirkels van de kaart zetten zich uit bij binnenkomst |
 | Belbalk | vult zich van onderen met inkt bij hover |
 
 Alles is uitgeschakeld bij `prefers-reduced-motion: reduce`: geen parallax, geen

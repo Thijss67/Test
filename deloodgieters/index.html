@@ -69,13 +69,15 @@
   --edge: 18px;
 
   --rond:   4px;    /* knoppen en kleine vlakken */
-  --rond-b: 10px;   /* beeld */
+  --rond-b: 14px;   /* beeld */
+  --rondp:  18px;   /* panelen */
+  --inzet:  10px;   /* hoeveel een paneel van de schermrand blijft */
 
   --ease: cubic-bezier(.16, 1, .3, 1);
   --traag: 1.05s;
 }
-@media (min-width: 700px)  { :root { --rail: 58px;  --gap: 30px; --edge: 40px; } }
-@media (min-width: 1100px) { :root { --rail: 104px; --gap: 44px; --edge: 64px; } }
+@media (min-width: 700px)  { :root { --rail: 58px;  --gap: 30px; --edge: 40px; --inzet: 16px; --rondp: 24px; } }
+@media (min-width: 1100px) { :root { --rail: 104px; --gap: 44px; --edge: 64px; --inzet: 22px; --rondp: 30px; } }
 @media (min-width: 1500px) { :root { --rail: 136px; --gap: 56px; --edge: 88px; } }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -109,6 +111,17 @@ a { color: inherit; }
 section[id] { scroll-margin-top: 60px; }
 .donker { background: var(--ink); color: var(--bone); }
 .tint   { background: var(--bone-2); }
+
+/* Paneel: een vlak dat niet tegen de schermrand plakt maar erop ligt.
+   De inhoud blijft uitgelijnd op de kantlijn doordat de inzet van de
+   linkerruimte wordt afgetrokken. */
+.paneel { margin-inline: var(--inzet); border-radius: var(--rondp); overflow: clip; }
+.paneel.blok, .paneel > .blok, .paneel .werk__kop, .paneel .werk__lijst {
+  padding-left: calc(var(--rail) + var(--gap) - var(--inzet));
+}
+.paneel.blok, .paneel > .blok { padding-right: calc(var(--edge) - var(--inzet)); }
+.paneel--onder { border-radius: var(--rondp) var(--rondp) 0 0; }
+.paneel--sluit { border-radius: 0 0 var(--rondp) var(--rondp); margin-bottom: var(--inzet); }
 
 .aantek {
   font-family: var(--f-marge); font-size: .68rem; font-weight: 500;
@@ -163,7 +176,7 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
   html { scroll-behavior: auto; }
   .op > *, .zw, .tl::before { transition: none !important; transform: none !important; opacity: 1 !important; }
   .kantlijn i { transform: none !important; }
-  .loop__spoor { animation: none !important; }
+  .k-ring, .k-ring2, .k-kring { transform: none !important; opacity: 1 !important; }
   .held__beeld img { transform: none !important; }
 }
 
@@ -238,6 +251,7 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
 
 /* ── held: beeldscherm-vullend ────────────────────────────────────── */
 .held {
+  border-radius: 0 0 var(--rondp) var(--rondp);
   position: relative; min-height: 100svh; display: flex; flex-direction: column;
   justify-content: flex-end; overflow: hidden; background: var(--ink); color: var(--bone);
 }
@@ -339,6 +353,7 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
     border-radius: var(--rond-b);
   }
   .werk__beeld figure { border-radius: var(--rond-b); overflow: hidden; }
+  .paneel .werk__beeld { margin-left: calc(var(--rail) + var(--gap) - var(--inzet)); }
   .werk__beeld figure { position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity .7s var(--ease); }
   .werk__beeld figure.actief { opacity: 1; }
   .werk__beeld img { width: 100%; height: 100%; object-fit: cover; }
@@ -377,33 +392,45 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
   .korte { grid-template-columns: repeat(3, 1fr); gap: 0 clamp(26px, 3vw, 52px); }
 }
 
-/* ── werkgebied: doorlopende plaatsnamen ──────────────────────────── */
-.gebied { position: relative; overflow: hidden; background: var(--ink); color: var(--bone); }
-.gebied__beeld { position: absolute; inset: 0; z-index: 0; }
-.gebied__beeld img { width: 100%; height: 100%; object-fit: cover; opacity: .3; transform: translate3d(0, var(--par, 0px), 0) scale(1.06); }
-.gebied__beeld::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(16,20,24,.96), rgba(16,20,24,.72)); }
-.gebied > .blok { position: relative; z-index: 2; padding-bottom: clamp(30px, 4vw, 56px); }
-.loop { position: relative; z-index: 2; overflow: hidden; padding-bottom: clamp(56px, 7vw, 120px); }
-.loop + .loop { padding-top: 0; }
-.loop__spoor {
-  display: flex; width: max-content; gap: 0;
-  animation: schuif 52s linear infinite;
+/* ── werkgebied: schematische kaart ─────────────────────────────── */
+.geb__grid { display: grid; gap: clamp(30px, 4vw, 56px); align-items: center; }
+.wijken {
+  margin: clamp(22px, 3vw, 32px) 0 clamp(18px, 2vw, 26px);
+  font-family: var(--f-marge); font-size: .74rem; line-height: 2.1;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--grafiet);
+  max-width: 46ch;
 }
-.loop--terug .loop__spoor { animation-direction: reverse; animation-duration: 64s; }
-.loop:hover .loop__spoor { animation-play-state: paused; }
-.loop__spoor span {
-  font-family: var(--f-kop); font-weight: 700; font-stretch: 104%;
-  font-size: clamp(2rem, 1rem + 4.4vw, 5rem); letter-spacing: -.03em;
-  text-transform: uppercase; white-space: nowrap; padding-right: .5em;
+.kaart { margin: 0; }
+.kaart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.kaart figcaption {
+  margin-top: 14px; font-family: var(--f-marge); font-size: .62rem;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--grafiet);
 }
-.loop__spoor span { display: inline-flex; align-items: center; }
-.loop__spoor span::after {
-  content: ""; width: .17em; height: .17em; border-radius: 50%;
-  background: var(--menie); margin-left: .42em; flex: none;
+.k-blob  { fill: rgba(16,20,24,.035); stroke: rgba(16,20,24,.2); stroke-width: 1.5; }
+.k-weg   { fill: none; stroke: rgba(16,20,24,.13); stroke-width: 7; stroke-linecap: round; }
+.k-weg--dun { stroke-width: 3.5; stroke-opacity: .7; }
+.k-water { fill: none; stroke: rgba(64,104,128,.45); stroke-width: 4; stroke-linecap: round; }
+.k-ring, .k-ring2 { fill: none; stroke: var(--menie); stroke-width: 1.5; transform-origin: 300px 290px; }
+.k-ring  { stroke-opacity: .4; stroke-dasharray: 5 8; }
+.k-ring2 { stroke-opacity: .2; }
+.k-kring { fill: none; stroke: var(--menie); stroke-width: 2; stroke-opacity: .55; transform-origin: 300px 290px; }
+.k-punt  { fill: var(--menie); }
+.k-stip  { fill: rgba(16,20,24,.4); }
+.k-tekst { font-family: var(--f-marge); font-size: 14px; letter-spacing: .14em; fill: rgba(16,20,24,.5); }
+.k-stad  { font-family: var(--f-kop); font-weight: 700; font-stretch: 104%; font-size: 27px; letter-spacing: -.02em; fill: var(--ink); }
+/* de cirkels zetten zich uit zodra de kaart in beeld komt */
+.k-ring, .k-ring2, .k-kring { transform: scale(.82); opacity: 0; transition: transform 1.3s var(--ease), opacity .9s var(--ease); }
+.k-ring2 { transition-delay: .1s; }
+.k-ring  { transition-delay: .22s; }
+.zicht .k-ring, .zicht .k-ring2, .zicht .k-kring { transform: none; opacity: 1; }
+
+.straat { margin: clamp(40px, 5vw, 76px) 0 0; overflow: hidden; border-radius: var(--rond-b); background: var(--ink-2); }
+.straat img { width: 100%; aspect-ratio: 21/9; object-fit: cover; }
+
+@media (min-width: 900px) {
+  .geb__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 5.4fr); gap: clamp(40px, 6vw, 96px); }
+  .k-tekst { font-size: 13px; }
 }
-.loop--terug .loop__spoor span { -webkit-text-stroke: 1px rgba(240,237,230,.42); color: transparent; }
-.loop--terug .loop__spoor span::after { -webkit-text-stroke: 0; background: var(--menie); }
-@keyframes schuif { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
 
 /* ── werkwijze + weten ────────────────────────────────────────────── */
 .stappen { display: grid; margin-top: clamp(26px, 3vw, 44px); }
@@ -558,7 +585,7 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
   </section>
 
   <!-- ═══════════ WERK ═══════════ -->
-  <section class="werk" id="werk">
+  <section class="werk paneel" id="werk">
     <div class="werk__kop" data-zie>
       <p class="aantek"><span class="nr">02</span><span class="zw">Werk</span></p>
       <h2 class="op" style="--i:1"><span>Waarvoor mensen mij bellen</span></h2>
@@ -657,36 +684,61 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
   </section>
 
   <!-- ═══════════ WERKGEBIED ═══════════ -->
-  <section class="gebied" id="werkgebied" data-zie data-par="0.1">
-    <div class="gebied__beeld" aria-hidden="true">
-      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Hrk8NfAcGxoW6V1aEHtFRQ6QqO/hf_20260825_074325_32d735e7-2d38-4855-ad48-bf1a1ad54de1.png" alt="" loading="lazy" />
-    </div>
-    <div class="blok">
-      <p class="aantek"><span class="nr">04</span><span class="zw">Werkgebied</span></p>
-      <h2 class="op" style="--i:1"><span>Ruim 90% binnen Amersfoort</span></h2>
-      <p class="intro zw" style="--i:3">
-        Daardoor ben ik snel ter plaatse — bij spoed vaak binnen een uur. De meeste klanten
-        zijn particulier, maar ik werk ook voor plaatselijke bedrijven zoals restaurants en
-        winkels. Woont u er net buiten? Bel gerust, vaak kan het gewoon.
-      </p>
-    </div>
-    <div class="loop" aria-hidden="true">
-      <div class="loop__spoor">
-        <span>Amersfoort</span><span>Hoogland</span><span>Hooglanderveen</span><span>Vathorst</span><span>Kattenbroek</span>
-        <span>Amersfoort</span><span>Hoogland</span><span>Hooglanderveen</span><span>Vathorst</span><span>Kattenbroek</span>
+  <section class="blok tint paneel gebied" id="werkgebied" data-zie>
+    <p class="aantek"><span class="nr">04</span><span class="zw">Werkgebied</span></p>
+    <div class="geb__grid">
+      <div>
+        <h2 class="op" style="--i:1"><span>Ruim 90% binnen Amersfoort</span></h2>
+        <p class="intro zw" style="--i:2">
+          Daardoor ben ik snel ter plaatse — bij spoed vaak binnen een uur. De meeste
+          klanten zijn particulier, maar ik werk ook voor plaatselijke bedrijven zoals
+          restaurants en winkels.
+        </p>
+        <p class="wijken zw" style="--i:3">
+          Amersfoort · Hoogland · Hooglanderveen · Vathorst · Kattenbroek · Nieuwland ·
+          Schothorst · Zielhorst · Liendert · Randenbroek · Soesterkwartier · Vermeerkwartier
+        </p>
+        <p class="zw" style="--i:4">
+          Woont u er net buiten? <a class="mail" href="tel:+31641223984">Bel gerust, vaak kan het gewoon</a>
+        </p>
       </div>
+
+      <figure class="kaart zw" style="--i:3">
+        <svg viewBox="0 0 600 560" role="img" aria-label="Schematische kaart van het werkgebied rond Amersfoort">
+          <defs>
+            <clipPath id="gemeente">
+              <path d="M300 70c92 0 170 58 196 140 24 78 4 162-48 218-56 60-142 80-208 58-70-24-120-84-136-150-18-74 4-158 58-210 38-36 86-56 138-56Z"/>
+            </clipPath>
+          </defs>
+          <path class="k-blob" d="M300 70c92 0 170 58 196 140 24 78 4 162-48 218-56 60-142 80-208 58-70-24-120-84-136-150-18-74 4-158 58-210 38-36 86-56 138-56Z"/>
+          <g clip-path="url(#gemeente)">
+            <path class="k-weg" d="M96 452C200 392 300 330 452 190"/>
+            <path class="k-weg" d="M112 300c108-38 268-32 388-64"/>
+            <path class="k-weg k-weg--dun" d="M180 130c60 70 90 150 96 260"/>
+            <path class="k-water" d="M300 290c12-40-12-66 0-100 12-34-8-62 2-94"/>
+          </g>
+          <circle class="k-ring2" cx="300" cy="290" r="120"/>
+          <circle class="k-ring" cx="300" cy="290" r="205"/>
+          <circle class="k-kring" cx="300" cy="290" r="21"/>
+          <circle class="k-punt" cx="300" cy="290" r="8"/>
+          <text class="k-stad" x="300" y="342" text-anchor="middle">Amersfoort</text>
+          <circle class="k-stip" cx="252" cy="192" r="4"/><text class="k-tekst" x="252" y="174" text-anchor="middle">HOOGLAND</text>
+          <circle class="k-stip" cx="404" cy="162" r="4"/><text class="k-tekst" x="404" y="144" text-anchor="middle">VATHORST</text>
+          <circle class="k-stip" cx="356" cy="232" r="4"/><text class="k-tekst" x="360" y="214" text-anchor="middle">SCHOTHORST</text>
+          <circle class="k-stip" cx="232" cy="248" r="4"/><text class="k-tekst" x="228" y="230" text-anchor="middle">NIEUWLAND</text>
+          <circle class="k-stip" cx="330" cy="392" r="4"/><text class="k-tekst" x="330" y="414" text-anchor="middle">RANDENBROEK</text>
+        </svg>
+        <figcaption>Schematisch — niet op schaal</figcaption>
+      </figure>
     </div>
-    <div class="loop loop--terug" aria-hidden="true">
-      <div class="loop__spoor">
-        <span>Nieuwland</span><span>Schothorst</span><span>Zielhorst</span><span>Randenbroek</span><span>Soesterkwartier</span>
-        <span>Nieuwland</span><span>Schothorst</span><span>Zielhorst</span><span>Randenbroek</span><span>Soesterkwartier</span>
-      </div>
-    </div>
-    <p class="verborgen">Werkgebied: Amersfoort, Hoogland, Hooglanderveen, Vathorst, Kattenbroek, Nieuwland, Schothorst, Zielhorst, Randenbroek en Soesterkwartier.</p>
+
+    <figure class="straat zw" style="--i:5">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Hrk8NfAcGxoW6V1aEHtFRQ6QqO/hf_20260825_074325_32d735e7-2d38-4855-ad48-bf1a1ad54de1.png" alt="Rustige Amersfoortse woonstraat met bakstenen rijtjeshuizen en een geparkeerde servicebus" loading="lazy" />
+    </figure>
   </section>
 
   <!-- ═══════════ HOE HET GAAT ═══════════ -->
-  <section class="blok tint" data-zie>
+  <section class="blok" data-zie>
     <p class="aantek"><span class="nr">05</span><span class="zw">Hoe het gaat</span></p>
     <h2 class="op" style="--i:1"><span>Van telefoontje tot opgeloste klus</span></h2>
 
@@ -717,7 +769,7 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
   </section>
 
   <!-- ═══════════ CONTACT ═══════════ -->
-  <section class="blok donker" id="contact" data-zie>
+  <section class="blok donker paneel paneel--onder" id="contact" data-zie>
     <p class="aantek"><span class="nr">06</span><span class="zw">Contact</span></p>
     <div class="con__grid">
       <div>
@@ -746,7 +798,7 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
   </section>
 </main>
 
-<footer class="voet">
+<footer class="voet paneel paneel--sluit">
   <div class="voet__in">
     <p><b>Van Renselaar</b> — loodgieters- en verwarmingsbedrijf · Amersfoort</p>
     <p>
