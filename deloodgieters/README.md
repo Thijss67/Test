@@ -1,80 +1,72 @@
 # deloodgieters.nl — Van Renselaar
 
-Eén statische pagina: `index.html`. Geen build, geen dependencies, geen externe assets
-behalve de webfonts.
+Eén statische pagina: `index.html`. Geen build, geen frameworks, geen bibliotheken.
+De beweging draait op ~90 regels eigen JavaScript en CSS-transities.
 
-## Het ontwerpidee: de kantlijn
+## Vorm
 
-Eén rode lijn loopt van de bovenrand tot de onderrand van de pagina. Alles hangt aan die
-lijn — koppen, tekst, beeld, de voet. In de marge ernaast staat alleen de nummering van
-de blokken en, in de hero, het adres van de site verticaal gezet. Zoals de rode kantlijn
-in een werkboek.
+**De kantlijn.** Eén rode lijn loopt van de eerste tot de laatste pixel van de pagina en
+**vult zich mee met hoever je gelezen hebt**. Identiteit en voortgangsmeter in hetzelfde
+element. Alle inhoud hangt aan die lijn; in de marge ernaast staat alleen de nummering
+van de blokken.
 
-Dat ene gebaar draagt de hele site. Daardoor zijn er geen omlijstingen, kaders of
-kaartjes nodig om structuur te maken, en heeft de pagina een vorm die niet uit een
-templatebibliotheek komt.
+**Papier, inkt, menie.** Gebroken wit `#f0ede6`, dieptezwart `#101418`, meniërood
+`#c8441f` — de rode grondverf van leidingwerk. Geen afgeronde hoeken, geen slagschaduwen,
+geen iconenset, geen badges, geen kaarten.
 
-Verder in het systeem:
+**Zetwerk.** Archivo op de variabele breedte-as (112% op desktop, 100% daaronder zodat
+lange woorden passen), IBM Plex Sans voor lopende tekst, IBM Plex Mono voor de marge.
 
-- **De kop als drieklank.** `LEKKAGE. VERSTOPPING. INSTALLATIEWERK.` — drie woorden
-  onder elkaar in brede kapitalen, het derde in menierood. Binnen twee seconden duidelijk
-  wat er te halen valt.
-- **De belbalk.** De primaire actie is geen knopje maar een massief rood blok met het
-  nummer erin, in het raster gezet. Hij komt één keer voor in de hero, één keer als
-  smalle vaste strook onderaan op mobiel, en één keer als het nummer zelf, groot gezet,
-  in de contactsectie.
-- **Het stempel.** Eén gedraaid element op de hele pagina, over de bovenrand van het
-  hoofdbeeld heen: `VAN RENSELAAR — AMERSFOORT · SINDS 1990`. Verder staat alles recht.
-- **Breedte-as in het zetwerk.** Archivo is een variabel lettertype; koppen staan op
-  `font-stretch: 112%` — breder en blokkiger dan de standaardsnede, wat ze een eigen
-  stem geeft. Onder 900 px staat de as terug op 100% zodat lange woorden passen.
-- **Geen `border-radius` en geen `box-shadow`** in het hele bestand. Geen iconenset,
-  geen badges, geen kaarten.
+## Beweging
 
-### Kleur
-
-| Rol | Waarde |
+| Waar | Wat |
 |---|---|
-| Papier | `#f0ede6` |
-| Inkt | `#101418` (diensten, contact, voet) |
-| Menie | `#b03a1e` — kantlijn, belbalk, stempel, nummering |
-| Grafiet | `#5a6167` — bijschriften en marge |
-| Lijn | `#cdc7ba` |
+| Kantlijn | vult van boven naar beneden met de scrollpositie |
+| Hero | koptekst komt regel voor regel onder een masker omhoog; foto beweegt trager dan de pagina (parallax) |
+| Kopbalk | transparant over de hero, wordt papier zodra je eronder bent |
+| Belbalk mobiel | schuift pas omhoog ná de hero |
+| Werk | de foto **blijft staan** terwijl de dienstenlijst erlangs schuift en wisselt per dienst |
+| Cijfers | 35 jaar, 92 reviews, 90%, 4,9 lopen op zodra ze in beeld komen |
+| Lijnen | tekenen zich van links naar rechts, met vertraging per element |
+| Werkgebied | plaatsnamen lopen door in twee richtingen — massief heen, contour terug; pauzeert bij hover |
+| Belbalk | vult zich van onderen met inkt bij hover |
 
-## Foto's toevoegen
+Alles is uitgeschakeld bij `prefers-reduced-motion: reduce`: geen parallax, geen
+doorlopende namen, geen maskers, cijfers meteen op eindwaarde. De pagina blijft dan
+volledig leesbaar en compleet.
 
-Twee beeldplekken, allebei bedoeld voor echte werkfotografie. Zolang er geen foto is,
-staat er een vlak met snijtekens in de hoeken — leesbaar als "hier komt beeld".
+## Beeld — LET OP vóór livegang
 
-| Plek | Waar | Verhouding |
-|---|---|---|
-| Hoofdbeeld onder de hero | `<figure class="band leeg">` | 21:8 desktop, 4:3 mobiel |
-| Portret bij blok 01 | `<figure class="portret leeg">` | staand |
+De acht foto's zijn **met AI gegenereerd** (Higgsfield, nano-banana) als tussenstand, en
+staan nu nog op de CDN van Higgsfield. Twee dingen zijn nodig:
 
-Vervangen is één regel — haal `leeg` uit de class weg en zet er een `<img>` in:
+1. **Zelf hosten.** Download de bestanden en zet ze in `beeld/`; pas daarna de `src`'en
+   aan. Een externe CDN-link is niets waard voor een productiesite.
+2. **Bekijken en vervangen.** Ik kon ze in deze omgeving niet zelf bekijken (de
+   netwerkpolicy blokkeert die host), dus controleer ze met eigen ogen — AI-beeld van
+   handen en gereedschap gaat regelmatig mis. Echte foto's van Gert aan het werk zijn
+   hoe dan ook beter: dat is precies het verschil tussen een site die klopt en een site
+   die aanvoelt als voorraadbeeld.
 
-```html
-<figure class="band"><img src="beeld/werk.jpg" alt="Gert van Renselaar aan het werk"></figure>
-```
-
-Kies echte werksituaties: leidingwerk in een kruipruimte, een kraan halverwege de
-montage, gereedschap, de servicewagen. Geen stockfoto met opgestoken duim.
+Volgorde in de code: hero (koppeling), 6 diensten (kruipruimte, gereedschap, sanitair,
+solderen, radiator, verdeler) en de achtergrond van het werkgebied (straat).
 
 ## Mobile first
 
 Basisregels gelden voor het kleinste scherm; groter wordt opgebouwd met `min-width`
-queries (620 / 700 / 760 / 820 / 880 / 900 / 940 / 1000 / 1100 / 1500 px). De kantlijn
-schuift mee: 26 px op een telefoon, 140 px op een breed scherm. Getest van 360 tot
-1680 px — geen horizontale overflow, belbalk overal boven de vouw.
+queries (620 / 700 / 760 / 820 / 900 / 940 / 1000 / 1100 / 1500 px). De kantlijn schuift
+mee: 24 px op een telefoon, 136 px op een breed scherm. Het meelopende beeld bij Werk is
+desktop-only; op een telefoon staat de foto gewoon bij de dienst. Getest van 360 tot
+1680 px, geen horizontale overflow.
 
 ## Vóór livegang aanpassen
 
 | Wat | Waar |
 |---|---|
+| Foto's | zie hierboven |
 | E-mailadres (nu placeholder `info@deloodgieters.nl`) | zoek/vervang |
 | Telefoonnummer | `tel:+31641223984` en `06 41 22 39 84` |
 | Adres: hier **Gerstekamp 12** — op de huidige contactpagina staat Gerstekamp 17 | zoek op `Gerstekamp` |
-| Foto's | zie hierboven |
 | Privacyverklaring | link in de voet |
 | Bereikbaarheid | contactsectie, "Ma t/m vr, plus spoed" |
 
