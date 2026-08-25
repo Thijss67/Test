@@ -188,7 +188,7 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
 /* ── acties ───────────────────────────────────────────────────────── */
 .belbalk {
   position: relative; overflow: hidden; border-radius: var(--rond);
-  display: inline-flex; align-items: center; justify-content: space-between; gap: 22px;
+  display: flex; align-items: center; justify-content: space-between; gap: 22px;
   min-width: min(100%, 340px); background: var(--menie); color: #fff; text-decoration: none;
   padding: 16px 20px;
 }
@@ -197,6 +197,7 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
   content: ""; position: absolute; inset: 0; z-index: 1; background: var(--ink);
   transform: translateY(101%); transition: transform .42s var(--ease);
 }
+.held__act .belbalk { max-width: 380px; }
 .belbalk .wat { font-family: var(--f-marge); font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; opacity: .88; }
 .belbalk .nummer {
   font-family: var(--f-kop); font-weight: 700; font-stretch: 110%;
@@ -289,9 +290,12 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
 .held__beeld::after {
   content: ""; position: absolute; inset: 0;
   background:
-    linear-gradient(90deg, rgba(11,42,51,.96) 0%, rgba(14,21,25,.8) 46%, rgba(14,21,25,.3) 100%),
-    linear-gradient(0deg, rgba(14,21,25,.96) 0%, rgba(14,21,25,0) 58%),
-    radial-gradient(70% 60% at 88% 78%, rgba(200,68,31,.22), transparent 70%);
+    linear-gradient(102deg,
+      rgba(11,17,21,.94) 0%, rgba(11,17,21,.86) 24%, rgba(11,17,21,.66) 48%,
+      rgba(11,17,21,.4) 72%, rgba(11,17,21,.22) 100%),
+    linear-gradient(0deg, rgba(11,17,21,.92) 0%, rgba(11,17,21,0) 62%),
+    linear-gradient(180deg, rgba(18,54,64,.26) 0%, rgba(18,54,64,.06) 100%),
+    radial-gradient(64% 54% at 86% 80%, rgba(200,68,31,.14), transparent 72%);
 }
 .held__in {
   position: relative; z-index: 2;
@@ -299,10 +303,10 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
 }
 .held h1 { margin-bottom: clamp(20px, 2.6vw, 34px); }
 .held h1 .rood { color: var(--menie); }
-.held__lees { display: grid; gap: clamp(22px, 3vw, 40px); padding-bottom: clamp(30px, 4vw, 52px); }
+.held__lees { display: grid; gap: clamp(22px, 3vw, 40px); padding-bottom: clamp(30px, 4vw, 52px); max-width: 1060px; }
 .held__lees .intro { color: #b6bcc1; }
 @media (min-width: 940px) {
-  .held__lees { grid-template-columns: minmax(0, 1fr) auto; gap: clamp(40px, 6vw, 90px); align-items: end; }
+  .held__lees { grid-template-columns: minmax(0, 1fr) minmax(280px, 380px); gap: clamp(36px, 4vw, 72px); align-items: end; }
 }
 
 /* feitenstrook onderaan het scherm */
@@ -567,7 +571,7 @@ h3 { font-size: clamp(1.12rem, 1rem + .5vw, 1.35rem); font-stretch: 108%; line-h
           geen callcenter, geen wisselende monteurs. Bij spoed sta ik er meestal
           dezelfde dag.
         </p>
-        <div class="zw" style="--i:5">
+        <div class="zw held__act" style="--i:5">
           <a class="belbalk" href="tel:+31641223984">
             <span class="wat">Bel direct</span>
             <span class="nummer">06 41 22 39 84</span>
