@@ -11,8 +11,14 @@ element. Alle inhoud hangt aan die lijn; in de marge ernaast staat alleen de num
 van de blokken.
 
 **Papier, inkt, menie.** Gebroken wit `#f0ede6`, dieptezwart `#101418`, meniërood
-`#c8441f` — de rode grondverf van leidingwerk. Geen afgeronde hoeken, geen slagschaduwen,
-geen iconenset, geen badges, geen kaarten.
+`#c8441f` — de rode grondverf van leidingwerk. Geen slagschaduwen, geen iconenset,
+geen badges, geen kaarten.
+
+**Maatvoering van de ronding.** Twee waarden, verder niets: `--rond: 4px` voor knoppen
+en `--rond-b: 10px` voor beeld. Genoeg om de hoeken te breken, te weinig om richting
+capsules te gaan. De kantlijn en de accentstrepen hebben ronde uiteinden, de scheiding
+tussen plaatsnamen is een rond stipje, en het meelopende beeld bij Werk staat als paneel
+in het raster in plaats van als vlak tegen de schermrand.
 
 **Zetwerk.** Archivo op de variabele breedte-as (112% op desktop, 100% daaronder zodat
 lange woorden passen), IBM Plex Sans voor lopende tekst, IBM Plex Mono voor de marge.
