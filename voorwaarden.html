@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="nl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="theme-color" content="#fbfaf7" />
+		<meta name="color-scheme" content="light" />
+		<title>Algemene voorwaarden | DH Studio</title>
+		<meta name="description" content="De algemene voorwaarden van DH Studio voor offertes, opdrachten en onderhoud." />
+		<meta name="robots" content="index, follow" />
+		<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22-10 -43 188 188%22%3E%3Cpath d=%22M78 0h28v41h33V0h28v102h-28V61h-33v41H78z%22 fill=%22%230d1b3e%22/%3E%3Cpath d=%22M0 0h38a51 51 0 0 1 0 102H0z%22 fill=%22none%22 stroke=%22%23fff%22 stroke-width=%226%22/%3E%3Cpath d=%22M0 0h38a51 51 0 0 1 0 102H0zm20 20v62h18a31 31 0 0 0 0-62z%22 fill=%22%230d1b3e%22 fill-rule=%22evenodd%22/%3E%3Cg transform=%22translate(158 99) rotate(140) scale(1.85)%22%3E%3Cpath d=%22M0 0 0 26 5 20.5 9 30 13 28 9 19 14.5 18.5Z%22 fill=%22none%22 stroke=%22%23fff%22 stroke-width=%223.6%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M0 0 0 26 5 20.5 9 30 13 28 9 19 14.5 18.5Z%22 fill=%22%230d1b3e%22 stroke=%22%230d1b3e%22 stroke-width=%220.5%22 stroke-linejoin=%22round%22/%3E%3C/g%3E%3C/svg%3E" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+		<style>
+			:root {
+				--bg: #fbfaf7; --bg-soft: #f4f6fb; --surface: #ffffff;
+				--line: #e7e9f0; --line-strong: #d8dce7;
+				--fg: #0d1b3e; --body: #5c6577; --muted: #858c9c;
+				--accent: #2f6bff; --accent-text: #1d4ed8;
+				--font: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system,
+					BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+			}
+			*, ::before, ::after { box-sizing: border-box; border-width: 0; border-style: solid; }
+			html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+			body {
+				margin: 0; background: var(--bg); color: var(--body);
+				font-family: var(--font); font-size: 1.02rem; line-height: 1.7;
+				-webkit-font-smoothing: antialiased;
+			}
+			h1, h2, h3 { margin: 0; color: var(--fg); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; }
+			h1 { font-size: clamp(1.9rem, 1.4rem + 2.2vw, 2.8rem); }
+			h2 { font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.35rem); margin-top: 2.5rem; }
+			h3 { font-size: 1.02rem; margin-top: 1.5rem; }
+			p, ul { margin: 0.85rem 0 0; }
+			ul { padding-left: 1.15rem; }
+			li { margin-top: 0.4rem; }
+			a { color: var(--accent-text); font-weight: 600; }
+			a:hover { text-decoration: underline; }
+			:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+			.wrap { width: 100%; max-width: 760px; margin-inline: auto; padding-inline: 1.25rem; }
+			.site-header { border-bottom: 1px solid var(--line); background: var(--surface); }
+			.nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 68px; }
+			.brand { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--fg); font-size: 0.98rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; }
+			.brand-mark { height: 24px; width: auto; color: var(--fg); --logo-gap: var(--surface); }
+			.back { font-size: 0.92rem; text-decoration: none; }
+			main { padding-block: clamp(2.5rem, 7vw, 4.5rem); }
+			.updated { margin-top: 0.75rem; font-size: 0.88rem; color: var(--muted); }
+			.lead { margin-top: 1.5rem; font-size: 1.1rem; }
+			.card {
+				margin-top: 2rem; background: var(--surface); border: 1px solid var(--line);
+				border-radius: 16px; padding: 1.25rem 1.35rem;
+			}
+			.card p:first-child { margin-top: 0; }
+			.site-footer { border-top: 1px solid var(--line); background: var(--bg-soft); }
+			.foot { display: grid; gap: 0.5rem; padding-block: 1.75rem; font-size: 0.88rem; color: var(--muted); }
+			.foot a { color: inherit; font-weight: 500; }
+			.foot-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+			@media (min-width: 640px) { .foot { grid-template-columns: 1fr auto; align-items: center; } }
+		</style>
+	</head>
+	<body>
+		<header class="site-header">
+			<div class="wrap nav">
+				<a class="brand" href="index.html" aria-label="DH Studio, terug naar home">
+					<svg class="brand-mark" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 102" fill="currentColor">
+							<path d="M78 0h28v41h33V0h28v102h-28V61h-33v41H78z"/>
+							<path d="M0 0h38a51 51 0 0 1 0 102H0z" fill="none" stroke="var(--logo-gap, #fff)" stroke-width="6"/>
+							<path d="M0 0h38a51 51 0 0 1 0 102H0zm20 20v62h18a31 31 0 0 0 0-62z" fill-rule="evenodd"/>
+							<g transform="translate(158 99) rotate(140) scale(1.85)">
+								<path d="M0 0 0 26 5 20.5 9 30 13 28 9 19 14.5 18.5Z" fill="none" stroke="var(--logo-gap, #fff)" stroke-width="3.6" stroke-linejoin="round"/>
+								<path d="M0 0 0 26 5 20.5 9 30 13 28 9 19 14.5 18.5Z" stroke="currentColor" stroke-width="0.5" stroke-linejoin="round"/>
+							</g>
+						</svg>
+					DH Studio
+				</a>
+				<a class="back" href="index.html">&larr; Terug naar de website</a>
+			</div>
+		</header>
+
+		<main>
+			<div class="wrap">
+				<h1>Algemene voorwaarden</h1>
+				<p class="updated">Laatst bijgewerkt: 27 augustus 2026</p>
+				<p class="lead">
+					Deze algemene voorwaarden zijn van toepassing op alle offertes, opdrachten en
+					overeenkomsten tussen DH Studio en haar opdrachtgevers.
+				</p>
+
+				<div class="card">
+					<p><strong>DH Studio</strong></p>
+					<p>
+						E-mail: <a href="mailto:info@dh-studio.nl">info@dh-studio.nl</a><br />
+						KvK-nummer: [vul aan]<br />
+						Btw-identificatienummer: [vul aan]
+					</p>
+				</div>
+
+				<h2>1. Definities</h2>
+				<p>
+					<strong>Opdrachtnemer:</strong> DH Studio. <strong>Opdrachtgever:</strong> de partij die een
+					opdracht verstrekt. <strong>Opdracht:</strong> de tussen partijen overeengekomen
+					werkzaamheden, zoals het ontwerpen, bouwen, onderhouden of optimaliseren van een website.
+				</p>
+
+				<h2>2. Offertes en aanbiedingen</h2>
+				<p>
+					Offertes zijn dertig dagen geldig, tenzij anders vermeld. Een gratis websiteconcept is
+					vrijblijvend en verplicht de opdrachtgever tot niets. Een opdracht komt tot stand zodra de
+					opdrachtgever een offerte schriftelijk of per e-mail akkoord geeft.
+				</p>
+
+				<h2>3. Uitvoering van de opdracht</h2>
+				<p>
+					DH Studio voert de opdracht naar beste inzicht en vermogen uit. Genoemde termijnen zijn
+					streefdata en geen fatale termijnen, tenzij uitdrukkelijk anders overeengekomen. De
+					opdrachtgever levert tijdig de benodigde teksten, beeldmateriaal en toegangsgegevens aan.
+					Vertraging in aanlevering verlengt de doorlooptijd navenant.
+				</p>
+
+				<h2>4. Meerwerk</h2>
+				<p>
+					Werkzaamheden die buiten de overeengekomen opdracht vallen, worden vooraf besproken en pas
+					na akkoord uitgevoerd. Meerwerk wordt apart in rekening gebracht.
+				</p>
+
+				<h2>5. Oplevering en goedkeuring</h2>
+				<p>
+					Na oplevering heeft de opdrachtgever veertien dagen om het werk te controleren. Worden binnen
+					die termijn geen gebreken gemeld, dan geldt het werk als goedgekeurd.
+				</p>
+
+				<h2>6. Prijzen en betaling</h2>
+				<p>
+					Alle bedragen zijn exclusief btw, tenzij anders vermeld. Tenzij anders overeengekomen geldt
+					een betalingstermijn van veertien dagen na factuurdatum. Bij grotere projecten kan een
+					aanbetaling worden gevraagd. Bij niet-tijdige betaling is DH Studio gerechtigd de
+					werkzaamheden op te schorten.
+				</p>
+
+				<h2>7. Hosting, domeinnamen en onderhoud</h2>
+				<p>
+					Diensten voor hosting, domeinregistratie en onderhoud worden aangegaan voor de
+					overeengekomen periode en stilzwijgend verlengd, tenzij uiterlijk één maand voor het einde
+					van de periode wordt opgezegd. DH Studio is voor deze diensten afhankelijk van derden en kan
+					geen ononderbroken beschikbaarheid garanderen.
+				</p>
+
+				<h2>8. Intellectueel eigendom</h2>
+				<p>
+					Na volledige betaling verkrijgt de opdrachtgever het gebruiksrecht op het opgeleverde werk
+					voor het overeengekomen doel. Broncode, ontwerpbestanden en gebruikte componenten blijven
+					eigendom van DH Studio of van de betreffende licentiehouder. DH Studio mag het werk gebruiken
+					voor eigen portfolio en promotie, tenzij hierover andere afspraken zijn gemaakt.
+				</p>
+
+				<h2>9. Aansprakelijkheid</h2>
+				<p>
+					De aansprakelijkheid van DH Studio is beperkt tot het factuurbedrag van de betreffende
+					opdracht. DH Studio is niet aansprakelijk voor indirecte schade, waaronder gederfde winst,
+					gemiste besparingen en schade door verlies van gegevens. Deze beperking geldt niet bij opzet
+					of bewuste roekeloosheid.
+				</p>
+
+				<h2>10. Overmacht</h2>
+				<p>
+					Bij overmacht worden de verplichtingen opgeschort. Duurt de overmachtssituatie langer dan
+					zestig dagen, dan mogen beide partijen de overeenkomst ontbinden zonder verplichting tot
+					schadevergoeding.
+				</p>
+
+				<h2>11. Beëindiging</h2>
+				<p>
+					Beide partijen kunnen de overeenkomst schriftelijk beëindigen. Reeds verrichte werkzaamheden
+					worden naar rato in rekening gebracht.
+				</p>
+
+				<h2>12. Toepasselijk recht</h2>
+				<p>
+					Op alle overeenkomsten is Nederlands recht van toepassing. Geschillen worden voorgelegd aan
+					de bevoegde rechter in het arrondissement waar DH Studio is gevestigd.
+				</p>
+
+			</div>
+		</main>
+
+		<footer class="site-footer">
+			<div class="wrap foot">
+				<div class="foot-links">
+					<span>© <span id="year">2026</span> DH Studio</span>
+					<a href="privacybeleid.html">Privacybeleid</a>
+					<a href="voorwaarden.html">Algemene voorwaarden</a>
+					<a href="index.html#concept">Gratis websiteconcept</a>
+				</div>
+				<div>info@dh-studio.nl</div>
+			</div>
+		</footer>
+		<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+	</body>
+</html>
