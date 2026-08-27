@@ -146,10 +146,6 @@
 			@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 			@keyframes pop { from { opacity: 0; transform: scale(0.75); } to { opacity: 1; transform: none; } }
 			@keyframes draw { to { stroke-dashoffset: 0; } }
-			@keyframes ping {
-				0% { transform: scale(1); opacity: 0.55; }
-				70%, 100% { transform: scale(2.4); opacity: 0; }
-			}
 
 			/* ---------- Sectiekop ---------- */
 			.eyebrow {
@@ -354,29 +350,6 @@
 			}
 			.hero > .wrap { position: relative; z-index: 1; }
 
-			.availability {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.6rem;
-				padding: 0.5rem 1rem 0.5rem 0.85rem;
-				background: rgba(255, 255, 255, 0.8);
-				border: 1px solid var(--line);
-				border-radius: 999px;
-				box-shadow: var(--shadow-sm);
-				color: var(--fg);
-				font-size: 0.82rem;
-				font-weight: 600;
-			}
-			.availability .dot { position: relative; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); flex: none; }
-			.availability .dot::after {
-				content: "";
-				position: absolute;
-				inset: 0;
-				border-radius: 50%;
-				background: var(--accent);
-				animation: ping 2.6s cubic-bezier(0, 0, 0.2, 1) infinite;
-			}
-
 			.hero h1 { margin-top: 1.35rem; max-width: 17ch; margin-inline: auto; }
 			.hero h1 .mark { position: relative; display: inline-block; color: var(--accent); }
 			.hero h1 .mark svg {
@@ -399,12 +372,13 @@
 			.hero .lead { margin: 1.35rem auto 0; max-width: 52ch; font-size: var(--t-lead); }
 			.hero-actions { margin-top: 2rem; display: grid; gap: 0.75rem; }
 
-			.js .hero .availability, .js .hero h1, .js .hero .lead,
-			.js .hero-actions, .js .usps { animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
-			.js .hero h1 { animation-delay: 0.08s; }
+			.js .hero h1, .js .hero .lead,
+			.js .hero-actions, .js .btn-note, .js .usps { animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+			.js .hero h1 { animation-delay: 0.05s; }
 			.js .hero .lead { animation-delay: 0.16s; }
 			.js .hero-actions { animation-delay: 0.24s; }
-			.js .usps { animation-delay: 0.32s; }
+			.js .btn-note { animation-delay: 0.28s; }
+			.js .usps { animation-delay: 0.34s; }
 
 			.usps {
 				margin-top: 2.5rem;
@@ -504,23 +478,71 @@
 			.tile h3 { margin-bottom: 0.4rem; }
 			.tile p { font-size: 0.95rem; }
 
-			/* ---------- Werkwijze (tijdlijn) ---------- */
-			.timeline { position: relative; display: grid; gap: 0.85rem; }
-			.timeline::before {
+			/* ---------- Werkwijze: vast beeld dat meewisselt tijdens het scrollen ---------- */
+			.process { display: grid; gap: 1.5rem; }
+
+			.process-visual {
+				position: sticky;
+				top: calc(var(--header-h) + 1.1rem);
+				z-index: 2;
+			}
+			.scene-stack {
+				position: relative;
+				height: clamp(170px, 26vh, 220px);
+				border-radius: var(--radius-lg);
+				background: var(--surface);
+				border: 1px solid var(--line);
+				box-shadow: var(--shadow-card);
+				overflow: hidden;
+			}
+			.scene {
+				position: absolute;
+				inset: 0;
+				margin: 0;
+				display: grid;
+				place-items: center;
+				padding: clamp(0.55rem, 2.2vw, 1.1rem);
+				opacity: 0;
+				transform: scale(0.98);
+				transition: opacity 0.45s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+				pointer-events: none;
+			}
+			.scene.is-active { opacity: 1; transform: none; }
+			.scene svg { width: 100%; height: 100%; }
+
+			.scene-dots { display: flex; justify-content: center; gap: 7px; margin-top: 0.9rem; }
+			.scene-dots span {
+				width: 7px; height: 7px;
+				border-radius: 999px;
+				background: var(--line-strong);
+				transition: width 0.35s ease, background-color 0.35s ease;
+			}
+			.scene-dots span.is-active { width: 24px; background: var(--accent); }
+
+			.process-steps { position: relative; display: grid; }
+			.process-steps::before, .process-steps::after {
 				content: "";
 				position: absolute;
 				left: 23px;
-				top: 24px;
-				bottom: 24px;
+				top: 10px;
 				width: 2px;
 				border-radius: 2px;
-				background: linear-gradient(180deg, var(--accent-line), var(--line-strong));
 			}
-			.js .timeline::before { transform: scaleY(0); transform-origin: top; }
-			.js .timeline.is-visible::before { transform: scaleY(1); transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1); }
+			.process-steps::before { bottom: 10px; background: var(--line-strong); opacity: 0.6; }
+			.process-steps::after {
+				height: calc(var(--fill, 0.16) * 100%);
+				background: linear-gradient(180deg, var(--accent), #7aa5ff);
+				transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+			}
 
-			.step { display: grid; grid-template-columns: 48px 1fr; gap: 0.9rem; align-items: center; }
-			.step-icon {
+			.pstep {
+				display: grid;
+				grid-template-columns: 48px 1fr auto;
+				gap: 0.85rem;
+				align-items: center;
+				min-height: 25vh;
+			}
+			.pstep-icon {
 				position: relative;
 				z-index: 1;
 				width: 48px; height: 48px;
@@ -530,34 +552,37 @@
 				border: 1px solid var(--line);
 				box-shadow: var(--shadow-sm);
 				color: var(--accent);
-				transition: border-color 0.25s ease, transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+				transition: background-color 0.35s ease, border-color 0.35s ease,
+					color 0.35s ease, transform 0.35s ease;
 			}
-			.step-icon svg { width: 21px; height: 21px; }
-			.step-card {
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				gap: 1rem;
-				background: var(--surface);
-				border: 1px solid var(--line);
+			.pstep-icon svg { width: 21px; height: 21px; }
+			.pstep.is-active .pstep-icon {
+				background: var(--accent);
+				border-color: var(--accent);
+				color: #fff;
+				transform: scale(1.06);
+			}
+			.pstep-body {
+				padding: 0.9rem 1.1rem;
+				border: 1px solid transparent;
 				border-radius: var(--radius);
-				padding: 1rem 1.15rem;
-				box-shadow: var(--shadow-card);
-				transition: border-color 0.25s ease, transform 0.25s ease;
+				transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 			}
-			.step-card p { margin-top: 0.25rem; font-size: 0.92rem; }
-			.step-num {
-				font-size: clamp(1.5rem, 1.1rem + 1.9vw, 2.2rem);
+			.pstep.is-active .pstep-body {
+				background: var(--surface);
+				border-color: var(--accent-line);
+				box-shadow: var(--shadow-card);
+			}
+			.pstep-body p { margin-top: 0.25rem; font-size: 0.93rem; }
+			.pstep-num {
+				font-size: clamp(1.4rem, 1.1rem + 1.6vw, 2rem);
 				font-weight: 800;
 				line-height: 1;
 				letter-spacing: -0.04em;
 				color: var(--line-strong);
-				flex: none;
-				transition: color 0.25s ease;
+				transition: color 0.35s ease;
 			}
-			.step:hover .step-card { border-color: var(--accent-line); transform: translateX(3px); }
-			.step:hover .step-num { color: var(--accent); }
-			.step:hover .step-icon { background: var(--accent); border-color: var(--accent); color: #fff; transform: scale(1.06); }
+			.pstep.is-active .pstep-num { color: var(--accent); }
 
 			/* ---------- FAQ ---------- */
 			.faq { max-width: 780px; margin-inline: auto; display: grid; gap: 0.75rem; }
@@ -638,11 +663,12 @@
 				.hero-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
 				.usps { grid-template-columns: repeat(4, auto); gap: 1rem 1.75rem; }
 				.grid-4, .grid-3 { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
-				.step { grid-template-columns: 56px 1fr; gap: 1.1rem; }
-				.step-icon { width: 56px; height: 56px; border-radius: 18px; }
-				.step-icon svg { width: 24px; height: 24px; }
-				.timeline::before { left: 27px; }
-				.step-card { padding: 1.15rem 1.4rem; }
+				.scene-stack { height: clamp(230px, 32vh, 320px); }
+				.pstep { grid-template-columns: 56px 1fr auto; gap: 1.1rem; }
+				.pstep-icon { width: 56px; height: 56px; border-radius: 18px; }
+				.pstep-icon svg { width: 24px; height: 24px; }
+				.process-steps::before, .process-steps::after { left: 27px; }
+				.pstep-body { padding: 1rem 1.3rem; }
 				.footer-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 				.footer-about { grid-column: 1 / -1; }
 				.footer-bottom { grid-template-columns: 1fr auto; align-items: center; }
@@ -681,7 +707,11 @@
 				.nav-cta { display: inline-flex; justify-self: end; min-height: 48px; padding: 0.7rem 1.5rem; border-radius: 999px; font-size: 0.95rem; }
 				.grid-4 { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
 				.grid-3 { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-				.timeline { max-width: 860px; margin-inline: auto; gap: 1rem; }
+				.process { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+				/* align-self voorkomt dat de kolom uitrekt; anders kan sticky niet meelopen */
+				.process-visual { align-self: start; top: calc(var(--header-h) + 2.5rem); }
+				.scene-stack { height: clamp(300px, 40vh, 420px); }
+				.pstep { min-height: 22vh; }
 				.footer-grid { grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 3rem; }
 				.footer-about { grid-column: auto; }
 			}
@@ -694,7 +724,6 @@
 					transition-duration: 0.01ms !important;
 				}
 				.js .reveal { opacity: 1; transform: none; }
-				.js .timeline::before { transform: scaleY(1); }
 				.hero h1 .mark path { stroke-dashoffset: 0; }
 			}
 		</style>
@@ -735,8 +764,6 @@
 			<!-- HERO -->
 			<section class="hero">
 				<div class="wrap">
-					<p class="availability"><span class="dot" aria-hidden="true"></span> Beschikbaar voor nieuwe projecten in 2026</p>
-
 					<h1>Websites die jouw bedrijf <span class="mark">vooruit<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 8.5c34-5 78-6.5 122-4.5 26 1.2 48 2.6 72 5"/></svg></span> helpen.</h1>
 
 					<p class="lead">
@@ -748,6 +775,8 @@
 						<a href="/contact" class="btn btn-primary btn-block" id="heroCta" data-cta="hero">Gratis kennismaken</a>
 						<a href="#diensten" class="btn btn-outline btn-block">Bekijk diensten</a>
 					</div>
+
+					<p class="btn-note">Beschikbaar voor nieuwe projecten in 2026</p>
 
 					<ul class="usps">
 						<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Snel &amp; Veilig</li>
@@ -842,85 +871,164 @@
 						<p>Van eerste kennismaking tot evaluatie: zes stappen waarin je precies weet waar je aan toe bent.</p>
 					</div>
 
-					<ol class="timeline" id="timeline">
-						<li class="step reveal">
-							<span class="step-icon" aria-hidden="true">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c0-3 2.7-4.8 6-4.8s6 1.8 6 4.8"/><path d="M16 7.5a3 3 0 0 1 0 5.5M18 19c0-2.2-1-3.6-2.5-4.4"/></svg>
-							</span>
-							<div class="step-card">
-								<div>
-									<h3>Persoonlijk contact</h3>
-									<p>We beginnen met een gesprek: wie je bent, wat je doet en waar je naartoe wilt.</p>
-								</div>
-								<span class="step-num" aria-hidden="true">01</span>
+					<div class="process" id="process">
+						<!-- Beeld blijft staan en wisselt mee met de stap die in beeld is.
+						     Elke <figure> mag ook een <img> bevatten in plaats van de SVG. -->
+						<div class="process-visual" aria-hidden="true">
+							<div class="scene-stack">
+							<figure class="scene is-active" data-scene="1">
+								<svg viewBox="0 0 560 360" fill="none">
+							<rect x="44" y="44" width="286" height="94" rx="24" fill="#eef1f8"/>
+							<rect x="78" y="76" width="176" height="12" rx="6" fill="#cdd4e4"/>
+							<rect x="78" y="100" width="112" height="12" rx="6" fill="#cdd4e4"/>
+							<rect x="230" y="160" width="286" height="94" rx="24" fill="#2f6bff"/>
+							<rect x="264" y="192" width="176" height="12" rx="6" fill="#ffffff" fill-opacity=".9"/>
+							<rect x="264" y="216" width="118" height="12" rx="6" fill="#ffffff" fill-opacity=".6"/>
+							<circle cx="76" cy="302" r="28" fill="#0d1b3e"/>
+							<circle cx="134" cy="302" r="28" fill="#fbd9b4"/>
+							<rect x="180" y="286" width="126" height="32" rx="16" fill="#eef1f8"/>
+							<circle cx="212" cy="302" r="5" fill="#98a2b8"/><circle cx="232" cy="302" r="5" fill="#98a2b8"/><circle cx="252" cy="302" r="5" fill="#98a2b8"/>
+						</svg>
+							</figure>
+							<figure class="scene" data-scene="2">
+								<svg viewBox="0 0 560 360" fill="none">
+							<rect x="196" y="40" width="168" height="66" rx="18" fill="#2f6bff"/>
+							<rect x="226" y="66" width="108" height="14" rx="7" fill="#ffffff" fill-opacity=".85"/>
+							<path d="M280 106v34M118 140h324M118 140v32M280 140v32M442 140v32" stroke="#cdd4e4" stroke-width="3" stroke-linecap="round"/>
+							<rect x="54" y="172" width="128" height="86" rx="18" fill="#eef1f8"/>
+							<rect x="216" y="172" width="128" height="86" rx="18" fill="#eef1f8"/>
+							<rect x="378" y="172" width="128" height="86" rx="18" fill="#eef1f8"/>
+							<rect x="78" y="200" width="80" height="10" rx="5" fill="#cdd4e4"/><rect x="78" y="220" width="52" height="10" rx="5" fill="#dde2ee"/>
+							<rect x="240" y="200" width="80" height="10" rx="5" fill="#cdd4e4"/><rect x="240" y="220" width="52" height="10" rx="5" fill="#dde2ee"/>
+							<rect x="402" y="200" width="80" height="10" rx="5" fill="#cdd4e4"/><rect x="402" y="220" width="52" height="10" rx="5" fill="#dde2ee"/>
+							<rect x="392" y="272" width="112" height="80" rx="14" fill="#fbd9b4" transform="rotate(-6 392 272)"/>
+						</svg>
+							</figure>
+							<figure class="scene" data-scene="3">
+								<svg viewBox="0 0 560 360" fill="none">
+							<rect x="46" y="44" width="468" height="272" rx="22" fill="#ffffff" stroke="#e7e9f0" stroke-width="2"/>
+							<path d="M46 92h468" stroke="#e7e9f0" stroke-width="2"/>
+							<circle cx="76" cy="68" r="6" fill="#2f6bff"/><circle cx="96" cy="68" r="6" fill="#dde2ee"/><circle cx="116" cy="68" r="6" fill="#dde2ee"/>
+							<rect x="146" y="58" width="240" height="20" rx="10" fill="#f2f4f9"/>
+							<rect x="76" y="116" width="408" height="82" rx="14" fill="#2f6bff"/>
+							<rect x="104" y="144" width="196" height="12" rx="6" fill="#ffffff" fill-opacity=".9"/>
+							<rect x="104" y="166" width="120" height="12" rx="6" fill="#ffffff" fill-opacity=".55"/>
+							<rect x="76" y="216" width="128" height="72" rx="14" fill="#eef1f8"/>
+							<rect x="216" y="216" width="128" height="72" rx="14" fill="#eef1f8"/>
+							<rect x="356" y="216" width="128" height="72" rx="14" fill="#eef1f8"/>
+							<path d="m404 252-16 14 16 14M436 252l16 14-16 14" stroke="#2f6bff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+							</figure>
+							<figure class="scene" data-scene="4">
+								<svg viewBox="0 0 560 360" fill="none">
+							<rect x="46" y="62" width="256" height="162" rx="16" fill="#ffffff" stroke="#cdd4e4" stroke-width="3"/>
+							<rect x="72" y="88" width="140" height="12" rx="6" fill="#dde2ee"/>
+							<rect x="72" y="112" width="204" height="60" rx="10" fill="#eef1f8"/>
+							<rect x="142" y="224" width="64" height="12" rx="6" fill="#cdd4e4"/>
+							<rect x="322" y="92" width="106" height="132" rx="14" fill="#eef1f8"/>
+							<rect x="344" y="116" width="62" height="10" rx="5" fill="#cdd4e4"/>
+							<rect x="448" y="120" width="66" height="104" rx="14" fill="#0d1b3e"/>
+							<rect x="462" y="140" width="38" height="8" rx="4" fill="#ffffff" fill-opacity=".5"/>
+							<path d="M74 318a92 92 0 0 1 84-88" stroke="#e7e9f0" stroke-width="12" stroke-linecap="round"/>
+							<path d="M74 318a92 92 0 0 1 34-71" stroke="#2f6bff" stroke-width="12" stroke-linecap="round"/>
+							<circle cx="386" cy="288" r="40" fill="#2f6bff"/>
+							<path d="m368 288 12 12 22-24" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+							</figure>
+							<figure class="scene" data-scene="5">
+								<svg viewBox="0 0 560 360" fill="none">
+							<rect x="60" y="248" width="60" height="64" rx="12" fill="#eef1f8"/>
+							<rect x="150" y="216" width="60" height="96" rx="12" fill="#eef1f8"/>
+							<rect x="240" y="180" width="60" height="132" rx="12" fill="#dbe5fd"/>
+							<rect x="330" y="140" width="60" height="172" rx="12" fill="#2f6bff"/>
+							<rect x="420" y="96" width="60" height="216" rx="12" fill="#2f6bff"/>
+							<path d="M78 214 168 168l72 26 120-92" stroke="#0d1b3e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M330 102h34v34" stroke="#0d1b3e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+							<rect x="60" y="44" width="150" height="46" rx="23" fill="#0d1b3e"/>
+							<circle cx="88" cy="67" r="8" fill="#4ade80"/>
+							<rect x="108" y="61" width="76" height="12" rx="6" fill="#ffffff" fill-opacity=".85"/>
+						</svg>
+							</figure>
+							<figure class="scene" data-scene="6">
+								<svg viewBox="0 0 560 360" fill="none">
+							<rect x="44" y="48" width="228" height="264" rx="20" fill="#f5f7fc"/>
+							<circle cx="158" cy="142" r="56" stroke="#e2e6f0" stroke-width="24"/>
+							<path d="M158 86a56 56 0 0 1 48 84" stroke="#2f6bff" stroke-width="24" stroke-linecap="round"/>
+							<rect x="86" y="228" width="144" height="12" rx="6" fill="#dde2ee"/>
+							<rect x="86" y="256" width="96" height="12" rx="6" fill="#dde2ee"/>
+							<rect x="288" y="48" width="228" height="128" rx="20" fill="#f5f7fc"/>
+							<path d="M312 140l44-38 38 26 60-58" stroke="#2f6bff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+							<rect x="288" y="196" width="228" height="34" rx="17" fill="#f5f7fc"/>
+							<rect x="288" y="240" width="228" height="34" rx="17" fill="#f5f7fc"/>
+							<rect x="288" y="284" width="228" height="34" rx="17" fill="#f5f7fc"/>
+							<circle cx="312" cy="213" r="11" fill="#2f6bff"/><circle cx="312" cy="257" r="11" fill="#2f6bff"/><circle cx="312" cy="301" r="11" fill="#cdd4e4"/>
+							<rect x="336" y="207" width="120" height="12" rx="6" fill="#dde2ee"/>
+							<rect x="336" y="251" width="96" height="12" rx="6" fill="#dde2ee"/>
+							<rect x="336" y="295" width="140" height="12" rx="6" fill="#e7ebf3"/>
+						</svg>
+							</figure>
 							</div>
-						</li>
+							<div class="scene-dots">
+							<span class="is-active"></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							</div>
+						</div>
 
-						<li class="step reveal">
-							<span class="step-icon" aria-hidden="true">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.4.9 1 .9 1.6V16h5.2v-.5c0-.6.3-1.2.9-1.6A6 6 0 0 0 12 3z"/></svg>
-							</span>
-							<div class="step-card">
-								<div>
-									<h3>Strategie en ontdekking</h3>
-									<p>Samen bepalen we de doelen, de structuur en de uitstraling van je website.</p>
-								</div>
-								<span class="step-num" aria-hidden="true">02</span>
+						<ol class="process-steps">
+						<li class="pstep is-active" data-step="1">
+							<span class="pstep-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c0-3 2.7-4.8 6-4.8s6 1.8 6 4.8"/><path d="M16 7.5a3 3 0 0 1 0 5.5M18 19c0-2.2-1-3.6-2.5-4.4"/></svg></span>
+							<div class="pstep-body">
+								<h3>Persoonlijk contact</h3>
+								<p>We beginnen met een gesprek: wie je bent, wat je doet en waar je naartoe wilt.</p>
 							</div>
+							<span class="pstep-num" aria-hidden="true">01</span>
 						</li>
-
-						<li class="step reveal">
-							<span class="step-icon" aria-hidden="true">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg>
-							</span>
-							<div class="step-card">
-								<div>
-									<h3>Realisatie</h3>
-									<p>We ontwerpen en bouwen je site op maat — geen standaard templates.</p>
-								</div>
-								<span class="step-num" aria-hidden="true">03</span>
+						<li class="pstep" data-step="2">
+							<span class="pstep-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.4.9 1 .9 1.6V16h5.2v-.5c0-.6.3-1.2.9-1.6A6 6 0 0 0 12 3z"/></svg></span>
+							<div class="pstep-body">
+								<h3>Strategie en ontdekking</h3>
+								<p>Samen bepalen we de doelen, de structuur en de uitstraling van je website.</p>
 							</div>
+							<span class="pstep-num" aria-hidden="true">02</span>
 						</li>
-
-						<li class="step reveal">
-							<span class="step-icon" aria-hidden="true">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg>
-							</span>
-							<div class="step-card">
-								<div>
-									<h3>Testen en optimalisatie</h3>
-									<p>We testen op snelheid, veiligheid en gebruiksgemak, op elk apparaat.</p>
-								</div>
-								<span class="step-num" aria-hidden="true">04</span>
+						<li class="pstep" data-step="3">
+							<span class="pstep-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+							<div class="pstep-body">
+								<h3>Realisatie</h3>
+								<p>We ontwerpen en bouwen je site op maat — geen standaard templates.</p>
 							</div>
+							<span class="pstep-num" aria-hidden="true">03</span>
 						</li>
-
-						<li class="step reveal">
-							<span class="step-icon" aria-hidden="true">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
-							</span>
-							<div class="step-card">
-								<div>
-									<h3>Lancering &amp; groei</h3>
-									<p>Je website gaat live en we zorgen dat je gevonden wordt door de juiste bezoekers.</p>
-								</div>
-								<span class="step-num" aria-hidden="true">05</span>
+						<li class="pstep" data-step="4">
+							<span class="pstep-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></span>
+							<div class="pstep-body">
+								<h3>Testen en optimalisatie</h3>
+								<p>We testen op snelheid, veiligheid en gebruiksgemak, op elk apparaat.</p>
 							</div>
+							<span class="pstep-num" aria-hidden="true">04</span>
 						</li>
-
-						<li class="step reveal">
-							<span class="step-icon" aria-hidden="true">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
-							</span>
-							<div class="step-card">
-								<div>
-									<h3>Evaluatie</h3>
-									<p>We kijken samen naar de resultaten en denken proactief mee over de volgende stap.</p>
-								</div>
-								<span class="step-num" aria-hidden="true">06</span>
+						<li class="pstep" data-step="5">
+							<span class="pstep-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span>
+							<div class="pstep-body">
+								<h3>Lancering &amp; groei</h3>
+								<p>Je website gaat live en we zorgen dat je gevonden wordt door de juiste bezoekers.</p>
 							</div>
+							<span class="pstep-num" aria-hidden="true">05</span>
 						</li>
-					</ol>
+						<li class="pstep" data-step="6">
+							<span class="pstep-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></span>
+							<div class="pstep-body">
+								<h3>Evaluatie</h3>
+								<p>We kijken samen naar de resultaten en denken proactief mee over de volgende stap.</p>
+							</div>
+							<span class="pstep-num" aria-hidden="true">06</span>
+						</li>
+						</ol>
+					</div>
 				</div>
 			</section>
 
@@ -1179,18 +1287,48 @@
 					window.addEventListener("scroll", onMove, { passive: true });
 					window.addEventListener("resize", onMove);
 					window.addEventListener("load", onMove);
+				}
 
-					// De lijn van de tijdlijn groeit mee zodra de sectie in beeld komt
-					var timeline = document.getElementById("timeline");
-					if (timeline && "IntersectionObserver" in window) {
-						new IntersectionObserver(function (entries, obs) {
-							if (!entries[0].isIntersecting) return;
-							timeline.classList.add("is-visible");
-							obs.disconnect();
-						}, { threshold: 0.05 }).observe(timeline);
-					} else if (timeline) {
-						timeline.classList.add("is-visible");
+				// Werkwijze: het vaste beeld wisselt mee met de stap die in beeld is.
+				var proc = document.getElementById("process");
+				if (proc) {
+					var psteps = [].slice.call(proc.querySelectorAll(".pstep"));
+					var scenes = [].slice.call(proc.querySelectorAll(".scene"));
+					var dots = [].slice.call(proc.querySelectorAll(".scene-dots span"));
+					var active = 0;
+					var procTicking = false;
+
+					function setActive(idx) {
+						if (idx === active) return;
+						active = idx;
+						for (var i = 0; i < psteps.length; i++) {
+							psteps[i].classList.toggle("is-active", i === idx);
+							if (scenes[i]) scenes[i].classList.toggle("is-active", i === idx);
+							if (dots[i]) dots[i].classList.toggle("is-active", i === idx);
+						}
+						proc.style.setProperty("--fill", ((idx + 1) / psteps.length).toFixed(3));
 					}
+
+					function pickStep() {
+						// peilpunt: op mobiel onder het vaste beeld, op desktop halverwege het scherm
+						var anchor = window.innerHeight * (window.innerWidth < 960 ? 0.72 : 0.5);
+						var idx = 0;
+						for (var i = 0; i < psteps.length; i++) {
+							if (psteps[i].getBoundingClientRect().top <= anchor) idx = i;
+						}
+						setActive(idx);
+						procTicking = false;
+					}
+
+					function onProcMove() {
+						if (procTicking) return;
+						procTicking = true;
+						requestAnimationFrame(pickStep);
+					}
+
+					pickStep();
+					window.addEventListener("scroll", onProcMove, { passive: true });
+					window.addEventListener("resize", onProcMove);
 				}
 
 				// Vaste CTA-balk: alleen zichtbaar als de hero-knop uit beeld is,
