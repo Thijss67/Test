@@ -264,6 +264,7 @@
 			}
 
 			.brand {
+				white-space: nowrap;
 				display: inline-flex;
 				align-items: center;
 				gap: 0.6rem;
@@ -727,7 +728,7 @@
 					display: flex;
 					align-items: center;
 					justify-content: center;
-					gap: 1.75rem;
+					gap: 1.15rem;
 					font-size: 0.95rem;
 					font-weight: 600;
 				}
@@ -739,37 +740,142 @@
 					top: 100%;
 					left: 50%;
 					z-index: 20;
-					min-width: max-content;
-					margin-top: 0.85rem;
-					padding: 0.5rem;
+					width: min(520px, calc(100vw - 3rem));
+					margin-top: 0.9rem;
+					padding: 0.9rem;
+					display: grid;
+					grid-template-columns: 1fr;
+					gap: 0.6rem 0.9rem;
 					background: var(--surface);
 					border: 1px solid var(--line);
-					border-radius: var(--radius);
+					border-radius: var(--radius-lg);
 					box-shadow: var(--shadow-lift);
 					opacity: 0;
 					visibility: hidden;
-					transform: translate(-50%, -6px);
-					transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+					transform: translate(-50%, -8px);
+					transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.2s;
 				}
-				/* Onzichtbare brug, zodat de muis de ruimte tussen knop en menu mag kruisen. */
-				.nav-drop-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -0.85rem; height: 0.85rem; }
+				/* Punt naar het menu-item, en een onzichtbare brug voor de muis. */
+				.nav-drop-menu::after {
+					content: "";
+					position: absolute;
+					top: -7px;
+					left: 50%;
+					width: 12px;
+					height: 12px;
+					background: var(--surface);
+					border-left: 1px solid var(--line);
+					border-top: 1px solid var(--line);
+					transform: translateX(-50%) rotate(45deg);
+					border-radius: 2px 0 0 0;
+				}
+				.nav-drop-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -0.9rem; height: 0.9rem; }
 				.nav-drop:hover .nav-drop-menu,
 				.nav-drop:focus-within .nav-drop-menu { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
-				.nav-drop-menu a {
+				.nav-drop[data-force-closed] .nav-drop-menu { opacity: 0; visibility: hidden; transform: translate(-50%, -8px); }
+
+				.mega-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.25rem; }
+				.mega-item {
+					display: grid;
+					grid-template-columns: 40px 1fr 18px;
+					align-items: center;
+					gap: 0.75rem;
+					padding: 0.7rem 0.75rem;
+					border-radius: 14px;
+					transition: background 0.18s ease, transform 0.18s ease;
+					/* Items komen gestaffeld op zodra het paneel opengaat. */
+					opacity: 0;
+					transform: translateY(6px);
+				}
+				.nav-drop:hover .mega-item,
+				.nav-drop:focus-within .mega-item {
+					opacity: 1;
+					transform: none;
+					transition: opacity 0.32s ease, transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+						background 0.18s ease;
+				}
+				.mega-item:nth-child(2) { transition-delay: 0.04s; }
+				.mega-item:nth-child(3) { transition-delay: 0.08s; }
+				.mega-item:nth-child(4) { transition-delay: 0.12s; }
+				.mega-item::after { content: none; }
+				.mega-item:hover { background: var(--bg-soft); }
+				.mega-icon {
+					display: grid;
+					place-items: center;
+					width: 40px;
+					height: 40px;
+					border-radius: 12px;
+					background: var(--accent-tint);
+					color: var(--accent-text);
+					transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+				}
+				.mega-icon svg { width: 20px; height: 20px; }
+				.mega-item:hover .mega-icon { background: var(--accent); color: #fff; transform: rotate(-6deg) scale(1.06); }
+				.mega-text { display: grid; gap: 0.1rem; line-height: 1.35; }
+				.mega-text strong { font-size: 0.92rem; color: var(--fg); }
+				.mega-text span { font-size: 0.82rem; font-weight: 500; color: var(--muted); }
+				.mega-arrow { width: 18px; height: 18px; opacity: 0; transform: translateX(-4px); transition: opacity 0.18s ease, transform 0.18s ease; }
+				.mega-item:hover .mega-arrow { opacity: 1; transform: none; }
+
+				.mega-side {
+					grid-row: span 2;
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 0.45rem;
+					padding: 1.1rem;
+					border-radius: 16px;
+					background: linear-gradient(160deg, var(--navy), #17306b);
+					color: #fff;
+				}
+				.mega-badge {
+					font-size: 0.66rem;
+					font-weight: 800;
+					letter-spacing: 0.12em;
+					text-transform: uppercase;
+					padding: 0.25rem 0.6rem;
+					border-radius: 999px;
+					background: rgba(255, 255, 255, 0.16);
+				}
+				.mega-side strong { font-size: 1.02rem; line-height: 1.25; }
+				.mega-side p { font-size: 0.82rem; font-weight: 500; color: #c3cee8; }
+				.mega-side a {
+					margin-top: auto;
+					display: inline-flex;
+					align-items: center;
+					gap: 0.4rem;
+					padding-top: 0.6rem;
+					font-size: 0.87rem;
+					font-weight: 700;
+					color: #fff;
+				}
+				.mega-side a::after { content: none; }
+				.mega-side a .mega-arrow { opacity: 1; transform: none; }
+				.mega-side a:hover .mega-arrow { transform: translateX(4px); }
+
+				.mega-all {
 					display: flex;
 					align-items: center;
-					min-height: 44px;
-					padding: 0.35rem 0.85rem;
-					border-radius: 10px;
-					white-space: nowrap;
-					font-weight: 600;
-					color: var(--body);
-					transition: background 0.16s ease, color 0.16s ease;
+					justify-content: center;
+					gap: 0.4rem;
+					min-height: 42px;
+					border-radius: 12px;
+					background: var(--bg-soft);
+					font-size: 0.87rem;
+					color: var(--accent-text);
 				}
-				.nav-drop[data-force-closed] .nav-drop-menu { opacity: 0; visibility: hidden; transform: translate(-50%, -6px); }
-				.nav-drop-menu a::after { content: none; }
-				.nav-drop-menu a:hover { background: var(--bg-soft); color: var(--accent-text); }
+				.mega-all::after { content: none; }
+				.mega-all .mega-arrow { opacity: 1; transform: none; }
+				.mega-all:hover .mega-arrow { transform: translateX(4px); }
 				.nav-drop:hover .nav-chev, .nav-drop:focus-within .nav-chev { transform: rotate(180deg); }
+			}
+
+			/* ---------- Vanaf 1200px: het volledige mega-paneel ---------- */
+			@media (min-width: 1200px) {
+				.nav-links { gap: 1.75rem; }
+				.nav-drop-menu { width: 820px; grid-template-columns: 1fr 14rem; }
+				.mega-grid { grid-template-columns: 1fr 1fr; }
+				.mega-side { grid-row: span 2; }
 				.nav-links a::after {
 					content: "";
 					position: absolute;
@@ -821,11 +927,35 @@
 						<div class="nav-drop">
 							<a href="#diensten" class="nav-drop-trigger" aria-expanded="false" aria-controls="dienstenMenu" aria-haspopup="true">Diensten <svg class="nav-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
 							<div class="nav-drop-menu" id="dienstenMenu" role="menu" aria-label="Diensten">
-								<a href="/diensten/web-design-development" role="menuitem">Web Design &amp; Development</a>
-								<a href="/diensten/domein-hosting" role="menuitem">Domein Beheer &amp; Hosting</a>
-								<a href="/diensten/seo-sea" role="menuitem">Zichtbaarheid (SEO &amp; SEA)</a>
-								<a href="/diensten/onderhoud-support" role="menuitem">Onderhoud &amp; Support</a>
-								<a href="/diensten" role="menuitem">Alle diensten</a>
+								<div class="mega-grid">
+									<a class="mega-item" href="/diensten/web-design-development" role="menuitem">
+										<span class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+										<span class="mega-text"><strong>Web Design &amp; Development</strong><span>Maatwerk dat converteert.</span></span>
+										<svg class="mega-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+									</a>
+									<a class="mega-item" href="/diensten/domein-hosting" role="menuitem">
+										<span class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></span>
+										<span class="mega-text"><strong>Domein Beheer &amp; Hosting</strong><span>Domein, hosting, beveiliging.</span></span>
+										<svg class="mega-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+									</a>
+									<a class="mega-item" href="/diensten/seo-sea" role="menuitem">
+										<span class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+										<span class="mega-text"><strong>Zichtbaarheid (SEO &amp; SEA)</strong><span>Beter gevonden in Google.</span></span>
+										<svg class="mega-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+									</a>
+									<a class="mega-item" href="/diensten/onderhoud-support" role="menuitem">
+										<span class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4.5a4.5 4.5 0 0 0 5.9 5.9L21 11l-8 8a3 3 0 0 1-4.2-4.2l8-8z"/><path d="m6.5 17.5-2 2"/></svg></span>
+										<span class="mega-text"><strong>Onderhoud &amp; Support</strong><span>Monitoring, back-ups, support.</span></span>
+										<svg class="mega-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+									</a>
+								</div>
+								<div class="mega-side">
+									<span class="mega-badge">Gratis</span>
+									<strong>Websiteconcept op maat</strong>
+									<p>Benieuwd hoe jouw nieuwe site eruit kan zien? Wij maken vrijblijvend een eerste concept.</p>
+									<a href="/website-concept" role="menuitem" data-cta="menu-concept">Concept aanvragen <svg class="mega-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+								</div>
+								<a class="mega-all" href="/diensten" role="menuitem">Bekijk alle diensten <svg class="mega-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 							</div>
 						</div>
 						<a href="#werkwijze">Werkwijze</a>
