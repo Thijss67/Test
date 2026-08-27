@@ -5,8 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 		<link rel="icon" type="image/png" href="https://horizons-cdn.hostinger.com/ef4fe3b9-f62a-4faa-a328-5c50f3d1fc23/f941b8f6eba129a017a84a4da721d97f.png" />
 		<meta name="generator" content="Hostinger Horizons" />
-		<meta name="theme-color" content="#04102a" />
-		<meta name="color-scheme" content="dark" />
+		<meta name="theme-color" content="#fbfaf7" />
+		<meta name="color-scheme" content="light" />
 		<title>DH Studio | High-End Webdesign & Ontwikkeling</title>
 		<meta name="description" content="DH Studio bouwt moderne, snelle en conversie-gerichte websites." />
 		<link rel="canonical" href="https://dh-studio.nl/" />
@@ -18,6 +18,10 @@
 		<meta property="og:title" content="DH Studio | High-End Webdesign & Ontwikkeling" />
 		<meta property="og:description" content="DH Studio bouwt moderne, snelle en conversie-gerichte websites." />
 		<meta name="twitter:card" content="summary_large_image" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
 		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18237624823"></script>
@@ -38,48 +42,48 @@
 		     Opbouw is mobile-first — basis = telefoon, media queries schalen op. -->
 		<style>
 			:root {
-				/* Thema-tokens (Horizons palet) */
-				--background: 221 83% 9%;
-				--foreground: 210 40% 98%;
-				--primary: 217 91% 60%;
-				--primary-foreground: 210 40% 98%;
+				/* Licht thema: warm gebroken wit, diepnavy tekst, blauw accent */
+				--bg: #fbfaf7;
+				--bg-soft: #f4f6fb;
+				--surface: #ffffff;
+				--line: #e7e9f0;
+				--line-strong: #d8dce7;
 
-				/* Afgeleide vlakken en lijnen */
-				--bg: hsl(var(--background));
-				--bg-deep: hsl(222 60% 6%);
-				--surface: hsl(220 55% 12%);
-				--surface-2: hsl(219 45% 16%);
-				--line: hsl(217 40% 24%);
-				--line-soft: hsl(217 35% 20%);
+				--navy: #0d1b3e;
+				--fg: var(--navy);
+				--body: #5c6577;
+				--muted: #858c9c;
 
-				--fg: hsl(var(--foreground));
-				--muted: hsl(215 25% 74%);
-				--muted-2: hsl(215 20% 62%);
-
-				--accent: hsl(var(--primary));
-				--accent-bright: hsl(213 94% 78%);
-				--accent-press: hsl(221 83% 45%);
-				--accent-tint: hsl(217 91% 60% / 0.12);
-				--accent-line: hsl(217 91% 60% / 0.35);
+				--accent: #2f6bff;
+				--accent-strong: #1e50d8;
+				--accent-text: #1d4ed8;
+				--accent-tint: rgba(47, 107, 255, 0.08);
+				--accent-line: rgba(47, 107, 255, 0.22);
 				--on-accent: #ffffff;
 
-				--shadow-card: 0 18px 40px -28px hsl(222 80% 2% / 0.9);
-				--shadow-cta: 0 12px 28px -12px hsl(221 83% 45% / 0.65);
+				--peach: rgba(253, 226, 195, 0.55);
+				--sky: rgba(190, 214, 250, 0.5);
 
-				--font: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-					"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+				--shadow-sm: 0 2px 6px rgba(13, 27, 62, 0.05);
+				--shadow-card: 0 14px 34px -22px rgba(13, 27, 62, 0.35);
+				--shadow-lift: 0 22px 48px -26px rgba(13, 27, 62, 0.4);
+				--shadow-cta: 0 12px 26px -12px rgba(47, 107, 255, 0.6);
 
-				--radius: 14px;
-				--radius-lg: 20px;
-				--maxw: 1120px;
-				--header-h: 60px;
+				--font: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system,
+					BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+				--radius: 16px;
+				--radius-lg: 22px;
+				--radius-btn: 16px;
+				--maxw: 1140px;
+				--header-h: 64px;
 
 				/* Fluid type — mobile eerst, groeit mee met het scherm */
 				--t-body: clamp(1rem, 0.97rem + 0.15vw, 1.06rem);
-				--t-lead: clamp(1.06rem, 1rem + 0.5vw, 1.25rem);
+				--t-lead: clamp(1.06rem, 1rem + 0.5vw, 1.22rem);
 				--t-h3: clamp(1.15rem, 1.05rem + 0.5vw, 1.35rem);
-				--t-h2: clamp(1.75rem, 1.35rem + 1.9vw, 2.6rem);
-				--t-h1: clamp(1.95rem, 1.5rem + 3.2vw, 3.65rem);
+				--t-h2: clamp(1.85rem, 1.4rem + 2.1vw, 2.9rem);
+				--t-h1: clamp(2.1rem, 1.5rem + 3.6vw, 4.1rem);
 			}
 
 			*, ::before, ::after { box-sizing: border-box; border-width: 0; border-style: solid; }
@@ -94,7 +98,7 @@
 			body {
 				margin: 0;
 				background: var(--bg);
-				color: var(--fg);
+				color: var(--body);
 				font-family: var(--font);
 				font-size: var(--t-body);
 				line-height: 1.65;
@@ -102,20 +106,20 @@
 				-webkit-font-smoothing: antialiased;
 				text-rendering: optimizeLegibility;
 				/* ruimte voor de vaste CTA-balk op mobiel */
-				padding-bottom: calc(76px + env(safe-area-inset-bottom));
+				padding-bottom: calc(80px + env(safe-area-inset-bottom));
 			}
 
-			h1, h2, h3, h4 { margin: 0; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance; }
+			h1, h2, h3, h4 { margin: 0; color: var(--fg); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; text-wrap: balance; }
 			h1 { font-size: var(--t-h1); }
 			h2 { font-size: var(--t-h2); }
-			h3 { font-size: var(--t-h3); letter-spacing: -0.01em; }
-			h4 { font-size: 1.02rem; letter-spacing: -0.01em; }
+			h3 { font-size: var(--t-h3); font-weight: 700; letter-spacing: -0.015em; line-height: 1.25; }
+			h4 { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.015em; }
 			p { margin: 0; }
 			a { color: inherit; text-decoration: none; }
 			ul { margin: 0; padding: 0; list-style: none; }
 			img, svg { display: block; max-width: 100%; }
 
-			:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 3px; border-radius: 6px; }
+			:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
 
 			.wrap {
 				width: 100%;
@@ -124,25 +128,25 @@
 				padding-inline: 1.25rem;
 			}
 
-			.section { padding-block: clamp(3.25rem, 9vw, 6rem); }
-			.section-alt { background: var(--bg-deep); border-block: 1px solid var(--line-soft); }
+			.section { padding-block: clamp(3.5rem, 9vw, 6.5rem); }
+			.section-soft { background: var(--bg-soft); }
 
 			.eyebrow {
 				display: inline-block;
 				font-size: 0.64rem;
 				font-weight: 700;
-				letter-spacing: 0.1em;
+				letter-spacing: 0.08em;
 				text-transform: uppercase;
-				color: var(--accent-bright);
+				color: var(--accent-text);
 				background: var(--accent-tint);
 				border: 1px solid var(--accent-line);
 				border-radius: 999px;
-				padding: 0.4em 0.9em;
+				padding: 0.45em 0.95em;
 			}
 
-			.section-head { max-width: 62ch; margin-bottom: clamp(1.75rem, 5vw, 2.75rem); }
-			.section-head h2 { margin-top: 1rem; }
-			.section-head p { margin-top: 0.85rem; color: var(--muted); font-size: var(--t-lead); }
+			.section-head { max-width: 60ch; margin-inline: auto; margin-bottom: clamp(2rem, 5vw, 3rem); text-align: center; }
+			.section-head h2 { margin-top: 1.1rem; }
+			.section-head p { margin-top: 1rem; color: var(--body); font-size: var(--t-lead); }
 
 			/* ---------- Eén CTA-stijl, overal identiek ---------- */
 			.btn {
@@ -150,13 +154,13 @@
 				align-items: center;
 				justify-content: center;
 				gap: 0.5em;
-				min-height: 52px;
-				padding: 0.85rem 1.5rem;
-				border-radius: 999px;
+				min-height: 56px;
+				padding: 0.9rem 1.75rem;
+				border-radius: var(--radius-btn);
 				font: inherit;
 				font-size: 1rem;
-				font-weight: 650;
-				letter-spacing: -0.01em;
+				font-weight: 700;
+				letter-spacing: 0;
 				text-align: center;
 				cursor: pointer;
 				transition: background-color 0.18s ease, border-color 0.18s ease,
@@ -167,42 +171,28 @@
 				color: var(--on-accent);
 				box-shadow: var(--shadow-cta);
 			}
-			.btn-primary:hover { background: var(--accent-press); transform: translateY(-1px); }
+			.btn-primary:hover { background: var(--accent-strong); transform: translateY(-1px); }
 			.btn-primary:active { transform: translateY(0); }
 			.btn-outline {
-				background: transparent;
+				background: var(--surface);
 				color: var(--fg);
-				border: 1px solid var(--line);
+				border: 1px solid var(--line-strong);
+				box-shadow: var(--shadow-sm);
 			}
-			.btn-outline:hover { border-color: var(--accent); color: var(--accent-bright); }
+			.btn-outline:hover { border-color: var(--accent); color: var(--accent-text); transform: translateY(-1px); }
 			.btn-block { display: flex; width: 100%; }
 
-			.btn-note {
-				margin-top: 0.85rem;
-				font-size: 0.85rem;
-				color: var(--muted-2);
-			}
-			.link-quiet {
-				display: inline-flex;
-				align-items: center;
-				min-height: 44px;
-				font-weight: 600;
-				font-size: 0.95rem;
-				color: var(--muted);
-			}
-			.link-quiet span { border-bottom: 1px solid var(--line); padding-bottom: 3px; }
-			.link-quiet:hover { color: var(--accent-bright); }
-			.link-quiet:hover span { border-color: var(--accent-line); }
+			.btn-note { margin-top: 1.1rem; font-size: 0.88rem; color: var(--muted); }
 
 			/* ---------- Header ---------- */
 			.site-header {
 				position: sticky;
 				top: 0;
 				z-index: 50;
-				background: hsl(var(--background) / 0.85);
+				background: rgba(251, 250, 247, 0.85);
 				backdrop-filter: blur(14px);
 				-webkit-backdrop-filter: blur(14px);
-				border-bottom: 1px solid var(--line-soft);
+				border-bottom: 1px solid var(--line);
 			}
 			.nav {
 				display: flex;
@@ -211,120 +201,147 @@
 				gap: 1rem;
 				height: var(--header-h);
 			}
-			.brand { display: inline-flex; align-items: baseline; gap: 0.45rem; min-height: 44px; padding-block: 0.5rem; font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; }
+			.brand {
+				display: inline-flex;
+				align-items: baseline;
+				gap: 0.45rem;
+				min-height: 44px;
+				padding-block: 0.5rem;
+				color: var(--fg);
+				font-size: 1.15rem;
+				font-weight: 800;
+				letter-spacing: -0.02em;
+			}
 			.brand .dot { color: var(--accent); }
 			.brand small {
 				font-size: 0.6rem;
-				font-weight: 600;
+				font-weight: 700;
 				letter-spacing: 0.2em;
 				text-transform: uppercase;
-				color: var(--muted-2);
+				color: var(--muted);
 			}
 			.nav-links { display: none; }
 			.nav-cta { display: none; }
 
 			/* ---------- Hero ---------- */
-			.hero { position: relative; padding-top: clamp(2.5rem, 8vw, 4.5rem); padding-bottom: clamp(2.75rem, 8vw, 4.5rem); overflow: hidden; }
+			.hero {
+				position: relative;
+				padding-top: clamp(2.75rem, 8vw, 5rem);
+				padding-bottom: clamp(3rem, 8vw, 5rem);
+				text-align: center;
+				overflow: hidden;
+			}
 			.hero::before {
 				content: "";
 				position: absolute;
-				inset: -20% -30% auto -30%;
-				height: 70%;
-				background: radial-gradient(50% 60% at 50% 0%, hsl(217 91% 60% / 0.22), transparent 70%);
+				inset: -25% -20% 10% -20%;
+				background:
+					radial-gradient(45% 45% at 12% 78%, var(--sky), transparent 70%),
+					radial-gradient(40% 40% at 88% 22%, var(--peach), transparent 70%),
+					radial-gradient(55% 45% at 50% 0%, rgba(216, 230, 252, 0.55), transparent 70%);
 				pointer-events: none;
 			}
 			.hero > .wrap { position: relative; }
-			.hero h1 { margin-top: 1.1rem; }
-			.hero h1 em { font-style: normal; color: var(--accent-bright); }
-			.hero .lead { margin-top: 1.1rem; color: var(--muted); font-size: var(--t-lead); max-width: 46ch; }
-			.hero-actions { margin-top: 1.75rem; }
-			.hero-secondary { margin-top: 1.25rem; }
+			.hero h1 { margin-top: 1.25rem; max-width: 18ch; margin-inline: auto; }
+			.hero h1 em { font-style: normal; color: var(--accent); }
+			.hero .lead {
+				margin: 1.25rem auto 0;
+				max-width: 46ch;
+				color: var(--body);
+				font-size: var(--t-lead);
+			}
+			.hero-actions { margin-top: 2rem; display: grid; gap: 0.75rem; }
 
 			.trust {
-				margin-top: 2.25rem;
+				margin-top: 2.75rem;
 				display: grid;
 				grid-template-columns: repeat(3, 1fr);
 				gap: 0.75rem;
-				border-top: 1px solid var(--line-soft);
-				padding-top: 1.25rem;
+				border-top: 1px solid var(--line);
+				padding-top: 1.5rem;
+				text-align: center;
 			}
-			.trust div { font-size: 0.76rem; line-height: 1.35; color: var(--muted-2); }
-			.trust b { display: block; font-size: 1.2rem; line-height: 1.2; color: var(--fg); letter-spacing: -0.02em; margin-bottom: 0.2rem; }
+			.trust div { font-size: 0.76rem; line-height: 1.4; color: var(--muted); }
+			.trust b { display: block; font-size: 1.25rem; line-height: 1.2; color: var(--fg); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.2rem; }
 
 			/* Browsermockup */
 			.mock {
 				position: relative;
-				margin-top: 2.5rem;
+				margin: 2.75rem auto 0;
+				max-width: 900px;
+				text-align: left;
 				border-radius: var(--radius-lg);
 				background: var(--surface);
-				border: 1px solid var(--line-soft);
-				box-shadow: var(--shadow-card);
+				border: 1px solid var(--line);
+				box-shadow: var(--shadow-lift);
 				overflow: hidden;
 			}
-			.mock-bar { display: flex; align-items: center; gap: 0.4rem; padding: 0.65rem 0.9rem; background: var(--surface-2); border-bottom: 1px solid var(--line-soft); }
-			.mock-bar span { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
-			.mock-bar .url { flex: 1; margin-left: 0.5rem; font-size: 0.68rem; color: var(--muted-2); background: hsl(var(--background) / 0.6); padding: 0.2rem 0.65rem; border-radius: 999px; }
+			.mock-bar { display: flex; align-items: center; gap: 0.4rem; padding: 0.7rem 0.95rem; background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+			.mock-bar span { width: 9px; height: 9px; border-radius: 50%; background: var(--line-strong); }
+			.mock-bar .url { flex: 1; margin-left: 0.5rem; font-size: 0.68rem; color: var(--muted); background: var(--surface); border: 1px solid var(--line); padding: 0.2rem 0.7rem; border-radius: 999px; }
 			.mock-body { padding: 1rem; }
 			.mock-hero {
-				height: 78px;
-				border-radius: 10px;
-				background: linear-gradient(120deg, var(--accent), hsl(221 83% 45%));
-				display: flex; flex-direction: column; justify-content: center; gap: 7px;
-				padding: 0 1rem;
+				height: clamp(78px, 14vw, 120px);
+				border-radius: 14px;
+				background: linear-gradient(120deg, var(--accent), #5b8cff);
+				display: flex; flex-direction: column; justify-content: center; gap: 8px;
+				padding: 0 1.15rem;
 				margin-bottom: 0.9rem;
 			}
-			.mock-line { height: 8px; border-radius: 5px; background: hsl(210 40% 98% / 0.16); }
-			.mock-hero .mock-line { background: hsl(0 0% 100% / 0.85); }
-			.mock-hero .mock-line.short { width: 55%; opacity: 0.7; }
+			.mock-line { height: 8px; border-radius: 5px; background: #eef0f6; }
+			.mock-hero .mock-line { background: rgba(255, 255, 255, 0.9); }
+			.mock-hero .mock-line.short { width: 55%; opacity: 0.75; }
 			.mock-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
-			.mock-card { background: var(--surface-2); border: 1px solid var(--line-soft); border-radius: 10px; padding: 0.65rem; display: grid; gap: 6px; }
-			.mock-card .chip { width: 20px; height: 20px; border-radius: 6px; background: var(--accent-tint); border: 1px solid var(--accent-line); }
+			.mock-card { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 12px; padding: 0.7rem; display: grid; gap: 6px; }
+			.mock-card .chip { width: 20px; height: 20px; border-radius: 7px; background: var(--accent-tint); border: 1px solid var(--accent-line); }
+			.mock-card .mock-line { background: #e4e7ef; }
 			.mock-card .mock-line.short { width: 70%; }
 
 			/* ---------- Kaarten / voordelen ---------- */
 			.grid { display: grid; gap: 1rem; }
 			.card {
 				background: var(--surface);
-				border: 1px solid var(--line-soft);
-				border-radius: var(--radius);
-				padding: 1.5rem 1.35rem;
-				transition: border-color 0.2s ease, transform 0.2s ease;
+				border: 1px solid var(--line);
+				border-radius: var(--radius-lg);
+				padding: 1.75rem 1.5rem;
+				box-shadow: var(--shadow-card);
+				transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 			}
-			.card:hover { border-color: var(--accent-line); transform: translateY(-2px); }
+			.card:hover { border-color: var(--accent-line); transform: translateY(-3px); box-shadow: var(--shadow-lift); }
 			.card .icon {
-				width: 42px; height: 42px;
+				width: 46px; height: 46px;
 				display: grid; place-items: center;
-				border-radius: 11px;
+				border-radius: 14px;
 				background: var(--accent-tint);
-				border: 1px solid var(--accent-line);
-				color: var(--accent-bright);
-				margin-bottom: 1rem;
+				color: var(--accent);
+				margin-bottom: 1.1rem;
 			}
-			.card .icon svg { width: 21px; height: 21px; }
-			.card h3 { margin-bottom: 0.5rem; }
-			.card p { color: var(--muted); }
+			.card .icon svg { width: 22px; height: 22px; }
+			.card h3 { margin-bottom: 0.6rem; }
 
 			/* ---------- Werkwijze ---------- */
-			.steps { display: grid; gap: 0; counter-reset: step; }
+			.steps { display: grid; gap: 1rem; }
 			.step {
 				display: grid;
-				grid-template-columns: 44px 1fr;
+				grid-template-columns: 48px 1fr;
 				gap: 1rem;
-				padding: 1.25rem 0;
-				border-top: 1px solid var(--line-soft);
+				align-items: start;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--radius-lg);
+				padding: 1.35rem 1.35rem;
+				box-shadow: var(--shadow-card);
 			}
-			.step:last-child { border-bottom: 1px solid var(--line-soft); }
 			.step-n {
-				width: 44px; height: 44px;
+				width: 48px; height: 48px;
 				display: grid; place-items: center;
 				border-radius: 50%;
-				background: var(--accent-tint);
-				border: 1px solid var(--accent-line);
-				color: var(--accent-bright);
-				font-weight: 700;
-				font-size: 0.95rem;
+				background: var(--accent);
+				color: var(--on-accent);
+				font-weight: 800;
+				font-size: 1rem;
 			}
-			.step p { margin-top: 0.35rem; color: var(--muted); }
+			.step p { margin-top: 0.4rem; }
 
 			/* ---------- Tarieven ---------- */
 			.plans { display: grid; gap: 1rem; }
@@ -332,65 +349,73 @@
 				display: flex;
 				flex-direction: column;
 				background: var(--surface);
-				border: 1px solid var(--line-soft);
+				border: 1px solid var(--line);
 				border-radius: var(--radius-lg);
-				padding: 1.6rem 1.4rem;
+				padding: 1.75rem 1.5rem;
+				box-shadow: var(--shadow-card);
 			}
-			.plan.featured { border-color: var(--accent); background: linear-gradient(180deg, var(--accent-tint), transparent 55%), var(--surface); }
-			.plan-top { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
-			.plan-name { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-2); }
-			.plan.featured .plan-name { color: var(--accent-bright); }
-			.tag { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--on-accent); background: var(--accent); border-radius: 999px; padding: 0.3em 0.7em; }
-			.plan-desc { margin-top: 0.75rem; color: var(--muted); font-size: 0.95rem; }
-			.price { margin: 1.1rem 0 1.25rem; display: flex; align-items: baseline; gap: 0.45rem; flex-wrap: wrap; }
-			.price .amt { font-size: clamp(1.9rem, 1.5rem + 1.6vw, 2.4rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
-			.price .per { font-size: 0.85rem; color: var(--muted-2); }
-			.plan ul { display: grid; gap: 0.65rem; margin-bottom: 1.6rem; }
-			.plan li { display: grid; grid-template-columns: 20px 1fr; gap: 0.6rem; align-items: start; font-size: 0.95rem; color: var(--muted); }
-			.plan li svg { width: 20px; height: 20px; margin-top: 2px; color: var(--accent-bright); }
+			.plan.featured { border-color: var(--accent); box-shadow: var(--shadow-lift); }
+			.plan-top { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; min-height: 28px; }
+			.plan-name { font-size: 0.76rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+			.plan.featured .plan-name { color: var(--accent-text); }
+			.tag { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-accent); background: var(--accent); border-radius: 999px; padding: 0.35em 0.8em; }
+			.plan-desc { margin-top: 0.8rem; font-size: 0.95rem; }
+			.price { margin: 1.25rem 0 1.35rem; display: flex; align-items: baseline; gap: 0.45rem; flex-wrap: wrap; }
+			.price .amt { color: var(--fg); font-size: clamp(2rem, 1.5rem + 1.8vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+			.price .per { font-size: 0.85rem; color: var(--muted); }
+			.plan ul { display: grid; gap: 0.7rem; margin-bottom: 1.75rem; }
+			.plan li { display: grid; grid-template-columns: 22px 1fr; gap: 0.6rem; align-items: start; font-size: 0.95rem; }
+			.plan li svg { width: 22px; height: 22px; margin-top: 1px; color: var(--accent); }
 			.plan .btn { margin-top: auto; }
-			.price-note { margin-top: 1.5rem; font-size: 0.85rem; color: var(--muted-2); }
+			.price-note { margin-top: 1.75rem; text-align: center; font-size: 0.88rem; color: var(--muted); }
 
-			/* ---------- Contact / footer ---------- */
-			.site-footer { background: var(--bg-deep); border-top: 1px solid var(--line-soft); padding-top: clamp(3.25rem, 9vw, 6rem); }
-			.footer-intro h2 { margin-top: 1rem; }
-			.footer-intro p { margin-top: 0.85rem; color: var(--muted); font-size: var(--t-lead); }
-			.contact-list { margin-top: 1.5rem; display: grid; gap: 0.75rem; }
-			.contact-list a { display: inline-flex; align-items: center; gap: 0.65rem; color: var(--muted); font-size: 0.95rem; min-height: 44px; }
-			.contact-list a:hover { color: var(--accent-bright); }
-			.contact-list svg { width: 19px; height: 19px; color: var(--accent); flex: none; }
+			/* ---------- Contact ---------- */
+			.contact-section { background: var(--bg); border-top: 1px solid var(--line); padding-block: clamp(3.5rem, 9vw, 6.5rem); }
+			.contact-intro h2 { margin-top: 1.1rem; }
+			.contact-intro p { margin-top: 1rem; font-size: var(--t-lead); }
+			.contact-list { margin-top: 1.5rem; display: grid; gap: 0.5rem; }
+			.contact-list a { display: inline-flex; align-items: center; gap: 0.7rem; min-height: 44px; font-weight: 600; color: var(--fg); font-size: 0.98rem; }
+			.contact-list a:hover { color: var(--accent-text); }
+			.contact-list svg { width: 20px; height: 20px; color: var(--accent); flex: none; }
 
-			form { margin-top: 2.25rem; background: var(--surface); border: 1px solid var(--line-soft); border-radius: var(--radius-lg); padding: 1.5rem 1.25rem; }
-			.field { display: grid; gap: 0.4rem; margin-bottom: 1rem; }
-			.field label { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.02em; color: var(--muted); }
+			form {
+				margin-top: 2rem;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--radius-lg);
+				padding: 1.5rem 1.25rem;
+				box-shadow: var(--shadow-card);
+			}
+			.field { display: grid; gap: 0.45rem; margin-bottom: 1rem; }
+			.field label { color: var(--fg); font-size: 0.85rem; font-weight: 700; }
 			.field input, .field textarea {
 				width: 100%;
-				background: var(--bg);
-				border: 1px solid var(--line);
-				border-radius: 10px;
-				padding: 0.85rem 0.95rem;
+				background: var(--bg-soft);
+				border: 1px solid var(--line-strong);
+				border-radius: 12px;
+				padding: 0.85rem 1rem;
 				color: var(--fg);
 				font: inherit;
 				font-size: 16px; /* voorkomt inzoomen op iOS */
-				min-height: 50px;
+				min-height: 52px;
 			}
 			.field textarea { min-height: 130px; resize: vertical; line-height: 1.55; }
-			.field input::placeholder, .field textarea::placeholder { color: hsl(215 20% 50%); }
-			.field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-tint); }
-			.form-status { margin-top: 0.9rem; font-size: 0.88rem; min-height: 1.2em; }
+			.field input::placeholder, .field textarea::placeholder { color: #a3a9b8; }
+			.field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-tint); }
+			.form-status { margin-top: 1rem; font-size: 0.9rem; min-height: 1.2em; }
 
+			/* ---------- Footer ---------- */
+			.site-footer { border-top: 1px solid var(--line); }
 			.footer-bottom {
-				margin-top: clamp(2.5rem, 7vw, 4rem);
-				padding-block: 1.5rem;
-				border-top: 1px solid var(--line-soft);
+				padding-block: 1.75rem;
 				display: grid;
-				gap: 1rem;
-				font-size: 0.82rem;
-				color: var(--muted-2);
+				gap: 1.25rem;
+				font-size: 0.85rem;
+				color: var(--muted);
 			}
 			.socials { display: flex; gap: 0.6rem; }
-			.socials a { width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); }
-			.socials a:hover { border-color: var(--accent); color: var(--accent-bright); }
+			.socials a { width: 44px; height: 44px; display: grid; place-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 50%; color: var(--body); box-shadow: var(--shadow-sm); }
+			.socials a:hover { border-color: var(--accent); color: var(--accent-text); }
 			.socials svg { width: 18px; height: 18px; }
 
 			/* ---------- Vaste CTA-balk (mobiel) ---------- */
@@ -398,27 +423,26 @@
 				position: fixed;
 				left: 0; right: 0; bottom: 0;
 				z-index: 60;
-				padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom));
-				background: hsl(var(--background) / 0.92);
+				padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+				background: rgba(251, 250, 247, 0.94);
 				backdrop-filter: blur(14px);
 				-webkit-backdrop-filter: blur(14px);
-				border-top: 1px solid var(--line-soft);
+				border-top: 1px solid var(--line);
 				transition: transform 0.25s ease, opacity 0.25s ease;
 			}
-			.cta-bar[data-hidden="true"] { transform: translateY(110%); opacity: 0; pointer-events: none; }
+			.cta-bar[data-hidden="true"] { transform: translateY(115%); opacity: 0; pointer-events: none; }
 
 			/* ---------- Vanaf tablet ---------- */
 			@media (min-width: 640px) {
 				.wrap { padding-inline: 2rem; }
-				.eyebrow { font-size: 0.72rem; letter-spacing: 0.16em; }
+				.eyebrow { font-size: 0.72rem; letter-spacing: 0.12em; }
 				.btn-block { display: inline-flex; width: auto; }
-				.hero-actions { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
-				.hero-secondary { margin-top: 0; }
-				.btn-note { margin-top: 1rem; }
+				.hero-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
 				.trust { gap: 1.5rem; }
-				.trust div { font-size: 0.82rem; }
-				.trust b { font-size: 1.45rem; }
+				.trust div { font-size: 0.84rem; }
+				.trust b { font-size: 1.5rem; }
 				.grid-3 { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+				.steps { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
 				.plans { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
 				.plan-op-maat { grid-column: 1 / -1; }
 				form { padding: 2rem; }
@@ -428,29 +452,27 @@
 
 			/* ---------- Vanaf desktop ---------- */
 			@media (min-width: 960px) {
-				:root { --header-h: 74px; }
+				:root { --header-h: 80px; }
 				body { padding-bottom: 0; }
 				.cta-bar { display: none; }
+				.nav { display: grid; grid-template-columns: 1fr auto 1fr; }
 				.nav-links {
 					display: flex;
 					align-items: center;
-					gap: 2rem;
-					font-size: 0.94rem;
-					font-weight: 500;
-					color: var(--muted);
+					justify-content: center;
+					gap: 2.25rem;
+					font-size: 0.98rem;
+					font-weight: 600;
+					color: var(--body);
 				}
-				.nav-links a:hover { color: var(--fg); }
-				.nav-cta { display: inline-flex; min-height: 44px; padding: 0.6rem 1.2rem; font-size: 0.92rem; }
-				.hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 3.5rem; align-items: center; }
-				.mock { margin-top: 0; }
+				.nav-links a:hover { color: var(--accent-text); }
+				.nav-cta { display: inline-flex; justify-self: end; min-height: 48px; padding: 0.7rem 1.5rem; border-radius: 999px; font-size: 0.95rem; }
 				.grid-3 { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 				.steps { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-				.step { border-top: 1px solid var(--line-soft); border-bottom: 0 !important; padding: 1.5rem 0 0; grid-template-columns: 1fr; }
-				.step:last-child { border-bottom: 0; }
 				.plans { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
 				.plan-op-maat { grid-column: auto; }
-				.plan.featured { transform: translateY(-10px); }
-				.footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; }
+				.plan.featured { transform: translateY(-12px); }
+				.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
 				form { margin-top: 0; }
 			}
 
@@ -479,44 +501,40 @@
 		<main>
 			<!-- HERO -->
 			<section class="hero">
-				<div class="wrap hero-grid">
-					<div class="hero-copy">
-						<span class="eyebrow">Voor ondernemers zonder (goede) website</span>
-						<h1>Je website houdt je nu <em>klanten kwijt</em>. Wij draaien dat om.</h1>
-						<p class="lead">
-							Geen website — of een die traag, verouderd of onvindbaar is — kost je
-							elke maand omzet. DH-studio bouwt een snelle, moderne site die
-							bezoekers omzet in klanten. In twee weken live.
-						</p>
-						<div class="hero-actions">
-							<a href="#contact" class="btn btn-primary btn-block" id="heroCta" data-cta="hero">Plan gratis adviesgesprek</a>
-							<a href="#tarieven" class="link-quiet hero-secondary"><span>Bekijk de tarieven</span></a>
-						</div>
-						<p class="btn-note">Gratis en vrijblijvend · persoonlijke reactie binnen één werkdag</p>
+				<div class="wrap">
+					<span class="eyebrow">Voor ondernemers zonder (goede) website</span>
+					<h1>Je website houdt je nu <em>klanten kwijt</em>. Wij draaien dat om.</h1>
+					<p class="lead">
+						Geen website — of een die traag, verouderd of onvindbaar is — kost je
+						elke maand omzet. DH-studio bouwt een snelle, moderne site die
+						bezoekers omzet in klanten. In twee weken live.
+					</p>
+					<div class="hero-actions">
+						<a href="#contact" class="btn btn-primary btn-block" id="heroCta" data-cta="hero">Plan gratis adviesgesprek</a>
+						<a href="#tarieven" class="btn btn-outline btn-block">Bekijk de tarieven</a>
+					</div>
+					<p class="btn-note">Gratis en vrijblijvend · persoonlijke reactie binnen één werkdag</p>
 
-						<div class="trust">
-							<div><b>14 dagen</b>van eerste gesprek tot live</div>
-							<div><b>100%</b>op maat, geen template-gevoel</div>
-							<div><b>&lt; 1,5s</b>gemiddelde laadtijd</div>
-						</div>
+					<div class="trust">
+						<div><b>14 dagen</b>van eerste gesprek tot live</div>
+						<div><b>100%</b>op maat, geen template-gevoel</div>
+						<div><b>&lt; 1,5s</b>gemiddelde laadtijd</div>
 					</div>
 
-					<div class="hero-visual" aria-hidden="true">
-						<div class="mock">
-							<div class="mock-bar">
-								<span></span><span></span><span></span>
-								<span class="url">jouwbedrijf.nl</span>
+					<div class="mock" aria-hidden="true">
+						<div class="mock-bar">
+							<span></span><span></span><span></span>
+							<span class="url">jouwbedrijf.nl</span>
+						</div>
+						<div class="mock-body">
+							<div class="mock-hero">
+								<div class="mock-line"></div>
+								<div class="mock-line short"></div>
 							</div>
-							<div class="mock-body">
-								<div class="mock-hero">
-									<div class="mock-line"></div>
-									<div class="mock-line short"></div>
-								</div>
-								<div class="mock-cards">
-									<div class="mock-card"><div class="chip"></div><div class="mock-line"></div><div class="mock-line short"></div></div>
-									<div class="mock-card"><div class="chip"></div><div class="mock-line"></div><div class="mock-line short"></div></div>
-									<div class="mock-card"><div class="chip"></div><div class="mock-line"></div><div class="mock-line short"></div></div>
-								</div>
+							<div class="mock-cards">
+								<div class="mock-card"><div class="chip"></div><div class="mock-line"></div><div class="mock-line short"></div></div>
+								<div class="mock-card"><div class="chip"></div><div class="mock-line"></div><div class="mock-line short"></div></div>
+								<div class="mock-card"><div class="chip"></div><div class="mock-line"></div><div class="mock-line short"></div></div>
 							</div>
 						</div>
 					</div>
@@ -524,7 +542,7 @@
 			</section>
 
 			<!-- VOORDELEN -->
-			<section class="section section-alt" id="voordelen">
+			<section class="section section-soft" id="voordelen">
 				<div class="wrap">
 					<div class="section-head">
 						<span class="eyebrow">Waarom DH-studio</span>
@@ -592,7 +610,7 @@
 			</section>
 
 			<!-- TARIEVEN -->
-			<section class="section section-alt" id="tarieven">
+			<section class="section section-soft" id="tarieven">
 				<div class="wrap">
 					<div class="section-head">
 						<span class="eyebrow">Tarieven</span>
@@ -648,51 +666,53 @@
 					<p class="price-note">Alle prijzen zijn excl. btw. Liever in termijnen betalen? Vraag ernaar in het adviesgesprek.</p>
 				</div>
 			</section>
+
+			<!-- CONTACT -->
+			<section class="contact-section" id="contact">
+				<div class="wrap contact-grid">
+					<div class="contact-intro">
+						<span class="eyebrow">Contact</span>
+						<h2>Klaar om online klanten te winnen?</h2>
+						<p>Vertel kort waar je nu staat. Binnen één werkdag krijg je een persoonlijke reactie — geen verkooppraatje, wel een eerlijk advies.</p>
+						<div class="contact-list">
+							<a href="mailto:info.dhstudionl@gmail.com">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+								info.dhstudionl@gmail.com
+							</a>
+							<a href="https://dh-studio.nl">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+								dh-studio.nl
+							</a>
+						</div>
+					</div>
+
+					<form id="contactForm" novalidate>
+						<div class="form-row">
+							<div class="field">
+								<label for="name">Naam</label>
+								<input id="name" name="name" type="text" autocomplete="name" placeholder="Jouw naam" required />
+							</div>
+							<div class="field">
+								<label for="email">E-mail</label>
+								<input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="jij@bedrijf.nl" required />
+							</div>
+						</div>
+						<div class="field">
+							<label for="website">Huidige website (optioneel)</label>
+							<input id="website" name="website" type="text" inputmode="url" placeholder="bijv. jouwbedrijf.nl — of laat leeg" />
+						</div>
+						<div class="field">
+							<label for="message">Waar loop je tegenaan?</label>
+							<textarea id="message" name="message" placeholder="Ik heb nog geen website / mijn site is verouderd en levert niks op…" required></textarea>
+						</div>
+						<button type="submit" class="btn btn-primary btn-block">Verstuur aanvraag</button>
+						<p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+					</form>
+				</div>
+			</section>
 		</main>
 
-		<!-- CONTACT + FOOTER -->
-		<footer class="site-footer" id="contact">
-			<div class="wrap footer-grid">
-				<div class="footer-intro">
-					<span class="eyebrow">Contact</span>
-					<h2>Klaar om online klanten te winnen?</h2>
-					<p>Vertel kort waar je nu staat. Binnen één werkdag krijg je een persoonlijke reactie — geen verkooppraatje, wel een eerlijk advies.</p>
-					<div class="contact-list">
-						<a href="mailto:info.dhstudionl@gmail.com">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-							info.dhstudionl@gmail.com
-						</a>
-						<a href="https://dh-studio.nl">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
-							dh-studio.nl
-						</a>
-					</div>
-				</div>
-
-				<form id="contactForm" novalidate>
-					<div class="form-row">
-						<div class="field">
-							<label for="name">Naam</label>
-							<input id="name" name="name" type="text" autocomplete="name" placeholder="Jouw naam" required />
-						</div>
-						<div class="field">
-							<label for="email">E-mail</label>
-							<input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="jij@bedrijf.nl" required />
-						</div>
-					</div>
-					<div class="field">
-						<label for="website">Huidige website (optioneel)</label>
-						<input id="website" name="website" type="text" inputmode="url" placeholder="bijv. jouwbedrijf.nl — of laat leeg" />
-					</div>
-					<div class="field">
-						<label for="message">Waar loop je tegenaan?</label>
-						<textarea id="message" name="message" placeholder="Ik heb nog geen website / mijn site is verouderd en levert niks op…" required></textarea>
-					</div>
-					<button type="submit" class="btn btn-primary btn-block">Verstuur aanvraag</button>
-					<p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-				</form>
-			</div>
-
+		<footer class="site-footer">
 			<div class="wrap footer-bottom">
 				<div>© <span id="year"></span> DH-studio · Webdesign uit Nederland · KvK op aanvraag</div>
 				<div class="socials">
@@ -760,7 +780,7 @@
 					var email = form.elements.email.value.trim();
 					var msg = form.elements.message.value.trim();
 					if (!name || !email || !msg) {
-						status.style.color = "hsl(6 84% 70%)";
+						status.style.color = "#c02626";
 						status.textContent = "Vul je naam, e-mail en bericht in.";
 						return;
 					}
@@ -771,7 +791,7 @@
 						msg
 					);
 					var subject = encodeURIComponent("Website-aanvraag via dh-studio.nl — " + name);
-					status.style.color = "var(--accent-bright)";
+					status.style.color = "var(--accent-text)";
 					status.textContent = "Bedankt " + name + "! Je mailprogramma opent nu om te versturen.";
 					window.location.href =
 						"mailto:info.dhstudionl@gmail.com?subject=" + subject + "&body=" + body;
