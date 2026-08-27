@@ -7,7 +7,7 @@
 		<meta name="theme-color" content="#fbfaf7" />
 		<meta name="color-scheme" content="light" />
 		<title>DH Studio | High-End Webdesign & Ontwikkeling</title>
-		<meta name="description" content="DH Studio bouwt moderne, snelle en conversie-gerichte websites." />
+		<meta name="description" content="DH Studio bouwt snelle, conversiegerichte websites op maat: design, development, hosting, SEO en onderhoud. Vraag een gratis websiteconcept aan." />
 		<link rel="canonical" href="https://dh-studio.nl/" />
 
 		<meta property="og:type" content="website" />
@@ -15,8 +15,13 @@
 		<meta property="og:url" content="https://dh-studio.nl/" />
 		<meta property="og:site_name" content="DH Studio" />
 		<meta property="og:title" content="DH Studio | High-End Webdesign & Ontwikkeling" />
-		<meta property="og:description" content="DH Studio bouwt moderne, snelle en conversie-gerichte websites." />
+		<meta property="og:description" content="DH Studio bouwt snelle, conversiegerichte websites op maat: design, development, hosting, SEO en onderhoud. Vraag een gratis websiteconcept aan." />
+		<meta property="og:image" content="https://dh-studio.nl/assets/og-dh-studio.png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="DH Studio — websites die jouw bedrijf vooruit helpen" />
 		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:image" content="https://dh-studio.nl/assets/og-dh-studio.png" />
 
 		<!-- Markeert dat JS aanstaat: reveal-animaties verbergen niets als JS uitvalt -->
 		<script>document.documentElement.classList.add("js");</script>
@@ -1179,13 +1184,167 @@
 		<script type="application/ld+json">
 		{
 			"@context": "https://schema.org",
-			"@type": "ProfessionalService",
-			"name": "DH Studio",
-			"description": "DH Studio bouwt moderne, snelle en conversie-gerichte websites.",
-			"url": "https://dh-studio.nl",
-			"email": "info@dh-studio.nl",
-			"areaServed": "NL",
-			"priceRange": "€€"
+			"@graph": [
+				{
+					"@type": "Organization",
+					"@id": "https://dh-studio.nl/#organisatie",
+					"name": "DH Studio",
+					"url": "https://dh-studio.nl/",
+					"email": "info@dh-studio.nl",
+					"logo": {
+						"@type": "ImageObject",
+						"url": "https://dh-studio.nl/assets/og-dh-studio.png"
+					},
+					"image": "https://dh-studio.nl/assets/og-dh-studio.png"
+				},
+				{
+					"@type": "WebSite",
+					"@id": "https://dh-studio.nl/#website",
+					"url": "https://dh-studio.nl/",
+					"name": "DH Studio",
+					"inLanguage": "nl-NL",
+					"publisher": {
+						"@id": "https://dh-studio.nl/#organisatie"
+					}
+				},
+				{
+					"@type": "WebPage",
+					"@id": "https://dh-studio.nl/#webpage",
+					"url": "https://dh-studio.nl/",
+					"name": "DH Studio | High-End Webdesign & Ontwikkeling",
+					"isPartOf": {
+						"@id": "https://dh-studio.nl/#website"
+					},
+					"about": {
+						"@id": "https://dh-studio.nl/#organisatie"
+					},
+					"inLanguage": "nl-NL",
+					"primaryImageOfPage": "https://dh-studio.nl/assets/og-dh-studio.png"
+				},
+				{
+					"@type": "ProfessionalService",
+					"@id": "https://dh-studio.nl/#bureau",
+					"name": "DH Studio",
+					"description": "DH Studio ontwerpt en bouwt snelle, conversiegerichte websites op maat, inclusief hosting, SEO, Google Ads en onderhoud.",
+					"url": "https://dh-studio.nl/",
+					"email": "info@dh-studio.nl",
+					"areaServed": {
+						"@type": "Country",
+						"name": "Nederland"
+					},
+					"priceRange": "€€",
+					"parentOrganization": {
+						"@id": "https://dh-studio.nl/#organisatie"
+					},
+					"hasOfferCatalog": {
+						"@type": "OfferCatalog",
+						"name": "Diensten",
+						"itemListElement": [
+							{
+								"@type": "Offer",
+								"itemOffered": {
+									"@type": "Service",
+									"name": "Web Design & Development",
+									"url": "https://dh-studio.nl/diensten/web-design-development",
+									"provider": {
+										"@id": "https://dh-studio.nl/#bureau"
+									}
+								}
+							},
+							{
+								"@type": "Offer",
+								"itemOffered": {
+									"@type": "Service",
+									"name": "Domein Beheer & Hosting",
+									"url": "https://dh-studio.nl/diensten/domein-hosting",
+									"provider": {
+										"@id": "https://dh-studio.nl/#bureau"
+									}
+								}
+							},
+							{
+								"@type": "Offer",
+								"itemOffered": {
+									"@type": "Service",
+									"name": "Zichtbaarheid (SEO & SEA)",
+									"url": "https://dh-studio.nl/diensten/seo-sea",
+									"provider": {
+										"@id": "https://dh-studio.nl/#bureau"
+									}
+								}
+							},
+							{
+								"@type": "Offer",
+								"itemOffered": {
+									"@type": "Service",
+									"name": "Onderhoud & Support",
+									"url": "https://dh-studio.nl/diensten/onderhoud-support",
+									"provider": {
+										"@id": "https://dh-studio.nl/#bureau"
+									}
+								}
+							}
+						]
+					}
+				},
+				{
+					"@type": "FAQPage",
+					"@id": "https://dh-studio.nl/#faq",
+					"isPartOf": {
+						"@id": "https://dh-studio.nl/#webpage"
+					},
+					"mainEntity": [
+						{
+							"@type": "Question",
+							"name": "Wat onderscheidt DH Studio van andere bureaus?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "Wij zijn een persoonlijk bureau zonder onnodige lagen: je hebt direct contact met de mensen die je website bouwen. Korte communicatielijnen betekenen snelle opleveringen en focus op kwaliteit."
+							}
+						},
+						{
+							"@type": "Question",
+							"name": "Bouwen jullie websites met standaard templates?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "Nee. Elke website bouwen we op maat, afgestemd op jouw bedrijf, je doelgroep en je doelen. Modern design en technische expertise komen samen in een site die voelt als een verlengstuk van jouw bedrijf."
+							}
+						},
+						{
+							"@type": "Question",
+							"name": "Welke diensten bieden jullie precies aan?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "Web design & development, domeinbeheer & hosting, zichtbaarheid via SEO en Google Ads (SEA), en onderhoud & support. Je kunt alles bij ons onderbrengen of alleen de onderdelen die je nodig hebt."
+							}
+						},
+						{
+							"@type": "Question",
+							"name": "Wat gebeurt er nadat de website live is gegaan?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "Dan blijven we betrokken. Met proactieve monitoring, back-ups en updates houden we je site veilig en up-to-date, en zodra we kansen zien denken we mee over optimalisaties."
+							}
+						},
+						{
+							"@type": "Question",
+							"name": "Helpen jullie ook om daadwerkelijk meer klanten te bereiken?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "Ja. We combineren SEO en Google Ads (SEA) met conversiegericht ontwerp, zodat je niet alleen beter gevonden wordt, maar bezoekers ook echt klant worden."
+							}
+						},
+						{
+							"@type": "Question",
+							"name": "Moet ik zelf zaken als hosting en domeinnamen regelen?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "Nee, dat nemen we uit handen. Wij regelen je domein, hosting en beveiliging, zodat jij je daar geen zorgen over hoeft te maken."
+							}
+						}
+					]
+				}
+			]
 		}
 		</script>
 
