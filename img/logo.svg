@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 102" fill="currentColor" role="img" aria-label="DH Studio">
+	<path d="M78 0h28v41h33V0h28v102h-28V61h-33v41H78z"/>
+	<path d="M0 0h38a51 51 0 0 1 0 102H0z" fill="none" stroke="var(--logo-gap, #fff)" stroke-width="6"/>
+	<path d="M0 0h38a51 51 0 0 1 0 102H0zm20 20v62h18a31 31 0 0 0 0-62z" fill-rule="evenodd"/>
+	<g transform="translate(158 99) rotate(140) scale(1.85)">
+		<path d="M0 0 0 26 5 20.5 9 30 13 28 9 19 14.5 18.5Z" fill="none" stroke="var(--logo-gap, #fff)" stroke-width="3.6" stroke-linejoin="round"/>
+		<path d="M0 0 0 26 5 20.5 9 30 13 28 9 19 14.5 18.5Z" stroke="currentColor" stroke-width="0.5" stroke-linejoin="round"/>
+	</g>
+</svg>

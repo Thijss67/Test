@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+		<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22-10 -43 188 188%22%3E%3Cpath d=%22M78 0h28v41h33V0h28v102h-28V61h-33v41H78z%22 fill=%22%230d1b3e%22/%3E%3Cpath d=%22M0 0h38a51 51 0 0 1 0 102H0z%22 fill=%22none%22 stroke=%22%23fff%22 stroke-width=%226%22/%3E%3Cpath d=%22M0 0h38a51 51 0 0 1 0 102H0zm20 20v62h18a31 31 0 0 0 0-62z%22 fill=%22%230d1b3e%22 fill-rule=%22evenodd%22/%3E%3Cg transform=%22translate(158 99) rotate(140) scale(1.85)%22%3E%3Cpath d=%22M0 0 0 26 5 20.5 9 30 13 28 9 19 14.5 18.5Z%22 fill=%22none%22 stroke=%22%23fff%22 stroke-width=%223.6%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M0 0 0 26 5 20.5 9 30 13 28 9 19 14.5 18.5Z%22 fill=%22%230d1b3e%22 stroke=%22%230d1b3e%22 stroke-width=%220.5%22 stroke-linejoin=%22round%22/%3E%3C/g%3E%3C/svg%3E" />
 		<link rel="icon" type="image/png" href="https://horizons-cdn.hostinger.com/ef4fe3b9-f62a-4faa-a328-5c50f3d1fc23/f941b8f6eba129a017a84a4da721d97f.png" />
 		<meta name="generator" content="Hostinger Horizons" />
 		<meta name="theme-color" content="#fbfaf7" />
@@ -265,22 +266,21 @@
 				gap: 0.6rem;
 				min-height: 44px;
 				color: var(--fg);
-				font-size: 1rem;
-				font-weight: 800;
-				letter-spacing: 0.02em;
+				font-size: 0.98rem;
+				font-weight: 700;
+				letter-spacing: 0.12em;
 				text-transform: uppercase;
 			}
 			.brand-mark {
-				width: 34px; height: 34px;
-				display: grid; place-items: center;
-				border-radius: 11px;
-				background: var(--navy);
-				color: #fff;
-				font-size: 0.72rem;
-				font-weight: 800;
+				height: 24px;
+				width: auto;
+				color: var(--fg);
+				/* kleur van de uitsparingen in het logo: gelijk aan de ondergrond */
+				--logo-gap: var(--surface);
 				transition: transform 0.25s ease;
 			}
-			.brand:hover .brand-mark { transform: rotate(-8deg); }
+			.brand:hover .brand-mark { transform: translateY(-1px) rotate(-3deg); }
+			.site-footer .brand-mark { --logo-gap: var(--bg-soft); }
 
 			.nav-links { display: none; }
 			.nav-cta { display: none; }
@@ -737,7 +737,15 @@
 			<div class="wrap">
 				<div class="nav">
 					<a class="brand" href="/" aria-label="DH Studio home">
-						<span class="brand-mark" aria-hidden="true">DH</span>
+						<svg class="brand-mark" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 102" fill="currentColor">
+							<path d="M78 0h28v41h33V0h28v102h-28V61h-33v41H78z"/>
+							<path d="M0 0h38a51 51 0 0 1 0 102H0z" fill="none" stroke="var(--logo-gap, #fff)" stroke-width="6"/>
+							<path d="M0 0h38a51 51 0 0 1 0 102H0zm20 20v62h18a31 31 0 0 0 0-62z" fill-rule="evenodd"/>
+							<g transform="translate(158 99) rotate(140) scale(1.85)">
+								<path d="M0 0 0 26 5 20.5 9 30 13 28 9 19 14.5 18.5Z" fill="none" stroke="var(--logo-gap, #fff)" stroke-width="3.6" stroke-linejoin="round"/>
+								<path d="M0 0 0 26 5 20.5 9 30 13 28 9 19 14.5 18.5Z" stroke="currentColor" stroke-width="0.5" stroke-linejoin="round"/>
+							</g>
+						</svg>
 						DH Studio
 					</a>
 					<nav class="nav-links" aria-label="Hoofdmenu">
@@ -1080,7 +1088,15 @@
 			<div class="wrap footer-grid">
 				<div class="footer-about">
 					<a class="brand" href="/" aria-label="DH Studio home">
-						<span class="brand-mark" aria-hidden="true">DH</span>
+						<svg class="brand-mark" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 102" fill="currentColor">
+							<path d="M78 0h28v41h33V0h28v102h-28V61h-33v41H78z"/>
+							<path d="M0 0h38a51 51 0 0 1 0 102H0z" fill="none" stroke="var(--logo-gap, #fff)" stroke-width="6"/>
+							<path d="M0 0h38a51 51 0 0 1 0 102H0zm20 20v62h18a31 31 0 0 0 0-62z" fill-rule="evenodd"/>
+							<g transform="translate(158 99) rotate(140) scale(1.85)">
+								<path d="M0 0 0 26 5 20.5 9 30 13 28 9 19 14.5 18.5Z" fill="none" stroke="var(--logo-gap, #fff)" stroke-width="3.6" stroke-linejoin="round"/>
+								<path d="M0 0 0 26 5 20.5 9 30 13 28 9 19 14.5 18.5Z" stroke="currentColor" stroke-width="0.5" stroke-linejoin="round"/>
+							</g>
+						</svg>
 						DH Studio
 					</a>
 					<p>Gespecialiseerd in het bouwen van moderne, snelle websites die bezoekers omzetten in klanten. Jouw digitale succes is onze missie.</p>
