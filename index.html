@@ -318,6 +318,23 @@
 				border-bottom: 1px solid var(--line);
 			}
 			.mobile-nav .btn { margin-top: 1rem; }
+			/* Uitklapbaar submenu: <details> doet het werk, geen extra JS nodig. */
+			.mobile-sub > summary {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 0.6rem;
+				min-height: 52px;
+				color: var(--fg);
+				font-weight: 600;
+				border-bottom: 1px solid var(--line);
+				cursor: pointer;
+				list-style: none;
+			}
+			.mobile-sub > summary::-webkit-details-marker { display: none; }
+			.mobile-sub[open] > summary .nav-chev { transform: rotate(180deg); }
+			.mobile-sub > a { padding-left: 1rem; min-height: 48px; font-weight: 500; color: var(--body); }
+			.nav-chev { width: 16px; height: 16px; flex: none; transition: transform 0.22s ease; }
 
 			/* ---------- Hero ---------- */
 			.hero {
@@ -715,6 +732,44 @@
 					font-weight: 600;
 				}
 				.nav-links a { position: relative; padding-block: 0.35rem; }
+				.nav-drop { position: relative; display: flex; align-items: center; }
+				.nav-drop-trigger { display: inline-flex; align-items: center; gap: 0.35rem; }
+				.nav-drop-menu {
+					position: absolute;
+					top: 100%;
+					left: 50%;
+					z-index: 20;
+					min-width: max-content;
+					margin-top: 0.85rem;
+					padding: 0.5rem;
+					background: var(--surface);
+					border: 1px solid var(--line);
+					border-radius: var(--radius);
+					box-shadow: var(--shadow-lift);
+					opacity: 0;
+					visibility: hidden;
+					transform: translate(-50%, -6px);
+					transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+				}
+				/* Onzichtbare brug, zodat de muis de ruimte tussen knop en menu mag kruisen. */
+				.nav-drop-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -0.85rem; height: 0.85rem; }
+				.nav-drop:hover .nav-drop-menu,
+				.nav-drop:focus-within .nav-drop-menu { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+				.nav-drop-menu a {
+					display: flex;
+					align-items: center;
+					min-height: 44px;
+					padding: 0.35rem 0.85rem;
+					border-radius: 10px;
+					white-space: nowrap;
+					font-weight: 600;
+					color: var(--body);
+					transition: background 0.16s ease, color 0.16s ease;
+				}
+				.nav-drop[data-force-closed] .nav-drop-menu { opacity: 0; visibility: hidden; transform: translate(-50%, -6px); }
+				.nav-drop-menu a::after { content: none; }
+				.nav-drop-menu a:hover { background: var(--bg-soft); color: var(--accent-text); }
+				.nav-drop:hover .nav-chev, .nav-drop:focus-within .nav-chev { transform: rotate(180deg); }
 				.nav-links a::after {
 					content: "";
 					position: absolute;
@@ -763,7 +818,16 @@
 					</a>
 					<nav class="nav-links" aria-label="Hoofdmenu">
 						<a href="/" aria-current="page">Home</a>
-						<a href="#diensten">Diensten</a>
+						<div class="nav-drop">
+							<a href="#diensten" class="nav-drop-trigger" aria-expanded="false" aria-controls="dienstenMenu" aria-haspopup="true">Diensten <svg class="nav-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+							<div class="nav-drop-menu" id="dienstenMenu" role="menu" aria-label="Diensten">
+								<a href="/diensten/web-design-development" role="menuitem">Web Design &amp; Development</a>
+								<a href="/diensten/domein-hosting" role="menuitem">Domein Beheer &amp; Hosting</a>
+								<a href="/diensten/seo-sea" role="menuitem">Zichtbaarheid (SEO &amp; SEA)</a>
+								<a href="/diensten/onderhoud-support" role="menuitem">Onderhoud &amp; Support</a>
+								<a href="/diensten" role="menuitem">Alle diensten</a>
+							</div>
+						</div>
 						<a href="#werkwijze">Werkwijze</a>
 						<a href="/website-concept">Gratis concept</a>
 						<a href="/over-dh-studio">Over DH Studio</a>
@@ -776,7 +840,15 @@
 				</div>
 				<nav class="mobile-nav" id="mobileNav" aria-label="Hoofdmenu (mobiel)" hidden>
 					<a href="/">Home</a>
-					<a href="#diensten">Diensten</a>
+					<details class="mobile-sub">
+						<summary>Diensten <svg class="nav-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+						<a href="#diensten">Diensten op deze pagina</a>
+						<a href="/diensten/web-design-development">Web Design &amp; Development</a>
+						<a href="/diensten/domein-hosting">Domein Beheer &amp; Hosting</a>
+						<a href="/diensten/seo-sea">Zichtbaarheid (SEO &amp; SEA)</a>
+						<a href="/diensten/onderhoud-support">Onderhoud &amp; Support</a>
+						<a href="/diensten">Alle diensten</a>
+					</details>
 					<a href="#werkwijze">Werkwijze</a>
 					<a href="/over-dh-studio">Over DH Studio</a>
 					<a href="#faq">FAQ</a>
@@ -1471,6 +1543,38 @@
 					pickStep();
 					window.addEventListener("scroll", onProcMove, { passive: true });
 					window.addEventListener("resize", onProcMove);
+				}
+
+				// Diensten-dropdown: CSS opent hem op hover/focus, JS houdt alleen
+				// aria-expanded bij en laat Escape hem sluiten.
+				var drop = document.querySelector(".nav-drop");
+				if (drop) {
+					var dropTrigger = drop.querySelector(".nav-drop-trigger");
+					// dismissed: met Escape weggeklikt terwijl de focus op de knop blijft staan.
+					var dismissed = false;
+					var paintDrop = function (open) {
+						var shown = open && !dismissed;
+						dropTrigger.setAttribute("aria-expanded", shown ? "true" : "false");
+						if (dismissed) drop.setAttribute("data-force-closed", "");
+						else drop.removeAttribute("data-force-closed");
+					};
+					var leaveDrop = function () { dismissed = false; paintDrop(false); };
+					drop.addEventListener("mouseenter", function () { paintDrop(true); });
+					drop.addEventListener("mouseleave", leaveDrop);
+					drop.addEventListener("focusin", function () { paintDrop(true); });
+					drop.addEventListener("focusout", function (e) {
+						if (!drop.contains(e.relatedTarget)) leaveDrop();
+					});
+					drop.addEventListener("keydown", function (e) {
+						if (e.key === "Escape") {
+							dismissed = true;
+							paintDrop(false);
+							dropTrigger.focus();
+						} else if (dismissed) {
+							dismissed = false;
+							paintDrop(true);
+						}
+					});
 				}
 
 				// Vaste CTA-balk: alleen zichtbaar als de hero-knop uit beeld is,
