@@ -1,824 +1,1351 @@
-<style>
-  :root {
-    /* Deep ink-blue ground with warm ochre/terracotta accents */
-    --ink-900: #0b1a33;
-    --ink-800: #0f2444;
-    --ink-700: #163256;
-    --ink-600: #21426b;
-    --line: rgba(224, 190, 138, 0.18);
+<!doctype html>
+<html lang="nl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+		<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22-10 -43 188 188%22%3E%3Cpath d=%22M78 0h28v41h33V0h28v102h-28V61h-33v41H78z%22 fill=%22%230d1b3e%22/%3E%3Cpath d=%22M0 0h38a51 51 0 0 1 0 102H0z%22 fill=%22none%22 stroke=%22%23fff%22 stroke-width=%226%22/%3E%3Cpath d=%22M0 0h38a51 51 0 0 1 0 102H0zm20 20v62h18a31 31 0 0 0 0-62z%22 fill=%22%230d1b3e%22 fill-rule=%22evenodd%22/%3E%3Cg transform=%22translate(158 99) rotate(140) scale(1.85)%22%3E%3Cpath d=%22M0 0 0 26 5 20.5 9 30 13 28 9 19 14.5 18.5Z%22 fill=%22none%22 stroke=%22%23fff%22 stroke-width=%223.6%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M0 0 0 26 5 20.5 9 30 13 28 9 19 14.5 18.5Z%22 fill=%22%230d1b3e%22 stroke=%22%230d1b3e%22 stroke-width=%220.5%22 stroke-linejoin=%22round%22/%3E%3C/g%3E%3C/svg%3E" />
+		<meta name="theme-color" content="#fbfaf7" />
+		<meta name="color-scheme" content="light" />
+		<title>DH Studio | High-End Webdesign & Ontwikkeling</title>
+		<meta name="description" content="DH Studio bouwt moderne, snelle en conversie-gerichte websites." />
+		<link rel="canonical" href="https://dh-studio.nl/" />
 
-    --paper: #f4ede0;
-    --paper-2: #ece2d1;
-    --sand: #d9c7a8;
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="nl_NL" />
+		<meta property="og:url" content="https://dh-studio.nl/" />
+		<meta property="og:site_name" content="DH Studio" />
+		<meta property="og:title" content="DH Studio | High-End Webdesign & Ontwikkeling" />
+		<meta property="og:description" content="DH Studio bouwt moderne, snelle en conversie-gerichte websites." />
+		<meta name="twitter:card" content="summary_large_image" />
 
-    --ochre: #e0a33e;
-    --ochre-soft: #f0c876;
-    --terra: #cd6a45;
+		<!-- Markeert dat JS aanstaat: reveal-animaties verbergen niets als JS uitvalt -->
+		<script>document.documentElement.classList.add("js");</script>
 
-    /* Semantic tokens (dark is the default visual world here) */
-    --bg: var(--ink-900);
-    --surface: var(--ink-800);
-    --surface-2: var(--ink-700);
-    --text: #f3ecdd;
-    --text-dim: #a9b8d2;
-    --accent: var(--ochre);
-    --accent-2: var(--terra);
-    --on-accent: #17130a;
-    --hairline: var(--line);
-    --card-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.75);
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    --font-display: "Playfair Display", "Iowan Old Style", "Palatino Linotype",
-      Palatino, Georgia, "Times New Roman", serif;
-    --font-body: "Inter", ui-sans-serif, system-ui, -apple-system,
-      "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18237624823"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', 'AW-18237624823');
+		</script>
 
-    --maxw: 1140px;
-    --step-0: clamp(0.95rem, 0.9rem + 0.2vw, 1.02rem);
-    --step-1: clamp(1.1rem, 1rem + 0.5vw, 1.3rem);
-    --step-2: clamp(1.4rem, 1.2rem + 1vw, 1.9rem);
-    --step-3: clamp(2rem, 1.5rem + 2.4vw, 3.1rem);
-    --step-4: clamp(2.7rem, 1.8rem + 4.4vw, 5rem);
-  }
+		<!-- Leadinfo tracking code -->
+		<script>
+		(function(l,e,a,d,i,n,f,o){if(!l[i]){l.GlobalLeadinfoNamespace=l.GlobalLeadinfoNamespace||[];l.GlobalLeadinfoNamespace.push(i);l[i]=function(){(l[i].q=l[i].q||[]).push(arguments)};l[i].t=l[i].t||n;l[i].q=l[i].q||[];o=e.createElement(a);f=e.getElementsByTagName(a)[0];o.async=1;o.src=d;f.parentNode.insertBefore(o,f);}}
+		(window,document,'script','https://cdn.leadinfo.net/ping.js','leadinfo','LI-6A43A923F158A'));
+		</script>
 
-  :root[data-theme="light"] {
-    --bg: var(--paper);
-    --surface: #ffffff;
-    --surface-2: var(--paper-2);
-    --text: #16233b;
-    --text-dim: #5a6478;
-    --accent: #b9772a;
-    --accent-2: #b4522f;
-    --on-accent: #fdf6e8;
-    --hairline: rgba(24, 40, 66, 0.14);
-    --card-shadow: 0 24px 50px -30px rgba(20, 32, 60, 0.35);
-  }
+		<!-- Alle CSS staat inline: één request, geen render-blocking stylesheet, geen FOUC.
+		     Opbouw is mobile-first — basis = telefoon, media queries schalen op. -->
+		<style>
+			:root {
+				/* Licht thema: warm gebroken wit, diepnavy tekst, blauw accent */
+				--bg: #fbfaf7;
+				--bg-soft: #f4f6fb;
+				--surface: #ffffff;
+				--line: #e7e9f0;
+				--line-strong: #d8dce7;
 
-  @media (prefers-color-scheme: light) {
-    :root {
-      --bg: var(--paper);
-      --surface: #ffffff;
-      --surface-2: var(--paper-2);
-      --text: #16233b;
-      --text-dim: #5a6478;
-      --accent: #b9772a;
-      --accent-2: #b4522f;
-      --on-accent: #fdf6e8;
-      --hairline: rgba(24, 40, 66, 0.14);
-      --card-shadow: 0 24px 50px -30px rgba(20, 32, 60, 0.35);
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: var(--ink-900);
-    --surface: var(--ink-800);
-    --surface-2: var(--ink-700);
-    --text: #f3ecdd;
-    --text-dim: #a9b8d2;
-    --accent: var(--ochre);
-    --accent-2: var(--terra);
-    --on-accent: #17130a;
-    --hairline: var(--line);
-    --card-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.75);
-  }
+				--navy: #0d1b3e;
+				--fg: var(--navy);
+				--body: #5c6577;
+				--muted: #858c9c;
 
-  * { box-sizing: border-box; }
+				--accent: #2f6bff;
+				--accent-strong: #1e50d8;
+				--accent-text: #1d4ed8;
+				--accent-tint: rgba(47, 107, 255, 0.08);
+				--accent-line: rgba(47, 107, 255, 0.22);
+				--on-accent: #ffffff;
 
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
-    font-size: var(--step-0);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    overflow-x: hidden;
-  }
+				--peach: rgba(253, 226, 195, 0.55);
+				--sky: rgba(190, 214, 250, 0.5);
 
-  .wrap {
-    width: 100%;
-    max-width: var(--maxw);
-    margin-inline: auto;
-    padding-inline: clamp(1.1rem, 4vw, 2.5rem);
-  }
+				--shadow-sm: 0 2px 6px rgba(13, 27, 62, 0.05);
+				--shadow-card: 0 14px 34px -22px rgba(13, 27, 62, 0.35);
+				--shadow-lift: 0 22px 48px -26px rgba(13, 27, 62, 0.4);
+				--shadow-cta: 0 12px 26px -12px rgba(47, 107, 255, 0.6);
+				--shadow-pill: 0 10px 30px -18px rgba(13, 27, 62, 0.5);
 
-  h1, h2, h3 {
-    font-family: var(--font-display);
-    font-weight: 600;
-    line-height: 1.08;
-    text-wrap: balance;
-    margin: 0;
-  }
+				--font: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system,
+					BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
-  a { color: inherit; text-decoration: none; }
+				--radius: 16px;
+				--radius-lg: 22px;
+				--radius-btn: 16px;
+				--maxw: 1140px;
+				--header-h: 64px;
 
-  .eyebrow {
-    font-family: var(--font-body);
-    font-size: 0.76rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--accent);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6em;
-  }
-  .eyebrow::before {
-    content: "";
-    width: 26px;
-    height: 1px;
-    background: var(--accent);
-    opacity: 0.7;
-  }
+				/* Fluid type — mobile eerst, groeit mee met het scherm */
+				--t-body: clamp(1rem, 0.97rem + 0.15vw, 1.06rem);
+				--t-lead: clamp(1.06rem, 1rem + 0.5vw, 1.22rem);
+				--t-h3: clamp(1.1rem, 1.02rem + 0.4vw, 1.25rem);
+				--t-h2: clamp(1.8rem, 1.35rem + 2.1vw, 2.8rem);
+				--t-h1: clamp(2.15rem, 1.5rem + 3.7vw, 4.2rem);
+			}
 
-  /* Buttons */
-  .btn {
-    --pad-y: 0.85em;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55em;
-    padding: var(--pad-y) 1.5em;
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    letter-spacing: 0.01em;
-    cursor: pointer;
-    border: 1px solid transparent;
-    transition: transform 0.18s ease, box-shadow 0.18s ease,
-      background 0.18s ease, border-color 0.18s ease;
-    white-space: nowrap;
-  }
-  .btn-primary {
-    background: var(--accent);
-    color: var(--on-accent);
-    box-shadow: 0 10px 26px -12px color-mix(in srgb, var(--accent) 80%, transparent);
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 30px -12px color-mix(in srgb, var(--accent) 80%, transparent); }
-  .btn-ghost {
-    background: transparent;
-    color: var(--text);
-    border-color: var(--hairline);
-  }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+			*, ::before, ::after { box-sizing: border-box; border-width: 0; border-style: solid; }
 
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+			html {
+				-webkit-text-size-adjust: 100%;
+				tab-size: 4;
+				scroll-behavior: smooth;
+				scroll-padding-top: calc(var(--header-h) + 20px);
+			}
 
-  /* Header */
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    backdrop-filter: blur(12px);
-    background: color-mix(in srgb, var(--bg) 82%, transparent);
-    border-bottom: 1px solid var(--hairline);
-  }
-  .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    height: 72px;
-  }
-  .brand {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    font-family: var(--font-display);
-    font-size: 1.35rem;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-  }
-  .brand .dot { color: var(--accent); }
-  .brand small {
-    font-family: var(--font-body);
-    font-size: 0.62rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    align-self: center;
-  }
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    font-size: 0.92rem;
-    font-weight: 500;
-    color: var(--text-dim);
-  }
-  .nav-links a { position: relative; transition: color 0.15s ease; }
-  .nav-links a::after {
-    content: "";
-    position: absolute;
-    left: 0; bottom: -6px;
-    width: 0; height: 2px;
-    background: var(--accent);
-    transition: width 0.2s ease;
-  }
-  .nav-links a:hover { color: var(--text); }
-  .nav-links a:hover::after { width: 100%; }
-  .nav-right { display: flex; align-items: center; gap: 1rem; }
-  .theme-toggle {
-    background: transparent;
-    border: 1px solid var(--hairline);
-    color: var(--text);
-    width: 40px; height: 40px;
-    border-radius: 999px;
-    cursor: pointer;
-    display: grid; place-items: center;
-    font-size: 1rem;
-    transition: border-color 0.15s ease, transform 0.15s ease;
-  }
-  .theme-toggle:hover { border-color: var(--accent); transform: rotate(-12deg); }
-  @media (max-width: 820px) {
-    .nav-links { display: none; }
-  }
+			body {
+				margin: 0;
+				background: var(--bg);
+				color: var(--body);
+				font-family: var(--font);
+				font-size: var(--t-body);
+				line-height: 1.65;
+				overflow-x: hidden;
+				-webkit-font-smoothing: antialiased;
+				text-rendering: optimizeLegibility;
+				/* ruimte voor de vaste CTA-balk op mobiel */
+				padding-bottom: calc(80px + env(safe-area-inset-bottom));
+			}
 
-  /* Hero */
-  .hero {
-    position: relative;
-    padding-top: clamp(3.5rem, 8vw, 6.5rem);
-    padding-bottom: clamp(3.5rem, 8vw, 6rem);
-    overflow: hidden;
-  }
-  .hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(60% 55% at 78% 12%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%),
-      radial-gradient(50% 50% at 8% 90%, color-mix(in srgb, var(--accent-2) 18%, transparent), transparent 55%);
-    opacity: 0.9;
-    pointer-events: none;
-  }
-  .hero-grid {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: clamp(2rem, 5vw, 4rem);
-    align-items: center;
-  }
-  @media (max-width: 900px) {
-    .hero-grid { grid-template-columns: 1fr; }
-  }
-  .hero h1 {
-    font-size: var(--step-4);
-    margin-top: 1.2rem;
-    letter-spacing: -0.01em;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--accent);
-  }
-  .hero p.lead {
-    font-size: var(--step-1);
-    color: var(--text-dim);
-    max-width: 34ch;
-    margin: 1.4rem 0 2rem;
-  }
-  .hero-cta { display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; }
-  .hero-trust {
-    margin-top: 2.4rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.6rem 2.2rem;
-    align-items: center;
-    color: var(--text-dim);
-    font-size: 0.82rem;
-  }
-  .hero-trust b { color: var(--text); font-size: 1.5rem; font-family: var(--font-display); font-weight: 700; display: block; }
+			h1, h2, h3, h4 { margin: 0; color: var(--fg); font-weight: 800; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance; }
+			h1 { font-size: var(--t-h1); }
+			h2 { font-size: var(--t-h2); }
+			h3 { font-size: var(--t-h3); font-weight: 700; letter-spacing: -0.015em; line-height: 1.3; }
+			h4 { font-size: 1.02rem; font-weight: 700; letter-spacing: -0.015em; }
+			p { margin: 0; }
+			a { color: inherit; text-decoration: none; }
+			ul, ol { margin: 0; padding: 0; list-style: none; }
+			img, svg { display: block; max-width: 100%; }
 
-  /* Browser mockup */
-  .mock {
-    position: relative;
-    border-radius: 16px;
-    background: var(--surface);
-    border: 1px solid var(--hairline);
-    box-shadow: var(--card-shadow);
-    overflow: hidden;
-    transform: perspective(1200px) rotateY(-6deg) rotateX(2deg);
-    transition: transform 0.4s ease;
-  }
-  .mock:hover { transform: perspective(1200px) rotateY(-2deg) rotateX(1deg); }
-  .mock-bar {
-    display: flex; align-items: center; gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    background: color-mix(in srgb, var(--surface-2) 70%, var(--surface));
-    border-bottom: 1px solid var(--hairline);
-  }
-  .mock-bar span { width: 11px; height: 11px; border-radius: 50%; background: var(--text-dim); opacity: 0.4; }
-  .mock-bar span:nth-child(1){ background: var(--accent-2); opacity: 0.8; }
-  .mock-bar span:nth-child(2){ background: var(--accent); opacity: 0.8; }
-  .mock-bar .url {
-    margin-left: 0.6rem;
-    font-size: 0.72rem;
-    color: var(--text-dim);
-    background: color-mix(in srgb, var(--bg) 40%, transparent);
-    padding: 0.25rem 0.7rem;
-    border-radius: 999px;
-    letter-spacing: 0.03em;
-  }
-  .mock-body { padding: 1.4rem 1.4rem 1.7rem; }
-  .mock-hero {
-    height: 92px;
-    border-radius: 10px;
-    background: linear-gradient(120deg, color-mix(in srgb, var(--accent) 65%, var(--surface)), color-mix(in srgb, var(--accent-2) 60%, var(--surface)));
-    display: flex; flex-direction: column; justify-content: center; gap: 8px;
-    padding: 0 1.1rem;
-    margin-bottom: 1.1rem;
-  }
-  .mock-line { height: 9px; border-radius: 6px; background: color-mix(in srgb, var(--text) 22%, transparent); }
-  .mock-hero .mock-line { background: rgba(255,255,255,0.85); }
-  .mock-hero .mock-line.short { width: 55%; opacity: 0.7; }
-  .mock-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; }
-  .mock-card { background: var(--surface-2); border: 1px solid var(--hairline); border-radius: 8px; padding: 0.7rem; display: grid; gap: 7px; }
-  .mock-card .chip { width: 22px; height: 22px; border-radius: 6px; background: color-mix(in srgb, var(--accent) 50%, var(--surface)); }
-  .mock-card .mock-line.short { width: 70%; }
-  .mock-badge {
-    position: absolute;
-    right: -14px; bottom: 22px;
-    background: var(--accent);
-    color: var(--on-accent);
-    font-family: var(--font-body);
-    font-weight: 700;
-    font-size: 0.78rem;
-    padding: 0.6rem 0.95rem;
-    border-radius: 12px;
-    box-shadow: 0 14px 28px -12px rgba(0,0,0,0.5);
-    transform: rotate(4deg);
-    letter-spacing: 0.02em;
-  }
-  @media (max-width: 900px) { .mock { transform: none; } .mock:hover { transform: none; } .mock-badge { right: 8px; } }
+			:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
 
-  /* Section shell */
-  section { position: relative; }
-  .section-pad { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
-  .section-head { max-width: 60ch; margin-bottom: clamp(2rem, 4vw, 3.2rem); }
-  .section-head h2 { font-size: var(--step-3); margin-top: 0.9rem; }
-  .section-head p { color: var(--text-dim); font-size: var(--step-1); margin: 1rem 0 0; }
+			.wrap {
+				width: 100%;
+				max-width: var(--maxw);
+				margin-inline: auto;
+				padding-inline: 1.25rem;
+			}
 
-  .divider { height: 1px; background: var(--hairline); border: 0; margin: 0; }
+			.section { padding-block: clamp(3.5rem, 9vw, 6.5rem); }
+			.section-soft { background: var(--bg-soft); }
 
-  /* Benefits */
-  .benefits { background: var(--surface); }
-  .grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.4rem;
-  }
-  @media (max-width: 860px) { .grid-3 { grid-template-columns: 1fr; } }
-  .card {
-    background: var(--bg);
-    border: 1px solid var(--hairline);
-    border-radius: 14px;
-    padding: 1.9rem 1.7rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    transition: transform 0.2s ease, border-color 0.2s ease;
-  }
-  .benefits .card { background: var(--surface-2); }
-  .card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 55%, var(--hairline)); }
-  .card .num {
-    font-family: var(--font-display);
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-  }
-  .icon {
-    width: 46px; height: 46px;
-    border-radius: 12px;
-    display: grid; place-items: center;
-    background: color-mix(in srgb, var(--accent) 16%, transparent);
-    color: var(--accent);
-    margin-bottom: 0.3rem;
-  }
-  .icon svg { width: 24px; height: 24px; }
-  .card h3 { font-size: var(--step-2); }
-  .card p { color: var(--text-dim); margin: 0; }
+			/* ---------- Animaties (uit bij prefers-reduced-motion) ---------- */
+			.js .reveal { opacity: 0; transform: translateY(16px); }
+			.js .reveal.is-visible {
+				opacity: 1;
+				transform: none;
+				transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+					transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+			}
+			@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+			@keyframes pop { from { opacity: 0; transform: scale(0.75); } to { opacity: 1; transform: none; } }
+			@keyframes draw { to { stroke-dashoffset: 0; } }
 
-  /* Process strip */
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 2.5rem; }
-  @media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
-  .step { display: flex; gap: 1rem; align-items: flex-start; }
-  .step .step-n {
-    flex: none;
-    width: 42px; height: 42px; border-radius: 50%;
-    display: grid; place-items: center;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    font-family: var(--font-display);
-    font-weight: 700;
-  }
-  .step h4 { margin: 0 0 0.25rem; font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; }
-  .step p { margin: 0; color: var(--text-dim); font-size: 0.92rem; }
+			/* ---------- Sectiekop ---------- */
+			.eyebrow {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.85rem;
+				font-size: 0.7rem;
+				font-weight: 800;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--accent-text);
+			}
+			.eyebrow::before, .eyebrow::after {
+				content: "";
+				width: clamp(20px, 6vw, 34px);
+				height: 2px;
+				border-radius: 2px;
+				background: var(--accent);
+				opacity: 0.55;
+			}
 
-  /* Pricing */
-  .pricing { background: var(--surface); }
-  .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; align-items: stretch; }
-  @media (max-width: 860px) { .price-grid { grid-template-columns: 1fr; } }
-  .plan {
-    background: var(--bg);
-    border: 1px solid var(--hairline);
-    border-radius: 16px;
-    padding: 2rem 1.8rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.1rem;
-  }
-  .plan.featured {
-    background: linear-gradient(180deg, var(--surface-2), var(--bg));
-    border-color: color-mix(in srgb, var(--accent) 60%, transparent);
-    box-shadow: var(--card-shadow);
-    position: relative;
-  }
-  .plan.featured::before {
-    content: "Meest gekozen";
-    position: absolute;
-    top: -12px; left: 1.8rem;
-    background: var(--accent);
-    color: var(--on-accent);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 0.35rem 0.8rem;
-    border-radius: 999px;
-  }
-  .plan .plan-name { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; }
-  .plan .plan-desc { color: var(--text-dim); font-size: 0.9rem; margin-top: -0.6rem; }
-  .plan .price { font-family: var(--font-display); font-weight: 700; line-height: 1; display: flex; align-items: baseline; gap: 0.4rem; }
-  .plan .price .amt { font-size: 2.7rem; }
-  .plan .price .per { font-family: var(--font-body); font-size: 0.85rem; color: var(--text-dim); font-weight: 500; }
-  .plan ul { list-style: none; margin: 0.4rem 0 0; padding: 0; display: grid; gap: 0.7rem; }
-  .plan li { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.92rem; color: var(--text); }
-  .plan li svg { flex: none; width: 18px; height: 18px; color: var(--accent); margin-top: 3px; }
-  .plan .btn { margin-top: auto; justify-content: center; }
-  .price-note { text-align: center; color: var(--text-dim); font-size: 0.85rem; margin-top: 1.8rem; }
+			.section-head { max-width: 62ch; margin-inline: auto; margin-bottom: clamp(2rem, 5vw, 3rem); text-align: center; }
+			.section-head h2 { margin-top: 1.1rem; }
+			.section-head p { margin-top: 1rem; font-size: var(--t-lead); }
+			.section-head p + p { margin-top: 0.85rem; }
 
-  /* Footer + contact */
-  footer { background: var(--bg); border-top: 1px solid var(--hairline); }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: clamp(2rem, 6vw, 4.5rem);
-    padding-block: clamp(3rem, 7vw, 5rem);
-  }
-  @media (max-width: 880px) { .footer-grid { grid-template-columns: 1fr; } }
-  .footer-intro h2 { font-size: var(--step-3); }
-  .footer-intro p { color: var(--text-dim); max-width: 40ch; }
-  .contact-list { display: grid; gap: 0.7rem; margin-top: 1.6rem; font-size: 0.95rem; }
-  .contact-list a { display: inline-flex; gap: 0.6rem; align-items: center; color: var(--text); }
-  .contact-list a:hover { color: var(--accent); }
-  .contact-list svg { width: 18px; height: 18px; color: var(--accent); }
+			/* ---------- Knoppen ---------- */
+			.btn {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.55em;
+				min-height: 56px;
+				padding: 0.9rem 1.75rem;
+				border-radius: var(--radius-btn);
+				font: inherit;
+				font-size: 1rem;
+				font-weight: 700;
+				letter-spacing: 0;
+				text-align: center;
+				cursor: pointer;
+				transition: background-color 0.18s ease, border-color 0.18s ease,
+					transform 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
+			}
+			.btn svg { width: 18px; height: 18px; }
+			.btn-primary { background: var(--accent); color: var(--on-accent); box-shadow: var(--shadow-cta); }
+			.btn-primary:hover { background: var(--accent-strong); transform: translateY(-2px); }
+			.btn-primary:active { transform: translateY(0); }
+			.btn-outline {
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line-strong);
+				box-shadow: var(--shadow-sm);
+			}
+			.btn-outline:hover { border-color: var(--accent); color: var(--accent-text); transform: translateY(-2px); }
+			.btn-block { display: flex; width: 100%; }
 
-  form { display: grid; gap: 1rem; }
-  .field { display: grid; gap: 0.4rem; }
-  .field label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); }
-  .field input, .field textarea {
-    font-family: inherit;
-    font-size: 0.95rem;
-    color: var(--text);
-    background: var(--surface);
-    border: 1px solid var(--hairline);
-    border-radius: 10px;
-    padding: 0.8rem 0.9rem;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    width: 100%;
-  }
-  .field input::placeholder, .field textarea::placeholder { color: color-mix(in srgb, var(--text-dim) 80%, transparent); }
-  .field input:focus, .field textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
-  }
-  .field textarea { resize: vertical; min-height: 120px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
-  form .btn { justify-content: center; margin-top: 0.3rem; }
-  .form-status { font-size: 0.88rem; color: var(--accent); min-height: 1.2em; }
+			.link-more {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.45em;
+				min-height: 44px;
+				color: var(--accent-text);
+				font-size: 0.92rem;
+				font-weight: 700;
+			}
+			.link-more svg { width: 16px; height: 16px; transition: transform 0.18s ease; }
+			.link-more:hover svg { transform: translateX(4px); }
 
-  .footer-bottom {
-    border-top: 1px solid var(--hairline);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: space-between;
-    align-items: center;
-    padding-block: 1.6rem;
-    color: var(--text-dim);
-    font-size: 0.82rem;
-  }
-  .socials { display: flex; gap: 0.7rem; }
-  .socials a {
-    width: 40px; height: 40px; border-radius: 50%;
-    display: grid; place-items: center;
-    border: 1px solid var(--hairline);
-    color: var(--text);
-    transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
-  }
-  .socials a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
-  .socials svg { width: 18px; height: 18px; }
+			/* ---------- Zwevende pill-header ---------- */
+			.site-header {
+				position: sticky;
+				top: 0;
+				z-index: 50;
+				padding-top: 0.7rem;
+				padding-bottom: 0.35rem;
+				transition: padding 0.25s ease;
+			}
+			.site-header::before {
+				content: "";
+				position: absolute;
+				inset: 0 0 auto 0;
+				height: 100%;
+				background: linear-gradient(var(--bg) 55%, transparent);
+				opacity: 0;
+				transition: opacity 0.25s ease;
+				pointer-events: none;
+			}
+			.site-header[data-scrolled="true"] { padding-top: 0.4rem; }
+			.site-header[data-scrolled="true"]::before { opacity: 1; }
 
-  @media (prefers-reduced-motion: reduce) {
-    * { animation: none !important; transition: none !important; }
-  }
-</style>
+			.nav {
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 0.75rem;
+				height: var(--header-h);
+				padding: 0.4rem 0.4rem 0.4rem 1rem;
+				background: rgba(255, 255, 255, 0.72);
+				backdrop-filter: blur(16px) saturate(140%);
+				-webkit-backdrop-filter: blur(16px) saturate(140%);
+				border: 1px solid var(--line);
+				border-radius: 999px;
+				box-shadow: var(--shadow-sm);
+				transition: box-shadow 0.25s ease, background-color 0.25s ease;
+			}
+			.site-header[data-scrolled="true"] .nav {
+				background: rgba(255, 255, 255, 0.9);
+				box-shadow: var(--shadow-pill);
+			}
 
-<header>
-  <div class="wrap nav">
-    <a class="brand" href="#top" aria-label="DH-studio home">
-      DH<span class="dot">·</span>studio <small>webdesign</small>
-    </a>
-    <nav class="nav-links" aria-label="Hoofdmenu">
-      <a href="#voordelen">Voordelen</a>
-      <a href="#werkwijze">Werkwijze</a>
-      <a href="#tarieven">Tarieven</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div class="nav-right">
-      <button class="theme-toggle" id="themeToggle" aria-label="Wissel tussen licht en donker">◐</button>
-      <a href="#contact" class="btn btn-primary">Gratis adviesgesprek</a>
-    </div>
-  </div>
-</header>
+			.brand {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.6rem;
+				min-height: 44px;
+				color: var(--fg);
+				font-size: 0.98rem;
+				font-weight: 700;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+			}
+			.brand-mark {
+				height: 24px;
+				width: auto;
+				color: var(--fg);
+				/* kleur van de uitsparingen in het logo: gelijk aan de ondergrond */
+				--logo-gap: var(--surface);
+				transition: transform 0.25s ease;
+			}
+			.brand:hover .brand-mark { transform: translateY(-1px) rotate(-3deg); }
+			.site-footer .brand-mark { --logo-gap: var(--bg-soft); }
 
-<main id="top">
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow">Voor ondernemers zonder (goede) website</span>
-        <h1>Je website houdt je nu <em>klanten kwijt</em>. Wij draaien dat om.</h1>
-        <p class="lead">
-          Geen website — of een die traag, verouderd of onvindbaar is — kost je
-          elke maand omzet. DH-studio bouwt een snelle, moderne site die
-          bezoekers omzet in klanten. In twee weken live.
-        </p>
-        <div class="hero-cta">
-          <a href="#contact" class="btn btn-primary">Plan een gratis adviesgesprek →</a>
-          <a href="#tarieven" class="btn btn-ghost">Bekijk de tarieven</a>
-        </div>
-        <div class="hero-trust">
-          <div><b>14 dagen</b>van eerste gesprek tot live</div>
-          <div><b>100%</b>op maat, geen template-gevoel</div>
-          <div><b>&lt; 1,5s</b>gemiddelde laadtijd</div>
-        </div>
-      </div>
+			.nav-links { display: none; }
+			.nav-cta { display: none; }
 
-      <div class="hero-visual" aria-hidden="true">
-        <div class="mock">
-          <div class="mock-bar">
-            <span></span><span></span><span></span>
-            <span class="url">jouwbedrijf.nl</span>
-          </div>
-          <div class="mock-body">
-            <div class="mock-hero">
-              <div class="mock-line"></div>
-              <div class="mock-line short"></div>
-            </div>
-            <div class="mock-cards">
-              <div class="mock-card"><div class="chip"></div><div class="mock-line"></div><div class="mock-line short"></div></div>
-              <div class="mock-card"><div class="chip"></div><div class="mock-line"></div><div class="mock-line short"></div></div>
-              <div class="mock-card"><div class="chip"></div><div class="mock-line"></div><div class="mock-line short"></div></div>
-            </div>
-          </div>
-          <div class="mock-badge">In 2 weken live ✦</div>
-        </div>
-      </div>
-    </div>
-  </section>
+			.nav-toggle {
+				width: 48px; height: 48px;
+				display: grid; place-items: center;
+				background: var(--navy);
+				border-radius: 999px;
+				color: #fff;
+				cursor: pointer;
+				transition: transform 0.2s ease;
+			}
+			.nav-toggle:hover { transform: scale(1.05); }
+			.nav-toggle svg { width: 20px; height: 20px; }
+			.nav-toggle .icon-close { display: none; }
+			.nav-toggle[aria-expanded="true"] .icon-open { display: none; }
+			.nav-toggle[aria-expanded="true"] .icon-close { display: block; }
 
-  <!-- BENEFITS -->
-  <section class="benefits section-pad" id="voordelen">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Waarom DH-studio</span>
-        <h2>Een website die wérkt — niet alleen mooi is</h2>
-        <p>Drie dingen waar we onvermurwbaar in zijn, omdat ze bepalen of je online klanten wint of verliest.</p>
-      </div>
-      <div class="grid-3">
-        <article class="card">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg>
-          </div>
-          <div class="num">01</div>
-          <h3>Bliksemsnel &amp; vindbaar</h3>
-          <p>Techniek die in milliseconden laadt en netjes scoort in Google. Bezoekers haken niet af en vinden je vóór je concurrent.</p>
-        </article>
-        <article class="card">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/><path d="M7 9h10M7 13h6"/></svg>
-          </div>
-          <div class="num">02</div>
-          <h3>Overtuigende copy &amp; design</h3>
-          <p>Geen holle teksten. We schrijven en ontwerpen zó dat de juiste bezoeker denkt: "dit is precies wat ik zocht" — en contact opneemt.</p>
-        </article>
-        <article class="card">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M21 3l-9 9"/><path d="M15 3h6v6"/></svg>
-          </div>
-          <div class="num">03</div>
-          <h3>Zelf makkelijk te beheren</h3>
-          <p>Prijzen, foto's of teksten aanpassen doe je zelf, zonder ons of technische kennis. Jouw website blijft van jou.</p>
-        </article>
-      </div>
-    </div>
-  </section>
+			.mobile-nav {
+				margin-top: 0.5rem;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--radius-lg);
+				box-shadow: var(--shadow-lift);
+				padding: 0.4rem 1.1rem 1.1rem;
+				animation: rise 0.25s ease both;
+			}
+			.mobile-nav a {
+				display: flex;
+				align-items: center;
+				min-height: 52px;
+				color: var(--fg);
+				font-weight: 600;
+				border-bottom: 1px solid var(--line);
+			}
+			.mobile-nav .btn { margin-top: 1rem; }
 
-  <hr class="divider" />
+			/* ---------- Hero ---------- */
+			.hero {
+				position: relative;
+				padding-top: clamp(2.25rem, 7vw, 4rem);
+				padding-bottom: clamp(3rem, 8vw, 5rem);
+				text-align: center;
+				overflow: hidden;
+			}
+			.hero::before {
+				content: "";
+				position: absolute;
+				inset: -25% -20% 5% -20%;
+				background:
+					radial-gradient(45% 45% at 12% 78%, var(--sky), transparent 70%),
+					radial-gradient(40% 40% at 88% 22%, var(--peach), transparent 70%),
+					radial-gradient(55% 45% at 50% 0%, rgba(216, 230, 252, 0.55), transparent 70%);
+				pointer-events: none;
+			}
+			/* fijn stippenraster, uitgefade naar onder */
+			.hero::after {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background-image: radial-gradient(circle, rgba(13, 27, 62, 0.07) 1px, transparent 1px);
+				background-size: 24px 24px;
+				-webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.5), transparent 70%);
+				mask-image: linear-gradient(180deg, rgba(0,0,0,0.5), transparent 70%);
+				pointer-events: none;
+			}
+			.hero > .wrap { position: relative; z-index: 1; }
 
-  <!-- PROCESS -->
-  <section class="section-pad" id="werkwijze">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Werkwijze</span>
-        <h2>Van "ik heb niks" naar live in drie stappen</h2>
-        <p>Een helder traject zonder verrassingen. Jij levert je verhaal aan, wij doen de rest.</p>
-      </div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-n">1</div>
-          <div>
-            <h4>Gratis adviesgesprek</h4>
-            <p>We bespreken je bedrijf, je klanten en je doelen. Je krijgt meteen een eerlijk plan en een vaste prijs.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-n">2</div>
-          <div>
-            <h4>Ontwerp &amp; bouw</h4>
-            <p>Binnen een week zie je een live ontwerp. Jij geeft feedback, wij verfijnen tot het klopt.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-n">3</div>
-          <div>
-            <h4>Live &amp; groeien</h4>
-            <p>We zetten alles online, koppelen je domein en leggen uit hoe je zelf verder kunt. Klaar om klanten te winnen.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+			.hero h1 { margin-top: 1.35rem; max-width: 17ch; margin-inline: auto; }
+			.hero h1 .mark { position: relative; display: inline-block; color: var(--accent); }
+			.hero h1 .mark svg {
+				position: absolute;
+				left: 0; right: 0; bottom: -0.16em;
+				width: 100%; height: 0.22em;
+				overflow: visible;
+				color: var(--accent);
+				opacity: 0.55;
+			}
+			.hero h1 .mark path {
+				fill: none;
+				stroke: currentColor;
+				stroke-width: 7;
+				stroke-linecap: round;
+				stroke-dasharray: 320;
+				stroke-dashoffset: 320;
+				animation: draw 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+			}
+			.hero .lead { margin: 1.35rem auto 0; max-width: 52ch; font-size: var(--t-lead); }
+			.hero-actions { margin-top: 2rem; display: grid; gap: 0.75rem; }
+			/* Tweede aanbod onder de hero-knoppen: laagdrempeliger dan een gesprek. */
+			.hero-concept { margin: 1rem auto 0; width: max-content; max-width: 100%; display: flex; justify-content: center; text-align: center; }
 
-  <!-- PRICING -->
-  <section class="pricing section-pad" id="tarieven">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Tarieven</span>
-        <h2>Duidelijke prijzen. Geen verrassingen achteraf.</h2>
-        <p>Kies wat past bij waar je nu staat. Elk pakket is inclusief hosting-advies, mobielvriendelijk ontwerp en persoonlijke begeleiding.</p>
-      </div>
-      <div class="price-grid">
-        <div class="plan">
-          <div class="plan-name">Starter</div>
-          <p class="plan-desc">Voor wie eindelijk online wil met een strak visitekaartje.</p>
-          <div class="price"><span class="amt">€695</span><span class="per">eenmalig</span></div>
-          <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>One-page website op maat</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Mobiel- &amp; Google-vriendelijk</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Contactformulier &amp; kaart</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Live binnen 2 weken</li>
-          </ul>
-          <a href="#contact" class="btn btn-ghost">Kies Starter</a>
-        </div>
+			.js .hero h1, .js .hero .lead,
+			.js .hero-actions, .js .hero-concept, .js .btn-note, .js .usps { animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+			.js .hero h1 { animation-delay: 0.05s; }
+			.js .hero .lead { animation-delay: 0.16s; }
+			.js .hero-actions { animation-delay: 0.24s; }
+			.js .hero-concept { animation-delay: 0.28s; }
+			.js .btn-note { animation-delay: 0.32s; }
+			.js .usps { animation-delay: 0.34s; }
 
-        <div class="plan featured">
-          <div class="plan-name">Professional</div>
-          <p class="plan-desc">Voor ondernemers die serieus online klanten willen winnen.</p>
-          <div class="price"><span class="amt">€1.450</span><span class="per">eenmalig</span></div>
-          <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Meerdere pagina's op maat</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Conversie-copy inbegrepen</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>SEO-basis &amp; snelheid-optimalisatie</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Zelf te beheren (CMS)</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>30 dagen nazorg</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary">Kies Professional</a>
-        </div>
+			.usps {
+				margin-top: 2.5rem;
+				display: grid;
+				grid-template-columns: repeat(2, auto);
+				justify-content: center;
+				gap: 0.85rem 1.5rem;
+			}
+			.usps li {
+				display: flex;
+				align-items: center;
+				gap: 0.55rem;
+				color: var(--fg);
+				font-size: 0.9rem;
+				font-weight: 700;
+			}
+			.usps svg { width: 20px; height: 20px; color: var(--accent); flex: none; }
 
-        <div class="plan">
-          <div class="plan-name">Op maat</div>
-          <p class="plan-desc">Webshop, boekingssysteem of iets bijzonders? We bouwen het.</p>
-          <div class="price"><span class="amt">Vanaf €2.900</span></div>
-          <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Webshop of maatwerk-functies</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Integraties &amp; automatisering</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Doorlopend onderhoud mogelijk</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Persoonlijk projectplan</li>
-          </ul>
-          <a href="#contact" class="btn btn-ghost">Vraag offerte aan</a>
-        </div>
-      </div>
-      <p class="price-note">Alle prijzen zijn excl. btw. Liever in termijnen betalen? Vraag ernaar in het adviesgesprek.</p>
-    </div>
-  </section>
+			/* ---------- Intro ---------- */
+			.intro { text-align: center; }
+			.intro h2 { max-width: 22ch; margin-inline: auto; }
+			.intro p { max-width: 62ch; margin: 1.5rem auto 0; font-size: var(--t-lead); }
 
-  <!-- FOOTER + CONTACT -->
-  <footer id="contact">
-    <div class="wrap footer-grid">
-      <div class="footer-intro">
-        <span class="eyebrow">Contact</span>
-        <h2>Klaar om online klanten te winnen?</h2>
-        <p>Vertel kort waar je nu staat. Binnen één werkdag krijg je een persoonlijke reactie — geen verkooppraatje, wel een eerlijk advies.</p>
-        <div class="contact-list">
-          <a href="mailto:info.dhstudionl@gmail.com">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            info.dhstudionl@gmail.com
-          </a>
-          <a href="https://dh-studio.nl">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
-            dh-studio.nl
-          </a>
-        </div>
-      </div>
+			/* ---------- Kaartenrasters ---------- */
+			.grid { display: grid; gap: 1rem; }
+			.card {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--radius-lg);
+				padding: 1.6rem 1.4rem;
+				box-shadow: var(--shadow-card);
+				overflow: hidden;
+				transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+			}
+			/* zachte gloed die van linksboven opkomt bij hover */
+			.card::before {
+				content: "";
+				position: absolute;
+				inset: -40% 55% 55% -40%;
+				background: radial-gradient(circle, var(--accent-tint), transparent 70%);
+				opacity: 0;
+				transition: opacity 0.35s ease;
+				pointer-events: none;
+			}
+			.card:hover { border-color: var(--accent-line); transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+			.card:hover::before { opacity: 1; }
+			.card > * { position: relative; }
+			.card .icon {
+				width: 46px; height: 46px;
+				display: grid; place-items: center;
+				border-radius: 14px;
+				background: var(--accent-tint);
+				color: var(--accent);
+				margin-bottom: 1.1rem;
+				transition: transform 0.25s ease;
+			}
+			.card:hover .icon { transform: translateY(-2px) rotate(-4deg); }
+			.card .icon svg { width: 22px; height: 22px; }
+			.card h3 { margin-bottom: 0.55rem; }
+			.card .link-more { margin-top: 1rem; }
+			.cards-cta { margin-top: 2rem; display: flex; justify-content: center; }
 
-      <form id="contactForm" novalidate>
-        <div class="form-row">
-          <div class="field">
-            <label for="name">Naam</label>
-            <input id="name" name="name" type="text" placeholder="Jouw naam" required />
-          </div>
-          <div class="field">
-            <label for="email">E-mail</label>
-            <input id="email" name="email" type="email" placeholder="jij@bedrijf.nl" required />
-          </div>
-        </div>
-        <div class="field">
-          <label for="website">Huidige website (optioneel)</label>
-          <input id="website" name="website" type="text" placeholder="bijv. jouwbedrijf.nl — of laat leeg" />
-        </div>
-        <div class="field">
-          <label for="message">Waar loop je tegenaan?</label>
-          <textarea id="message" name="message" placeholder="Ik heb nog geen website / mijn site is verouderd en levert niks op…" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Verstuur &amp; ontvang advies →</button>
-        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-      </form>
-    </div>
+			/* Waarom-ons tegels: platter dan de dienstenkaarten */
+			.tile {
+				position: relative;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--radius);
+				padding: 1.4rem 1.35rem 1.4rem 1.6rem;
+				overflow: hidden;
+				transition: transform 0.25s ease, border-color 0.25s ease;
+			}
+			.tile::before {
+				content: "";
+				position: absolute;
+				left: 0; top: 0; bottom: 0;
+				width: 3px;
+				background: var(--accent);
+				transform: scaleY(0);
+				transform-origin: top;
+				transition: transform 0.3s ease;
+			}
+			.tile:hover { transform: translateY(-3px); border-color: var(--accent-line); }
+			.tile:hover::before { transform: scaleY(1); }
+			.tile .icon {
+				width: 40px; height: 40px;
+				display: grid; place-items: center;
+				border-radius: 12px;
+				background: var(--accent-tint);
+				color: var(--accent);
+				margin-bottom: 0.9rem;
+			}
+			.tile .icon svg { width: 20px; height: 20px; }
+			.tile h3 { margin-bottom: 0.4rem; }
+			.tile p { font-size: 0.95rem; }
 
-    <div class="wrap footer-bottom">
-      <div>© <span id="year"></span> DH-studio · Webdesign uit Nederland · KvK op aanvraag</div>
-      <div class="socials">
-        <a href="https://instagram.com" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="https://linkedin.com" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v6M8 7v.01M12 16v-3a2 2 0 0 1 4 0v3"/></svg>
-        </a>
-        <a href="https://facebook.com" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 8h2V5h-2a3 3 0 0 0-3 3v2H9v3h2v6h3v-6h2l1-3h-3V8a1 1 0 0 1 1-1z"/></svg>
-        </a>
-      </div>
-    </div>
-  </footer>
-</main>
+			/* ---------- Werkwijze: vast beeld dat meewisselt tijdens het scrollen ---------- */
+			.process { display: grid; gap: 1.5rem; }
 
-<script>
-  (function () {
-    // Theme toggle — respects OS default, overrides on click
-    var root = document.documentElement;
-    var toggle = document.getElementById("themeToggle");
-    toggle.addEventListener("click", function () {
-      var isDark = getComputedStyle(root).getPropertyValue("--bg").trim() === "#0b1a33"
-        || root.getAttribute("data-theme") === "dark";
-      var current = root.getAttribute("data-theme");
-      if (!current) {
-        // no explicit theme yet: flip away from whatever the media query shows
-        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        current = prefersDark ? "dark" : "light";
-      }
-      root.setAttribute("data-theme", current === "dark" ? "light" : "dark");
-    });
+			.process-visual {
+				position: sticky;
+				top: calc(var(--header-h) + 0.5rem);
+				z-index: 2;
+				/* eigen achtergrond: anders scrollen de stappen zichtbaar achter het beeld door */
+				background: var(--bg-soft);
+				padding-block: 0.6rem 0.8rem;
+			}
+			.scene-stack {
+				position: relative;
+				height: clamp(170px, 26vh, 220px);
+				border-radius: var(--radius-lg);
+				background: var(--surface);
+				border: 1px solid var(--line);
+				box-shadow: var(--shadow-card);
+				overflow: hidden;
+			}
+			.scene {
+				position: absolute;
+				inset: 0;
+				margin: 0;
+				display: grid;
+				place-items: center;
+				padding: clamp(0.55rem, 2.2vw, 1.1rem);
+				opacity: 0;
+				transform: scale(0.98);
+				transition: opacity 0.45s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+				pointer-events: none;
+			}
+			.scene.is-active { opacity: 1; transform: none; }
+			.scene svg { width: 100%; height: 100%; }
 
-    // Year
-    document.getElementById("year").textContent = new Date().getFullYear();
+			.scene-dots { display: flex; justify-content: center; gap: 7px; margin-top: 0.9rem; }
+			.scene-dots span {
+				width: 7px; height: 7px;
+				border-radius: 999px;
+				background: var(--line-strong);
+				transition: width 0.35s ease, background-color 0.35s ease;
+			}
+			.scene-dots span.is-active { width: 24px; background: var(--accent); }
 
-    // Contact form — front-end handling with mailto fallback
-    var form = document.getElementById("contactForm");
-    var status = document.getElementById("formStatus");
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var name = form.name.value.trim();
-      var email = form.email.value.trim();
-      var msg = form.message.value.trim();
-      if (!name || !email || !msg) {
-        status.style.color = "var(--accent-2)";
-        status.textContent = "Vul je naam, e-mail en bericht in.";
-        return;
-      }
-      var body = encodeURIComponent(
-        "Naam: " + name + "\n" +
-        "E-mail: " + email + "\n" +
-        "Huidige website: " + (form.website.value.trim() || "—") + "\n\n" +
-        msg
-      );
-      var subject = encodeURIComponent("Website-aanvraag via dh-studio.nl — " + name);
-      status.style.color = "var(--accent)";
-      status.textContent = "Bedankt " + name + "! Je mailprogramma opent nu om te versturen.";
-      window.location.href =
-        "mailto:info.dhstudionl@gmail.com?subject=" + subject + "&body=" + body;
-      form.reset();
-    });
-  })();
-</script>
+			.process-steps { position: relative; display: grid; }
+			.process-steps::before, .process-steps::after {
+				content: "";
+				position: absolute;
+				left: 23px;
+				top: 10px;
+				width: 2px;
+				border-radius: 2px;
+			}
+			.process-steps::before { bottom: 10px; background: var(--line-strong); opacity: 0.6; }
+			.process-steps::after {
+				height: calc(var(--fill, 0.16) * 100%);
+				background: linear-gradient(180deg, var(--accent), #7aa5ff);
+				transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+			}
+
+			.pstep {
+				display: grid;
+				grid-template-columns: 48px 1fr auto;
+				gap: 0.85rem;
+				align-items: center;
+				min-height: 25vh;
+			}
+			.pstep-icon {
+				position: relative;
+				z-index: 1;
+				width: 48px; height: 48px;
+				display: grid; place-items: center;
+				border-radius: 15px;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				box-shadow: var(--shadow-sm);
+				color: var(--accent);
+				transition: background-color 0.35s ease, border-color 0.35s ease,
+					color 0.35s ease, transform 0.35s ease;
+			}
+			.pstep-icon svg { width: 21px; height: 21px; }
+			.pstep.is-active .pstep-icon {
+				background: var(--accent);
+				border-color: var(--accent);
+				color: #fff;
+				transform: scale(1.06);
+			}
+			.pstep-body {
+				padding: 0.9rem 1.1rem;
+				border: 1px solid transparent;
+				border-radius: var(--radius);
+				transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+			}
+			.pstep.is-active .pstep-body {
+				background: var(--surface);
+				border-color: var(--accent-line);
+				box-shadow: var(--shadow-card);
+			}
+			.pstep-body p { margin-top: 0.25rem; font-size: 0.93rem; }
+			.pstep-num {
+				font-size: clamp(1.4rem, 1.1rem + 1.6vw, 2rem);
+				font-weight: 800;
+				line-height: 1;
+				letter-spacing: -0.04em;
+				color: var(--line-strong);
+				transition: color 0.35s ease;
+			}
+			.pstep.is-active .pstep-num { color: var(--accent); }
+
+			/* ---------- FAQ ---------- */
+			.faq { max-width: 780px; margin-inline: auto; display: grid; gap: 0.75rem; }
+			.faq details {
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--radius);
+				box-shadow: var(--shadow-sm);
+				overflow: hidden;
+				transition: border-color 0.2s ease;
+			}
+			.faq details[open] { border-color: var(--accent-line); }
+			.faq summary {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1rem;
+				min-height: 60px;
+				padding: 0.9rem 1.15rem;
+				color: var(--fg);
+				font-weight: 700;
+				cursor: pointer;
+				list-style: none;
+			}
+			.faq summary::-webkit-details-marker { display: none; }
+			.faq summary::after {
+				content: "";
+				width: 10px; height: 10px;
+				flex: none;
+				border-right: 2px solid var(--accent);
+				border-bottom: 2px solid var(--accent);
+				transform: rotate(45deg) translate(-2px, -2px);
+				transition: transform 0.25s ease;
+			}
+			.faq details[open] summary::after { transform: rotate(-135deg) translate(-2px, -2px); }
+			.faq .answer { padding: 0 1.15rem 1.2rem; animation: rise 0.3s ease both; }
+			.faq-cta { margin-top: 2rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem 1rem; }
+
+			/* ---------- Gratis websiteconcept ---------- */
+			.concept-card {
+				position: relative;
+				overflow: hidden;
+				padding: clamp(1.9rem, 5vw, 3.4rem) clamp(1.25rem, 4vw, 3rem);
+				border: 1px solid var(--accent-line);
+				border-radius: var(--radius-lg);
+				background: linear-gradient(150deg, var(--accent-tint), var(--surface) 58%);
+				box-shadow: var(--shadow-card);
+				text-align: center;
+			}
+			.concept-card h2 { margin-top: 1.1rem; }
+			.concept-card > p { margin-top: 1rem; margin-inline: auto; max-width: 56ch; font-size: var(--t-lead); }
+			.concept-steps { margin-top: 1.75rem; display: grid; gap: 0.75rem; text-align: left; }
+			.concept-steps li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.95rem; }
+			.concept-steps svg { width: 20px; height: 20px; flex: none; margin-top: 0.2rem; color: var(--accent); }
+			.concept-actions { margin-top: 1.9rem; display: grid; gap: 0.75rem; }
+			.concept-note { margin-top: 1rem; font-size: 0.88rem; color: var(--muted); }
+
+			/* ---------- Footer ---------- */
+			.site-footer { background: var(--bg-soft); border-top: 1px solid var(--line); padding-top: clamp(2.75rem, 7vw, 4rem); }
+			.footer-grid { display: grid; gap: 2rem; }
+			.footer-about p { margin-top: 1rem; max-width: 42ch; font-size: 0.95rem; }
+			.footer-col h4 { margin-bottom: 0.75rem; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+			.footer-col a { display: flex; align-items: center; gap: 0.6rem; min-height: 44px; font-size: 0.95rem; transition: color 0.18s ease; }
+			.footer-col a:hover { color: var(--accent-text); }
+			.footer-col svg { width: 18px; height: 18px; color: var(--accent); flex: none; }
+			.footer-bottom {
+				margin-top: clamp(2rem, 5vw, 3rem);
+				padding-block: 1.5rem;
+				border-top: 1px solid var(--line);
+				display: grid;
+				gap: 0.75rem;
+				font-size: 0.85rem;
+				color: var(--muted);
+			}
+			.footer-legal { display: flex; flex-wrap: wrap; align-items: center; gap: 0 1.25rem; }
+			.footer-legal a { display: inline-flex; align-items: center; min-height: 44px; }
+			.footer-legal a:hover { color: var(--accent-text); }
+
+			/* ---------- Vaste CTA-balk (mobiel) ---------- */
+			.cta-bar {
+				position: fixed;
+				left: 0; right: 0; bottom: 0;
+				z-index: 60;
+				padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+				background: rgba(251, 250, 247, 0.94);
+				backdrop-filter: blur(14px);
+				-webkit-backdrop-filter: blur(14px);
+				border-top: 1px solid var(--line);
+				transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+			}
+			.cta-bar[data-hidden="true"] { transform: translateY(115%); opacity: 0; pointer-events: none; }
+
+			/* ---------- Vanaf tablet ---------- */
+			@media (min-width: 640px) {
+				.wrap { padding-inline: 2rem; }
+				.btn-block { display: inline-flex; width: auto; }
+				.hero-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+				.concept-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+				.concept-steps { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+				.usps { grid-template-columns: repeat(4, auto); gap: 1rem 1.75rem; }
+				.grid-4, .grid-3 { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+				.scene-stack { height: clamp(230px, 32vh, 320px); }
+				.pstep { grid-template-columns: 56px 1fr auto; gap: 1.1rem; }
+				.pstep-icon { width: 56px; height: 56px; border-radius: 18px; }
+				.pstep-icon svg { width: 24px; height: 24px; }
+				.process-steps::before, .process-steps::after { left: 27px; }
+				.pstep-body { padding: 1rem 1.3rem; }
+				.footer-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+				.footer-about { grid-column: 1 / -1; }
+				.footer-bottom { grid-template-columns: 1fr auto; align-items: center; }
+			}
+
+			/* ---------- Vanaf desktop ---------- */
+			@media (min-width: 960px) {
+				:root { --header-h: 72px; }
+				body { padding-bottom: 0; }
+				.cta-bar { display: none; }
+				.nav-toggle { display: none; }
+				.mobile-nav { display: none !important; }
+				.nav { display: grid; grid-template-columns: 1fr auto 1fr; padding-right: 0.45rem; }
+				.nav-links {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					gap: 1.75rem;
+					font-size: 0.95rem;
+					font-weight: 600;
+				}
+				.nav-links a { position: relative; padding-block: 0.35rem; }
+				.nav-links a::after {
+					content: "";
+					position: absolute;
+					left: 0; right: 0; bottom: -2px;
+					height: 2px;
+					border-radius: 2px;
+					background: var(--accent);
+					transform: scaleX(0);
+					transform-origin: left;
+					transition: transform 0.25s ease;
+				}
+				.nav-links a:hover::after, .nav-links a[aria-current="page"]::after { transform: scaleX(1); }
+				.nav-links a[aria-current="page"] { color: var(--accent-text); }
+				.nav-cta { display: inline-flex; justify-self: end; min-height: 48px; padding: 0.7rem 1.5rem; border-radius: 999px; font-size: 0.95rem; }
+				.grid-4 { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+				.grid-3 { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+				.process { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+				/* align-self voorkomt dat de kolom uitrekt; anders kan sticky niet meelopen */
+				.process-visual { align-self: start; top: calc(var(--header-h) + 2.5rem); background: none; padding-block: 0; }
+				.scene-stack { height: clamp(300px, 40vh, 420px); }
+				.pstep { min-height: 22vh; }
+				.footer-grid { grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 3rem; }
+				.footer-about { grid-column: auto; }
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				html { scroll-behavior: auto; }
+				*, ::before, ::after {
+					animation-duration: 0.01ms !important;
+					animation-iteration-count: 1 !important;
+					transition-duration: 0.01ms !important;
+				}
+				.js .reveal { opacity: 1; transform: none; }
+				.hero h1 .mark path { stroke-dashoffset: 0; }
+			}
+		</style>
+	</head>
+
+	<body id="top">
+		<header class="site-header" id="siteHeader">
+			<div class="wrap">
+				<div class="nav">
+					<a class="brand" href="/" aria-label="DH Studio home">
+						<svg class="brand-mark" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 102" fill="currentColor">
+							<path d="M78 0h28v41h33V0h28v102h-28V61h-33v41H78z"/>
+							<path d="M0 0h38a51 51 0 0 1 0 102H0z" fill="none" stroke="var(--logo-gap, #fff)" stroke-width="6"/>
+							<path d="M0 0h38a51 51 0 0 1 0 102H0zm20 20v62h18a31 31 0 0 0 0-62z" fill-rule="evenodd"/>
+							<g transform="translate(158 99) rotate(140) scale(1.85)">
+								<path d="M0 0 0 26 5 20.5 9 30 13 28 9 19 14.5 18.5Z" fill="none" stroke="var(--logo-gap, #fff)" stroke-width="3.6" stroke-linejoin="round"/>
+								<path d="M0 0 0 26 5 20.5 9 30 13 28 9 19 14.5 18.5Z" stroke="currentColor" stroke-width="0.5" stroke-linejoin="round"/>
+							</g>
+						</svg>
+						DH Studio
+					</a>
+					<nav class="nav-links" aria-label="Hoofdmenu">
+						<a href="/" aria-current="page">Home</a>
+						<a href="#diensten">Diensten</a>
+						<a href="#werkwijze">Werkwijze</a>
+						<a href="/website-concept">Gratis concept</a>
+						<a href="/over-dh-studio">Over DH Studio</a>
+					</nav>
+					<a href="/contact" class="btn btn-primary nav-cta" data-cta="header">Gratis kennismaken</a>
+					<button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Menu openen">
+						<svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+						<svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+					</button>
+				</div>
+				<nav class="mobile-nav" id="mobileNav" aria-label="Hoofdmenu (mobiel)" hidden>
+					<a href="/">Home</a>
+					<a href="#diensten">Diensten</a>
+					<a href="#werkwijze">Werkwijze</a>
+					<a href="/over-dh-studio">Over DH Studio</a>
+					<a href="#faq">FAQ</a>
+					<a href="/website-concept">Gratis websiteconcept</a>
+					<a href="/contact" class="btn btn-primary btn-block" data-cta="mobiel-menu">Gratis kennismaken</a>
+				</nav>
+			</div>
+		</header>
+
+		<main>
+			<!-- HERO -->
+			<section class="hero">
+				<div class="wrap">
+					<h1>Websites die jouw bedrijf <span class="mark">vooruit<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 8.5c34-5 78-6.5 122-4.5 26 1.2 48 2.6 72 5"/></svg></span> helpen.</h1>
+
+					<p class="lead">
+						Een sterke eerste indruk kan het verschil maken. Benieuwd wat een goede
+						website voor jouw bedrijf kan betekenen? Wij laten het graag zien.
+					</p>
+
+					<div class="hero-actions">
+						<a href="/contact" class="btn btn-primary btn-block" id="heroCta" data-cta="hero">Gratis kennismaken</a>
+						<a href="#diensten" class="btn btn-outline btn-block">Bekijk diensten</a>
+					</div>
+
+					<a class="hero-concept link-more" href="/website-concept" data-cta="hero-concept">Gratis websiteconcept aanvragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+
+					<p class="btn-note">Beschikbaar voor nieuwe projecten in 2026</p>
+
+					<ul class="usps">
+						<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Snel &amp; Veilig</li>
+						<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Conversiegericht</li>
+						<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Modern Design</li>
+						<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Persoonlijk Contact</li>
+					</ul>
+				</div>
+			</section>
+
+			<!-- INTRO -->
+			<section class="section section-soft intro">
+				<div class="wrap">
+					<h2 class="reveal">Een persoonlijk bureau met een technische basis</h2>
+					<p class="reveal">
+						Een website moet meer doen dan er goed uitzien. Wij ontwikkelen snelle,
+						gebruiksvriendelijke websites gericht op resultaat. Of je nu meer klanten
+						zoekt of je merk wilt versterken, wij bouwen wat past bij jouw doelen.
+					</p>
+					<p class="reveal">
+						We combineren modern design met technische expertise om bezoekers om te
+						zetten in klanten. Geen standaard oplossingen, maar maatwerk. Wij bouwen
+						een sterke online basis waarmee jouw onderneming kan groeien.
+					</p>
+				</div>
+			</section>
+
+			<!-- DIENSTEN -->
+			<section class="section" id="diensten">
+				<div class="wrap">
+					<div class="section-head reveal">
+						<span class="eyebrow">Onze diensten</span>
+						<h2>Dit doen wij voor je</h2>
+						<p>
+							Elke onderneming is anders. Daarom kijken we samen naar wat jij nodig hebt.
+							Of je nu net begint of toe bent aan een nieuwe website, we helpen je graag
+							verder. We maken moderne websites die snel, veilig en gebruiksvriendelijk
+							zijn, met één doel: meer resultaat voor jouw bedrijf.
+						</p>
+					</div>
+
+					<div class="grid grid-4">
+						<article class="card reveal">
+							<div class="icon">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg>
+							</div>
+							<h3>Web Design &amp; Development</h3>
+							<p>Een website die voelt als een verlengstuk van jouw bedrijf. Snel, gebruiksvriendelijk en ontworpen om bezoekers om te zetten in klanten.</p>
+							<a class="link-more" href="/diensten/web-design-development">Lees meer <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+						</article>
+
+						<article class="card reveal">
+							<div class="icon">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+							</div>
+							<h3>Domein Beheer &amp; Hosting</h3>
+							<p>Een betrouwbare website begint bij een sterke basis. Wij regelen je domein, hosting en beveiliging, zodat jij je nergens zorgen over hoeft te maken.</p>
+							<a class="link-more" href="/diensten/domein-hosting">Lees meer <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+						</article>
+
+						<article class="card reveal">
+							<div class="icon">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+							</div>
+							<h3>Zichtbaarheid (SEO &amp; SEA)</h3>
+							<p>Bereik jouw ideale klant. We combineren SEO en Google Ads (SEA) voor maximale online zichtbaarheid en resultaat.</p>
+							<a class="link-more" href="/diensten/seo-sea">Lees meer <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+						</article>
+
+						<article class="card reveal">
+							<div class="icon">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4.5a4.5 4.5 0 0 0 5.9 5.9L21 11l-8 8a3 3 0 0 1-4.2-4.2l8-8z"/><path d="m6.5 17.5-2 2"/></svg>
+							</div>
+							<h3>Onderhoud &amp; Support</h3>
+							<p>Jouw website altijd up-to-date en veilig. Met proactieve monitoring, back-ups en snelle support staan we voor je klaar.</p>
+							<a class="link-more" href="/diensten/onderhoud-support">Lees meer <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+						</article>
+					</div>
+
+					<div class="cards-cta reveal">
+						<a href="/diensten" class="btn btn-outline">Alle diensten bekijken <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+					</div>
+				</div>
+			</section>
+
+			<!-- WERKWIJZE -->
+			<section class="section section-soft" id="werkwijze">
+				<div class="wrap">
+					<div class="section-head reveal">
+						<span class="eyebrow">Werkwijze</span>
+						<h2>Zo pakken we het aan</h2>
+						<p>Van eerste kennismaking tot evaluatie: zes stappen waarin je precies weet waar je aan toe bent.</p>
+					</div>
+
+					<div class="process" id="process">
+						<!-- Beeld blijft staan en wisselt mee met de stap die in beeld is.
+						     De illustraties staan inline, zodat de pagina één bestand blijft.
+						     Dezelfde tekeningen staan los in /img om te vervangen of te bewerken. -->
+						<div class="process-visual">
+							<div class="scene-stack">
+							<figure class="scene is-active" data-scene="1">
+								<svg role="img" aria-label="Persoonlijk contact: een eerste gesprek" xmlns="http://www.w3.org/2000/svg" style="display:block" viewBox="0 0 2048 1331"><path fill="#9f9d9d" d="M878.8 450c-.6-67-9.3-120 42.4-173.4 30.7-31.7 69.3-45 112.8-45.1l224.3-.2h61c21.3 0 41.4-1.1 62.2 3.7a157 157 0 0 1 74.7 42c30.5 30.1 45 68.2 45.1 110.8v112.1c0 69.7 7.1 119.3-46.8 174.6-28.6 29.3-62.2 40.1-102.3 42.6a110 110 0 0 0 48.1 67.5c5.6 3.6 15 6.4 19.7 10.6l.1 2.3c-3.1 3-7.8 2-12 1.9-64-.6-108.7-26.7-133.5-86.5q-62.3-.5-124.7-.2l.1 62.5c.1 50.9-2.4 84.2-41 123.6-45.3 46.2-94.4 45.8-154.1 45-65.8-.7-133 1.3-198.9-.5-4.7 11.2-23.9 30.3-34.1 37.5a140 140 0 0 1-100.7 25.1c34.4-14 55.8-32.2 73.6-65-3.9-2-16.4-4.2-21.5-5.6-26.7-7.4-75.4-36.3-88.7-60.5a98 98 0 0 1-17-30.1c-5-11.4-12-26.2-14.5-38.1-5.4-26-4-56-4-82.7V621.5c-.3-12.5-1-25.6.3-38.1C556.9 508.6 622 450.8 697 450c60.3-.6 121.2-.4 181.8-.1"/><path fill="#0d1b3e" d="m902.5 455.1 65.9-.2c28.5 0 50.6-1.1 78 8.2 61.2 21 99.7 77.9 98.3 142.4-.6 33 .5 67.5 0 101H1115l.2 7-.2 1.6c.1 27 1.5 58.8-2.6 85a144 144 0 0 1-116.3 109.4c-16.2 2.6-34.2 2-50.7 2.1-58.8.6-117.8-.9-176.6 0a86 86 0 0 1-8.4 25.3c-2.5 2.6-2.8 3.2-4.4 6.4-4.7 11.2-23.9 30.3-34.1 37.5a140 140 0 0 1-100.7 25.1c34.4-14 55.8-32.2 73.6-65-3.9-2-16.4-4.2-21.5-5.6-26.7-7.4-75.4-36.3-88.7-60.5a98 98 0 0 1-17-30.1c-5-11.4-12-26.2-14.5-38.1-5.4-26-4-56-4-82.7V621.5c1.3-10.8 3.6-24.4 6.5-34.9l2-5.8a142 142 0 0 1 34.5-51c52.4-50.5 103.3-43.2 170-43.2q57-.2 113.7.4H897l4 .1 1.3-.1q.5-15.9.3-31.9"/><path fill="#fbfaf7" d="M584.6 874.8c0-5.2-5.6-8.8-5.1-11.1h.4l-.2-.2c3 2.6 2.2 4 6.4 4 1.8 1.8 4 3.8 5.4 5.8.9 4 3.5 5.6 6.4 8.6l2.4-1c34 27.1 64.8 31.3 106.6 30.6l-9.7 24.1-2.4 5.2c-3.9-1.9-16.4-4.1-21.5-5.5-26.7-7.4-75.4-36.3-88.7-60.5"/><path fill="#9f9d9d" d="M584.6 874.8c0-5.2-5.6-8.8-5.1-11.1h.4l-.2-.2c3 2.6 2.2 4 6.4 4 1.8 1.8 4 3.8 5.4 5.8.9 4 3.5 5.6 6.4 8.6 34 33 53.8 42 99.3 53.7l-2.4 5.2c-3.9-1.9-16.4-4.1-21.5-5.5-26.7-7.4-75.4-36.3-88.7-60.5"/><path fill="#959598" d="M567.6 844.7c3.4 3.3 15.2 18.4 18.5 22.9-4.2-.1-3.4-1.5-6.4-4h.2-.4c-.5 2.4 5 6 5 11.2a98 98 0 0 1-16.9-30.1"/><path fill="#e7e9f0" d="m591.5 873.3 8.8 7.5-2.4 1.1c-3-3-5.5-4.6-6.4-8.6"/><path fill="#2f6bff" d="m710.5 908.8-8.5.1c-88.8 1.2-149-54.1-149.8-143.9l-.2-88c0-57-3.5-98.4 40.1-143.2 50.2-51.5 110.6-44.5 176.4-44.5h115.7l.2 10.5c-.2 65-8.7 120.5 41.1 170 39 38.8 78.8 42.5 131 41 8.6-.1 52.2-1 56.4 1.8l.8 2c-1.3 6.5-.9 15-1 21.8-.3 19.8 1.6 42.4-3 61.8-9.2 37.7-30 69.2-63.6 89.5q-22.4 13.6-48.2 18.7c-23.7 4.4-67.7 3-93.1 3l-138.5-.6a120 120 0 0 1-10.2 29.5c-11.6 0-45.3 1-54.9-2.2a198 198 0 0 0 9.3-27.3M698.7 941c17 2.7 37 2 54.4 2.3-32.2 41.5-62.9 59.2-116 60.8 29.8-17.4 44.6-33 61.6-63.1"/><path fill="#fbfaf7" d="M1115.2 713.5c4.6-1.6 22.9-.9 29-.8l-.1 63.6c-.1 49.9-2 80.9-40.4 119.1a143 143 0 0 1-62.6 37c-27.7 7.5-78 5.5-108.7 5.5H825.7c-11.7-.1-55.2.4-65.3-1a86 86 0 0 0 8.4-25.3c58.8-.9 117.8.6 176.6 0 16.5-.1 34.5.5 50.7-2.1a143 143 0 0 0 116.3-109.3c4.1-26.3 2.7-58.1 2.6-85.1zM555.6 578.8a146 146 0 0 1 108.6-119c26.5-7.1 68.8-4 97.2-4l117.4.2c.2 8.9.7 20.2-.5 29-.1 1-1.3 1.3-2.5 2q-56.8-.6-113.6-.4c-66.8 0-117.7-7.3-170 43.2a142 142 0 0 0-34.5 51zm329-122.8h12.5c0 10 .2 21-.2 31h-12c-.7-7.8-.2-22.6-.3-31"/><path fill="#e7e9f0" d="m555.6 578.8 2 2-2 5.8c-1.8-2.2-.6-5 0-7.8"/><path fill="#0d1b3e" d="M1035.6 280.4c6.6-1 29.4-.6 36.9-.6h72.1l117.4-.1c20 0 51.3-.8 69.9 1.5 18.4 2.4 36.3 8.2 52.5 17.3 68.1 37.9 79.3 100.8 74.7 172.8-3.5 53.8 10 112.4-18.5 162-21.9 37.9-54.4 58.3-95.7 69.7 4.6 43 23.5 68.3 59.4 90.4-5.5-.1-10-.4-15.5-1-55.1-5.3-91.3-33.6-110.6-85.4l-127.9-.2c-.2-29.1-.6-65 .6-94 3.6-81.6-49.2-148.8-130.4-161.5-14.5-2.3-33.2-1.6-48.5-1.7q-34.8 0-69.5.2c.3-47 .9-77.2 32.8-116a150 150 0 0 1 100.3-53.4"/><path fill="#fbfaf7" d="M1021.8 237.4c17-1.1 45.7-.3 63.3-.2h122.5l100.2-.1c50.7 0 87.3-2.1 129.4 31.3 29.5 23.3 53.7 60 57 98.2 2.7 28.8 1.5 60.5 1.5 89.5v71.8c0 20.6.8 45.6-3.5 65.4-4.9 23-15 44.6-29.5 63a142 142 0 0 1-101.5 55.3c-4.5.5-7.7 1.4-11.1-1.3.4-5 5.3-4.7 11.1-6.5a158 158 0 0 0 62.3-38.8c35.4-37 40.5-72.8 40.3-120.7.1-34 0-67.4-1.6-101.4-.7-14.8 2-25.6-.3-42.2a139 139 0 0 0-55-93.9 156 156 0 0 0-68.4-30.1c-21-3.8-49-2.4-70.9-2.4H1086c-17.9-.2-39.5-.9-56.8 1.3a150.5 150.5 0 0 0-130 127c-2.4 15.5-1.4 29.9-2.4 45.3l-1.6 2c-3 1-8.2 1.3-10.3-1.4-.2-60-8.9-109.2 33.4-159.8 26.2-31.3 63.3-47.9 103.6-51.3"/><path fill="#9f9d9d" d="M1220.2 836.1c19.2-.9 17.4 11 17.5 25.8h65c0-8.4-1-16 5-22.7 5-5.5 12.2-5.3 17.2 0 6.3 6.8 5.3 14.1 5.3 22.7h.7c40-.5 45 11.5 44.4 49 40.4-7.5 81.4 5.6 104.5 41a93 93 0 0 1 13.3 70.5 97 97 0 0 1-45 61.7 101 101 0 0 1-73.3 10.5c-30-7.4-48.4-25-63.9-50.4h-84.6c-32.5.1-69.3 8.5-69.6-35.1l.1-85.9c0-17.3-3.7-40.5 9.4-52.8 11.7-11 29.1-8.8 43.8-8.7 0-13.4-2.5-18.5 10.2-25.6"/><path fill="#fbfaf7" d="M1392.1 913.8a89.5 89.5 0 1 1 12.6 178.6 89.5 89.5 0 0 1-12.6-178.6"/><path fill="#9f9d9d" d="M1393.2 942.3c.5 0 5.1.7 5.2 1.2 1.1 17.9.4 41.6.6 59.1 16.6.2 35.7-.4 52.4.3.7 0 1.3 3.9 1.4 4.5l.3.9H1393c-.2-19-.8-47.5.2-66"/><path fill="#fbfaf7" d="M1162.4 925.1q90 0 180 .6a101 101 0 0 0-37.3 51.6c-33.7 0-68.5-.5-102.1.2v30.4c32.4.5 66.2 0 98.6 0 1 9.4 4.2 21.6 6.6 30.5-36 1.5-73.2-1.2-109.4.3-12.4.5-33.5-1.2-34.9-18-2.5-31.2-1.4-64.1-1.5-95.6m167.8-58.1c22.1-.2 36.4 1.2 39.5 26.9.3 6.1 0 13-.1 19.3-3.7 1.5-13.7 5.9-17 6-19.6 1-41.1.4-60.7.4l-129.6-.1c-.3-23.6-4.4-47.7 25.4-52.2 6.7-.3 15.4 0 22.3 0-.2 8.2-1.2 15.3 4.7 22 4.7 5.3 11.7 6 17 1 6.7-6.8 6.1-13.8 6-22.6q32.6-.6 65.2-.2-.2 5.5 0 11c.4 10.6 11.9 22.1 21.4 12.4 7-7.1 6-14.9 6-23.8"/><path fill="#e7e9f0" d="m1209.2 984 94 .1a127 127 0 0 0-1.4 17.5c-28.5.7-64.1.6-92.6-.2z"/><path fill="#fbfaf7" d="M1313.6 841.8c13.4 1 9.7 4.8 10.5 16.7.3 3.5-1 3.4-3.8 3.4-11.5 0-12.8 2.6-12-10.4.5-5.4 1.1-6.3 5.3-9.7m-4 25.7 14.6-.2c0 8.7 1.2 11.9-3 19.1-8.8 1.6-12.6-1-12.5-10.6 0-3.1-.7-5.5 1-8.3m-88-25.8c15.6 2 10.1 19.7 7.3 20-9.2-.1-13.5 2.4-12.5-7.7.7-7.3-.4-7 5.2-12.3m-4.7 26.1h14.8c-.1 6.4 0 10.3-1.9 16.6-15 8.1-13.1-7.5-13-16.6"/></svg>
+							</figure>
+							<figure class="scene" data-scene="2">
+								<svg role="img" aria-label="Strategie en ontdekking: structuur van de website" xmlns="http://www.w3.org/2000/svg" style="display:block" viewBox="0 0 2048 1331"><path fill="#aeb4c7" d="M723 324.4h420l120.6-.1h54c76.4 0 136.9 62 137 138.6 0 37-14.7 72.6-40.7 98.9a133 133 0 0 1-64.8 35.7c-21.1 4.8-42 3.2-63.6 3.1l-68.7-.2-190.9.8q-.5 27.4 0 54.9h309.7l88.7-.1c25.6 0 55.7-4.6 75.5 14.6 19.3 18.5 15.5 39.3 16.2 63.2l98.7.4c2.3-14 5.6-25.4 13.5-37.5a83 83 0 0 1 53.3-36.5c62.8-12.8 118 49.1 95.3 109.6a96 96 0 0 1-11.8 21.7c3.8 4 5.9 6.8 11.6 7.4 9 1 59.7 53 70.2 62.3q-12.2 12.9-24.7 25.4c-16.2-19-50.2-44-63.8-62.4v-1c.2-10.1-1-9.3-7.8-16.6q-9.4 5.8-19 11.2c30.3 90-22 185-122.4 187.3-41.5.9-84 0-125.3-.1-28.2 0-72.2 3-98.7-3.5a128 128 0 0 1-58.8-32.7c-69.8-68.3-47.8-195.5 47.2-227.7 26-8.8 48-7.2 75-7l62.7-.1q.6-6.6.7-13.3c.2-18.8-1.8-32.3-15.2-46.6-17.7-18.9-52-14-76.3-14h-394.6l-.2 74 60 .4c23.7 0 41.4-1.4 64.8 2.8 152.2 39.5 126.3 265.7-29.8 267.7-66.2-.2-132.2.3-198.4-.1-26.1-.2-48.7-9.8-70-24.1-67.3-45.1-73.9-151.8-17.6-208.4 37.5-37.8 75.7-38.5 125.4-38.2q31 .1 62-.2v-74c-62-.6-125.4.1-187.5 0H595.7c-18 .2-32.6 1.4-45.7 15-16.1 16.7-13.4 37.9-12.8 59.2h66.1c46.5-.1 81.8.5 117.3 34.6 84.5 81 34.5 235-87.6 236.2-36.3.4-72.4.1-108.5.1H467c-20.6 0-40 1-60-4a131 131 0 0 1-58.6-32c-71.1-67.7-46.9-200.1 49.9-229 24-7.1 43.7-6 68.3-5.7q33 .3 66.4-.3l-.5-19.5c-.3-27.6 12.1-52 43-58 11.6-2.1 32-.7 44.6-.7H1022q.2-27.3 0-54.8l-194.5-.8-65.1.5c-19.8.2-41.5 1.2-60.8-2.8a137 137 0 0 1-107.3-122C587.9 395.8 643 330.8 723 324.4"/><path fill="#fbfaf7" d="M1098 328.5h3.2l140.8.2c27.7 0 83-2 107.5 4A134 134 0 0 1 1450 463.1a135 135 0 0 1-39 95c-38.2 38.3-74.3 38.8-124.8 39.3l-69.3.3-264.4-.6-151 .1c-27.3 0-76.3 1.9-101.2-4.2a137 137 0 0 1-62.8-34.5c-58.9-57.1-50.4-155.3 14.7-203.8 38.6-28.8 71.8-26 117.3-26l71.2-.1z"/><path fill="#2f6bff" d="M730 351.5q74.1-.3 148.2.3h382.2c43.8 0 87.5-5.7 124 23.4a111.3 111.3 0 0 1 17.5 158.3c-21.7 26-48.3 37.3-81.2 40.3l-416 .1-119 .1c-20.2 0-53.7 1-72.7-1.9a102 102 0 0 1-53.1-24.7 115 115 0 0 1-38.6-79c-3.5-63.6 46-113.6 108.6-117"/><path fill="#fbfaf7" d="M926 738.4h.9c28.4-1.5 66.5-.2 95.7-.3l60.5-.3c38.9-.2 75.8-1.6 108.8 22.5 99 72.7 60.1 234.4-69 239.9q-60.8.3-121.4 0c-24.6.1-82.8 3-104.2-3.1-141.7-41.2-125-248.3 28.6-258.7"/><path fill="#0d1b3e" d="M949 978a110 110 0 0 1-34.7 1.8c-62-7.2-100-63.8-92.7-123.9 3.6-29.5 14.2-53.7 37.8-73a100 100 0 0 1 48.2-22.3c19-3.5 34.1-.1 53 0l107.5.3q16.9.1 33.7-.3c10.8-.3 21.2-1.8 32-.7 64 6.8 101 67 92.5 128.3-4.7 33-21.9 55.3-47.2 74.9a94 94 0 0 1-73.6 14.7z"/><path fill="#aeb4c7" d="M949 978a110 110 0 0 1-34.7 1.8c-62-7.2-100-63.8-92.7-123.9 3.6-29.5 14.2-53.7 37.8-73a100 100 0 0 1 48.2-22.3c19-3.5 34.1-.1 53 0l107.5.3q16.9.1 33.7-.3c10.8-.3 21.2-1.8 32-.7 64 6.8 101 67 92.5 128.3-4.7 33-21.9 55.3-47.2 74.9l-8.4-.2c25.2-16 43.1-36.6 50-66.4 6.6-28.2 2.2-61.4-13.4-85.9a102 102 0 0 0-64.1-45.6c-17.5-4-39-3.1-57.2-3.2H960.3c-15.6 0-34.5-.3-49.8 2a97 97 0 0 0-38.6 14.7 103 103 0 0 0-44.7 65c-5.8 27.8-1 63.2 14.6 87.1 15 22.7 38.5 38.4 65.2 43.8 13.3 2.6 32.3 1.4 42 3.5"/><path fill="#9da9c1" d="m1170.7 962.9 8.3.2a94 94 0 0 1-73.5 14.7c3.4-.6 14.6-1.2 18.6-1.4 19-1.3 30-4.9 46.6-13.5"/><path fill="#fbfaf7" d="M432 738.4c30.3-1.8 74.7-.3 106-.3l60.2-.1c21.2 0 40.4-1.1 61.2 3.4a122 122 0 0 1 53.1 26c73.7 62.9 55.4 191.4-36.6 225.3a122 122 0 0 1-36.6 7.5c-70.2 1.4-142.1-.3-212.4-.7a109 109 0 0 1-19.5-2.9C269.9 956.8 282 752.8 431.9 738.4"/><path fill="#0d1b3e" d="M391.6 970.3c-85.4-42.8-78.7-176.9 11.2-205.8q14.6-4.8 30.2-5.5c12.9-.6 26.2 1.7 39.3 1.7 44.9 0 89.8.5 134.7 0 12.4-.1 23.3-2.4 36-1.2q20 2.1 38 11.3c53.8 27.4 72.3 99.4 45.3 151.6a108 108 0 0 1-63.2 53.4 99 99 0 0 1-49.1 2c-51.6 0-112 1.8-162.7-.1a90 90 0 0 1-59.7-7.4"/><path fill="#aeb4c7" d="M391.6 970.3c-85.4-42.8-78.7-176.9 11.2-205.8q14.6-4.8 30.2-5.5c12.9-.6 26.2 1.7 39.3 1.7 44.9 0 89.8.5 134.7 0 12.4-.1 23.3-2.4 36-1.2q20 2.1 38 11.3c53.8 27.4 72.3 99.4 45.3 151.6a108 108 0 0 1-63.2 53.4 99 99 0 0 1-49.1 2c13.2-1.7 27.6-.5 40.4-4 120-32.2 100.5-212.3-27.5-211.7-24.4 0-50.5 0-74.7-.2l-73.5-.2c-18.8 0-49-.5-66.5 3.9A100 100 0 0 0 350 812c-19.3 32.8-18.8 79.8-.5 112.9 10.6 19 23.6 29.6 41.9 40.2z"/><path fill="#9da9c1" d="M391.4 965.2c29 12 31 9.1 59.9 12.5a90 90 0 0 1-59.7-7.4z"/><path fill="#0d1b3e" d="M1726.5 819.6c27.4 67-5.7 149.2-74.3 173.4-23 8.1-42.4 7.4-66.4 7.4h-170.7c-33.8-.1-66.5-14-90-38.6-26.2-27.6-35.5-59.4-34.6-97 1-37.6 12.6-66 39.7-92.5a124 124 0 0 1 54.5-30.2c14.5-3.5 30.3-4 44.9-4.1q34.2-.2 68.2 0c39 .3 78-.4 117 .5 0 7.3.9 13 1.8 20.3-14.3 0-27.5 1.7-41.6 2-30 .6-61.6-.9-91.5.2-14.9-.4-29.6-.2-44.5-.4-10-.2-20-1.7-30-1.3a104 104 0 0 0-97.4 90.7c-.7 5-.7 9.8-.9 14.7-1.2 31.4 7.4 61.2 29.7 84.2 21.5 22.1 59.4 38.9 90 28.9-7.3-1.4-18-1-25.9-2-88.6-9.3-120.7-123.1-60.4-183.7 37.9-38 89.7-30.7 139-30.5q67 0 134 .8a95 95 0 0 0 8.4 19.4c3.8 1.9 4.7 2.5 8 5a79 79 0 0 0 72.7 33.2l2.5 2.8c3.6.1 13.8-2.3 17.8-3.2"/><path fill="#fbfaf7" d="M1726.5 819.6c27.4 67-5.7 149.2-74.3 173.4-23 8.1-42.4 7.4-66.4 7.4h-170.7c-33.8-.1-66.5-14-90-38.6-26.2-27.6-35.5-59.4-34.6-97 1-37.6 12.6-66 39.7-92.5a124 124 0 0 1 54.5-30.2c14.5-3.5 30.3-4 44.9-4.1q34.2-.2 68.2 0c39 .3 78-.4 117 .5 0 7.3.9 13 1.8 20.3-14.3 0-27.5 1.7-41.6 2-30 .6-61.6-.9-91.5.2-14.9-.4-29.6-.2-44.5-.4-10-.2-20-1.7-30-1.3a104 104 0 0 0-97.4 90.7c-.7 5-.7 9.8-.9 14.7-1.2 31.4 7.4 61.2 29.7 84.2 21.5 22.1 59.4 38.9 90 28.9 53.9.6 108.2.2 162 .2 5.5-1 12.8-1.6 18.3-1.1 6.4.7 10 1.3 16.4 2.4 12.8-1.9 19.5-5.9 30.8-10a106 106 0 0 0 37.1-32 117 117 0 0 0 19.9-84.6c-1.2-9.5-4.6-19.4-6.1-29l-.1-.9c3.6.1 13.8-2.3 17.8-3.2"/><path fill="#aeb4c7" d="M1592.5 978a74 74 0 0 1 18.2-1.1c6.4.7 10 1.3 16.4 2.4a92 92 0 0 1-34.6-1.3m33-196.2c3.8 1.9 4.7 2.5 8 5a79 79 0 0 0 72.7 33.2l2.5 2.8.1.9c1.5 9.6 4.9 19.5 6 29a117 117 0 0 1-19.8 84.6 106 106 0 0 1-37.1 32l1.3-5.8c49.5-31.3 65-85 44-138.8-33-.7-61.6-12.4-77.7-42.9"/><path fill="#9da9c1" d="m1659.2 963.5-1.3 5.7c-11.3 4.2-18 8.2-30.8 10-6.4-1-10-1.6-16.4-2.3 26-4.1 22.4-1.2 48.5-13.4"/><path fill="#fbfaf7" d="M1633.5 786.7a78.8 78.8 0 1 1 129.1-90.2 78.8 78.8 0 0 1-129 90.2"/><path fill="#aeb4c7" d="M1688 679.4a63.4 63.4 0 1 1 20.4 125 63.4 63.4 0 0 1-20.4-125"/><path fill="#fbfaf7" d="M1691 683.3a59 59 0 1 1 14.3 117 59 59 0 0 1-14.3-117"/><path fill="#aeb4c7" d="M1688.3 688.3c3.3-.3 29.8.2 27.3 6.7-1 .8-4.2-.6-5-1-8-4.2-15-3.3-23.4-2.2-8.2 1.2-11.2 3-18.3 6.2-4 3.2-6.6 5-9.4 9.5-1.5 2.3-3.4 8.6-6.5 7.5-1-2.6-.2-3.6 1.4-6a46 46 0 0 1 33.9-20.7m35.9 12.4a2.4 2.4 0 1 1 4.2 2.4 2.4 2.4 0 0 1-4.2-2.4"/><path fill="#fbfaf7" d="M1778.4 803.6c16.4 13.9 47 43 62 58.6a148 148 0 0 0-16.6 16.4h-.5c-5.2-.3-54-48.5-61.1-56 6.3-6.7 11.5-11.1 16.2-19m-16.2-8.9c2 .8 8.6 7.9 10.9 10-3.5 4-5.3 6-9 9.8-3.9-1.5-8.2-7.6-10.8-11q4.5-4.3 8.9-8.8"/></svg>
+							</figure>
+							<figure class="scene" data-scene="3">
+								<svg role="img" aria-label="Realisatie: ontwerp en bouw in de browser" xmlns="http://www.w3.org/2000/svg" style="display:block" viewBox="0 0 2048 1331"><path fill="#0d1b3e" d="m1264 718.4-488.5.3-166.3.1c-28.1 0-56.5.4-84.6-.3-13.9-.4-29.7-7.7-35.1-21.3-7.3-18.2-4.6-46-4.6-65.7V448c0-20.6-3.9-50.8 9.2-67.4 14.7-18.7 45.8-14 67.9-14.1l77.5-.1h533.9l94.2.2c17.5 0 35.3-.2 52.8.5q12.8.3 22.5 8.6a40 40 0 0 1 14.3 27.4c.6 7 .5 14 .6 21 .4 30-1 60-.4 90-.8 5.4-57 55.2-63.3 62.1-7.1 7.9-11 10.7-16.5 22.2a62 62 0 0 0 0 37.6c11.7 25.3 51.7 51.4 71.6 74.5-3.5 2-9 5.4-12.8 6-22.5 3.8-49.6 2-72.3 2"/><path fill="#2f6bff" d="M1342 708.2c-8.6 8.5-40.3 6.4-53 6.5h-64.8l-218-.5H686.8l-103 .3q-28.6 0-57.2-.3a36 36 0 0 1-37.4-35.4c-.4-17.3-.2-35.4-.2-53V447.5c0-21.4-5.4-60.5 17.4-71.5 14.6-7 43.3-4.4 60-4.4H640l267.1-.1h272.5l87-.3c16.7 0 33.3-.4 49.9 0 19.3.6 36 13.4 36.5 33.5l.8 20.7c-1 19.5.2 40.3 0 59.8-.1 7 .4 23.9-1.2 30.3-7 3.7-61.8 57.6-71.3 67.8-3.4 3.6-7 10.5-8.8 15.5a59 59 0 0 0 15.4 59.6 1527 1527 0 0 0 54.2 49.8"/><path fill="#0d1b3e" d="M457.3 189.3c63.7-1.6 133.3-.1 197.3-.2l411.9-.2 218.8.1h67.2c12 0 28.7-.5 40.1.9a69 69 0 0 1 46 25.7c18.2 23.3 14.5 51 14.4 78.7l-.1 72.8v78c-.1 11 .6 32-.7 42.3l-1.5.5c-4.3-4.1-2-60.1-2-71.3V285l-1050.5.2.2 545v166.6c0 29-1 60.3.9 89 .8 12.3 8.9 26 17.5 34.7a66 66 0 0 0 34.2 18.1c11 2.2 47.8 1.4 61.6 1.4h798.3c26.3 0 54.1.5 80.4-.7a67 67 0 0 0 34.7-15.4c23.3-18.4 23-45 22.7-72l-.2-38.9V792.4c0-7.2-.5-20.7.2-27.2l1.7-1 2 .8c1.3 11.7.5 39.6.5 52.7l-.1 100.5.2 107.3c0 14.4.9 44.2-.6 57.6a68 68 0 0 1-12.8 33.2c-22.7 30.8-53.2 28-86.8 28l-69.2.1H525c-19.5 0-48.9.9-67.7-.5-13.5-1-26.5-6-37.2-14.1-30.5-23.1-26.4-53.9-26.4-87.4V302.6c-.1-16.5-.5-33 .4-49.4 1.9-36 28.5-59.9 63.2-63.9"/><path fill="#fbfaf7" d="m589.3 193.5 466.7-.4 317.8.1c32.2 0 58.2 9.8 70.7 42.5 5.6 14.7 4.4 29.7 4.2 45.2-63 .8-127.2.2-190.2.3l-860.2-.2c-.3-25.5-1.5-48.5 18-68.3 23.2-23.4 57.3-19 87.5-19z"/><path fill="#0d1b3e" d="M460.5 223.8a14 14 0 1 1 9.8 26.1 14 14 0 0 1-9.8-26"/><path fill="#fbfaf7" d="M461.8 228.6a9 9 0 1 1 6.8 16.8 9 9 0 0 1-6.8-16.8"/><path fill="#0d1b3e" d="M571.4 223.5a13.8 13.8 0 1 1 5.9 27 13.8 13.8 0 0 1-5.9-27"/><path fill="#fbfaf7" d="M572.7 228.1a9.3 9.3 0 1 1 3.8 18.1 9.3 9.3 0 0 1-3.8-18.1"/><path fill="#0d1b3e" d="M518 223.6a13.8 13.8 0 1 1 4.7 27.3 13.8 13.8 0 0 1-4.7-27.3"/><path fill="#fbfaf7" d="M518.4 228.4a9 9 0 1 1 3.5 17.6 9 9 0 0 1-3.5-17.6"/><path fill="#0d1b3e" d="M815.6 752.1c37-1.8 85.8-.2 123.6-.3l54.7-.1c19.6 0 44.2-3.7 57.7 13.5 11 14 8.2 36 8.3 53.4l.1 69.2v87.6c0 15.5.8 32.7-.7 48-1.4 15.1-17.8 26.7-31.7 29.2-6.5 1.5-53.8 1-64.7 1l-90.4.1c-11.5 0-24.5-.3-35.7 0-57.7 1.5-51.4-36.5-51.5-79.8v-81.5l.1-66.3c.2-30.2-6.5-64.5 30.2-74"/><path fill="#fbfaf7" d="M820.7 1048.8c-21.8-5.5-30.2-16.5-30.4-39.1-.3-73.5-.7-147.1.2-220.6.4-38.5 40.2-33 66.5-32.6q25.8.5 51.6.2l73.2-.2c15.9 0 42-2 56.1 3.4 22.4 8.5 17.3 41.5 17.3 60.3l.3 72.6q.1 39.4-.2 78.9l-.2 43.8c-.5 21.3-12.3 27.9-30.6 33.6-6.2-49.1-32.8-81.4-81.8-92.4l-11.3-2.6c54.3-7.4 87-39.8 92.9-94.8-64.6-1.4-137.9-.7-202.6.1 1 20.3 8.2 39.8 20.7 55.8a101 101 0 0 0 66.8 37.7l2.4 2.5a97 97 0 0 0-48.3 17.8c-27.9 21.7-37.2 42.1-42.6 75.6"/><path fill="#e7e9f0" d="M910 960.4a97 97 0 0 1 97.7 47.7c7.8 14.5 10.2 25 12.3 40.9h-82.5l-111.8.2c5.1-47.3 36.3-82.6 84.2-88.8M826.7 864c61-1.8 131.2-.4 192.7.1-4.7 25.4-9.8 37.7-27.2 57.2a100 100 0 0 1-131.6 6.3 93 93 0 0 1-34-63.7"/><path fill="#9b99b3" d="M909.2 952.9c1.4.2 5 .5 6 1.5-.5.6-2.8.8-3.6 1z"/><path fill="#0d1b3e" d="M517.8 752.2c12-.7 28-.3 40.3-.3l70.6-.1 61.8-.1c15.8 0 37.7-2.6 51 6 21.5 13.7 16.4 39 16.7 61 .3 20.7 0 41.8 0 62.5v89c0 16.6.6 33.9-.6 50.5-1.2 18-15.5 28.2-31.6 32.1-67.3 2.5-137.3-1.3-204.8 0-14 .3-32.8-13.8-33.8-27.2-2.6-34.6-1.3-76.2-1.3-110.7l-.1-81.5c0-15-.2-30 .3-45.2.7-20 12.5-31.4 31.5-36"/><path fill="#fbfaf7" d="M653.2 756.5H717c12.4 0 26.2 4 32.3 15.8a28 28 0 0 1 3.5 9.8c1.2 22.2.8 44.7.8 67l.2 146.5c0 35.6-3.2 53-44.9 53l-33 .1-85-.2q-30 .3-60 .2c-10.2 0-22.2-1.8-30-9.3-8.3-8-9.9-16.4-9.9-27.5q-.2-77.3 0-154.6V809c0-16.7-2.6-41.2 17.7-48.8 14.8-5.6 38.4-3.6 54.9-3.6z"/><path fill="#0d1b3e" d="M515.7 1015.2c52.2-2 149.8.4 206.9 0 1.1-.1 1.6 2.2 2.2 3.7-19.6.9-202 1.6-208-.4zm602.8-263c43.7-2.1 89.9.7 133.8-.4 15.4-.4 71.5-2 83 2.7a37 37 0 0 1 23.5 33.2c.3 5.4.2 11.2.2 16.5-.1 69.8.2 139.6-.2 209.3-.1 21-9.5 31.5-28.9 38.8-8.8 1.2-23.7.7-33.2.7h-130.5c-13.8 0-28.1.7-42-.3a39 39 0 0 1-15.4-4.2 36 36 0 0 1-18.4-22c-3.7-12.5-1.3-90.3-1.4-108.3V835q0-23.3.3-46.5c.5-19.5 10.7-31 29.2-36.2"/><path fill="#fbfaf7" d="M1124.6 756.4c66.6-1.2 133.9.5 200.5.4 5 0 11.4 3 15.5 5.8a32 32 0 0 1 13 20.6c.9 5.6.5 23.9.5 30.5v152.7c0 17.5.4 35-.7 52.5-1.3 18.6-15.1 27.6-32.4 30l-132.2-.7c-22.4 0-45.3 1.2-67.4-.4-12.6-.9-26.3-14.6-27.2-27-1.1-14-.9-28.8-.9-42.8l.2-73.9v-74.4c0-29.8-8-69 31-73.3"/><path fill="#0d1b3e" d="M1213.7 836.8a72 72 0 1 1 19.6 142.7 72 72 0 0 1-19.6-142.7"/><path fill="#e7e9f0" d="M1219.5 840.9a67.3 67.3 0 1 1 8 134.4 67.3 67.3 0 0 1-8-134.4"/><path fill="#0d1b3e" d="M1410.4 523.6c5.6 1.4 17.8 15.3 22.2 20.2-5.6 8-22.3 23.2-30 30.6l-45.6 43.4c15.9 16.4 34.4 32.5 50.8 48.6 7.4 7.2 17.2 15.3 23.5 23.2-1 5.3-16 17.3-20.7 21.3-4-2.5-12.9-11.2-16.6-14.7q-20.3-18.8-40.2-38.1c-8.8-8.5-35.8-31.4-39-41.6 2-5 85.1-83.4 95.6-92.9m159.1 5.9c3.8 2.6 28.8 26.4 33.6 31.3 17.3 17.8 44.2 39.8 59.7 57.8q-6 6.6-12.6 12.7c-27.7 26.6-56.2 52.3-83.5 79.2l-1.7.6c-6-.7-18.1-15-22.9-20 5-6.1 16.6-16.8 22.8-22.8q26.3-25.3 53.2-50c-17.2-16.5-56.4-51-69.8-67.4 5.4-6.8 14.9-15.5 21.2-21.4m-58.8-18.7c9.5 1.7 21.1 3.4 30.2 6-1.8 6.9-6.4 19.2-8.9 26.4l-19.8 56.4-26.4 76.6c-4.7 13.2-10.2 30.7-15.7 43.3-6.2 0-24-2.6-28.5-7-.4-6.5 62-182.6 69.1-201.7"/></svg>
+							</figure>
+							<figure class="scene" data-scene="4">
+								<svg role="img" aria-label="Testen en optimalisatie op elk apparaat" xmlns="http://www.w3.org/2000/svg" style="display:block" viewBox="0 0 2048 1331"><path fill="#0d1b3e" d="M436 442.2c33.2-.6 67.9 0 101 0h194.6l142.9-.3c24.2 0 49-.2 73.1.4 6.7.2 11 .4 15.8 4.7 5.7 5.3 7.5 10 7.6 17.7.3 17.7 0 35.7 0 53.4l.2 91v97.1q.1 24-.4 48c-.2 7.7-8.8 15.4-16.1 16-20.3 1.3-41 .3-61.3.3l-135.3.2c2.8 10.2 6.6 21.9 9.8 32.2q4.7 15 10 29.9l51.8.2.1 24H562.2v-24l56.2-.3q9.8-31 20.2-61.8l-129-.2c-22.3 0-45.4 1.2-67.6-.3a46 46 0 0 1-15.6-3.4 15 15 0 0 1-7.4-9.2c-3.2-9.3-1.3-114-1.3-129.4l-.1-105.6q-.2-29.4 0-58.7c.2-13.4 6.5-18.6 18.5-21.9"/><path fill="#fbfaf7" d="M436.5 450.3c101.6-1.8 207.4.3 309.4 0l132-.2c8.9 0 76.8-1.6 81.2 3.4 6.5 7.2 3.6 44.1 3.6 56.9l.2 88.9.2 74.5c0 10.4.7 30-.4 40-2.5 1.7-5.2 1.2-8.5 1.1h-528l-.1-164.4q-.2-41.4-.2-82.9c0-9.6 1-13.9 10.6-17.3"/><path fill="#2f6bff" d="M469.2 486.3c16.6-.5 36 0 52.8 0l96.7-.1 52.1-.2c9.3 0 19-.4 28.1.5 7.1 1.3 7.2 9.5 7.2 14.7.2 53-.6 105.9.2 158.9.1 9.6 2.2 21.4-6.5 27-28.6 1.4-69.6.2-99 .2l-72-.2c-16.2 0-32.5.4-48.7.3-10.8-.3-17-.6-17-13-.3-55.4.5-110.8-.3-166.2-.1-8.6-1.1-16.6 6.4-21.9"/><path fill="#0d1b3e" d="m822.1 467.4 70.7-.2c6.8 0 31.6-1.7 34.7 2.8-.7 3.3-.2 2-2.7 4.5-27.2 0-73.6.8-102.3-.3l-2-1.5c-.3-3.1-.3-2 1.6-5.3m208.2 106.7c15-1 38.8-.2 54.3-.2H1325q37.3-.2 74.7.1c10 .2 19.5 3.5 24 13.6a47 47 0 0 1 2.8 15.1c.1 74.3.4 148.6 0 222.9 0 15.5-5.1 22-19.2 27.5-14.5 1.4-42 .6-57.1.6H1099q-31.8 0-63.6-.5c-14.4-.2-25.5-10.3-25.5-25 0-75.8-.3-151.7 0-227.6.1-14.9 6.7-22 20.3-26.5"/><path fill="#fbfaf7" d="M1054.4 594.2c23.8-.8 50.4-.2 74.4-.2h146.6l72-.2c11.8 0 24-.4 35.9.7 3.3.3 8.2 4.2 9 7.4.5 2.3.8 7.1.8 9.5.3 63-.8 125.8 0 188.7.1 7 .3 14-1 20.7-1.1 5.2-3.7 7-7.8 9.6-15.2 1.3-46.5.4-63.4.4l-128.6-.3-90.1.2c-14.9 0-30.5.4-45.4-.4-4.6-.2-7-2.6-9.6-6-2.7-9-2.6-212.4-.5-221.1 1.2-4.7 3.9-6.7 7.7-9"/><path fill="#2f6bff" d="M1075.3 617.3c22 .4 123.1-2.3 134.3 2 3.7 12.9.3 157.2 1.2 182 .1 2.5-3.3 5-5.3 6.6-38.7 1.6-78.4-.5-117.2.2-16.3.2-19 .1-19-17.3 0-56.2-.8-112.6.5-168.8 0-2.4 3.7-3.8 5.5-4.7"/><path fill="#0d1b3e" d="M1293.7 608.2c9.3 0 70.8-1.3 74.6 1.2.7 3.1.4 2.2-.6 5.7-10 0-71 1.4-74.9-1.5-.8-3-.6-2 .9-5.4"/><path fill="#fbfaf7" d="M1409.2 707.4a5.1 5.1 0 1 1 3.5 9.6 5.1 5.1 0 0 1-3.5-9.6"/><path fill="#2f6bff" d="M1008.1 945.3a133 133 0 1 1 33.2 263.9 133 133 0 0 1-33.2-264"/><path fill="#fbfaf7" d="M1020.6 972.9c.2-2.8-.4-10.7 1-12.2 7-7 5.3 9.5 5.3 11.4a116 116 0 0 1 67.9 25c2.7-2.8 4.3-5 8-6l2.2.7c1.4 5.3-2.3 7-5.8 10.4a104 104 0 0 1 32.8 72.9v1.9h.7c2.4.2 6.7-.5 8.8.8 1.1.8.6 4.6 0 4.7-9 1.4-19.3.8-28.6 1q9.4.3 18.8.2c-2.8 29.5-13.7 51-35.1 71.4 1.9 2.4 9 9.5 4.6 12.3-2.4 1.4-8.4-5.8-10.7-7.7-16.8 14.6-41.3 21.5-63.4 22.1.2 4.2 1.6 10-2 12.6-6 0-4.2-8.4-4.2-12.6-23.1-1.3-44.7-7.1-62.1-23.1-3.2 2.9-6.4 6.8-9.9 9.2-1.2.8-4.3-3.4-3.3-4.7 2.2-3 5.2-4.9 7-8.2a106 106 0 0 1-35.4-71.1c-3-.4-6.7-.4-9.6-1.2-1-.2-1-3.5 0-4.4 2.2-2.2 6.8-1.4 9.6-1.5-.9-26.9 13.4-55.4 32.1-74-2-2.3-9-8.2-8.2-10.3 3.5-9.6 12.5 4.6 13.5 6l1.2-1.2c15.7-15 43-24.6 64.8-24.4"/><path fill="#0d1b3e" d="M1094.8 997.1c2.7-2.8 4.3-5 8-6l2.2.7c1.4 5.3-2.3 7-5.8 10.4-9.1 9.8-19 25.9-27.3 37.2-8.2 11.1-16.5 23.6-24.3 35-3.7 5.6-2.5 13-7 18.2-6.4 7.5-20.5 8-27.4.7s-8.5-18.8-.3-26c5.8-5 12.5-9 18.7-13.5 14.5-11.9 29.6-23.2 44.3-35 3.7-3 6.3-6.6 8.8-10.7 2.6-4.2 6.5-7.6 10.1-11m-177.6 79.7c5 0 27-2.8 19.8 6-1.4 1.7-17.2 1-19.8 1-3-.3-6.7-.3-9.6-1-1-.3-1-3.6 0-4.5 2.2-2.2 6.8-1.4 9.6-1.5m32.1-73.9c-2-2.4-9-8.3-8.2-10.4 3.5-9.6 12.5 4.6 13.5 6 2 2.2 9.7 9.4 9.4 11-1.4 10.3-13.7-5.5-14.7-6.6m3.4 152.1c1.5-1.7 10.4-11.8 12.3-11.4 9.4 2-3.4 12.2-6.2 15-3.2 3-6.4 7-9.9 9.3-1.2.8-4.3-3.4-3.3-4.7 2.2-3 5.2-4.9 7-8.2m68.4 26.8c0-3.1-.8-16.8.9-18 8.6-5.6 5.2 15.3 5.2 18 .2 4.2 1.6 10-2 12.6-6 0-4.2-8.4-4.2-12.6m69.6-22.1c-3-3.4-7.7-7.6-9.6-11.7-1-2 2.4-4.4 3-4 4.3 2.3 9.2 7.7 12.7 11 1.9 2.5 9 9.6 4.6 12.4-2.4 1.4-8.4-5.8-10.7-7.7m41.5-82.7h.7c2.4.2 6.7-.5 8.8.8 1.1.8.6 4.6 0 4.7-9 1.4-19.3.8-28.6 1-9.6-9.3 16.3-6.6 19-6.5m-111.3-104.1c.2-2.8-.4-10.7 1-12.2 7-7 5.3 9.5 5.3 11.4 0 2.6.4 14-.5 16.6-.2.7-4.5 1.5-5.2-.3-1-2.6-.6-13-.6-15.5m491.6-431.4 59.3-.3c11 0 25-1 35.5 1 27.1 5.2 23 30 23 51v55.4l.1 173c0 13.1.2 23.6-11.7 31.7-10.1 6.8-24.5 5-36.2 4.9l-59.5.2c-17.1 0-46.8 3.8-55.4-14.4-5-10.4-3.7-27.8-3.6-39.5v-50.2l.3-167c0-42.7 6.7-46 48.2-45.8"/><path fill="#fbfaf7" d="m1488 550.2 6.3-.3c29.3-.7 59.8.4 88.9-.4 44.6-1.2 39 9.8 38.7 48.8V648l-.2 178.1H1608l-135.8-.1-.3-166c0-29.2-.2-58.5.3-87.8.2-12.7 4.4-17.5 15.6-22"/><path fill="#2f6bff" d="M1495.9 593c12.3 0 98-1.7 102 2.2 3.3 6 2.4 40.1 1.8 48.3-.2 2.5-3 3.8-5 5l-60 .4c-9 0-36 1.7-42.3-3.5-2.9-6.2-2-17.1-1.6-24.1.5-11.1-4-20.3 5-28.2"/><path fill="#0d1b3e" d="M1540.8 566.1c10 0 62.6-1.2 68.4 1.3 1.6 3.1 1 2.3.3 6.6-10 0-62.7 1.3-68.5-1.9-1.3-3-1-2.1-.2-6"/><path fill="#2f6bff" d="M1013.3 153.9a112.2 112.2 0 1 1 24.5 223 112.2 112.2 0 0 1-24.5-223"/><path fill="#e7e9f0" d="M1017.3 189a76.6 76.6 0 1 1 15.8 152.3 76.6 76.6 0 0 1-15.8-152.4"/><path fill="#0d1b3e" d="m1061.2 232.8 2.2.6c5.7 1.6 8.8 6.9 6 11.1-8.5 12.5-45.4 49.4-57.5 54.7-7.3-1.8-13-9.5-18.4-15.1-5.5-5.3-13.8-12.8-8.4-21 10.2-5.1 20.6 6.8 27.1 13.1 11.7-9 41.5-40 49-43.4"/></svg>
+							</figure>
+							<figure class="scene" data-scene="5">
+								<svg role="img" aria-label="Lancering en groei: stijgende resultaten" xmlns="http://www.w3.org/2000/svg" style="display:block" viewBox="0 0 2048 1331"><defs><linearGradient id="wk5-a" x1="1032.5" x2="950.4" y1="1165" y2="1062.6" gradientUnits="userSpaceOnUse"><stop class="stop0" offset="0" stop-color="#323564"/><stop class="stop1" offset="1" stop-color="#3c4c87"/></linearGradient></defs><path fill="#0d1b3e" d="m1162.5 985.8-.2-291.1v-87.3c0-15-.9-31.8.4-46.5 1.7-20.2 22.7-24.5 38.7-24.5q27.6.3 55.1.1c17.3-.1 45.2-4 58.5 8.5a28 28 0 0 1 7.6 14.1c1 14 .6 29.2.6 43.3v87.8l-.2 295.6c16.8 0 142.2-1.6 149.8 1.1-.6 1.4-.5 1.6-1.7 1.6-60.5.8-149.6.5-207.5.5H915.5l-116-.1c-19.8 0-42.2.4-61.8-.2-25.7.9-56.3.2-82.3 0-10.8.2-73 .9-79.7-1 6.4-2.9 76.6-2.4 89.1-1.9 12-1.1 36-.6 49-.7V873.3c-.1-15.3-.1-31-.3-46.2-.3-21 3-34 25.5-39.1q35.4-.5 71-.1c27.8 0 65-6.4 64.5 32.7q0 6.9-.4 13.8c0 21.7 1.5 62.3 0 82.6 1.5 19.9.8 48.4.8 68.6l63.2.1v-28.9c-2.7-83 1.8-168-.2-251-.4-15 6.6-31.7 23.5-33.1 22.5-1.9 47-1 69.8-.6l25.6-.1c20-1 36.1.9 41.6 23.4q.8 100.7.3 201.3c0 25.8 1.6 66 0 89.5 18.3-1.1 44.8-.6 63.8-.4"/><path fill="#374476" d="M938 956.8c-2.6-83 1.9-168-.1-251-.4-15 6.6-31.7 23.5-33.1 22.5-1.9 47-1 69.8-.6l-1.3.2c-15.7 1.3-70.1-2.3-80.6 10.7-3.3 4-5.5 9-6.2 14.1-1.7 13.7-.6 57.6-.6 74q.3 77.9-.3 155.9c0 6 .8 35 0 37.7-.8 5.8-1 10.8-1.2 16.6-1.3-7.8 0-19-3-24.5"/><path fill="#293d72" d="M713.7 985V873.4c0-15.3 0-31-.2-46.2-.3-21 3-34 25.5-39.1l.7 3.7c-14.8 4.6-21.8 11.4-22 27.4-.6 55.1 1.1 110.7 0 165.8h11.5c3.2 2.4 3.7 2.5 7.6 3l.9.8c-25.7.9-56.3.2-82.3 0-10.8.2-73 .9-79.7-1 6.4-2.9 76.6-2.4 89.1-1.9 12-1.1 36-.6 49-.7"/><path fill="#0d1b3e" d="M655.4 988.7c-10.8.2-73 .9-79.7-1 6.4-2.9 76.6-2.4 89.1-1.9l1.2.2c15.1 1.5 31.2-.8 47 1.2-10.3.6-51.7-.4-57.6 1.5"/><path fill="#293d72" d="m1093 690 5.4 5.4q.8 100.7.3 201.3c0 25.8 1.6 66 0 89.5l-2-.2c-1.8-3-.9-50.1-1.7-58.3-1-15.3-.1-42.6-.1-58.5l.1-112c0-14.9 1.1-54.7-2-67.2"/><path fill="#374476" d="M739 788q35.4-.5 71-.1c27.8 0 65-6.4 64.5 32.7q0 6.9-.4 13.8c-7-6.5.8-25-10-34.5-18.8-16.4-62.7-9.8-85.9-9-13.4.6-25.7.6-38.5.8zm317.8-116c20-1 36.1.9 41.6 23.4-2.2-2-3.4-3.3-5.4-5.4-15.7-22.4-28.4-10-36.2-18"/><path fill="#2f6bff" d="m1192 540.2 65.3-.2c12.7 0 26.4-.7 38.8.8 10.4 1.2 21.8 8.6 22.9 20 1.5 16.2 1 33 1 49.4l-.1 82.5c0 97.4-.8 195.9.3 293.1l-25.7.2q-64.2.6-128.5 0V615c0-15.5-.3-31.1.2-46.7.5-17.8 9-25.1 25.8-28"/><path fill="#293d72" d="M816.1 985c15-.8 35.3-.1 50.6 0l-1.2.4c-2.9 1-5 2.9-8 2.6-5.3-.5-47 .8-48.7-.5.4-1.7 5.6-2 7.3-2.5"/><path fill="#2f6bff" d="m1177 270.2 25-6.1-29.5 110.2c-4.9 18.4-11.7 41.9-15.5 60a733 733 0 0 1-37.2-37.8c-34.5 30.6-68.3 65.2-102 96.7-13.4 12.6-32.6 32.5-45.8 43.4q-25.5-24.4-50-49.9-70.2 65.5-139.6 131.8c-7.6 7.2-63 61.8-68.6 62.1 3-7.4 29.1-30 36.4-37a5281 5281 0 0 1 78-73.9l238.3-224.9a1970 1970 0 0 0-39.6-39l50-12q50-12.1 100-23.6"/><path fill="#374476" d="m1177 270.2 25-6.1-29.5 110.2c-4.9 18.4-11.7 41.9-15.5 60a733 733 0 0 1-37.2-37.8c-34.5 30.6-68.3 65.2-102 96.7-13.4 12.6-32.6 32.5-45.8 43.4q-25.5-24.4-50-49.9-70.2 65.5-139.6 131.8c-7.6 7.2-63 61.8-68.6 62.1 3-7.4 29.1-30 36.4-37a5281 5281 0 0 1 78-73.9l238.3-224.9a1970 1970 0 0 0-39.6-39l50-12c4.7 1.5 6.6 1.4 11.6 1.4-4.5 1.1-12.4 3.3-16.7 3.8-.9.4-1 .5-1.8.5-6.9 2.5-27.1 6.6-34.8 8.2 6.3 7.7 28.5 28.5 36.8 37-22.3 23.7-49.1 45.2-72.2 68.2-24.4 24.4-50.5 47-75.3 70.9 15.7 14.5 32.5 32.5 47.5 48 15-16 34.4-33.6 50.3-48.9l97-92.5c10.8 11.9 23.5 24.5 34.7 36.2 15.5-49.7 26.9-106.6 43-157l-14.5 3.6z"/><path fill="#293d72" d="M1070 299.5c-.2-1.1-.7-2.3.5-3 1.3.2 1.2 1.5 1.3 2.5-.9.4-1 .5-1.8.5m6.8-5.7q50.1-12.1 100.2-23.6l5.5 3-62.6 14.7c-8.4 2-23.3 6-31.4 7.3-5 0-6.9 0-11.7-1.4"/><path fill="#e7e9f0" d="M1008.6 1196q-22 .6-44 .5c-36.8.3-67-28.3-65.6-65.7.6-16.5 7.9-32 20.1-43.1a64 64 0 0 1 27.1-14.7c20.5-5.1 90.5-3.2 115-2.2 38-5.2 81.3 8.8 87.7 51.5a62 62 0 0 1-23.9 61.4 61 61 0 0 1-31.3 12c-5.9.6-16.4.4-22.7.4-20 .2-42.6.7-62.4-.2"/><path fill="#0d1b3e" d="M1061.3 1070.8c37.8-5.2 81.2 8.8 87.6 51.5a62 62 0 0 1-23.9 61.4 61 61 0 0 1-31.3 12c2.2-1.3 6.3-2.8 7.2-3.4h.2c-1-.7-3-.9-4.3-1.2-27.7 3.5-43.2-3.7-60.5-24.6-13.1-18.2-12-35.1-6.5-55.7.5-5.5.4-5 1.7-10.8 4.9-10.4 16.7-16.2 25.1-22.5l3.3-.3q3.9.2 7.6.8c9.7-3 14.3-3.1 24.1-3.3-11.6-3.8-20.1-1.7-30.3-3.9"/><path fill="#374476" d="M1061.3 1070.8c37.8-5.2 81.2 8.8 87.6 51.5-1.5-1.1-4-4.7-5.3-6.3-9.7-25.2-25.9-36.9-52-41.3-11.6-3.8-20.1-1.7-30.3-3.9"/><path fill="#374476" d="M1143.6 1116c1.3 1.6 3.8 5.2 5.3 6.3a62 62 0 0 1-23.9 61.4c-4.2.9-4.6.8-8.9.9 23.5-19 33.9-38 27.5-68.6"/><path fill="#293d72" d="m1056.6 1077.5 3.3-.3q3.9.2 7.6.8c-20.5 7.9-26 14.9-37.7 32.8.5-5.5.4-5 1.7-10.8 4.9-10.4 16.7-16.2 25.1-22.5m59.5 107.1c4.3 0 4.7 0 9-.9a61 61 0 0 1-31.4 12c2.2-1.3 6.3-2.8 7.2-3.4h.2c-1-.7-3-.9-4.3-1.2 12.8-2.7 10.5-3.6 19.3-6.5"/><path fill="url(#wk5-a)" d="M1008.6 1196q-22 .6-44 .5c-36.8.3-67-28.3-65.6-65.7.6-16.5 7.9-32 20.1-43.1a64 64 0 0 1 27.1-14.7c20.5-5.1 90.5-3.2 115-2.2 10.3 2.2 18.8.1 30.4 3.9-9.8.2-14.4.3-24.1 3.3-2.7-.3-4.9-.7-7.6-.8l.8-2c-2.6-1.2-6.9-.6-10-.5-6.3-1.4-85.7-.8-91.8.2a61 61 0 0 0-42.1 21 58 58 0 0 0-13.3 42.6 57 57 0 0 0 20.2 39.2c25.8 21.6 53.6 13.8 84 15.4-2.5 2-5.9.8-8.9 1.4 3.2.6 7 .7 9.8 1.4"/><path fill="#374476" d="M1031.5 1100c-1.3 5.8-1.2 5.3-1.7 10.8-5.5 20.6-6.6 37.5 6.5 55.7 17.3 20.9 32.8 28 60.5 24.6 1.2.3 3.2.5 4.3 1.2h-.2c-1 .6-5 2-7.2 3.5-5.9.5-16.4.3-22.7.3-20 .2-42.6.7-62.4-.2-2.7-.7-6.6-.8-9.8-1.4 3-.6 6.4.6 9-1.4l6.6-.3c13.4.1 27-.5 40.6-.4l6.3-.7-6.3-2.8a64 64 0 0 1-25.7-25.8c-3.7-7.5-5-11.6-7.3-19.5a89 89 0 0 1 0-22 68 68 0 0 1 9.5-21.6m14-961.8c24.3-2.5 36.3 8.6 41.7 31.4 18.5 3.6 33.7 5.5 52 10.9A297 297 0 0 1 1314 320.8a297 297 0 0 1 35.2 114.8c.5 4.7 2.7 21-1.6 23.2-2.7-3.6-1.5-11.1-1.8-16.3q-1.3-20-5.4-39.7c-8.4-39.5-25-76.8-48.6-109.6a297 297 0 0 0-139-104.4 361 361 0 0 0-65.9-15.5c-2.4 12.5-5 18-14.9 25.8-25.7 12.6-46.5 1.8-54-25.3a307 307 0 0 0-91.6 30.6 289 289 0 0 0-145.2 189.8 301 301 0 0 0-5.8 37c-.6 7-.5 20.9-2.3 26.7l-1.2.6q-1.4-1.5-1.2-3.6c-.9-113 71.3-220.4 175.2-264.1 21.4-9 49.4-17.9 72.6-20.5 1.3-17.6 10.8-26.8 27-32"/><path fill="#2f6bff" d="M1046 142.1a29.8 29.8 0 1 1 13.9 58 29.8 29.8 0 0 1-13.9-58"/><path fill="#e7e9f0" d="M1163.3 498c37.2-1 75.3.8 112.6 0 13.3-.4 29.8-.7 43 .3 3 1.9 2 .9 3.6 4.2 0 3.3 0 3.7-1.7 6.6a3021 3021 0 0 1-155.8-.1c-1.4-.5-2-1-2.7-2.2-1.3-2.7.2-6.1 1-8.8M716.1 745.1c49.5-1.5 100.6.5 150.2-.2 4 0 6-.2 7.9 3.6-.1 3.7-.2 4.2-2.5 7.1q-9.2.5-18.5.2c-45.2-.5-90.5.8-135.7 0-1.9-.1-2.8-2.5-3.5-3.8-.1-3.5.2-4 2.1-6.9m224.5-113.9c48.7-1.7 98.2 1 147-.6 5.6-.2 10.8.7 11.3 6.8-1.8 3.5-.7 2.3-4.4 4.2-50.2 1.2-102-1.1-152.4 0-2 0-3.2-2.1-4-3.7 0-3.4.4-3.9 2.5-6.7"/></svg>
+							</figure>
+							<figure class="scene" data-scene="6">
+								<svg role="img" aria-label="Evaluatie: resultaten in een dashboard" xmlns="http://www.w3.org/2000/svg" style="display:block" viewBox="0 0 2048 1331"><path fill="#0d1b3e" d="M498.7 293.3c6-.8 30.1-.4 36.8-.4h932.8q38.3 0 76.5.3c31 .5 64.4 27 67.6 58.6 2.9 28.3 1.6 59.6 1.6 88.4V858l-.1 75.2c0 11 .5 29.6-.5 40.3a69 69 0 0 1-12.6 34.5 75 75 0 0 1-50.7 29.7c-14.7 1.3-40 .5-55.5.5l-103.7-.2H567.5c-21.7 0-43.3.3-65-.3a72 72 0 0 1-66-50.4c-3.7-13.4-2.9-28.8-2.9-42.7v-54.8l.1-182v-310c0-26.9-3.5-54 14.2-76.3a72 72 0 0 1 50.8-28.2"/><path fill="#fbfaf7" d="M496.3 297.2c11.1-1.2 35.3-.7 47-.6h928.4q37.7-.1 75.7.4c26 .5 57.8 26 61.1 52.4 3 22.8 1.6 50.6 1.5 74V922q.2 23.6-.4 47.2c-1 35-25 57.8-58.5 64.9-18.5 1.3-43 .6-62 .6l-102.6-.2H567c-22.1 0-44.7.3-66.7-.5a68 68 0 0 1-57.6-40c-7.5-17.4-5.3-37-5.6-55.6q-.1-17.2.1-34.5l.1-149.1V408.1c0-15.9-.5-32 .4-47.8 2-35.2 25.6-56.9 58.6-63"/><path fill="#0d1b3e" d="M1131.5 629.8h436.3V990l-436.7.2z"/><path fill="#fbfaf7" d="M1164.3 633.5q88.2-.5 176.6.1l223 .3.2 352.4h-31.6l-397.4.2V633.7z"/><path fill="#0d1b3e" d="M1280.9 670.3c23.7-2.1 228.3-1.7 239 1.7 3.5 1.1 6.7 4.6 8.3 7.9a19 19 0 0 1 .6 15c-2.3 6-6.6 8.9-12.3 11-77.2 2.2-160.7-.3-238.2-1.3-8.4 0-22.6-23.7 2.5-34.3m-1.9 225.8c16.4-.7 38-.1 54.6-.1h103.6l52.1-.2c6.3 0 21.7-.8 27 .7 19.3 5.3 16.5 26.6 1.2 35-7 1-25.2.5-33 .5l-61.3-.1h-97.4l-35-.1c-9 0-17-1-21.9-9.8a15 15 0 0 1-1.4-13.4c2.5-7.1 5-9.2 11.5-12.5m1.1-114.9c10.5-.7 28.8-.2 39.8-.2h157c8.5 0 36.5-1.1 42.4 1.2 14 5.5 16 26.1-1.6 34-21.7 1.3-231.7 1.8-239.3-.7a17 17 0 0 1-9.9-8.7 21 21 0 0 1-.5-15.4c2.1-5.5 7-8 12-10.2"/><path fill="#e7e9f0" d="M1165.8 753.2c12 0 78.2-1 84.3 3.5 3.3 7.7 1.7 35.5 1.5 45-.2 11.8 3.5 36.4-3.8 44.8-9 .9-80.2 1.4-83.8-2q-2.4-7.1-2.1-14.8c.3-23.9-.9-48 .7-71.8 0-1.2 2.3-3.7 3.2-4.7"/><path fill="#023afd" d="M1224.2 769.6c13.5-.1 7.4 8.6 2.2 14.5-9.4 10.6-16.4 21.6-27.4 30.9-5.3-5.5-6.6-7.4-11.4-13.4-2-2.7-14.2-14.3.4-15.6 2.4-.2 10.2 11 12 13.5 7.3-9 16.9-21.2 24.2-29.9"/><path fill="#e7e9f0" d="M1164.8 867.9c13.9-.1 75.2-2.1 83.8 2.3 1.6.8 2.3 1.3 2.9 3 2.7 9.2-.6 27.4-.7 37.5 0 14.8 1.1 29.7.3 44.5q0 3-1.5 5.8c-10.9 1.2-75.3 1.5-83.4-1.6-1-.4-2-.6-2.3-1.7-3-7.7-2.3-70.6-1.3-81.7.3-3 1-5.4 2.2-8.1"/><path fill="#023afd" d="M1224.6 883.6c19.9 4.1-8.2 23.9-14.2 33.2-11.2 17.4-13.6 7.7-22.7-2.5-1.3-1.5-7-8.2-6.3-9.6 7-14.1 16.8 5.7 18.4 8.3 8.1-9.6 16.2-20.6 24.8-29.4m-1.6-225c15.3 1.2 7.8 8.8 1.3 16.6-7.2 8.1-14 16.8-21.3 24.7-5.3 5.7-12.1-5.6-15-9.3-1.4-1.7-7.2-7.9-7.2-10.6 0-3.5 6.8-7.9 9.4-4.6 2.8 3.5 5.9 8.1 9 11.9 9.6-10 15.2-18.9 23.9-28.7"/><path fill="#0d1b3e" d="m1131.6 342 436.6-.2.2 170v47c0 7 .4 20-.6 26.2h-436.6z"/><path fill="#fbfaf7" d="M1140.6 345.5h424l-.5 157.7v52c0 5.9 1.7 21.7-1.2 25.6l-2.7.3h-425V429c0-26-.9-56.4 0-82 2-2 1.8-1.3 5.4-1.5"/><path fill="#023afd" d="M1523.8 397.7c-3 0-8 .4-10.7-.4h1.2l-3-.9c3.2-3.4 14.8-2.5 19.5-2.4.2 6.2.7 11.5-1.2 17.5l-1.1.8c-2-3.4-1.8-7.1-2-11.2-3.2 3.1-7.8 8-11.1 10.6 4 2.3 6.5 4.2 11 4.5h.5c2.1 1.8 2 2 2 5.7q.5 22.7.3 45.2l.2 91h-235.7c-41.1 0-84 .6-125-.1 11.2-11.1 38.7-30.7 52.3-41.2q19.3 9.1 39.3 17l56-45.3c5.2-4.3 21-17.5 25.6-20.2 1.7.6 2 .6 3.4 1.7l56 36.6c8.4-7 18-16.4 26.5-23.7 27.8-24 55.5-50.7 84-73.9 4.2-3.8 8-7.3 12-11.3"/><path fill="#0d1b3e" d="M1523.8 397.7c-3 0-8 .4-10.7-.4h1.2l-3-.9c3.2-3.4 14.8-2.5 19.5-2.4.2 6.2.7 11.5-1.2 17.5l-1.1.8c-2-3.4-1.8-7.1-2-11.2-3.2 3.1-7.8 8-11.1 10.6l-3.8 2.2c-36 30.8-74.7 68-110.2 97-19.1-12.4-40-26.6-59.4-38.2l-80.7 65.5c-11.6-4-28-11.8-39.9-16.8l-42.4 33c34.4.6 70.6 0 105.2 0l241.8.4c-.2-15.4-1.7-133.7 1-138.6 2 1.8 1.9 2 2 5.7q.3 22.7.2 45.2l.2 91h-235.7c-41.1 0-84 .6-125-.1 11.2-11.1 38.7-30.7 52.3-41.2q19.3 9.1 39.3 17l56-45.3c5.2-4.3 21-17.5 25.6-20.2 1.7.6 2 .6 3.4 1.7l56 36.6c8.4-7 18-16.4 26.5-23.7 27.8-24 55.5-50.7 84-73.9q6.2-5.5 12-11.3"/><path fill="#e7e9f0" d="M1167.1 366.5c69.6-.1 143-1 212.5.3-.2 3.9 0 9 .1 13l-.7 2.2c-3.3 2.1-190.7.4-212.1.3zm.4 34.5q66.5.9 133.1.8l-.3 16.1h-132.5zm.5 31.9 105.4.6c.1 4 1.2 13.6-1.6 16.2-34.6.6-68.6-1.2-103.8 0z"/><path fill="#0d1b3e" d="M792.2 404q15 0 30.1 1.8a263 263 0 0 1 176 101.6 243 243 0 0 1 49 180 251 251 0 0 1-96 164 263 263 0 0 1-195.1 52.1 257 257 0 0 1-170.8-97.7 239 239 0 0 1-48-176.5c9-67 42.3-117.5 95-158 43.7-32 93.7-49.2 148-48.8q.4 30.3.1 60.5c-42.8 3.4-80.9 15.8-114.1 43.9a174 174 0 0 0-61.6 119 179 179 0 0 0 41.9 130.7 187 187 0 0 0 129.5 65.2A195 195 0 0 0 919.8 794a181.7 181.7 0 0 0 17.6-256.6c-38.4-44-88.1-63.5-145.3-67.5z"/><path fill="#023afd" d="M795.8 407.3A263 263 0 0 1 997.5 512a236 236 0 0 1 45.4 178.4A247 247 0 0 1 945 851.5 261 261 0 0 1 749.6 899a254 254 0 0 1-165.7-101.8 233 233 0 0 1-42-174c11.1-66.7 46.6-116.3 100.6-155a244 244 0 0 1 134.5-42c-.3 17.6 0 36 0 53.7-46.5 4.6-82.7 17.4-118.3 49.1a172 172 0 0 0-57.6 120.2c-6 107.2 75.5 192.6 182.8 196.8A195 195 0 0 0 926 793.2c36.4-33.7 58-80.4 60-129.9 2.1-49-15.7-96.7-49.4-132.4-36.7-39-87.2-62-140.8-64.2z"/><path fill="#0d1b3e" d="M777.3 557.4a103.2 103.2 0 1 1 27 204.7 103.2 103.2 0 0 1-27-204.7"/><path fill="#0d1b3e" d="m1095.7 340.2 1.7.6 1.4 1.7c-.9 171 2 492 .3 646.7l-403-.1H572.5c-20.2 0-40.6.5-60.7-.2-8.4 1-28.4-12.5-30.6-20.4-6.7-24.3-4.2-68.3-4.2-93V485l.2-122c0-5.5.2-12.5 3.8-16.6 3.2-3.7 10.5-4 15.3-4 21-.5 42.1-.2 63-.2h502.9c2.4 0 3 .1 5.5.6l.6 1.2c-5.8 3.1-96.1 1.7-111.4 1.7l-315.3-.1h-96.3q-26.3-.3-52.4.1c-3.4.1-7.8.9-9.6 3.6a47 47 0 0 0-2.4 16.7q-.2 66 0 131.8v242.6l-.1 140.3c0 23.3-.4 47.6.4 70.9.2 8.4 2.5 16.5 8.6 22.2 5.7 5.3 12.8 10.7 20.9 11.4 20.5 1.5 42.7.8 63.5.8h520.9l-.2-461V400.2c0-11.9-.8-50.4.7-60.1"/></svg>
+							</figure>
+							</div>
+							<div class="scene-dots">
+							<span class="is-active"></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							</div>
+						</div>
+
+						<ol class="process-steps">
+						<li class="pstep is-active" data-step="1">
+							<span class="pstep-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c0-3 2.7-4.8 6-4.8s6 1.8 6 4.8"/><path d="M16 7.5a3 3 0 0 1 0 5.5M18 19c0-2.2-1-3.6-2.5-4.4"/></svg></span>
+							<div class="pstep-body">
+								<h3>Persoonlijk contact</h3>
+								<p>We beginnen met een gesprek: wie je bent, wat je doet en waar je naartoe wilt.</p>
+							</div>
+							<span class="pstep-num" aria-hidden="true">01</span>
+						</li>
+						<li class="pstep" data-step="2">
+							<span class="pstep-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.4.9 1 .9 1.6V16h5.2v-.5c0-.6.3-1.2.9-1.6A6 6 0 0 0 12 3z"/></svg></span>
+							<div class="pstep-body">
+								<h3>Strategie en ontdekking</h3>
+								<p>Samen bepalen we de doelen, de structuur en de uitstraling van je website.</p>
+							</div>
+							<span class="pstep-num" aria-hidden="true">02</span>
+						</li>
+						<li class="pstep" data-step="3">
+							<span class="pstep-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+							<div class="pstep-body">
+								<h3>Realisatie</h3>
+								<p>We ontwerpen en bouwen je site op maat — geen standaard templates.</p>
+							</div>
+							<span class="pstep-num" aria-hidden="true">03</span>
+						</li>
+						<li class="pstep" data-step="4">
+							<span class="pstep-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></span>
+							<div class="pstep-body">
+								<h3>Testen en optimalisatie</h3>
+								<p>We testen op snelheid, veiligheid en gebruiksgemak, op elk apparaat.</p>
+							</div>
+							<span class="pstep-num" aria-hidden="true">04</span>
+						</li>
+						<li class="pstep" data-step="5">
+							<span class="pstep-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span>
+							<div class="pstep-body">
+								<h3>Lancering &amp; groei</h3>
+								<p>Je website gaat live en we zorgen dat je gevonden wordt door de juiste bezoekers.</p>
+							</div>
+							<span class="pstep-num" aria-hidden="true">05</span>
+						</li>
+						<li class="pstep" data-step="6">
+							<span class="pstep-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></span>
+							<div class="pstep-body">
+								<h3>Evaluatie</h3>
+								<p>We kijken samen naar de resultaten en denken proactief mee over de volgende stap.</p>
+							</div>
+							<span class="pstep-num" aria-hidden="true">06</span>
+						</li>
+						</ol>
+					</div>
+				</div>
+			</section>
+
+			<!-- WAAROM ONS -->
+			<section class="section" id="waarom-ons">
+				<div class="wrap">
+					<div class="section-head reveal">
+						<span class="eyebrow">Waarom ons</span>
+						<h2>Waarom kiezen bedrijven voor DH Studio?</h2>
+						<p>
+							Bedrijven kiezen voor ons vanwege onze no-nonsense aanpak en maatwerk design.
+							Wij zijn geen bureau met onnodige lagen. Wij staan voor persoonlijkheid en
+							zeggen waar het op staat.
+						</p>
+						<p>Wegens deze korte communicatielijnen hebben wij snelle opleveringen en focus op kwaliteit.</p>
+					</div>
+
+					<div class="grid grid-3">
+						<article class="tile reveal">
+							<div class="icon">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z"/></svg>
+							</div>
+							<h3>Langdurige samenwerking</h3>
+							<p>Ook na oplevering blijven we betrokken en denken we proactief mee.</p>
+						</article>
+
+						<article class="tile reveal">
+							<div class="icon">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
+							</div>
+							<h3>Continue optimalisatie</h3>
+							<p>We monitoren en optimaliseren voor maximaal resultaat.</p>
+						</article>
+
+						<article class="tile reveal">
+							<div class="icon">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2" y="14" width="5" height="6" rx="2"/><rect x="17" y="14" width="5" height="6" rx="2"/><path d="M20 20a3 3 0 0 1-3 3h-3"/></svg>
+							</div>
+							<h3>Support</h3>
+							<p>Vragen of aanpassingen? Wij staan voor je klaar.</p>
+						</article>
+
+						<article class="tile reveal">
+							<div class="icon">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg>
+							</div>
+							<h3>Resultaatgericht</h3>
+							<p>Wij werken doelgericht aan zichtbaar resultaat voor jouw bedrijf.</p>
+						</article>
+
+						<article class="tile reveal">
+							<div class="icon">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.4.9 1 .9 1.6V16h5.2v-.5c0-.6.3-1.2.9-1.6A6 6 0 0 0 12 3z"/></svg>
+							</div>
+							<h3>Proactief meedenken</h3>
+							<p>Zien we kansen? Dan adviseren we je direct.</p>
+						</article>
+
+						<article class="tile reveal">
+							<div class="icon">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg>
+							</div>
+							<h3>Expertise</h3>
+							<p>Met onze IT-kennis zorgen we voor een technisch sterke basis.</p>
+						</article>
+					</div>
+				</div>
+			</section>
+
+			<!-- GRATIS WEBSITECONCEPT -->
+			<section class="section" id="website-concept">
+				<div class="wrap">
+					<div class="concept-card reveal">
+						<span class="eyebrow">Gratis en vrijblijvend</span>
+						<h2>Ontvang een gratis websiteconcept</h2>
+						<p>
+							Liever eerst zien dan praten? Laat weten wat je bedrijf doet en wij maken
+							kosteloos een eerste concept van jouw nieuwe website. Zo zie je meteen wat
+							er mogelijk is &mdash; zonder verplichtingen.
+						</p>
+
+						<ul class="concept-steps">
+							<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Je vertelt kort over je bedrijf en je doelen.</li>
+							<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Wij ontwerpen een concept op maat, geen template.</li>
+							<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Binnen enkele werkdagen in je mailbox.</li>
+						</ul>
+
+						<div class="concept-actions">
+							<a href="/website-concept" class="btn btn-primary btn-block" data-cta="concept-sectie">Vraag gratis concept aan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+							<a href="/contact" class="btn btn-outline btn-block" data-cta="concept-sectie-contact">Gratis kennismaken</a>
+						</div>
+
+						<p class="concept-note">Gratis, vrijblijvend en zonder verplichtingen.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- FAQ -->
+			<section class="section section-soft" id="faq">
+				<div class="wrap">
+					<div class="section-head reveal">
+						<span class="eyebrow">Veelgestelde vragen</span>
+						<h2>Heb je nog vragen?</h2>
+						<p>
+							Hier vind je antwoorden op de meest gestelde vragen over onze werkwijze,
+							diensten en ondersteuning. Staat je vraag er niet tussen? Neem dan gerust
+							contact met ons op.
+						</p>
+					</div>
+
+					<div class="faq">
+						<details class="reveal">
+							<summary>Wat onderscheidt DH Studio van andere bureaus?</summary>
+							<p class="answer">Wij zijn een persoonlijk bureau zonder onnodige lagen: je hebt direct contact met de mensen die je website bouwen. Korte communicatielijnen betekenen snelle opleveringen en focus op kwaliteit.</p>
+						</details>
+						<details class="reveal">
+							<summary>Bouwen jullie websites met standaard templates?</summary>
+							<p class="answer">Nee. Elke website bouwen we op maat, afgestemd op jouw bedrijf, je doelgroep en je doelen. Modern design en technische expertise komen samen in een site die voelt als een verlengstuk van jouw bedrijf.</p>
+						</details>
+						<details class="reveal">
+							<summary>Welke diensten bieden jullie precies aan?</summary>
+							<p class="answer">Web design &amp; development, domeinbeheer &amp; hosting, zichtbaarheid via SEO en Google Ads (SEA), en onderhoud &amp; support. Je kunt alles bij ons onderbrengen of alleen de onderdelen die je nodig hebt.</p>
+						</details>
+						<details class="reveal">
+							<summary>Wat gebeurt er nadat de website live is gegaan?</summary>
+							<p class="answer">Dan blijven we betrokken. Met proactieve monitoring, back-ups en updates houden we je site veilig en up-to-date, en zodra we kansen zien denken we mee over optimalisaties.</p>
+						</details>
+						<details class="reveal">
+							<summary>Helpen jullie ook om daadwerkelijk meer klanten te bereiken?</summary>
+							<p class="answer">Ja. We combineren SEO en Google Ads (SEA) met conversiegericht ontwerp, zodat je niet alleen beter gevonden wordt, maar bezoekers ook echt klant worden.</p>
+						</details>
+						<details class="reveal">
+							<summary>Moet ik zelf zaken als hosting en domeinnamen regelen?</summary>
+							<p class="answer">Nee, dat nemen we uit handen. Wij regelen je domein, hosting en beveiliging, zodat jij je daar geen zorgen over hoeft te maken.</p>
+						</details>
+					</div>
+
+					<div class="faq-cta reveal">
+						<a href="/website-concept" class="btn btn-primary" data-cta="faq-concept">Gratis websiteconcept</a>
+						<a href="/contact" class="btn btn-outline" data-cta="faq">Gratis kennismaken</a>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="site-footer">
+			<div class="wrap footer-grid">
+				<div class="footer-about">
+					<a class="brand" href="/" aria-label="DH Studio home">
+						<svg class="brand-mark" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 102" fill="currentColor">
+							<path d="M78 0h28v41h33V0h28v102h-28V61h-33v41H78z"/>
+							<path d="M0 0h38a51 51 0 0 1 0 102H0z" fill="none" stroke="var(--logo-gap, #fff)" stroke-width="6"/>
+							<path d="M0 0h38a51 51 0 0 1 0 102H0zm20 20v62h18a31 31 0 0 0 0-62z" fill-rule="evenodd"/>
+							<g transform="translate(158 99) rotate(140) scale(1.85)">
+								<path d="M0 0 0 26 5 20.5 9 30 13 28 9 19 14.5 18.5Z" fill="none" stroke="var(--logo-gap, #fff)" stroke-width="3.6" stroke-linejoin="round"/>
+								<path d="M0 0 0 26 5 20.5 9 30 13 28 9 19 14.5 18.5Z" stroke="currentColor" stroke-width="0.5" stroke-linejoin="round"/>
+							</g>
+						</svg>
+						DH Studio
+					</a>
+					<p>Gespecialiseerd in het bouwen van moderne, snelle websites die bezoekers omzetten in klanten. Jouw digitale succes is onze missie.</p>
+				</div>
+
+				<div class="footer-col">
+					<h4>Navigatie</h4>
+					<a href="/">Home</a>
+					<a href="#diensten">Diensten</a>
+					<a href="#werkwijze">Werkwijze</a>
+					<a href="/website-concept">Gratis websiteconcept</a>
+				</div>
+
+				<div class="footer-col">
+					<h4>Bedrijf</h4>
+					<a href="/over-dh-studio">Over DH Studio</a>
+					<a href="#faq">FAQ</a>
+					<a href="/contact">Neem contact op</a>
+				</div>
+
+				<div class="footer-col">
+					<h4>Direct contact</h4>
+					<a href="mailto:info@dh-studio.nl">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+						info@dh-studio.nl
+					</a>
+				</div>
+			</div>
+
+			<div class="wrap footer-bottom">
+				<div class="footer-legal">
+					<span>© <span id="year"></span> DH Studio. Alle rechten voorbehouden.</span>
+					<a href="/privacybeleid">Privacybeleid</a>
+					<a href="/voorwaarden">Voorwaarden</a>
+				</div>
+				<div>Ontworpen en ontwikkeld in Nederland</div>
+			</div>
+		</footer>
+
+		<!-- Vaste CTA op mobiel: dezelfde tekst als alle andere conversieknoppen -->
+		<div class="cta-bar" id="ctaBar" data-hidden="true">
+			<a href="/contact" class="btn btn-primary btn-block" data-cta="sticky">Gratis kennismaken</a>
+		</div>
+
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "ProfessionalService",
+			"name": "DH Studio",
+			"description": "DH Studio bouwt moderne, snelle en conversie-gerichte websites.",
+			"url": "https://dh-studio.nl",
+			"email": "info@dh-studio.nl",
+			"areaServed": "NL",
+			"priceRange": "€€"
+		}
+		</script>
+
+		<script>
+			(function () {
+				var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+				// Jaartal in de footer
+				document.getElementById("year").textContent = new Date().getFullYear();
+
+				// Header krijgt schaduw zodra je scrolt
+				var header = document.getElementById("siteHeader");
+				var onScroll = function () {
+					header.setAttribute("data-scrolled", window.scrollY > 8 ? "true" : "false");
+				};
+				onScroll();
+				window.addEventListener("scroll", onScroll, { passive: true });
+
+				// Mobiel menu
+				var toggle = document.getElementById("navToggle");
+				var menu = document.getElementById("mobileNav");
+				function closeMenu() {
+					menu.hidden = true;
+					toggle.setAttribute("aria-expanded", "false");
+					toggle.setAttribute("aria-label", "Menu openen");
+				}
+				toggle.addEventListener("click", function () {
+					if (toggle.getAttribute("aria-expanded") === "true") { closeMenu(); return; }
+					menu.hidden = false;
+					toggle.setAttribute("aria-expanded", "true");
+					toggle.setAttribute("aria-label", "Menu sluiten");
+				});
+				menu.addEventListener("click", function (e) {
+					if (e.target.closest("a")) closeMenu();
+				});
+				document.addEventListener("keydown", function (e) {
+					if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+						closeMenu();
+						toggle.focus();
+					}
+				});
+
+				// Elementen laten opkomen zodra ze in beeld komen (één keer).
+				// Bewust een scroll-sweep in plaats van alleen IntersectionObserver:
+				// bij zeer snel scrollen of een sprong naar een anker mist een observer
+				// soms een element, en dan blijft er een leeg vlak staan.
+				var pending = [].slice.call(document.querySelectorAll(".reveal"));
+				function show(el) {
+					var peers = el.parentElement
+						? [].slice.call(el.parentElement.querySelectorAll(":scope > .reveal"))
+						: [];
+					var i = peers.indexOf(el);
+					el.style.transitionDelay = (i > 0 ? Math.min(i, 5) * 70 : 0) + "ms";
+					el.classList.add("is-visible");
+				}
+				function sweep() {
+					for (var i = pending.length - 1; i >= 0; i--) {
+						var el = pending[i];
+						var r = el.getBoundingClientRect();
+						if (r.top < window.innerHeight * 0.94 && r.bottom > 0) {
+							show(el);
+							pending.splice(i, 1);
+						}
+					}
+					if (!pending.length) {
+						window.removeEventListener("scroll", onMove);
+						window.removeEventListener("resize", onMove);
+					}
+					ticking = false;
+				}
+				var ticking = false;
+				function onMove() {
+					if (ticking) return;
+					ticking = true;
+					requestAnimationFrame(sweep);
+				}
+				if (reduced) {
+					pending.forEach(function (el) { el.classList.add("is-visible"); });
+					pending.length = 0;
+				} else {
+					sweep();
+					window.addEventListener("scroll", onMove, { passive: true });
+					window.addEventListener("resize", onMove);
+					window.addEventListener("load", onMove);
+				}
+
+				// Werkwijze: het vaste beeld wisselt mee met de stap die in beeld is.
+				var proc = document.getElementById("process");
+				if (proc) {
+					var psteps = [].slice.call(proc.querySelectorAll(".pstep"));
+					var scenes = [].slice.call(proc.querySelectorAll(".scene"));
+					var dots = [].slice.call(proc.querySelectorAll(".scene-dots span"));
+					var active = 0;
+					var procTicking = false;
+
+					function setActive(idx) {
+						if (idx === active) return;
+						active = idx;
+						for (var i = 0; i < psteps.length; i++) {
+							psteps[i].classList.toggle("is-active", i === idx);
+							if (scenes[i]) scenes[i].classList.toggle("is-active", i === idx);
+							if (dots[i]) dots[i].classList.toggle("is-active", i === idx);
+						}
+						proc.style.setProperty("--fill", ((idx + 1) / psteps.length).toFixed(3));
+					}
+
+					function pickStep() {
+						// peilpunt: op mobiel onder het vaste beeld, op desktop halverwege het scherm
+						var anchor = window.innerHeight * (window.innerWidth < 960 ? 0.72 : 0.5);
+						var idx = 0;
+						for (var i = 0; i < psteps.length; i++) {
+							if (psteps[i].getBoundingClientRect().top <= anchor) idx = i;
+						}
+						setActive(idx);
+						procTicking = false;
+					}
+
+					function onProcMove() {
+						if (procTicking) return;
+						procTicking = true;
+						requestAnimationFrame(pickStep);
+					}
+
+					pickStep();
+					window.addEventListener("scroll", onProcMove, { passive: true });
+					window.addEventListener("resize", onProcMove);
+				}
+
+				// Vaste CTA-balk: alleen zichtbaar als de hero-knop uit beeld is,
+				// zodat er nooit twee keer dezelfde CTA tegelijk in beeld staat.
+				var bar = document.getElementById("ctaBar");
+				var hero = document.getElementById("heroCta");
+				if (bar && hero && "IntersectionObserver" in window) {
+					new IntersectionObserver(function (entries) {
+						bar.setAttribute("data-hidden", entries[0].isIntersecting ? "true" : "false");
+					}, { rootMargin: "0px 0px -25% 0px" }).observe(hero);
+				} else if (bar) {
+					bar.setAttribute("data-hidden", "false");
+				}
+			})();
+		</script>
+	</body>
+</html>
