@@ -719,11 +719,25 @@
 			/* ---------- Vanaf desktop ---------- */
 			@media (min-width: 960px) {
 				:root { --header-h: 72px; }
+				.grid-4 { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+				.grid-3 { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+				.process { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+				/* align-self voorkomt dat de kolom uitrekt; anders kan sticky niet meelopen */
+				.process-visual { align-self: start; top: calc(var(--header-h) + 2.5rem); background: none; padding-block: 0; }
+				.scene-stack { height: clamp(300px, 40vh, 420px); }
+				.pstep { min-height: 22vh; }
+				.footer-grid { grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 3rem; }
+				.footer-about { grid-column: auto; }
+			}
+
+			/* ---------- Desktopmenu: pas vanaf 1150px, want daaronder passen
+			     zes items, het logo en de CTA niet naast elkaar ---------- */
+			@media (min-width: 1150px) {
 				body { padding-bottom: 0; }
 				.cta-bar { display: none; }
 				.nav-toggle { display: none; }
 				.mobile-nav { display: none !important; }
-				.nav { display: grid; grid-template-columns: 1fr auto 1fr; padding-right: 0.45rem; }
+				.nav { display: grid; grid-template-columns: auto 1fr auto; padding-right: 0.45rem; }
 				.nav-links {
 					display: flex;
 					align-items: center;
@@ -868,14 +882,6 @@
 				.mega-all .mega-arrow { opacity: 1; transform: none; }
 				.mega-all:hover .mega-arrow { transform: translateX(4px); }
 				.nav-drop:hover .nav-chev, .nav-drop:focus-within .nav-chev { transform: rotate(180deg); }
-			}
-
-			/* ---------- Vanaf 1200px: het volledige mega-paneel ---------- */
-			@media (min-width: 1200px) {
-				.nav-links { gap: 1.75rem; }
-				.nav-drop-menu { width: 820px; grid-template-columns: 1fr 14rem; }
-				.mega-grid { grid-template-columns: 1fr 1fr; }
-				.mega-side { grid-row: span 2; }
 				.nav-links a::after {
 					content: "";
 					position: absolute;
@@ -889,16 +895,17 @@
 				}
 				.nav-links a:hover::after, .nav-links a[aria-current="page"]::after { transform: scaleX(1); }
 				.nav-links a[aria-current="page"] { color: var(--accent-text); }
-				.nav-cta { display: inline-flex; justify-self: end; min-height: 48px; padding: 0.7rem 1.5rem; border-radius: 999px; font-size: 0.95rem; }
-				.grid-4 { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-				.grid-3 { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-				.process { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
-				/* align-self voorkomt dat de kolom uitrekt; anders kan sticky niet meelopen */
-				.process-visual { align-self: start; top: calc(var(--header-h) + 2.5rem); background: none; padding-block: 0; }
-				.scene-stack { height: clamp(300px, 40vh, 420px); }
-				.pstep { min-height: 22vh; }
-				.footer-grid { grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 3rem; }
-				.footer-about { grid-column: auto; }
+				.nav-cta { display: inline-flex; justify-self: end; min-height: 48px; padding: 0.7rem 1.4rem; border-radius: 999px; font-size: 0.95rem; white-space: nowrap; }
+			}
+
+			/* ---------- Vanaf 1340px: het volledige mega-paneel naast elkaar.
+			     Daaronder staat "Diensten" te ver links om 820px te kunnen centreren. ---------- */
+			@media (min-width: 1340px) {
+				.site-header .wrap { max-width: 1240px; }
+				.nav-links { gap: 1.6rem; }
+				.nav-drop-menu { width: 820px; grid-template-columns: 1fr 14rem; }
+				.mega-grid { grid-template-columns: 1fr 1fr; }
+				.mega-side { grid-row: span 2; }
 			}
 
 			@media (prefers-reduced-motion: reduce) {
@@ -958,6 +965,7 @@
 								<a class="mega-all" href="/diensten" role="menuitem">Bekijk alle diensten <svg class="mega-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 							</div>
 						</div>
+						<a href="/tarieven">Tarieven</a>
 						<a href="#werkwijze">Werkwijze</a>
 						<a href="/website-concept">Gratis concept</a>
 						<a href="/over-dh-studio">Over DH Studio</a>
@@ -979,6 +987,7 @@
 						<a href="/diensten/onderhoud-support">Onderhoud &amp; Support</a>
 						<a href="/diensten">Alle diensten</a>
 					</details>
+					<a href="/tarieven">Tarieven</a>
 					<a href="#werkwijze">Werkwijze</a>
 					<a href="/over-dh-studio">Over DH Studio</a>
 					<a href="#faq">FAQ</a>
