@@ -661,6 +661,11 @@
 			.concept-actions { margin-top: 1.9rem; display: grid; gap: 0.75rem; }
 			.concept-note { margin-top: 1rem; font-size: 0.88rem; color: var(--muted); }
 
+			/* Hostinger-partnerbadge in de footer */
+			.partner { display: inline-flex; margin-top: 1.35rem; transition: opacity 0.2s ease, transform 0.2s ease; }
+			.partner:hover { opacity: 0.85; transform: translateY(-2px); }
+			.partner img { height: 44px; width: auto; }
+
 			/* ---------- Footer ---------- */
 			.site-footer { background: var(--bg-soft); border-top: 1px solid var(--line); padding-top: clamp(2.75rem, 7vw, 4rem); }
 			.footer-grid { display: grid; gap: 2rem; }
@@ -1007,6 +1012,59 @@
 			.andere svg { width: 18px; height: 18px; color: var(--accent); transition: transform 0.2s ease; }
 			.andere a:hover svg { transform: translateX(4px); }
 
+			/* probleem naast oplossing */
+			.pv { display: grid; gap: 0.75rem; align-items: stretch; margin-bottom: 1rem; }
+			.pv-probleem, .pv-oplossing { padding: 1.35rem 1.5rem; border-radius: var(--radius); border: 1px solid var(--line); }
+			.pv-probleem { background: var(--bg-soft); }
+			.pv-oplossing { background: var(--accent-tint); border-color: var(--accent-line); }
+			.pv-label {
+				display: inline-flex; align-items: center; gap: 0.45rem;
+				font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+				color: var(--muted);
+			}
+			.pv-oplossing .pv-label { color: var(--accent-text); }
+			.pv-label svg { width: 15px; height: 15px; }
+			.pv h3 { margin: 0.6rem 0 0.45rem; font-size: 1.1rem; }
+			.pv p { font-size: 0.94rem; }
+			.pv-pijl { display: grid; place-items: center; color: var(--accent); }
+			.pv-pijl svg { width: 20px; height: 20px; transform: rotate(90deg); }
+
+			/* uitgelicht maatwerkblok */
+			.maatwerk {
+				margin-top: 1.25rem;
+				padding: clamp(1.5rem, 4vw, 2.25rem);
+				border: 1px solid var(--line-strong);
+				border-radius: var(--radius-lg);
+				background: linear-gradient(155deg, var(--accent-tint), var(--surface) 60%);
+				box-shadow: var(--shadow-card);
+			}
+			.maatwerk .icon {
+				display: grid; place-items: center;
+				width: 46px; height: 46px;
+				border-radius: 14px;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				color: var(--accent);
+			}
+			.maatwerk .icon svg { width: 22px; height: 22px; }
+			.maatwerk h3 { margin: 1.1rem 0 0.5rem; font-size: 1.35rem; }
+			.maatwerk p { max-width: 60ch; }
+			.maatwerk-voet {
+				margin-top: 1.5rem;
+				padding-top: 1.25rem;
+				border-top: 1px solid var(--line);
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1rem;
+			}
+			.maatwerk-voet small { display: block; font-size: 0.78rem; color: var(--muted); }
+			.maatwerk-voet b { font-size: 1.05rem; color: var(--fg); }
+			.maatwerk-voet a { display: inline-flex; align-items: center; gap: 0.45rem; font-weight: 700; color: var(--accent-text); }
+			.maatwerk-voet a svg { width: 17px; height: 17px; transition: transform 0.2s ease; }
+			.maatwerk-voet a:hover svg { transform: translateX(4px); }
+
 			@media (min-width: 640px) {
 				.kenmerken { grid-template-columns: 1fr 1fr; }
 				.andere { grid-template-columns: repeat(3, 1fr); }
@@ -1014,6 +1072,8 @@
 			@media (min-width: 960px) {
 				.kenmerken { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
 				.gevallen { grid-template-columns: 1fr 1fr; gap: 1rem; }
+				.pv { grid-template-columns: 1fr auto 1fr; gap: 1rem; }
+				.pv-pijl svg { transform: none; }
 			}
 		</style>
 	</head>
@@ -1146,8 +1206,8 @@
 						</article>
 						<article class="kenmerk reveal">
 							<div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M5 10l7-7 7 7"/><path d="M5 21h14"/></svg></div>
-							<h3>Gericht op aanvragen</h3>
-							<p>Elke pagina heeft een doel: bellen, mailen of een offerte aanvragen. De opbouw stuurt daar rustig naartoe.</p>
+							<h3>Gericht op uw doel</h3>
+							<p>Bellen, mailen, een offerte of een bestelling: we bepalen vooraf wat een bezoeker moet doen en bouwen de pagina daar rustig naartoe.</p>
 						</article>
 						<article class="kenmerk reveal">
 							<div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
@@ -1166,6 +1226,71 @@
 			<section class="section">
 				<div class="wrap">
 					<div class="section-head reveal">
+						<span class="eyebrow">Waarom het uitmaakt</span>
+						<h2>Wat er misgaat, en wat wij eraan doen</h2>
+						<p>
+							De vier klachten die we het vaakst horen over een bestaande website &mdash; en hoe we ze
+							bij het bouwen voorkomen.
+						</p>
+					</div>
+					<div class="pv reveal">
+						<div class="pv-probleem">
+							<span class="pv-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg> Probleem</span>
+							<h3>Een trage site kost je klanten</h3>
+							<p>Duurt het laden te lang, dan haakt een deel van je bezoekers af voordat je pagina er &uuml;berhaupt staat. Die klik heb je vaak wel betaald, via Google Ads of via je eigen tijd.</p>
+						</div>
+						<span class="pv-pijl" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+						<div class="pv-oplossing">
+							<span class="pv-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Onze aanpak</span>
+							<h3>Snelheid als bouwvoorwaarde</h3>
+							<p>We werken zonder overbodige plug-ins, houden afbeeldingen klein en testen voor de lancering op snelheid, veiligheid en gebruiksgemak &mdash; op elk apparaat.</p>
+						</div>
+					</div>
+					<div class="pv reveal">
+						<div class="pv-probleem">
+							<span class="pv-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg> Probleem</span>
+							<h3>Op mobiel valt de site uit elkaar</h3>
+							<p>De meeste bezoekers komen binnen op hun telefoon. Klopt de weergave daar niet, dan is de eerste indruk meteen verkeerd, hoe mooi je site op een grote monitor ook is.</p>
+						</div>
+						<span class="pv-pijl" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+						<div class="pv-oplossing">
+							<span class="pv-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Onze aanpak</span>
+							<h3>Mobiel eerst ontworpen</h3>
+							<p>We beginnen bij het kleinste scherm en schalen daarna op. Voor livegang controleren we de site op telefoon, tablet en desktop.</p>
+						</div>
+					</div>
+					<div class="pv reveal">
+						<div class="pv-probleem">
+							<span class="pv-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg> Probleem</span>
+							<h3>Bezoekers weten niet wat ze moeten doen</h3>
+							<p>Een site die alles tegelijk wil vertellen, laat de bezoeker zelf uitzoeken wat de bedoeling is. Meestal doen ze dan niets en klikken ze weg.</p>
+						</div>
+						<span class="pv-pijl" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+						<div class="pv-oplossing">
+							<span class="pv-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Onze aanpak</span>
+							<h3>E&eacute;n duidelijke volgende stap</h3>
+							<p>Per pagina bepalen we vooraf welke actie telt en welke informatie daarvoor nodig is. De rest leidt niet af, maar ondersteunt.</p>
+						</div>
+					</div>
+					<div class="pv reveal">
+						<div class="pv-probleem">
+							<span class="pv-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg> Probleem</span>
+							<h3>Je bent niet te vinden in Google</h3>
+							<p>Zonder nette structuur en snelle pagina&rsquo;s heeft een zoekmachine moeite je site te lezen. Dan blijf je afhankelijk van mond-tot-mondreclame.</p>
+						</div>
+						<span class="pv-pijl" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+						<div class="pv-oplossing">
+							<span class="pv-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Onze aanpak</span>
+							<h3>Technische basis op orde</h3>
+							<p>Logische opbouw, snelle pagina&rsquo;s, kloppende titels en een sitemap. Zo kan Google je site vanaf dag &eacute;&eacute;n goed indexeren.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section">
+				<div class="wrap">
+					<div class="section-head reveal">
 						<span class="eyebrow">Voor wie</span>
 						<h2>Waar we mee kunnen helpen</h2>
 						<p>Weet je nog niet welke kant het op moet? Dan denken we in het eerste gesprek mee.</p>
@@ -1176,6 +1301,19 @@
 						<div class="geval reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Een webshop</b>Producten tonen, bestellingen ontvangen en betalingen afhandelen, ingericht op jouw assortiment.</span></div>
 						<div class="geval reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Een landingspagina</b>E&eacute;n pagina met &eacute;&eacute;n doel, bijvoorbeeld voor een campagne via Google Ads.</span></div>
 					</div>
+
+					<article class="maatwerk reveal">
+						<div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></div>
+						<h3>Maatwerk &amp; Web Apps</h3>
+						<p>
+							Voor complexe platformen, portalen en uitgebreide e-commerce oplossingen bouwen wij
+							volledig op maat gemaakte applicaties.
+						</p>
+						<div class="maatwerk-voet">
+							<span><small>Investering</small><b>Op aanvraag</b></span>
+							<a href="/contact" data-cta="dienst-maatwerk-offerte">Offerte aanvragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+						</div>
+					</article>
 				</div>
 			</section>
 
@@ -1267,6 +1405,11 @@
 						DH Studio
 					</a>
 					<p>Gespecialiseerd in het bouwen van moderne, snelle websites die bezoekers omzetten in klanten. Jouw digitale succes is onze missie.</p>
+					<a class="partner" href="https://www.hostinger.com/" target="_blank" rel="noopener"
+						aria-label="DH Studio is Hostinger-partner">
+						<img src="/assets/hostinger-partner.svg" width="117" height="44"
+							alt="Hostinger Partner" loading="lazy" decoding="async" />
+					</a>
 				</div>
 
 				<div class="footer-col">
@@ -1367,6 +1510,15 @@
 								"itemOffered": {
 									"@type": "Service",
 									"name": "Landingspagina voor een campagne"
+								}
+							},
+							{
+								"@type": "Offer",
+								"priceCurrency": "EUR",
+								"itemOffered": {
+									"@type": "Service",
+									"name": "Maatwerk & web apps",
+									"description": "Complexe platformen, portalen en uitgebreide e-commerce oplossingen, volledig op maat gebouwd. Investering op aanvraag."
 								}
 							}
 						]

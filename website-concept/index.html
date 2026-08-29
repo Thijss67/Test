@@ -661,6 +661,11 @@
 			.concept-actions { margin-top: 1.9rem; display: grid; gap: 0.75rem; }
 			.concept-note { margin-top: 1rem; font-size: 0.88rem; color: var(--muted); }
 
+			/* Hostinger-partnerbadge in de footer */
+			.partner { display: inline-flex; margin-top: 1.35rem; transition: opacity 0.2s ease, transform 0.2s ease; }
+			.partner:hover { opacity: 0.85; transform: translateY(-2px); }
+			.partner img { height: 44px; width: auto; }
+
 			/* ---------- Footer ---------- */
 			.site-footer { background: var(--bg-soft); border-top: 1px solid var(--line); padding-top: clamp(2.75rem, 7vw, 4rem); }
 			.footer-grid { display: grid; gap: 2rem; }
@@ -1506,6 +1511,11 @@
 						DH Studio
 					</a>
 					<p>Gespecialiseerd in het bouwen van moderne, snelle websites die bezoekers omzetten in klanten. Jouw digitale succes is onze missie.</p>
+					<a class="partner" href="https://www.hostinger.com/" target="_blank" rel="noopener"
+						aria-label="DH Studio is Hostinger-partner">
+						<img src="/assets/hostinger-partner.svg" width="117" height="44"
+							alt="Hostinger Partner" loading="lazy" decoding="async" />
+					</a>
 				</div>
 
 				<div class="footer-col">
