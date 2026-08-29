@@ -1193,7 +1193,7 @@
 					<span class="eyebrow">Gratis en vrijblijvend</span>
 					<h1>Vraag jouw gratis websiteconcept aan</h1>
 					<p class="lead">
-						Beantwoord 8 korte vragen en ontvang een concept op maat &mdash; afgestemd op
+						Beantwoord 7 korte vragen en ontvang een concept op maat &mdash; afgestemd op
 						jouw bedrijf, je doelen en je planning. Kost je twee minuten.
 					</p>
 
@@ -1205,7 +1205,7 @@
 								<div class="wiz-bar"><div class="wiz-fill" id="wizFill"></div></div>
 								<div class="wiz-meta">
 									<span class="now" id="wizNu">Jouw website nu</span>
-									<span><span id="wizTeller">Stap 1 / 8</span> &middot; <span id="wizProcent">12%</span></span>
+									<span><span id="wizTeller">Stap 1 / 7</span> &middot; <span id="wizProcent">12%</span></span>
 								</div>
 							</div>
 
@@ -1404,6 +1404,17 @@
 								<span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
 								<span>Nog geen idee</span>
 							</label>
+							<label class="opt">
+								<input type="checkbox" name="functies[]" value="Iets anders" data-anders="functiesAnders" />
+								<span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+								<span>Iets anders</span>
+							</label>
+						</div>
+
+						<div class="anders" id="functiesAnders" hidden>
+							<label for="v-functies-anders">Wat moet er nog meer in?</label>
+							<input id="v-functies-anders" name="functies_anders" type="text"
+								data-label="Overige wensen" placeholder="Bijvoorbeeld: een offertecalculator" />
 						</div>
 					</fieldset>
 					<fieldset class="wiz-step" data-label="Planning" hidden>
@@ -1431,39 +1442,6 @@
 								<input type="radio" name="planning" value="Ik ben nog aan het ori&euml;nteren" />
 								<span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
 								<span>Ik ben nog aan het ori&euml;nteren</span>
-							</label>
-						</div>
-					</fieldset>
-					<fieldset class="wiz-step" data-label="Budget" hidden>
-						<legend>
-							<h2 tabindex="-1">Waar denk je qua budget aan?</h2>
-						</legend>
-						<p class="hint">Een richting is genoeg. Zo maken we een realistisch voorstel.</p>
-						<div class="wiz-options">
-							<label class="opt">
-								<input type="radio" name="budget" value="Tot &euro;1.500" />
-								<span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
-								<span>Tot &euro;1.500</span>
-							</label>
-							<label class="opt">
-								<input type="radio" name="budget" value="&euro;1.500 &ndash; &euro;3.000" />
-								<span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
-								<span>&euro;1.500 &ndash; &euro;3.000</span>
-							</label>
-							<label class="opt">
-								<input type="radio" name="budget" value="&euro;3.000 &ndash; &euro;6.000" />
-								<span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
-								<span>&euro;3.000 &ndash; &euro;6.000</span>
-							</label>
-							<label class="opt">
-								<input type="radio" name="budget" value="Meer dan &euro;6.000" />
-								<span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
-								<span>Meer dan &euro;6.000</span>
-							</label>
-							<label class="opt">
-								<input type="radio" name="budget" value="Dat hoor ik graag van jullie" />
-								<span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
-								<span>Dat hoor ik graag van jullie</span>
 							</label>
 						</div>
 					</fieldset>
