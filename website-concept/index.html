@@ -1001,6 +1001,27 @@
 			.opt input:checked ~ .box svg { opacity: 1; transform: none; }
 			.opt:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 3px; }
 
+			.anders {
+				margin-top: 0.75rem;
+				display: grid;
+				gap: 0.4rem;
+				animation: rise 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+			}
+			.js .anders[hidden] { display: none; }
+			.anders label { font-size: 0.87rem; font-weight: 700; }
+			.anders input {
+				width: 100%;
+				padding: 0.85rem 1rem;
+				font: inherit;
+				font-size: 0.95rem;
+				color: var(--fg);
+				background: var(--surface);
+				border: 1px solid var(--line-strong);
+				border-radius: 14px;
+				transition: border-color 0.18s ease, box-shadow 0.18s ease;
+			}
+			.anders input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-tint); }
+
 			.fields { margin-top: 1.4rem; display: grid; gap: 0.9rem; }
 			.field { display: grid; gap: 0.4rem; }
 			.field label { font-size: 0.87rem; font-weight: 700; }
@@ -1259,10 +1280,16 @@
 								<span>Zorg en welzijn</span>
 							</label>
 							<label class="opt">
-								<input type="radio" name="branche" value="Iets anders" />
+								<input type="radio" name="branche" value="Iets anders" data-anders="brancheAnders" />
 								<span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
 								<span>Iets anders</span>
 							</label>
+						</div>
+
+						<div class="anders" id="brancheAnders" hidden>
+							<label for="v-branche-anders">In welke branche werk je dan?</label>
+							<input id="v-branche-anders" name="branche_anders" type="text"
+								data-label="Branche" placeholder="Bijvoorbeeld: hoveniersbedrijf" />
 						</div>
 					</fieldset>
 					<fieldset class="wiz-step" data-label="Jouw doel" hidden>
@@ -1784,8 +1811,25 @@
 				var acties = document.getElementById("wizActies");
 				var i = 0;
 
+				// Een optie met data-anders opent een eigen invulveld; zonder tekst
+				// daarin ben je nog niet klaar met de stap.
+				function andersVeld(s) {
+					var keuze = s.querySelector("input:checked[data-anders]");
+					var blok = keuze ? document.getElementById(keuze.dataset.anders) : null;
+					[].slice.call(s.querySelectorAll(".anders")).forEach(function (b) {
+						if (b === blok) return;
+						b.hidden = true;
+						var veld = b.querySelector("input");
+						if (veld) veld.value = "";
+					});
+					if (blok) blok.hidden = false;
+					return blok;
+				}
+
 				function geldig() {
 					var s = stappen[i];
+					var blok = andersVeld(s);
+					if (blok && !blok.querySelector("input").value.trim()) return false;
 					if (s.dataset.vrij === "ja") return true;
 					return !!s.querySelector("input:checked");
 				}
@@ -1810,7 +1854,14 @@
 				pijl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 				pijl = pijl.firstChild;
 
-				form.addEventListener("change", function () { verder.disabled = !geldig(); });
+				form.addEventListener("change", function (e) {
+					verder.disabled = !geldig();
+					var keuze = e.target.closest ? e.target : null;
+					if (keuze && keuze.dataset && keuze.dataset.anders && keuze.checked) {
+						var veld = document.getElementById(keuze.dataset.anders).querySelector("input");
+						if (veld) veld.focus();
+					}
+				});
 				form.addEventListener("input", function () { verder.disabled = !geldig(); });
 
 				verder.addEventListener("click", function (e) {
