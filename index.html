@@ -690,7 +690,7 @@
 				flex: none;
 				gap: clamp(2.25rem, 5vw, 4rem);
 				padding-right: clamp(2.25rem, 5vw, 4rem);
-				animation: merkenLoop 34s linear infinite;
+				animation: merkenLoop 22s linear infinite;
 			}
 			@keyframes merkenLoop { to { transform: translateX(-100%); } }
 			.merk { display: flex; align-items: center; }
@@ -699,16 +699,11 @@
 				width: auto;
 				object-fit: contain;
 				filter: grayscale(1);
-				opacity: 0.32;
-				transform: scale(0.94);
-				transition: filter 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+				opacity: 0.45;
+				transition: filter 0.2s ease, opacity 0.2s ease;
 			}
-			/* Het logo in het midden van de band, of het logo waar je op staat. */
-			.merk.is-mid img, .merk:hover img {
-				filter: none;
-				opacity: 1;
-				transform: scale(1);
-			}
+			/* Alleen het logo waar je op staat licht op. */
+			.merk:hover img { filter: none; opacity: 1; }
 
 			.partner-regel {
 				margin-top: clamp(1rem, 2.5vw, 1.5rem);
@@ -730,7 +725,7 @@
 				.merken-baan { flex-wrap: wrap; justify-content: center; -webkit-mask-image: none; mask-image: none; }
 				.merken-spoor { animation: none; flex-wrap: wrap; justify-content: center; row-gap: 1.25rem; }
 				.merken-spoor[aria-hidden="true"] { display: none; }
-				.merk img { filter: none; opacity: 1; transform: none; }
+				.merk img { filter: none; opacity: 1; }
 			}
 
 			/* ---------- Footer ---------- */
@@ -1347,8 +1342,7 @@
 				<div class="wrap">
 					<span class="eyebrow">Waarmee wij werken</span>
 
-					<!-- Eén rij logo's; het script markeert steeds het logo dat door het
-					     midden schuift, en hover doet hetzelfde. -->
+					<!-- Eén rij die doorloopt; alleen het logo waar je op staat licht op. -->
 					<div class="merken-baan" id="merkenBaan">
 						<ul class="merken-spoor">
 							<li class="merk" style="--logo-h: 20px"><img src="/assets/logos/Anthropic_logo.svg" alt="Anthropic" loading="lazy" decoding="async" /></li>
@@ -1900,48 +1894,5 @@
 			})();
 		</script>
 
-		<script>
-			// Markeert het logo dat het dichtst bij het midden van de band staat.
-			// Alleen actief zolang de band in beeld is, dus geen werk op de achtergrond.
-			(function () {
-				var baan = document.getElementById("merkenBaan");
-				if (!baan || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-				var merken = [].slice.call(baan.querySelectorAll(".merk"));
-				var loopt = false, vorige = null;
-
-				function kijk() {
-					if (!loopt) return;
-					var r = baan.getBoundingClientRect();
-					var midden = r.left + r.width / 2;
-					var beste = null, kleinste = Infinity;
-					for (var i = 0; i < merken.length; i++) {
-						var m = merken[i].getBoundingClientRect();
-						if (m.right < r.left || m.left > r.right) continue;
-						var afstand = Math.abs(m.left + m.width / 2 - midden);
-						if (afstand < kleinste) { kleinste = afstand; beste = merken[i]; }
-					}
-					if (beste !== vorige) {
-						if (vorige) vorige.classList.remove("is-mid");
-						if (beste) beste.classList.add("is-mid");
-						vorige = beste;
-					}
-					requestAnimationFrame(kijk);
-				}
-
-				if ("IntersectionObserver" in window) {
-					new IntersectionObserver(function (entries) {
-						var zichtbaar = entries[0].isIntersecting;
-						if (zichtbaar && !loopt) { loopt = true; requestAnimationFrame(kijk); }
-						else if (!zichtbaar) {
-							loopt = false;
-							if (vorige) { vorige.classList.remove("is-mid"); vorige = null; }
-						}
-					}, { threshold: 0 }).observe(baan);
-				} else {
-					loopt = true;
-					requestAnimationFrame(kijk);
-				}
-			})();
-		</script>
 	</body>
 </html>
