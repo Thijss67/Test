@@ -672,75 +672,66 @@
 			.partner-groot:hover .badge-bg, .partner-groot:focus-visible .badge-bg { fill: #2c2c33; }
 
 			/* ---------- Waarmee wij werken ---------- */
-			.merken { padding-block: clamp(1.75rem, 4vw, 2.75rem); text-align: center; }
+			.merken {
+				padding-block: clamp(1.5rem, 3.5vw, 2.25rem);
+				background: var(--bg-soft);
+				border-block: 1px solid var(--line);
+				text-align: center;
+			}
 			.merken-baan {
 				position: relative;
-				margin-top: 1.15rem;
-				display: flex;
-				gap: 0.65rem;
+				margin-top: 1rem;
+				height: 46px;
 				overflow: hidden;
-				/* randen vervagen, zodat logo's niet hard afgesneden lijken */
-				-webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-				mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+				-webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+				mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+			}
+			.merken-laag { position: absolute; inset: 0; display: flex; }
+			/* De kleurlaag is alleen zichtbaar door een zacht venster in het midden. */
+			.merken-laag.is-kleur {
+				-webkit-mask-image: linear-gradient(90deg, transparent 36%, #000 45%, #000 55%, transparent 64%);
+				mask-image: linear-gradient(90deg, transparent 36%, #000 45%, #000 55%, transparent 64%);
 			}
 			.merken-spoor {
 				display: flex;
+				align-items: center;
 				flex: none;
-				gap: 0.65rem;
-				padding-right: 0.65rem;
-				animation: merkenLoop 28s linear infinite;
+				gap: clamp(2.25rem, 5vw, 4rem);
+				padding-right: clamp(2.25rem, 5vw, 4rem);
+				animation: merkenLoop 34s linear infinite;
 			}
 			@keyframes merkenLoop { to { transform: translateX(-100%); } }
-			.merk {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				min-width: 128px;
-				padding: 0.7rem 1.15rem;
-				background: var(--surface);
-				border: 1px solid var(--line);
-				border-radius: var(--radius);
-				box-shadow: var(--shadow-card);
-				transition: border-color 0.25s ease, transform 0.25s ease;
-			}
-			.merk:hover { border-color: var(--line-strong); transform: translateY(-2px); }
-			/* In rust grijs, bij hover het logo in eigen kleuren. */
+			.merk { display: flex; align-items: center; }
 			.merk img {
-				height: 20px;
+				height: var(--logo-h, 20px);
 				width: auto;
-				max-width: 150px;
 				object-fit: contain;
-				filter: grayscale(1);
-				opacity: 0.6;
-				transition: filter 0.25s ease, opacity 0.25s ease;
 			}
-			.merk:hover img { filter: none; opacity: 1; }
+			.merken-laag:not(.is-kleur) .merk img { filter: grayscale(1); opacity: 0.48; }
 
-			.partner-strook { margin-top: clamp(1.4rem, 3vw, 2rem); }
-			.partner-kop {
+			.partner-regel {
+				margin-top: clamp(1rem, 2.5vw, 1.5rem);
 				display: flex;
+				flex-wrap: wrap;
 				align-items: center;
 				justify-content: center;
-				gap: 1rem;
-				font-size: 0.72rem;
+				gap: 0.75rem;
+				font-size: 0.75rem;
 				font-weight: 800;
-				letter-spacing: 0.16em;
+				letter-spacing: 0.14em;
 				text-transform: uppercase;
 				color: var(--muted);
 			}
-			.partner-kop::before, .partner-kop::after {
-				content: "";
-				height: 1px;
-				width: clamp(30px, 12vw, 110px);
-				background: var(--line-strong);
-			}
-			.partner-groot { display: inline-flex; margin-top: 0.85rem; }
-			.partner-groot .partner-badge { height: 42px; width: auto; }
+			.partner-groot { display: inline-flex; }
+			.partner-groot .partner-badge { height: 34px; width: auto; }
 
 			@media (prefers-reduced-motion: reduce) {
-				.merken-baan { flex-wrap: wrap; justify-content: center; overflow: visible; -webkit-mask-image: none; mask-image: none; }
-				.merken-spoor { animation: none; flex-wrap: wrap; justify-content: center; }
+				.merken-baan { height: auto; -webkit-mask-image: none; mask-image: none; }
+				.merken-laag { position: static; flex-wrap: wrap; justify-content: center; }
+				.merken-laag.is-kleur { display: none; }
+				.merken-spoor { animation: none; flex-wrap: wrap; justify-content: center; row-gap: 1.25rem; }
 				.merken-spoor[aria-hidden="true"] { display: none; }
+				.merken-laag:not(.is-kleur) .merk img { filter: none; opacity: 1; }
 			}
 
 			/* ---------- Footer ---------- */
@@ -1357,65 +1348,50 @@
 				<div class="wrap">
 					<span class="eyebrow">Waarmee wij werken</span>
 
-					<!-- Twee identieke sporen naast elkaar: zodra het eerste is doorgeschoven,
-					     staat het tweede al klaar. Daardoor loopt de band naadloos door. -->
+					<!-- Twee lagen over elkaar: onderop alles in grijstinten, daarboven dezelfde
+					     logo's in kleur, maar alleen zichtbaar door een venster in het midden.
+					     Zo licht elk logo vanzelf op terwijl het voorbijschuift. -->
 					<div class="merken-baan">
-						<ul class="merken-spoor">
-							<li class="merk">
-								<img src="/assets/logos/Anthropic_logo.svg" alt="Anthropic"
-									loading="lazy" decoding="async" />
-							</li>
-							<li class="merk">
-								<img src="/assets/logos/OpenAI_logo.svg" alt="OpenAI"
-									loading="lazy" decoding="async" />
-							</li>
-							<li class="merk">
-								<img src="/assets/logos/google_logo.svg" alt="Google"
-									loading="lazy" decoding="async" />
-							</li>
-							<li class="merk">
-								<img src="/assets/logos/Meta_logo.svg" alt="Meta"
-									loading="lazy" decoding="async" />
-							</li>
-							<li class="merk">
-								<img src="/assets/logos/wordpress_logo.svg" alt="WordPress"
-									loading="lazy" decoding="async" />
-							</li>
-							<li class="merk">
-								<img src="/assets/logos/Hostinger_logo.svg" alt="Hostinger"
-									loading="lazy" decoding="async" />
-							</li>
-						</ul>
-						<ul class="merken-spoor" aria-hidden="true">
-							<li class="merk">
-								<img src="/assets/logos/Anthropic_logo.svg" alt="Anthropic"
-									loading="lazy" decoding="async" />
-							</li>
-							<li class="merk">
-								<img src="/assets/logos/OpenAI_logo.svg" alt="OpenAI"
-									loading="lazy" decoding="async" />
-							</li>
-							<li class="merk">
-								<img src="/assets/logos/google_logo.svg" alt="Google"
-									loading="lazy" decoding="async" />
-							</li>
-							<li class="merk">
-								<img src="/assets/logos/Meta_logo.svg" alt="Meta"
-									loading="lazy" decoding="async" />
-							</li>
-							<li class="merk">
-								<img src="/assets/logos/wordpress_logo.svg" alt="WordPress"
-									loading="lazy" decoding="async" />
-							</li>
-							<li class="merk">
-								<img src="/assets/logos/Hostinger_logo.svg" alt="Hostinger"
-									loading="lazy" decoding="async" />
-							</li>
-						</ul>
+						<div class="merken-laag">
+							<ul class="merken-spoor">
+								<li class="merk" style="--logo-h: 19px"><img src="/assets/logos/Anthropic_logo.svg" alt="Anthropic" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 22px"><img src="/assets/logos/OpenAI_logo.svg" alt="OpenAI" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 20px"><img src="/assets/logos/google_logo.svg" alt="Google" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 20px"><img src="/assets/logos/Meta_logo.svg" alt="Meta" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 34px"><img src="/assets/logos/wordpress_logo.svg" alt="WordPress" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 18px"><img src="/assets/logos/Hostinger_logo.svg" alt="Hostinger" loading="lazy" decoding="async" /></li>
+							</ul>
+							<ul class="merken-spoor" aria-hidden="true">
+								<li class="merk" style="--logo-h: 19px"><img src="/assets/logos/Anthropic_logo.svg" alt="" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 22px"><img src="/assets/logos/OpenAI_logo.svg" alt="" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 20px"><img src="/assets/logos/google_logo.svg" alt="" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 20px"><img src="/assets/logos/Meta_logo.svg" alt="" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 34px"><img src="/assets/logos/wordpress_logo.svg" alt="" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 18px"><img src="/assets/logos/Hostinger_logo.svg" alt="" loading="lazy" decoding="async" /></li>
+							</ul>
+						</div>
+						<div class="merken-laag is-kleur" aria-hidden="true">
+							<ul class="merken-spoor" aria-hidden="true">
+								<li class="merk" style="--logo-h: 19px"><img src="/assets/logos/Anthropic_logo.svg" alt="" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 22px"><img src="/assets/logos/OpenAI_logo.svg" alt="" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 20px"><img src="/assets/logos/google_logo.svg" alt="" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 20px"><img src="/assets/logos/Meta_logo.svg" alt="" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 34px"><img src="/assets/logos/wordpress_logo.svg" alt="" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 18px"><img src="/assets/logos/Hostinger_logo.svg" alt="" loading="lazy" decoding="async" /></li>
+							</ul>
+							<ul class="merken-spoor" aria-hidden="true">
+								<li class="merk" style="--logo-h: 19px"><img src="/assets/logos/Anthropic_logo.svg" alt="" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 22px"><img src="/assets/logos/OpenAI_logo.svg" alt="" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 20px"><img src="/assets/logos/google_logo.svg" alt="" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 20px"><img src="/assets/logos/Meta_logo.svg" alt="" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 34px"><img src="/assets/logos/wordpress_logo.svg" alt="" loading="lazy" decoding="async" /></li>
+								<li class="merk" style="--logo-h: 18px"><img src="/assets/logos/Hostinger_logo.svg" alt="" loading="lazy" decoding="async" /></li>
+							</ul>
+						</div>
 					</div>
 
-					<div class="partner-strook">
-						<span class="partner-kop">Offici&euml;el partner</span>
+					<p class="partner-regel">
+						<span>Offici&euml;el partner</span>
 						<a class="partner-groot" href="https://www.hostinger.com/" target="_blank" rel="noopener"
 							aria-label="DH Studio is Hostinger-partner">
 						<svg class="partner-badge" viewBox="0 0 80 30" fill="none" role="img" xmlns="http://www.w3.org/2000/svg"><title>Hostinger Partner</title>
@@ -1447,7 +1423,7 @@
 						</defs>
 						</svg>
 						</a>
-					</div>
+					</p>
 				</div>
 			</section>
 
