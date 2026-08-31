@@ -666,12 +666,11 @@
 			/* Hostinger-partnerbadge: kaal, zonder kader. Bij hover licht de
 			   achtergrond een tikje op, verder gebeurt er niets. */
 			.partner { display: inline-flex; margin-top: 1.05rem; }
-			.partner-badge { height: 36px; width: auto; opacity: 0.92; transition: opacity 0.25s ease; }
+			.partner-badge { height: 36px; width: auto; opacity: 0.8; transition: opacity 0.25s ease; }
 			.partner-badge .badge-bg { fill: #18181a; transition: fill 0.25s ease; }
 			.partner:hover .partner-badge, .partner:focus-visible .partner-badge,
 			.partner-groot:hover .partner-badge, .partner-groot:focus-visible .partner-badge { opacity: 1; }
-			.partner:hover .badge-bg, .partner:focus-visible .badge-bg,
-			.partner-groot:hover .badge-bg, .partner-groot:focus-visible .badge-bg { fill: #2c2c33; }
+			/* bij hover volledig zwart, geen lichtere vulling */
 
 			/* ---------- Footer ---------- */
 			.site-footer { background: var(--bg-soft); border-top: 1px solid var(--line); padding-top: clamp(2.75rem, 7vw, 4rem); }
