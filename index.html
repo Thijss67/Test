@@ -694,35 +694,27 @@
 			.merk {
 				display: flex;
 				align-items: center;
-				gap: 0.55rem;
-				padding: 0.6rem 1rem;
-				white-space: nowrap;
+				justify-content: center;
+				min-width: 128px;
+				padding: 0.7rem 1.15rem;
 				background: var(--surface);
 				border: 1px solid var(--line);
 				border-radius: var(--radius);
 				box-shadow: var(--shadow-card);
-				font-weight: 700;
-				font-size: 0.88rem;
-				color: var(--fg);
+				transition: border-color 0.25s ease, transform 0.25s ease;
 			}
-			.merk-mark {
-				display: grid;
-				place-items: center;
-				width: 25px; height: 25px;
-				flex: none;
-				border-radius: 8px;
-				background: #eceef3;
-				color: #6b7280;
-				font-size: 0.78rem;
-				font-weight: 800;
-				transition: background 0.25s ease, color 0.25s ease;
+			.merk:hover { border-color: var(--line-strong); transform: translateY(-2px); }
+			/* In rust grijs, bij hover het logo in eigen kleuren. */
+			.merk img {
+				height: 20px;
+				width: auto;
+				max-width: 150px;
+				object-fit: contain;
+				filter: grayscale(1);
+				opacity: 0.6;
+				transition: filter 0.25s ease, opacity 0.25s ease;
 			}
-			/* In rust staat alles in grijstinten; bij hover komt de merkkleur terug. */
-			.merk img, .merk svg { height: 19px; width: auto; filter: grayscale(1); opacity: 0.75; transition: filter 0.25s ease, opacity 0.25s ease; }
-			.merk { color: var(--body); transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease; }
-			.merk:hover { color: var(--fg); border-color: var(--line-strong); transform: translateY(-2px); }
-			.merk:hover img, .merk:hover svg { filter: none; opacity: 1; }
-			.merk:hover .merk-mark { background: var(--merk-kleur, var(--accent)); color: #fff; }
+			.merk:hover img { filter: none; opacity: 1; }
 
 			.partner-strook { margin-top: clamp(1.4rem, 3vw, 2rem); }
 			.partner-kop {
@@ -1369,67 +1361,55 @@
 					     staat het tweede al klaar. Daardoor loopt de band naadloos door. -->
 					<div class="merken-baan">
 						<ul class="merken-spoor">
-							<li class="merk" style="--merk-kleur: #d97757">
-								<!-- Echte logo hier: <img src="/assets/logo-anthropic.svg" alt="" />
-								     De CSS zet hem automatisch in zwart-wit en kleurt hem bij hover. -->
-								<span class="merk-mark" aria-hidden="true">A</span>
-								<span>Anthropic</span>
+							<li class="merk">
+								<img src="/assets/logos/Anthropic_logo.svg" alt="Anthropic"
+									loading="lazy" decoding="async" />
 							</li>
-							<li class="merk" style="--merk-kleur: #000000">
-								<!-- Echte logo hier: <img src="/assets/logo-openai.svg" alt="" />
-								     De CSS zet hem automatisch in zwart-wit en kleurt hem bij hover. -->
-								<span class="merk-mark" aria-hidden="true">O</span>
-								<span>OpenAI</span>
+							<li class="merk">
+								<img src="/assets/logos/OpenAI_logo.svg" alt="OpenAI"
+									loading="lazy" decoding="async" />
 							</li>
-							<li class="merk" style="--merk-kleur: #4285f4">
-								<!-- Echte logo hier: <img src="/assets/logo-google.svg" alt="" />
-								     De CSS zet hem automatisch in zwart-wit en kleurt hem bij hover. -->
-								<span class="merk-mark" aria-hidden="true">G</span>
-								<span>Google</span>
+							<li class="merk">
+								<img src="/assets/logos/google_logo.svg" alt="Google"
+									loading="lazy" decoding="async" />
 							</li>
-							<li class="merk" style="--merk-kleur: #0866ff">
-								<!-- Echte logo hier: <img src="/assets/logo-meta.svg" alt="" />
-								     De CSS zet hem automatisch in zwart-wit en kleurt hem bij hover. -->
-								<span class="merk-mark" aria-hidden="true">M</span>
-								<span>Meta</span>
+							<li class="merk">
+								<img src="/assets/logos/Meta_logo.svg" alt="Meta"
+									loading="lazy" decoding="async" />
 							</li>
-							<li class="merk" style="--merk-kleur: #673de6">
-								<!-- Echte logo hier: <img src="/assets/logo-hostinger.svg" alt="" />
-								     De CSS zet hem automatisch in zwart-wit en kleurt hem bij hover. -->
-								<span class="merk-mark" aria-hidden="true">H</span>
-								<span>Hostinger</span>
+							<li class="merk">
+								<img src="/assets/logos/wordpress_logo.svg" alt="WordPress"
+									loading="lazy" decoding="async" />
+							</li>
+							<li class="merk">
+								<img src="/assets/logos/Hostinger_logo.svg" alt="Hostinger"
+									loading="lazy" decoding="async" />
 							</li>
 						</ul>
 						<ul class="merken-spoor" aria-hidden="true">
-							<li class="merk" style="--merk-kleur: #d97757">
-								<!-- Echte logo hier: <img src="/assets/logo-anthropic.svg" alt="" />
-								     De CSS zet hem automatisch in zwart-wit en kleurt hem bij hover. -->
-								<span class="merk-mark" aria-hidden="true">A</span>
-								<span>Anthropic</span>
+							<li class="merk">
+								<img src="/assets/logos/Anthropic_logo.svg" alt="Anthropic"
+									loading="lazy" decoding="async" />
 							</li>
-							<li class="merk" style="--merk-kleur: #000000">
-								<!-- Echte logo hier: <img src="/assets/logo-openai.svg" alt="" />
-								     De CSS zet hem automatisch in zwart-wit en kleurt hem bij hover. -->
-								<span class="merk-mark" aria-hidden="true">O</span>
-								<span>OpenAI</span>
+							<li class="merk">
+								<img src="/assets/logos/OpenAI_logo.svg" alt="OpenAI"
+									loading="lazy" decoding="async" />
 							</li>
-							<li class="merk" style="--merk-kleur: #4285f4">
-								<!-- Echte logo hier: <img src="/assets/logo-google.svg" alt="" />
-								     De CSS zet hem automatisch in zwart-wit en kleurt hem bij hover. -->
-								<span class="merk-mark" aria-hidden="true">G</span>
-								<span>Google</span>
+							<li class="merk">
+								<img src="/assets/logos/google_logo.svg" alt="Google"
+									loading="lazy" decoding="async" />
 							</li>
-							<li class="merk" style="--merk-kleur: #0866ff">
-								<!-- Echte logo hier: <img src="/assets/logo-meta.svg" alt="" />
-								     De CSS zet hem automatisch in zwart-wit en kleurt hem bij hover. -->
-								<span class="merk-mark" aria-hidden="true">M</span>
-								<span>Meta</span>
+							<li class="merk">
+								<img src="/assets/logos/Meta_logo.svg" alt="Meta"
+									loading="lazy" decoding="async" />
 							</li>
-							<li class="merk" style="--merk-kleur: #673de6">
-								<!-- Echte logo hier: <img src="/assets/logo-hostinger.svg" alt="" />
-								     De CSS zet hem automatisch in zwart-wit en kleurt hem bij hover. -->
-								<span class="merk-mark" aria-hidden="true">H</span>
-								<span>Hostinger</span>
+							<li class="merk">
+								<img src="/assets/logos/wordpress_logo.svg" alt="WordPress"
+									loading="lazy" decoding="async" />
+							</li>
+							<li class="merk">
+								<img src="/assets/logos/Hostinger_logo.svg" alt="Hostinger"
+									loading="lazy" decoding="async" />
 							</li>
 						</ul>
 					</div>
