@@ -661,15 +661,15 @@
 			.concept-actions { margin-top: 1.9rem; display: grid; gap: 0.75rem; }
 			.concept-note { margin-top: 1rem; font-size: 0.88rem; color: var(--muted); }
 
-			/* Hostinger-partnerbadge: donkere variant, licht paars op bij hover.
-			   Beide kleuren komen uit de officiële badge-set van Hostinger. */
-			.partner { display: inline-flex; margin-top: 1.35rem; transition: transform 0.22s ease, filter 0.22s ease; }
-			.partner-badge { height: 44px; width: auto; }
-			.partner-badge .badge-bg { fill: #18181a; transition: fill 0.28s ease; }
-			.partner:hover, .partner-groot:hover { transform: translateY(-2px); }
-			.partner:hover .badge-bg, .partner-groot:hover .badge-bg { fill: #673de6; }
-			.partner:hover, .partner-groot:hover { filter: drop-shadow(0 8px 22px rgba(103, 61, 230, 0.35)); }
-			.partner:focus-visible .badge-bg, .partner-groot:focus-visible .badge-bg { fill: #673de6; }
+			/* Hostinger-partnerbadge: kaal, zonder kader. Bij hover licht de
+			   achtergrond een tikje op, verder gebeurt er niets. */
+			.partner { display: inline-flex; margin-top: 1.35rem; }
+			.partner-badge { height: 44px; width: auto; opacity: 0.92; transition: opacity 0.25s ease; }
+			.partner-badge .badge-bg { fill: #18181a; transition: fill 0.25s ease; }
+			.partner:hover .partner-badge, .partner:focus-visible .partner-badge,
+			.partner-groot:hover .partner-badge, .partner-groot:focus-visible .partner-badge { opacity: 1; }
+			.partner:hover .badge-bg, .partner:focus-visible .badge-bg,
+			.partner-groot:hover .badge-bg, .partner-groot:focus-visible .badge-bg { fill: #2c2c33; }
 
 			/* ---------- Waarmee wij werken ---------- */
 			.merken { padding-block: clamp(2.5rem, 6vw, 4rem); text-align: center; }
@@ -742,17 +742,7 @@
 				width: clamp(30px, 12vw, 110px);
 				background: var(--line-strong);
 			}
-			.partner-groot {
-				display: inline-flex;
-				margin-top: 1.1rem;
-				padding: 0.85rem 1.4rem;
-				border: 1px solid var(--line);
-				border-radius: var(--radius);
-				background: var(--surface);
-				box-shadow: var(--shadow-card);
-				transition: transform 0.2s ease, border-color 0.2s ease;
-			}
-			.partner-groot:hover { transform: translateY(-2px); border-color: var(--accent-line); }
+			.partner-groot { display: inline-flex; margin-top: 1.1rem; }
 			.partner-groot .partner-badge { height: 52px; width: auto; }
 
 			@media (prefers-reduced-motion: reduce) {
