@@ -1052,16 +1052,6 @@
 			.m-kop .m-label b { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
 			.m-plan { position: relative; display: flex; flex-direction: column; justify-content: flex-end; }
 			.m-plan .naam { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; color: var(--fg); }
-			.m-plan .merk {
-				font-size: 0.62rem;
-				font-weight: 800;
-				letter-spacing: 0.1em;
-				text-transform: uppercase;
-				color: var(--accent-text);
-				background: var(--accent-tint);
-				border-radius: 999px;
-				padding: 0.15rem 0.5rem;
-			}
 			.m-plan .bedrag { display: block; margin-top: 0.2rem; font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em; color: var(--fg); line-height: 1.15; }
 
 			.m-groeprij { border-bottom: 1px solid var(--line); }
@@ -1087,14 +1077,14 @@
 			.vw { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 			/* de uitgelichte kolom krijgt een rustige tint in plaats van een zwevende kaart */
-			.m-rij > [data-kol="groei"] {
+			.m-rij > [data-kol="professional"] {
 				position: relative;
 				padding-inline: 0.9rem;
 				margin-inline: -0.9rem;
 				background: var(--accent-tint);
 			}
-			.m-kop > [data-kol="groei"] { border-radius: 12px 12px 0 0; }
-			.matrix > .m-rij:last-child > [data-kol="groei"] { border-radius: 0 0 12px 12px; }
+			.m-kop > [data-kol="professional"] { border-radius: 12px 12px 0 0; }
+			.matrix > .m-rij:last-child > [data-kol="professional"] { border-radius: 0 0 12px 12px; }
 
 			.maatwerk-regel {
 				margin-top: 2.5rem;
@@ -1127,11 +1117,11 @@
 			/* Mobiel: één plan tegelijk in beeld. */
 			@media (max-width: 719px) {
 				.matrix { --kolommen: 1fr auto; }
-				.matrix[data-toon="start"] [data-kol]:not([data-kol="start"]),
-				.matrix[data-toon="groei"] [data-kol]:not([data-kol="groei"]),
+				.matrix[data-toon="starter"] [data-kol]:not([data-kol="starter"]),
+				.matrix[data-toon="professional"] [data-kol]:not([data-kol="professional"]),
 				.matrix[data-toon="premium"] [data-kol]:not([data-kol="premium"]) { display: none; }
 				.m-kop .m-label { display: none; }
-				.m-rij > [data-kol="groei"] { background: none; padding-inline: 0; margin-inline: 0; border-radius: 0; }
+				.m-rij > [data-kol="professional"] { background: none; padding-inline: 0; margin-inline: 0; border-radius: 0; }
 				.m-cel { justify-content: flex-end; text-align: right; }
 			}
 			@media (min-width: 720px) {
@@ -1242,60 +1232,56 @@
 				<div class="wrap">
 					<div class="matrix-kop">
 						<span class="eyebrow">Pakketten</span>
-						<h2>Drie pakketten, prijs vooraf bekend</h2>
+						<h2>Drie pakketten, duidelijk wat je krijgt</h2>
 						<p>
-							Kies het pakket dat bij je plannen past. Alles van Start zit ook in Groei, en alles van Groei
-							zit ook in Premium. Wil je het regel voor regel naast elkaar zien? Dat staat hieronder.
+							Kies het pakket dat bij je plannen past. Alles van Starter zit ook in Professional, en alles
+							van Professional zit ook in Premium. Premium bouwen we volledig op maat: we bespreken eerst
+							je wensen en maken daarna een voorstel met de prijs erbij.
 						</p>
 					</div>
 
 					<div class="tegels">
 						<article class="tegel reveal">
-							<span class="naam">Start</span>
+							<span class="naam">Starter</span>
 							<b class="bedrag">&euro;995</b>
 							<span class="kleine">eenmalig, excl. btw</span>
-							<p class="voor">Voor wie snel professioneel online wil staan.</p>
+							<p class="voor">Voor wie snel en verzorgd online wil staan.</p>
 							<p class="basis">Je krijgt</p>
 							<ul>
-								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>3 pagina&rsquo;s</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>2 pagina&rsquo;s</span></li>
 								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Ontwerp op maat, geen thema</span></li>
-								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Mobiel, tablet en desktop</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Mobielvriendelijk</span></li>
 								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Contactformulier</span></li>
-								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Technische SEO-basis</span></li>
-								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>1 feedbackronde</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Basis SEO</span></li>
 							</ul>
-							<a href="/contact" class="btn btn-outline" data-cta="tarief-start">Plan een kennismaking</a>
+							<a href="/contact" class="btn btn-outline" data-cta="tarief-starter">Plan een kennismaking</a>
 						</article>
 						<article class="tegel reveal is-uit">
-							<span class="naam">Groei <span class="merk">Meest gekozen</span></span>
+							<span class="naam">Professional <span class="merk">Meest gekozen</span></span>
 							<b class="bedrag">&euro;1.495</b>
 							<span class="kleine">eenmalig, excl. btw</span>
 							<p class="voor">Voor ondernemers die klanten willen binnenhalen.</p>
-							<p class="basis">Alles van Start, plus</p>
+							<p class="basis">Alles van Starter, plus</p>
 							<ul>
-								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>7 pagina&rsquo;s in plaats van 3</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>5 pagina&rsquo;s in plaats van 2</span></li>
 								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Conversiegerichte teksten</span></li>
-								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Uitgebreide SEO en snelheid</span></li>
-								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Koppeling met Google Analytics</span></li>
-								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Domein en hosting geregeld</span></li>
-								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Groeisessie vooraf en 2 feedbackrondes</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Strategische paginastructuur</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Uitgebreide SEO-optimalisatie</span></li>
 							</ul>
-							<a href="/contact" class="btn btn-primary" data-cta="tarief-groei">Plan een kennismaking</a>
+							<a href="/contact" class="btn btn-primary" data-cta="tarief-professional">Plan een kennismaking</a>
 						</article>
 						<article class="tegel reveal">
 							<span class="naam">Premium</span>
-							<b class="bedrag">&euro;2.495</b>
-							<span class="kleine">eenmalig, excl. btw</span>
-							<p class="voor">Voor wie maximaal zichtbaar wil zijn.</p>
-							<p class="basis">Alles van Groei, plus</p>
+							<b class="bedrag">In overleg</b>
+							<span class="kleine">prijs na het gesprek over je wensen</span>
+							<p class="voor">Voor wie een website volledig op maat wil.</p>
+							<p class="basis">Alles van Professional, plus</p>
 							<ul>
-								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>12 pagina&rsquo;s in plaats van 7</span></li>
-								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Gepersonaliseerde beelden</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Alles op maat opgebouwd</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Aantal pagina&rsquo;s in overleg</span></li>
 								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Premium SEO en concurrentieanalyse</span></li>
-								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>3 feedbackrondes</span></li>
-								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>3 maanden voorrang bij support</span></li>
 							</ul>
-							<a href="/contact" class="btn btn-outline" data-cta="tarief-premium">Plan een kennismaking</a>
+							<a href="/contact" class="btn btn-outline" data-cta="tarief-premium">Bespreek je wensen</a>
 						</article>
 					</div>
 				</div>
@@ -1312,136 +1298,95 @@
 						</p>
 					</div>
 
-					<div class="matrix" id="matrix" data-toon="groei">
+					<div class="matrix" id="matrix" data-toon="professional">
 						<div class="m-kies" role="group" aria-label="Kies een pakket">
-							<button type="button" data-plan="start" aria-pressed="false">Start</button>
-							<button type="button" data-plan="groei" aria-pressed="true">Groei</button>
+							<button type="button" data-plan="starter" aria-pressed="false">Starter</button>
+							<button type="button" data-plan="professional" aria-pressed="true">Professional</button>
 							<button type="button" data-plan="premium" aria-pressed="false">Premium</button>
 						</div>
 
 						<div class="m-rij m-kop">
 							<div class="m-label"><b>Vergelijk de pakketten</b></div>
-							<div class="m-plan" data-kol="start">
-								<span class="naam">Start</span>
+							<div class="m-plan" data-kol="starter">
+								<span class="naam">Starter</span>
 								<b class="bedrag">&euro;995</b>
 							</div>
-							<div class="m-plan" data-kol="groei">
-								<span class="naam">Groei <span class="merk">Meest gekozen</span></span>
+							<div class="m-plan" data-kol="professional">
+								<span class="naam">Professional</span>
 								<b class="bedrag">&euro;1.495</b>
 							</div>
 							<div class="m-plan" data-kol="premium">
 								<span class="naam">Premium</span>
-								<b class="bedrag">&euro;2.495</b>
+								<b class="bedrag">In overleg</b>
 							</div>
 						</div>
 
 						<div class="m-rij m-groeprij">
 							<p class="m-groep">Ontwerp en inhoud</p>
-							<div data-kol="start"></div>
-							<div data-kol="groei"></div>
+							<div data-kol="starter"></div>
+							<div data-kol="professional"></div>
 							<div data-kol="premium"></div>
 						</div>
 						<div class="m-rij m-lijn">
 							<div class="m-label"><b>Ontwerp op maat</b><span>Geen bestaand thema, maar een ontwerp voor jouw bedrijf.</span></div>
-							<div class="m-cel" data-kol="start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
-							<div class="m-cel" data-kol="groei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
-							<div class="m-cel" data-kol="premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
+							<div class="m-cel" data-kol="starter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
+							<div class="m-cel" data-kol="professional"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
+							<div class="m-cel" data-kol="premium">Alles op maat</div>
 						</div>
 						<div class="m-rij m-lijn">
 							<div class="m-label"><b>Aantal pagina&rsquo;s</b><span>Bijvoorbeeld home, diensten, over ons en contact.</span></div>
-							<div class="m-cel" data-kol="start">3</div>
-							<div class="m-cel" data-kol="groei">7</div>
-							<div class="m-cel" data-kol="premium">12</div>
+							<div class="m-cel" data-kol="starter">2</div>
+							<div class="m-cel" data-kol="professional">5</div>
+							<div class="m-cel" data-kol="premium">In overleg</div>
 						</div>
 						<div class="m-rij m-lijn">
-							<div class="m-label"><b>Conversiegerichte teksten</b><span>Opbouw die bezoekers naar contact of bestelling leidt.</span></div>
-							<div class="m-cel leeg" data-kol="start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vw">Niet inbegrepen</span></div>
-							<div class="m-cel" data-kol="groei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
+							<div class="m-label"><b>Strategische paginastructuur</b><span>De opbouw van je site afgestemd op wat bezoekers zoeken.</span></div>
+							<div class="m-cel leeg" data-kol="starter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vw">Niet inbegrepen</span></div>
+							<div class="m-cel" data-kol="professional"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
 							<div class="m-cel" data-kol="premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
 						</div>
 						<div class="m-rij m-lijn">
-							<div class="m-label"><b>Gepersonaliseerde beelden</b><span>Beeldmateriaal afgestemd op jouw bedrijf.</span></div>
-							<div class="m-cel leeg" data-kol="start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vw">Niet inbegrepen</span></div>
-							<div class="m-cel leeg" data-kol="groei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vw">Niet inbegrepen</span></div>
-							<div class="m-cel" data-kol="premium">Op aanvraag</div>
+							<div class="m-label"><b>Conversiegerichte teksten</b><span>Opbouw die bezoekers naar contact of bestelling leidt.</span></div>
+							<div class="m-cel leeg" data-kol="starter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vw">Niet inbegrepen</span></div>
+							<div class="m-cel" data-kol="professional"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
+							<div class="m-cel" data-kol="premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
 						</div>
+
 						<div class="m-rij m-groeprij">
 							<p class="m-groep">Techniek en vindbaarheid</p>
-							<div data-kol="start"></div>
-							<div data-kol="groei"></div>
+							<div data-kol="starter"></div>
+							<div data-kol="professional"></div>
 							<div data-kol="premium"></div>
 						</div>
 						<div class="m-rij m-lijn">
-							<div class="m-label"><b>Mobiel, tablet en desktop</b><span>Voor livegang op elk schermformaat gecontroleerd.</span></div>
-							<div class="m-cel" data-kol="start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
-							<div class="m-cel" data-kol="groei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
+							<div class="m-label"><b>Mobielvriendelijk</b><span>Goed leesbaar en bedienbaar op telefoon, tablet en desktop.</span></div>
+							<div class="m-cel" data-kol="starter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
+							<div class="m-cel" data-kol="professional"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
 							<div class="m-cel" data-kol="premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
 						</div>
 						<div class="m-rij m-lijn">
 							<div class="m-label"><b>Contactformulier</b><span>Aanvragen komen direct in je mailbox binnen.</span></div>
-							<div class="m-cel" data-kol="start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
-							<div class="m-cel" data-kol="groei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
+							<div class="m-cel" data-kol="starter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
+							<div class="m-cel" data-kol="professional"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
 							<div class="m-cel" data-kol="premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
 						</div>
 						<div class="m-rij m-lijn">
-							<div class="m-label"><b>Technische SEO-basis</b><span>Titels, structuur en sitemap, zodat Google je site kan lezen.</span></div>
-							<div class="m-cel" data-kol="start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
-							<div class="m-cel" data-kol="groei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
+							<div class="m-label"><b>Basis SEO</b><span>Titels, structuur en sitemap, zodat Google je site kan lezen.</span></div>
+							<div class="m-cel" data-kol="starter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
+							<div class="m-cel" data-kol="professional"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
 							<div class="m-cel" data-kol="premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
 						</div>
 						<div class="m-rij m-lijn">
-							<div class="m-label"><b>Uitgebreide SEO en snelheid</b><span>Zoekwoorden en laadtijd verder aangescherpt.</span></div>
-							<div class="m-cel leeg" data-kol="start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vw">Niet inbegrepen</span></div>
-							<div class="m-cel" data-kol="groei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
+							<div class="m-label"><b>Uitgebreide SEO-optimalisatie</b><span>Zoekwoorden, teksten en laadtijd verder aangescherpt.</span></div>
+							<div class="m-cel leeg" data-kol="starter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vw">Niet inbegrepen</span></div>
+							<div class="m-cel" data-kol="professional"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
 							<div class="m-cel" data-kol="premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
 						</div>
 						<div class="m-rij m-lijn">
 							<div class="m-label"><b>Premium SEO en concurrentieanalyse</b><span>We kijken ook naar wat je concurrenten doen.</span></div>
-							<div class="m-cel leeg" data-kol="start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vw">Niet inbegrepen</span></div>
-							<div class="m-cel leeg" data-kol="groei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vw">Niet inbegrepen</span></div>
+							<div class="m-cel leeg" data-kol="starter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vw">Niet inbegrepen</span></div>
+							<div class="m-cel leeg" data-kol="professional"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vw">Niet inbegrepen</span></div>
 							<div class="m-cel" data-kol="premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
-						</div>
-						<div class="m-rij m-lijn">
-							<div class="m-label"><b>Koppeling met Google Analytics</b><span>Zien welke pagina&rsquo;s werken en waar bezoekers afhaken.</span></div>
-							<div class="m-cel leeg" data-kol="start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vw">Niet inbegrepen</span></div>
-							<div class="m-cel" data-kol="groei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
-							<div class="m-cel" data-kol="premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
-						</div>
-						<div class="m-rij m-lijn">
-							<div class="m-label"><b>Domein en hosting geregeld</b><span>Wij zetten alles klaar, jij hoeft niets over te zetten.</span></div>
-							<div class="m-cel leeg" data-kol="start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vw">Niet inbegrepen</span></div>
-							<div class="m-cel" data-kol="groei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
-							<div class="m-cel" data-kol="premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
-						</div>
-						<div class="m-rij m-groeprij">
-							<p class="m-groep">Samenwerking</p>
-							<div data-kol="start"></div>
-							<div data-kol="groei"></div>
-							<div data-kol="premium"></div>
-						</div>
-						<div class="m-rij m-lijn">
-							<div class="m-label"><b>Kennismakingsgesprek</b><span>Vrijblijvend, voordat er iets vastligt.</span></div>
-							<div class="m-cel" data-kol="start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
-							<div class="m-cel" data-kol="groei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
-							<div class="m-cel" data-kol="premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
-						</div>
-						<div class="m-rij m-lijn">
-							<div class="m-label"><b>Groeisessie vooraf</b><span>Uitgebreid doornemen waar je over een jaar wilt staan.</span></div>
-							<div class="m-cel leeg" data-kol="start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vw">Niet inbegrepen</span></div>
-							<div class="m-cel leeg" data-kol="groei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vw">Niet inbegrepen</span></div>
-							<div class="m-cel" data-kol="premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="vw">Inbegrepen</span></div>
-						</div>
-						<div class="m-rij m-lijn">
-							<div class="m-label"><b>Feedbackrondes</b><span>Momenten waarop jij aanpassingen doorgeeft.</span></div>
-							<div class="m-cel" data-kol="start">1</div>
-							<div class="m-cel" data-kol="groei">2</div>
-							<div class="m-cel" data-kol="premium">3</div>
-						</div>
-						<div class="m-rij m-lijn">
-							<div class="m-label"><b>Prioriteit bij support</b><span>Jouw vraag gaat voor in de wachtrij.</span></div>
-							<div class="m-cel leeg" data-kol="start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vw">Niet inbegrepen</span></div>
-							<div class="m-cel leeg" data-kol="groei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vw">Niet inbegrepen</span></div>
-							<div class="m-cel" data-kol="premium">3 maanden</div>
 						</div>
 					</div>
 
@@ -1453,8 +1398,9 @@
 						<a href="/diensten/web-design-development" class="btn btn-outline">Meer over maatwerk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 					</div>
 					<p class="tar-noot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5v.5"/></svg>
-						<span>Alle bedragen zijn eenmalig en exclusief btw. Hosting en onderhoud lopen apart door,
-						zodat je site ook na livegang veilig en up-to-date blijft.</span>
+						<span>De bedragen van Starter en Professional zijn eenmalig en exclusief btw. Voor Premium
+						bepalen we de prijs nadat we je wensen hebben doorgenomen. Hosting en onderhoud lopen apart
+						door, zodat je site ook na livegang veilig en up-to-date blijft.</span>
 					</p>
 				</div>
 			</section>
@@ -1629,8 +1575,8 @@
    "itemListElement": [
     {
      "@type": "Offer",
-     "name": "Start",
-     "description": "Professionele website van 3 pagina’s met eigen ontwerp, mobiel geoptimaliseerd, contactformulier en technische SEO-basis.",
+     "name": "Starter",
+     "description": "Website van 2 pagina’s met een ontwerp op maat, mobielvriendelijk, contactformulier en basis SEO.",
      "price": "995",
      "priceCurrency": "EUR",
      "valueAddedTaxIncluded": false,
@@ -1638,7 +1584,7 @@
      "url": "https://dh-studio.nl/tarieven",
      "itemOffered": {
       "@type": "Service",
-      "name": "Website laten maken – pakket Start",
+      "name": "Website laten maken – pakket Starter",
       "serviceType": "Webdesign en webdevelopment",
       "provider": {
        "@id": "https://dh-studio.nl/#bureau"
@@ -1651,8 +1597,8 @@
     },
     {
      "@type": "Offer",
-     "name": "Groei",
-     "description": "Website van 7 pagina’s met conversiegerichte teksten, uitgebreide SEO en snelheid, Google Analytics en een groeisessie vooraf.",
+     "name": "Professional",
+     "description": "Alles van Starter, plus 5 pagina’s, conversiegerichte teksten, een strategische paginastructuur en uitgebreide SEO-optimalisatie.",
      "price": "1495",
      "priceCurrency": "EUR",
      "valueAddedTaxIncluded": false,
@@ -1660,7 +1606,7 @@
      "url": "https://dh-studio.nl/tarieven",
      "itemOffered": {
       "@type": "Service",
-      "name": "Website laten maken – pakket Groei",
+      "name": "Website laten maken – pakket Professional",
       "serviceType": "Webdesign en webdevelopment",
       "provider": {
        "@id": "https://dh-studio.nl/#bureau"
@@ -1674,10 +1620,8 @@
     {
      "@type": "Offer",
      "name": "Premium",
-     "description": "Website van 12 pagina’s met gepersonaliseerde beelden, premium SEO en concurrentieanalyse, en voorrang bij support.",
-     "price": "2495",
+     "description": "Alles van Professional, volledig op maat opgebouwd, met het aantal pagina’s in overleg en premium SEO met concurrentieanalyse. De prijs bepalen we na een gesprek over je wensen.",
      "priceCurrency": "EUR",
-     "valueAddedTaxIncluded": false,
      "availability": "https://schema.org/InStock",
      "url": "https://dh-studio.nl/tarieven",
      "itemOffered": {
