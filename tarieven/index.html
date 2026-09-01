@@ -959,6 +959,11 @@
 			.vanaf b { font-size: 1.35rem; letter-spacing: -0.02em; color: var(--fg); text-transform: none; }
 
 			/* ---------- Prijsmatrix ---------- */
+			.matrix-kop { margin-bottom: clamp(1.5rem, 3vw, 2.25rem); }
+			.matrix-kop .eyebrow { justify-content: flex-start; }
+			.matrix-kop .eyebrow::before { display: none; }
+			.matrix-kop h2 { margin-top: 0.9rem; max-width: 20ch; }
+			.matrix-kop p { margin-top: 0.9rem; max-width: 56ch; }
 			.matrix { --kolommen: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr)); }
 			.m-kies { display: flex; gap: 0.4rem; margin-bottom: 1.25rem; }
 			.m-kies button {
@@ -977,15 +982,38 @@
 			}
 			.m-kies button[aria-pressed="true"] { background: var(--fg); border-color: var(--fg); color: #fff; }
 
+			.m-wacht { height: 1px; }
 			.m-rij { display: grid; grid-template-columns: var(--kolommen); align-items: stretch; gap: 0 1rem; }
 			.m-kop {
 				position: sticky;
-				top: var(--header-h, 64px);
+				top: calc(var(--header-h, 64px) + 1rem);
 				z-index: 5;
 				background: var(--bg);
 				border-bottom: 2px solid var(--fg);
 			}
+			/* dekt het strookje tussen de sitekop en de plakkende kop af,
+			   zodat er geen regels doorheen schemeren */
+			.m-kop::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 100%;
+				height: 1.5rem;
+				background: var(--bg);
+			}
 			.m-kop > * { padding-block: 1.1rem; }
+			.m-kop .m-label { align-self: end; }
+			/* Zodra de kop vastplakt wordt hij compacter, zodat er zo veel mogelijk
+			   regels naast blijven staan om te vergelijken. */
+			.matrix[data-vast="true"] .m-kop > * { padding-block: 0.7rem; }
+			.matrix[data-vast="true"] .m-kop .m-label span,
+			.matrix[data-vast="true"] .m-plan .kleine,
+			.matrix[data-vast="true"] .m-plan .voor { display: none; }
+			.matrix[data-vast="true"] .m-plan .bedrag { margin-top: 0.1rem; font-size: 1.35rem; }
+			.matrix[data-vast="true"] .m-plan .btn { margin-top: 0.6rem; min-height: 38px; font-size: 0.82rem; }
+			.m-kop .m-label b { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+			.m-kop .m-label span { margin-top: 0.4rem; font-size: 0.85rem; color: var(--muted); }
 			.m-plan { position: relative; display: flex; flex-direction: column; justify-content: flex-end; }
 			.m-plan .naam { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; color: var(--fg); }
 			.m-plan .merk {
@@ -1180,6 +1208,15 @@
 
 			<section class="section">
 				<div class="wrap">
+					<div class="matrix-kop">
+						<span class="eyebrow">Pakketten</span>
+						<h2>Wat krijg je per pakket?</h2>
+						<p>
+							Alles uit Start zit ook in Groei, en alles uit Groei zit ook in Premium. Scroll gerust door de
+							regels: de pakketten en prijzen blijven bovenin staan, zodat je altijd ziet waar je naar kijkt.
+						</p>
+					</div>
+
 					<div class="matrix" id="matrix" data-toon="groei">
 						<div class="m-kies" role="group" aria-label="Kies een pakket">
 							<button type="button" data-plan="start" aria-pressed="false">Start</button>
@@ -1187,8 +1224,9 @@
 							<button type="button" data-plan="premium" aria-pressed="false">Premium</button>
 						</div>
 
+						<div class="m-wacht" aria-hidden="true"></div>
 						<div class="m-rij m-kop">
-							<div class="m-label"></div>
+							<div class="m-label"><b>Vergelijk de pakketten</b><span>Elk pakket bevat alles van het pakket ervoor.</span></div>
 							<div class="m-plan" data-kol="start">
 								<span class="naam">Start</span>
 								<b class="bedrag">&euro;995</b>
@@ -1821,6 +1859,28 @@
 						b.setAttribute("aria-pressed", b === knop ? "true" : "false");
 					});
 				});
+
+				// De kop plakt bovenaan; zodra dat gebeurt maken we hem compacter.
+				// Bewust meten op scroll in plaats van met een IntersectionObserver:
+				// bij een sprong (ankerlink of snelle veeg) schiet het punt in één frame
+				// voorbij en meldt een observer dat niet.
+				var wacht = matrix.querySelector(".m-wacht");
+				if (wacht) {
+					var gepland = false;
+					var meet = function () {
+						gepland = false;
+						var grens = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--header-h"), 10) || 64;
+						matrix.dataset.vast = wacht.getBoundingClientRect().top < grens + 18 ? "true" : "false";
+					};
+					var plan = function () {
+						if (gepland) return;
+						gepland = true;
+						requestAnimationFrame(meet);
+					};
+					meet();
+					window.addEventListener("scroll", plan, { passive: true });
+					window.addEventListener("resize", plan);
+				}
 			})();
 		</script>
 	</body>
