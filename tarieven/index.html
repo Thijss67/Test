@@ -958,6 +958,52 @@
 			}
 			.vanaf b { font-size: 1.35rem; letter-spacing: -0.02em; color: var(--fg); text-transform: none; }
 
+			/* ---------- Pakkettegels ---------- */
+			#pakketten { padding-bottom: clamp(2.25rem, 5vw, 4rem); }
+			#vergelijken { padding-top: clamp(2.25rem, 5vw, 4rem); }
+			.tegels { display: grid; gap: 1rem; }
+			.tegel {
+				display: flex;
+				flex-direction: column;
+				padding: 1.6rem 1.45rem;
+				border: 1px solid var(--line);
+				border-radius: var(--radius);
+				background: var(--surface);
+			}
+			.tegel.is-uit { background: var(--accent-tint); border-color: var(--accent-line); }
+			.tegel .naam { display: flex; align-items: center; gap: 0.55rem; font-weight: 700; color: var(--fg); }
+			.tegel .merk {
+				font-size: 0.62rem;
+				font-weight: 800;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: var(--accent-text);
+				border: 1px solid var(--accent-line);
+				border-radius: 999px;
+				padding: 0.15rem 0.5rem;
+			}
+			.tegel .bedrag { display: block; margin-top: 0.6rem; font-size: clamp(1.9rem, 3vw, 2.3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; color: var(--fg); }
+			.tegel .kleine { display: block; margin-top: 0.2rem; font-size: 0.8rem; color: var(--muted); }
+			.tegel .voor { margin-top: 0.9rem; font-size: 0.94rem; }
+			.tegel .basis {
+				margin-top: 1.3rem;
+				padding-top: 1.15rem;
+				border-top: 1px solid var(--line);
+				font-size: 0.72rem;
+				font-weight: 800;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--muted);
+			}
+			.tegel.is-uit .basis { border-top-color: var(--accent-line); }
+			.tegel ul { margin-top: 0.85rem; margin-bottom: 1.4rem; display: grid; gap: 0.6rem; }
+			.tegel li { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; font-size: 0.93rem; }
+			.tegel li svg { width: 17px; height: 17px; margin-top: 0.16rem; color: var(--accent); }
+			.tegel .btn { margin-top: auto; width: 100%; }
+			@media (min-width: 860px) {
+				.tegels { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.15rem; }
+			}
+
 			/* ---------- Prijsmatrix ---------- */
 			.matrix-kop { margin-bottom: clamp(1.5rem, 3vw, 2.25rem); }
 			.matrix-kop .eyebrow { justify-content: flex-start; }
@@ -982,7 +1028,6 @@
 			}
 			.m-kies button[aria-pressed="true"] { background: var(--fg); border-color: var(--fg); color: #fff; }
 
-			.m-wacht { height: 1px; }
 			.m-rij { display: grid; grid-template-columns: var(--kolommen); align-items: stretch; gap: 0 1rem; }
 			.m-kop {
 				position: sticky;
@@ -1004,16 +1049,7 @@
 			}
 			.m-kop > * { padding-block: 1.1rem; }
 			.m-kop .m-label { align-self: end; }
-			/* Zodra de kop vastplakt wordt hij compacter, zodat er zo veel mogelijk
-			   regels naast blijven staan om te vergelijken. */
-			.matrix[data-vast="true"] .m-kop > * { padding-block: 0.7rem; }
-			.matrix[data-vast="true"] .m-kop .m-label span,
-			.matrix[data-vast="true"] .m-plan .kleine,
-			.matrix[data-vast="true"] .m-plan .voor { display: none; }
-			.matrix[data-vast="true"] .m-plan .bedrag { margin-top: 0.1rem; font-size: 1.35rem; }
-			.matrix[data-vast="true"] .m-plan .btn { margin-top: 0.6rem; min-height: 38px; font-size: 0.82rem; }
 			.m-kop .m-label b { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
-			.m-kop .m-label span { margin-top: 0.4rem; font-size: 0.85rem; color: var(--muted); }
 			.m-plan { position: relative; display: flex; flex-direction: column; justify-content: flex-end; }
 			.m-plan .naam { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; color: var(--fg); }
 			.m-plan .merk {
@@ -1026,10 +1062,7 @@
 				border-radius: 999px;
 				padding: 0.15rem 0.5rem;
 			}
-			.m-plan .bedrag { display: block; margin-top: 0.35rem; font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 800; letter-spacing: -0.03em; color: var(--fg); line-height: 1.1; }
-			.m-plan .kleine { display: block; font-size: 0.78rem; color: var(--muted); }
-			.m-plan .btn { margin-top: 0.9rem; width: 100%; min-height: 44px; font-size: 0.87rem; padding-inline: 0.9rem; }
-			.m-plan .voor { display: block; margin-top: 0.5rem; font-size: 0.85rem; color: var(--body); }
+			.m-plan .bedrag { display: block; margin-top: 0.2rem; font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em; color: var(--fg); line-height: 1.15; }
 
 			.m-groeprij { border-bottom: 1px solid var(--line); }
 			.m-groeprij > * { padding-top: 2.1rem; }
@@ -1097,7 +1130,6 @@
 				.matrix[data-toon="start"] [data-kol]:not([data-kol="start"]),
 				.matrix[data-toon="groei"] [data-kol]:not([data-kol="groei"]),
 				.matrix[data-toon="premium"] [data-kol]:not([data-kol="premium"]) { display: none; }
-				.m-plan { justify-content: flex-start; }
 				.m-kop .m-label { display: none; }
 				.m-rij > [data-kol="groei"] { background: none; padding-inline: 0; margin-inline: 0; border-radius: 0; }
 				.m-cel { justify-content: flex-end; text-align: right; }
@@ -1206,14 +1238,77 @@
 				</div>
 			</section>
 
-			<section class="section">
+			<section class="section" id="pakketten">
 				<div class="wrap">
 					<div class="matrix-kop">
 						<span class="eyebrow">Pakketten</span>
-						<h2>Wat krijg je per pakket?</h2>
+						<h2>Drie pakketten, prijs vooraf bekend</h2>
 						<p>
-							Alles uit Start zit ook in Groei, en alles uit Groei zit ook in Premium. Scroll gerust door de
-							regels: de pakketten en prijzen blijven bovenin staan, zodat je altijd ziet waar je naar kijkt.
+							Kies het pakket dat bij je plannen past. Alles van Start zit ook in Groei, en alles van Groei
+							zit ook in Premium. Wil je het regel voor regel naast elkaar zien? Dat staat hieronder.
+						</p>
+					</div>
+
+					<div class="tegels">
+						<article class="tegel reveal">
+							<span class="naam">Start</span>
+							<b class="bedrag">&euro;995</b>
+							<span class="kleine">eenmalig, excl. btw</span>
+							<p class="voor">Voor wie snel professioneel online wil staan.</p>
+							<p class="basis">Je krijgt</p>
+							<ul>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>3 pagina&rsquo;s</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Ontwerp op maat, geen thema</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Mobiel, tablet en desktop</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Contactformulier</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Technische SEO-basis</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>1 feedbackronde</span></li>
+							</ul>
+							<a href="/contact" class="btn btn-outline" data-cta="tarief-start">Plan een kennismaking</a>
+						</article>
+						<article class="tegel reveal is-uit">
+							<span class="naam">Groei <span class="merk">Meest gekozen</span></span>
+							<b class="bedrag">&euro;1.495</b>
+							<span class="kleine">eenmalig, excl. btw</span>
+							<p class="voor">Voor ondernemers die klanten willen binnenhalen.</p>
+							<p class="basis">Alles van Start, plus</p>
+							<ul>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>7 pagina&rsquo;s in plaats van 3</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Conversiegerichte teksten</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Uitgebreide SEO en snelheid</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Koppeling met Google Analytics</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Domein en hosting geregeld</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Groeisessie vooraf en 2 feedbackrondes</span></li>
+							</ul>
+							<a href="/contact" class="btn btn-primary" data-cta="tarief-groei">Plan een kennismaking</a>
+						</article>
+						<article class="tegel reveal">
+							<span class="naam">Premium</span>
+							<b class="bedrag">&euro;2.495</b>
+							<span class="kleine">eenmalig, excl. btw</span>
+							<p class="voor">Voor wie maximaal zichtbaar wil zijn.</p>
+							<p class="basis">Alles van Groei, plus</p>
+							<ul>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>12 pagina&rsquo;s in plaats van 7</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Gepersonaliseerde beelden</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Premium SEO en concurrentieanalyse</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>3 feedbackrondes</span></li>
+								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>3 maanden voorrang bij support</span></li>
+							</ul>
+							<a href="/contact" class="btn btn-outline" data-cta="tarief-premium">Plan een kennismaking</a>
+						</article>
+					</div>
+				</div>
+			</section>
+
+			<section class="section" id="vergelijken">
+				<div class="wrap">
+					<div class="matrix-kop">
+						<span class="eyebrow">Vergelijken</span>
+						<h2>Regel voor regel naast elkaar</h2>
+						<p>
+							Hieronder staat in gewone taal wat er in elk pakket zit. De pakketnamen blijven bovenin
+							staan terwijl je scrollt, zodat je altijd ziet naar welke kolom je kijkt.
 						</p>
 					</div>
 
@@ -1224,29 +1319,19 @@
 							<button type="button" data-plan="premium" aria-pressed="false">Premium</button>
 						</div>
 
-						<div class="m-wacht" aria-hidden="true"></div>
 						<div class="m-rij m-kop">
-							<div class="m-label"><b>Vergelijk de pakketten</b><span>Elk pakket bevat alles van het pakket ervoor.</span></div>
+							<div class="m-label"><b>Vergelijk de pakketten</b></div>
 							<div class="m-plan" data-kol="start">
 								<span class="naam">Start</span>
 								<b class="bedrag">&euro;995</b>
-								<span class="kleine">eenmalig, excl. btw</span>
-								<span class="voor">Voor wie snel professioneel online wil staan.</span>
-								<a href="/contact" class="btn btn-outline" data-cta="tarief-start">Plan een kennismaking</a>
 							</div>
 							<div class="m-plan" data-kol="groei">
 								<span class="naam">Groei <span class="merk">Meest gekozen</span></span>
 								<b class="bedrag">&euro;1.495</b>
-								<span class="kleine">eenmalig, excl. btw</span>
-								<span class="voor">Voor ondernemers die klanten willen binnenhalen.</span>
-								<a href="/contact" class="btn btn-primary" data-cta="tarief-groei">Plan een kennismaking</a>
 							</div>
 							<div class="m-plan" data-kol="premium">
 								<span class="naam">Premium</span>
 								<b class="bedrag">&euro;2.495</b>
-								<span class="kleine">eenmalig, excl. btw</span>
-								<span class="voor">Voor wie maximaal zichtbaar wil zijn.</span>
-								<a href="/contact" class="btn btn-outline" data-cta="tarief-premium">Plan een kennismaking</a>
 							</div>
 						</div>
 
@@ -1860,27 +1945,6 @@
 					});
 				});
 
-				// De kop plakt bovenaan; zodra dat gebeurt maken we hem compacter.
-				// Bewust meten op scroll in plaats van met een IntersectionObserver:
-				// bij een sprong (ankerlink of snelle veeg) schiet het punt in één frame
-				// voorbij en meldt een observer dat niet.
-				var wacht = matrix.querySelector(".m-wacht");
-				if (wacht) {
-					var gepland = false;
-					var meet = function () {
-						gepland = false;
-						var grens = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--header-h"), 10) || 64;
-						matrix.dataset.vast = wacht.getBoundingClientRect().top < grens + 18 ? "true" : "false";
-					};
-					var plan = function () {
-						if (gepland) return;
-						gepland = true;
-						requestAnimationFrame(meet);
-					};
-					meet();
-					window.addEventListener("scroll", plan, { passive: true });
-					window.addEventListener("resize", plan);
-				}
 			})();
 		</script>
 	</body>
