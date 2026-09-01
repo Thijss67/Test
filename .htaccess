@@ -1,0 +1,5 @@
+# Eigen 404-pagina van DH Studio.
+# Let op: heb je al een .htaccess op de server staan (bijvoorbeeld met
+# HTTPS-redirects of cachingregels), voeg dan alleen de regel hieronder toe
+# in plaats van dit bestand te overschrijven.
+ErrorDocument 404 /404.html
