@@ -930,55 +930,98 @@
 				.hero h1 .mark path { stroke-dashoffset: 0; }
 			}
 
-			/* ---------- Dienstpagina ---------- */
+			/* ---------- Kruimelpad ---------- */
 			.kruimels { padding-top: 1.25rem; }
 			.kruimels ol { display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem; font-size: 0.85rem; color: var(--muted); }
 			.kruimels a:hover { color: var(--accent-text); }
 			.kruimels svg { width: 14px; height: 14px; opacity: 0.6; }
 			.kruimels [aria-current] { color: var(--fg); font-weight: 600; }
 
-			.dienst-hero { padding-block: clamp(1.75rem, 5vw, 3rem) clamp(2rem, 5vw, 3rem); }
-			.dienst-hero h1 { margin-top: 1rem; max-width: 16ch; }
-			.dienst-hero .lead { margin-top: 1.2rem; max-width: 56ch; font-size: var(--t-lead); }
-			.dienst-hero .btn-rij { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+			/* ---------- SEO-pagina: redactioneel, haarlijnen in plaats van kaarten ---------- */
+			.kop-links { max-width: none; margin-inline: 0; margin-bottom: clamp(1.75rem, 4vw, 2.75rem); text-align: left; }
+			.kop-links .eyebrow { justify-content: flex-start; }
+			.kop-links .eyebrow::before { display: none; }
+			.kop-links h2 { margin-top: 0.9rem; max-width: 18ch; }
+			.kop-links p { margin-top: 0.9rem; max-width: 54ch; }
 
-			.kenmerken { display: grid; gap: 1rem; }
-			.kenmerk {
-				padding: 1.4rem 1.5rem;
-				background: var(--surface);
-				border: 1px solid var(--line);
-				border-radius: var(--radius);
-				transition: border-color 0.22s ease, transform 0.22s ease;
-			}
-			.kenmerk:hover { border-color: var(--accent-line); transform: translateY(-3px); }
-			.kenmerk .icon {
-				display: grid; place-items: center;
-				width: 42px; height: 42px;
-				border-radius: 13px;
-				background: var(--accent-tint);
-				color: var(--accent-text);
-				margin-bottom: 0.9rem;
-			}
-			.kenmerk .icon svg { width: 20px; height: 20px; }
-			.kenmerk h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
-			.kenmerk p { font-size: 0.94rem; }
+			.seo-kop { padding-block: clamp(1.5rem, 4vw, 2.5rem) clamp(2.5rem, 6vw, 4rem); }
+			.seo-kop .eyebrow { justify-content: flex-start; }
+			.seo-kop .eyebrow::before { display: none; }
+			.seo-kop h1 { margin-top: 0.9rem; max-width: 14ch; }
+			.seo-kop .lead { margin-top: 1.2rem; max-width: 46ch; font-size: var(--t-lead); }
+			.seo-kop .btn-rij { margin-top: 1.9rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
-			.gevallen { display: grid; gap: 0.75rem; }
-			.geval {
+			/* het zoekresultaat: geen plaatje, maar de plek waar je terecht wilt komen */
+			.zoek { margin-top: 2.75rem; }
+			.zoek-balk {
+				display: flex;
+				align-items: center;
+				gap: 0.65rem;
+				padding-bottom: 0.7rem;
+				border-bottom: 2px solid var(--fg);
+				color: var(--fg);
+				font-size: 1rem;
+			}
+			.zoek-balk svg { width: 18px; height: 18px; flex: none; color: var(--muted); }
+			.zoek-term { position: relative; white-space: nowrap; overflow: hidden; }
+			.js .zoek-term { width: 0; animation: typen 2.1s steps(26) 0.5s forwards; }
+			@keyframes typen { to { width: 100%; } }
+			.zoek-caret { display: inline-block; width: 1.5px; height: 1.05em; background: var(--accent); vertical-align: -0.15em; animation: knip 1s steps(1) infinite; }
+			@keyframes knip { 50% { opacity: 0; } }
+
+			.treffer { padding-block: 1.15rem; border-bottom: 1px solid var(--line); }
+			.treffer .url { display: block; font-size: 0.78rem; color: var(--muted); }
+			.treffer .titel { display: block; margin-top: 0.15rem; font-size: 1.05rem; font-weight: 700; color: var(--accent-text); }
+			.treffer .uitleg { display: block; margin-top: 0.25rem; font-size: 0.9rem; color: var(--body); }
+			.treffer.flauw { opacity: 0.4; }
+			.treffer.flauw .titel { color: var(--body); }
+			.zoek-noot { margin-top: 0.9rem; font-size: 0.85rem; color: var(--muted); max-width: 42ch; }
+
+			/* genummerde lagen */
+			.lagen { counter-reset: laag; border-top: 1px solid var(--line); }
+			.laag {
+				counter-increment: laag;
 				display: grid;
-				grid-template-columns: auto 1fr;
-				gap: 0.9rem;
-				align-items: start;
-				padding: 1.15rem 1.3rem;
-				border: 1px solid var(--line);
-				border-radius: var(--radius);
-				background: var(--bg-soft);
+				gap: 0.4rem 2rem;
+				padding-block: 1.75rem;
+				border-bottom: 1px solid var(--line);
 			}
-			.geval svg { width: 20px; height: 20px; color: var(--accent); margin-top: 0.2rem; }
-			.geval b { display: block; color: var(--fg); }
-			.geval span { font-size: 0.94rem; }
+			.laag h3 { font-size: clamp(1.12rem, 1.6vw, 1.32rem); letter-spacing: -0.02em; }
+			.laag h3::before {
+				content: counter(laag, decimal-leading-zero);
+				display: block;
+				margin-bottom: 0.35rem;
+				font-size: 0.78rem;
+				font-weight: 800;
+				letter-spacing: 0.14em;
+				color: var(--accent);
+			}
+			.laag p { max-width: 62ch; }
+			.laag .details { margin-top: 0.7rem; font-size: 0.88rem; color: var(--muted); }
 
-			.mini-stappen { counter-reset: stap; display: grid; gap: 0; margin-top: 2rem; }
+			/* wat je merkt, en wat wij eraan doen */
+			.klachten { border-top: 1px solid var(--line); }
+			.klacht { display: grid; gap: 0.5rem 2rem; padding-block: 1.6rem; border-bottom: 1px solid var(--line); }
+			.klacht q {
+				display: block;
+				font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+				font-weight: 700;
+				color: var(--fg);
+				quotes: "\201C" "\201D";
+			}
+			.klacht .antwoord { font-size: 0.98rem; }
+			.klacht .antwoord b { color: var(--fg); }
+
+			/* pakketregel, zonder kader */
+			.pakketregel { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 2px solid var(--fg); display: grid; gap: 1rem; }
+			.pakketregel b { display: block; color: var(--fg); font-size: 1.05rem; }
+			.pakketregel p { margin-top: 0.35rem; max-width: 58ch; font-size: 0.95rem; }
+			.pakketregel a { display: inline-flex; align-items: center; gap: 0.45rem; font-weight: 700; color: var(--accent-text); white-space: nowrap; }
+			.pakketregel a svg { width: 17px; height: 17px; transition: transform 0.2s ease; }
+			.pakketregel a:hover svg { transform: translateX(4px); }
+
+			/* stappen */
+			.mini-stappen { counter-reset: stap; display: grid; gap: 0; }
 			.mini-stap {
 				counter-increment: stap;
 				display: grid;
@@ -998,86 +1041,41 @@
 			.mini-stap b { color: var(--fg); }
 			.mini-stap span { display: block; font-size: 0.94rem; }
 
-			.andere { display: grid; gap: 1rem; }
-			.andere a {
+			/* wat we niet doen */
+			.niet { display: grid; gap: 0; margin-top: 0.5rem; }
+			.niet div { padding-block: 1.15rem; border-bottom: 1px solid var(--line); }
+			.niet div:first-child { border-top: 1px solid var(--line); }
+			.niet b { color: var(--fg); }
+			.niet span { display: block; margin-top: 0.2rem; font-size: 0.94rem; }
+
+			/* verder lezen */
+			.verder { display: grid; border-top: 1px solid var(--line); }
+			.verder a {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
 				gap: 1rem;
-				padding: 1.15rem 1.35rem;
-				border: 1px solid var(--line);
-				border-radius: var(--radius);
-				background: var(--surface);
+				padding-block: 1.15rem;
+				border-bottom: 1px solid var(--line);
 				font-weight: 700;
 				color: var(--fg);
-				transition: border-color 0.2s ease, transform 0.2s ease;
 			}
-			.andere a:hover { border-color: var(--accent); transform: translateY(-2px); }
-			.andere svg { width: 18px; height: 18px; color: var(--accent); transition: transform 0.2s ease; }
-			.andere a:hover svg { transform: translateX(4px); }
+			.verder a:hover { color: var(--accent-text); }
+			.verder svg { width: 18px; height: 18px; color: var(--accent); transition: transform 0.2s ease; }
+			.verder a:hover svg { transform: translateX(4px); }
 
-			/* probleem naast oplossing */
-			.pv { display: grid; gap: 0.75rem; align-items: stretch; margin-bottom: 1rem; }
-			.pv-probleem, .pv-oplossing { padding: 1.35rem 1.5rem; border-radius: var(--radius); border: 1px solid var(--line); }
-			.pv-probleem { background: var(--bg-soft); }
-			.pv-oplossing { background: var(--accent-tint); border-color: var(--accent-line); }
-			.pv-label {
-				display: inline-flex; align-items: center; gap: 0.45rem;
-				font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
-				color: var(--muted);
-			}
-			.pv-oplossing .pv-label { color: var(--accent-text); }
-			.pv-label svg { width: 15px; height: 15px; }
-			.pv h3 { margin: 0.6rem 0 0.45rem; font-size: 1.1rem; }
-			.pv p { font-size: 0.94rem; }
-			.pv-pijl { display: grid; place-items: center; color: var(--accent); }
-			.pv-pijl svg { width: 20px; height: 20px; transform: rotate(90deg); }
+			/* afsluiter */
+			.slot { padding-top: 1.75rem; border-top: 2px solid var(--fg); }
+			.slot h2 { max-width: 18ch; }
+			.slot p { margin-top: 0.9rem; max-width: 54ch; font-size: var(--t-lead); }
+			.slot .btn-rij { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
-			/* uitgelicht maatwerkblok */
-			.maatwerk {
-				margin-top: 1.25rem;
-				padding: clamp(1.5rem, 4vw, 2.25rem);
-				border: 1px solid var(--line-strong);
-				border-radius: var(--radius-lg);
-				background: linear-gradient(155deg, var(--accent-tint), var(--surface) 60%);
-				box-shadow: var(--shadow-card);
-			}
-			.maatwerk .icon {
-				display: grid; place-items: center;
-				width: 46px; height: 46px;
-				border-radius: 14px;
-				background: var(--surface);
-				border: 1px solid var(--line);
-				color: var(--accent);
-			}
-			.maatwerk .icon svg { width: 22px; height: 22px; }
-			.maatwerk h3 { margin: 1.1rem 0 0.5rem; font-size: 1.35rem; }
-			.maatwerk p { max-width: 60ch; }
-			.maatwerk-voet {
-				margin-top: 1.5rem;
-				padding-top: 1.25rem;
-				border-top: 1px solid var(--line);
-				display: flex;
-				flex-wrap: wrap;
-				align-items: center;
-				justify-content: space-between;
-				gap: 1rem;
-			}
-			.maatwerk-voet small { display: block; font-size: 0.78rem; color: var(--muted); }
-			.maatwerk-voet b { font-size: 1.05rem; color: var(--fg); }
-			.maatwerk-voet a { display: inline-flex; align-items: center; gap: 0.45rem; font-weight: 700; color: var(--accent-text); }
-			.maatwerk-voet a svg { width: 17px; height: 17px; transition: transform 0.2s ease; }
-			.maatwerk-voet a:hover svg { transform: translateX(4px); }
-
-			@media (min-width: 640px) {
-				.kenmerken { grid-template-columns: 1fr 1fr; }
-				.andere { grid-template-columns: repeat(3, 1fr); }
-			}
-			@media (min-width: 960px) {
-				.kenmerken { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-				.gevallen { grid-template-columns: 1fr 1fr; gap: 1rem; }
-				.pv { grid-template-columns: 1fr auto 1fr; gap: 1rem; }
-				.pv-pijl svg { transform: none; }
+			@media (min-width: 900px) {
+				.seo-raster { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr); gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+				.zoek { margin-top: 0.5rem; }
+				.laag { grid-template-columns: minmax(0, 17.5rem) minmax(0, 1fr); }
+				.klacht { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: baseline; }
+				.pakketregel { grid-template-columns: 1fr auto; align-items: center; }
 			}
 		</style>
 	</head>
@@ -1169,172 +1167,144 @@
 				</ol>
 			</nav>
 
-			<section class="section dienst-hero">
-				<div class="wrap">
-					<span class="eyebrow">Dienst</span>
-					<h1>Zichtbaarheid (SEO)</h1>
-					<p class="lead">
-						Een mooie website heeft weinig zin als niemand hem vindt. Wij zorgen dat je zichtbaar bent
-						voor de mensen die op dit moment zoeken naar wat jij doet &mdash; met zoekwoorden die kloppen,
-						techniek die op orde is en inhoud die antwoord geeft.
-					</p>
-					<div class="btn-rij">
-						<a href="/contact" class="btn btn-primary" data-cta="dienst-seo-contact">Gratis kennismaken <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-						<a href="/tarieven" class="btn btn-outline" data-cta="dienst-seo-tarieven">Bekijk de pakketten</a>
-					</div>
-				</div>
-			</section>
-
-			<section class="section section-soft">
-				<div class="wrap">
-					<div class="section-head reveal">
-						<span class="eyebrow">Wat je krijgt</span>
-						<h2>Waar we aan werken</h2>
-						<p>SEO is geen knop die je omzet. Het is een aantal dingen goed doen, in de juiste volgorde.</p>
-					</div>
-					<div class="kenmerken">
-						<article class="kenmerk reveal">
-							<div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
-							<h3>Zoekwoordenonderzoek</h3>
-							<p>We zoeken uit welke woorden jouw klanten intypen &mdash; en welke daarvan haalbaar zijn voor een bedrijf van jouw omvang.</p>
-						</article>
-						<article class="kenmerk reveal">
-							<div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div>
-							<h3>Structuur die klopt</h3>
-							<p>Elke pagina krijgt &eacute;&eacute;n duidelijk onderwerp en een logische plek in het geheel. Zo begrijpt Google waar je site over gaat.</p>
-						</article>
-						<article class="kenmerk reveal">
-							<div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div>
-							<h3>Snelheid als basis</h3>
-							<p>Laadtijd weegt mee in de rangschikking &eacute;n in of bezoekers blijven. We houden pagina&rsquo;s licht en afbeeldingen klein.</p>
-						</article>
-						<article class="kenmerk reveal">
-							<div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v12H4z"/><path d="M8 21h8M12 17v4"/></svg></div>
-							<h3>Techniek op orde</h3>
-							<p>Titels, koppen, sitemap, gestructureerde data en een site die goed te indexeren is. De onzichtbare helft van SEO.</p>
-						</article>
-						<article class="kenmerk reveal">
-							<div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg></div>
-							<h3>Teksten met een doel</h3>
-							<p>Inhoud die antwoord geeft op de zoekvraag &eacute;n de bezoeker naar contact leidt. Geen zoekwoorden strooien om het strooien.</p>
-						</article>
-						<article class="kenmerk reveal">
-							<div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7v5l3 2"/><path d="M16 3h5v5"/></svg></div>
-							<h3>Meten en bijsturen</h3>
-							<p>Met Search Console en Analytics zie je welke pagina&rsquo;s bezoekers opleveren, en waar nog winst zit.</p>
-						</article>
-					</div>
-				</div>
-			</section>
-
-			<section class="section">
-				<div class="wrap">
-					<div class="section-head reveal">
-						<span class="eyebrow">Waarom het uitmaakt</span>
-						<h2>Wat er misgaat, en wat wij eraan doen</h2>
-						<p>Vier redenen waarom een site niet gevonden wordt &mdash; en hoe we ze aanpakken.</p>
-					</div>
-					<div class="pv reveal">
-						<div class="pv-probleem">
-							<span class="pv-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg> Probleem</span>
-							<h3>Je staat op pagina drie</h3>
-							<p>Wie verder dan de eerste resultaten moet klikken, vindt jou niet. Zonder gerichte zoekwoorden concurreer je bovendien op termen waar je nooit gaat winnen.</p>
-						</div>
-						<span class="pv-pijl" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-						<div class="pv-oplossing">
-							<span class="pv-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Onze aanpak</span>
-							<h3>Zoekwoorden waar je w&eacute;l op kunt winnen</h3>
-							<p>We kiezen zoektermen op basis van zoekvolume, concurrentie en koopintentie, en bouwen per term een pagina die daar echt antwoord op geeft.</p>
-						</div>
-					</div>
-					<div class="pv reveal">
-						<div class="pv-probleem">
-							<span class="pv-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg> Probleem</span>
-							<h3>Er komen bezoekers, maar geen aanvragen</h3>
-							<p>Bovenaan staan is geen doel op zich. Sluit de pagina niet aan op wat iemand zocht, dan leest die persoon even mee en klikt weer weg.</p>
-						</div>
-						<span class="pv-pijl" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-						<div class="pv-oplossing">
-							<span class="pv-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Onze aanpak</span>
-							<h3>Zoekintentie als uitgangspunt</h3>
-							<p>We kijken per zoekterm wat iemand wil: ori&euml;nteren, vergelijken of direct contact. De pagina wordt daarop ingericht, inclusief de vervolgstap.</p>
-						</div>
-					</div>
-					<div class="pv reveal">
-						<div class="pv-probleem">
-							<span class="pv-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg> Probleem</span>
-							<h3>Google kan je site niet goed lezen</h3>
-							<p>Ontbrekende titels, dubbele pagina&rsquo;s, een rommelige structuur of geen sitemap: dan blijft een deel van je site onzichtbaar, hoe goed je teksten ook zijn.</p>
-						</div>
-						<span class="pv-pijl" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-						<div class="pv-oplossing">
-							<span class="pv-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Onze aanpak</span>
-							<h3>De technische basis eerst</h3>
-							<p>We ruimen de structuur op, zetten titels en koppen goed neer, leveren een sitemap aan en controleren in Search Console of alles daadwerkelijk wordt opgepikt.</p>
-						</div>
-					</div>
-					<div class="pv reveal">
-						<div class="pv-probleem">
-							<span class="pv-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg> Probleem</span>
-							<h3>Je site is traag en zakt weg</h3>
-							<p>Een langzame pagina kost bezoekers &eacute;n posities. Zeker op mobiel, waar de meeste zoekopdrachten vandaan komen.</p>
-						</div>
-						<span class="pv-pijl" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-						<div class="pv-oplossing">
-							<span class="pv-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Onze aanpak</span>
-							<h3>Licht gebouwd, dus snel</h3>
-							<p>Geen overbodige plug-ins, compacte afbeeldingen en code die alleen doet wat nodig is. We meten de snelheid voor en na.</p>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<section class="section">
-				<div class="wrap">
-					<div class="section-head reveal">
-						<span class="eyebrow">Voor wie</span>
-						<h2>Waar we mee kunnen helpen</h2>
-						<p>Weet je niet waar het misgaat? Dan kijken we daar in het eerste gesprek naar.</p>
-					</div>
-					<div class="gevallen">
-						<div class="geval reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Een nieuwe site die meteen goed staat</b>Bouwen we je website, dan leggen we de zoekwoorden en structuur vast v&oacute;&oacute;r het ontwerp.</span></div>
-						<div class="geval reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Gevonden worden in je eigen regio</b>Voor bedrijven die het van de omgeving moeten hebben: lokale zoektermen en een profiel dat klopt.</span></div>
-						<div class="geval reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Een bestaande site die niet scoort</b>We kijken wat er nu misgaat in techniek, structuur en inhoud, en pakken dat op volgorde van impact aan.</span></div>
-						<div class="geval reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Pagina&rsquo;s die elkaar in de weg zitten</b>Meerdere pagina&rsquo;s over hetzelfde onderwerp concurreren met elkaar. We brengen daar orde in.</span></div>
-					</div>
-
-					<article class="maatwerk reveal">
-						<div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
-						<h3>SEO zit al in je pakket</h3>
-						<p>
-							Bouwen wij je website, dan hoef je SEO niet apart af te nemen. Basis SEO hoort bij elk
-							pakket, uitgebreide SEO-optimalisatie bij Professional, en bij Premium kijken we ook
-							naar wat je concurrenten doen.
+			<section class="section seo-kop">
+				<div class="wrap seo-raster">
+					<div>
+						<span class="eyebrow">Zichtbaarheid</span>
+						<h1>Gevonden worden door wie al zoekt</h1>
+						<p class="lead">
+							Op dit moment typt iemand in wat jij aanbiedt. De vraag is alleen of hij bij jou uitkomt
+							of bij de concurrent drie straten verderop. Daar valt aan te werken.
 						</p>
-						<div class="maatwerk-voet">
-							<span><small>Vanaf</small><b>&euro;995 eenmalig</b></span>
-							<a href="/tarieven" data-cta="dienst-seo-pakketten">Bekijk wat er in elk pakket zit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+						<div class="btn-rij">
+							<a href="/contact" class="btn btn-primary" data-cta="dienst-seo-contact">Gratis kennismaken <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+							<a href="/tarieven" class="btn btn-outline" data-cta="dienst-seo-tarieven">Bekijk de pakketten</a>
 						</div>
-					</article>
+					</div>
+
+					<div class="zoek" aria-hidden="true">
+						<p class="zoek-balk">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+							<span class="zoek-term">stukadoor in de buurt</span><span class="zoek-caret"></span>
+						</p>
+						<div class="treffer">
+							<span class="url">jouwbedrijf.nl &rsaquo; diensten</span>
+							<span class="titel">Stukadoor in Zwolle en omgeving</span>
+							<span class="uitleg">Wanden en plafonds strak afgewerkt. Vrijblijvend een prijs binnen twee werkdagen.</span>
+						</div>
+						<div class="treffer flauw">
+							<span class="url">concurrent.nl</span>
+							<span class="titel">Home | Welkom op onze website</span>
+							<span class="uitleg">Wij zijn een dynamisch bedrijf met jarenlange ervaring in de branche&hellip;</span>
+						</div>
+						<p class="zoek-noot">Meer ruimte dan dit krijg je niet: een adres, een regel titel en twee zinnen. Daar moet het in gebeuren.</p>
+					</div>
 				</div>
 			</section>
 
 			<section class="section section-soft">
 				<div class="wrap">
-					<div class="section-head reveal">
-						<span class="eyebrow">Werkwijze</span>
-						<h2>Van nulmeting tot resultaat</h2>
-						<p>Vijf stappen, in deze volgorde. De basis eerst, want daarzonder werkt de rest niet.</p>
+					<div class="section-head kop-links reveal">
+						<span class="eyebrow">Waar we aan werken</span>
+						<h2>Vier lagen, in deze volgorde</h2>
+						<p>SEO is geen knop. Het zijn een paar dingen goed doen, en de onderste laag eerst.</p>
+					</div>
+					<div class="lagen">
+						<article class="laag reveal">
+							<h3>Uitzoeken waarop je gevonden wilt worden</h3>
+							<div>
+								<p>Niet op &ldquo;webdesign&rdquo;, want daar sta je nooit bovenaan. Wel op de termen die jouw klanten intypen als ze er bijna uit zijn. We wegen elk woord op zoekvolume, concurrentie en de vraag of iemand ook echt iets wil afnemen.</p>
+								<p class="details">Zoekwoordenonderzoek &middot; concurrentievergelijking &middot; keuze per pagina</p>
+							</div>
+						</article>
+						<article class="laag reveal">
+							<h3>De techniek onder de motorkap</h3>
+							<div>
+								<p>Dit is de helft die niemand ziet en die het meeste kapotmaakt. Een pagina die niet ge&iuml;ndexeerd wordt, bestaat voor Google niet. Traag laden kost je posities &eacute;n bezoekers.</p>
+								<p class="details">Titels en koppen &middot; sitemap &middot; indexering &middot; snelheid &middot; gestructureerde data</p>
+							</div>
+						</article>
+						<article class="laag reveal">
+							<h3>Teksten die de vraag beantwoorden</h3>
+							<div>
+								<p>Een pagina die precies antwoord geeft op wat iemand zocht, houdt die persoon vast. Dat betekent niet zoekwoorden strooien, maar &eacute;&eacute;n onderwerp per pagina en een duidelijke vervolgstap onderaan.</p>
+								<p class="details">&Eacute;&eacute;n zoekvraag per pagina &middot; opbouw richting contact &middot; interne links</p>
+							</div>
+						</article>
+						<article class="laag reveal">
+							<h3>Kijken wat het doet</h3>
+							<div>
+								<p>Zonder meting is SEO gokken. In Search Console zie je op welke woorden je binnenkomt, in Analytics wat bezoekers daarna doen. Daar sturen we op bij, in plaats van op onderbuikgevoel.</p>
+								<p class="details">Search Console &middot; Analytics &middot; bijsturen waar het loont</p>
+							</div>
+						</article>
+					</div>
+				</div>
+			</section>
+
+			<section class="section">
+				<div class="wrap">
+					<div class="section-head kop-links reveal">
+						<span class="eyebrow">Herkenbaar?</span>
+						<h2>Wat je merkt, en wat er dan aan de hand is</h2>
+						<p>Vier dingen die we het vaakst horen van ondernemers die ons bellen.</p>
+					</div>
+					<div class="klachten">
+						<div class="klacht reveal">
+							<div><q>Ik sta ergens op pagina drie.</q></div>
+							<p class="antwoord">Vaak omdat de site meedoet aan termen die veel te breed zijn. We kiezen woorden waar je met jouw omvang w&eacute;l bovenaan kunt komen, en bouwen daar een pagina omheen die dat verdient.</p>
+						</div>
+						<div class="klacht reveal">
+							<div><q>Er komen wel bezoekers, maar niemand belt.</q></div>
+							<p class="antwoord">Dan sluit de pagina niet aan op wat iemand zocht. We kijken per zoekterm of iemand zich ori&euml;nteert of al wil kopen, en richten de pagina daarop in &mdash; inclusief de vervolgstap.</p>
+						</div>
+						<div class="klacht reveal">
+							<div><q>Google pakt de helft van mijn site niet op.</q></div>
+							<p class="antwoord">Meestal een technisch verhaal: dubbele pagina&rsquo;s, ontbrekende titels of geen sitemap. We ruimen dat op en controleren in Search Console of het daadwerkelijk wordt opgepikt.</p>
+						</div>
+						<div class="klacht reveal">
+							<div><q>Mijn site is traag op mobiel.</q></div>
+							<p class="antwoord">Dat kost je posities en bezoekers tegelijk. We halen eruit wat niet nodig is, verkleinen afbeeldingen en meten de snelheid voor en na.</p>
+						</div>
+					</div>
+
+					<div class="pakketregel reveal">
+						<span>
+							<b>Bouwen wij je site, dan zit SEO er al in</b>
+							<p>Basis SEO hoort bij elk pakket. Uitgebreide optimalisatie zit in Professional, en bij Premium kijken we ook naar je concurrenten.</p>
+						</span>
+						<a href="/tarieven" data-cta="dienst-seo-pakketten">Bekijk de pakketten <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+					</div>
+				</div>
+			</section>
+
+			<section class="section section-soft">
+				<div class="wrap">
+					<div class="section-head kop-links reveal">
+						<span class="eyebrow">Zo pakken we het aan</span>
+						<h2>Van nulmeting tot bijsturen</h2>
 					</div>
 					<ol class="mini-stappen reveal">
-						<li class="mini-stap"><span><b>Nulmeting</b><span>Waar sta je nu: welke pagina&rsquo;s zijn zichtbaar, wat blijft er liggen en wat doen je concurrenten?</span></span></li>
-						<li class="mini-stap"><span><b>Zoekwoordenonderzoek</b><span>De termen waar jouw klanten op zoeken, gewogen op volume, concurrentie en intentie.</span></span></li>
-						<li class="mini-stap"><span><b>Techniek op orde</b><span>Structuur, titels, snelheid, sitemap en indexering &mdash; eerst de basis, dan de rest.</span></span></li>
-						<li class="mini-stap"><span><b>Inhoud aanscherpen</b><span>Per zoekterm een pagina die antwoord geeft en naar een duidelijke vervolgstap leidt.</span></span></li>
-						<li class="mini-stap"><span><b>Meten en bijsturen</b><span>In Search Console en Analytics volgen we wat werkt, en scherpen we aan waar het loont.</span></span></li>
+						<li class="mini-stap"><span><b>Nulmeting</b><span>Waar sta je nu, welke pagina&rsquo;s zijn zichtbaar en wat doen je concurrenten?</span></span></li>
+						<li class="mini-stap"><span><b>Zoekwoorden vastleggen</b><span>De termen waar we op gaan spelen, met de bijbehorende pagina erbij.</span></span></li>
+						<li class="mini-stap"><span><b>Techniek eerst</b><span>Structuur, titels, snelheid, sitemap en indexering op orde.</span></span></li>
+						<li class="mini-stap"><span><b>Inhoud aanscherpen</b><span>Per zoekterm een pagina die antwoord geeft en naar contact leidt.</span></span></li>
+						<li class="mini-stap"><span><b>Meten en bijsturen</b><span>Na livegang volgen we de cijfers en scherpen we aan waar het loont.</span></span></li>
 					</ol>
-					<div class="cards-cta reveal">
-						<a href="/werkwijze" class="btn btn-outline">Bekijk de volledige werkwijze <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+				</div>
+			</section>
+
+			<section class="section">
+				<div class="wrap">
+					<div class="section-head kop-links reveal">
+						<span class="eyebrow">Eerlijk is eerlijk</span>
+						<h2>Wat we niet doen</h2>
+						<p>Zodat je weet wat je van ons kunt verwachten, en wat niet.</p>
+					</div>
+					<div class="niet">
+						<div class="reveal"><b>Geen backlinkpakketten</b><span>Honderden links kopen bij een onbekende partij helpt op korte termijn misschien, en kost je op lange termijn je positie.</span></div>
+						<div class="reveal"><b>Geen garanties op plek 1</b><span>Google bepaalt de volgorde en verandert die doorlopend. Wie je een vaste positie belooft, verkoopt lucht.</span></div>
+						<div class="reveal"><b>Geen Google Ads</b><span>Adverteren doen we niet. Wij richten ons op bezoekers die je zonder advertentiebudget binnenhaalt.</span></div>
 					</div>
 				</div>
 			</section>
@@ -1356,7 +1326,7 @@
 						</details>
 						<details class="reveal">
 							<summary>Doen jullie ook Google Ads?</summary>
-							<p class="answer">Nee. Wij richten ons op organische vindbaarheid: bezoekers die je zonder advertentiebudget vindt. Adverteren besteed je uit aan een partij die dat dagelijks doet.</p>
+							<p class="answer">Nee. Wij richten ons op organische vindbaarheid: bezoekers die je zonder advertentiebudget vindt. Adverteren besteed je beter uit aan een partij die dat dagelijks doet.</p>
 						</details>
 						<details class="reveal">
 							<summary>Zit SEO al in mijn website?</summary>
@@ -1368,31 +1338,29 @@
 
 			<section class="section section-soft">
 				<div class="wrap">
-					<div class="section-head reveal">
-						<span class="eyebrow">Meer diensten</span>
+					<div class="section-head kop-links reveal">
+						<span class="eyebrow">Verder kijken</span>
 						<h2>Vaak samen met</h2>
 					</div>
-					<div class="andere reveal">
+					<nav class="verder reveal">
 						<a href="/diensten/web-design-development">Web Design &amp; Development <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 						<a href="/diensten/domein-hosting">Domein Beheer &amp; Hosting <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 						<a href="/diensten/onderhoud-support">Onderhoud &amp; Support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-					</div>
+						<a href="/werkwijze">Onze volledige werkwijze <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+					</nav>
 				</div>
 			</section>
 
 			<section class="section">
-				<div class="wrap">
-					<div class="concept-card reveal">
-						<span class="eyebrow">Gratis en vrijblijvend</span>
-						<h2>Zie eerst hoe jouw site eruit kan zien</h2>
-						<p>
-							Vertel kort wat je bedrijf doet en op welke klanten je mikt. Wij maken kosteloos een
-							eerste concept van je nieuwe website, met de zoekwoorden al in het achterhoofd.
-						</p>
-						<div class="concept-actions">
-							<a href="/website-concept" class="btn btn-primary btn-block" data-cta="dienst-seo-slot">Vraag gratis concept aan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-							<a href="/contact" class="btn btn-outline btn-block" data-cta="dienst-seo-slot-contact">Gratis kennismaken</a>
-						</div>
+				<div class="wrap slot reveal">
+					<h2>Benieuwd waar jij nu staat?</h2>
+					<p>
+						In een kennismaking van een half uur lopen we je site door en vertellen we eerlijk wat er
+						te halen valt. Ook als dat &ldquo;niet zo veel&rdquo; is.
+					</p>
+					<div class="btn-rij">
+						<a href="/contact" class="btn btn-primary" data-cta="dienst-seo-slot">Gratis kennismaken <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+						<a href="/website-concept" class="btn btn-outline" data-cta="dienst-seo-slot-concept">Vraag gratis concept aan</a>
 					</div>
 				</div>
 			</section>
@@ -1559,7 +1527,7 @@
    "mainEntity": [
     {
      "@type": "Question",
-     "name": "Diensten <svg class=\"nav-chev\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></summary>\n\t\t\t\t\t\t<a href=\"/diensten/web-design-development\">Web Design & Development</a>\n\t\t\t\t\t\t<a href=\"/diensten/domein-hosting\">Domein Beheer & Hosting</a>\n\t\t\t\t\t\t<a href=\"/diensten/seo\">Zichtbaarheid (SEO)</a>\n\t\t\t\t\t\t<a href=\"/diensten/onderhoud-support\">Onderhoud & Support</a>\n\t\t\t\t\t\t<a href=\"/diensten\">Alle diensten</a>\n\t\t\t\t\t\t<a href=\"/tarieven\">Tarieven</a>\n\t\t\t\t\t</details>\n\t\t\t\t\t<a href=\"/werkwijze\">Werkwijze</a>\n\t\t\t\t\t<a href=\"/over-dh-studio\">Over DH Studio</a>\n\t\t\t\t\t<a href=\"/#faq\">FAQ</a>\n\t\t\t\t\t<a href=\"/website-concept\">Gratis websiteconcept</a>\n\t\t\t\t\t<a href=\"/contact\" class=\"btn btn-primary btn-block\" data-cta=\"mobiel-menu\">Gratis kennismaken</a>\n\t\t\t\t</nav>\n\t\t\t</div>\n\t\t</header>\n\n\t\t<main>\n\t\t\t<nav class=\"wrap kruimels\" aria-label=\"Kruimelpad\">\n\t\t\t\t<ol>\n\t\t\t\t\t<li><a href=\"/\">Home</a></li>\n\t\t\t\t\t<li><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m9 6 6 6-6 6\"/></svg></li>\n\t\t\t\t\t<li><a href=\"/#diensten\">Diensten</a></li>\n\t\t\t\t\t<li><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m9 6 6 6-6 6\"/></svg></li>\n\t\t\t\t\t<li aria-current=\"page\">Zichtbaarheid (SEO)</li>\n\t\t\t\t</ol>\n\t\t\t</nav>\n\n\t\t\t<section class=\"section dienst-hero\">\n\t\t\t\t<div class=\"wrap\">\n\t\t\t\t\t<span class=\"eyebrow\">Dienst</span>\n\t\t\t\t\t<h1>Zichtbaarheid (SEO)</h1>\n\t\t\t\t\t<p class=\"lead\">\n\t\t\t\t\t\tEen mooie website heeft weinig zin als niemand hem vindt. Wij zorgen dat je zichtbaar bent\n\t\t\t\t\t\tvoor de mensen die op dit moment zoeken naar wat jij doet — met zoekwoorden die kloppen,\n\t\t\t\t\t\ttechniek die op orde is en inhoud die antwoord geeft.\n\t\t\t\t\t</p>\n\t\t\t\t\t<div class=\"btn-rij\">\n\t\t\t\t\t\t<a href=\"/contact\" class=\"btn btn-primary\" data-cta=\"dienst-seo-contact\">Gratis kennismaken <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>\n\t\t\t\t\t\t<a href=\"/tarieven\" class=\"btn btn-outline\" data-cta=\"dienst-seo-tarieven\">Bekijk de pakketten</a>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</section>\n\n\t\t\t<section class=\"section section-soft\">\n\t\t\t\t<div class=\"wrap\">\n\t\t\t\t\t<div class=\"section-head reveal\">\n\t\t\t\t\t\t<span class=\"eyebrow\">Wat je krijgt</span>\n\t\t\t\t\t\t<h2>Waar we aan werken</h2>\n\t\t\t\t\t\t<p>SEO is geen knop die je omzet. Het is een aantal dingen goed doen, in de juiste volgorde.</p>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"kenmerken\">\n\t\t\t\t\t\t<article class=\"kenmerk reveal\">\n\t\t\t\t\t\t\t<div class=\"icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m20 20-3.5-3.5\"/></svg></div>\n\t\t\t\t\t\t\t<h3>Zoekwoordenonderzoek</h3>\n\t\t\t\t\t\t\t<p>We zoeken uit welke woorden jouw klanten intypen — en welke daarvan haalbaar zijn voor een bedrijf van jouw omvang.</p>\n\t\t\t\t\t\t</article>\n\t\t\t\t\t\t<article class=\"kenmerk reveal\">\n\t\t\t\t\t\t\t<div class=\"icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 6h16M4 12h10M4 18h7\"/></svg></div>\n\t\t\t\t\t\t\t<h3>Structuur die klopt</h3>\n\t\t\t\t\t\t\t<p>Elke pagina krijgt één duidelijk onderwerp en een logische plek in het geheel. Zo begrijpt Google waar je site over gaat.</p>\n\t\t\t\t\t\t</article>\n\t\t\t\t\t\t<article class=\"kenmerk reveal\">\n\t\t\t\t\t\t\t<div class=\"icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M13 2 4 14h7l-1 8 9-12h-7z\"/></svg></div>\n\t\t\t\t\t\t\t<h3>Snelheid als basis</h3>\n\t\t\t\t\t\t\t<p>Laadtijd weegt mee in de rangschikking én in of bezoekers blijven. We houden pagina’s licht en afbeeldingen klein.</p>\n\t\t\t\t\t\t</article>\n\t\t\t\t\t\t<article class=\"kenmerk reveal\">\n\t\t\t\t\t\t\t<div class=\"icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 5h16v12H4z\"/><path d=\"M8 21h8M12 17v4\"/></svg></div>\n\t\t\t\t\t\t\t<h3>Techniek op orde</h3>\n\t\t\t\t\t\t\t<p>Titels, koppen, sitemap, gestructureerde data en een site die goed te indexeren is. De onzichtbare helft van SEO.</p>\n\t\t\t\t\t\t</article>\n\t\t\t\t\t\t<article class=\"kenmerk reveal\">\n\t\t\t\t\t\t\t<div class=\"icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 20V10M12 20V4M19 20v-7\"/></svg></div>\n\t\t\t\t\t\t\t<h3>Teksten met een doel</h3>\n\t\t\t\t\t\t\t<p>Inhoud die antwoord geeft op de zoekvraag én de bezoeker naar contact leidt. Geen zoekwoorden strooien om het strooien.</p>\n\t\t\t\t\t\t</article>\n\t\t\t\t\t\t<article class=\"kenmerk reveal\">\n\t\t\t\t\t\t\t<div class=\"icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3a9 9 0 1 0 9 9\"/><path d=\"M12 7v5l3 2\"/><path d=\"M16 3h5v5\"/></svg></div>\n\t\t\t\t\t\t\t<h3>Meten en bijsturen</h3>\n\t\t\t\t\t\t\t<p>Met Search Console en Analytics zie je welke pagina’s bezoekers opleveren, en waar nog winst zit.</p>\n\t\t\t\t\t\t</article>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</section>\n\n\t\t\t<section class=\"section\">\n\t\t\t\t<div class=\"wrap\">\n\t\t\t\t\t<div class=\"section-head reveal\">\n\t\t\t\t\t\t<span class=\"eyebrow\">Waarom het uitmaakt</span>\n\t\t\t\t\t\t<h2>Wat er misgaat, en wat wij eraan doen</h2>\n\t\t\t\t\t\t<p>Vier redenen waarom een site niet gevonden wordt — en hoe we ze aanpakken.</p>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"pv reveal\">\n\t\t\t\t\t\t<div class=\"pv-probleem\">\n\t\t\t\t\t\t\t<span class=\"pv-label\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 8v5M12 16.5v.5\"/></svg> Probleem</span>\n\t\t\t\t\t\t\t<h3>Je staat op pagina drie</h3>\n\t\t\t\t\t\t\t<p>Wie verder dan de eerste resultaten moet klikken, vindt jou niet. Zonder gerichte zoekwoorden concurreer je bovendien op termen waar je nooit gaat winnen.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<span class=\"pv-pijl\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span>\n\t\t\t\t\t\t<div class=\"pv-oplossing\">\n\t\t\t\t\t\t\t<span class=\"pv-label\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 6 9 17l-5-5\"/></svg> Onze aanpak</span>\n\t\t\t\t\t\t\t<h3>Zoekwoorden waar je wél op kunt winnen</h3>\n\t\t\t\t\t\t\t<p>We kiezen zoektermen op basis van zoekvolume, concurrentie en koopintentie, en bouwen per term een pagina die daar echt antwoord op geeft.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"pv reveal\">\n\t\t\t\t\t\t<div class=\"pv-probleem\">\n\t\t\t\t\t\t\t<span class=\"pv-label\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 8v5M12 16.5v.5\"/></svg> Probleem</span>\n\t\t\t\t\t\t\t<h3>Er komen bezoekers, maar geen aanvragen</h3>\n\t\t\t\t\t\t\t<p>Bovenaan staan is geen doel op zich. Sluit de pagina niet aan op wat iemand zocht, dan leest die persoon even mee en klikt weer weg.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<span class=\"pv-pijl\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span>\n\t\t\t\t\t\t<div class=\"pv-oplossing\">\n\t\t\t\t\t\t\t<span class=\"pv-label\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 6 9 17l-5-5\"/></svg> Onze aanpak</span>\n\t\t\t\t\t\t\t<h3>Zoekintentie als uitgangspunt</h3>\n\t\t\t\t\t\t\t<p>We kijken per zoekterm wat iemand wil: oriënteren, vergelijken of direct contact. De pagina wordt daarop ingericht, inclusief de vervolgstap.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"pv reveal\">\n\t\t\t\t\t\t<div class=\"pv-probleem\">\n\t\t\t\t\t\t\t<span class=\"pv-label\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 8v5M12 16.5v.5\"/></svg> Probleem</span>\n\t\t\t\t\t\t\t<h3>Google kan je site niet goed lezen</h3>\n\t\t\t\t\t\t\t<p>Ontbrekende titels, dubbele pagina’s, een rommelige structuur of geen sitemap: dan blijft een deel van je site onzichtbaar, hoe goed je teksten ook zijn.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<span class=\"pv-pijl\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span>\n\t\t\t\t\t\t<div class=\"pv-oplossing\">\n\t\t\t\t\t\t\t<span class=\"pv-label\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 6 9 17l-5-5\"/></svg> Onze aanpak</span>\n\t\t\t\t\t\t\t<h3>De technische basis eerst</h3>\n\t\t\t\t\t\t\t<p>We ruimen de structuur op, zetten titels en koppen goed neer, leveren een sitemap aan en controleren in Search Console of alles daadwerkelijk wordt opgepikt.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"pv reveal\">\n\t\t\t\t\t\t<div class=\"pv-probleem\">\n\t\t\t\t\t\t\t<span class=\"pv-label\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 8v5M12 16.5v.5\"/></svg> Probleem</span>\n\t\t\t\t\t\t\t<h3>Je site is traag en zakt weg</h3>\n\t\t\t\t\t\t\t<p>Een langzame pagina kost bezoekers én posities. Zeker op mobiel, waar de meeste zoekopdrachten vandaan komen.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<span class=\"pv-pijl\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span>\n\t\t\t\t\t\t<div class=\"pv-oplossing\">\n\t\t\t\t\t\t\t<span class=\"pv-label\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 6 9 17l-5-5\"/></svg> Onze aanpak</span>\n\t\t\t\t\t\t\t<h3>Licht gebouwd, dus snel</h3>\n\t\t\t\t\t\t\t<p>Geen overbodige plug-ins, compacte afbeeldingen en code die alleen doet wat nodig is. We meten de snelheid voor en na.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</section>\n\n\t\t\t<section class=\"section\">\n\t\t\t\t<div class=\"wrap\">\n\t\t\t\t\t<div class=\"section-head reveal\">\n\t\t\t\t\t\t<span class=\"eyebrow\">Voor wie</span>\n\t\t\t\t\t\t<h2>Waar we mee kunnen helpen</h2>\n\t\t\t\t\t\t<p>Weet je niet waar het misgaat? Dan kijken we daar in het eerste gesprek naar.</p>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"gevallen\">\n\t\t\t\t\t\t<div class=\"geval reveal\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 6 9 17l-5-5\"/></svg><span><b>Een nieuwe site die meteen goed staat</b>Bouwen we je website, dan leggen we de zoekwoorden en structuur vast vóór het ontwerp.</span></div>\n\t\t\t\t\t\t<div class=\"geval reveal\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 6 9 17l-5-5\"/></svg><span><b>Gevonden worden in je eigen regio</b>Voor bedrijven die het van de omgeving moeten hebben: lokale zoektermen en een profiel dat klopt.</span></div>\n\t\t\t\t\t\t<div class=\"geval reveal\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 6 9 17l-5-5\"/></svg><span><b>Een bestaande site die niet scoort</b>We kijken wat er nu misgaat in techniek, structuur en inhoud, en pakken dat op volgorde van impact aan.</span></div>\n\t\t\t\t\t\t<div class=\"geval reveal\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 6 9 17l-5-5\"/></svg><span><b>Pagina’s die elkaar in de weg zitten</b>Meerdere pagina’s over hetzelfde onderwerp concurreren met elkaar. We brengen daar orde in.</span></div>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<article class=\"maatwerk reveal\">\n\t\t\t\t\t\t<div class=\"icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m20 20-3.5-3.5\"/></svg></div>\n\t\t\t\t\t\t<h3>SEO zit al in je pakket</h3>\n\t\t\t\t\t\t<p>\n\t\t\t\t\t\t\tBouwen wij je website, dan hoef je SEO niet apart af te nemen. Basis SEO hoort bij elk\n\t\t\t\t\t\t\tpakket, uitgebreide SEO-optimalisatie bij Professional, en bij Premium kijken we ook\n\t\t\t\t\t\t\tnaar wat je concurrenten doen.\n\t\t\t\t\t\t</p>\n\t\t\t\t\t\t<div class=\"maatwerk-voet\">\n\t\t\t\t\t\t\t<span><small>Vanaf</small><b>€995 eenmalig</b></span>\n\t\t\t\t\t\t\t<a href=\"/tarieven\" data-cta=\"dienst-seo-pakketten\">Bekijk wat er in elk pakket zit <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</article>\n\t\t\t\t</div>\n\t\t\t</section>\n\n\t\t\t<section class=\"section section-soft\">\n\t\t\t\t<div class=\"wrap\">\n\t\t\t\t\t<div class=\"section-head reveal\">\n\t\t\t\t\t\t<span class=\"eyebrow\">Werkwijze</span>\n\t\t\t\t\t\t<h2>Van nulmeting tot resultaat</h2>\n\t\t\t\t\t\t<p>Vijf stappen, in deze volgorde. De basis eerst, want daarzonder werkt de rest niet.</p>\n\t\t\t\t\t</div>\n\t\t\t\t\t<ol class=\"mini-stappen reveal\">\n\t\t\t\t\t\t<li class=\"mini-stap\"><span><b>Nulmeting</b><span>Waar sta je nu: welke pagina’s zijn zichtbaar, wat blijft er liggen en wat doen je concurrenten?</span></span></li>\n\t\t\t\t\t\t<li class=\"mini-stap\"><span><b>Zoekwoordenonderzoek</b><span>De termen waar jouw klanten op zoeken, gewogen op volume, concurrentie en intentie.</span></span></li>\n\t\t\t\t\t\t<li class=\"mini-stap\"><span><b>Techniek op orde</b><span>Structuur, titels, snelheid, sitemap en indexering — eerst de basis, dan de rest.</span></span></li>\n\t\t\t\t\t\t<li class=\"mini-stap\"><span><b>Inhoud aanscherpen</b><span>Per zoekterm een pagina die antwoord geeft en naar een duidelijke vervolgstap leidt.</span></span></li>\n\t\t\t\t\t\t<li class=\"mini-stap\"><span><b>Meten en bijsturen</b><span>In Search Console en Analytics volgen we wat werkt, en scherpen we aan waar het loont.</span></span></li>\n\t\t\t\t\t</ol>\n\t\t\t\t\t<div class=\"cards-cta reveal\">\n\t\t\t\t\t\t<a href=\"/werkwijze\" class=\"btn btn-outline\">Bekijk de volledige werkwijze <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</section>\n\n\t\t\t<section class=\"section faq\">\n\t\t\t\t<div class=\"wrap\">\n\t\t\t\t\t<div class=\"section-head reveal\">\n\t\t\t\t\t\t<span class=\"eyebrow\">Veelgestelde vragen</span>\n\t\t\t\t\t\t<h2>Over vindbaarheid</h2>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"faq-lijst\">\n\t\t\t\t\t\t<details class=\"reveal\">\n\t\t\t\t\t\t\t<summary>Hoe snel zie ik resultaat van SEO?",
+     "name": "Diensten <svg class=\"nav-chev\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></summary>\n\t\t\t\t\t\t<a href=\"/diensten/web-design-development\">Web Design & Development</a>\n\t\t\t\t\t\t<a href=\"/diensten/domein-hosting\">Domein Beheer & Hosting</a>\n\t\t\t\t\t\t<a href=\"/diensten/seo\">Zichtbaarheid (SEO)</a>\n\t\t\t\t\t\t<a href=\"/diensten/onderhoud-support\">Onderhoud & Support</a>\n\t\t\t\t\t\t<a href=\"/diensten\">Alle diensten</a>\n\t\t\t\t\t\t<a href=\"/tarieven\">Tarieven</a>\n\t\t\t\t\t</details>\n\t\t\t\t\t<a href=\"/werkwijze\">Werkwijze</a>\n\t\t\t\t\t<a href=\"/over-dh-studio\">Over DH Studio</a>\n\t\t\t\t\t<a href=\"/#faq\">FAQ</a>\n\t\t\t\t\t<a href=\"/website-concept\">Gratis websiteconcept</a>\n\t\t\t\t\t<a href=\"/contact\" class=\"btn btn-primary btn-block\" data-cta=\"mobiel-menu\">Gratis kennismaken</a>\n\t\t\t\t</nav>\n\t\t\t</div>\n\t\t</header>\n\n\t\t<main>\n\t\t\t<nav class=\"wrap kruimels\" aria-label=\"Kruimelpad\">\n\t\t\t\t<ol>\n\t\t\t\t\t<li><a href=\"/\">Home</a></li>\n\t\t\t\t\t<li><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m9 6 6 6-6 6\"/></svg></li>\n\t\t\t\t\t<li><a href=\"/#diensten\">Diensten</a></li>\n\t\t\t\t\t<li><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m9 6 6 6-6 6\"/></svg></li>\n\t\t\t\t\t<li aria-current=\"page\">Zichtbaarheid (SEO)</li>\n\t\t\t\t</ol>\n\t\t\t</nav>\n\n\t\t\t<section class=\"section seo-kop\">\n\t\t\t\t<div class=\"wrap seo-raster\">\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<span class=\"eyebrow\">Zichtbaarheid</span>\n\t\t\t\t\t\t<h1>Gevonden worden door wie al zoekt</h1>\n\t\t\t\t\t\t<p class=\"lead\">\n\t\t\t\t\t\t\tOp dit moment typt iemand in wat jij aanbiedt. De vraag is alleen of hij bij jou uitkomt\n\t\t\t\t\t\t\tof bij de concurrent drie straten verderop. Daar valt aan te werken.\n\t\t\t\t\t\t</p>\n\t\t\t\t\t\t<div class=\"btn-rij\">\n\t\t\t\t\t\t\t<a href=\"/contact\" class=\"btn btn-primary\" data-cta=\"dienst-seo-contact\">Gratis kennismaken <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>\n\t\t\t\t\t\t\t<a href=\"/tarieven\" class=\"btn btn-outline\" data-cta=\"dienst-seo-tarieven\">Bekijk de pakketten</a>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div class=\"zoek\" aria-hidden=\"true\">\n\t\t\t\t\t\t<p class=\"zoek-balk\">\n\t\t\t\t\t\t\t<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m20 20-3.5-3.5\"/></svg>\n\t\t\t\t\t\t\t<span class=\"zoek-term\">stukadoor in de buurt</span><span class=\"zoek-caret\"></span>\n\t\t\t\t\t\t</p>\n\t\t\t\t\t\t<div class=\"treffer\">\n\t\t\t\t\t\t\t<span class=\"url\">jouwbedrijf.nl › diensten</span>\n\t\t\t\t\t\t\t<span class=\"titel\">Stukadoor in Zwolle en omgeving</span>\n\t\t\t\t\t\t\t<span class=\"uitleg\">Wanden en plafonds strak afgewerkt. Vrijblijvend een prijs binnen twee werkdagen.</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"treffer flauw\">\n\t\t\t\t\t\t\t<span class=\"url\">concurrent.nl</span>\n\t\t\t\t\t\t\t<span class=\"titel\">Home | Welkom op onze website</span>\n\t\t\t\t\t\t\t<span class=\"uitleg\">Wij zijn een dynamisch bedrijf met jarenlange ervaring in de branche…</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<p class=\"zoek-noot\">Meer ruimte dan dit krijg je niet: een adres, een regel titel en twee zinnen. Daar moet het in gebeuren.</p>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</section>\n\n\t\t\t<section class=\"section section-soft\">\n\t\t\t\t<div class=\"wrap\">\n\t\t\t\t\t<div class=\"section-head kop-links reveal\">\n\t\t\t\t\t\t<span class=\"eyebrow\">Waar we aan werken</span>\n\t\t\t\t\t\t<h2>Vier lagen, in deze volgorde</h2>\n\t\t\t\t\t\t<p>SEO is geen knop. Het zijn een paar dingen goed doen, en de onderste laag eerst.</p>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"lagen\">\n\t\t\t\t\t\t<article class=\"laag reveal\">\n\t\t\t\t\t\t\t<h3>Uitzoeken waarop je gevonden wilt worden</h3>\n\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t<p>Niet op “webdesign”, want daar sta je nooit bovenaan. Wel op de termen die jouw klanten intypen als ze er bijna uit zijn. We wegen elk woord op zoekvolume, concurrentie en de vraag of iemand ook echt iets wil afnemen.</p>\n\t\t\t\t\t\t\t\t<p class=\"details\">Zoekwoordenonderzoek · concurrentievergelijking · keuze per pagina</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</article>\n\t\t\t\t\t\t<article class=\"laag reveal\">\n\t\t\t\t\t\t\t<h3>De techniek onder de motorkap</h3>\n\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t<p>Dit is de helft die niemand ziet en die het meeste kapotmaakt. Een pagina die niet geïndexeerd wordt, bestaat voor Google niet. Traag laden kost je posities én bezoekers.</p>\n\t\t\t\t\t\t\t\t<p class=\"details\">Titels en koppen · sitemap · indexering · snelheid · gestructureerde data</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</article>\n\t\t\t\t\t\t<article class=\"laag reveal\">\n\t\t\t\t\t\t\t<h3>Teksten die de vraag beantwoorden</h3>\n\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t<p>Een pagina die precies antwoord geeft op wat iemand zocht, houdt die persoon vast. Dat betekent niet zoekwoorden strooien, maar één onderwerp per pagina en een duidelijke vervolgstap onderaan.</p>\n\t\t\t\t\t\t\t\t<p class=\"details\">Één zoekvraag per pagina · opbouw richting contact · interne links</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</article>\n\t\t\t\t\t\t<article class=\"laag reveal\">\n\t\t\t\t\t\t\t<h3>Kijken wat het doet</h3>\n\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t<p>Zonder meting is SEO gokken. In Search Console zie je op welke woorden je binnenkomt, in Analytics wat bezoekers daarna doen. Daar sturen we op bij, in plaats van op onderbuikgevoel.</p>\n\t\t\t\t\t\t\t\t<p class=\"details\">Search Console · Analytics · bijsturen waar het loont</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</article>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</section>\n\n\t\t\t<section class=\"section\">\n\t\t\t\t<div class=\"wrap\">\n\t\t\t\t\t<div class=\"section-head kop-links reveal\">\n\t\t\t\t\t\t<span class=\"eyebrow\">Herkenbaar?</span>\n\t\t\t\t\t\t<h2>Wat je merkt, en wat er dan aan de hand is</h2>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"klachten\">\n\t\t\t\t\t\t<div class=\"klacht reveal\">\n\t\t\t\t\t\t\t<div><q>Ik sta ergens op pagina drie.</q><span class=\"wie\">Wat we het vaakst horen</span></div>\n\t\t\t\t\t\t\t<p class=\"antwoord\">Vaak omdat de site meedoet aan termen die veel te breed zijn. We kiezen woorden waar je met jouw omvang wél bovenaan kunt komen, en bouwen daar een pagina omheen die dat verdient.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"klacht reveal\">\n\t\t\t\t\t\t\t<div><q>Er komen wel bezoekers, maar niemand belt.</q><span class=\"wie\">Wat we het vaakst horen</span></div>\n\t\t\t\t\t\t\t<p class=\"antwoord\">Dan sluit de pagina niet aan op wat iemand zocht. We kijken per zoekterm of iemand zich oriënteert of al wil kopen, en richten de pagina daarop in — inclusief de vervolgstap.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"klacht reveal\">\n\t\t\t\t\t\t\t<div><q>Google pakt de helft van mijn site niet op.</q><span class=\"wie\">Wat we het vaakst horen</span></div>\n\t\t\t\t\t\t\t<p class=\"antwoord\">Meestal een technisch verhaal: dubbele pagina’s, ontbrekende titels of geen sitemap. We ruimen dat op en controleren in Search Console of het daadwerkelijk wordt opgepikt.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"klacht reveal\">\n\t\t\t\t\t\t\t<div><q>Mijn site is traag op mobiel.</q><span class=\"wie\">Wat we het vaakst horen</span></div>\n\t\t\t\t\t\t\t<p class=\"antwoord\">Dat kost je posities en bezoekers tegelijk. We halen eruit wat niet nodig is, verkleinen afbeeldingen en meten de snelheid voor en na.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div class=\"pakketregel reveal\">\n\t\t\t\t\t\t<span>\n\t\t\t\t\t\t\t<b>Bouwen wij je site, dan zit SEO er al in</b>\n\t\t\t\t\t\t\t<p>Basis SEO hoort bij elk pakket. Uitgebreide optimalisatie zit in Professional, en bij Premium kijken we ook naar je concurrenten.</p>\n\t\t\t\t\t\t</span>\n\t\t\t\t\t\t<a href=\"/tarieven\" data-cta=\"dienst-seo-pakketten\">Bekijk de pakketten <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</section>\n\n\t\t\t<section class=\"section section-soft\">\n\t\t\t\t<div class=\"wrap\">\n\t\t\t\t\t<div class=\"section-head kop-links reveal\">\n\t\t\t\t\t\t<span class=\"eyebrow\">Zo pakken we het aan</span>\n\t\t\t\t\t\t<h2>Van nulmeting tot bijsturen</h2>\n\t\t\t\t\t</div>\n\t\t\t\t\t<ol class=\"mini-stappen reveal\">\n\t\t\t\t\t\t<li class=\"mini-stap\"><span><b>Nulmeting</b><span>Waar sta je nu, welke pagina’s zijn zichtbaar en wat doen je concurrenten?</span></span></li>\n\t\t\t\t\t\t<li class=\"mini-stap\"><span><b>Zoekwoorden vastleggen</b><span>De termen waar we op gaan spelen, met de bijbehorende pagina erbij.</span></span></li>\n\t\t\t\t\t\t<li class=\"mini-stap\"><span><b>Techniek eerst</b><span>Structuur, titels, snelheid, sitemap en indexering op orde.</span></span></li>\n\t\t\t\t\t\t<li class=\"mini-stap\"><span><b>Inhoud aanscherpen</b><span>Per zoekterm een pagina die antwoord geeft en naar contact leidt.</span></span></li>\n\t\t\t\t\t\t<li class=\"mini-stap\"><span><b>Meten en bijsturen</b><span>Na livegang volgen we de cijfers en scherpen we aan waar het loont.</span></span></li>\n\t\t\t\t\t</ol>\n\t\t\t\t</div>\n\t\t\t</section>\n\n\t\t\t<section class=\"section\">\n\t\t\t\t<div class=\"wrap\">\n\t\t\t\t\t<div class=\"section-head kop-links reveal\">\n\t\t\t\t\t\t<span class=\"eyebrow\">Eerlijk is eerlijk</span>\n\t\t\t\t\t\t<h2>Wat we niet doen</h2>\n\t\t\t\t\t\t<p>Zodat je weet wat je van ons kunt verwachten, en wat niet.</p>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"niet\">\n\t\t\t\t\t\t<div class=\"reveal\"><b>Geen backlinkpakketten</b><span>Honderden links kopen bij een onbekende partij helpt op korte termijn misschien, en kost je op lange termijn je positie.</span></div>\n\t\t\t\t\t\t<div class=\"reveal\"><b>Geen garanties op plek 1</b><span>Google bepaalt de volgorde en verandert die doorlopend. Wie je een vaste positie belooft, verkoopt lucht.</span></div>\n\t\t\t\t\t\t<div class=\"reveal\"><b>Geen Google Ads</b><span>Adverteren doen we niet. Wij richten ons op bezoekers die je zonder advertentiebudget binnenhaalt.</span></div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</section>\n\n\t\t\t<section class=\"section faq\">\n\t\t\t\t<div class=\"wrap\">\n\t\t\t\t\t<div class=\"section-head reveal\">\n\t\t\t\t\t\t<span class=\"eyebrow\">Veelgestelde vragen</span>\n\t\t\t\t\t\t<h2>Over vindbaarheid</h2>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"faq-lijst\">\n\t\t\t\t\t\t<details class=\"reveal\">\n\t\t\t\t\t\t\t<summary>Hoe snel zie ik resultaat van SEO?",
      "acceptedAnswer": {
       "@type": "Answer",
       "text": "Technische verbeteringen pikt Google vaak binnen enkele weken op. Beter scoren op zoektermen met concurrentie duurt langer: reken op enkele maanden. Wie je binnen twee weken een eerste plek belooft, vertelt niet het hele verhaal."
@@ -1578,7 +1546,7 @@
      "name": "Doen jullie ook Google Ads?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Nee. Wij richten ons op organische vindbaarheid: bezoekers die je zonder advertentiebudget vindt. Adverteren besteed je uit aan een partij die dat dagelijks doet."
+      "text": "Nee. Wij richten ons op organische vindbaarheid: bezoekers die je zonder advertentiebudget vindt. Adverteren besteed je beter uit aan een partij die dat dagelijks doet."
      }
     },
     {
