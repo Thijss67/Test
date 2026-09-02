@@ -8,9 +8,6 @@
 		<meta name="color-scheme" content="light" />
 		<title>Portfolio | DH Studio</title>
 		<meta name="description" content="Websites die wij hebben ontworpen en gebouwd. Bekijk het werk van DH Studio." />
-		<!-- Zolang deze pagina nog gevuld moet worden staat hij niet in Google.
-		     Haal de regel hieronder weg zodra er echte inhoud op staat. -->
-		<meta name="robots" content="noindex, follow" />
 		<link rel="canonical" href="https://dh-studio.nl/portfolio" />
 
 		<meta property="og:type" content="website" />
@@ -939,45 +936,66 @@
 			.kruimels svg { width: 14px; height: 14px; opacity: 0.6; }
 			.kruimels [aria-current] { color: var(--fg); font-weight: 600; }
 
-			/* ---------- Overzichtspagina ---------- */
-			.ov-kop { padding-block: clamp(1.5rem, 4vw, 2.5rem) clamp(2rem, 5vw, 3rem); }
-			.ov-kop .eyebrow { justify-content: flex-start; }
-			.ov-kop .eyebrow::before { display: none; }
-			.ov-kop h1 { margin-top: 0.9rem; max-width: 16ch; }
-			.ov-kop .lead { margin-top: 1.2rem; max-width: 52ch; font-size: var(--t-lead); }
+			/* ---------- Portfolio ---------- */
+			.werk-kop { padding-block: clamp(1.5rem, 4vw, 2.5rem) clamp(1.75rem, 4vw, 2.75rem); }
+			.werk-kop .eyebrow { justify-content: flex-start; }
+			.werk-kop .eyebrow::before { display: none; }
+			.werk-kop h1 { margin-top: 0.9rem; max-width: 16ch; }
+			.werk-kop .lead { margin-top: 1.2rem; max-width: 52ch; font-size: var(--t-lead); }
 
-			/* een item in het overzicht; dupliceer dit blok per project of artikel */
-			.items { display: grid; }
-			.item:first-child { border-top: 1px solid var(--line); }
-			.item {
+			/* het register: rijen links, beeld dat meewisselt rechts */
+			.register { border-top: 2px solid var(--fg); }
+			.werk {
+				position: relative;
 				display: grid;
-				gap: 0.4rem 2rem;
-				padding-block: 1.75rem;
+				grid-template-columns: 2.75rem 1fr auto;
+				gap: 0.3rem 1rem;
+				align-items: baseline;
+				padding-block: 1.5rem;
 				border-bottom: 1px solid var(--line);
+				transition: padding-left 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 			}
-			.item .meta { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-			.item h2 { font-size: clamp(1.15rem, 1.8vw, 1.45rem); letter-spacing: -0.02em; }
-			.item h2 a { color: var(--fg); }
-			.item h2 a:hover { color: var(--accent-text); }
-			.item p { max-width: 62ch; }
+			.werk::after { content: none; }
+			.werk:hover, .werk:focus-visible { padding-left: 0.75rem; outline: none; }
+			.werk .nr { font-size: 0.78rem; font-weight: 800; color: var(--line-strong); transition: color 0.2s ease; }
+			.werk:hover .nr, .werk:focus-visible .nr { color: var(--accent); }
+			.werk .naam { font-size: clamp(1.45rem, 3.4vw, 2.4rem); font-weight: 700; letter-spacing: -0.03em; color: var(--fg); line-height: 1.05; }
+			.werk:hover .naam, .werk:focus-visible .naam { color: var(--accent-text); }
+			.werk .soort { display: block; margin-top: 0.4rem; font-size: 0.9rem; color: var(--muted); }
+			.werk .jaar { font-size: 0.85rem; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
 
-			.leeg { padding-top: 1.75rem; border-top: 2px solid var(--fg); }
-			.leeg h2 { max-width: 20ch; }
-			.leeg p { margin-top: 0.9rem; max-width: 56ch; font-size: var(--t-lead); }
-			.leeg .btn-rij { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
-			.binnenkort { margin-top: 2.5rem; border-top: 1px solid var(--line); }
-			.binnenkort li {
-				display: grid;
-				grid-template-columns: auto 1fr;
-				gap: 0.7rem;
-				padding-block: 0.95rem;
-				border-bottom: 1px solid var(--line);
-				font-size: 0.95rem;
-			}
-			.binnenkort svg { width: 17px; height: 17px; margin-top: 0.2rem; color: var(--accent); }
+			/* beeld: op mobiel gewoon onder de rij, op desktop zwevend bij de muis */
+			.werk-beeld { margin-top: 1rem; border-radius: var(--radius); overflow: hidden; background: var(--bg-soft); }
+			.werk-beeld img { display: block; width: 100%; height: auto; }
+
+			.werk-noot { margin-top: 2.5rem; padding-top: 1.4rem; border-top: 1px solid var(--line); font-size: 0.95rem; color: var(--muted); max-width: 60ch; }
+			.werk-noot a { color: var(--accent-text); font-weight: 600; }
+
+			.slot { padding-top: 1.75rem; border-top: 2px solid var(--fg); }
+			.slot h2 { max-width: 20ch; }
+			.slot p { margin-top: 0.9rem; max-width: 52ch; font-size: var(--t-lead); }
+			.slot .btn-rij { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
 			@media (min-width: 900px) {
-				.item { grid-template-columns: minmax(0, 12rem) minmax(0, 1fr); }
+				.werk { grid-template-columns: 3.5rem 1fr 6rem; padding-block: 1.9rem; }
+				/* het beeld volgt de muis en verschijnt alleen bij de rij waar je op staat */
+				.werk-beeld {
+					position: fixed;
+					top: 0; left: 0;
+					z-index: 30;
+					width: 30rem;
+					margin: 0;
+					box-shadow: var(--shadow-lift);
+					opacity: 0;
+					transform: translate(-50%, -50%) scale(0.97);
+					transition: opacity 0.24s ease, transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+					pointer-events: none;
+				}
+				.werk.is-aan .werk-beeld { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+				.js .werk-beeld { will-change: transform; }
+			}
+			@media (prefers-reduced-motion: reduce) {
+				.werk, .werk-beeld { transition: none; }
 			}
 		</style>
 	</head>
@@ -1024,7 +1042,7 @@
 								</div>
 							</div>
 						</div>
-						<a href="/portfolio" aria-current="page">Portfolio</a>
+						<a href="/portfolio">Portfolio</a>
 						<a href="/blog">Blog</a>
 						<a href="/over-dh-studio">Over DH Studio</a>
 					</nav>
@@ -1063,47 +1081,54 @@
 				</ol>
 			</nav>
 
-			<section class="section ov-kop">
+			<section class="section werk-kop">
 				<div class="wrap">
 					<span class="eyebrow">Portfolio</span>
-					<h1>Werk dat we hebben gemaakt</h1>
-					<p class="lead">Elke site die we opleveren is op maat gebouwd. Hieronder komen de projecten te staan waar we het meest trots op zijn.</p>
+					<h1>Werk waar we achter staan</h1>
+					<p class="lead">
+						Beweeg over een project om het te zien. Elke site hieronder is door ons ontworpen
+						en gebouwd &mdash; geen thema&rsquo;s, geen kant-en-klare sjablonen.
+					</p>
 				</div>
 			</section>
 
-			<section class="section">
+			<section class="section" style="padding-top: 0">
 				<div class="wrap">
-					<!-- ==========================================================
-					     Een project toevoegen? Kopieer het blok hieronder, haal de
-					     commentaartekens weg en vul het in. Verwijder daarna het blok
-					     "Nog even geduld" onderaan en de noindex-regel in de <head>.
-
-					<div class="item reveal">
-						<p class="meta">Branche &middot; jaartal</p>
-						<div>
-							<h2><a href="https://voorbeeld.nl" target="_blank" rel="noopener">Naam van de klant</a></h2>
-							<p>Wat er nodig was, wat we hebben gebouwd en wat het opleverde.</p>
-						</div>
+					<div class="register">
+						<!-- =========================================================================
+						     Een project toevoegen? Kopieer dit blok, pas de tekst aan en zet de
+						     schermafbeelding als assets/werk-<naam>.jpg neer (1400 x 875 px).
+						     De nummers lopen gewoon door: 02, 03, enzovoort.
+						     ========================================================================= -->
+						<a class="werk reveal" href="https://dh-studio.nl" target="_blank" rel="noopener" data-cta="werk-dh-studio">
+							<span class="nr">01</span>
+							<span>
+								<span class="naam">DH Studio</span>
+								<span class="soort">Onze eigen website &middot; ontwerp, bouw, teksten en SEO</span>
+							</span>
+							<span class="jaar">2026</span>
+							<span class="werk-beeld"><img src="/assets/werk-dh-studio.jpg" width="1400" height="875" loading="lazy" decoding="async" alt="De homepage van dh-studio.nl" /></span>
+						</a>
 					</div>
-					========================================================== -->
 
-					<div class="items">
+					<p class="werk-noot reveal">
+						Wij zijn net begonnen, dus dit register groeit nog. Benieuwd wat we voor een bedrijf
+						als het jouwe kunnen maken? Vraag een <a href="/website-concept">gratis websiteconcept</a>
+						aan &mdash; dan zie je binnen een paar dagen een eerste ontwerp van jouw site.
+					</p>
+				</div>
+			</section>
 
-					</div>
-
-					<div class="leeg reveal">
-						<h2>Deze pagina wordt nog gevuld</h2>
-						<p>We zetten hier binnenkort projecten neer, met wat er nodig was en wat het heeft opgeleverd. Wil je nu al voorbeelden zien? Vraag ze op, dan sturen we een paar sites die op jouw situatie lijken.</p>
-						<ul class="binnenkort">
-						<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg><span>Wat de klant nodig had en waarom</span></li>
-						<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg><span>Wat we hebben gebouwd</span></li>
-						<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg><span>Wat het heeft opgeleverd</span></li>
-						<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg><span>Een link naar de live website</span></li>
-						</ul>
-						<div class="btn-rij">
-							<a href="/contact" class="btn btn-primary" data-cta="portfolio-contact">Neem contact op <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-							<a href="/website-concept" class="btn btn-outline" data-cta="portfolio-concept">Vraag gratis concept aan</a>
-						</div>
+			<section class="section section-soft">
+				<div class="wrap slot reveal">
+					<h2>Jouw project hier?</h2>
+					<p>
+						Vertel kort wat je bedrijf doet en wat er beter moet. Wij laten vrijblijvend zien
+						wat er mogelijk is.
+					</p>
+					<div class="btn-rij">
+						<a href="/contact" class="btn btn-primary" data-cta="portfolio-contact">Gratis kennismaken <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+						<a href="/tarieven" class="btn btn-outline" data-cta="portfolio-tarieven">Bekijk de tarieven</a>
 					</div>
 				</div>
 			</section>
@@ -1199,10 +1224,30 @@
    "@id": "https://dh-studio.nl/portfolio#webpage",
    "url": "https://dh-studio.nl/portfolio",
    "name": "Portfolio",
-   "description": "Websites die wij hebben ontworpen en gebouwd. Bekijk het werk van DH Studio.",
+   "description": "Websites die DH Studio heeft ontworpen en gebouwd.",
    "inLanguage": "nl-NL",
    "isPartOf": {
     "@id": "https://dh-studio.nl/#website"
+   },
+   "mainEntity": {
+    "@type": "ItemList",
+    "itemListOrder": "https://schema.org/ItemListOrderDescending",
+    "itemListElement": [
+     {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+       "@type": "CreativeWork",
+       "name": "DH Studio",
+       "description": "Onze eigen website: ontwerp, bouw, teksten en SEO.",
+       "url": "https://dh-studio.nl",
+       "dateCreated": "2026",
+       "creator": {
+        "@id": "https://dh-studio.nl/#organisatie"
+       }
+      }
+     }
+    ]
    }
   },
   {
@@ -1395,6 +1440,33 @@
 				} else if (bar) {
 					bar.setAttribute("data-hidden", "false");
 				}
+			})();
+		</script>
+
+		<script>
+			// Het projectbeeld volgt de muis. Op smalle schermen staat het gewoon
+			// onder de rij, dus daar doen we niets.
+			(function () {
+				if (!window.matchMedia("(min-width: 900px)").matches) return;
+				var rijen = [].slice.call(document.querySelectorAll(".werk"));
+				var bezig = false, punt = null, actief = null;
+				function teken() {
+					bezig = false;
+					if (!actief || !punt) return;
+					var beeld = actief.querySelector(".werk-beeld");
+					if (beeld) beeld.style.transform = "translate(" + (punt.x - beeld.offsetWidth / 2) +
+						"px, " + (punt.y - beeld.offsetHeight / 2) + "px)";
+				}
+				rijen.forEach(function (rij) {
+					var beeld = rij.querySelector(".werk-beeld");
+					if (beeld) beeld.style.left = beeld.style.top = "0px";
+					rij.addEventListener("mouseenter", function () { actief = rij; rij.classList.add("is-aan"); });
+					rij.addEventListener("mouseleave", function () { rij.classList.remove("is-aan"); if (actief === rij) actief = null; });
+					rij.addEventListener("mousemove", function (e) {
+						punt = { x: e.clientX, y: e.clientY };
+						if (!bezig) { bezig = true; requestAnimationFrame(teken); }
+					});
+				});
 			})();
 		</script>
 	</body>
