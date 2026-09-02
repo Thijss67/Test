@@ -7,7 +7,7 @@
 		<meta name="theme-color" content="#fbfaf7" />
 		<meta name="color-scheme" content="light" />
 		<title>DH Studio | High-End Webdesign & Ontwikkeling</title>
-		<meta name="description" content="Wat kost een website bij DH Studio? Drie pakketten vanaf €995, regel voor regel te vergelijken, plus hosting en onderhoud als doorlopende dienst." />
+		<meta name="description" content="Wat kost een website bij DH Studio? Drie pakketten vanaf €995, regel voor regel te vergelijken, plus hosting en onderhoud voor €50 per maand." />
 		<link rel="canonical" href="https://dh-studio.nl/tarieven" />
 
 		<meta property="og:type" content="website" />
@@ -15,7 +15,7 @@
 		<meta property="og:url" content="https://dh-studio.nl/tarieven" />
 		<meta property="og:site_name" content="DH Studio" />
 		<meta property="og:title" content="DH Studio | High-End Webdesign & Ontwikkeling" />
-		<meta property="og:description" content="Wat kost een website bij DH Studio? Drie pakketten vanaf €995, regel voor regel te vergelijken, plus hosting en onderhoud als doorlopende dienst." />
+		<meta property="og:description" content="Wat kost een website bij DH Studio? Drie pakketten vanaf €995, regel voor regel te vergelijken, plus hosting en onderhoud voor €50 per maand." />
 		<meta property="og:image" content="https://dh-studio.nl/assets/og-dh-studio.png" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
@@ -1112,6 +1112,10 @@
 			.los b { color: var(--fg); }
 			.los span { display: block; font-size: 0.9rem; color: var(--muted); }
 			.los .bedrag { font-weight: 700; color: var(--fg); white-space: nowrap; }
+			.inbegrepen { display: grid; gap: 0.7rem; padding-top: 1.35rem; }
+			.inbegrepen li { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; font-size: 0.94rem; }
+			.inbegrepen svg { width: 17px; height: 17px; margin-top: 0.15rem; color: var(--accent); }
+			@media (min-width: 640px) { .inbegrepen { grid-template-columns: 1fr 1fr; gap: 0.7rem 2rem; } }
 
 			/* Mobiel: één plan tegelijk in beeld. */
 			@media (max-width: 719px) {
@@ -1396,11 +1400,19 @@
 					<div class="section-head reveal">
 						<span class="eyebrow">Doorlopend</span>
 						<h2>Hosting en onderhoud</h2>
-						<p>Het bouwen is eenmalig, dit loopt maandelijks door. Ook los af te nemen, ook als wij je website niet gebouwd hebben.</p>
+						<p>Het bouwen is eenmalig, dit loopt maandelijks door. Ook los af te nemen, ook als wij je website niet gebouwd hebben. Bedragen zijn exclusief btw.</p>
 					</div>
 					<div class="losse">
-						<div class="los reveal"><span><b>Maandelijks, per website</b><span>Domein, snelle hosting en SSL, plus updates, back-ups, monitoring en hulp als er iets is.</span></span><span class="bedrag">Op aanvraag</span></div>
+						<div class="los reveal"><span><b>Hosting en onderhoud</b><span>Alles wat je website draaiende houdt, in &eacute;&eacute;n maandbedrag.</span></span><span class="bedrag">&euro;50 p/m</span></div>
 					</div>
+					<ul class="inbegrepen reveal">
+						<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Snelle hosting</span></li>
+						<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Dagelijkse back-ups</span></li>
+						<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Updates van je website</span></li>
+						<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Monitoring van je site</span></li>
+						<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Kleine wijzigingen</span></li>
+						<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Hulp als er problemen zijn</span></li>
+					</ul>
 					<div class="cards-cta reveal">
 						<a href="/diensten/hosting-onderhoud" class="btn btn-outline">Lees wat er precies onder valt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 					</div>
@@ -1542,7 +1554,7 @@
    "@id": "https://dh-studio.nl/tarieven#webpage",
    "url": "https://dh-studio.nl/tarieven",
    "name": "Tarieven",
-   "description": "Wat kost een website bij DH Studio? Drie pakketten vanaf €995, regel voor regel te vergelijken, plus hosting en onderhoud als doorlopende dienst.",
+   "description": "Wat kost een website bij DH Studio? Drie pakketten vanaf €995, regel voor regel te vergelijken, plus hosting en onderhoud voor €50 per maand.",
    "inLanguage": "nl-NL",
    "isPartOf": {
     "@id": "https://dh-studio.nl/#website"
