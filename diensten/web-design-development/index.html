@@ -984,7 +984,13 @@
 			   Twee zwevende vensters: een editor met tabblad, regelnummers en
 			   statusbalk, en daaroverheen het resultaat in een browser. Alles is
 			   HTML met de huisstijlvariabelen, dus geen afbeelding. */
-			.bouwt { margin: 0; }
+			.bouwt {
+				margin: 0;
+				/* Viewport waarop de klantsite in het frame wordt gerenderd. */
+				--frame-breed: 1180;
+				--frame-hoog: 1070;
+				--schaal: 0.4;
+			}
 			.venster {
 				border-radius: 12px;
 				overflow: hidden;
@@ -1040,31 +1046,31 @@
 
 			/* ---------- Editor: code ---------- */
 			.bouwt-code {
-				position: relative;
 				margin: 0;
-				padding: 0.95rem 1.1rem 0.95rem 3.1rem;
+				padding: 0.95rem 1.1rem;
 				min-height: 9.5rem;
 				font-family: ui-monospace, "SFMono-Regular", "Menlo", monospace;
 				font-size: 0.78rem;
 				line-height: 1.95;
 				color: #DCE3F0;
-				white-space: pre;
-				overflow-x: auto;
 			}
-			.bouwt-gutter {
-				position: absolute;
-				left: 0;
-				top: 0.95rem;
-				bottom: 0.95rem;
-				width: 2.2rem;
+			/* Elke regel is een eigen rij met nummer, zodat echte tekst mag
+			   afbreken zonder dat de nummering scheef gaat staan. */
+			.bouwt-regel { display: grid; grid-template-columns: 2.2rem 1fr; }
+			.bouwt-nr {
 				padding-right: 0.65rem;
 				text-align: right;
 				border-right: 1px solid rgba(255, 255, 255, 0.06);
 				color: rgba(255, 255, 255, 0.2);
 				font-variant-numeric: tabular-nums;
 				user-select: none;
+				font-style: normal;
 			}
-			.bouwt-gutter i { display: block; font-style: normal; line-height: 1.95; }
+			.bouwt-tekst {
+				padding-left: 0.9rem;
+				white-space: pre-wrap;
+				overflow-wrap: anywhere;
+			}
 			.bouwt-code .t { color: #82AAFF; }
 			.bouwt-code .a { color: #A9B6CE; }
 			.bouwt-code .s { color: #B8D9A9; }
@@ -1121,8 +1127,10 @@
 			}
 
 			@media (max-width: 700px) {
-				.bouwt-code { font-size: 16px; line-height: 1.75; white-space: pre-wrap; padding-left: 1.1rem; }
-				.bouwt-gutter { display: none; }
+				.bouwt-code { font-size: 16px; line-height: 1.75; }
+				.bouwt-regel { display: block; }
+				.bouwt-nr { display: none; }
+				.bouwt-tekst { padding-left: 0; }
 			}
 
 			/* ---------- Resultaat ---------- */
@@ -1152,25 +1160,30 @@
 			.br-url svg { width: 11px; height: 11px; flex: none; opacity: 0.55; }
 			.br-url span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-			.bouwt-uit { padding: 1.4rem 1.4rem 1.6rem; }
-			.bouwt-uit > * {
-				opacity: 0;
-				transform: translateY(8px);
-				transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+			/* In het venster staat de echte pagina van de klant, op ware
+			   verhouding verkleind. --schaal wordt in JS gezet zodat de
+			   breedte altijd precies past; de hoogte volgt uit aspect-ratio. */
+			.bouwt-uit {
+				position: relative;
+				overflow: hidden;
+				aspect-ratio: var(--frame-breed) / var(--frame-hoog);
+				background: var(--navy);
 			}
-			.bouwt-uit > .is-in { opacity: 1; transform: none; }
-			.bouwt-uit h3 { font-size: 1.3rem; line-height: 1.15; margin-bottom: 0.4rem; }
-			.bouwt-uit p { font-size: 0.92rem; color: var(--muted); margin-bottom: 1.1rem; }
-			.bouwt-knop {
-				display: inline-block;
-				font-size: 0.85rem;
-				font-weight: 700;
-				color: #fff;
-				background: var(--knop, var(--accent));
-				border-radius: 10px;
-				padding: 0.6rem 1.25rem;
-				box-shadow: 0 8px 16px -8px var(--knop, var(--accent));
-				transition: background 0.3s ease, box-shadow 0.3s ease;
+			.bouwt-frame {
+				/* Absoluut, anders telt de volle 1180px mee in de kolombreedte
+				   en duwt het frame de hele hero uit elkaar. */
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: block;
+				width: calc(var(--frame-breed) * 1px);
+				height: calc(var(--frame-hoog) * 1px);
+				border: 0;
+				transform-origin: 0 0;
+				transform: scale(var(--schaal));
+				/* Niet klikbaar: het is een voorbeeld, geen tweede site om in
+				   te verdwalen — en zo blijft "klik om door te spoelen" werken. */
+				pointer-events: none;
 			}
 
 			/* ---------- Regel onder de vensters ---------- */
@@ -1445,9 +1458,9 @@
 							Jij houdt er één telefoonnummer aan over.
 						</p>
 						<p class="hero-tekst">
-							Hiernaast staat het in het klein, met een site die we echt gemaakt hebben:
-							VD Heide Service &amp; Techniek. Links wat wij typen, rechts wat hun klant ziet.
-							Pas de tekst gerust aan, je maakt niets stuk.
+							Hiernaast staat een site die we echt gemaakt hebben:
+							VD Heide Service &amp; Techniek. Boven de code die wij schrijven,
+							eronder hun pagina zelf. Pas de tekst gerust aan, je maakt niets stuk.
 						</p>
 						<div class="btn-rij">
 							<a href="/contact" class="btn btn-primary" id="heroCta" data-cta="dienst-webdev-hero">Gratis kennismaken <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -1455,7 +1468,7 @@
 					</div>
 
 					<div class="demo">
-						<figure class="bouwt" id="bouwt" role="group" aria-label="De hero van vdheideservicetechniek.nl, een site die wij gemaakt hebben. Pas de tekst in de code aan en zie het voorbeeld meebewegen">
+						<figure class="bouwt" id="bouwt" role="group" aria-label="De hero van vdheideservicetechniek.nl, een site die wij gebouwd hebben. Pas de tekst in de code aan en zie de pagina meebewegen">
 							<div class="venster venster--code">
 								<div class="ed-tabs">
 									<span class="ed-tab">
@@ -1466,8 +1479,8 @@
 										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
 									</button>
 								</div>
-								<pre class="bouwt-code"><span class="bouwt-gutter" aria-hidden="true"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></span><code id="bouwCode"></code><span class="bouwt-caret" aria-hidden="true"></span></pre>
-								<div class="ed-status" aria-hidden="true"><span>HTML</span><span>5 regels</span></div>
+								<pre class="bouwt-code"><code id="bouwCode"></code></pre>
+								<div class="ed-status" aria-hidden="true"><span>hero.html</span><span>vdheideservicetechniek.nl</span></div>
 							</div>
 
 							<div class="venster venster--uit">
@@ -1478,15 +1491,20 @@
 										<span id="bouwUrl">vdheideservicetechniek.nl</span>
 									</span>
 								</div>
-								<div class="bouwt-uit" id="bouwUit" style="--knop: #F58220;">
-									<h3 data-stap="1">VD Heide Service &amp; Techniek</h3>
-									<p data-stap="2">Al 60 jaar specialist in weerstandlasmachines.</p>
-									<span class="bouwt-knop" data-stap="3">Neem contact op</span>
+								<div class="bouwt-uit" id="bouwUit">
+									<iframe
+										class="bouwt-frame"
+										id="bouwFrame"
+										src="/diensten/web-design-development/demo/vd-heide-hero.html"
+										title="De hero van vdheideservicetechniek.nl, een site die wij gebouwd hebben"
+										loading="lazy"
+										scrolling="no"
+										tabindex="-1"></iframe>
 								</div>
 							</div>
 						</figure>
 						<div class="bouwt-onder">
-							<p class="demo-noot" id="bouwNoot">Uit ons werk: de site van VD Heide Service &amp; Techniek. Links typen wij, rechts ziet de klant het.</p>
+							<p class="demo-noot" id="bouwNoot">Uit ons werk: dit is de hero van vdheideservicetechniek.nl.</p>
 							<a class="bouwt-cta" id="bouwCta" href="/contact" data-cta="dienst-webdev-speeltuin" hidden>Stuur dit naar ons <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 						</div>
 				</div>
@@ -1886,53 +1904,114 @@
 		</script>
 
 		<script>
-			// Zelfschrijvende code in de hero, daarna mag de bezoeker zelf spelen.
-			// Regels staan als tokens (klasse, tekst, veldnaam) zodat de kleuring
-			// klopt tijdens het typen. Alleen tekstwaarden worden bewerkbaar: tags
-			// en structuur kunnen dus niet sneuvelen.
+			// Zelfschrijvende code in de hero. Wat hier getypt wordt, is de
+			// echte hero-code van vdheideservicetechniek.nl — een site die wij
+			// gebouwd hebben — en het venster eronder is die pagina zelf, in
+			// een iframe. Past de bezoeker een tekst aan, dan verandert de
+			// echte pagina mee. Regels staan als tokens (klasse, tekst,
+			// veldnaam) zodat de kleuring klopt tijdens het typen; alleen
+			// tekstwaarden zijn bewerkbaar, tags kunnen dus niet sneuvelen.
 			(function () {
 				var codeEl = document.getElementById("bouwCode");
 				var uitEl = document.getElementById("bouwUit");
-				var urlEl = document.getElementById("bouwUrl");
-				var KLEUREN = [["oranje", "#F58220"], ["donkerblauw", "#16324F"], ["blauw", "#2563EB"]];
-				var kleurIndex = 0;
+				var frameEl = document.getElementById("bouwFrame");
 				var noot = document.getElementById("bouwNoot");
 				var opnieuw = document.getElementById("bouwOpnieuw");
 				var ctaEl = document.getElementById("bouwCta");
 				var kader = document.getElementById("bouwt");
-				if (!codeEl || !uitEl || !kader) return;
+				if (!codeEl || !uitEl || !frameEl || !kader) return;
+
+				// Accentkleur van de klantsite; klikbaar in de code. Elke optie
+				// heeft de drie tinten die de site gebruikt: basis, donker
+				// (hover) en licht (tekst op de donkere hero).
+				var KLEUREN = [
+					{ hex: "#F58220", diep: "#D96F14", zacht: "#FFB772" },
+					{ hex: "#2FB57C", diep: "#23895E", zacht: "#8FE3C1" },
+					{ hex: "#4C9AFF", diep: "#2F7AE0", zacht: "#A9CCFF" }
+				];
+				var kleurIndex = 0;
+
+				var LEAD = "Service, onderhoud en revisie van weerstandlasmachines door één vakman. Ruim 60 jaar ervaring, persoonlijk contact en eerlijk advies.";
 
 				var REGELS = [
-					{ tokens: [["p", "<"], ["t", "section"], ["a", " class"], ["p", "="], ["s", "\"hero\""], ["p", ">"]] },
-					{ stap: 1, tokens: [["p", "  <"], ["t", "h1"], ["p", ">"], ["x", "VD Heide Service & Techniek", "kop"], ["p", "</"], ["t", "h1"], ["p", ">"]] },
-					{ stap: 2, tokens: [["p", "  <"], ["t", "p"], ["p", ">"], ["x", "Al 60 jaar specialist in weerstandlasmachines.", "tekst"], ["p", "</"], ["t", "p"], ["p", ">"]] },
-					{ stap: 3, tokens: [["p", "  <"], ["t", "a"], ["a", " class"], ["p", "="], ["s", "\"knop "], ["s", "oranje", "kleur"], ["s", "\""], ["p", ">"], ["x", "Neem contact op", "knop"], ["p", "</"], ["t", "a"], ["p", ">"]] },
+					{ tokens: [["p", "<"], ["t", "section"], ["a", " class"], ["p", "="], ["s", "\"hero\""], ["a", " style"], ["p", "="], ["s", "\"--orange: "], ["s", "#F58220", "kleur"], ["s", "\""], ["p", ">"]] },
+					{ stap: 1, tokens: [["p", "  <"], ["t", "h1"], ["p", ">"], ["x", "Al "], ["p", "<"], ["t", "em"], ["p", ">"], ["x", "60 jaar"], ["p", "</"], ["t", "em"], ["p", "> "], ["x", "specialist in weerstandlasmachines", "kop"], ["p", "</"], ["t", "h1"], ["p", ">"]] },
+					{ stap: 2, tokens: [["p", "  <"], ["t", "p"], ["a", " class"], ["p", "="], ["s", "\"lead\""], ["p", ">"], ["x", LEAD, "tekst"], ["p", "</"], ["t", "p"], ["p", ">"]] },
+					{ stap: 3, tokens: [["p", "  <"], ["t", "a"], ["a", " class"], ["p", "="], ["s", "\"btn btn-primary\""], ["p", ">"], ["x", "Neem contact op", "knop"], ["p", "</"], ["t", "a"], ["p", ">"]] },
 					{ tokens: [["p", "</"], ["t", "section"], ["p", ">"]] }
 				];
 
+				// De drie waarden die de bezoeker mag aanpassen. Ze schrijven
+				// rechtstreeks naar de echte pagina in het venster eronder.
 				var VELDEN = {
-					kop: { doel: '[data-stap="1"]', max: 42, start: "VD Heide Service & Techniek" },
-					tekst: { doel: '[data-stap="2"]', max: 90, start: "Al 60 jaar specialist in weerstandlasmachines." },
-					knop: { doel: '[data-stap="3"]', max: 22, start: "Neem contact op" }
+					kop: { max: 60, start: "specialist in weerstandlasmachines" },
+					tekst: { max: 150, start: LEAD },
+					knop: { max: 24, start: "Neem contact op" }
 				};
 
 				var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 				var timer = null, velden = {}, bezig = false, klaar = false, aangeraakt = false;
 
+				// ---- Het venster: de klantsite op ware grootte, verkleind ----
+				// Is er ruimte, dan tonen we de desktopweergave voluit. Wordt
+				// het venster smal, dan zou die tot onleesbaar verkleind
+				// worden; dan laden we de site op telefoonbreedte en tonen we
+				// de bovenkant daarvan — precies wat een bezoeker op zijn
+				// telefoon ook ziet.
+				var BREED = { breed: 1180, hoog: 1070 };  // volledige hero
+				var SMAL = { breed: 430, hoog: 790 };     // tot en met de knoppen
+				function schaal() {
+					var ruimte = uitEl.clientWidth;
+					if (!ruimte) return;
+					var maat = ruimte >= 460 ? BREED : SMAL;
+					kader.style.setProperty("--frame-breed", maat.breed);
+					kader.style.setProperty("--frame-hoog", maat.hoog);
+					kader.style.setProperty("--schaal", ruimte / maat.breed);
+				}
+				schaal();
+				if ("ResizeObserver" in window) new ResizeObserver(schaal).observe(uitEl);
+				else window.addEventListener("resize", schaal);
+
+				// Alleen aanspreekbaar als het frame geladen is. Lukt dat niet,
+				// dan doen alle aanroepen hieronder niets en blijft de hero
+				// staan zoals hij op de echte site staat.
+				function api() {
+					try {
+						var w = frameEl.contentWindow;
+						return w && w.demoZet ? w : null;
+					} catch (e) { return null; }
+				}
+				function zetVeld(naam, waarde) { var w = api(); if (w) w.demoZet(naam, waarde); }
+				function zetKleur(k) { var w = api(); if (w) w.demoKleur(k.hex, k.diep, k.zacht); }
+				function toonStap(n) { var w = api(); if (w) w.demoStap(n); }
+
 				// Wat de bezoeker intypt gaat mee naar het contactformulier,
-				// zodat hij daar niet opnieuw hoeft uit te leggen wie hij is.
+				// zodat hij daar niet opnieuw hoeft uit te leggen wat hij wil.
 				function ververLink() {
 					if (!ctaEl) return;
 					var kop = velden.kop ? velden.kop.textContent.trim() : "";
 					var regel = velden.tekst ? velden.tekst.textContent.trim() : "";
-					ctaEl.href = "/contact?bedrijf=" + encodeURIComponent(kop) +
+					ctaEl.href = "/contact?kop=" + encodeURIComponent(kop) +
 						"&regel=" + encodeURIComponent(regel);
 				}
-				var r = 0, t = 0, c = 0, span = null;
 
-				function toonStap(n) {
-					var el = uitEl.querySelector('[data-stap="' + n + '"]');
-					if (el) el.classList.add("is-in");
+				var r = 0, t = 0, c = 0, span = null, regelEl = null;
+
+				// Elke regel krijgt een eigen rij met nummer, zodat lange echte
+				// zinnen mogen afbreken zonder de nummering scheef te trekken.
+				function nieuweRegel(nr) {
+					var rij = document.createElement("span");
+					rij.className = "bouwt-regel";
+					var nummer = document.createElement("i");
+					nummer.className = "bouwt-nr";
+					nummer.setAttribute("aria-hidden", "true");
+					nummer.textContent = nr;
+					var tekst = document.createElement("span");
+					tekst.className = "bouwt-tekst";
+					rij.appendChild(nummer);
+					rij.appendChild(tekst);
+					codeEl.appendChild(rij);
+					return tekst;
 				}
 
 				function maakSpan(token) {
@@ -1942,21 +2021,16 @@
 					return el;
 				}
 
-				// Bedrijfsnaam wordt een webadres: leuk detail én een hint richting hosting.
-				function naarDomein(naam) {
-					var woorden = naam
-						.toLowerCase()
-						.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-						.replace(/[^a-z0-9 ]/g, " ")
-						.split(" ")
-						.filter(Boolean);
-					// Hele woorden aanplakken zolang het adres kort blijft,
-					// zodat er nooit een half woord in de balk staat.
-					var slug = (woorden.shift() || "").slice(0, 22);
-					woorden.forEach(function (woord) {
-						if (slug.length + woord.length <= 22) slug += woord;
-					});
-					return (slug || "jouwbedrijf") + ".nl";
+				function zetCaret(doel) {
+					var caret = document.getElementById("bouwCaret");
+					if (!caret) {
+						caret = document.createElement("span");
+						caret.className = "bouwt-caret";
+						caret.id = "bouwCaret";
+						caret.setAttribute("aria-hidden", "true");
+					}
+					if (doel) doel.appendChild(caret);
+					else if (caret.parentNode) caret.parentNode.removeChild(caret);
 				}
 
 				function plaatsCursorAchteraan(el) {
@@ -1973,16 +2047,16 @@
 					klaar = true;
 					bezig = false;
 					kader.classList.add("is-klaar");
+					zetCaret(null);
 
 					Object.keys(VELDEN).forEach(function (naam) {
 						var el = velden[naam];
 						if (!el) return;
-						var doel = uitEl.querySelector(VELDEN[naam].doel);
 						el.classList.add("bewerk", "wijs");
 						el.setAttribute("contenteditable", "true");
 						el.setAttribute("role", "textbox");
 						el.setAttribute("spellcheck", "false");
-						el.setAttribute("aria-label", "Pas deze tekst aan en zie het resultaat hieronder");
+						el.setAttribute("aria-label", "Pas deze tekst aan en zie de site hieronder meebewegen");
 						el.setAttribute("tabindex", "0");
 
 						el.addEventListener("input", function () {
@@ -1992,8 +2066,7 @@
 								el.textContent = tekst;
 								plaatsCursorAchteraan(el);
 							}
-							if (doel) doel.textContent = tekst;
-							if (naam === "kop" && urlEl) urlEl.textContent = naarDomein(tekst);
+							zetVeld(naam, tekst);
 							ververLink();
 							if (!aangeraakt) {
 								aangeraakt = true;
@@ -2012,8 +2085,7 @@
 						el.addEventListener("blur", function () {
 							if (!el.textContent.trim()) {
 								el.textContent = VELDEN[naam].start;
-								if (doel) doel.textContent = VELDEN[naam].start;
-								if (naam === "kop" && urlEl) urlEl.textContent = naarDomein(VELDEN[naam].start);
+								zetVeld(naam, VELDEN[naam].start);
 							}
 						});
 					});
@@ -2024,12 +2096,12 @@
 						kl.classList.add("wissel");
 						kl.setAttribute("role", "button");
 						kl.setAttribute("tabindex", "0");
-						kl.setAttribute("title", "Klik om de knopkleur te wisselen");
-						kl.setAttribute("aria-label", "Knopkleur wisselen");
+						kl.setAttribute("title", "Klik om de accentkleur te wisselen");
+						kl.setAttribute("aria-label", "Accentkleur wisselen");
 						var wissel = function () {
 							kleurIndex = (kleurIndex + 1) % KLEUREN.length;
-							kl.textContent = KLEUREN[kleurIndex][0];
-							uitEl.style.setProperty("--knop", KLEUREN[kleurIndex][1]);
+							kl.textContent = KLEUREN[kleurIndex].hex;
+							zetKleur(KLEUREN[kleurIndex]);
 						};
 						kl.addEventListener("click", wissel);
 						kl.addEventListener("keydown", function (e) {
@@ -2038,26 +2110,25 @@
 					}
 					if (ctaEl) ctaEl.hidden = false;
 					ververLink();
-					if (noot) noot.textContent = "Zo bouwden wij de kop van vdheideservicetechniek.nl. Nu jij: zet je eigen bedrijf erin.";
+					if (noot) noot.textContent = "Nu jij: pas de tekst in de code aan, de site verandert mee.";
 				}
 
 				function leegmaken() {
 					clearTimeout(timer);
 					bezig = false; klaar = false; aangeraakt = false;
-					r = 0; t = 0; c = 0; span = null;
+					r = 0; t = 0; c = 0; span = null; regelEl = null;
 					kleurIndex = 0;
 					if (ctaEl) ctaEl.hidden = true;
-					if (noot) noot.textContent = "Uit ons werk: de site van VD Heide Service & Techniek. Links typen wij, rechts ziet de klant het.";
+					if (noot) noot.textContent = "Uit ons werk: dit is de hero van vdheideservicetechniek.nl.";
 					velden = {};
 					codeEl.textContent = "";
 					kader.classList.remove("is-klaar");
-					uitEl.style.setProperty("--knop", KLEUREN[0][1]);
-					[].slice.call(uitEl.children).forEach(function (el) { el.classList.remove("is-in"); });
+					zetKleur(KLEUREN[0]);
+					var w = api();
+					if (w) w.demoVerberg();
 					Object.keys(VELDEN).forEach(function (naam) {
-						var doel = uitEl.querySelector(VELDEN[naam].doel);
-						if (doel) doel.textContent = VELDEN[naam].start;
+						zetVeld(naam, VELDEN[naam].start);
 					});
-					if (urlEl) urlEl.textContent = naarDomein(VELDEN.kop.start);
 				}
 
 				// Alles ineens neerzetten: bij prefers-reduced-motion en bij doorklikken.
@@ -2066,12 +2137,12 @@
 					codeEl.textContent = "";
 					velden = {};
 					REGELS.forEach(function (regel, i) {
+						var doel = nieuweRegel(i + 1);
 						regel.tokens.forEach(function (token) {
 							var el = maakSpan(token);
 							el.textContent = token[1];
-							codeEl.appendChild(el);
+							doel.appendChild(el);
 						});
-						if (i < REGELS.length - 1) codeEl.appendChild(document.createTextNode("\n"));
 						if (regel.stap) toonStap(regel.stap);
 					});
 					activeer();
@@ -2080,9 +2151,13 @@
 				function tik() {
 					if (!bezig) return;
 					var regel = REGELS[r];
+					if (!regelEl) {
+						regelEl = nieuweRegel(r + 1);
+						zetCaret(regelEl);
+					}
 					if (!span) {
 						span = maakSpan(regel.tokens[t]);
-						codeEl.appendChild(span);
+						regelEl.insertBefore(span, document.getElementById("bouwCaret"));
 					}
 					var tekst = regel.tokens[t][1];
 					span.textContent = tekst.slice(0, ++c);
@@ -2091,14 +2166,14 @@
 						span = null; c = 0; t++;
 						if (t >= regel.tokens.length) {
 							if (regel.stap) toonStap(regel.stap);
-							t = 0; r++;
+							t = 0; r++; regelEl = null;
 							if (r >= REGELS.length) { activeer(); return; }
-							codeEl.appendChild(document.createTextNode("\n"));
 							timer = setTimeout(tik, 260);
 							return;
 						}
 					}
-					timer = setTimeout(tik, 22);
+					// Lange, echte zinnen mogen wat vlotter over het scherm.
+					timer = setTimeout(tik, tekst.length > 60 ? 8 : 22);
 				}
 
 				function start() {
@@ -2125,17 +2200,27 @@
 
 				if (opnieuw) opnieuw.addEventListener("click", function (e) { e.stopPropagation(); start(); });
 
+				// Pas beginnen als het venster de klantsite echt heeft geladen,
+				// anders typen we tegen een leeg frame aan.
+				function alsFrameKlaar(doe) {
+					if (api()) { doe(); return; }
+					var af = false;
+					var klaarNu = function () { if (!af) { af = true; doe(); } };
+					frameEl.addEventListener("load", klaarNu, { once: true });
+					setTimeout(klaarNu, 3000);
+				}
+
 				if ("IntersectionObserver" in window) {
 					var gestart = false;
 					new IntersectionObserver(function (entries, obs) {
 						if (entries[0].isIntersecting && !gestart) {
 							gestart = true;
-							start();
 							obs.disconnect();
+							alsFrameKlaar(start);
 						}
 					}, { threshold: 0.35 }).observe(kader);
 				} else {
-					start();
+					alsFrameKlaar(start);
 				}
 			})();
 		</script>

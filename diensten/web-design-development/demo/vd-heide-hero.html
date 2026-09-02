@@ -1,0 +1,935 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>VD Heide Service &amp; Techniek — hero (voorbeeldweergave)</title>
+<!--
+  Voorbeeldweergave van een site die wij gebouwd hebben:
+  vdheideservicetechniek.nl. De opmaak en stijl hieronder komen
+  ongewijzigd uit die site; alleen de secties onder de hero zijn
+  weggelaten. Dit bestand wordt alleen in een iframe getoond op
+  /diensten/web-design-development en staat op noindex.
+-->
+<style>
+
+    /* ================= Tokens ================= */
+    :root {
+      --blue-950: #0f2338;
+      --blue-900: #16324F;
+      --blue-800: #1e4266;
+      --anthracite: #2F343A;
+      --anthracite-2: #3a4047;
+
+      --orange: #F58220;
+      --orange-deep: #d96f14;
+      --orange-soft: #ffb772;
+
+      --white: #ffffff;
+      --paper: #f6f7f9;
+      --ink: #1b2531;
+      --muted: #5a6572;
+      --line: rgba(22, 50, 79, 0.13);
+      --ok: #7fd18a;
+
+      --shadow-lg: 0 30px 70px -34px rgba(15, 35, 56, 0.4);
+      --shadow-sm: 0 14px 34px -22px rgba(15, 35, 56, 0.42);
+
+      --font-display: "Avenir Next", "Avenir", "Segoe UI Variable Display", "Segoe UI", ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+      --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+      --maxw: 1180px;
+      --radius: 18px;
+
+      --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.08rem);
+      --step-1: clamp(1.14rem, 1.04rem + 0.5vw, 1.38rem);
+      --step-2: clamp(1.5rem, 1.24rem + 1.1vw, 2.05rem);
+      --step-3: clamp(2rem, 1.5rem + 2.2vw, 3.15rem);
+      --step-4: clamp(2.55rem, 1.8rem + 3.8vw, 4.7rem);
+
+      /* Lasnaad-motief: hechtlas-streepjes als terugkerend detail */
+      --seam: repeating-linear-gradient(90deg, var(--orange) 0 10px, transparent 10px 17px);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+
+    body {
+      margin: 0;
+      background: var(--white);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: var(--step-0);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--maxw);
+      margin-inline: auto;
+      padding-inline: clamp(1.1rem, 4vw, 2.5rem);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.022em;
+      text-wrap: balance;
+      margin: 0;
+      color: var(--blue-900);
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    ul { margin: 0; padding: 0; list-style: none; }
+    .num { font-variant-numeric: tabular-nums; }
+
+    .eyebrow {
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--orange-deep);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8em;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 34px; height: 3px; border-radius: 2px;
+      background: var(--seam);
+    }
+    .eyebrow.on-dark { color: var(--orange-soft); }
+
+    /* ================= Knoppen ================= */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.55em;
+      padding: 0.92em 1.65em;
+      border-radius: 999px;
+      font-family: var(--font-display);
+      font-weight: 700; font-size: 0.97rem; letter-spacing: 0.005em;
+      cursor: pointer; border: 1.5px solid transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--orange); color: #fff;
+      box-shadow: 0 16px 32px -16px rgba(245, 130, 32, 0.8);
+    }
+    .btn-primary:hover { background: var(--orange-deep); transform: translateY(-2px); box-shadow: 0 22px 38px -16px rgba(245, 130, 32, 0.85); }
+    .btn-primary .arrow { transition: transform 0.2s ease; }
+    .btn-primary:hover .arrow { transform: translateX(4px); }
+    .btn-outline { background: transparent; color: var(--blue-900); border-color: var(--line); }
+    .btn-outline:hover { border-color: var(--orange); color: var(--orange-deep); transform: translateY(-2px); }
+    .btn-glass {
+      background: rgba(255,255,255,0.07); color: #fff;
+      border-color: rgba(255,255,255,0.28); backdrop-filter: blur(4px);
+    }
+    .btn-glass:hover { background: rgba(255,255,255,0.15); border-color: #fff; transform: translateY(-2px); }
+
+    :focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; border-radius: 6px; }
+
+    /* ================= Header ================= */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: color-mix(in srgb, var(--white) 85%, transparent);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    header.scrolled { border-bottom-color: var(--line); box-shadow: 0 10px 34px -26px rgba(15,35,56,0.5); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 78px; }
+    .brand { display: inline-flex; align-items: center; }
+    /* Wordmark naar het visitekaartje: vet cursief, & TECHNIEK gespatieerd eronder */
+    .wordmark {
+      display: flex; flex-direction: column;
+      font-family: var(--font-display); font-style: italic; font-weight: 800;
+      text-transform: uppercase; line-height: 0.98; letter-spacing: -0.01em;
+      color: var(--blue-950);
+    }
+    .wm-line1 { font-size: 1.24rem; white-space: nowrap; }
+    .wm-vd { font-size: 0.72em; margin-right: 0.1em; }
+    .wm-line2 { font-size: 0.64rem; letter-spacing: 0.4em; font-weight: 700; color: var(--anthracite-2); margin-top: 3px; }
+
+    .nav-links { display: flex; align-items: center; gap: 2rem; font-size: 0.94rem; font-weight: 600; color: var(--anthracite); }
+    .nav-links a { position: relative; padding: 0.25rem 0; transition: color 0.15s ease; }
+    .nav-links a::after {
+      content: ""; position: absolute; left: 0; bottom: -4px;
+      width: 0; height: 3px; border-radius: 2px; background: var(--seam);
+      transition: width 0.25s ease;
+    }
+    .nav-links a:hover { color: var(--blue-900); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { display: flex; align-items: center; gap: 0.9rem; }
+    .nav-mail { font-weight: 700; color: var(--blue-900); font-size: 0.93rem; display: inline-flex; align-items: center; gap: 0.5rem; }
+    .nav-mail svg { width: 1.05em; height: 1.05em; color: var(--orange); }
+    .nav-mail:hover { color: var(--orange-deep); }
+
+    .menu-btn {
+      display: none; background: transparent; border: 1px solid var(--line); border-radius: 10px;
+      width: 44px; height: 44px; cursor: pointer; place-items: center; color: var(--blue-900);
+    }
+    .menu-btn svg { width: 24px; height: 24px; }
+    @media (max-width: 960px) {
+      .nav-links, .nav-mail { display: none; }
+      .menu-btn { display: grid; }
+    }
+    @media (max-width: 560px) { .nav-cta .btn-primary { display: none; } }
+
+    .mobile-menu {
+      position: fixed; inset: 78px 0 auto 0; z-index: 99;
+      background: var(--white); border-bottom: 1px solid var(--line);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-120%);
+      transition: transform 0.3s ease;
+      padding: 1.2rem clamp(1.1rem, 4vw, 2.5rem) 1.6rem;
+    }
+    .mobile-menu.open { transform: translateY(0); }
+    .mobile-menu a { display: block; padding: 0.85rem 0; font-size: 1.05rem; font-weight: 700; color: var(--anthracite); border-bottom: 1px solid var(--line); }
+    .mobile-menu a:last-of-type { border-bottom: 0; }
+    .mobile-menu .btn { margin-top: 1rem; width: 100%; }
+
+    /* ================= Reveal ================= */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s cubic-bezier(0.16,0.84,0.44,1), transform 0.7s cubic-bezier(0.16,0.84,0.44,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal[data-delay="1"] { transition-delay: 0.08s; }
+    .reveal[data-delay="2"] { transition-delay: 0.16s; }
+    .reveal[data-delay="3"] { transition-delay: 0.24s; }
+    .reveal[data-delay="4"] { transition-delay: 0.32s; }
+
+    /* ================= Hero ================= */
+    .hero {
+      position: relative; color: #fff; overflow: hidden;
+      background:
+        radial-gradient(110% 130% at 88% -12%, rgba(245,130,32,0.3), transparent 52%),
+        radial-gradient(70% 90% at -8% 108%, rgba(245,130,32,0.12), transparent 55%),
+        linear-gradient(118deg, var(--blue-950) 0%, var(--blue-900) 48%, var(--anthracite) 100%);
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Cpath d='M0 43.5H44M43.5 0V44' stroke='%23ffffff' stroke-opacity='0.05'/%3E%3C/svg%3E");
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1.12fr 0.88fr;
+      gap: clamp(2rem, 5vw, 4rem); align-items: center;
+      padding-block: clamp(4rem, 9vw, 7.2rem);
+    }
+    .hero-copy { min-width: 0; }
+    @media (max-width: 960px) { .hero-inner { grid-template-columns: 1fr; } }
+
+    /* Blauwdruk van de machine als achtergrondtekening */
+    .blueprint {
+      position: absolute; z-index: 1; pointer-events: none;
+      right: max(-120px, -6vw); top: 50%;
+      height: min(86%, 640px); transform: translateY(-52%);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 32%);
+      mask-image: linear-gradient(90deg, transparent, #000 32%);
+    }
+    @media (max-width: 900px) { .blueprint { display: none; } }
+
+    .hero-link {
+      display: inline-flex; align-items: center; gap: 0.45em;
+      color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.96rem;
+      border-bottom: 1px dashed rgba(255,255,255,0.4); padding-bottom: 2px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .hero-link:hover { color: var(--orange-soft); border-color: var(--orange-soft); }
+
+    .hero .eyebrow { margin-bottom: 1.6rem; }
+    .hero h1 { color: #fff; font-size: clamp(2.7rem, 1.9rem + 4.6vw, 5.3rem); margin-bottom: 1.35rem; }
+    .hero h1 em {
+      font-style: normal; color: var(--orange-soft);
+      /* Weld-bead onderstreping: hechtlasjes onder het vakwoord */
+      background-image: repeating-linear-gradient(90deg, var(--orange) 0 11px, transparent 11px 19px);
+      background-repeat: repeat-x;
+      background-size: 19px 4px;
+      background-position: 0 100%;
+      padding-bottom: 0.1em;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+    .hero .lead { font-size: var(--step-1); color: rgba(255,255,255,0.83); max-width: 44ch; margin: 0 0 2.3rem; }
+    .hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 0.9rem; }
+
+    /* Werkbon-kaart: als een fysiek servicebonnetje */
+    .hero-side { display: flex; justify-content: flex-end; min-width: 0; }
+    @media (max-width: 960px) { .hero-side { justify-content: flex-start; } }
+    .workcard {
+      position: relative; width: min(380px, 100%);
+      background: #fbfaf7; color: var(--ink);
+      border-radius: 16px; padding: 2.1rem 1.7rem 1.7rem;
+      box-shadow: 0 44px 90px -38px rgba(0, 0, 0, 0.65);
+      transform: rotate(1.4deg);
+      transition: transform 0.3s ease;
+    }
+    .workcard:hover { transform: rotate(0deg); }
+    .workcard::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 8px;
+      border-radius: 16px 16px 0 0;
+      background: repeating-linear-gradient(-45deg, var(--orange) 0 14px, var(--blue-950) 14px 28px);
+    }
+    .wc-label {
+      display: inline-block; font-size: 0.66rem; font-weight: 800;
+      letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted);
+      border: 1px solid var(--line); padding: 0.3rem 0.7rem 0.3rem 0.85rem; border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+    .wc-title { font-size: 1.45rem; color: var(--blue-900); }
+    .wc-list { display: grid; gap: 0.65rem; margin-top: 1.1rem; padding-bottom: 1.2rem; border-bottom: 2px dashed var(--line); }
+    .wc-list li { display: flex; gap: 0.6rem; font-size: 0.93rem; color: var(--anthracite); align-items: flex-start; }
+    .wc-list svg { width: 19px; height: 19px; color: var(--orange); flex: none; margin-top: 2px; }
+    .wc-btn { width: 100%; margin-top: 1.3rem; }
+    .wc-mail { display: block; text-align: center; margin-top: 0.85rem; font-size: 0.82rem; font-weight: 600; color: var(--muted); word-break: break-word; }
+    .wc-mail:hover { color: var(--orange-deep); }
+    .wc-stamp {
+      position: absolute; top: -20px; right: -16px;
+      width: 96px; height: 96px; border-radius: 50%;
+      display: grid; place-items: center; text-align: center;
+      font-family: var(--font-display); font-weight: 800; font-size: 0.72rem; line-height: 1.25;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--orange-deep);
+      border: 2.5px solid var(--orange-deep);
+      box-shadow: inset 0 0 0 4px #fbfaf7, inset 0 0 0 5.5px rgba(217, 111, 20, 0.55);
+      background: #fbfaf7;
+      transform: rotate(-12deg);
+    }
+
+    /* Statistiekband onderin de hero */
+    .hero-band {
+      position: relative; z-index: 2;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      background: rgba(15, 35, 56, 0.45);
+      backdrop-filter: blur(6px);
+    }
+    .hb-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem 3rem; padding-block: 1.25rem; }
+    .hb-stat { display: flex; align-items: baseline; gap: 0.6rem; }
+    .hb-stat b { font-family: var(--font-display); font-size: 1.95rem; font-weight: 800; color: #fff; line-height: 1; font-variant-numeric: tabular-nums; }
+    .hb-stat span { font-size: 0.85rem; color: rgba(255,255,255,0.72); }
+    .hb-note { margin: 0 0 0 auto; font-size: 0.9rem; color: rgba(255,255,255,0.75); }
+    .hb-note strong { color: #fff; font-weight: 700; }
+    @media (max-width: 1020px) { .hb-note { margin-left: 0; flex-basis: 100%; } }
+
+    @keyframes sparkPulse {
+      0%, 100% { opacity: 0.55; transform: scale(0.82); }
+      45% { opacity: 1; transform: scale(1.12); }
+      60% { opacity: 0.8; transform: scale(0.95); }
+    }
+    .spark-anim { transform-origin: center; transform-box: fill-box; animation: sparkPulse 2.6s ease-in-out infinite; }
+
+    /* ================= Trust-strip ================= */
+    .trust-strip { background: var(--blue-900); color: rgba(255,255,255,0.92); position: relative; }
+    .trust-strip .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem 2.7rem; padding-block: 1.15rem; text-align: center; }
+    .trust-strip .item { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.92rem; font-weight: 600; }
+    .trust-strip svg { width: 1.15em; height: 1.15em; color: var(--orange-soft); flex: none; }
+
+    /* ================= Secties ================= */
+    section { position: relative; }
+    .section-pad { padding-block: clamp(4rem, 9vw, 7.2rem); }
+    .section-head { max-width: 62ch; margin-bottom: clamp(2.4rem, 5vw, 3.6rem); }
+    .section-head.center { margin-inline: auto; text-align: center; }
+    .section-head.center .eyebrow { justify-content: center; }
+    .section-head h2 { font-size: var(--step-3); margin-top: 1rem; }
+    .section-head p { color: var(--muted); font-size: var(--step-1); margin: 1.1rem 0 0; }
+
+    /* ================= Over ons ================= */
+    .about-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 6vw, 4.5rem); align-items: center; }
+    @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } }
+    .about-visual { position: relative; min-width: 0; }
+    .about-visual .frame {
+      position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/5;
+      box-shadow: var(--shadow-lg);
+      background: linear-gradient(150deg, var(--blue-900), var(--anthracite));
+    }
+    .about-visual .frame .illus { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    .exp-badge {
+      position: absolute; right: -16px; bottom: -18px;
+      background: var(--white); border-radius: 16px; padding: 1.15rem 1.4rem;
+      box-shadow: var(--shadow-lg); border: 1px solid var(--line);
+      text-align: center;
+    }
+    .exp-badge b { font-family: var(--font-display); font-size: 2.4rem; font-weight: 800; color: var(--orange); display: block; line-height: 1; font-variant-numeric: tabular-nums; }
+    .exp-badge span { font-size: 0.8rem; color: var(--muted); font-weight: 700; }
+    @media (max-width: 480px) { .exp-badge { right: 8px; bottom: -14px; padding: 0.9rem 1.1rem; } }
+
+    .about-copy { min-width: 0; }
+    .about-copy h2 { font-size: var(--step-3); margin-top: 1rem; }
+    .about-copy p { color: var(--anthracite); margin: 1.2rem 0 0; }
+    .about-copy p.intro { font-size: var(--step-1); color: var(--ink); font-weight: 600; }
+    .about-values { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.6rem; margin-top: 2rem; }
+    @media (max-width: 520px) { .about-values { grid-template-columns: 1fr; } }
+    .about-values li { display: flex; gap: 0.7rem; align-items: flex-start; font-weight: 700; color: var(--blue-900); }
+    .about-values li svg { width: 22px; height: 22px; flex: none; color: var(--orange); margin-top: 2px; }
+    .signature { margin-top: 2.3rem; padding-top: 1.4rem; border-top: 3px solid transparent; border-image: var(--seam) 1; max-width: 300px; }
+    .signature .name { font-family: var(--font-display); font-weight: 800; color: var(--blue-900); }
+    .signature .role { font-size: 0.85rem; color: var(--muted); }
+
+    /* ================= Diensten ================= */
+    .services { background: var(--paper); }
+    .grid-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.3rem; }
+    @media (max-width: 1040px) { .grid-cards { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .grid-cards { grid-template-columns: 1fr; } }
+    .s-card {
+      background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 1.7rem 1.5rem; box-shadow: var(--shadow-sm);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      position: relative; overflow: hidden;
+    }
+    .s-card::before {
+      content: ""; position: absolute; left: 0; top: 0; height: 3px; width: 0;
+      background: var(--seam); transition: width 0.35s ease;
+    }
+    .s-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: color-mix(in srgb, var(--orange) 45%, var(--line)); }
+    .s-card:hover::before { width: 100%; }
+    .s-icon {
+      width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center;
+      background: color-mix(in srgb, var(--orange) 12%, transparent);
+      color: var(--orange-deep); margin-bottom: 1.1rem;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+    .s-card:hover .s-icon { background: var(--orange); color: #fff; }
+    .s-icon svg { width: 26px; height: 26px; }
+    .s-card h3 { font-size: 1.18rem; }
+    .s-card p { color: var(--muted); font-size: 0.94rem; margin: 0.5rem 0 0; }
+
+    /* ================= Signalen ================= */
+    .signal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
+    @media (max-width: 900px) { .signal-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .signal-grid { grid-template-columns: 1fr; } }
+    .signal {
+      display: flex; gap: 1.1rem; align-items: flex-start;
+      background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
+      padding: 1.4rem; transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .signal:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--orange) 40%, var(--line)); }
+    .sig-icon { flex: none; width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: var(--blue-900); color: var(--orange-soft); }
+    .sig-icon svg { width: 24px; height: 24px; }
+    .signal h4 { font-size: 1.05rem; }
+    .signal p { margin: 0.3rem 0 0; font-size: 0.9rem; color: var(--muted); }
+
+    /* ================= Waarom (donker) ================= */
+    .why { background: var(--blue-900); color: #fff; overflow: hidden; }
+    .why::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background:
+        repeating-linear-gradient(115deg, rgba(255,255,255,0.022) 0 2px, transparent 2px 9px),
+        radial-gradient(50% 60% at 92% 6%, rgba(245,130,32,0.22), transparent 60%),
+        radial-gradient(45% 55% at 4% 96%, rgba(245,130,32,0.13), transparent 60%);
+    }
+    .why .wrap { position: relative; z-index: 2; }
+    .why .section-head h2 { color: #fff; }
+    .why .section-head p { color: rgba(255,255,255,0.78); }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
+    @media (max-width: 900px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .why-grid { grid-template-columns: 1fr; } }
+    .why-card {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--radius); padding: 1.8rem 1.6rem;
+      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+      /* Typeplaatje: klinknagels in de vier hoeken */
+      background-image:
+        radial-gradient(circle 2.5px at 14px 14px, rgba(255,255,255,0.32) 0 2.5px, transparent 3px),
+        radial-gradient(circle 2.5px at calc(100% - 14px) 14px, rgba(255,255,255,0.32) 0 2.5px, transparent 3px),
+        radial-gradient(circle 2.5px at 14px calc(100% - 14px), rgba(255,255,255,0.32) 0 2.5px, transparent 3px),
+        radial-gradient(circle 2.5px at calc(100% - 14px) calc(100% - 14px), rgba(255,255,255,0.32) 0 2.5px, transparent 3px);
+    }
+    .why-card:hover { transform: translateY(-6px); background-color: rgba(255,255,255,0.09); border-color: rgba(245,130,32,0.55); }
+    .w-icon { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; background: rgba(245,130,32,0.16); color: var(--orange-soft); margin-bottom: 1.1rem; }
+    .w-icon svg { width: 25px; height: 25px; }
+    .why-card b.big { font-family: var(--font-display); font-size: 2.6rem; font-weight: 800; color: var(--orange-soft); display: block; line-height: 1; font-variant-numeric: tabular-nums; }
+    .why-card h3 { color: #fff; font-size: 1.18rem; margin-top: 0.4rem; }
+    .why-card p { color: rgba(255,255,255,0.74); font-size: 0.93rem; margin: 0.5rem 0 0; }
+
+    /* ================= Werkwijze — interactieve gallerij ================= */
+    .process { background: var(--paper); }
+    .process-showcase {
+      display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(1.6rem, 4vw, 3rem);
+      align-items: center; margin-top: 1rem;
+    }
+    @media (max-width: 860px) { .process-showcase { grid-template-columns: 1fr; } }
+
+    .ps-steps { display: grid; gap: 0.7rem; }
+    .ps-step {
+      display: grid; grid-template-columns: 48px 1fr; gap: 1rem; align-items: start;
+      text-align: left; width: 100%; cursor: pointer;
+      background: transparent; border: 1px solid transparent; border-radius: 14px;
+      padding: 1rem 1.1rem; color: inherit; font: inherit;
+      transition: background 0.25s ease, border-color 0.25s ease;
+      position: relative; overflow: hidden;
+    }
+    .ps-step:hover { background: var(--white); border-color: var(--line); }
+    .ps-step[aria-selected="true"] {
+      background: var(--white);
+      border-color: color-mix(in srgb, var(--orange) 40%, var(--line));
+      box-shadow: var(--shadow-sm);
+    }
+    .ps-num {
+      width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center;
+      border: 2px solid var(--line); color: var(--muted);
+      font-family: var(--font-display); font-weight: 800; font-size: 1.1rem;
+      transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+      font-variant-numeric: tabular-nums;
+    }
+    .ps-step[aria-selected="true"] .ps-num { border-color: var(--orange); background: var(--orange); color: #fff; }
+    .ps-title { display: block; font-family: var(--font-display); font-weight: 800; font-size: 1.12rem; color: var(--blue-900); letter-spacing: -0.01em; }
+    .ps-desc { display: block; margin-top: 0.3rem; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .ps-progress { position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; }
+    .ps-progress i { display: block; height: 100%; width: 0; background: var(--seam); }
+    .ps-step[aria-selected="true"] .ps-progress i.run { animation: psbar var(--ps-dur, 5000ms) linear forwards; }
+    @keyframes psbar { from { width: 0; } to { width: 100%; } }
+
+    .ps-stage {
+      position: relative; border-radius: var(--radius); overflow: hidden;
+      aspect-ratio: 4 / 3; box-shadow: var(--shadow-lg); border: 1px solid var(--line);
+      background: linear-gradient(135deg, var(--blue-900), var(--anthracite));
+    }
+    @media (max-width: 860px) { .ps-stage { aspect-ratio: 16 / 10; } }
+    .ps-slide {
+      position: absolute; inset: 0; opacity: 0; transform: scale(1.045);
+      transition: opacity 0.7s ease, transform 0.95s ease;
+    }
+    .ps-slide[data-active="true"] { opacity: 1; transform: scale(1); }
+    .ps-slide .illus { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    img.illus { object-fit: cover; }
+    .ps-caption {
+      position: absolute; left: 0; right: 0; bottom: 0; z-index: 3;
+      display: flex; align-items: center; gap: 0.9rem;
+      padding: 1.6rem 1.6rem 1.4rem; color: #fff;
+      background: linear-gradient(transparent, rgba(15,35,56,0.9));
+    }
+    .ps-cap-num { font-family: var(--font-display); font-weight: 800; color: var(--orange-soft); font-size: 1.7rem; line-height: 1; font-variant-numeric: tabular-nums; }
+    .ps-cap-t b { display: block; font-family: var(--font-display); font-weight: 800; font-size: 1.14rem; }
+    .ps-cap-t span { font-size: 0.86rem; color: rgba(255,255,255,0.78); }
+
+    /* ================= Contact ================= */
+    .contact-shell {
+      display: grid; grid-template-columns: 0.95fr 1.05fr;
+      border-radius: 26px; overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid var(--line);
+    }
+    @media (max-width: 900px) { .contact-shell { grid-template-columns: 1fr; } }
+    .contact-info {
+      background: var(--blue-900); color: #fff; padding: clamp(2rem, 5vw, 3.4rem);
+      position: relative; overflow: hidden;
+    }
+    .contact-info::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(60% 60% at 100% 0%, rgba(245,130,32,0.25), transparent 60%);
+    }
+    .contact-info > * { position: relative; z-index: 2; }
+    .contact-info h2 { color: #fff; font-size: var(--step-2); margin-top: 0.9rem; }
+    .contact-info p { color: rgba(255,255,255,0.8); margin-top: 1rem; }
+    .contact-methods { margin-top: 2rem; display: grid; gap: 1.1rem; }
+    .contact-methods a, .contact-methods .cm { display: flex; gap: 0.9rem; align-items: center; color: #fff; }
+    .cm-icon { flex: none; width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); color: var(--orange-soft); }
+    .cm-icon svg { width: 22px; height: 22px; }
+    .cm-label { display: block; font-size: 0.73rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6); font-weight: 700; }
+    .cm-value { display: block; font-weight: 700; font-size: 0.97rem; word-break: break-word; }
+    .contact-methods a:hover .cm-value { color: var(--orange-soft); }
+    .contact-usps { margin-top: 2.2rem; padding-top: 1.6rem; border-top: 3px solid transparent; border-image: repeating-linear-gradient(90deg, rgba(255,183,114,0.5) 0 10px, transparent 10px 17px) 1; display: grid; gap: 0.7rem; }
+    .contact-usps li { display: flex; gap: 0.6rem; align-items: center; font-size: 0.9rem; color: rgba(255,255,255,0.86); }
+    .contact-usps svg { width: 18px; height: 18px; color: var(--orange-soft); flex: none; }
+
+    .contact-form { background: var(--white); padding: clamp(2rem, 5vw, 3.4rem); }
+    .contact-form h3 { font-size: var(--step-1); }
+    .contact-form > p { color: var(--muted); margin: 0.5rem 0 1.8rem; font-size: 0.95rem; }
+    form { display: grid; gap: 1.1rem; }
+    .field { display: grid; gap: 0.45rem; }
+    .field label { font-size: 0.76rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--anthracite); }
+    .field label .req { color: var(--orange); }
+    .field input, .field textarea, .field select {
+      font-family: inherit; font-size: 0.98rem; color: var(--ink);
+      background: var(--paper); border: 1.5px solid var(--line); border-radius: 12px;
+      padding: 0.85rem 1rem; width: 100%;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+    .field input::placeholder, .field textarea::placeholder { color: color-mix(in srgb, var(--muted) 85%, transparent); }
+    .field input:focus, .field textarea:focus, .field select:focus {
+      outline: none; background: var(--white); border-color: var(--orange);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--orange) 18%, transparent);
+    }
+    .field textarea { resize: vertical; min-height: 130px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
+    form .btn { justify-content: center; margin-top: 0.4rem; }
+    .form-status { font-size: 0.9rem; min-height: 1.3em; font-weight: 700; margin: 0; }
+    .privacy-note { font-size: 0.78rem; color: var(--muted); margin: 0; }
+
+    /* ================= Footer ================= */
+    .site-footer { background: var(--anthracite); color: rgba(255,255,255,0.75); position: relative; }
+    .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2.4rem; padding-block: clamp(2.6rem, 6vw, 4rem); }
+    @media (max-width: 820px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 520px) { .footer-top { grid-template-columns: 1fr; } }
+    .footer-brand .wordmark { color: #fff; }
+    .footer-brand .wm-line2 { color: rgba(255, 255, 255, 0.65); }
+    .footer-brand p { margin: 1.2rem 0 0; font-size: 0.92rem; max-width: 34ch; color: rgba(255,255,255,0.65); }
+    .footer-col h5 { color: #fff; font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; margin: 0 0 1rem; }
+    .footer-col ul { display: grid; gap: 0.6rem; }
+    .footer-col a, .footer-col li { font-size: 0.9rem; color: rgba(255,255,255,0.7); transition: color 0.15s ease; }
+    .footer-col a:hover { color: var(--orange-soft); }
+    .footer-col .cm { display: flex; gap: 0.6rem; align-items: flex-start; }
+    .footer-col .cm svg { width: 16px; height: 16px; color: var(--orange-soft); flex: none; margin-top: 3px; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.12); padding-block: 1.5rem;
+      display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: space-between; align-items: center;
+      font-size: 0.82rem; color: rgba(255,255,255,0.55);
+    }
+
+    /* ================= Sfeer: vonken, jargon, bouwmarkering ================= */
+    .embers { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+
+    /* Gevarenstrepen — bouwplaats-markering */
+    .hazard-edge::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 7px;
+      background: repeating-linear-gradient(-45deg, var(--orange) 0 16px, var(--blue-950) 16px 32px);
+    }
+
+    /* Vakjargon-band: gestanste weerstandlas-termen */
+    .ticker {
+      background: var(--paper);
+      border-top: 1px solid var(--line);
+      overflow: hidden;
+      padding-block: 1.4rem;
+      user-select: none;
+    }
+    .ticker-track {
+      display: flex; width: max-content;
+      animation: tickerMove 38s linear infinite;
+    }
+    .ticker-seq { display: flex; align-items: center; gap: 1.6rem; padding-right: 1.6rem; white-space: nowrap; }
+    .tk {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.9rem, 4.6vw, 3.2rem);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(22, 50, 79, 0.22);
+      paint-order: stroke;
+    }
+    @supports not (-webkit-text-stroke: 1px black) {
+      .tk { color: rgba(22, 50, 79, 0.13); }
+    }
+    .tk-dot { color: var(--orange); font-size: 1.4rem; line-height: 1; }
+    @keyframes tickerMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* Sectiekop last zichzelf vast */
+    .reveal.in .eyebrow::before, .eyebrow.reveal.in::before {
+      animation: weldIn 0.9s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+    }
+    @keyframes weldIn {
+      0% { width: 0; box-shadow: 0 0 0 0 rgba(245, 130, 32, 0); }
+      55% { box-shadow: 0 0 14px 3px rgba(245, 130, 32, 0.6); }
+      100% { width: 34px; box-shadow: 0 0 0 0 rgba(245, 130, 32, 0); }
+    }
+
+    /* Nagloeiend staal: hitte-gradiënt op grote cijfers */
+    @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+      .why-card b.big, .exp-badge b, .hb-stat b {
+        background-image: linear-gradient(180deg, #ffe4c2 0%, #ffb772 38%, #F58220 72%, #d96f14 100%);
+        -webkit-background-clip: text; background-clip: text;
+        color: transparent; -webkit-text-fill-color: transparent;
+      }
+    }
+
+    /* Lichtglans over de primaire knop */
+    .btn-primary { position: relative; overflow: hidden; }
+    .btn-primary::after {
+      content: ""; position: absolute; top: 0; left: -70%; width: 45%; height: 100%;
+      background: linear-gradient(100deg, transparent, rgba(255,255,255,0.4), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.5s ease;
+      pointer-events: none;
+    }
+    .btn-primary:hover::after { left: 130%; }
+
+    /* ================= Lasnaad-scrollanimatie =================
+       Een dunne "lasdraad" loopt als route over de hele pagina.
+       Tijdens het scrollen wordt de draad "afgelast" tot een
+       gloeiende oranje lasrups, met een vonkende brandpunt-tip. */
+    .weld-seam {
+      position: absolute; top: 0; left: 0; width: 100%; height: 0;
+      z-index: 1; pointer-events: none; overflow: hidden;
+    }
+    /* Inhoud (tegels, kaarten, tekst) ligt bóven de lasnaad,
+       zodat de draad onder de tegels doorloopt */
+    main .wrap, .site-footer .wrap { position: relative; z-index: 2; }
+    .weld-seam svg { display: block; width: 100%; height: 100%; }
+    .ws-wire {
+      fill: none; stroke: rgba(122, 134, 146, 0.32);
+      stroke-width: 1.6; stroke-dasharray: 5 9; stroke-linecap: round;
+    }
+    .ws-glow {
+      fill: none; stroke: rgba(245, 130, 32, 0.26);
+      stroke-width: 9; stroke-linecap: butt;
+    }
+    .ws-bead {
+      fill: none; stroke: var(--orange);
+      stroke-width: 3; stroke-linecap: butt;
+    }
+    .ws-tip { will-change: transform; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .embers { display: none; }
+      .ws-tip { display: none; }
+      .ws-glow { display: none; }
+    }
+  
+/* Alleen voor deze voorbeeldweergave: geen scrollbalk, niets klikbaar,
+   want het frame is een plaatje-met-leven, geen tweede site om in te dwalen. */
+/* Ingebed in de demo: de hero bouwt mee op terwijl de code ernaast
+   getypt wordt. Zonder JS of zonder aansturing blijft alles gewoon staan. */
+.is-bouwend .hero h1,
+.is-bouwend .hero .lead,
+.is-bouwend .hero .hero-cta {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.is-bouwend .hero h1.demo-in,
+.is-bouwend .hero .lead.demo-in,
+.is-bouwend .hero .hero-cta.demo-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .is-bouwend .hero h1,
+  .is-bouwend .hero .lead,
+  .is-bouwend .hero .hero-cta { transition: none; }
+}
+html, body { overflow: hidden; }
+body { min-height: 0; }
+a { pointer-events: none; cursor: default; }
+#siteHeader { position: static; }
+.hero { min-height: 0; }
+</style>
+</head>
+<body id="top">
+<header id="siteHeader">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="VD Heide Service &amp; Techniek — naar boven">
+        <span class="wordmark">
+          <span class="wm-line1"><span class="wm-vd">VD</span> Heide Service</span>
+          <span class="wm-line2">&amp; Techniek</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Hoofdmenu">
+        <a href="#over">Over ons</a>
+        <a href="#diensten">Diensten</a>
+        <a href="#werkwijze">Werkwijze</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="nav-mail" href="mailto:thomas@vdheideservicetechniek.nl">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>
+          E-mail ons
+        </a>
+        <a href="#contact" class="btn btn-primary">Neem contact op</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Menu openen" aria-expanded="false" aria-controls="mobileMenu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+<main>
+<section class="hero">
+      <canvas class="embers" id="embers" aria-hidden="true"></canvas>
+      <svg class="blueprint" viewBox="0 0 430 540" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <radialGradient id="bpspark" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stop-color="#ffe4c2" stop-opacity="0.9"></stop><stop offset="0.5" stop-color="#F58220" stop-opacity="0.55"></stop><stop offset="1" stop-color="#F58220" stop-opacity="0"></stop>
+          </radialGradient>
+        </defs>
+        <g fill="none" stroke="rgba(233,238,245,0.22)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="48" y="58" width="64" height="392" rx="12"></rect>
+          <path d="M112 116H244q28 0 28 28v44"></path>
+          <path d="M112 392H244q28 0 28-28v-44"></path>
+        </g>
+        <g stroke="rgba(245,130,32,0.6)" stroke-width="9" stroke-linecap="round">
+          <path d="M272 192v52"></path>
+          <path d="M272 316v-52"></path>
+        </g>
+        <rect x="230" y="246" width="126" height="15" rx="4" fill="none" stroke="rgba(233,238,245,0.25)" stroke-width="3"></rect>
+        <circle class="spark-anim" cx="272" cy="254" r="34" fill="url(#bpspark)"></circle>
+        <g stroke="rgba(233,238,245,0.28)" stroke-width="1.5">
+          <path d="M392 58v392M386 58h12M386 450h12"></path>
+          <path d="M48 490h224M48 484v12M272 484v12"></path>
+        </g>
+        <g stroke="rgba(233,238,245,0.28)" stroke-width="1.5" stroke-dasharray="2 6">
+          <path d="M112 58v58M272 340v110"></path>
+        </g>
+      </svg>
+
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow on-dark reveal in" data-edit="hero.label">Specialist in weerstand­lasmachines · sinds de jaren zestig</span>
+          <h1 class="reveal in" data-delay="1"><span data-edit="hero.titel-begin">Al</span><em data-edit="hero.titel-accent"> 60 jaar </em><span data-edit="hero.titel-eind">specialist in weerstandlasmachines</span></h1>
+          <p class="lead reveal in" data-delay="2" data-edit="hero.tekst">Service, onderhoud en revisie van weerstand­las­machines door één vakman. Ruim 60 jaar ervaring, persoonlijk contact en eerlijk advies.</p>
+          <div class="hero-cta reveal in" data-delay="3">
+            <a href="#contact" class="btn btn-primary"><span data-edit="hero.knop-1">Neem contact op</span> <span class="arrow" aria-hidden="true">→</span></a>
+            <a href="#diensten" class="btn btn-glass" data-edit="hero.knop-2">Onze diensten</a>
+            <a href="#over" class="hero-link"><span data-edit="hero.link-over">Wie ben ik</span> <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+
+        <div class="hero-side reveal in" data-delay="2">
+          <aside class="workcard" aria-label="Direct contact bij storing of onderhoud">
+            <span class="wc-label" data-edit="hero.werkbon-label">Werkbon</span>
+            <h2 class="wc-title" data-edit="hero.werkbon-titel">Storing of onderhoud nodig?</h2>
+            <ul class="wc-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span data-edit="hero.werkbon-punt-1">Reactie binnen 48 uur</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span data-edit="hero.werkbon-punt-2">Heldere diagnose en eerlijk advies</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span data-edit="hero.werkbon-punt-3">Ruim 60 jaar aan ervaring</span></li>
+            </ul>
+            <a class="btn btn-primary wc-btn" href="#contact"><span data-edit="hero.werkbon-knop">Plan direct contact</span> <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="wc-mail" href="mailto:thomas@vdheideservicetechniek.nl">thomas@vdheideservicetechniek.nl</a>
+            <span class="wc-stamp" aria-hidden="true">60+ jaar<br>vakwerk</span>
+          </aside>
+        </div>
+      </div>
+
+      <div class="hero-band">
+        <div class="wrap hb-row reveal in" data-delay="4">
+          <div class="hb-stat"><b class="num" data-edit="hero.stat-1-getal">60+</b><span data-edit="hero.stat-1-label">jaar vakervaring</span></div>
+          <div class="hb-stat"><b class="num" data-edit="hero.stat-2-getal">40+</b><span data-edit="hero.stat-2-label">jaar klantrelaties</span></div>
+          <div class="hb-stat"><b class="num" data-edit="hero.stat-3-getal">100%</b><span data-edit="hero.stat-3-label">persoonlijke aandacht</span></div>
+          <p class="hb-note"><span data-edit="hero.notitie-begin">U schakelt direct met </span><strong data-edit="hero.notitie-naam">Thomas van der Heide</strong><span data-edit="hero.notitie-eind"> — eigenaar &amp; servicespecialist</span></p>
+        </div>
+      </div>
+    </section>
+</main>
+<script>
+(function () {
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      // Lasvonken in de hero — canvas-deeltjes, pauzeert buiten beeld
+      var emberCanvas = document.getElementById("embers");
+      if (emberCanvas && !reduceMotion && emberCanvas.getContext) {
+        var ectx = emberCanvas.getContext("2d");
+        var hero = emberCanvas.parentElement;
+        var eW = 0, eH = 0;
+        var sizeEmbers = function () {
+          var dpr = Math.min(window.devicePixelRatio || 1, 2);
+          eW = hero.clientWidth; eH = hero.clientHeight;
+          emberCanvas.width = eW * dpr; emberCanvas.height = eH * dpr;
+          ectx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        };
+        sizeEmbers();
+        window.addEventListener("resize", sizeEmbers);
+
+        var EMBERS = 34, parts = [];
+        var resetEmber = function (p) {
+          p.x = Math.random() * eW;
+          p.y = eH * 0.45 + Math.random() * eH * 0.6;
+          p.r = 0.8 + Math.random() * 2.0;
+          p.vy = 0.22 + Math.random() * 0.6;
+          p.vx = (Math.random() - 0.5) * 0.25;
+          p.life = 0;
+          p.max = 260 + Math.random() * 280;
+          p.tw = Math.random() * 6.28;
+          p.g = 140 + Math.floor(Math.random() * 60);
+        };
+        for (var e = 0; e < EMBERS; e++) {
+          var pt = {};
+          resetEmber(pt);
+          pt.life = Math.random() * pt.max;
+          parts.push(pt);
+        }
+        var emberRun = false, emberRaf = null;
+        var emberTick = function () {
+          if (!emberRun) return;
+          ectx.clearRect(0, 0, eW, eH);
+          for (var i = 0; i < parts.length; i++) {
+            var p = parts[i];
+            p.life++;
+            if (p.life > p.max || p.y < -8) resetEmber(p);
+            p.x += p.vx + Math.sin((p.life + p.tw * 60) / 55) * 0.16;
+            p.y -= p.vy;
+            var a = Math.sin(Math.PI * p.life / p.max) * (0.3 + 0.28 * Math.sin(p.life / 7 + p.tw));
+            if (a <= 0) continue;
+            ectx.beginPath();
+            ectx.arc(p.x, p.y, p.r, 0, 6.29);
+            ectx.fillStyle = "rgba(255," + p.g + ",80," + a.toFixed(3) + ")";
+            ectx.fill();
+          }
+          emberRaf = requestAnimationFrame(emberTick);
+        };
+        if ("IntersectionObserver" in window) {
+          new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting && !emberRun) { emberRun = true; emberTick(); }
+              else if (!en.isIntersecting && emberRun) { emberRun = false; if (emberRaf) cancelAnimationFrame(emberRaf); }
+            });
+          }, { threshold: 0.05 }).observe(hero);
+        } else { emberRun = true; emberTick(); }
+      }
+
+  // ---- Brug naar de pagina eromheen ----
+  // Die mag drie teksten zetten, de accentkleur wisselen en de hero stap
+  // voor stap laten verschijnen. Alles is optioneel: gebeurt er niets,
+  // dan staat de hero er gewoon zoals op de echte site.
+  var DOELEN = {
+    kop: '[data-edit="hero.titel-eind"]',
+    tekst: '[data-edit="hero.tekst"]',
+    knop: '[data-edit="hero.knop-1"]'
+  };
+  var STAPPEN = { 1: ".hero h1", 2: ".hero .lead", 3: ".hero .hero-cta" };
+  var wortel = document.documentElement;
+  var gestuurd = false, vangnet = null;
+
+  // Verbergen doen we alleen als we ingesloten zijn en JS het overneemt.
+  // Blijft de aansturing uit (fout in de pagina eromheen), dan zet het
+  // vangnet de hero na vier seconden alsnog neer.
+  if (window.parent !== window) {
+    wortel.classList.add("is-bouwend");
+    vangnet = setTimeout(function () {
+      if (!gestuurd) Object.keys(STAPPEN).forEach(function (n) { window.demoStap(n); });
+    }, 4000);
+  }
+
+  // Het venster is een voorbeeld, geen tweede site: niets erin mag focus
+  // pakken, anders verdwijnt de tabvolgorde van de bezoeker erin.
+  [].forEach.call(document.querySelectorAll("a, button, input, [tabindex]"), function (el) {
+    el.setAttribute("tabindex", "-1");
+  });
+
+  window.demoStap = function (n) {
+    gestuurd = true;
+    if (vangnet) { clearTimeout(vangnet); vangnet = null; }
+    var el = document.querySelector(STAPPEN[n]);
+    if (el) el.classList.add("demo-in");
+  };
+  window.demoVerberg = function () {
+    Object.keys(STAPPEN).forEach(function (n) {
+      var el = document.querySelector(STAPPEN[n]);
+      if (el) el.classList.remove("demo-in");
+    });
+  };
+  window.demoZet = function (veld, waarde) {
+    var el = DOELEN[veld] && document.querySelector(DOELEN[veld]);
+    if (el) el.textContent = waarde;
+  };
+  // De site heeft drie accenttinten; wisselen we er maar één, dan blijft
+  // de helft van de pagina in de oude kleur staan.
+  window.demoKleur = function (basis, diep, zacht) {
+    wortel.style.setProperty("--orange", basis);
+    wortel.style.setProperty("--orange-deep", diep || basis);
+    wortel.style.setProperty("--orange-soft", zacht || basis);
+  };
+  window.demoStart = {
+    kop: (document.querySelector(DOELEN.kop) || {}).textContent || "",
+    tekst: (document.querySelector(DOELEN.tekst) || {}).textContent || "",
+    knop: (document.querySelector(DOELEN.knop) || {}).textContent || ""
+  };
+})();
+</script>
+</body>
+</html>
