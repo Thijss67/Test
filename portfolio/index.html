@@ -945,76 +945,70 @@
 
 
 			/* ------------------------------------------------------------------
-			   Dossier: één project = één opengeslagen spread. Nummer in de
-			   kantlijn, kern links, leeswijzer rechts, beeld eronder over de
-			   volle breedte. Geen kaarten, geen schaduwen — alleen lijnen.
+			   Voorpagina van het portfolio: elke case is één klikbaar blok.
+			   Beeld boven, daaronder een regel met nummer, naam en pijl.
+			   De eerste case ligt over de volle breedte, de rest komt in
+			   twee kolommen zodra er meer bij komen.
 			   ------------------------------------------------------------------ */
-			.dossier { border-top: 2px solid var(--fg); padding-top: 1.5rem; display: flex; flex-direction: column; }
-			.dossier + .dossier { margin-top: 4rem; }
-			/* op mobiel: naam, tekst, beeld, dan pas de leeswijzer */
-			.dossier-nr { order: 1; }
-			.dossier-kern { order: 2; }
-			.dossier-beeld { order: 3; }
-			.dossier-lees { order: 4; margin-top: 2.25rem; }
-			.dossier-nr {
-				font-size: 0.8rem; font-weight: 800; letter-spacing: 0.14em; white-space: nowrap;
-				color: var(--accent-text); font-variant-numeric: tabular-nums;
-			}
-			.dossier h2 { margin-top: 0.5rem; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.02; letter-spacing: -0.035em; }
-			.dossier h2 a { color: inherit; text-decoration: none; }
-			.dossier h2 a:hover, .dossier h2 a:focus-visible { color: var(--accent-text); }
-			.dossier-standfirst { margin-top: 1rem; max-width: 46ch; font-size: var(--t-lead); color: var(--body); }
+			.cases { display: grid; gap: 3rem; }
 
-			.feiten { margin-top: 1.75rem; border-top: 1px solid var(--line); }
-			.feiten div {
-				display: flex; justify-content: space-between; gap: 1.5rem;
-				padding-block: 0.7rem; border-bottom: 1px solid var(--line);
+			.case-link {
+				display: block;
+				color: inherit;
+				text-decoration: none;
+				border-top: 2px solid var(--fg);
+				padding-top: 1.25rem;
 			}
-			.feiten dt { font-size: 0.8rem; color: var(--muted); }
-			.feiten dd { font-size: 0.88rem; font-weight: 700; color: var(--fg); text-align: right; }
-			.feiten dd a { color: var(--accent-text); }
+			.case-beeld-wrap { display: block; overflow: hidden; border: 1px solid var(--line-strong); background: var(--bg-soft); }
+			/* vaste verhouding, zodat een schermafbeelding nooit halverwege een kop afbreekt */
+			.case-beeld-wrap img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top center; transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
+			.case-link:hover .case-beeld-wrap img,
+			.case-link:focus-visible .case-beeld-wrap img { transform: scale(1.02); }
 
-			.dossier-beeld { display: block; margin-top: 2rem; border: 1px solid var(--line-strong); background: var(--bg-soft); overflow: hidden; }
-			.dossier-beeld img { display: block; width: 100%; height: auto; transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
-			.dossier-beeld:hover img, .dossier-beeld:focus-visible img { transform: scale(1.015); }
-
-			.leeswijzer-kop { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-			.leeswijzer { margin-top: 0.9rem; list-style: none; padding: 0; counter-reset: lw; }
-			.leeswijzer li { counter-increment: lw; border-bottom: 1px solid var(--line); }
-			.leeswijzer li:first-child { border-top: 1px solid var(--line); }
-			.leeswijzer a {
-				display: grid; grid-template-columns: 2rem 1fr; align-items: baseline;
-				gap: 0.5rem; padding-block: 0.7rem; font-size: 0.95rem; font-weight: 600;
-				color: var(--fg); text-decoration: none;
+			.case-regel {
+				margin-top: 1.1rem;
+				display: grid;
+				grid-template-columns: 1fr auto;
+				align-items: start;
+				gap: 1rem;
 			}
-			.leeswijzer a::before { content: counter(lw, decimal-leading-zero); font-size: 0.72rem; font-weight: 800; color: var(--line-strong); }
-			.leeswijzer a:hover, .leeswijzer a:focus-visible { color: var(--accent-text); }
-			.leeswijzer a:hover::before, .leeswijzer a:focus-visible::before { color: var(--accent); }
+			.case-nr { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.14em; color: var(--muted); font-variant-numeric: tabular-nums; }
+			.case-naam {
+				display: block; margin-top: 0.35rem;
+				font-size: clamp(1.6rem, 4.5vw, 2.6rem); font-weight: 700;
+				letter-spacing: -0.035em; line-height: 1.05; color: var(--fg);
+				transition: color 0.2s ease;
+			}
+			.case-link:hover .case-naam, .case-link:focus-visible .case-naam { color: var(--accent-text); }
+			.case-wat { display: block; margin-top: 0.5rem; font-size: 0.95rem; color: var(--body); max-width: 46ch; }
+
+			.case-pijl {
+				display: inline-flex; align-items: center; gap: 0.4rem;
+				margin-top: 0.9rem; font-size: 0.9rem; font-weight: 700; color: var(--accent-text);
+			}
+			.case-pijl svg { width: 1.05rem; height: 1.05rem; transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1); }
+			.case-link:hover .case-pijl svg, .case-link:focus-visible .case-pijl svg { transform: translateX(0.3rem); }
+
+			.case-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
 
 			.groeit { margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--line); font-size: 0.95rem; color: var(--muted); max-width: 62ch; }
 			.groeit a { color: var(--accent-text); font-weight: 600; }
 
-			@media (min-width: 1000px) {
-				.dossier {
-					display: grid;
-					grid-template-columns: 5rem minmax(0, 1fr) minmax(0, 17rem);
-					column-gap: 3rem;
-					align-items: start;
-				}
-				.dossier-nr { grid-area: 1 / 1; order: 0; padding-top: 0.65rem; }
-				.dossier-kern { grid-area: 1 / 2; order: 0; }
-				.dossier-lees { grid-area: 1 / 3; order: 0; margin-top: 0; padding-top: 0.4rem; }
-				.dossier-beeld { grid-area: 2 / 2 / 3 / -1; order: 0; margin-top: 2.5rem; }
-			}
-			@media (prefers-reduced-motion: reduce) {
-				.dossier-beeld img { transition: none; }
-			}
-
-			/* knoppenrij + afsluitblok, op beide portfoliopagina's gelijk */
 			.btn-rij { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
 			.slot { padding-top: 1.75rem; border-top: 2px solid var(--fg); }
 			.slot h2 { max-width: 20ch; }
 			.slot p { margin-top: 0.9rem; max-width: 52ch; font-size: var(--t-lead); }
+
+			@media (min-width: 900px) {
+				.cases { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3.5rem 2.5rem; }
+				/* de nieuwste case krijgt de volle breedte */
+				.case-link:first-child { grid-column: 1 / -1; }
+				.case-link:first-child .case-regel { grid-template-columns: minmax(0, 1fr) minmax(0, 20rem); align-items: end; }
+				.case-link:first-child .case-pijl { margin-top: 0; justify-self: end; }
+			}
+			@media (prefers-reduced-motion: reduce) {
+				.case-beeld-wrap img, .case-pijl svg { transition: none; }
+			}
 		</style>
 	</head>
 
@@ -1104,57 +1098,41 @@
 					<span class="eyebrow">Portfolio</span>
 					<h1>Werk, en waarom het zo geworden is</h1>
 					<p class="lead">
-						Een screenshot laat zien hoe iets eruitziet, niet waarom het werkt. Bij elk project
-						hieronder schrijven we daarom uit welke keuzes we hebben gemaakt &mdash; en wat we
-						bewust hebben weggelaten.
+						Een screenshot laat zien hoe iets eruitziet, niet waarom het werkt. Klik een project
+						open en je leest welke keuzes we hebben gemaakt &mdash; en wat we bewust hebben weggelaten.
 					</p>
 				</div>
 			</section>
 
 			<section class="section" style="padding-top: 0">
 				<div class="wrap">
-					<!-- =========================================================================
-					     Een project toevoegen? Kopieer dit hele <article>-blok, hoog het nummer
-					     op, pas de tekst aan en zet de schermafbeelding als
-					     assets/werk-<naam>.jpg neer (1400 x 875 px). Schrijf de bijbehorende
-					     case in een eigen map: /portfolio/<naam>/index.html.
-					     ========================================================================= -->
-					<article class="dossier reveal">
-						<p class="dossier-nr">Case 01</p>
-
-						<div class="dossier-kern">
-							<h2><a href="/portfolio/dh-studio">DH Studio</a></h2>
-							<p class="dossier-standfirst">
-								Voordat we een site voor iemand anders bouwen, moesten we er zelf een hebben.
-								Alles wat we een klant zouden adviseren, hebben we eerst op onszelf toegepast:
-								geen WordPress, geen stockfoto&rsquo;s, prijzen gewoon op de site.
-							</p>
-
-							<dl class="feiten">
-								<div><dt>Jaar</dt><dd>2026</dd></div>
-								<div><dt>Wat we deden</dt><dd>Ontwerp, bouw, teksten en SEO</dd></div>
-								<div><dt>Omvang</dt><dd>9 pagina&rsquo;s</dd></div>
-								<div><dt>Live</dt><dd><a href="https://dh-studio.nl" target="_blank" rel="noopener">dh-studio.nl</a></dd></div>
-							</dl>
-						</div>
-
-						<div class="dossier-lees">
-							<p class="leeswijzer-kop">In de case lees je</p>
-							<ol class="leeswijzer">
-								<li><a href="/portfolio/dh-studio#opdracht">Wat de site moest doen</a></li>
-								<li><a href="/portfolio/dh-studio#keuzes">De vijf keuzes</a></li>
-								<li><a href="/portfolio/dh-studio#weggelaten">Wat we weglieten</a></li>
-								<li><a href="/portfolio/dh-studio#resultaat">Wat er nu staat</a></li>
-							</ol>
-							<div class="btn-rij">
-								<a href="/portfolio/dh-studio" class="btn btn-primary" data-cta="case-dh-studio">Lees de case <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-							</div>
-						</div>
-
-						<a class="dossier-beeld" href="/portfolio/dh-studio" aria-label="Lees de case over de website van DH Studio">
-							<img src="/assets/werk-dh-studio.jpg" width="1400" height="875" loading="lazy" decoding="async" alt="De homepage van dh-studio.nl" />
+					<div class="cases">
+						<!-- =========================================================================
+						     Een case toevoegen? Kopieer dit hele <a>-blok, hoog het nummer op, zet de
+						     schermafbeelding als assets/werk-<naam>.jpg neer (1400 x 875 px) en schrijf
+						     de case zelf in /portfolio/<naam>/index.html. Het bovenste blok staat
+						     automatisch over de volle breedte; de rest komt in twee kolommen.
+						     ========================================================================= -->
+						<a class="case-link reveal" href="/portfolio/dh-studio" data-cta="case-dh-studio">
+							<span class="case-beeld-wrap">
+								<img src="/assets/werk-dh-studio.jpg" width="1400" height="875" decoding="async" alt="De homepage van dh-studio.nl" />
+							</span>
+							<span class="case-regel">
+								<span>
+									<span class="case-nr">Case 01 &middot; 2026</span>
+									<span class="case-naam">DH Studio</span>
+									<span class="case-wat">
+										Onze eigen website: geen WordPress, geen stockfoto&rsquo;s en prijzen
+										gewoon op de site. Ontwerp, bouw, teksten en SEO.
+									</span>
+								</span>
+								<span class="case-pijl">
+									Lees de case
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+								</span>
+							</span>
 						</a>
-					</article>
+					</div>
 
 					<p class="groeit reveal">
 						Wij zijn net begonnen, dus hier komen er nog cases bij. Benieuwd wat we voor een bedrijf
