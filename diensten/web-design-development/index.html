@@ -949,35 +949,21 @@
 			.nav-links a.is-actief::after { transform: scaleX(1); }
 			.mobile-nav a[aria-current="page"] { color: var(--accent-text); font-weight: 700; }
 
-			/* ---------- Dienstenbalk: laat zien waar je bent ---------- */
-			.dienstbalk { padding-top: 1rem; }
-			.dienstbalk ul {
+			/* ---------- Verder lezen: verwijzingen onderaan ---------- */
+			.verder { display: grid; border-top: 1px solid var(--line); }
+			.verder a {
 				display: flex;
-				gap: 0.5rem;
-				overflow-x: auto;
-				padding-bottom: 0.35rem;
-				scrollbar-width: none;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1rem;
+				padding-block: 1.15rem;
+				border-bottom: 1px solid var(--line);
+				font-weight: 700;
+				color: var(--fg);
 			}
-			.dienstbalk ul::-webkit-scrollbar { display: none; }
-			.dienstbalk a {
-				display: inline-block;
-				white-space: nowrap;
-				padding: 0.5rem 1rem;
-				border: 1px solid var(--line);
-				border-radius: 999px;
-				background: var(--surface);
-				font-size: 0.88rem;
-				font-weight: 600;
-				color: var(--muted);
-				transition: border-color 0.2s ease, color 0.2s ease;
-			}
-			.dienstbalk a:hover { border-color: var(--accent-line); color: var(--accent-text); }
-			.dienstbalk a[aria-current="page"] {
-				background: var(--navy);
-				border-color: var(--navy);
-				color: #fff;
-				cursor: default;
-			}
+			.verder a:hover { color: var(--accent-text); }
+			.verder svg { width: 18px; height: 18px; color: var(--accent); transition: transform 0.2s ease; }
+			.verder a:hover svg { transform: translateX(4px); }
 
 			/* ---------- Zelfschrijvende code ----------
 			   Twee zwevende vensters: een editor met tabblad, regelnummers en
@@ -1213,7 +1199,7 @@
 			.dienst-hero .usps { margin-top: 1.75rem; justify-content: start; }
 			@media (min-width: 640px) { .dienst-hero .hero-actions { justify-content: flex-start; } }
 			@media (min-width: 1000px) {
-				.hero-split { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+				.hero-split { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
 				.dienst-hero .usps { grid-template-columns: repeat(2, auto); gap: 0.85rem 2rem; }
 			}
 
@@ -1405,14 +1391,6 @@
 				</ol>
 			</nav>
 
-			<nav class="wrap dienstbalk" aria-label="Onze diensten">
-				<ul>
-					<li><a href="/diensten/web-design-development" aria-current="page">Web Design &amp; Development</a></li>
-					<li><a href="/diensten/seo">Zichtbaarheid (SEO)</a></li>
-					<li><a href="/diensten/hosting-onderhoud">Hosting en onderhoud</a></li>
-				</ul>
-			</nav>
-
 			<section class="dienst-hero">
 				<div class="wrap hero-split">
 					<div>
@@ -1529,6 +1507,21 @@
 						</div>
 						<p class="soorten-noot">Je krijgt een vaste prijs voordat we beginnen. <a href="/contact">Vraag een offerte aan</a></p>
 					</div>
+				</div>
+			</section>
+
+			<section class="section">
+				<div class="wrap">
+					<div class="kop-links reveal">
+						<span class="eyebrow">Verder kijken</span>
+						<h2>Vaak samen met</h2>
+					</div>
+					<nav class="verder reveal">
+						<a href="/diensten/seo">Zichtbaarheid (SEO) <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+						<a href="/diensten/hosting-onderhoud">Hosting en onderhoud <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+						<a href="/tarieven">Wat een website kost <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+						<a href="/over-dh-studio#werkwijze">Onze volledige werkwijze <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+					</nav>
 				</div>
 			</section>
 
