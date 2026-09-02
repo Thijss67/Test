@@ -936,7 +936,7 @@
 			.kruimels svg { width: 14px; height: 14px; opacity: 0.6; }
 			.kruimels [aria-current] { color: var(--fg); font-weight: 600; }
 
-			/* ---------- Onderhoudspagina: haarlijnen, geen kaarten ---------- */
+			/* ---------- Hosting en onderhoud ---------- */
 			.kop-links { max-width: none; margin-inline: 0; margin-bottom: clamp(1.75rem, 4vw, 2.75rem); text-align: left; }
 			.kop-links .eyebrow { justify-content: flex-start; }
 			.kop-links .eyebrow::before { display: none; }
@@ -950,64 +950,46 @@
 			.dienst-kop .lead { margin-top: 1.2rem; max-width: 46ch; font-size: var(--t-lead); }
 			.dienst-kop .btn-rij { margin-top: 1.9rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
-			/* statuslijst als beeld: dit draait op de achtergrond door */
-			.status { margin-top: 2.75rem; }
-			.status-kop {
+			/* de prijs als typografische verklaring, niet als kaartje */
+			.prijs-regel {
+				margin-top: 2.25rem;
+				padding-top: 1.4rem;
+				border-top: 2px solid var(--fg);
 				display: flex;
-				align-items: center;
-				gap: 0.6rem;
-				padding-bottom: 0.7rem;
-				border-bottom: 2px solid var(--fg);
-				font-size: 0.78rem;
-				font-weight: 800;
-				letter-spacing: 0.14em;
-				text-transform: uppercase;
-				color: var(--muted);
-			}
-			.stip { position: relative; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); flex: none; }
-			.js .stip::after {
-				content: "";
-				position: absolute;
-				inset: 0;
-				border-radius: 50%;
-				background: var(--accent);
-				animation: puls 2.4s ease-out infinite;
-			}
-			@keyframes puls { to { transform: scale(3.2); opacity: 0; } }
-			.status-regel {
-				display: grid;
-				grid-template-columns: 1fr auto;
-				gap: 0.5rem 1rem;
+				flex-wrap: wrap;
 				align-items: baseline;
-				padding-block: 0.85rem;
-				border-bottom: 1px solid var(--line);
-				font-size: 0.92rem;
+				gap: 0.15rem 0.7rem;
 			}
-			.status-regel b { color: var(--fg); font-weight: 700; }
-			.status-regel span { color: var(--muted); font-size: 0.85rem; }
-			.status-noot { margin-top: 0.9rem; font-size: 0.85rem; color: var(--muted); max-width: 42ch; }
+			.prijs-regel .bedrag { font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: var(--fg); }
+			.prijs-regel .per { font-size: 1rem; font-weight: 700; color: var(--fg); }
+			.prijs-regel .kleine { width: 100%; margin-top: 0.45rem; font-size: 0.85rem; color: var(--muted); }
 
-			/* genummerde onderdelen */
-			.lagen { counter-reset: laag; border-top: 1px solid var(--line); }
-			.laag {
-				counter-increment: laag;
-				display: grid;
-				gap: 0.4rem 2rem;
-				padding-block: 1.75rem;
-				border-bottom: 1px solid var(--line);
-			}
-			.laag h3 { font-size: clamp(1.12rem, 1.6vw, 1.32rem); letter-spacing: -0.02em; }
-			.laag h3::before {
-				content: counter(laag, decimal-leading-zero);
-				display: block;
-				margin-bottom: 0.35rem;
-				font-size: 0.78rem;
+			/* het ritme: wat er gebeurt en hoe vaak */
+			.ritme { display: grid; gap: 0; }
+			.moment { padding-block: 1.5rem; border-top: 1px solid var(--line); }
+			.moment:last-child { border-bottom: 1px solid var(--line); }
+			.moment h3 {
+				font-size: 0.74rem;
 				font-weight: 800;
-				letter-spacing: 0.14em;
+				letter-spacing: 0.16em;
+				text-transform: uppercase;
 				color: var(--accent);
 			}
-			.laag p { max-width: 62ch; }
-			.laag .details { margin-top: 0.7rem; font-size: 0.88rem; color: var(--muted); }
+			.moment p { margin-top: 0.6rem; font-size: 1.02rem; color: var(--fg); max-width: 34ch; }
+			.moment span { display: block; margin-top: 0.35rem; font-size: 0.9rem; color: var(--muted); max-width: 38ch; }
+
+			/* wat er inbegrepen is */
+			.inbegrepen { display: grid; gap: 0.75rem; margin-top: 1.5rem; }
+			.inbegrepen li { display: grid; grid-template-columns: auto 1fr; gap: 0.65rem; font-size: 0.97rem; }
+			.inbegrepen svg { width: 18px; height: 18px; margin-top: 0.15rem; color: var(--accent); }
+			.voorwaarde {
+				margin-top: 1.75rem;
+				padding-top: 1.1rem;
+				border-top: 1px solid var(--line);
+				font-size: 0.9rem;
+				color: var(--muted);
+				max-width: 58ch;
+			}
 
 			/* zonder onderhoud naast met onderhoud */
 			.zm { border-top: 1px solid var(--line); }
@@ -1050,14 +1032,6 @@
 			.scope .nietwel svg { color: var(--line-strong); }
 			.scope .nietwel li { color: var(--muted); }
 
-			/* prijsregel zonder kader */
-			.pakketregel { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 2px solid var(--fg); display: grid; gap: 1rem; }
-			.pakketregel b { display: block; color: var(--fg); font-size: 1.05rem; }
-			.pakketregel p { margin-top: 0.35rem; max-width: 58ch; font-size: 0.95rem; }
-			.pakketregel a { display: inline-flex; align-items: center; gap: 0.45rem; font-weight: 700; color: var(--accent-text); white-space: nowrap; }
-			.pakketregel a svg { width: 17px; height: 17px; transition: transform 0.2s ease; }
-			.pakketregel a:hover svg { transform: translateX(4px); }
-
 			/* verder lezen */
 			.verder { display: grid; border-top: 1px solid var(--line); }
 			.verder a {
@@ -1080,15 +1054,19 @@
 			.slot p { margin-top: 0.9rem; max-width: 54ch; font-size: var(--t-lead); }
 			.slot .btn-rij { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
+			@media (min-width: 720px) {
+				.inbegrepen { grid-template-columns: 1fr 1fr; gap: 0.75rem 2rem; }
+			}
 			@media (min-width: 900px) {
-				.dienst-raster { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr); gap: clamp(2rem, 5vw, 4rem); align-items: start; }
-				.status { margin-top: 0.5rem; }
-				.laag { grid-template-columns: minmax(0, 17.5rem) minmax(0, 1fr); }
+				.dienst-raster { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+				.prijs-blok { padding-top: 0.4rem; }
+				.ritme { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 2rem; }
+				.moment { border-bottom: 1px solid var(--line); }
+				.moment p, .moment span { max-width: none; }
 				.zm-rij { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 				.zm-kop { display: grid; }
 				.zm-rij:not(.zm-kop) .zm-label { display: none; }
 				.scope { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-				.pakketregel { grid-template-columns: 1fr auto; align-items: center; }
 			}
 		</style>
 	</head>
@@ -1180,10 +1158,10 @@
 				<div class="wrap dienst-raster">
 					<div>
 						<span class="eyebrow">Hosting en onderhoud</span>
-						<h1>Je site draait, en jij hoeft er niet naar om te kijken</h1>
+						<h1>Je website draait. Daar hoef jij niets voor te doen.</h1>
 						<p class="lead">
-							Domein, hosting, updates, back-ups en die ene tekst die nog moet veranderen. Wij brengen
-							het onder bij &eacute;&eacute;n partij en houden het bij, zodat jij bezig kunt zijn waar je goed in bent.
+							Wij zetten je site op onze hosting, houden hem bij en zijn bereikbaar als er iets is.
+							E&eacute;n vast bedrag per maand, geen strippenkaart en geen verrassingen.
 						</p>
 						<div class="btn-rij">
 							<a href="/contact" class="btn btn-primary" data-cta="dienst-onderhoud-contact">Gratis kennismaken <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -1191,15 +1169,24 @@
 						</div>
 					</div>
 
-					<div class="status" aria-hidden="true">
-						<p class="status-kop"><span class="stip"></span> Loopt op de achtergrond door</p>
-						<div class="status-regel"><b>Domein en DNS</b><span>verlenging bewaakt</span></div>
-						<div class="status-regel"><b>Bereikbaarheid</b><span>elke 5 minuten gecontroleerd</span></div>
-						<div class="status-regel"><b>Updates</b><span>wekelijks nagelopen</span></div>
-						<div class="status-regel"><b>Back-up</b><span>dagelijks weggeschreven</span></div>
-						<div class="status-regel"><b>SSL-certificaat</b><span>loopt door, geen waarschuwing</span></div>
-						<div class="status-regel"><b>Laadtijd</b><span>maandelijks gemeten</span></div>
-						<p class="status-noot">Je merkt er in het gunstigste geval helemaal niets van. Dat is precies de bedoeling.</p>
+					<div class="prijs-blok">
+						<div class="prijs-regel">
+							<span class="bedrag">&euro;50</span>
+							<span class="per">per maand</span>
+							<span class="kleine">Exclusief btw. Maandelijks opzegbaar.</span>
+						</div>
+						<ul class="inbegrepen">
+							<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Snelle hosting</span></li>
+							<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Dagelijkse back-ups</span></li>
+							<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Updates van je website</span></li>
+							<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Monitoring van je site</span></li>
+							<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Kleine wijzigingen</span></li>
+							<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Hulp als er problemen zijn</span></li>
+						</ul>
+						<p class="voorwaarde">
+							We nemen hosting en onderhoud alleen op ons voor websites die wij zelf hebben
+							gebouwd. Alleen dan weten we precies hoe je site in elkaar zit.
+						</p>
 					</div>
 				</div>
 			</section>
@@ -1207,45 +1194,30 @@
 			<section class="section section-soft">
 				<div class="wrap">
 					<div class="section-head kop-links reveal">
-						<span class="eyebrow">Wat we doen</span>
-						<h2>Vijf dingen die doorlopen</h2>
-						<p>Niet spannend, wel het verschil tussen een site die het jaren doet en eentje die opeens stilstaat.</p>
+						<span class="eyebrow">Het ritme</span>
+						<h2>Wat er gebeurt terwijl jij aan het werk bent</h2>
+						<p>Onderhoud is geen knop die je een keer indrukt. Het is een vast ritme, en dit is het onze.</p>
 					</div>
-					<div class="lagen">
-						<article class="laag reveal">
-							<h3>Domein en hosting geregeld</h3>
-							<div>
-								<p>Je site draait bij een partij die we zelf gebruiken en vertrouwen &mdash; wij zijn Hostinger-partner. Domeinnaam, DNS, e-mail en SSL zetten wij op, en we bewaken de verlengingen, zodat je site niet opeens offline staat door een vergeten factuur.</p>
-								<p class="details">Domeinregistratie &middot; DNS &middot; SSL &middot; overzetten van je huidige host</p>
-							</div>
+					<div class="ritme">
+						<article class="moment reveal">
+							<h3>Elke nacht</h3>
+							<p>Een volledige back-up van je website.</p>
+							<span>Weggeschreven en bewaard los van de server, zodat je er ook bij kunt als die server eruit ligt.</span>
 						</article>
-						<article class="laag reveal">
-							<h3>Updates, voordat ze een probleem worden</h3>
-							<div>
-								<p>Software veroudert. Een niet-bijgewerkte site is de makkelijkste manier om binnen te komen voor iemand die dat wil. Wij lopen de updates na en zetten ze door op een moment dat het jouw bezoekers niet raakt.</p>
-								<p class="details">Kern en onderdelen &middot; testen na elke update &middot; terugdraaien als het misgaat</p>
-							</div>
+						<article class="moment reveal">
+							<h3>Elke week</h3>
+							<p>Updates nagelopen en doorgezet.</p>
+							<span>Eerst getest, daarna live. Gaat er iets mis, dan zetten we het terug voordat jij het merkt.</span>
 						</article>
-						<article class="laag reveal">
-							<h3>Back-ups die je ook echt terug kunt zetten</h3>
-							<div>
-								<p>Een back-up die nooit getest is, is geen back-up. Wij maken dagelijks een kopie en bewaren die apart van je website, zodat je er ook bij kunt als de server zelf eruit ligt.</p>
-								<p class="details">Dagelijks &middot; los van de server bewaard &middot; terugzetten binnen een dag</p>
-							</div>
+						<article class="moment reveal">
+							<h3>Elke maand</h3>
+							<p>Laadtijd gemeten en logboeken doorgelopen.</p>
+							<span>Zo zien we een probleem aankomen in plaats van dat je site er op een dinsdag opeens uit ligt.</span>
 						</article>
-						<article class="laag reveal">
-							<h3>Iemand die kijkt terwijl jij aan het werk bent</h3>
-							<div>
-								<p>We krijgen een melding als je site offline gaat, en niet pas als een klant je belt. Meestal weten wij het eerder dan jij.</p>
-								<p class="details">Bereikbaarheid &middot; foutmeldingen &middot; certificaten die verlopen</p>
-							</div>
-						</article>
-						<article class="laag reveal">
-							<h3>Kleine wijzigingen zonder gedoe</h3>
-							<div>
-								<p>Een gewijzigd telefoonnummer, andere openingstijden, een nieuwe foto of een tekst die anders moet. Je mailt het, wij zetten het erin. Geen tickets, geen wachtrij.</p>
-								<p class="details">Teksten &middot; afbeeldingen &middot; openingstijden &middot; nieuwe medewerker op de site</p>
-							</div>
+						<article class="moment reveal">
+							<h3>Doorlopend</h3>
+							<p>Elke vijf minuten gecontroleerd of je site online is.</p>
+							<span>Plus bewaking van je SSL-certificaat en domeinnaam, zodat er niets verloopt.</span>
 						</article>
 					</div>
 				</div>
@@ -1272,20 +1244,12 @@
 						</div>
 						<div class="zm-rij reveal">
 							<div class="zm-zonder"><span class="zm-label">Zonder onderhoud</span><p>Een gehackte of gecrashte site betekent opnieuw beginnen.</p></div>
-							<div class="zm-met"><span class="zm-label">Met onderhoud</span><p>Er staat een recente back-up klaar, los van de server bewaard.</p></div>
+							<div class="zm-met"><span class="zm-label">Met onderhoud</span><p>Er staat een back-up van vannacht klaar, los van de server bewaard.</p></div>
 						</div>
 						<div class="zm-rij reveal">
 							<div class="zm-zonder"><span class="zm-label">Zonder onderhoud</span><p>Kleine tekstwijzigingen blijven maanden op je lijstje staan.</p></div>
 							<div class="zm-met"><span class="zm-label">Met onderhoud</span><p>Je mailt het en het staat erin, zonder dat je zelf in de site hoeft.</p></div>
 						</div>
-					</div>
-
-					<div class="pakketregel reveal">
-						<span>
-							<b>Hosting en onderhoud lopen apart door</b>
-							<p>Het bouwen van je site is eenmalig; hosting en onderhoud lopen daarna maandelijks door voor &euro;50 per maand, exclusief btw. Daarin zitten hosting, dagelijkse back-ups, updates, monitoring, kleine wijzigingen en hulp als er iets is.</p>
-						</span>
-						<a href="/tarieven" data-cta="dienst-onderhoud-tarieven-link">Bekijk de tarieven <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 					</div>
 				</div>
 			</section>
@@ -1295,12 +1259,12 @@
 					<div class="section-head kop-links reveal">
 						<span class="eyebrow">Als er iets is</span>
 						<h2>Zo gaat dat in de praktijk</h2>
-						<p>Geen ticketsysteem en geen keuzemenu. Je mailt een mens.</p>
+						<p>Geen ticketsysteem en geen keuzemenu. Je mailt een mens die je site kent.</p>
 					</div>
 					<ol class="mini-stappen reveal">
 						<li class="mini-stap"><span><b>Je stuurt een bericht</b><span>Een mail is genoeg. Vertel wat er is of wat er moet veranderen.</span></span></li>
 						<li class="mini-stap"><span><b>Wij kijken ernaar</b><span>Op werkdagen dezelfde dag. Is het dringend, dan pakken we het meteen op.</span></span></li>
-						<li class="mini-stap"><span><b>Het wordt opgelost</b><span>Wij doen het werk. Bij een storing herstellen we eerst en zoeken we daarna uit waar het aan lag.</span></span></li>
+						<li class="mini-stap"><span><b>Het wordt opgelost</b><span>Bij een storing herstellen we eerst en zoeken we daarna uit waar het aan lag.</span></span></li>
 						<li class="mini-stap"><span><b>Je hoort wat er was</b><span>Kort en in gewone taal: wat er speelde en wat we hebben gedaan.</span></span></li>
 					</ol>
 				</div>
@@ -1348,7 +1312,7 @@
 					<div class="faq-lijst">
 						<details class="reveal">
 							<summary>Is onderhoud verplicht als jullie mijn site bouwen?</summary>
-							<p class="answer">Nee. Je kunt je site na oplevering zelf beheren of onderbrengen bij een andere partij. We raden onderhoud wel aan, omdat een site die niet wordt bijgehouden op termijn onveilig en traag wordt.</p>
+							<p class="answer">Nee. Je kunt je site na oplevering zelf beheren of ergens anders onderbrengen. We raden het wel aan: een site die niet wordt bijgehouden wordt op termijn traag en onveilig, en dat merk je meestal pas als het al misgegaan is.</p>
 						</details>
 						<details class="reveal">
 							<summary>Hoe snel reageren jullie als er iets stuk is?</summary>
@@ -1359,8 +1323,8 @@
 							<p class="answer">Nee. We nemen hosting en onderhoud alleen op ons voor websites die wij zelf hebben gebouwd. Alleen dan weten we precies hoe de site in elkaar zit en kunnen we ook echt garanderen dat updates en herstel goed gaan. Heb je een bestaande site en wil je die onderbrengen? Dan kijken we eerst of een nieuwe site zinvol is.</p>
 						</details>
 						<details class="reveal">
-							<summary>Moet ik mijn domein en hosting overzetten?</summary>
-							<p class="answer">Dat hoeft niet, maar het maakt het wel simpeler: &eacute;&eacute;n aanspreekpunt, en geen discussie over wie waarvoor verantwoordelijk is. Wij regelen de verhuizing en zorgen dat je site en e-mail tijdens het overzetten blijven werken. Je blijft altijd zelf eigenaar van je domeinnaam.</p>
+							<summary>Wat gebeurt er met mijn domeinnaam?</summary>
+							<p class="answer">Die blijft van jou. Wij regelen de instellingen en bewaken de verlenging, maar je bent en blijft zelf eigenaar. Stap je ooit over, dan verhuist je domein gewoon mee.</p>
 						</details>
 						<details class="reveal">
 							<summary>Wat als ik zelf iets wil kunnen aanpassen?</summary>
@@ -1379,22 +1343,22 @@
 					<nav class="verder reveal">
 						<a href="/diensten/web-design-development">Web Design &amp; Development <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 						<a href="/diensten/seo">Zichtbaarheid (SEO) <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-						<a href="/over-dh-studio#werkwijze">Onze volledige werkwijze <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+						<a href="/tarieven">Wat een website kost <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+						<a href="/over-dh-studio#werkwijze">Onze werkwijze <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 					</nav>
 				</div>
 			</section>
 
 			<section class="section">
 				<div class="wrap slot reveal">
-					<h2>Liever alles bij &eacute;&eacute;n partij?</h2>
+					<h2>Bouwen we je site, dan houden we hem ook bij</h2>
 					<p>
-						Bouwen wij je website, dan nemen we hosting en onderhoud daarna van je over voor
-						&euro;50 per maand. Je hoeft je nergens meer in te verdiepen &mdash; en je zit nergens
-						aan vast.
+						Vertel kort wat je nodig hebt. Dan weet je wat de site kost, wat er daarna maandelijks
+						doorloopt en wat je daarvoor terugkrijgt.
 					</p>
 					<div class="btn-rij">
 						<a href="/contact" class="btn btn-primary" data-cta="dienst-onderhoud-slot">Gratis kennismaken <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-						<a href="/tarieven" class="btn btn-outline" data-cta="dienst-onderhoud-slot-tarieven">Bekijk de tarieven</a>
+						<a href="/website-concept" class="btn btn-outline" data-cta="dienst-onderhoud-slot-concept">Vraag gratis concept aan</a>
 					</div>
 				</div>
 			</section>
@@ -1557,6 +1521,22 @@
       }
      }
     ]
+   },
+   "offers": {
+    "@type": "Offer",
+    "price": "50",
+    "priceCurrency": "EUR",
+    "valueAddedTaxIncluded": false,
+    "url": "https://dh-studio.nl/diensten/hosting-onderhoud",
+    "description": "Hosting, dagelijkse back-ups, updates, monitoring, kleine wijzigingen en support, per maand per website."
+   },
+   "priceSpecification": {
+    "@type": "UnitPriceSpecification",
+    "price": "50",
+    "priceCurrency": "EUR",
+    "unitText": "maand",
+    "billingIncrement": 1,
+    "valueAddedTaxIncluded": false
    }
   },
   {
@@ -1571,7 +1551,7 @@
      "name": "Is onderhoud verplicht als jullie mijn site bouwen?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Nee. Je kunt je site na oplevering zelf beheren of onderbrengen bij een andere partij. We raden onderhoud wel aan, omdat een site die niet wordt bijgehouden op termijn onveilig en traag wordt."
+      "text": "Nee. Je kunt je site na oplevering zelf beheren of ergens anders onderbrengen. We raden het wel aan: een site die niet wordt bijgehouden wordt op termijn traag en onveilig, en dat merk je meestal pas als het al misgegaan is."
      }
     },
     {
@@ -1592,10 +1572,10 @@
     },
     {
      "@type": "Question",
-     "name": "Moet ik mijn domein en hosting overzetten?",
+     "name": "Wat gebeurt er met mijn domeinnaam?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Dat hoeft niet, maar het maakt het wel simpeler: één aanspreekpunt, en geen discussie over wie waarvoor verantwoordelijk is. Wij regelen de verhuizing en zorgen dat je site en e-mail tijdens het overzetten blijven werken. Je blijft altijd zelf eigenaar van je domeinnaam."
+      "text": "Die blijft van jou. Wij regelen de instellingen en bewaken de verlenging, maar je bent en blijft zelf eigenaar. Stap je ooit over, dan verhuist je domein gewoon mee."
      }
     },
     {
