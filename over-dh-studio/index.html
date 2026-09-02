@@ -670,6 +670,34 @@
 			.partner-groot:hover .partner-badge, .partner-groot:focus-visible .partner-badge { opacity: 1; }
 			/* bij hover volledig zwart, geen lichtere vulling */
 
+			/* ---------- Werkwijze in het kort ---------- */
+			.wk-kop { max-width: none; margin-inline: 0; text-align: left; margin-bottom: clamp(1.75rem, 4vw, 2.5rem); }
+			.wk-kop .eyebrow { justify-content: flex-start; }
+			.wk-kop .eyebrow::before { display: none; }
+			.wk-kop h2 { margin-top: 0.9rem; max-width: 18ch; }
+			.wk-kop p { margin-top: 0.9rem; max-width: 56ch; }
+			.stappen { counter-reset: stap; display: grid; }
+			.stap-rij {
+				counter-increment: stap;
+				display: grid;
+				grid-template-columns: 2.75rem 1fr;
+				gap: 0.35rem 1rem;
+				padding-block: 1.2rem;
+				border-top: 1px solid var(--line);
+			}
+			.stap-rij:last-child { border-bottom: 1px solid var(--line); }
+			.stap-rij::before {
+				content: counter(stap, decimal-leading-zero);
+				grid-row: span 2;
+				font-size: 0.85rem;
+				font-weight: 800;
+				color: var(--accent);
+				padding-top: 0.2rem;
+			}
+			.stap-rij b { color: var(--fg); }
+			.stap-rij span { display: block; font-size: 0.94rem; }
+			.wk-noot { margin-top: 1.5rem; font-size: 0.92rem; color: var(--muted); max-width: 60ch; }
+
 			/* ---------- Footer ---------- */
 			.site-footer { background: var(--bg-soft); border-top: 1px solid var(--line); padding-top: clamp(2.75rem, 7vw, 4rem); }
 			.footer-grid { display: grid; gap: 2rem; }
@@ -1041,7 +1069,6 @@
 								</div>
 							</div>
 						</div>
-						<a href="/werkwijze">Werkwijze</a>
 						<a href="/over-dh-studio" aria-current="page">Over DH Studio</a>
 					</nav>
 					<a href="/contact" class="btn btn-primary nav-cta" data-cta="header">Gratis kennismaken</a>
@@ -1060,7 +1087,6 @@
 						<a href="/diensten">Alle diensten</a>
 						<a href="/tarieven">Tarieven</a>
 					</details>
-					<a href="/werkwijze">Werkwijze</a>
 					<a href="/over-dh-studio" aria-current="page">Over DH Studio</a>
 					<a href="/#faq">FAQ</a>
 					<a href="/website-concept">Gratis websiteconcept</a>
@@ -1192,6 +1218,31 @@
 				</div>
 			</section>
 
+			<section class="section" id="werkwijze">
+				<div class="wrap">
+					<div class="section-head wk-kop reveal">
+						<span class="eyebrow">Werkwijze</span>
+						<h2>Zo pakken we het aan</h2>
+						<p>
+							Zes stappen van eerste gesprek tot livegang. Je weet steeds waar we staan en wat er
+							van jou verwacht wordt &mdash; en wat niet.
+						</p>
+					</div>
+					<ol class="stappen reveal">
+						<li class="stap-rij"><b>Persoonlijk contact</b><span>Een gesprek over je bedrijf, je klanten en wat er nu blijft liggen. Zelf gevoerd, niet door een accountmanager.</span></li>
+						<li class="stap-rij"><b>Strategie en ontdekking</b><span>Doelen, structuur en zoekwoorden leggen we vast v&oacute;&oacute;r er iets ontworpen wordt.</span></li>
+						<li class="stap-rij"><b>Realisatie</b><span>Ontwerp en bouw op maat, met tussentijdse momenten om mee te kijken en bij te sturen.</span></li>
+						<li class="stap-rij"><b>Testen en optimalisatie</b><span>Snelheid, beveiliging, formulieren en de weergave op elk apparaat.</span></li>
+						<li class="stap-rij"><b>Lancering</b><span>Domein, hosting en beveiliging regelen wij. Jij hoeft niets over te zetten.</span></li>
+						<li class="stap-rij"><b>Evaluatie en groei</b><span>Monitoring, updates en back-ups, plus advies zodra we kansen zien in de cijfers.</span></li>
+					</ol>
+					<p class="wk-noot reveal">
+						Hoe lang het duurt hangt af van de omvang, maar een website van een paar pagina&rsquo;s
+						staat doorgaans binnen enkele weken live. De planning spreken we bij de start af.
+					</p>
+				</div>
+			</section>
+
 			<!-- CTA -->
 			<section class="section">
 				<div class="wrap">
@@ -1204,7 +1255,7 @@
 						</p>
 						<div class="concept-actions">
 							<a href="/contact" class="btn btn-primary btn-block" data-cta="over-contact">Neem contact op <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-							<a href="/werkwijze" class="btn btn-outline btn-block" data-cta="over-werkwijze">Bekijk onze werkwijze</a>
+							<a href="/tarieven" class="btn btn-outline btn-block" data-cta="over-tarieven">Bekijk de tarieven</a>
 						</div>
 					</div>
 				</div>
@@ -1257,7 +1308,7 @@
 					<h4>Navigatie</h4>
 					<a href="/">Home</a>
 					<a href="/#diensten">Diensten</a>
-					<a href="/werkwijze">Werkwijze</a>
+					<a href="/over-dh-studio#werkwijze">Werkwijze</a>
 					<a href="/website-concept">Gratis websiteconcept</a>
 				</div>
 
@@ -1293,64 +1344,117 @@
 		</div>
 
 		<script type="application/ld+json">
-		{
-			"@context": "https://schema.org",
-			"@graph": [
-				{
-					"@type": "AboutPage",
-					"@id": "https://dh-studio.nl/over-dh-studio#webpage",
-					"url": "https://dh-studio.nl/over-dh-studio",
-					"name": "Over DH Studio",
-					"inLanguage": "nl-NL",
-					"isPartOf": {
-						"@id": "https://dh-studio.nl/#website"
-					},
-					"about": {
-						"@id": "https://dh-studio.nl/#organisatie"
-					},
-					"primaryImageOfPage": "https://dh-studio.nl/assets/og-dh-studio.png"
-				},
-				{
-					"@type": "Organization",
-					"@id": "https://dh-studio.nl/#organisatie",
-					"name": "DH Studio",
-					"url": "https://dh-studio.nl/",
-					"email": "info@dh-studio.nl",
-					"logo": {
-						"@type": "ImageObject",
-						"url": "https://dh-studio.nl/assets/og-dh-studio.png"
-					},
-					"founder": [
-						{
-							"@type": "Person",
-							"name": "Thijs"
-						},
-						{
-							"@type": "Person",
-							"name": "Lucas"
-						}
-					]
-				},
-				{
-					"@type": "BreadcrumbList",
-					"@id": "https://dh-studio.nl/over-dh-studio#kruimelpad",
-					"itemListElement": [
-						{
-							"@type": "ListItem",
-							"position": 1,
-							"name": "Home",
-							"item": "https://dh-studio.nl/"
-						},
-						{
-							"@type": "ListItem",
-							"position": 2,
-							"name": "Over DH Studio",
-							"item": "https://dh-studio.nl/over-dh-studio"
-						}
-					]
-				}
-			]
-		}
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "AboutPage",
+   "@id": "https://dh-studio.nl/over-dh-studio#webpage",
+   "url": "https://dh-studio.nl/over-dh-studio",
+   "name": "Over DH Studio",
+   "inLanguage": "nl-NL",
+   "isPartOf": {
+    "@id": "https://dh-studio.nl/#website"
+   },
+   "about": {
+    "@id": "https://dh-studio.nl/#organisatie"
+   },
+   "primaryImageOfPage": "https://dh-studio.nl/assets/og-dh-studio.png"
+  },
+  {
+   "@type": "HowTo",
+   "@id": "https://dh-studio.nl/over-dh-studio#werkwijze",
+   "name": "Zo werkt DH Studio: van eerste gesprek tot livegang",
+   "description": "De zes stappen die we doorlopen bij het ontwerpen en bouwen van een website.",
+   "isPartOf": {
+    "@id": "https://dh-studio.nl/over-dh-studio#webpage"
+   },
+   "step": [
+    {
+     "@type": "HowToStep",
+     "position": 1,
+     "name": "Persoonlijk contact",
+     "text": "Een gesprek over je bedrijf, je klanten en wat er nu blijft liggen. Zelf gevoerd, niet door een accountmanager.",
+     "url": "https://dh-studio.nl/over-dh-studio#werkwijze"
+    },
+    {
+     "@type": "HowToStep",
+     "position": 2,
+     "name": "Strategie en ontdekking",
+     "text": "Doelen, structuur en zoekwoorden leggen we vast vóór er iets ontworpen wordt.",
+     "url": "https://dh-studio.nl/over-dh-studio#werkwijze"
+    },
+    {
+     "@type": "HowToStep",
+     "position": 3,
+     "name": "Realisatie",
+     "text": "Ontwerp en bouw op maat, met tussentijdse momenten om mee te kijken en bij te sturen.",
+     "url": "https://dh-studio.nl/over-dh-studio#werkwijze"
+    },
+    {
+     "@type": "HowToStep",
+     "position": 4,
+     "name": "Testen en optimalisatie",
+     "text": "Snelheid, beveiliging, formulieren en de weergave op elk apparaat.",
+     "url": "https://dh-studio.nl/over-dh-studio#werkwijze"
+    },
+    {
+     "@type": "HowToStep",
+     "position": 5,
+     "name": "Lancering",
+     "text": "Domein, hosting en beveiliging regelen wij. Jij hoeft niets over te zetten.",
+     "url": "https://dh-studio.nl/over-dh-studio#werkwijze"
+    },
+    {
+     "@type": "HowToStep",
+     "position": 6,
+     "name": "Evaluatie en groei",
+     "text": "Monitoring, updates en back-ups, plus advies zodra we kansen zien in de cijfers.",
+     "url": "https://dh-studio.nl/over-dh-studio#werkwijze"
+    }
+   ]
+  },
+  {
+   "@type": "Organization",
+   "@id": "https://dh-studio.nl/#organisatie",
+   "name": "DH Studio",
+   "url": "https://dh-studio.nl/",
+   "email": "info@dh-studio.nl",
+   "logo": {
+    "@type": "ImageObject",
+    "url": "https://dh-studio.nl/assets/og-dh-studio.png"
+   },
+   "founder": [
+    {
+     "@type": "Person",
+     "name": "Thijs"
+    },
+    {
+     "@type": "Person",
+     "name": "Lucas"
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "@id": "https://dh-studio.nl/over-dh-studio#kruimelpad",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://dh-studio.nl/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Over DH Studio",
+     "item": "https://dh-studio.nl/over-dh-studio"
+    }
+   ]
+  }
+ ]
+}
 		</script>
 
 		<script>
