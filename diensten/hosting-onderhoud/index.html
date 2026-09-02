@@ -950,19 +950,21 @@
 			.dienst-kop .lead { margin-top: 1.2rem; max-width: 46ch; font-size: var(--t-lead); }
 			.dienst-kop .btn-rij { margin-top: 1.9rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
-			/* de prijs als typografische verklaring, niet als kaartje */
-			.prijs-regel {
+			/* kop boven de opsomming, zonder kader */
+			.blok-kop {
 				margin-top: 2.25rem;
-				padding-top: 1.4rem;
+				padding-top: 1.1rem;
 				border-top: 2px solid var(--fg);
-				display: flex;
-				flex-wrap: wrap;
-				align-items: baseline;
-				gap: 0.15rem 0.7rem;
+				font-size: 0.74rem;
+				font-weight: 800;
+				letter-spacing: 0.16em;
+				text-transform: uppercase;
+				color: var(--muted);
 			}
-			.prijs-regel .bedrag { font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: var(--fg); }
-			.prijs-regel .per { font-size: 1rem; font-weight: 700; color: var(--fg); }
-			.prijs-regel .kleine { width: 100%; margin-top: 0.45rem; font-size: 0.85rem; color: var(--muted); }
+			.voorwaarde-link { margin-top: 1rem; }
+			.voorwaarde-link a { display: inline-flex; align-items: center; gap: 0.45rem; font-weight: 700; font-size: 0.92rem; color: var(--accent-text); }
+			.voorwaarde-link svg { width: 17px; height: 17px; transition: transform 0.2s ease; }
+			.voorwaarde-link a:hover svg { transform: translateX(4px); }
 
 			/* het ritme: wat er gebeurt en hoe vaak */
 			.ritme { display: grid; gap: 0; }
@@ -979,7 +981,7 @@
 			.moment span { display: block; margin-top: 0.35rem; font-size: 0.9rem; color: var(--muted); max-width: 38ch; }
 
 			/* wat er inbegrepen is */
-			.inbegrepen { display: grid; gap: 0.75rem; margin-top: 1.5rem; }
+			.inbegrepen { display: grid; gap: 0.75rem; margin-top: 1.1rem; }
 			.inbegrepen li { display: grid; grid-template-columns: auto 1fr; gap: 0.65rem; font-size: 0.97rem; }
 			.inbegrepen svg { width: 18px; height: 18px; margin-top: 0.15rem; color: var(--accent); }
 			.voorwaarde {
@@ -1059,7 +1061,6 @@
 			}
 			@media (min-width: 900px) {
 				.dienst-raster { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
-				.prijs-blok { padding-top: 0.4rem; }
 				.ritme { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 2rem; }
 				.moment { border-bottom: 1px solid var(--line); }
 				.moment p, .moment span { max-width: none; }
@@ -1169,12 +1170,8 @@
 						</div>
 					</div>
 
-					<div class="prijs-blok">
-						<div class="prijs-regel">
-							<span class="bedrag">&euro;50</span>
-							<span class="per">per maand</span>
-							<span class="kleine">Exclusief btw. Maandelijks opzegbaar.</span>
-						</div>
+					<div>
+						<p class="blok-kop">Wat er maandelijks doorloopt</p>
 						<ul class="inbegrepen">
 							<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Snelle hosting</span></li>
 							<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Dagelijkse back-ups</span></li>
@@ -1186,6 +1183,9 @@
 						<p class="voorwaarde">
 							We nemen hosting en onderhoud alleen op ons voor websites die wij zelf hebben
 							gebouwd. Alleen dan weten we precies hoe je site in elkaar zit.
+						</p>
+						<p class="voorwaarde-link">
+							<a href="/tarieven" data-cta="dienst-onderhoud-tarief">Bekijk het maandtarief <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 						</p>
 					</div>
 				</div>
@@ -1521,22 +1521,6 @@
       }
      }
     ]
-   },
-   "offers": {
-    "@type": "Offer",
-    "price": "50",
-    "priceCurrency": "EUR",
-    "valueAddedTaxIncluded": false,
-    "url": "https://dh-studio.nl/diensten/hosting-onderhoud",
-    "description": "Hosting, dagelijkse back-ups, updates, monitoring, kleine wijzigingen en support, per maand per website."
-   },
-   "priceSpecification": {
-    "@type": "UnitPriceSpecification",
-    "price": "50",
-    "priceCurrency": "EUR",
-    "unitText": "maand",
-    "billingIncrement": 1,
-    "valueAddedTaxIncluded": false
    }
   },
   {
