@@ -945,51 +945,91 @@
 
 
 			/* ------------------------------------------------------------------
-			   Voorpagina van het portfolio: elke case is één klikbaar blok.
-			   Beeld boven, daaronder een regel met nummer, naam en pijl.
-			   De eerste case ligt over de volle breedte, de rest komt in
-			   twee kolommen zodra er meer bij komen.
+			   Portfolio: donkere openingsband, daaronder de cases in een raster.
+			   Elke kaart is één klikbare link naar de bijbehorende case.
 			   ------------------------------------------------------------------ */
-			.cases { display: grid; gap: 3rem; }
-
-			.case-link {
-				display: block;
-				color: inherit;
-				text-decoration: none;
-				border-top: 2px solid var(--fg);
-				padding-top: 1.25rem;
+			.pf-hero {
+				background: var(--navy);
+				color: #fff;
+				padding-block: clamp(3.5rem, 9vw, 6.5rem);
 			}
-			.case-beeld-wrap { display: block; overflow: hidden; border: 1px solid var(--line-strong); background: var(--bg-soft); }
-			/* vaste verhouding, zodat een schermafbeelding nooit halverwege een kop afbreekt */
-			.case-beeld-wrap img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top center; transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
-			.case-link:hover .case-beeld-wrap img,
-			.case-link:focus-visible .case-beeld-wrap img { transform: scale(1.02); }
+			.pf-hero .eyebrow { color: #7aa2ff; }
+			/* eyebrow links uitlijnen: het streepje ervoor valt weg */
+			.pf-hero .eyebrow, .cases .eyebrow { justify-content: flex-start; }
+			.pf-hero .eyebrow::before, .cases .eyebrow::before { display: none; }
+			.pf-hero .eyebrow::after { background: rgba(255, 255, 255, 0.28); }
+			.pf-hero h1 { color: #fff; max-width: 16ch; }
+			.pf-hero h1 em { font-style: normal; color: #7aa2ff; display: block; }
+			.pf-hero p { margin-top: 1.2rem; max-width: 48ch; font-size: var(--t-lead); color: rgba(255, 255, 255, 0.74); }
+			.pf-hero .kruimels-donker { margin-bottom: 1.75rem; }
+			.pf-hero .kruimels-donker ol { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; list-style: none; padding: 0; font-size: 0.82rem; color: rgba(255, 255, 255, 0.55); }
+			.pf-hero .kruimels-donker a { color: rgba(255, 255, 255, 0.72); text-decoration: none; }
+			.pf-hero .kruimels-donker a:hover { color: #fff; }
+			.pf-hero .kruimels-donker svg { width: 0.9rem; height: 0.9rem; opacity: 0.5; }
+			.pf-hero .kruimels-donker [aria-current] { color: #fff; font-weight: 600; }
 
-			.case-regel {
-				margin-top: 1.1rem;
+			/* filterbalk: bouwt zichzelf op uit de kaarten en blijft weg als er
+			   maar één soort werk is */
+			.filters { margin-top: 2rem; display: flex; justify-content: center; }
+			.filters-binnen {
+				display: inline-flex; flex-wrap: wrap; gap: 0.25rem;
+				padding: 0.3rem; border: 1px solid var(--line);
+				background: var(--surface); border-radius: 999px;
+			}
+			.filters button {
+				appearance: none; border: 0; cursor: pointer;
+				padding: 0.55rem 1.05rem; border-radius: 999px;
+				font: inherit; font-size: 0.88rem; font-weight: 600;
+				color: var(--body); background: transparent;
+				transition: background 0.18s ease, color 0.18s ease;
+			}
+			.filters button:hover { color: var(--fg); background: var(--accent-tint); }
+			.filters button[aria-pressed="true"] { background: var(--navy); color: #fff; }
+			.filters button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+			.case-raster {
+				margin-top: 2.5rem;
 				display: grid;
-				grid-template-columns: 1fr auto;
-				align-items: start;
-				gap: 1rem;
+				gap: 1.5rem;
+				grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
 			}
-			.case-nr { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.14em; color: var(--muted); font-variant-numeric: tabular-nums; }
-			.case-naam {
-				display: block; margin-top: 0.35rem;
-				font-size: clamp(1.6rem, 4.5vw, 2.6rem); font-weight: 700;
-				letter-spacing: -0.035em; line-height: 1.05; color: var(--fg);
-				transition: color 0.2s ease;
+			.case-kaart {
+				display: flex; flex-direction: column;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--radius-lg);
+				overflow: hidden;
+				color: inherit; text-decoration: none;
+				transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, border-color 0.2s ease;
 			}
-			.case-link:hover .case-naam, .case-link:focus-visible .case-naam { color: var(--accent-text); }
-			.case-wat { display: block; margin-top: 0.5rem; font-size: 0.95rem; color: var(--body); max-width: 46ch; }
-
-			.case-pijl {
+			.case-kaart:hover, .case-kaart:focus-visible {
+				transform: translateY(-3px);
+				border-color: var(--accent-line);
+				box-shadow: var(--shadow-lift);
+			}
+			.case-kaart:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+			.kaart-beeld { display: block; background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+			.kaart-beeld img { display: block; width: 100%; height: auto; aspect-ratio: 1.9 / 1; object-fit: cover; object-position: top center; }
+			.kaart-body { padding: 1.25rem 1.35rem 1.4rem; display: flex; flex-direction: column; flex: 1; }
+			.kaart-titel { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; color: var(--fg); }
+			.kaart-labels { margin-top: 0.7rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+			.kaart-labels span {
+				font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+				color: var(--accent-text); background: var(--accent-tint);
+				border: 1px solid var(--accent-line); border-radius: 999px;
+				padding: 0.28rem 0.6rem;
+			}
+			.kaart-tekst { margin-top: 0.85rem; font-size: 0.92rem; color: var(--body); }
+			.kaart-tekst b { color: var(--fg); font-weight: 700; }
+			.kaart-lees {
+				margin-top: auto; padding-top: 1.1rem;
 				display: inline-flex; align-items: center; gap: 0.4rem;
-				margin-top: 0.9rem; font-size: 0.9rem; font-weight: 700; color: var(--accent-text);
+				font-size: 0.88rem; font-weight: 700; color: var(--accent-text);
 			}
-			.case-pijl svg { width: 1.05rem; height: 1.05rem; transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1); }
-			.case-link:hover .case-pijl svg, .case-link:focus-visible .case-pijl svg { transform: translateX(0.3rem); }
+			.kaart-lees svg { width: 1rem; height: 1rem; transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1); }
+			.case-kaart:hover .kaart-lees svg, .case-kaart:focus-visible .kaart-lees svg { transform: translateX(0.3rem); }
 
-			.case-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+			.geen-treffers { margin-top: 2rem; font-size: 0.95rem; color: var(--muted); }
 
 			.groeit { margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--line); font-size: 0.95rem; color: var(--muted); max-width: 62ch; }
 			.groeit a { color: var(--accent-text); font-weight: 600; }
@@ -999,15 +1039,9 @@
 			.slot h2 { max-width: 20ch; }
 			.slot p { margin-top: 0.9rem; max-width: 52ch; font-size: var(--t-lead); }
 
-			@media (min-width: 900px) {
-				.cases { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3.5rem 2.5rem; }
-				/* de nieuwste case krijgt de volle breedte */
-				.case-link:first-child { grid-column: 1 / -1; }
-				.case-link:first-child .case-regel { grid-template-columns: minmax(0, 1fr) minmax(0, 20rem); align-items: end; }
-				.case-link:first-child .case-pijl { margin-top: 0; justify-self: end; }
-			}
 			@media (prefers-reduced-motion: reduce) {
-				.case-beeld-wrap img, .case-pijl svg { transition: none; }
+				.case-kaart, .kaart-lees svg { transition: none; }
+				.case-kaart:hover, .case-kaart:focus-visible { transform: none; }
 			}
 		</style>
 	</head>
@@ -1085,54 +1119,70 @@
 		</header>
 
 		<main>
-			<nav class="wrap kruimels" aria-label="Kruimelpad">
-				<ol>
-					<li><a href="/">Home</a></li>
-					<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></li>
-					<li aria-current="page">Portfolio</li>
-				</ol>
-			</nav>
-
-			<section class="section">
+			<section class="pf-hero">
 				<div class="wrap">
+					<nav class="kruimels-donker" aria-label="Kruimelpad">
+						<ol>
+							<li><a href="/">Home</a></li>
+							<li aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></li>
+							<li aria-current="page">Portfolio</li>
+						</ol>
+					</nav>
+
 					<span class="eyebrow">Portfolio</span>
-					<h1>Werk, en waarom het zo geworden is</h1>
-					<p class="lead">
-						Een screenshot laat zien hoe iets eruitziet, niet waarom het werkt. Klik een project
-						open en je leest welke keuzes we hebben gemaakt &mdash; en wat we bewust hebben weggelaten.
+					<h1>Websites en cases <em>voor lokale ondernemers.</em></h1>
+					<p>
+						Bekijk hoe onze websites eruitzien &mdash; en lees per project welke keuzes
+						erachter zitten. Inclusief wat we bewust hebben weggelaten.
 					</p>
 				</div>
 			</section>
 
-			<section class="section" style="padding-top: 0">
+			<section class="section cases">
 				<div class="wrap">
-					<div class="cases">
+					<span class="eyebrow">Cases</span>
+					<h2>Voorbeelden van websites die ondernemers beter presenteren</h2>
+					<p class="lead" style="margin-top: 1rem">
+						Elke case laat zien hoe structuur, tekst en techniek samenwerken: duidelijk maken
+						wat een bedrijf doet, en bezoekers richting contact helpen.
+					</p>
+
+					<!-- De filterknoppen worden onderaan de pagina uit de labels van de kaarten
+					     opgebouwd. Staat er maar één soort werk in? Dan blijft de balk weg. -->
+					<div class="filters" id="caseFilters" role="group" aria-label="Filter op soort werk" hidden>
+						<div class="filters-binnen"></div>
+					</div>
+
+					<div class="case-raster" id="caseRaster">
 						<!-- =========================================================================
-						     Een case toevoegen? Kopieer dit hele <a>-blok, hoog het nummer op, zet de
-						     schermafbeelding als assets/werk-<naam>.jpg neer (1400 x 875 px) en schrijf
-						     de case zelf in /portfolio/<naam>/index.html. Het bovenste blok staat
-						     automatisch over de volle breedte; de rest komt in twee kolommen.
+						     Een case toevoegen? Kopieer dit hele <a>-blok.
+						     - data-tags: labels gescheiden door | ; die vullen ook de filterbalk
+						     - schermafbeelding als assets/werk-<naam>.jpg (1400 x 875 px)
+						     - de case zelf komt in /portfolio/<naam>/index.html
 						     ========================================================================= -->
-						<a class="case-link reveal" href="/portfolio/dh-studio" data-cta="case-dh-studio">
-							<span class="case-beeld-wrap">
-								<img src="/assets/werk-dh-studio.jpg" width="1400" height="875" decoding="async" alt="De homepage van dh-studio.nl" />
+						<a class="case-kaart reveal" href="/portfolio/dh-studio" data-tags="Website laten maken|SEO" data-cta="case-dh-studio">
+							<span class="kaart-beeld">
+								<img src="/assets/werk-dh-studio.jpg" width="1400" height="875" loading="lazy" decoding="async" alt="De homepage van dh-studio.nl" />
 							</span>
-							<span class="case-regel">
-								<span>
-									<span class="case-nr">Case 01 &middot; 2026</span>
-									<span class="case-naam">DH Studio</span>
-									<span class="case-wat">
-										Onze eigen website: geen WordPress, geen stockfoto&rsquo;s en prijzen
-										gewoon op de site. Ontwerp, bouw, teksten en SEO.
-									</span>
+							<span class="kaart-body">
+								<span class="kaart-titel">DH Studio</span>
+								<span class="kaart-labels">
+									<span>Website laten maken</span>
+									<span>SEO</span>
 								</span>
-								<span class="case-pijl">
-									Lees de case
+								<span class="kaart-tekst">
+									Voor <b>onszelf</b> bouwden we een site zonder WordPress, zonder stockfoto&rsquo;s
+									en met de prijzen gewoon zichtbaar. Ontwerp, bouw, teksten en SEO.
+								</span>
+								<span class="kaart-lees">
+									Bekijk case
 									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
 								</span>
 							</span>
 						</a>
 					</div>
+
+					<p class="geen-treffers" id="geenTreffers" hidden>Geen cases in deze categorie.</p>
 
 					<p class="groeit reveal">
 						Wij zijn net begonnen, dus hier komen er nog cases bij. Benieuwd wat we voor een bedrijf
@@ -1453,6 +1503,60 @@
 				} else if (bar) {
 					bar.setAttribute("data-hidden", "false");
 				}
+			})();
+		</script>
+
+		<script>
+			// Filterbalk: leest de labels uit de kaarten, zodat een nieuwe case
+			// automatisch een knop krijgt. Zonder JavaScript staan alle cases er
+			// gewoon, alleen zonder filter.
+			(function () {
+				var balk = document.getElementById("caseFilters");
+				var raster = document.getElementById("caseRaster");
+				var leeg = document.getElementById("geenTreffers");
+				if (!balk || !raster) return;
+
+				var kaarten = [].slice.call(raster.querySelectorAll(".case-kaart"));
+				var soorten = [];
+				kaarten.forEach(function (kaart) {
+					(kaart.getAttribute("data-tags") || "").split("|").forEach(function (label) {
+						label = label.trim();
+						if (label && soorten.indexOf(label) === -1) soorten.push(label);
+					});
+				});
+				if (soorten.length < 2) return;
+
+				var binnen = balk.querySelector(".filters-binnen");
+				var knoppen = [];
+
+				function toon(keuze) {
+					var zichtbaar = 0;
+					kaarten.forEach(function (kaart) {
+						var labels = (kaart.getAttribute("data-tags") || "").split("|").map(function (l) { return l.trim(); });
+						var mee = keuze === "*" || labels.indexOf(keuze) !== -1;
+						kaart.hidden = !mee;
+						if (mee) zichtbaar++;
+					});
+					if (leeg) leeg.hidden = zichtbaar > 0;
+					knoppen.forEach(function (knop) {
+						knop.setAttribute("aria-pressed", knop.getAttribute("data-keuze") === keuze ? "true" : "false");
+					});
+				}
+
+				function maakKnop(tekst, waarde, actief) {
+					var knop = document.createElement("button");
+					knop.type = "button";
+					knop.textContent = tekst;
+					knop.setAttribute("data-keuze", waarde);
+					knop.setAttribute("aria-pressed", actief ? "true" : "false");
+					knop.addEventListener("click", function () { toon(waarde); });
+					binnen.appendChild(knop);
+					knoppen.push(knop);
+				}
+
+				maakKnop("Alles", "*", true);
+				soorten.forEach(function (soort) { maakKnop(soort, soort, false); });
+				balk.hidden = false;
 			})();
 		</script>
 	</body>
