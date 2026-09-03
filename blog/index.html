@@ -942,41 +942,25 @@
 			.kruimels [aria-current] { color: var(--fg); font-weight: 600; }
 
 			/* ------------------------------------------------------------------
-			   Blog: geen kop-boven-lijst-onder, maar een blad in twee kolommen.
-			   Links blijft de titel met de inleiding en de knop staan terwijl je
-			   rechts door de stukken scrolt. Op een telefoon valt dat gewoon
-			   onder elkaar.
+			   Blog als redactie-index: het nieuwste stuk groot uitgelicht,
+			   daaronder de rest als leeslijst. Geen kaartenraster.
 			   ------------------------------------------------------------------ */
-			.blad { display: grid; gap: 3rem; }
-
-			.blad-zij .stip {
-				display: inline-block; width: 0.85rem; height: 0.85rem;
-				background: var(--accent); vertical-align: -0.05em; margin-right: 0.55rem;
-				border-radius: 42% 58% 54% 46% / 56% 44% 56% 44%;
-			}
-			.blad-zij .label { font-size: 0.9rem; font-weight: 700; color: var(--body); }
-			.blad-zij h1 {
+			.blog-kop { padding-bottom: 0; }
+			/* zelfde streepje als de eyebrows op de rest van de site,
+			   maar links uitgelijnd in plaats van gecentreerd */
+			.blog-kop .eyebrow { justify-content: flex-start; flex-wrap: wrap; row-gap: 0.35rem; max-width: 46ch; }
+			.blog-kop .eyebrow::before { display: none; }
+			.blog-kop .eyebrow::after { flex: none; }
+			.blog-kop h1 {
 				margin-top: 0.9rem;
-				font-size: clamp(2.75rem, 8vw, 4.25rem);
-				line-height: 0.95; letter-spacing: -0.04em;
+				font-size: clamp(3.25rem, 12vw, 7rem);
+				line-height: 0.94;
+				letter-spacing: -0.045em;
 			}
-			.blad-zij p { margin-top: 1.2rem; max-width: 46ch; color: var(--body); }
-			.zij-streep { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
-			.zij-streep p { margin-top: 0; font-size: 0.92rem; }
-			/* pijl loopt met de tekst mee, ook als die over twee regels valt */
-			.zij-cta {
-				display: inline; margin-top: 0.9rem;
-				font-size: 0.92rem; font-weight: 700; color: var(--accent-text); text-decoration: none;
-			}
-			.zij-streep .zij-cta-rij { margin-top: 0.9rem; }
-			.zij-cta svg {
-				display: inline-block; width: 1.05rem; height: 1.05rem;
-				vertical-align: -0.2em; margin-left: 0.35rem;
-				transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
-			}
-			.zij-cta:hover svg, .zij-cta:focus-visible svg { transform: translateX(0.3rem); }
+			.kop-lead { margin-top: 1.4rem; max-width: 56ch; font-size: var(--t-lead); color: var(--body); }
+			.kop-lead + .kop-lead { margin-top: 1rem; font-size: 1rem; }
 
-			/* de regel met label, datum en leestijd */
+			/* de regel met datum, label en leestijd */
 			.stempel {
 				display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem;
 				font-size: 0.78rem; font-weight: 700; color: var(--muted);
@@ -989,39 +973,45 @@
 			}
 			.stempel .punt { width: 3px; height: 3px; border-radius: 50%; background: var(--line-strong); }
 
-			/* het nieuwste stuk: beeld over de volle kolom, tekst eronder */
-			.uitgelicht { display: block; text-decoration: none; color: inherit; }
-			.uitgelicht-beeld { display: block; overflow: hidden; border: 1px solid var(--line-strong); background: var(--bg-soft); }
-			.uitgelicht-beeld img {
-				display: block; width: 100%; height: auto; aspect-ratio: 1.9 / 1;
-				object-fit: cover; object-position: top center;
-				transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+			/* uitgelicht: tekst links, beeld rechts */
+			.uitgelicht {
+				display: grid; gap: 1.75rem;
+				margin-top: 3.5rem;
+				border-top: 2px solid var(--fg); padding-top: 1.5rem;
+				text-decoration: none; color: inherit;
 			}
-			.uitgelicht:hover .uitgelicht-beeld img, .uitgelicht:focus-visible .uitgelicht-beeld img { transform: scale(1.02); }
-			.uitgelicht .stempel { margin-top: 1.25rem; }
 			.uitgelicht h2 {
-				margin-top: 0.8rem;
-				font-size: clamp(1.7rem, 4vw, 2.6rem);
-				line-height: 1.05; letter-spacing: -0.035em; color: var(--fg);
+				margin-top: 1rem;
+				font-size: clamp(1.9rem, 5vw, 3.1rem);
+				line-height: 1.03; letter-spacing: -0.035em; color: var(--fg);
 				transition: color 0.2s ease;
 			}
 			.uitgelicht:hover h2, .uitgelicht:focus-visible h2 { color: var(--accent-text); }
-			.uitgelicht p { margin-top: 0.9rem; max-width: 52ch; font-size: var(--t-lead); color: var(--body); }
+			.uitgelicht p { margin-top: 1rem; max-width: 48ch; font-size: var(--t-lead); color: var(--body); }
 			.uitgelicht .verder {
-				margin-top: 1.25rem; display: inline-flex; align-items: center; gap: 0.45rem;
+				margin-top: 1.4rem; display: inline-flex; align-items: center; gap: 0.45rem;
 				font-size: 0.92rem; font-weight: 700; color: var(--accent-text);
 			}
 			.uitgelicht .verder svg { width: 1.05rem; height: 1.05rem; transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1); }
 			.uitgelicht:hover .verder svg, .uitgelicht:focus-visible .verder svg { transform: translateX(0.35rem); }
+			.uitgelicht-beeld { overflow: hidden; border: 1px solid var(--line-strong); background: var(--bg-soft); }
+			.uitgelicht-beeld img {
+				display: block; width: 100%; height: auto; aspect-ratio: 1.6 / 1;
+				object-fit: cover; object-position: top center;
+				transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+			}
+			.uitgelicht:hover .uitgelicht-beeld img, .uitgelicht:focus-visible .uitgelicht-beeld img { transform: scale(1.02); }
 			.uitgelicht:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
 
-			/* alles wat daarvoor verscheen */
+			/* leeslijst: genummerde regels onder elkaar */
 			.lijst-kop {
-				margin-top: 3.5rem; padding-bottom: 0.9rem; border-bottom: 2px solid var(--fg);
+				margin-top: 4rem; padding-bottom: 0.9rem; border-bottom: 2px solid var(--fg);
 				font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em;
 				text-transform: uppercase; color: var(--muted);
 			}
+			.leeslijst { counter-reset: stuk; }
 			.stuk {
+				counter-increment: stuk;
 				display: grid; gap: 0.35rem 1.5rem;
 				padding-block: 1.5rem; border-bottom: 1px solid var(--line);
 				text-decoration: none; color: inherit;
@@ -1032,30 +1022,37 @@
 			.stuk .nr { font-size: 0.72rem; font-weight: 800; color: var(--line-strong); font-variant-numeric: tabular-nums; }
 			.stuk:hover .nr, .stuk:focus-visible .nr { color: var(--accent); }
 			.stuk h3 {
-				font-size: clamp(1.15rem, 2.4vw, 1.5rem); font-weight: 700;
-				letter-spacing: -0.025em; line-height: 1.18; color: var(--fg);
+				font-size: clamp(1.2rem, 2.6vw, 1.65rem); font-weight: 700;
+				letter-spacing: -0.025em; line-height: 1.15; color: var(--fg);
 				transition: color 0.2s ease;
 			}
 			.stuk:hover h3, .stuk:focus-visible h3 { color: var(--accent-text); }
-			.stuk .kort { margin-top: 0.4rem; font-size: 0.92rem; color: var(--body); max-width: 56ch; }
-			.stuk .stempel { margin-top: 0.55rem; }
+			.stuk .kort { margin-top: 0.45rem; font-size: 0.92rem; color: var(--body); max-width: 58ch; }
+			.stuk .stempel { margin-top: 0.6rem; }
 
-			.leeg h2 { max-width: 22ch; font-size: clamp(1.5rem, 3.4vw, 2rem); letter-spacing: -0.025em; }
+			.leeg { padding-top: 1.5rem; border-top: 2px solid var(--fg); }
+			.leeg h2 { max-width: 22ch; }
 			.leeg p { margin-top: 0.9rem; max-width: 58ch; color: var(--body); }
-			.binnenkort { margin: 1.75rem 0 0; padding: 0; list-style: none; }
-			.binnenkort li { display: flex; gap: 0.7rem; padding-block: 0.8rem; border-bottom: 1px solid var(--line); font-size: 0.98rem; color: var(--body); }
-			.binnenkort li:first-child { border-top: 2px solid var(--fg); }
-			.binnenkort svg { width: 17px; height: 17px; margin-top: 0.25rem; flex: none; color: var(--accent); }
+			.binnenkort { margin: 1.5rem 0 0; padding: 0; list-style: none; max-width: 58ch; }
+			.binnenkort li { display: flex; gap: 0.7rem; padding-block: 0.7rem; border-bottom: 1px solid var(--line); font-size: 0.95rem; color: var(--body); }
+			.binnenkort li:first-child { border-top: 1px solid var(--line); }
+			.binnenkort svg { width: 17px; height: 17px; margin-top: 0.2rem; flex: none; color: var(--accent); }
 
-			@media (min-width: 960px) {
-				.blad { grid-template-columns: minmax(0, 19rem) minmax(0, 1fr); gap: 4.5rem; align-items: start; }
-				.blad-zij { position: sticky; top: calc(var(--header-h, 72px) + 2.5rem); }
-				.stuk { grid-template-columns: 2.5rem minmax(0, 1fr) minmax(0, 8rem); align-items: baseline; padding-block: 1.75rem; }
+			.btn-rij { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+			.slot { padding-top: 1.75rem; border-top: 2px solid var(--fg); }
+			.slot h2 { max-width: 20ch; }
+			.slot p { margin-top: 0.9rem; max-width: 52ch; font-size: var(--t-lead); }
+
+			@media (min-width: 900px) {
+				.uitgelicht { grid-template-columns: minmax(0, 1fr) minmax(0, 26rem); align-items: start; gap: 3rem; }
+				.uitgelicht-beeld { margin-top: 0.4rem; }
+				.stuk { grid-template-columns: 3rem minmax(0, 1fr) minmax(0, 11rem); align-items: baseline; padding-block: 1.9rem; }
+				/* datum boven, leestijd eronder: netter dan een afbrekende regel */
 				.stuk .stempel { margin-top: 0; flex-direction: column; align-items: flex-end; gap: 0.25rem; text-align: right; }
 				.stuk .stempel .punt { display: none; }
 			}
 			@media (prefers-reduced-motion: reduce) {
-				.uitgelicht-beeld img, .stuk, .verder svg, .zij-cta svg { transition: none; }
+				.uitgelicht-beeld img, .stuk, .uitgelicht .verder svg { transition: none; }
 			}
 		</style>
 	</head>
@@ -1141,38 +1138,51 @@
 				</ol>
 			</nav>
 
-			<section class="section">
-				<div class="wrap blad">
-					<div class="blad-zij">
-						<p class="label"><span class="stip" aria-hidden="true"></span>Kennis zonder verkooppraatje</p>
-						<h1>Blog</h1>
-						<p>
-							Praktische stukken over wat een website wel en niet voor je kan doen. Geen
-							theorie, maar uitleg en voorbeelden uit de praktijk &mdash; geschreven voor
-							ondernemers, niet voor collega-bureaus.
-						</p>
-						<div class="zij-streep">
-							<p>Liever meteen weten wat er voor jouw bedrijf mogelijk is?</p>
-							<p class="zij-cta-rij"><a class="zij-cta" href="/website-concept" data-cta="blog-concept">Vraag een gratis websiteconcept aan<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
-						</div>
-					</div>
+			<section class="section blog-kop">
+				<div class="wrap">
+					<span class="eyebrow">Ontdek praktische tips en uitleg om meer uit je website te halen</span>
+					<h1>Blog</h1>
+					<p class="kop-lead">
+						Wat kost een website eigenlijk? Waarom levert snelheid meer op dan een mooi plaatje?
+						En wat kun je prima zelf bijhouden? Dat soort vragen behandelen we hier.
+					</p>
+					<p class="kop-lead">
+						Geen ingewikkelde theorie, maar duidelijke uitleg en voorbeelden uit de praktijk.
+						Geschreven voor ondernemers, niet voor collega-bureaus.
+					</p>
+				</div>
+			</section>
 
-					<div class="blad-stroom">
+			<section class="section" style="padding-top: 0">
+				<div class="wrap">
 <!-- ARTIKELEN:START -->
-						<div class="leeg reveal">
-							<h2>De eerste artikelen komen eraan</h2>
-							<p>
-								We schrijven liever iets goeds dan iets snels. Hieronder staat waar de eerste
-								stukken over gaan. Heb je zelf een vraag die hier een artikel waard is? Laat het weten.
-							</p>
-							<ul class="binnenkort">
-								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg><span>Wat een website realistisch kost, en waar dat verschil vandaan komt</span></li>
-								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg><span>Waarom een snelle site meer klanten oplevert dan een mooie</span></li>
-								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg><span>Zelf je site bijhouden of uitbesteden: wat kies je wanneer?</span></li>
-								<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg><span>De vijf fouten die we het vaakst zien op websites van ondernemers</span></li>
-							</ul>
-						</div>
+					<div class="leeg reveal">
+						<h2>De eerste artikelen komen eraan</h2>
+						<p>
+							We schrijven liever iets goeds dan iets snels. Hieronder staat waar de eerste
+							stukken over gaan. Heb je zelf een vraag die hier een artikel waard is? Laat het weten.
+						</p>
+						<ul class="binnenkort">
+							<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg><span>Wat een website realistisch kost, en waar dat verschil vandaan komt</span></li>
+							<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg><span>Waarom een snelle site meer klanten oplevert dan een mooie</span></li>
+							<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg><span>Zelf je site bijhouden of uitbesteden: wat kies je wanneer?</span></li>
+							<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg><span>De vijf fouten die we het vaakst zien op websites van ondernemers</span></li>
+						</ul>
+					</div>
 <!-- ARTIKELEN:EIND -->
+				</div>
+			</section>
+
+			<section class="section section-soft">
+				<div class="wrap slot reveal">
+					<h2>Liever meteen sparren?</h2>
+					<p>
+						Vertel kort wat je bedrijf doet en wat er beter moet. Wij laten vrijblijvend zien
+						wat er mogelijk is.
+					</p>
+					<div class="btn-rij">
+						<a href="/contact" class="btn btn-primary" data-cta="blog-contact">Gratis kennismaken <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+						<a href="/website-concept" class="btn btn-outline" data-cta="blog-concept">Gratis websiteconcept</a>
 					</div>
 				</div>
 			</section>
