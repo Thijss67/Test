@@ -23,8 +23,14 @@ define('SJABLOON_MAP', __DIR__ . '/sjablonen');
 // Zonder slash op het eind.
 define('BASIS_URL', 'https://dh-studio.nl');
 
-// Maximale grootte van een schermafbeelding (in bytes).
-define('MAX_BEELD', 5 * 1024 * 1024);
+// Maximale grootte van een geuploade afbeelding (in bytes). Het paneel
+// verkleint hem daarna zelf naar BEELD_BREEDTE pixels, dus een groot
+// bestand uit een AI-generator of camera mag gewoon.
+define('MAX_BEELD', 20 * 1024 * 1024);
+
+// Breedte waarnaar elke afbeelding wordt teruggerekend, en de JPEG-kwaliteit.
+define('BEELD_BREEDTE', 1400);
+define('BEELD_KWALITEIT', 82);
 
 // Na dit aantal mislukte pogingen is inloggen vijftien minuten geblokkeerd.
 define('MAX_POGINGEN', 5);

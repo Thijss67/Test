@@ -265,7 +265,7 @@ function toon_artikelformulier(array $artikel, string $oude_slug, ?string $fout)
             <label>Afbeelding
                 <input type="file" name="beeld" accept="image/jpeg,image/png,image/webp" />
                 <span class="hint">
-                    Liefst 1400 &times; 875 pixels.
+                    Liefst in de verhouding 16:10. Groter mag: het paneel verkleint hem zelf naar 1400&nbsp;px.
                     <?php if (!empty($artikel['afbeelding'])): ?>Nu ingesteld: <?= esc($artikel['afbeelding']) ?>. Leeg laten = houden.<?php endif; ?>
                 </span>
             </label>

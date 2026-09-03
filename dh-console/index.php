@@ -302,15 +302,25 @@ function verwerk_upload(string $slug, string $voorvoegsel = 'werk-'): ?string
     if (!$info || !isset($soorten[$info[2]])) {
         throw new RuntimeException('Alleen JPG, PNG of WebP zijn toegestaan.');
     }
-    $ext = $soorten[$info[2]];
-    $doel = ASSETS_MAP . '/' . $voorvoegsel . $slug . '.' . $ext;
     if (!is_dir(ASSETS_MAP) && !mkdir(ASSETS_MAP, 0755, true) && !is_dir(ASSETS_MAP)) {
         throw new RuntimeException('De map /assets bestaat niet en kan niet worden aangemaakt.');
     }
-    if (!move_uploaded_file($bestand['tmp_name'], $doel)) {
-        throw new RuntimeException('De afbeelding kon niet worden opgeslagen. Controleer de rechten op /assets.');
+
+    // Grote bestanden (AI-generatoren leveren al snel 2500 px en 6 MB) gaan
+    // terug naar BEELD_BREEDTE en worden als JPEG bewaard. Zo blijft de site
+    // licht zonder dat jij eerst hoeft te verkleinen.
+    $ext = $soorten[$info[2]];
+    $doel_jpg = ASSETS_MAP . '/' . $voorvoegsel . $slug . '.jpg';
+    if (function_exists('imagecreatefromstring') && verklein_naar_jpg($bestand['tmp_name'], $doel_jpg, $info)) {
+        $ext = 'jpg';
+    } else {
+        $doel = ASSETS_MAP . '/' . $voorvoegsel . $slug . '.' . $ext;
+        if (!move_uploaded_file($bestand['tmp_name'], $doel)) {
+            throw new RuntimeException('De afbeelding kon niet worden opgeslagen. Controleer de rechten op /assets.');
+        }
+        @chmod($doel, 0644);
     }
-    @chmod($doel, 0644);
+
     // oudere versie met een andere extensie opruimen
     foreach (['jpg', 'png', 'webp'] as $oud) {
         if ($oud !== $ext) {
@@ -318,6 +328,50 @@ function verwerk_upload(string $slug, string $voorvoegsel = 'werk-'): ?string
         }
     }
     return '/assets/' . $voorvoegsel . $slug . '.' . $ext;
+}
+
+/**
+ * Schaalt terug naar BEELD_BREEDTE en schrijft er een JPEG van.
+ * Geeft false terug als het niet lukt; dan gaat het bestand ongewijzigd mee.
+ */
+function verklein_naar_jpg(string $bron, string $doel, array $info): bool
+{
+    $breedte = (int) $info[0];
+    $hoogte = (int) $info[1];
+    if ($breedte < 1 || $hoogte < 1) {
+        return false;
+    }
+    $inhoud = @file_get_contents($bron);
+    if ($inhoud === false) {
+        return false;
+    }
+    $beeld = @imagecreatefromstring($inhoud);
+    unset($inhoud);
+    if (!$beeld) {
+        return false;
+    }
+
+    if ($breedte > BEELD_BREEDTE) {
+        $nieuwe_breedte = BEELD_BREEDTE;
+        $nieuwe_hoogte = (int) round($hoogte * (BEELD_BREEDTE / $breedte));
+    } else {
+        $nieuwe_breedte = $breedte;
+        $nieuwe_hoogte = $hoogte;
+    }
+
+    $klein = imagecreatetruecolor($nieuwe_breedte, $nieuwe_hoogte);
+    // doorzichtige png's krijgen een witte ondergrond in plaats van zwart
+    $wit = imagecolorallocate($klein, 255, 255, 255);
+    imagefilledrectangle($klein, 0, 0, $nieuwe_breedte, $nieuwe_hoogte, $wit);
+    imagecopyresampled($klein, $beeld, 0, 0, 0, 0, $nieuwe_breedte, $nieuwe_hoogte, $breedte, $hoogte);
+    imagedestroy($beeld);
+
+    $gelukt = imagejpeg($klein, $doel, BEELD_KWALITEIT);
+    imagedestroy($klein);
+    if ($gelukt) {
+        @chmod($doel, 0644);
+    }
+    return (bool) $gelukt;
 }
 
 /* ---------------------------------------------------------------- weergave */
@@ -523,7 +577,7 @@ function toon_formulier(array $case, string $oude_slug, ?string $fout): void
             <label>Schermafbeelding
                 <input type="file" name="beeld" accept="image/jpeg,image/png,image/webp" />
                 <span class="hint">
-                    Liefst 1400 &times; 875 pixels, JPG of WebP.
+                    Liefst in de verhouding 16:10. Groter mag: het paneel verkleint hem zelf naar 1400&nbsp;px en slaat hem op als JPG.
                     <?php if (!empty($case['afbeelding'])): ?>Nu ingesteld: <?= esc($case['afbeelding']) ?>. Leeg laten = houden.<?php endif; ?>
                 </span>
             </label>
