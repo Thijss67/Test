@@ -8,21 +8,21 @@
 ErrorDocument 404 /404.html
 
 # ----------------------------------------------------------------- adressen
-# Eén adres voor de site. Zonder dit hebben dh-studio.nl, www.dh-studio.nl
-# en dhstudio.nl elk hun eigen versie: bezoekers landen op de verkeerde en
-# Google verdeelt je posities over meerdere adressen.
+# Eén adres voor de site: dhstudio.nl. Zonder dit hebben dhstudio.nl,
+# www.dhstudio.nl en dh-studio.nl elk hun eigen versie: bezoekers landen op
+# de verkeerde en Google verdeelt je posities over meerdere adressen.
 <IfModule mod_rewrite.c>
 	RewriteEngine On
 
 	# altijd https
 	RewriteCond %{HTTPS} !=on
 	RewriteCond %{HTTP:X-Forwarded-Proto} !https
-	RewriteRule ^(.*)$ https://dh-studio.nl/$1 [R=301,L]
+	RewriteRule ^(.*)$ https://dhstudio.nl/$1 [R=301,L]
 
-	# alles wat niet exact dh-studio.nl is (www, of het adres zonder
-	# streepje) gaat door naar dh-studio.nl
-	RewriteCond %{HTTP_HOST} !^dh-studio\.nl$ [NC]
-	RewriteRule ^(.*)$ https://dh-studio.nl/$1 [R=301,L]
+	# alles wat niet exact dhstudio.nl is (www, of het adres met een
+	# streepje) gaat door naar dhstudio.nl
+	RewriteCond %{HTTP_HOST} !^dhstudio\.nl$ [NC]
+	RewriteRule ^(.*)$ https://dhstudio.nl/$1 [R=301,L]
 </IfModule>
 
 # ----------------------------------------------------------------- inpakken

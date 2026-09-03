@@ -21,7 +21,7 @@ define('ASSETS_MAP', SITE_MAP . '/assets');
 define('SJABLOON_MAP', __DIR__ . '/sjablonen');
 
 // Zonder slash op het eind.
-define('BASIS_URL', 'https://dh-studio.nl');
+define('BASIS_URL', 'https://dhstudio.nl');
 
 // Maximale grootte van een geuploade afbeelding (in bytes). Het paneel
 // verkleint hem daarna zelf naar BEELD_BREEDTE pixels, dus een groot
