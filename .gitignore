@@ -1,0 +1,3 @@
+# Wordt op de server aangemaakt door het beheerpaneel; hoort niet in Git.
+data/wachtwoord.php
+data/pogingen.json

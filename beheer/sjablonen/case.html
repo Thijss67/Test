@@ -6,22 +6,22 @@
 		<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%22-20%20-70%20320%20320%22%20fill=%22%230d1b3e%22%3E%3Cg%20transform=%22scale(0.5)%20translate(0,360)%20scale(0.1,-0.1)%22%3E%3Cpath%20d=%22M0%201806%20c0%20-1627%201%20-1794%2016%20-1800%209%20-3%20299%20-6%20644%20-6%20665%200%20826%209%20996%2056%2033%208%2073%2019%2089%2024%2089%2023%20295%20116%20400%20179%20584%20355%20866%201029%20769%201836%20-88%20741%20-537%201270%20-1231%201451%20-185%2048%20-178%2048%20-950%2051%20l-733%204%200%20-1795z%20m1430%201090%20c504%20-108%20790%20-500%20790%20-1086%200%20-556%20-274%20-959%20-732%20-1078%20-102%20-26%20-107%20-27%20-443%20-27%20l-340%200%20-3%201094%20c-2%20845%201%201097%2010%201108%2018%2022%20609%2012%20718%20-11z%20M2718%203458%20c-5%20-294%20-9%20-265%2046%20-333%20208%20-253%20335%20-573%20408%20-1030%2017%20-106%2017%20-527%200%20-615%20-7%20-36%20-18%20-90%20-23%20-120%20-66%20-348%20-186%20-623%20-377%20-863%20-54%20-69%20-54%20-69%20-60%20-261%20-7%20-265%20-51%20-236%20353%20-236%20184%200%20336%201%20337%203%202%201%205%20330%208%20732%20l5%20730%20390%205%20c385%205%20390%205%20388%2025%20-3%2029%20-50%20246%20-58%20266%20-12%2031%2012%2029%2081%20-7%20340%20-175%20552%20-277%20586%20-281%2027%20-4%2043%20-13%2050%20-27%2013%20-26%20669%20-353%20687%20-342%2012%208%2017%202427%205%202474%20-6%2022%20-6%2022%20-350%2022%20l-344%200%20-2%20-717%20-3%20-718%20-715%200%20-715%200%20-5%20715%20-5%20715%20-342%203%20-343%202%20-2%20-142z%20M4440%201373%20c0%20-15%20115%20-591%20140%20-703%204%20-19%2013%20-60%2020%20-90%207%20-30%2016%20-73%2021%20-95%205%20-22%2013%20-62%2018%20-90%2023%20-120%2052%20-240%2060%20-248%208%20-8%2097%20108%20211%20270%2023%2035%2046%2063%2050%2063%207%200%20121%20-151%20300%20-398%2060%20-83%2060%20-83%2098%20-55%2086%2064%20182%20145%20182%20154%200%209%20-55%2085%20-242%20334%20-115%20154%20-122%20135%2077%20210%20186%2069%20217%2084%20210%2096%20-7%2010%20-1122%20569%20-1136%20569%20-5%200%20-9%20-8%20-9%20-17z%22/%3E%3C/g%3E%3C/svg%3E" />
 		<meta name="theme-color" content="#fbfaf7" />
 		<meta name="color-scheme" content="light" />
-		<title>Onze eigen website | DH Studio</title>
-		<meta name="description" content="Hoe we onze eigen site hebben aangepakt: geen WordPress, geen stockfoto&#039;s, prijzen gewoon op de site." />
-		<link rel="canonical" href="https://dh-studio.nl/portfolio/dh-studio" />
+		<title>{{TITEL}}</title>
+		<meta name="description" content="{{OMSCHRIJVING}}" />
+		<link rel="canonical" href="{{URL}}" />
 
 		<meta property="og:type" content="website" />
 		<meta property="og:locale" content="nl_NL" />
-		<meta property="og:url" content="https://dh-studio.nl/portfolio/dh-studio" />
+		<meta property="og:url" content="{{URL}}" />
 		<meta property="og:site_name" content="DH Studio" />
-		<meta property="og:title" content="Onze eigen website | DH Studio" />
-		<meta property="og:description" content="Hoe we onze eigen site hebben aangepakt: geen WordPress, geen stockfoto&#039;s, prijzen gewoon op de site." />
-		<meta property="og:image" content="https://dh-studio.nl/assets/werk-dh-studio.jpg" />
+		<meta property="og:title" content="{{TITEL}}" />
+		<meta property="og:description" content="{{OMSCHRIJVING}}" />
+		<meta property="og:image" content="{{BEELD}}" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta property="og:image:alt" content="DH Studio — websites die jouw bedrijf vooruit helpen" />
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:image" content="https://dh-studio.nl/assets/werk-dh-studio.jpg" />
+		<meta name="twitter:image" content="{{BEELD}}" />
 
 		<!-- Markeert dat JS aanstaat: reveal-animaties verbergen niets als JS uitvalt -->
 		<script>document.documentElement.classList.add("js");</script>
@@ -1097,135 +1097,7 @@
 		</header>
 
 		<main>
-			<nav class="wrap kruimels" aria-label="Kruimelpad">
-				<ol>
-					<li><a href="/">Home</a></li>
-					<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></li>
-					<li><a href="/portfolio">Portfolio</a></li>
-					<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></li>
-					<li aria-current="page">DH Studio</li>
-				</ol>
-			</nav>
-
-			<section class="section case-kop">
-				<div class="wrap">
-					<span class="eyebrow">Case 01 &middot; 2026</span>
-					<h1>Onze eigen website</h1>
-					<p class="lead">
-						Wij zijn een nieuw bureau. Dan is je eigen site het eerste wat mensen van je zien, en meteen het enige bewijs dat je hebt. Deze case laat zien hoe we hem hebben aangepakt: wat we wilden bereiken, welke keuzes daaruit volgden en wat we er expres uit hebben gelaten.
-					</p>
-
-					<dl class="feiten">
-						<div><dt>Klant</dt><dd>DH Studio</dd></div>
-						<div><dt>Wat we deden</dt><dd>Ontwerp, bouw, teksten en SEO</dd></div>
-						<div><dt>Omvang</dt><dd>9 pagina’s en een eigen 404</dd></div>
-						<div><dt>Live</dt><dd><a href="https://dh-studio.nl">dh-studio.nl</a></dd></div>
-					</dl>
-
-					<figure class="case-beeld reveal">
-						<img src="/assets/werk-dh-studio.jpg" width="1400" height="875" decoding="async" alt="De homepage van dh-studio.nl" />
-						<figcaption>De homepage. Geen slider, geen stockfoto, wel meteen duidelijk wat je hier kunt krijgen.</figcaption>
-					</figure>
-				</div>
-			</section>
-
-			<section class="section" style="padding-top: 0">
-				<div class="wrap case-body">
-					<aside class="case-inhoud">
-						<p class="inhoud-kop">Inhoud</p>
-						<ol class="inhoud">
-							<li><a href="#hfd-1">Wat de site moest doen</a></li>
-							<li><a href="#hfd-2">De vijf keuzes</a></li>
-							<li><a href="#hfd-3">Wat we weglieten</a></li>
-							<li><a href="#hfd-4">Wat er nu staat</a></li>
-							<li><a href="#hfd-5">Wat er nog komt</a></li>
-						</ol>
-					</aside>
-
-					<div class="artikel">
-						<section class="hfd" id="hfd-1">
-							<span class="hfd-nr">01</span>
-							<h2>Wat de site moest doen</h2>
-							<p>Eén ding: ervoor zorgen dat iemand een gratis websiteconcept aanvraagt. Geen nieuwsbrief, geen downloads, geen tien knoppen die om aandacht vechten. Elke pagina eindigt daarom op dezelfde plek.</p>
-							<p>Daarnaast moest de site zichzelf bewijzen. Wij verkopen snelle, opgeruimde websites die goed vindbaar zijn. Dan kun je zelf niet aankomen met een pagina die vier seconden staat te laden.</p>
-							<blockquote class="uitspraak">Als onze eigen site niet klopt, hoef je ons ook niet te geloven over die van jou.</blockquote>
-						</section>
-
-						<section class="hfd" id="hfd-2">
-							<span class="hfd-nr">02</span>
-							<h2>De vijf keuzes</h2>
-							<p>Dit zijn de beslissingen waar de rest uit volgde. We leggen ze er graag naast bij een kennismaking, want bij jouw site komen dezelfde vragen langs.</p>
-							<div class="keuze">
-								<h3>Geen WordPress</h3>
-								<p>De site bestaat uit losse pagina’s: geen thema, geen paginabouwer, geen plugins. Dat scheelt laadtijd, maar vooral gedoe. Er is niets dat verouderd raakt, niets dat gehackt kan worden en niets dat na een update ineens anders staat.</p>
-							</div>
-							<div class="keuze">
-								<h3>Geen stockfoto’s</h3>
-								<p>Een lachend team achter een laptop zegt niemand iets. Het ontwerp komt daarom uit typografie, witruimte en één accentkleur. De enige afbeeldingen op de site zijn logo’s en schermafbeeldingen van echt werk.</p>
-							</div>
-							<div class="keuze">
-								<h3>Prijzen gewoon op de site</h3>
-								<p>De meeste bureaus houden het bij ‘prijs op aanvraag’. Bij ons staan de bedragen er: Starter, Professional, en Premium in overleg omdat daar niets standaard aan is. Wie het te duur vindt, belt niet — dat scheelt ons allebei een gesprek.</p>
-							</div>
-							<div class="keuze">
-								<h3>Een aanvraag in stapjes</h3>
-								<p>Een leeg tekstvak met ‘vertel over je project’ levert korte, vage berichten op. Onze aanvraag stelt daarom gewone vragen: wat loopt er nu mis, in welke branche zit je, wat wil je bereiken. Wij weten daardoor vooraf genoeg om een concept te maken, en jij hoeft geen brief te schrijven.</p>
-							</div>
-							<div class="keuze">
-								<h3>Een vergelijking die op je telefoon werkt</h3>
-								<p>Op de tarievenpagina staan drie pakketten naast elkaar. Zo’n tabel wordt op een klein scherm meestal onleesbaar. Bij ons schakel je met één knop tussen de pakketten en blijft de kop staan terwijl je scrolt, zodat je altijd ziet waar je naar kijkt.</p>
-							</div>
-						</section>
-
-						<section class="hfd" id="hfd-3">
-							<span class="hfd-nr">03</span>
-							<h2>Wat we weglieten</h2>
-							<p>Een site wordt vaak niet beter van wat je erbij zet, maar van wat je eruit houdt. Dit hebben we er bewust niet in gedaan:</p>
-							<ul class="geen">
-								<li><span><b>Een slider op de homepage.</b> Bijna niemand kijkt verder dan het eerste beeld.</span></li>
-								<li><span><b>Een chatwidget.</b> Een telefoonnummer en een mailadres zijn eerlijker dan een bot die je aan het lijntje houdt.</span></li>
-								<li><span><b>Een pop-up na vijf seconden.</b> Je bent net binnen.</span></li>
-								<li><span><b>Teksten over passie en beleving.</b> Daar kan een bezoeker niets mee.</span></li>
-							</ul>
-						</section>
-
-						<section class="hfd" id="hfd-4">
-							<span class="hfd-nr">04</span>
-							<h2>Wat er nu staat</h2>
-							<p>Negen pagina’s, elk met een eigen doel, en een 404-pagina die je terugbrengt in plaats van je te laten stranden. De homepage weegt zo’n 42 kB over de lijn, inclusief opmaak en teksten. Er draait geen framework, er is geen bouwstap: wat er op de server staat, is precies wat je browser krijgt.</p>
-							<div class="cijfers">
-								<div><b>9</b><span>pagina’s</span></div>
-								<div><b>42 kB</b><span>homepage over de lijn</span></div>
-								<div><b>1</b><span>lettertype</span></div>
-								<div><b>0</b><span>plugins</span></div>
-							</div>
-							<p>Elke pagina heeft een eigen titel, omschrijving en opmaakcode voor Google, zodat zoekresultaten kloppen met wat er op de pagina staat. Dat is precies de basis-SEO die in elk pakket zit.</p>
-						</section>
-
-						<section class="hfd" id="hfd-5">
-							<span class="hfd-nr">05</span>
-							<h2>Wat er nog komt</h2>
-							<p>Eerlijk is eerlijk: de site is net live. Het blog moet nog gevuld worden en dit portfolio bevat voorlopig één case — die van onszelf. Zodra de eerste klantprojecten opgeleverd zijn, komen ze er precies zo bij te staan: met de keuzes erbij, niet alleen een plaatje.</p>
-						</section>
-
-						<p class="terug"><a href="/portfolio">&larr; Terug naar het portfolio</a></p>
-					</div>
-				</div>
-			</section>
-
-			<section class="section section-soft">
-				<div class="wrap slot reveal">
-					<h2>Zo pakken we jouw site ook aan</h2>
-					<p>
-						Vertel kort wat je bedrijf doet en wat er beter moet. Wij laten vrijblijvend zien
-						wat er mogelijk is &mdash; met dezelfde keuzes en dezelfde uitleg erbij.
-					</p>
-					<div class="btn-rij">
-						<a href="/contact" class="btn btn-primary" data-cta="case-contact">Gratis kennismaken <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-						<a href="/website-concept" class="btn btn-outline" data-cta="case-concept">Gratis websiteconcept</a>
-					</div>
-				</div>
-			</section>
+{{INHOUD}}
 		</main>
 
 
@@ -1311,57 +1183,7 @@
 		</div>
 
 		<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@graph": [
-        {
-            "@type": "Article",
-            "@id": "https://dh-studio.nl/portfolio/dh-studio#case",
-            "url": "https://dh-studio.nl/portfolio/dh-studio",
-            "headline": "Case: Onze eigen website",
-            "description": "Hoe we onze eigen site hebben aangepakt: geen WordPress, geen stockfoto's, prijzen gewoon op de site.",
-            "inLanguage": "nl-NL",
-            "image": "https://dh-studio.nl/assets/werk-dh-studio.jpg",
-            "author": {
-                "@id": "https://dh-studio.nl/#organisatie"
-            },
-            "publisher": {
-                "@id": "https://dh-studio.nl/#organisatie"
-            },
-            "about": {
-                "@type": "CreativeWork",
-                "name": "DH Studio"
-            },
-            "isPartOf": {
-                "@id": "https://dh-studio.nl/#website"
-            }
-        },
-        {
-            "@type": "BreadcrumbList",
-            "@id": "https://dh-studio.nl/portfolio/dh-studio#kruimelpad",
-            "itemListElement": [
-                {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Home",
-                    "item": "https://dh-studio.nl/"
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "Portfolio",
-                    "item": "https://dh-studio.nl/portfolio"
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 3,
-                    "name": "DH Studio",
-                    "item": "https://dh-studio.nl/portfolio/dh-studio"
-                }
-            ]
-        }
-    ]
-}
+{{SCHEMA}}
 		</script>
 
 

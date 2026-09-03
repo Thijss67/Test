@@ -1119,11 +1119,7 @@
 			<section class="section cases" style="padding-top: 0">
 				<div class="wrap">
 					<div class="case-raster">
-						<!-- =========================================================================
-						     Een case toevoegen? Kopieer dit hele <a>-blok.
-						     - schermafbeelding als assets/werk-<naam>.jpg (1400 x 875 px)
-						     - de case zelf komt in /portfolio/<naam>/index.html
-						     ========================================================================= -->
+<!-- CASES:START -->
 						<a class="case-kaart reveal" href="/portfolio/dh-studio" data-cta="case-dh-studio">
 							<span class="kaart-beeld">
 								<img src="/assets/werk-dh-studio.jpg" width="1400" height="875" loading="lazy" decoding="async" alt="De homepage van dh-studio.nl" />
@@ -1135,8 +1131,7 @@
 									<span>SEO</span>
 								</span>
 								<span class="kaart-tekst">
-									Voor <b>onszelf</b> bouwden we een site zonder WordPress, zonder stockfoto&rsquo;s
-									en met de prijzen gewoon zichtbaar. Ontwerp, bouw, teksten en SEO.
+									Voor <b>onszelf</b> bouwden we een site zonder WordPress, zonder stockfoto’s en met de prijzen gewoon zichtbaar. Ontwerp, bouw, teksten en SEO.
 								</span>
 								<span class="kaart-lees">
 									Bekijk case
@@ -1144,6 +1139,7 @@
 								</span>
 							</span>
 						</a>
+<!-- CASES:EIND -->
 					</div>
 
 					<p class="groeit reveal">
@@ -1251,50 +1247,64 @@
 			<a href="/contact" class="btn btn-primary btn-block" data-cta="sticky">Gratis kennismaken</a>
 		</div>
 
-		<script type="application/ld+json">
+<!-- SCHEMA:START -->
+<script type="application/ld+json">
 {
- "@context": "https://schema.org",
- "@graph": [
-  {
-   "@type": "CollectionPage",
-   "@id": "https://dh-studio.nl/portfolio#webpage",
-   "url": "https://dh-studio.nl/portfolio",
-   "name": "Portfolio",
-   "description": "Websites die DH Studio heeft ontworpen en gebouwd, met de keuzes erachter uitgeschreven.",
-   "inLanguage": "nl-NL",
-   "isPartOf": { "@id": "https://dh-studio.nl/#website" },
-   "mainEntity": {
-    "@type": "ItemList",
-    "itemListOrder": "https://schema.org/ItemListOrderDescending",
-    "itemListElement": [
-     {
-      "@type": "ListItem",
-      "position": 1,
-      "url": "https://dh-studio.nl/portfolio/dh-studio",
-      "item": {
-       "@type": "CreativeWork",
-       "name": "DH Studio",
-       "description": "Onze eigen website: ontwerp, bouw, teksten en SEO.",
-       "url": "https://dh-studio.nl",
-       "dateCreated": "2026",
-       "subjectOf": { "@id": "https://dh-studio.nl/portfolio/dh-studio#case" },
-       "creator": { "@id": "https://dh-studio.nl/#organisatie" }
-      }
-     }
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "CollectionPage",
+            "@id": "https://dh-studio.nl/portfolio#webpage",
+            "url": "https://dh-studio.nl/portfolio",
+            "name": "Portfolio",
+            "description": "Websites die DH Studio heeft ontworpen en gebouwd, met de keuzes erachter uitgeschreven.",
+            "inLanguage": "nl-NL",
+            "isPartOf": {
+                "@id": "https://dh-studio.nl/#website"
+            },
+            "mainEntity": {
+                "@type": "ItemList",
+                "itemListOrder": "https://schema.org/ItemListOrderDescending",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "url": "https://dh-studio.nl/portfolio/dh-studio",
+                        "item": {
+                            "@type": "CreativeWork",
+                            "name": "DH Studio",
+                            "description": "Hoe we onze eigen site hebben aangepakt: geen WordPress, geen stockfoto's, prijzen gewoon op de site.",
+                            "dateCreated": "2026",
+                            "creator": {
+                                "@id": "https://dh-studio.nl/#organisatie"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://dh-studio.nl/portfolio#kruimelpad",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://dh-studio.nl/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Portfolio",
+                    "item": "https://dh-studio.nl/portfolio"
+                }
+            ]
+        }
     ]
-   }
-  },
-  {
-   "@type": "BreadcrumbList",
-   "@id": "https://dh-studio.nl/portfolio#kruimelpad",
-   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dh-studio.nl/" },
-    { "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://dh-studio.nl/portfolio" }
-   ]
-  }
- ]
 }
 		</script>
+<!-- SCHEMA:EIND -->
 
 
 		<script>
