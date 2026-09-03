@@ -945,47 +945,16 @@
 
 
 			/* ------------------------------------------------------------------
-			   Portfolio: donkere openingsband, daaronder de cases in een raster.
+			   Portfolio: gewone lichte kop, daaronder de cases in een raster.
 			   Elke kaart is één klikbare link naar de bijbehorende case.
 			   ------------------------------------------------------------------ */
-			.pf-hero {
-				background: var(--navy);
-				color: #fff;
-				padding-block: clamp(3.5rem, 9vw, 6.5rem);
-			}
-			.pf-hero .eyebrow { color: #7aa2ff; }
+			.pf-kop { padding-bottom: 0; }
+			.pf-kop h1 { margin-top: 0.6rem; max-width: 16ch; }
+			.pf-kop h1 em { font-style: normal; color: var(--accent-text); display: block; }
+			.pf-kop p { margin-top: 1.2rem; max-width: 50ch; font-size: var(--t-lead); color: var(--body); }
 			/* eyebrow links uitlijnen: het streepje ervoor valt weg */
-			.pf-hero .eyebrow, .cases .eyebrow { justify-content: flex-start; }
-			.pf-hero .eyebrow::before, .cases .eyebrow::before { display: none; }
-			.pf-hero .eyebrow::after { background: rgba(255, 255, 255, 0.28); }
-			.pf-hero h1 { color: #fff; max-width: 16ch; }
-			.pf-hero h1 em { font-style: normal; color: #7aa2ff; display: block; }
-			.pf-hero p { margin-top: 1.2rem; max-width: 48ch; font-size: var(--t-lead); color: rgba(255, 255, 255, 0.74); }
-			.pf-hero .kruimels-donker { margin-bottom: 1.75rem; }
-			.pf-hero .kruimels-donker ol { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; list-style: none; padding: 0; font-size: 0.82rem; color: rgba(255, 255, 255, 0.55); }
-			.pf-hero .kruimels-donker a { color: rgba(255, 255, 255, 0.72); text-decoration: none; }
-			.pf-hero .kruimels-donker a:hover { color: #fff; }
-			.pf-hero .kruimels-donker svg { width: 0.9rem; height: 0.9rem; opacity: 0.5; }
-			.pf-hero .kruimels-donker [aria-current] { color: #fff; font-weight: 600; }
-
-			/* filterbalk: bouwt zichzelf op uit de kaarten en blijft weg als er
-			   maar één soort werk is */
-			.filters { margin-top: 2rem; display: flex; justify-content: center; }
-			.filters-binnen {
-				display: inline-flex; flex-wrap: wrap; gap: 0.25rem;
-				padding: 0.3rem; border: 1px solid var(--line);
-				background: var(--surface); border-radius: 999px;
-			}
-			.filters button {
-				appearance: none; border: 0; cursor: pointer;
-				padding: 0.55rem 1.05rem; border-radius: 999px;
-				font: inherit; font-size: 0.88rem; font-weight: 600;
-				color: var(--body); background: transparent;
-				transition: background 0.18s ease, color 0.18s ease;
-			}
-			.filters button:hover { color: var(--fg); background: var(--accent-tint); }
-			.filters button[aria-pressed="true"] { background: var(--navy); color: #fff; }
-			.filters button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+			.pf-kop .eyebrow { justify-content: flex-start; }
+			.pf-kop .eyebrow::before { display: none; }
 
 			.case-raster {
 				margin-top: 2.5rem;
@@ -1028,8 +997,6 @@
 			}
 			.kaart-lees svg { width: 1rem; height: 1rem; transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1); }
 			.case-kaart:hover .kaart-lees svg, .case-kaart:focus-visible .kaart-lees svg { transform: translateX(0.3rem); }
-
-			.geen-treffers { margin-top: 2rem; font-size: 0.95rem; color: var(--muted); }
 
 			.groeit { margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--line); font-size: 0.95rem; color: var(--muted); max-width: 62ch; }
 			.groeit a { color: var(--accent-text); font-weight: 600; }
@@ -1119,48 +1086,35 @@
 		</header>
 
 		<main>
-			<section class="pf-hero">
-				<div class="wrap">
-					<nav class="kruimels-donker" aria-label="Kruimelpad">
-						<ol>
-							<li><a href="/">Home</a></li>
-							<li aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></li>
-							<li aria-current="page">Portfolio</li>
-						</ol>
-					</nav>
+			<nav class="wrap kruimels" aria-label="Kruimelpad">
+				<ol>
+					<li><a href="/">Home</a></li>
+					<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></li>
+					<li aria-current="page">Portfolio</li>
+				</ol>
+			</nav>
 
+			<section class="section pf-kop">
+				<div class="wrap">
 					<span class="eyebrow">Portfolio</span>
 					<h1>Websites en cases <em>voor lokale ondernemers.</em></h1>
 					<p>
-						Bekijk hoe onze websites eruitzien &mdash; en lees per project welke keuzes
-						erachter zitten. Inclusief wat we bewust hebben weggelaten.
+						Bekijk hoe onze websites eruitzien en lees per project welke keuzes erachter
+						zitten: hoe structuur, tekst en techniek samen duidelijk maken wat een bedrijf
+						doet &mdash; en wat we bewust hebben weggelaten.
 					</p>
 				</div>
 			</section>
 
-			<section class="section cases">
+			<section class="section cases" style="padding-top: 0">
 				<div class="wrap">
-					<span class="eyebrow">Cases</span>
-					<h2>Voorbeelden van websites die ondernemers beter presenteren</h2>
-					<p class="lead" style="margin-top: 1rem">
-						Elke case laat zien hoe structuur, tekst en techniek samenwerken: duidelijk maken
-						wat een bedrijf doet, en bezoekers richting contact helpen.
-					</p>
-
-					<!-- De filterknoppen worden onderaan de pagina uit de labels van de kaarten
-					     opgebouwd. Staat er maar één soort werk in? Dan blijft de balk weg. -->
-					<div class="filters" id="caseFilters" role="group" aria-label="Filter op soort werk" hidden>
-						<div class="filters-binnen"></div>
-					</div>
-
-					<div class="case-raster" id="caseRaster">
+					<div class="case-raster">
 						<!-- =========================================================================
 						     Een case toevoegen? Kopieer dit hele <a>-blok.
-						     - data-tags: labels gescheiden door | ; die vullen ook de filterbalk
 						     - schermafbeelding als assets/werk-<naam>.jpg (1400 x 875 px)
 						     - de case zelf komt in /portfolio/<naam>/index.html
 						     ========================================================================= -->
-						<a class="case-kaart reveal" href="/portfolio/dh-studio" data-tags="Website laten maken|SEO" data-cta="case-dh-studio">
+						<a class="case-kaart reveal" href="/portfolio/dh-studio" data-cta="case-dh-studio">
 							<span class="kaart-beeld">
 								<img src="/assets/werk-dh-studio.jpg" width="1400" height="875" loading="lazy" decoding="async" alt="De homepage van dh-studio.nl" />
 							</span>
@@ -1181,8 +1135,6 @@
 							</span>
 						</a>
 					</div>
-
-					<p class="geen-treffers" id="geenTreffers" hidden>Geen cases in deze categorie.</p>
 
 					<p class="groeit reveal">
 						Wij zijn net begonnen, dus hier komen er nog cases bij. Benieuwd wat we voor een bedrijf
@@ -1506,58 +1458,5 @@
 			})();
 		</script>
 
-		<script>
-			// Filterbalk: leest de labels uit de kaarten, zodat een nieuwe case
-			// automatisch een knop krijgt. Zonder JavaScript staan alle cases er
-			// gewoon, alleen zonder filter.
-			(function () {
-				var balk = document.getElementById("caseFilters");
-				var raster = document.getElementById("caseRaster");
-				var leeg = document.getElementById("geenTreffers");
-				if (!balk || !raster) return;
-
-				var kaarten = [].slice.call(raster.querySelectorAll(".case-kaart"));
-				var soorten = [];
-				kaarten.forEach(function (kaart) {
-					(kaart.getAttribute("data-tags") || "").split("|").forEach(function (label) {
-						label = label.trim();
-						if (label && soorten.indexOf(label) === -1) soorten.push(label);
-					});
-				});
-				if (soorten.length < 2) return;
-
-				var binnen = balk.querySelector(".filters-binnen");
-				var knoppen = [];
-
-				function toon(keuze) {
-					var zichtbaar = 0;
-					kaarten.forEach(function (kaart) {
-						var labels = (kaart.getAttribute("data-tags") || "").split("|").map(function (l) { return l.trim(); });
-						var mee = keuze === "*" || labels.indexOf(keuze) !== -1;
-						kaart.hidden = !mee;
-						if (mee) zichtbaar++;
-					});
-					if (leeg) leeg.hidden = zichtbaar > 0;
-					knoppen.forEach(function (knop) {
-						knop.setAttribute("aria-pressed", knop.getAttribute("data-keuze") === keuze ? "true" : "false");
-					});
-				}
-
-				function maakKnop(tekst, waarde, actief) {
-					var knop = document.createElement("button");
-					knop.type = "button";
-					knop.textContent = tekst;
-					knop.setAttribute("data-keuze", waarde);
-					knop.setAttribute("aria-pressed", actief ? "true" : "false");
-					knop.addEventListener("click", function () { toon(waarde); });
-					binnen.appendChild(knop);
-					knoppen.push(knop);
-				}
-
-				maakKnop("Alles", "*", true);
-				soorten.forEach(function (soort) { maakKnop(soort, soort, false); });
-				balk.hidden = false;
-			})();
-		</script>
 	</body>
 </html>
