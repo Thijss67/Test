@@ -8,9 +8,12 @@ function start_sessie(): void
     }
     $veilig = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
         || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
+    // Het pad volgt de map waarin het paneel staat; hernoem je die, dan
+    // blijft de sessie gewoon werken.
+    $pad = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/')), '/');
     session_set_cookie_params([
         'lifetime' => 0,
-        'path'     => '/beheer',
+        'path'     => ($pad === '' ? '/' : $pad . '/'),
         'httponly' => true,
         'samesite' => 'Strict',
         'secure'   => $veilig,

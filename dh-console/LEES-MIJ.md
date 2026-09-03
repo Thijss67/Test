@@ -17,12 +17,16 @@ krijgen gewone statische pagina's te zien.
 ## Eenmalig installeren
 
 1. Zet deze mappen op de server, naast `index.html`:
-   - `beheer/`
+   - `dh-console/`
    - `data/`
+
+   De map heet met opzet niet `beheer` of `admin`: die adressen worden door
+   bots standaard afgelopen. Wil je een andere naam? Hernoem de map gewoon;
+   de code leest zelf waar hij staat.
 2. Zorg dat PHP 8 aanstaat (hPanel → Geavanceerd → PHP-configuratie).
 3. Geef de webserver schrijfrechten op `data/`, `assets/` en `portfolio/`
    (map-rechten 755 volstaat meestal; bij twijfel 775).
-4. Ga naar `https://dh-studio.nl/beheer/` en kies een wachtwoord van minstens
+4. Ga naar `https://dh-studio.nl/dh-console/` en kies een wachtwoord van minstens
    12 tekens. Dat kan maar één keer: daarna is de pagina afgeschermd.
 
 Wachtwoord kwijt? Verwijder `data/wachtwoord.php` via FTP of de bestandsbeheerder
@@ -57,7 +61,7 @@ leeg om de bestaande afbeelding te houden.
 
 ## Waar de opmaak vandaan komt
 
-De casepagina's worden gemaakt met `beheer/sjablonen/case.html`. Daarin zit de
+De casepagina's worden gemaakt met `dh-console/sjablonen/case.html`. Daarin zit de
 volledige opmaak van de site: koptekst, menu, stijl en voettekst. Verandert er
 iets aan het ontwerp, dan pas je dat sjabloon aan en druk je in het paneel op
 **Opnieuw publiceren**.
@@ -76,7 +80,7 @@ Alles daarbinnen wordt bij elke publicatie overschreven.
   het IP-adres.
 - Na vijf mislukte pogingen is inloggen vijftien minuten geblokkeerd.
 - Elk formulier is beveiligd tegen misbruik van buitenaf (CSRF-token).
-- `data/`, `beheer/lib/` en `beheer/sjablonen/` zijn met `.htaccess` afgeschermd.
+- `data/`, `dh-console/lib/` en `dh-console/sjablonen/` zijn met `.htaccess` afgeschermd.
 - Uploads worden gecontroleerd op echt beeldformaat, niet alleen op de naam.
 - Bestanden worden weggeschreven via een tijdelijk bestand, dus een halve
   pagina kan niet ontstaan.
