@@ -87,3 +87,50 @@ function tekst_naar_html(string $tekst): string
     );
     return preg_replace('/\*\*(.+?)\*\*/s', '<b>$1</b>', $veilig);
 }
+
+function lees_artikelen(): array
+{
+    if (!is_file(ARTIKELEN_BESTAND)) {
+        return [];
+    }
+    $data = json_decode((string) file_get_contents(ARTIKELEN_BESTAND), true);
+    return is_array($data) && isset($data['artikelen']) && is_array($data['artikelen']) ? $data['artikelen'] : [];
+}
+
+function bewaar_artikelen(array $artikelen): void
+{
+    $json = json_encode(['artikelen' => array_values($artikelen)],
+        JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    schrijf_bestand(ARTIKELEN_BESTAND, $json . "\n");
+}
+
+/** Zoekt op slug in een lijst cases of artikelen. */
+function zoek_op_slug(array $rijen, string $slug): ?int
+{
+    foreach ($rijen as $i => $rij) {
+        if (($rij['slug'] ?? '') === $slug) {
+            return $i;
+        }
+    }
+    return null;
+}
+
+/** 2026-08-18 -> 18 augustus 2026 */
+function datum_in_woorden(string $datum): string
+{
+    $maanden = [1 => 'januari', 'februari', 'maart', 'april', 'mei', 'juni',
+                'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
+    $delen = explode('-', $datum);
+    if (count($delen) !== 3) {
+        return $datum;
+    }
+    [$jaar, $maand, $dag] = array_map('intval', $delen);
+    return $dag . ' ' . ($maanden[$maand] ?? '') . ' ' . $jaar;
+}
+
+/** 2026-08-18 -> 18-08-2026 */
+function datum_kort(string $datum): string
+{
+    $delen = explode('-', $datum);
+    return count($delen) === 3 ? $delen[2] . '-' . $delen[1] . '-' . $delen[0] : $datum;
+}

@@ -1,16 +1,18 @@
-# Beheerpaneel voor de cases
+# Beheerpaneel voor cases en blogartikelen
 
-Hiermee voeg je cases toe, wijzig je ze en verwijder je ze, zonder ooit een
-HTML-bestand aan te raken. Het paneel draait op de eigen server; bezoekers
+Hiermee voeg je cases en blogartikelen toe, wijzig je ze en verwijder je ze,
+zonder ooit een HTML-bestand aan te raken. Het paneel draait op de eigen server; bezoekers
 krijgen gewone statische pagina's te zien.
 
 ## Hoe het werkt
 
 1. Je vult in het paneel een formulier in.
-2. De gegevens gaan naar `data/cases.json`.
+2. De gegevens gaan naar `data/cases.json` en `data/artikelen.json`.
 3. Bij opslaan schrijft het paneel meteen de HTML weg:
    - `portfolio/index.html` — de kaarten in het raster
    - `portfolio/<webadres>/index.html` — de casepagina zelf
+   - `blog/index.html` — de artikelkaarten
+   - `blog/<webadres>/index.html` — het artikel zelf
 4. Bezoekers laden dus nog steeds kant-en-klare HTML. Geen database, geen
    PHP tijdens het bezoek, geen tragere pagina's.
 
@@ -53,23 +55,39 @@ Voor het verhaal gebruik je een paar tekens:
 Alles wat je verder typt wordt als gewone tekst behandeld: HTML uit een
 formulier komt nooit op de site terecht.
 
+## Blogartikelen
+
+Bovenin het paneel staan twee tabbladen: **Cases** en **Blogartikelen**. Voor een
+artikel vul je titel, datum, label (het gekleurde tekstje op de kaart),
+samenvatting, afbeelding en tekst in. Dezelfde opmaaktekens gelden.
+
+Artikelen staan automatisch op datum, nieuwste bovenaan. Zolang er geen artikel
+gepubliceerd is, houdt de blogpagina zichzelf uit Google en toont hij het blok
+"De eerste artikelen komen eraan" — de tekst daarvan staat in
+`dh-console/sjablonen/blog-leeg.html`. Zodra je het eerste artikel publiceert,
+verdwijnt dat blok en mag Google de pagina indexeren.
+
 ## Afbeeldingen
 
-Upload een schermafbeelding van 1400 × 875 pixels (JPG, PNG of WebP, maximaal
-5 MB). Het bestand komt terecht in `assets/werk-<webadres>.jpg`. Laat het veld
+Upload een afbeelding van 1400 × 875 pixels (JPG, PNG of WebP, maximaal 5 MB).
+Die komt terecht in `assets/werk-<webadres>.jpg` (case) of
+`assets/blog-<webadres>.jpg` (artikel). Laat het veld
 leeg om de bestaande afbeelding te houden.
 
 ## Waar de opmaak vandaan komt
 
-De casepagina's worden gemaakt met `dh-console/sjablonen/case.html`. Daarin zit de
+De casepagina's worden gemaakt met `dh-console/sjablonen/case.html`, de
+artikelen met `dh-console/sjablonen/artikel.html`. Daarin zit de
 volledige opmaak van de site: koptekst, menu, stijl en voettekst. Verandert er
 iets aan het ontwerp, dan pas je dat sjabloon aan en druk je in het paneel op
 **Opnieuw publiceren**.
 
-In `portfolio/index.html` staan twee markeringen:
+In `portfolio/index.html` en `blog/index.html` staan markeringen:
 
-    <!-- CASES:START -->  …  <!-- CASES:EIND -->
-    <!-- SCHEMA:START --> …  <!-- SCHEMA:EIND -->
+    <!-- CASES:START -->     …  <!-- CASES:EIND -->
+    <!-- ARTIKELEN:START --> …  <!-- ARTIKELEN:EIND -->
+    <!-- ROBOTS:START -->    …  <!-- ROBOTS:EIND -->
+    <!-- SCHEMA:START -->    …  <!-- SCHEMA:EIND -->
 
 Alles daarbuiten mag je met de hand aanpassen; het paneel raakt het niet aan.
 Alles daarbinnen wordt bij elke publicatie overschreven.

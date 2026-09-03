@@ -161,3 +161,47 @@ function artikel_naar_html(array $hoofdstukken, string $tab): string
     }
     return rtrim($uit, "\n");
 }
+
+/**
+ * Zelfde bron-opmaak, maar voor een blogartikel: geen genummerde
+ * hoofdstukken en geen inhoudsopgave, gewoon koppen en alinea's.
+ */
+function blog_naar_html(array $hoofdstukken, string $tab): string
+{
+    $uit = '';
+    foreach ($hoofdstukken as $hfd) {
+        if ($hfd['kop'] !== '') {
+            $uit .= $tab . '<h2>' . esc($hfd['kop']) . '</h2>' . "\n";
+        }
+        foreach ($hfd['blokken'] as $blok) {
+            switch ($blok['soort']) {
+                case 'tekst':
+                    $uit .= $tab . '<p>' . tekst_naar_html($blok['tekst']) . '</p>' . "\n";
+                    break;
+                case 'quote':
+                    $uit .= $tab . '<blockquote>' . tekst_naar_html($blok['tekst']) . '</blockquote>' . "\n";
+                    break;
+                case 'keuze':
+                    $uit .= $tab . '<h3>' . esc($blok['kop']) . '</h3>' . "\n";
+                    $uit .= $tab . '<p>' . tekst_naar_html($blok['tekst']) . '</p>' . "\n";
+                    break;
+                case 'lijst':
+                    $uit .= $tab . '<ul>' . "\n";
+                    foreach ($blok['items'] as $item) {
+                        $uit .= $tab . "\t" . '<li><span>' . tekst_naar_html($item) . '</span></li>' . "\n";
+                    }
+                    $uit .= $tab . '</ul>' . "\n";
+                    break;
+                case 'cijfers':
+                    $uit .= $tab . '<div class="cijfers">' . "\n";
+                    foreach ($blok['items'] as $item) {
+                        [$getal, $label] = array_pad(array_map('trim', explode('|', $item, 2)), 2, '');
+                        $uit .= $tab . "\t" . '<div><b>' . esc($getal) . '</b><span>' . esc($label) . '</span></div>' . "\n";
+                    }
+                    $uit .= $tab . '</div>' . "\n";
+                    break;
+            }
+        }
+    }
+    return rtrim($uit, "\n");
+}

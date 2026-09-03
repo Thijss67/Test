@@ -289,3 +289,215 @@ function klaar_voor_bouw(array $case, int $nummer): array
     $case['kaartHtml'] = tekst_naar_html($case['kaarttekst']);
     return $case;
 }
+
+/* ================================================================== blog */
+
+/** Bouwt de blogpagina en alle artikelpagina's opnieuw op. */
+function bouw_blog_alles(array $artikelen): array
+{
+    $meldingen = [];
+    $zichtbaar = array_values(array_filter($artikelen, static fn(array $a): bool => !empty($a['zichtbaar'])));
+
+    bouw_blogoverzicht($zichtbaar);
+    $meldingen[] = 'Blogoverzicht bijgewerkt (' . count($zichtbaar) . ' ' . (count($zichtbaar) === 1 ? 'artikel' : 'artikelen') . ').';
+
+    foreach ($zichtbaar as $artikel) {
+        bouw_artikelpagina($artikel);
+        $meldingen[] = 'Artikel /blog/' . $artikel['slug'] . ' geschreven.';
+    }
+
+    $slugs = array_column($zichtbaar, 'slug');
+    foreach (glob(BLOG_MAP . '/*', GLOB_ONLYDIR) ?: [] as $map) {
+        $naam = basename($map);
+        if (!in_array($naam, $slugs, true) && geldige_slug($naam)) {
+            @unlink($map . '/index.html');
+            @rmdir($map);
+            $meldingen[] = 'Oud artikel /blog/' . $naam . ' verwijderd.';
+        }
+    }
+    return $meldingen;
+}
+
+function bouw_blogoverzicht(array $artikelen): void
+{
+    $pad = BLOG_MAP . '/index.html';
+    $html = (string) file_get_contents($pad);
+
+    if ($artikelen === []) {
+        // Zonder artikelen komt het "binnenkort"-blok terug en blijft de pagina
+        // uit Google. De tekst van dat blok staat in sjablonen/blog-leeg.html.
+        $leeg = (string) file_get_contents(SJABLOON_MAP . '/blog-leeg.html');
+        $html = vervang_tussen($html, 'ARTIKELEN', rtrim($leeg, "\n"));
+        $html = vervang_tussen($html, 'ROBOTS', "\t\t" . '<meta name="robots" content="noindex, follow" />');
+    } else {
+        $kaarten = '';
+        foreach ($artikelen as $artikel) {
+            $datum = esc(datum_kort($artikel['datum']));
+            $soort = esc($artikel['label'] !== '' ? $artikel['label'] : 'Blog');
+            $kaarten .= <<<HTML
+					<a class="art-kaart reveal" href="/blog/{$artikel['slug']}" data-cta="blog-{$artikel['slug']}">
+						<span class="art-beeld">
+							<img src="{$artikel['afbeelding']}" width="1400" height="875" loading="lazy" decoding="async" alt="{$artikel['altEsc']}" />
+						</span>
+						<span class="art-body">
+							<span class="art-chips">
+								<span class="soort">{$soort}</span>
+								<span class="datum">{$datum}</span>
+							</span>
+							<span class="art-titel">{$artikel['titelEsc']}</span>
+							<span class="art-tekst">{$artikel['samenvattingHtml']}</span>
+							<span class="art-lees">
+								Lees verder
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+							</span>
+						</span>
+					</a>
+
+HTML;
+        }
+        $raster = "\t\t\t\t\t" . '<div class="artikel-raster">' . "\n" . rtrim($kaarten, "\n") . "\n\t\t\t\t\t" . '</div>';
+        $html = vervang_tussen($html, 'ARTIKELEN', $raster);
+        $html = vervang_tussen($html, 'ROBOTS', '');
+    }
+
+    $html = vervang_tussen($html, 'SCHEMA', schema_blog($artikelen));
+    schrijf_bestand($pad, $html);
+}
+
+function bouw_artikelpagina(array $artikel): void
+{
+    $sjabloon = (string) file_get_contents(SJABLOON_MAP . '/artikel.html');
+    $url = BASIS_URL . '/blog/' . $artikel['slug'];
+
+    $hoofdstukken = lees_artikel($artikel['tekst']);
+    $tekst = blog_naar_html($hoofdstukken, "\t\t\t\t\t");
+    $datumLang = esc(datum_in_woorden($artikel['datum']));
+    $soort = esc($artikel['label'] !== '' ? $artikel['label'] : 'Blog');
+    $pijl = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>';
+
+    $inhoud = <<<HTML
+			<nav class="wrap kruimels" aria-label="Kruimelpad">
+				<ol>
+					<li><a href="/">Home</a></li>
+					<li>{$pijl}</li>
+					<li><a href="/blog">Blog</a></li>
+					<li>{$pijl}</li>
+					<li aria-current="page">{$artikel['titelEsc']}</li>
+				</ol>
+			</nav>
+
+			<section class="section art-kop">
+				<div class="wrap">
+					<p class="art-chips">
+						<span class="soort">{$soort}</span>
+						<span class="datum"><time datetime="{$artikel['datum']}">{$datumLang}</time></span>
+					</p>
+					<h1>{$artikel['titelEsc']}</h1>
+					<p class="kop-lead">{$artikel['samenvattingHtml']}</p>
+
+					<figure class="art-hero reveal">
+						<img src="{$artikel['afbeelding']}" width="1400" height="875" decoding="async" alt="{$artikel['altEsc']}" />
+					</figure>
+				</div>
+			</section>
+
+			<section class="section" style="padding-top: 0">
+				<div class="wrap">
+					<div class="lezen">
+{$tekst}
+
+						<p class="terug"><a href="/blog">&larr; Terug naar het blog</a></p>
+					</div>
+				</div>
+			</section>
+
+			<section class="section section-soft">
+				<div class="wrap slot reveal">
+					<h2>Vraag over je eigen site?</h2>
+					<p>
+						Vertel kort wat je bedrijf doet en wat er beter moet. Wij laten vrijblijvend zien
+						wat er mogelijk is.
+					</p>
+					<div class="btn-rij">
+						<a href="/contact" class="btn btn-primary" data-cta="artikel-contact">Gratis kennismaken <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+						<a href="/website-concept" class="btn btn-outline" data-cta="artikel-concept">Gratis websiteconcept</a>
+					</div>
+				</div>
+			</section>
+HTML;
+
+    $html = strtr($sjabloon, [
+        '{{TITEL}}'        => $artikel['titelEsc'] . ' | DH Studio',
+        '{{OMSCHRIJVING}}' => $artikel['omschrijvingEsc'],
+        '{{URL}}'          => $url,
+        '{{BEELD}}'        => BASIS_URL . $artikel['afbeelding'],
+        '{{INHOUD}}'       => $inhoud,
+        '{{SCHEMA}}'       => schema_artikel($artikel, $url),
+    ]);
+    schrijf_bestand(BLOG_MAP . '/' . $artikel['slug'] . '/index.html', $html);
+}
+
+function schema_blog(array $artikelen): string
+{
+    $lijst = [];
+    foreach ($artikelen as $i => $artikel) {
+        $lijst[] = [
+            '@type' => 'ListItem',
+            'position' => $i + 1,
+            'url' => BASIS_URL . '/blog/' . $artikel['slug'],
+            'name' => $artikel['titel'],
+        ];
+    }
+    $pagina = [
+        '@type' => 'CollectionPage',
+        '@id' => BASIS_URL . '/blog#webpage',
+        'url' => BASIS_URL . '/blog',
+        'name' => 'Blog',
+        'description' => 'Praktische stukken over wat een website wel en niet voor je kan doen.',
+        'inLanguage' => 'nl-NL',
+        'isPartOf' => ['@id' => BASIS_URL . '/#website'],
+    ];
+    if ($lijst !== []) {
+        $pagina['mainEntity'] = ['@type' => 'ItemList', 'itemListElement' => $lijst];
+    }
+    $graaf = ['@context' => 'https://schema.org', '@graph' => [
+        $pagina,
+        kruimels_schema([['Home', BASIS_URL . '/'], ['Blog', BASIS_URL . '/blog']], BASIS_URL . '/blog#kruimelpad'),
+    ]];
+    return '<script type="application/ld+json">' . "\n" . json_uit($graaf) . "\n\t\t</script>";
+}
+
+function schema_artikel(array $artikel, string $url): string
+{
+    $graaf = ['@context' => 'https://schema.org', '@graph' => [
+        [
+            '@type' => 'BlogPosting',
+            '@id' => $url . '#artikel',
+            'url' => $url,
+            'headline' => $artikel['titel'],
+            'description' => $artikel['omschrijving'],
+            'datePublished' => $artikel['datum'],
+            'inLanguage' => 'nl-NL',
+            'image' => BASIS_URL . $artikel['afbeelding'],
+            'author' => ['@id' => BASIS_URL . '/#organisatie'],
+            'publisher' => ['@id' => BASIS_URL . '/#organisatie'],
+            'isPartOf' => ['@id' => BASIS_URL . '/#website'],
+        ],
+        kruimels_schema([
+            ['Home', BASIS_URL . '/'],
+            ['Blog', BASIS_URL . '/blog'],
+            [$artikel['titel'], $url],
+        ], $url . '#kruimelpad'),
+    ]];
+    return json_uit($graaf);
+}
+
+/** Vult de geescapete velden aan die de sjablonen verwachten. */
+function artikel_klaar(array $artikel): array
+{
+    $artikel['titelEsc'] = esc($artikel['titel']);
+    $artikel['altEsc'] = esc($artikel['alt']);
+    $artikel['omschrijvingEsc'] = esc($artikel['omschrijving']);
+    $artikel['samenvattingHtml'] = tekst_naar_html($artikel['samenvatting']);
+    return $artikel;
+}

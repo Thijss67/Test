@@ -81,6 +81,14 @@ if (!ingelogd()) {
     exit;
 }
 
+/* ---------------------------------------------------------------- welk deel */
+$soort = ($_GET['soort'] ?? 'cases') === 'artikelen' ? 'artikelen' : 'cases';
+if ($soort === 'artikelen') {
+    require __DIR__ . '/lib/artikelscherm.php';
+    artikelen_scherm($actie);
+    exit;
+}
+
 /* ---------------------------------------------------------------- gegevens */
 $cases = lees_cases();
 
@@ -274,7 +282,7 @@ function uit_formulier(array $post): array
 }
 
 /** Slaat een geuploade schermafbeelding op onder assets/werk-<slug>.<ext>. */
-function verwerk_upload(string $slug): ?string
+function verwerk_upload(string $slug, string $voorvoegsel = 'werk-'): ?string
 {
     if (empty($_FILES['beeld']['name'])) {
         return null;
@@ -295,7 +303,7 @@ function verwerk_upload(string $slug): ?string
         throw new RuntimeException('Alleen JPG, PNG of WebP zijn toegestaan.');
     }
     $ext = $soorten[$info[2]];
-    $doel = ASSETS_MAP . '/werk-' . $slug . '.' . $ext;
+    $doel = ASSETS_MAP . '/' . $voorvoegsel . $slug . '.' . $ext;
     if (!is_dir(ASSETS_MAP) && !mkdir(ASSETS_MAP, 0755, true) && !is_dir(ASSETS_MAP)) {
         throw new RuntimeException('De map /assets bestaat niet en kan niet worden aangemaakt.');
     }
@@ -306,10 +314,10 @@ function verwerk_upload(string $slug): ?string
     // oudere versie met een andere extensie opruimen
     foreach (['jpg', 'png', 'webp'] as $oud) {
         if ($oud !== $ext) {
-            @unlink(ASSETS_MAP . '/werk-' . $slug . '.' . $oud);
+            @unlink(ASSETS_MAP . '/' . $voorvoegsel . $slug . '.' . $oud);
         }
     }
-    return '/assets/werk-' . $slug . '.' . $ext;
+    return '/assets/' . $voorvoegsel . $slug . '.' . $ext;
 }
 
 /* ---------------------------------------------------------------- weergave */
@@ -362,6 +370,10 @@ function toon_kop(string $titel): void
 	th { font-size:.75rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
 	td img { display:block; width:6.5rem; height:auto; border-radius:6px; border:1px solid var(--line); }
 	.uit { color:var(--muted); font-size:.8rem; }
+	.tabs { display:inline-flex; gap:.25rem; padding:.3rem; margin-bottom:1.25rem; background:#fff; border:1px solid var(--line); border-radius:999px; }
+	.tabs a { padding:.5rem 1rem; border-radius:999px; font-size:.9rem; font-weight:600; color:var(--body); text-decoration:none; }
+	.tabs a:hover { background:#f2f4f9; color:var(--navy); }
+	.tabs a.aan { background:var(--navy); color:#fff; }
 	.tweekolom { display:grid; gap:0 1.25rem; grid-template-columns:1fr; }
 	@media (min-width:52rem) { .tweekolom { grid-template-columns:1fr 1fr; } }
 </style>
@@ -380,6 +392,18 @@ function toon_kop(string $titel): void
 <?php
 }
 
+function tabbladen(string $actief): string
+{
+    $items = ['cases' => 'Cases', 'artikelen' => 'Blogartikelen'];
+    $uit = '<div class="tabs">';
+    foreach ($items as $sleutel => $naam) {
+        $adres = $sleutel === 'cases' ? '?actie=lijst' : '?actie=lijst&amp;soort=artikelen';
+        $klasse = $sleutel === $actief ? ' class="aan"' : '';
+        $uit .= '<a href="' . $adres . '"' . $klasse . '>' . $naam . '</a>';
+    }
+    return $uit . '</div>';
+}
+
 function toon_voet(): void
 {
     echo "</main>\n</body>\n</html>\n";
@@ -389,6 +413,7 @@ function toon_lijst(array $cases, ?string $melding, ?string $fout): void
 {
     toon_kop('Cases');
     ?>
+    <?= tabbladen('cases') ?>
     <div class="rij" style="justify-content:space-between; margin-bottom:1.25rem">
         <h1 style="margin:0">Cases</h1>
         <div class="rij">

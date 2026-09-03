@@ -11,10 +11,12 @@ define('SITE_MAP', dirname(__DIR__));
 
 define('DATA_MAP', SITE_MAP . '/data');
 define('CASES_BESTAND', DATA_MAP . '/cases.json');
+define('ARTIKELEN_BESTAND', DATA_MAP . '/artikelen.json');
 define('WACHTWOORD_BESTAND', DATA_MAP . '/wachtwoord.php');
 define('POGINGEN_BESTAND', DATA_MAP . '/pogingen.json');
 
 define('PORTFOLIO_MAP', SITE_MAP . '/portfolio');
+define('BLOG_MAP', SITE_MAP . '/blog');
 define('ASSETS_MAP', SITE_MAP . '/assets');
 define('SJABLOON_MAP', __DIR__ . '/sjablonen');
 
