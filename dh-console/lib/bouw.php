@@ -330,38 +330,82 @@ function bouw_blogoverzicht(array $artikelen): void
         $html = vervang_tussen($html, 'ARTIKELEN', rtrim($leeg, "\n"));
         $html = vervang_tussen($html, 'ROBOTS', "\t\t" . '<meta name="robots" content="noindex, follow" />');
     } else {
-        $kaarten = '';
-        foreach ($artikelen as $artikel) {
-            $datum = esc(datum_kort($artikel['datum']));
-            $soort = esc($artikel['label'] !== '' ? $artikel['label'] : 'Blog');
-            $kaarten .= <<<HTML
-					<a class="art-kaart reveal" href="/blog/{$artikel['slug']}" data-cta="blog-{$artikel['slug']}">
-						<span class="art-beeld">
-							<img src="{$artikel['afbeelding']}" width="1400" height="875" loading="lazy" decoding="async" alt="{$artikel['altEsc']}" />
-						</span>
-						<span class="art-body">
-							<span class="art-chips">
-								<span class="soort">{$soort}</span>
-								<span class="datum">{$datum}</span>
-							</span>
-							<span class="art-titel">{$artikel['titelEsc']}</span>
-							<span class="art-tekst">{$artikel['samenvattingHtml']}</span>
-							<span class="art-lees">
-								Lees verder
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-							</span>
-						</span>
-					</a>
+        // Het nieuwste stuk komt groot bovenaan, de rest als leeslijst.
+        $eerste = $artikelen[0];
+        $rest = array_slice($artikelen, 1);
 
-HTML;
+        $blok = uitgelicht_blok($eerste);
+        if ($rest !== []) {
+            $blok .= "\n\n" . "\t\t\t\t\t" . '<p class="lijst-kop">Eerder verschenen</p>' . "\n";
+            $blok .= "\t\t\t\t\t" . '<div class="leeslijst">' . "\n";
+            foreach ($rest as $artikel) {
+                $blok .= leeslijst_regel($artikel);
+            }
+            $blok .= "\t\t\t\t\t" . '</div>';
         }
-        $raster = "\t\t\t\t\t" . '<div class="artikel-raster">' . "\n" . rtrim($kaarten, "\n") . "\n\t\t\t\t\t" . '</div>';
-        $html = vervang_tussen($html, 'ARTIKELEN', $raster);
+
+        $html = vervang_tussen($html, 'ARTIKELEN', $blok);
         $html = vervang_tussen($html, 'ROBOTS', '');
     }
 
     $html = vervang_tussen($html, 'SCHEMA', schema_blog($artikelen));
     schrijf_bestand($pad, $html);
+}
+
+/** Het uitgelichte artikel bovenaan de blogpagina. */
+function uitgelicht_blok(array $artikel): string
+{
+    $stempel = stempel_regel($artikel);
+    return <<<HTML
+					<a class="uitgelicht reveal" href="/blog/{$artikel['slug']}" data-cta="blog-{$artikel['slug']}">
+						<span>
+							{$stempel}
+							<h2>{$artikel['titelEsc']}</h2>
+							<p>{$artikel['samenvattingHtml']}</p>
+							<span class="verder">
+								Lees dit artikel
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+							</span>
+						</span>
+						<span class="uitgelicht-beeld">
+							<img src="{$artikel['afbeelding']}" width="1400" height="875" decoding="async" alt="{$artikel['altEsc']}" />
+						</span>
+					</a>
+HTML;
+}
+
+/** Een regel in de leeslijst eronder. */
+function leeslijst_regel(array $artikel): string
+{
+    $stempel = stempel_regel($artikel, false);
+    $nr = str_pad((string) $artikel['nummer'], 2, '0', STR_PAD_LEFT);
+    return <<<HTML
+						<a class="stuk reveal" href="/blog/{$artikel['slug']}" data-cta="blog-{$artikel['slug']}">
+							<span class="nr">{$nr}</span>
+							<span>
+								<h3>{$artikel['titelEsc']}</h3>
+								<span class="kort">{$artikel['samenvattingHtml']}</span>
+							</span>
+							{$stempel}
+						</a>
+
+HTML;
+}
+
+/** Datum, label en leestijd op een rij. */
+function stempel_regel(array $artikel, bool $met_label = true): string
+{
+    $datum = esc(datum_in_woorden($artikel['datum']));
+    $uit = '<span class="stempel">';
+    if ($met_label) {
+        $soort = esc($artikel['label'] !== '' ? $artikel['label'] : 'Blog');
+        $uit .= '<span class="soort">' . $soort . '</span>';
+    }
+    return $uit
+        . '<time datetime="' . esc($artikel['datum']) . '">' . $datum . '</time>'
+        . '<span class="punt" aria-hidden="true"></span>'
+        . '<span>' . $artikel['leestijd'] . ' min lezen</span>'
+        . '</span>';
 }
 
 function bouw_artikelpagina(array $artikel): void
@@ -493,11 +537,20 @@ function schema_artikel(array $artikel, string $url): string
 }
 
 /** Vult de geescapete velden aan die de sjablonen verwachten. */
-function artikel_klaar(array $artikel): array
+function artikel_klaar(array $artikel, int $nummer = 1): array
 {
+    $artikel['nummer'] = $nummer;
+    $artikel['leestijd'] = leestijd($artikel['tekst'] ?? '');
     $artikel['titelEsc'] = esc($artikel['titel']);
     $artikel['altEsc'] = esc($artikel['alt']);
     $artikel['omschrijvingEsc'] = esc($artikel['omschrijving']);
     $artikel['samenvattingHtml'] = tekst_naar_html($artikel['samenvatting']);
     return $artikel;
+}
+
+/** Ruwe schatting: 200 woorden per minuut, minimaal 1. */
+function leestijd(string $tekst): int
+{
+    $woorden = preg_split('/\s+/u', trim(strip_tags($tekst))) ?: [];
+    return max(1, (int) round(count(array_filter($woorden)) / 200));
 }

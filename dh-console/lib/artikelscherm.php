@@ -106,8 +106,9 @@ function sorteer_artikelen(array &$artikelen): void
 function publiceer_artikelen(array $artikelen): array
 {
     $klaar = [];
+    $nummer = 1;
     foreach ($artikelen as $artikel) {
-        $klaar[] = artikel_klaar($artikel);
+        $klaar[] = artikel_klaar($artikel, $nummer++);
     }
     return bouw_blog_alles($klaar);
 }
