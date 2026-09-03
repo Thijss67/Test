@@ -942,8 +942,8 @@
 			.kruimels [aria-current] { color: var(--fg); font-weight: 600; }
 
 			/* ------------------------------------------------------------------
-			   Blog als redactie-index: het nieuwste stuk groot uitgelicht,
-			   daaronder de rest als leeslijst. Geen kaartenraster.
+			   Blog: dezelfde opzet als het portfolio. Klein label, kop groot,
+			   daaronder de artikelen als klikbare kaarten.
 			   ------------------------------------------------------------------ */
 			.blog-kop { padding-bottom: 0; }
 			/* zelfde streepje als de eyebrows op de rest van de site,
@@ -959,75 +959,50 @@
 			.kop-lead { margin-top: 1.4rem; max-width: 56ch; font-size: var(--t-lead); color: var(--body); }
 			.kop-lead + .kop-lead { margin-top: 1rem; font-size: 1rem; }
 
-			/* de regel met datum, label en leestijd */
-			.stempel {
-				display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem;
-				font-size: 0.78rem; font-weight: 700; color: var(--muted);
-				font-variant-numeric: tabular-nums; letter-spacing: 0.02em;
+			.artikel-raster {
+				margin-top: 2.5rem;
+				display: grid;
+				gap: 1.5rem;
+				grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
 			}
-			.stempel .soort {
-				font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
-				color: var(--accent-text); background: var(--accent-tint);
-				border: 1px solid var(--accent-line); border-radius: 999px; padding: 0.26rem 0.6rem;
+			.art-kaart {
+				display: flex; flex-direction: column;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--radius-lg);
+				overflow: hidden;
+				color: inherit; text-decoration: none;
+				transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, border-color 0.2s ease;
 			}
-			.stempel .punt { width: 3px; height: 3px; border-radius: 50%; background: var(--line-strong); }
-
-			/* uitgelicht: tekst links, beeld rechts */
-			.uitgelicht {
-				display: grid; gap: 1.75rem;
-				margin-top: 3.5rem;
-				border-top: 2px solid var(--fg); padding-top: 1.5rem;
-				text-decoration: none; color: inherit;
+			.art-kaart:hover, .art-kaart:focus-visible {
+				transform: translateY(-3px);
+				border-color: var(--accent-line);
+				box-shadow: var(--shadow-lift);
 			}
-			.uitgelicht h2 {
-				margin-top: 1rem;
-				font-size: clamp(1.9rem, 5vw, 3.1rem);
-				line-height: 1.03; letter-spacing: -0.035em; color: var(--fg);
-				transition: color 0.2s ease;
+			.art-kaart:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+			.art-beeld { display: block; background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+			.art-beeld img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top center; }
+			.art-body { padding: 1.1rem 1.15rem 1.25rem; display: flex; flex-direction: column; flex: 1; }
+			.art-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+			.art-chips .soort {
+				font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+				color: #fff; background: var(--accent); border-radius: 999px; padding: 0.3rem 0.65rem;
 			}
-			.uitgelicht:hover h2, .uitgelicht:focus-visible h2 { color: var(--accent-text); }
-			.uitgelicht p { margin-top: 1rem; max-width: 48ch; font-size: var(--t-lead); color: var(--body); }
-			.uitgelicht .verder {
-				margin-top: 1.4rem; display: inline-flex; align-items: center; gap: 0.45rem;
-				font-size: 0.92rem; font-weight: 700; color: var(--accent-text);
+			.art-chips .datum {
+				font-size: 0.72rem; font-weight: 700; color: var(--body);
+				background: var(--bg-soft); border: 1px solid var(--line);
+				border-radius: 999px; padding: 0.28rem 0.65rem; font-variant-numeric: tabular-nums;
 			}
-			.uitgelicht .verder svg { width: 1.05rem; height: 1.05rem; transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1); }
-			.uitgelicht:hover .verder svg, .uitgelicht:focus-visible .verder svg { transform: translateX(0.35rem); }
-			.uitgelicht-beeld { overflow: hidden; border: 1px solid var(--line-strong); background: var(--bg-soft); }
-			.uitgelicht-beeld img {
-				display: block; width: 100%; height: auto; aspect-ratio: 1.6 / 1;
-				object-fit: cover; object-position: top center;
-				transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+			.art-titel { margin-top: 0.8rem; font-size: 1.08rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; color: var(--fg); }
+			.art-kaart:hover .art-titel, .art-kaart:focus-visible .art-titel { color: var(--accent-text); }
+			.art-tekst { margin-top: 0.6rem; font-size: 0.92rem; color: var(--body); }
+			.art-lees {
+				margin-top: auto; padding-top: 1.1rem;
+				display: inline-flex; align-items: center; gap: 0.4rem;
+				font-size: 0.88rem; font-weight: 700; color: var(--accent-text);
 			}
-			.uitgelicht:hover .uitgelicht-beeld img, .uitgelicht:focus-visible .uitgelicht-beeld img { transform: scale(1.02); }
-			.uitgelicht:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
-
-			/* leeslijst: genummerde regels onder elkaar */
-			.lijst-kop {
-				margin-top: 4rem; padding-bottom: 0.9rem; border-bottom: 2px solid var(--fg);
-				font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em;
-				text-transform: uppercase; color: var(--muted);
-			}
-			.leeslijst { counter-reset: stuk; }
-			.stuk {
-				counter-increment: stuk;
-				display: grid; gap: 0.35rem 1.5rem;
-				padding-block: 1.5rem; border-bottom: 1px solid var(--line);
-				text-decoration: none; color: inherit;
-				transition: padding-left 0.28s cubic-bezier(0.22, 1, 0.36, 1);
-			}
-			.stuk:hover, .stuk:focus-visible { padding-left: 0.75rem; }
-			.stuk:focus-visible { outline: none; background: var(--accent-tint); }
-			.stuk .nr { font-size: 0.72rem; font-weight: 800; color: var(--line-strong); font-variant-numeric: tabular-nums; }
-			.stuk:hover .nr, .stuk:focus-visible .nr { color: var(--accent); }
-			.stuk h3 {
-				font-size: clamp(1.2rem, 2.6vw, 1.65rem); font-weight: 700;
-				letter-spacing: -0.025em; line-height: 1.15; color: var(--fg);
-				transition: color 0.2s ease;
-			}
-			.stuk:hover h3, .stuk:focus-visible h3 { color: var(--accent-text); }
-			.stuk .kort { margin-top: 0.45rem; font-size: 0.92rem; color: var(--body); max-width: 58ch; }
-			.stuk .stempel { margin-top: 0.6rem; }
+			.art-lees svg { width: 1rem; height: 1rem; transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1); }
+			.art-kaart:hover .art-lees svg, .art-kaart:focus-visible .art-lees svg { transform: translateX(0.3rem); }
 
 			.leeg { padding-top: 1.5rem; border-top: 2px solid var(--fg); }
 			.leeg h2 { max-width: 22ch; }
@@ -1042,16 +1017,9 @@
 			.slot h2 { max-width: 20ch; }
 			.slot p { margin-top: 0.9rem; max-width: 52ch; font-size: var(--t-lead); }
 
-			@media (min-width: 900px) {
-				.uitgelicht { grid-template-columns: minmax(0, 1fr) minmax(0, 26rem); align-items: start; gap: 3rem; }
-				.uitgelicht-beeld { margin-top: 0.4rem; }
-				.stuk { grid-template-columns: 3rem minmax(0, 1fr) minmax(0, 11rem); align-items: baseline; padding-block: 1.9rem; }
-				/* datum boven, leestijd eronder: netter dan een afbrekende regel */
-				.stuk .stempel { margin-top: 0; flex-direction: column; align-items: flex-end; gap: 0.25rem; text-align: right; }
-				.stuk .stempel .punt { display: none; }
-			}
 			@media (prefers-reduced-motion: reduce) {
-				.uitgelicht-beeld img, .stuk, .uitgelicht .verder svg { transition: none; }
+				.art-kaart, .art-lees svg { transition: none; }
+				.art-kaart:hover, .art-kaart:focus-visible { transform: none; }
 			}
 		</style>
 	</head>
