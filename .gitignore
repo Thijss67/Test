@@ -1,0 +1,5 @@
+# Het wachtwoord van het beheerpaneel (een hash) en de inlogpogingen met
+# IP-adressen horen niet in een repository. Deze bestanden maakt het paneel
+# zelf aan op de server.
+public_html/data/wachtwoord.php
+public_html/data/pogingen.json

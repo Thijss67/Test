@@ -1,0 +1,15 @@
+# In deze map staan alleen afbeeldingen en dit ene javascriptbestand.
+# Mocht er ooit iets anders binnenkomen via een upload, dan mag de server
+# dat in elk geval niet uitvoeren.
+<FilesMatch "\.(php|php[0-9]|phtml|phar|pl|py|cgi|sh|htaccess)$">
+	<IfModule mod_authz_core.c>
+		Require all denied
+	</IfModule>
+	<IfModule !mod_authz_core.c>
+		Order allow,deny
+		Deny from all
+	</IfModule>
+</FilesMatch>
+<IfModule mod_php.c>
+	php_flag engine off
+</IfModule>
