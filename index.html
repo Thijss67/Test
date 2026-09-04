@@ -686,6 +686,12 @@
 			}
 			@keyframes merkenLoop { to { transform: translateX(-100%); } }
 			.merk { display: flex; align-items: center; }
+			/* Laadt een logo niet, dan tonen we de naam in plaats van een kapot plaatje. */
+			.merk.leeg::before {
+				content: attr(data-naam);
+				font-size: 0.95rem; font-weight: 700; letter-spacing: -0.01em;
+				color: var(--muted); white-space: nowrap;
+			}
 			.merk img {
 				height: var(--logo-h, 22px);
 				width: auto;
@@ -1324,20 +1330,20 @@
 					<!-- Eén rij die doorloopt; alleen het logo waar je op staat licht op. -->
 					<div class="merken-baan" id="merkenBaan">
 						<ul class="merken-spoor">
-							<li class="merk" style="--logo-h: 20px"><img src="/assets/logos/Anthropic_logo.svg" alt="Anthropic" loading="lazy" decoding="async" /></li>
-							<li class="merk" style="--logo-h: 24px"><img src="/assets/logos/OpenAI_logo.svg" alt="OpenAI" loading="lazy" decoding="async" /></li>
-							<li class="merk" style="--logo-h: 22px"><img src="/assets/logos/google_logo.svg" alt="Google" loading="lazy" decoding="async" /></li>
-							<li class="merk" style="--logo-h: 22px"><img src="/assets/logos/Meta_logo.svg" alt="Meta" loading="lazy" decoding="async" /></li>
-							<li class="merk" style="--logo-h: 72px"><img src="/assets/logos/wordpress_logo.svg" alt="WordPress" loading="lazy" decoding="async" /></li>
-							<li class="merk" style="--logo-h: 19px"><img src="/assets/logos/Hostinger_logo.svg" alt="Hostinger" loading="lazy" decoding="async" /></li>
+							<li class="merk" data-naam="Anthropic" style="--logo-h: 20px"><img src="/assets/logos/Anthropic_logo.svg" alt="Anthropic" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
+							<li class="merk" data-naam="OpenAI" style="--logo-h: 24px"><img src="/assets/logos/OpenAI_logo.svg" alt="OpenAI" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
+							<li class="merk" data-naam="Google" style="--logo-h: 22px"><img src="/assets/logos/google_logo.svg" alt="Google" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
+							<li class="merk" data-naam="Meta" style="--logo-h: 22px"><img src="/assets/logos/Meta_logo.svg" alt="Meta" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
+							<li class="merk" data-naam="WordPress" style="--logo-h: 72px"><img src="/assets/logos/wordpress_logo.svg" alt="WordPress" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
+							<li class="merk" data-naam="Hostinger" style="--logo-h: 19px"><img src="/assets/logos/Hostinger_logo.svg" alt="Hostinger" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
 						</ul>
 						<ul class="merken-spoor" aria-hidden="true">
-							<li class="merk" style="--logo-h: 20px"><img src="/assets/logos/Anthropic_logo.svg" alt="" loading="lazy" decoding="async" /></li>
-							<li class="merk" style="--logo-h: 24px"><img src="/assets/logos/OpenAI_logo.svg" alt="" loading="lazy" decoding="async" /></li>
-							<li class="merk" style="--logo-h: 22px"><img src="/assets/logos/google_logo.svg" alt="" loading="lazy" decoding="async" /></li>
-							<li class="merk" style="--logo-h: 22px"><img src="/assets/logos/Meta_logo.svg" alt="" loading="lazy" decoding="async" /></li>
-							<li class="merk" style="--logo-h: 72px"><img src="/assets/logos/wordpress_logo.svg" alt="" loading="lazy" decoding="async" /></li>
-							<li class="merk" style="--logo-h: 19px"><img src="/assets/logos/Hostinger_logo.svg" alt="" loading="lazy" decoding="async" /></li>
+							<li class="merk" data-naam="Anthropic" style="--logo-h: 20px"><img src="/assets/logos/Anthropic_logo.svg" alt="" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
+							<li class="merk" data-naam="OpenAI" style="--logo-h: 24px"><img src="/assets/logos/OpenAI_logo.svg" alt="" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
+							<li class="merk" data-naam="Google" style="--logo-h: 22px"><img src="/assets/logos/google_logo.svg" alt="" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
+							<li class="merk" data-naam="Meta" style="--logo-h: 22px"><img src="/assets/logos/Meta_logo.svg" alt="" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
+							<li class="merk" data-naam="WordPress" style="--logo-h: 72px"><img src="/assets/logos/wordpress_logo.svg" alt="" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
+							<li class="merk" data-naam="Hostinger" style="--logo-h: 19px"><img src="/assets/logos/Hostinger_logo.svg" alt="" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
 						</ul>
 					</div>
 
