@@ -25,9 +25,10 @@
 		<!-- Markeert dat JS aanstaat: reveal-animaties verbergen niets als JS uitvalt -->
 		<script>document.documentElement.classList.add("js");</script>
 
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+		<!-- Het lettertype staat op onze eigen server: geen verbinding met Google
+		     voordat een bezoeker toestemming heeft gegeven. -->
+		<link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="/assets/fonts.css" />
 
 		<!-- Meten mag pas na toestemming. Consent Mode staat daarom standaard op
 		     "denied"; assets/cookies.js zet het om zodra de bezoeker akkoord gaat en

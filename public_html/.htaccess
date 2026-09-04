@@ -72,7 +72,7 @@ ErrorDocument 404 /404.html
 </FilesMatch>
 
 # ----------------------------------------------------------------- headers
-# Deze regels vertellen de browser wat hij w&eacute;l en niet mag doen op deze
+# Deze regels vertellen de browser wat hij wel en niet mag doen op deze
 # site. Ze kosten niets en vangen een hoop standaardaanvallen af.
 <IfModule mod_headers.c>
 	# Browser mag een jaar lang alleen nog via https verbinden.
@@ -96,7 +96,7 @@ ErrorDocument 404 /404.html
 	# Welke bronnen de pagina mag laden. Alles wat er niet in staat, wordt
 	# geblokkeerd. De inline stijl en scripts van de site zijn toegestaan;
 	# extern mag alleen Google (lettertypes en, na toestemming, Ads).
-	Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://googleads.g.doubleclick.net; frame-src https://td.doubleclick.net https://www.googletagmanager.com; upgrade-insecure-requests"
+	Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://googleads.g.doubleclick.net; frame-src https://td.doubleclick.net https://www.googletagmanager.com; upgrade-insecure-requests"
 
 	# De servernaam en PHP-versie hoeven bezoekers niet te weten.
 	Header unset X-Powered-By
@@ -118,7 +118,7 @@ Options -Indexes
 	</IfModule>
 </FilesMatch>
 
-# Extensieloze kopie&euml;n van configuratiebestanden (zoals een per ongeluk
+# Extensieloze kopieen van configuratiebestanden (zoals een per ongeluk
 # gedownloade .htaccess) mogen ook niet opgehaald worden.
 <Files "download">
 	<IfModule mod_authz_core.c>
@@ -130,7 +130,8 @@ Options -Indexes
 	</IfModule>
 </Files>
 
-# PHP verstopt zichzelf niet in de uploadmap.
+# Foutmeldingen van PHP horen in het logboek, niet op het scherm van een
+# bezoeker: ze verraden paden en versienummers.
 <IfModule mod_php.c>
 	php_flag display_errors Off
 </IfModule>
