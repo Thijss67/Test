@@ -96,7 +96,7 @@
 			".dh-cookie button:focus-visible{outline:2px solid #2f6bff;outline-offset:2px}",
 			// zolang de melding staat, schuift de vaste knop op mobiel weg
 			"body[data-cookie-open='true'] .cta-bar{display:none}",
-			"@media (min-width:640px){.dh-cookie{left:1.5rem;right:auto;bottom:1.5rem;margin-inline:0}}",
+			"@media (min-width:640px){.dh-cookie{right:1.5rem;left:auto;bottom:1.5rem;margin-inline:0}}",
 			"@media (prefers-reduced-motion:reduce){.dh-cookie{transition:none}}"
 		].join("");
 		document.head.appendChild(s);
