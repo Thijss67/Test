@@ -28,7 +28,7 @@ krijgen gewone statische pagina's te zien.
 2. Zorg dat PHP 8 aanstaat (hPanel → Geavanceerd → PHP-configuratie).
 3. Geef de webserver schrijfrechten op `data/`, `assets/` en `portfolio/`
    (map-rechten 755 volstaat meestal; bij twijfel 775).
-4. Ga naar `https://dh-studio.nl/dh-console/` en kies een wachtwoord van minstens
+4. Ga naar `https://dhstudio.nl/dh-console/` en kies een wachtwoord van minstens
    12 tekens. Dat kan maar één keer: daarna is de pagina afgeschermd.
 
 Wachtwoord kwijt? Verwijder `data/wachtwoord.php` via FTP of de bestandsbeheerder
