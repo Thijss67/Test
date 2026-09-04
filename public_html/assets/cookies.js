@@ -97,46 +97,46 @@
 		s.id = "dhCookieStijl";
 		s.textContent = [
 			".dh-cookie{position:fixed;left:1rem;right:1rem;bottom:1rem;z-index:80;",
-			"max-width:31rem;margin-inline:auto;background:#fff;color:#0d1b3e;",
-			"border:1px solid #e7e9f0;border-radius:22px;padding:1.35rem 1.4rem 1.45rem;",
-			"box-shadow:0 18px 45px rgba(13,27,62,.16);",
-			"font:400 15px/1.55 'Plus Jakarta Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;",
+			"max-width:25.5rem;margin-inline:auto;background:#fff;color:#0d1b3e;",
+			"border:1px solid #e7e9f0;border-radius:18px;padding:1.05rem 1.1rem 1.15rem;",
+			"box-shadow:0 14px 36px rgba(13,27,62,.14);",
+			"font:400 14px/1.5 'Plus Jakarta Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;",
 			"opacity:0;transform:translateY(14px);transition:opacity .3s ease,transform .3s cubic-bezier(.22,1,.36,1)}",
 			".dh-cookie[data-open='true']{opacity:1;transform:none}",
-			".dh-cookie h2{margin:0;font-size:1.05rem;font-weight:700;letter-spacing:-.02em;color:#0d1b3e}",
-			".dh-cookie p{margin:.55rem 0 0;font-size:.92rem;color:#5c6577}",
+			".dh-cookie h2{margin:0;font-size:.95rem;font-weight:700;letter-spacing:-.02em;color:#0d1b3e}",
+			".dh-cookie p{margin:.4rem 0 0;font-size:.845rem;line-height:1.5;color:#5c6577}",
 			".dh-cookie a{color:#1d4ed8;font-weight:600;text-underline-offset:2px}",
 
 			/* knoppen: accepteren en weigeren zijn even groot en even bereikbaar,
 			   dat is niet alleen netjes maar ook wat de AVG verlangt */
-			".dh-cookie-knoppen{margin-top:1.1rem;display:flex;flex-wrap:wrap;gap:.6rem}",
-			".dh-cookie button{flex:1 1 12rem;min-height:44px;cursor:pointer;",
-			"padding:.7rem 1.1rem;border-radius:999px;font:inherit;font-weight:700;font-size:.92rem;",
+			".dh-cookie-knoppen{margin-top:.85rem;display:flex;flex-wrap:wrap;gap:.45rem}",
+			".dh-cookie button{flex:1 1 9.5rem;min-height:40px;cursor:pointer;",
+			"padding:.5rem .9rem;border-radius:999px;font:inherit;font-weight:700;font-size:.845rem;",
 			"transition:background .18s ease,color .18s ease,border-color .18s ease}",
 			".dh-cookie .ja{border:1px solid #2f6bff;background:#2f6bff;color:#fff}",
 			".dh-cookie .ja:hover{background:#1d4ed8;border-color:#1d4ed8}",
 			".dh-cookie .nee{border:1px solid #d8dce7;background:#fff;color:#0d1b3e}",
 			".dh-cookie .nee:hover{background:#f2f4f9}",
-			".dh-cookie .meer{flex:1 1 100%;margin-top:.15rem;border:0;background:none;color:#5c6577;",
-			"font-weight:600;font-size:.86rem;text-decoration:underline;text-underline-offset:3px;min-height:36px;padding:0}",
+			".dh-cookie .meer{flex:1 1 100%;margin-top:0;border:0;background:none;color:#5c6577;",
+			"font-weight:600;font-size:.8rem;text-decoration:underline;text-underline-offset:3px;min-height:32px;padding:0}",
 			".dh-cookie .meer:hover{color:#0d1b3e}",
 			".dh-cookie button:focus-visible{outline:2px solid #2f6bff;outline-offset:2px}",
 
 			/* het uitklapbare deel met de losse keuzes */
-			".dh-cookie-keuzes{margin-top:1rem;border-top:1px solid #e7e9f0;padding-top:.35rem}",
+			".dh-cookie-keuzes{margin-top:.8rem;border-top:1px solid #e7e9f0;padding-top:.2rem}",
 			".dh-cookie-keuzes[hidden]{display:none}",
-			".dh-cookie-rij{display:flex;gap:.85rem;align-items:flex-start;padding:.85rem 0;border-bottom:1px solid #f0f2f7}",
+			".dh-cookie-rij{display:flex;gap:.7rem;align-items:flex-start;padding:.65rem 0;border-bottom:1px solid #f0f2f7}",
 			".dh-cookie-rij:last-child{border-bottom:0}",
-			".dh-cookie-rij b{display:block;font-size:.9rem;font-weight:700}",
-			".dh-cookie-rij span{display:block;margin-top:.15rem;font-size:.83rem;color:#5c6577;line-height:1.45}",
-			".dh-cookie-rij input{flex:0 0 auto;width:20px;height:20px;margin:.15rem 0 0;accent-color:#2f6bff;cursor:pointer}",
+			".dh-cookie-rij b{display:block;font-size:.845rem;font-weight:700}",
+			".dh-cookie-rij span{display:block;margin-top:.1rem;font-size:.78rem;color:#5c6577;line-height:1.4}",
+			".dh-cookie-rij input{flex:0 0 auto;width:18px;height:18px;margin:.1rem 0 0;accent-color:#2f6bff;cursor:pointer}",
 			".dh-cookie-rij input:disabled{cursor:default;opacity:.55}",
 			".dh-cookie-rij label{cursor:pointer}",
 			".dh-cookie-rij input:disabled+label{cursor:default}",
 
 			/* zolang de melding staat, schuift de vaste mobiele knop weg */
 			"body[data-cookie-open='true'] .cta-bar{display:none}",
-			"@media (min-width:640px){.dh-cookie{right:1.5rem;left:auto;bottom:1.5rem;margin-inline:0}}",
+			"@media (min-width:640px){.dh-cookie{right:1.25rem;left:auto;bottom:1.25rem;margin-inline:0}}",
 			"@media (prefers-reduced-motion:reduce){.dh-cookie{transition:none}}"
 		].join("");
 		document.head.appendChild(s);
@@ -192,10 +192,9 @@
 		kaart.setAttribute("data-open", "false");
 		kaart.innerHTML =
 			'<h2 id="dhCookieKop">Even over cookies</h2>' +
-			"<p>Deze site gebruikt alleen cookies die nodig zijn om te werken. " +
-			"Met jouw toestemming meten we daarnaast welke advertenties bezoekers " +
-			"opleveren, via Google Ads. " +
-			'<a href="/cookies">Lees ons cookiebeleid</a>.</p>' +
+			"<p>Noodzakelijke cookies staan altijd aan. Met jouw toestemming meten we " +
+			"via Google Ads welke advertentie iets oplevert. " +
+			'<a href="/cookies">Cookiebeleid</a>.</p>' +
 
 			'<div class="dh-cookie-keuzes" id="dhCookieKeuzes" hidden>' +
 				'<div class="dh-cookie-rij">' +

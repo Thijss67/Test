@@ -1049,6 +1049,33 @@
 			.terug { margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--line); font-size: 0.95rem; }
 			.terug a { color: var(--accent-text); font-weight: 600; }
 			@media (min-width: 700px) { .lezen .cijfers { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+			/* --- juridische pagina met genummerde secties ----------------------
+			   Een inhoudsopgave bovenaan, en een tabel met de partijen die
+			   gegevens voor ons verwerken. */
+			.lezen h2 { scroll-margin-top: calc(var(--header-h) + 1.5rem); }
+			.lezen .inhoud {
+				margin-top: 1.5rem;
+				padding: 1.15rem 1.35rem 1.25rem;
+				border: 1px solid var(--line);
+				border-radius: var(--radius);
+				background: var(--bg-soft);
+			}
+			.lezen .inhoud b { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+			/* de globale reset zet list-style uit; hier willen we de nummers juist zien */
+			.lezen .inhoud ol { margin: 0.7rem 0 0; padding-left: 1.4rem; display: grid; gap: 0.3rem;
+				font-size: 0.92rem; color: var(--muted); list-style: decimal; }
+			.lezen .inhoud li::marker { color: var(--muted); font-weight: 600; }
+			.lezen .inhoud a { color: var(--accent-text); font-weight: 600; }
+			.lezen .inhoud a:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+			.lezen .tabel { margin-top: 1.5rem; overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+			.lezen table { width: 100%; min-width: 30rem; border-collapse: collapse; font-size: 0.9rem; }
+			.lezen th, .lezen td { text-align: left; padding: 0.8rem 1rem; vertical-align: top; border-bottom: 1px solid var(--line); }
+			.lezen th { font-size: 0.76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); background: var(--bg-soft); }
+			.lezen td { color: var(--body); }
+			.lezen td:first-child { font-weight: 600; color: var(--fg); }
+			.lezen tbody tr:last-child td { border-bottom: 0; }
 		</style>
 	</head>
 
@@ -1137,115 +1164,217 @@
 				<div class="wrap">
 					<p class="art-chips"><span class="soort">Juridisch</span><span class="datum">Bijgewerkt op <time datetime="2026-09-04">4 september 2026</time></span></p>
 					<h1>Privacybeleid</h1>
-					<p class="kop-lead">Wij verwerken zo min mogelijk gegevens, en alleen om je vraag te beantwoorden. Hieronder staat precies wat we bewaren, waarom en hoe je het weer kunt laten weghalen.</p>
+					<p class="kop-lead">In deze verklaring leggen we uit welke persoonsgegevens wij verwerken, waarom we dat doen en welke rechten je hebt. Wij houden ons aan de Algemene Verordening Gegevensbescherming (AVG) en verzamelen zo min mogelijk.</p>
 				</div>
 			</section>
 
 			<section class="section" style="padding-top: 0">
 				<div class="wrap">
 					<div class="lezen">
-						<h2>Wie verwerkt jouw gegevens</h2>
-						<p>DH Studio is verantwoordelijk voor de gegevens die via deze website binnenkomen.
-							Heb je een vraag over je gegevens, dan kun je ons zo bereiken:</p>
+						<div class="inhoud">
+							<b>Inhoud</b>
+							<ol>
+								<li><a href="#wie-wij-zijn">Wie wij zijn</a></li>
+								<li><a href="#gegevens">Welke gegevens we verzamelen</a></li>
+								<li><a href="#doeleinden">Doeleinden en grondslagen</a></li>
+								<li><a href="#verwerkers">Verwerkers en derden</a></li>
+								<li><a href="#doorgifte">Doorgifte buiten de EU</a></li>
+								<li><a href="#bewaartermijnen">Bewaartermijnen</a></li>
+								<li><a href="#beveiliging">Beveiliging</a></li>
+								<li><a href="#rechten">Jouw rechten</a></li>
+								<li><a href="#cookies">Cookies</a></li>
+								<li><a href="#klacht">Klacht indienen</a></li>
+								<li><a href="#contact">Contact</a></li>
+							</ol>
+						</div>
+						<h2 id="wie-wij-zijn">1. Wie wij zijn</h2>
+						<p>DH Studio ontwerpt en bouwt websites en verzorgt hosting, onderhoud en
+							zichtbaarheid in Google. Wij zijn verantwoordelijk voor de verwerking van
+							persoonsgegevens zoals hieronder beschreven.</p>
 						<ul>
-							<li><span><b>Bedrijf:</b> DH Studio</span></li>
-							<li><span><b>E-mail:</b> <a href="mailto:info@dh-studio.nl">info@dh-studio.nl</a></span></li>
-							<li><span><b>Vestigingsadres:</b> [nog invullen]</span></li>
+							<li><span><b>Naam:</b> DH Studio</span></li>
+							<li><span><b>Adres:</b> [nog invullen]</span></li>
 							<li><span><b>KvK-nummer:</b> [nog invullen]</span></li>
-							<li><span><b>Btw-identificatienummer:</b> [nog invullen]</span></li>
+							<li><span><b>Btw-nummer:</b> [nog invullen]</span></li>
+							<li><span><b>E-mail:</b> <a href="mailto:info@dh-studio.nl">info@dh-studio.nl</a></span></li>
 						</ul>
-						<p>Wij hebben geen functionaris voor gegevensbescherming; wij zijn daartoe niet
-							verplicht. Je kunt met al je vragen bij het e-mailadres hierboven terecht.</p>
-						<h2>Welke gegevens wij verwerken</h2>
-						<h3>Als je het contactformulier invult</h3>
+						<p>Wij hebben geen functionaris voor gegevensbescherming; daartoe zijn wij niet
+							verplicht. Met al je vragen kun je bij het e-mailadres hierboven terecht.</p>
+						<h2 id="gegevens">2. Welke gegevens we verzamelen</h2>
+						<p>Wat wij van je verwerken hangt af van hoe je met ons in contact komt.</p>
+						<h3>Contactformulier en e-mail</h3>
 						<ul>
 							<li><span>Je naam</span></li>
-							<li><span>Je bedrijfsnaam, als je die invult</span></li>
 							<li><span>Je e-mailadres</span></li>
+							<li><span>Je bedrijfsnaam, als je die invult &mdash; dat veld is niet verplicht</span></li>
 							<li><span>De inhoud van je bericht</span></li>
 						</ul>
-						<h3>Als je een gratis websiteconcept aanvraagt</h3>
+						<h3>Aanvraag van een gratis websiteconcept</h3>
 						<ul>
 							<li><span>Je naam, bedrijfsnaam en e-mailadres</span></li>
-							<li><span>Je telefoonnummer, als je dat invult &mdash; dat veld is niet verplicht</span></li>
-							<li><span>Je antwoorden over branche, wensen en huidige situatie</span></li>
+							<li><span>Je telefoonnummer, als je dat invult &mdash; ook dat veld is optioneel</span></li>
+							<li><span>Je antwoorden over branche, wensen en je huidige website</span></li>
 						</ul>
-						<h3>Als je ons mailt of belt</h3>
-						<p>Dan verwerken wij de gegevens die je zelf in dat contact deelt.</p>
-						<h3>Automatisch, bij ieder bezoek</h3>
-						<p>Onze hostingpartij legt in serverlogboeken standaard je IP-adres, het opgevraagde
-							adres, het tijdstip en je browsertype vast. Dat is nodig om de site te laten werken
-							en misbruik te kunnen opsporen. Wij gebruiken die logboeken niet om bezoekers te
-							volgen of profielen op te bouwen.</p>
-						<h2>Waarom wij die gegevens verwerken</h2>
+						<h3>Contact via WhatsApp</h3>
 						<ul>
-							<li><span><b>Om je vraag te beantwoorden en een voorstel te doen.</b> Grondslag:
-								uitvoering van een overeenkomst of stappen die daaraan voorafgaan.</span></li>
-							<li><span><b>Om onze administratie en facturatie bij te houden.</b> Grondslag:
-								wettelijke plicht.</span></li>
-							<li><span><b>Om de site te laten werken en te beveiligen.</b> Grondslag:
-								gerechtvaardigd belang.</span></li>
-							<li><span><b>Om te meten welke advertentie tot een aanvraag leidt.</b> Grondslag:
-								jouw toestemming &mdash; zie ons <a href="/cookies">cookiebeleid</a>. Zonder die
-								toestemming laden wij het script niet.</span></li>
+							<li><span>Je telefoonnummer en je profielnaam</span></li>
+							<li><span>De berichten die je ons stuurt</span></li>
+						</ul>
+						<p>WhatsApp is onderdeel van Meta. Wil je liever niet via WhatsApp contact, gebruik
+							dan het contactformulier of stuur een e-mail.</p>
+						<h3>Als je klant wordt</h3>
+						<ul>
+							<li><span>Bedrijfs- en factuurgegevens</span></li>
+							<li><span>Wat we afspreken over het project, en de correspondentie erover</span></li>
+							<li><span>Gegevens die nodig zijn voor domein, hosting en onderhoud</span></li>
+							<li><span>Betaalgegevens, verwerkt door onze betaaldienst. Wij zien zelf geen
+								kaartgegevens of rekeningnummers van je bank.</span></li>
+						</ul>
+						<h3>Als wij een AI-assistent gebruiken</h3>
+						<p>Bij ons werk gebruiken wij soms een AI-assistent, bijvoorbeeld om een tekst te
+							schrijven of code na te kijken. Gaat daar informatie in die tot jou te herleiden
+							is, dan is de aanbieder van die assistent een verwerker; zie de tabel hieronder.
+							Wij zetten er niet meer in dan voor de vraag nodig is, en gebruiken geen
+							persoonsgegevens als het ook zonder kan.</p>
+						<h3>Automatisch, bij ieder bezoek</h3>
+						<ul>
+							<li><span>Serverlogboeken van onze hostingpartij: IP-adres, opgevraagd adres,
+								tijdstip en browsertype. Nodig om de site te laten werken en misbruik te
+								kunnen opsporen.</span></li>
+							<li><span>Advertentiegegevens van Google Ads: welke advertentie tot een bezoek
+								leidde. <b>Alleen na jouw toestemming</b> via de cookiemelding.</span></li>
+						</ul>
+						<p>Wij gebruiken geen analytics-pakket dat bezoekers over de site volgt, en geen
+							bezoekersherkenning die bedrijven achter een IP-adres probeert te achterhalen.</p>
+						<h2 id="doeleinden">3. Doeleinden en grondslagen</h2>
+						<p>Wij verwerken gegevens alleen voor duidelijke doelen, en telkens op een
+							geldige grondslag uit de AVG.</p>
+						<ul>
+							<li><span><b>Contact, offertes en concepten</b> &mdash; om je vraag te beantwoorden,
+								een voorstel te doen of een afspraak in te plannen.
+								<i>Grondslag: uitvoering van een overeenkomst of de stappen die daaraan
+								voorafgaan.</i></span></li>
+							<li><span><b>Levering van onze diensten</b> &mdash; om het afgesproken werk uit te
+								voeren en je op de hoogte te houden van de voortgang.
+								<i>Grondslag: uitvoering van de overeenkomst.</i></span></li>
+							<li><span><b>Facturatie en administratie</b> &mdash; om facturen te sturen en te
+								voldoen aan onze fiscale bewaarplicht.
+								<i>Grondslag: wettelijke verplichting.</i></span></li>
+							<li><span><b>De site laten werken en beveiligen</b> &mdash; serverlogboeken,
+								spamfilters en een limiet op inlogpogingen.
+								<i>Grondslag: gerechtvaardigd belang.</i></span></li>
+							<li><span><b>Meten welke advertentie iets oplevert</b> &mdash; zodat we niet blijven
+								betalen voor advertenties die niets doen.
+								<i>Grondslag: jouw toestemming, die je op elk moment kunt intrekken.</i></span></li>
 						</ul>
 						<p>Wij nemen geen besluiten op basis van geautomatiseerde verwerking die gevolgen
-							hebben voor jou, en wij doen niet aan profilering.</p>
-						<h2>Hoe lang wij het bewaren</h2>
+							voor jou hebben, en wij doen niet aan profilering.</p>
+						<h2 id="verwerkers">4. Verwerkers en derden</h2>
+						<p>Wij schakelen een beperkt aantal partijen in om ons werk te kunnen doen. Met
+							elk van hen is een verwerkersovereenkomst gesloten. Wij verkopen of verhuren je
+							gegevens aan niemand.</p>
+						<div class="tabel">
+							<table>
+								<thead>
+									<tr><th scope="col">Partij</th><th scope="col">Rol</th><th scope="col">Locatie</th></tr>
+								</thead>
+								<tbody>
+									<tr><td>Hostinger</td><td>Hosting van de website en de e-mail</td><td>EU</td></tr>
+									<tr><td>Google Ireland Limited</td><td>Advertenties via Google Ads en het meten daarvan &mdash; alleen na jouw toestemming</td><td>EU / VS</td></tr>
+									<tr><td>Anthropic</td><td>Verwerking van tekst door een AI-assistent die wij bij ons werk gebruiken</td><td>EU / VS</td></tr>
+									<tr><td>OpenAI</td><td>Verwerking van tekst door een AI-assistent die wij bij ons werk gebruiken</td><td>EU / VS</td></tr>
+									<tr><td>WhatsApp (Meta)</td><td>Contact via WhatsApp Business</td><td>EU / VS</td></tr>
+									<tr><td>Stripe / Mollie</td><td>Betalingen en facturatie</td><td>EU / VS</td></tr>
+								</tbody>
+							</table>
+						</div>
+						<p>Verder verstrekken wij alleen gegevens aan derden als de wet ons daartoe
+							verplicht.</p>
+						<h2 id="doorgifte">5. Doorgifte buiten de EU</h2>
+						<p>Een deel van de partijen hierboven &mdash; Google, Anthropic, OpenAI, Meta en de
+							betaaldienst &mdash; kan gegevens ook buiten de Europese Unie verwerken. Dat gebeurt
+							alleen op basis van een passend beschermingsniveau: een adequaatheidsbesluit zoals
+							het EU-US Data Privacy Framework, of de modelcontractbepalingen van de Europese
+							Commissie (Standard Contractual Clauses).</p>
+						<p>Wij beperken die doorgifte zo veel mogelijk:</p>
 						<ul>
-							<li><span><b>Aanvragen die niet tot een opdracht leiden:</b> tot twee jaar na het
-								laatste contact, zodat we een eerder gesprek kunnen terugvinden.</span></li>
-							<li><span><b>Gegevens van klanten:</b> zolang de samenwerking loopt en daarna zeven
-								jaar, omdat de Belastingdienst dat voor de administratie verplicht stelt.</span></li>
-							<li><span><b>Serverlogboeken:</b> maximaal enkele maanden, volgens de standaard van
-								onze hostingpartij.</span></li>
-							<li><span><b>Je cookiekeuze:</b> een jaar, in je eigen browser.</span></li>
+							<li><span>Geef je geen toestemming voor marketingcookies, dan laden wij het script
+								van Google niet en gaat er in dat kader helemaal niets naar buiten de EU.</span></li>
+							<li><span>Wij zetten geen persoonsgegevens in een AI-assistent als dat niet nodig is,
+								en nooit meer dan voor de vraag nodig is.</span></li>
+							<li><span>Wil je liever niet via WhatsApp contact, gebruik dan het contactformulier
+								of e-mail; dat loopt volledig binnen de EU.</span></li>
 						</ul>
-						<h2>Met wie wij gegevens delen</h2>
-						<p>Wij verkopen je gegevens niet. Wij delen ze alleen met partijen die nodig zijn om
-							ons werk te doen, en alleen voor zover dat nodig is:</p>
+						<h2 id="bewaartermijnen">6. Bewaartermijnen</h2>
+						<p>Wij bewaren gegevens niet langer dan nodig.</p>
 						<ul>
-							<li><span><b>Onze hostingpartij</b> &mdash; slaat de website en de e-mail op. Met deze
-								partij is een verwerkersovereenkomst gesloten.</span></li>
-							<li><span><b>Google Ireland Limited</b> &mdash; alleen als je toestemming hebt gegeven,
-								voor het meten van advertenties. Hierbij kunnen gegevens naar landen buiten de EU
-								gaan; Google gebruikt daarvoor de standaardcontractbepalingen van de Europese
-								Commissie.</span></li>
-							<li><span><b>Onze boekhouding</b> &mdash; voor facturen, als je klant wordt.</span></li>
+							<li><span><b>Aanvragen die niet tot een opdracht leiden</b> &mdash; tot twee jaar na
+								het laatste contact, zodat we een eerder gesprek kunnen terugvinden.</span></li>
+							<li><span><b>Klant- en projectdossier</b> &mdash; tot twee jaar na het einde van de
+								samenwerking.</span></li>
+							<li><span><b>Facturen en administratie</b> &mdash; zeven jaar, omdat de Belastingdienst
+								dat verplicht stelt.</span></li>
+							<li><span><b>Serverlogboeken</b> &mdash; maximaal enkele maanden, volgens de standaard
+								van onze hostingpartij.</span></li>
+							<li><span><b>WhatsApp-gesprekken</b> &mdash; tot twee jaar na het laatste bericht;
+								daarna verwijderen wij het gesprek.</span></li>
+							<li><span><b>Betaalgegevens</b> &mdash; bij onze betaaldienst, volgens hun eigen
+								bewaartermijn; bij ons alleen de factuur, zeven jaar.</span></li>
+							<li><span><b>Je cookiekeuze</b> &mdash; een jaar, in je eigen browser. Daarna vragen
+								we het opnieuw.</span></li>
 						</ul>
-						<p>Verder verstrekken wij alleen gegevens als de wet ons daartoe verplicht.</p>
-						<h2>Hoe wij je gegevens beveiligen</h2>
+						<h2 id="beveiliging">7. Beveiliging</h2>
+						<p>Wij nemen passende technische en organisatorische maatregelen:</p>
 						<ul>
-							<li><span>De hele website loopt over een versleutelde verbinding (HTTPS).</span></li>
-							<li><span>Het beheergedeelte is afgeschermd met een wachtwoord en een limiet op het
-								aantal inlogpogingen.</span></li>
-							<li><span>Gegevensmappen op de server zijn niet via de browser te openen.</span></li>
-							<li><span>Alleen mensen die het echt nodig hebben, kunnen bij de gegevens.</span></li>
+							<li><span>Al het verkeer loopt versleuteld over HTTPS/TLS.</span></li>
+							<li><span>De browser krijgt strikte beveiligingsinstructies mee, waaronder een
+								Content-Security-Policy die alleen bronnen toelaat die wij zelf kennen.</span></li>
+							<li><span>Het beheergedeelte is afgeschermd met een gehasht wachtwoord en een
+								limiet op het aantal inlogpogingen.</span></li>
+							<li><span>Gegevensmappen op de server zijn niet via een browser te openen.</span></li>
+							<li><span>Er worden dagelijks back-ups gemaakt en updates uitgevoerd.</span></li>
+							<li><span>Wij verzamelen alleen wat we echt nodig hebben.</span></li>
 						</ul>
-						<p>Denk je dat er iets misgaat met je gegevens, of zie je een zwakke plek in onze site?
-							Laat het weten via <a href="mailto:info@dh-studio.nl">info@dh-studio.nl</a>. Wij pakken
-							zo'n melding serieus op en koppelen terug wat we ermee doen.</p>
-						<h2>Jouw rechten</h2>
-						<p>Je hebt het recht om:</p>
+						<p>Denk je dat er iets misgaat met je gegevens, of zie je een zwakke plek in onze
+							site? Laat het weten via <a href="mailto:info@dh-studio.nl">info@dh-studio.nl</a>.
+							Wij pakken zo'n melding serieus op en koppelen terug wat we ermee doen.</p>
+						<h2 id="rechten">8. Jouw rechten</h2>
+						<p>Onder de AVG heb je een aantal rechten:</p>
 						<ul>
-							<li><span>je gegevens in te zien;</span></li>
-							<li><span>onjuiste gegevens te laten verbeteren of aanvullen;</span></li>
-							<li><span>je gegevens te laten verwijderen;</span></li>
-							<li><span>de verwerking te laten beperken;</span></li>
-							<li><span>bezwaar te maken tegen de verwerking;</span></li>
-							<li><span>je gegevens in een gangbaar bestandsformaat te ontvangen;</span></li>
-							<li><span>een gegeven toestemming op elk moment weer in te trekken.</span></li>
+							<li><span><b>Inzage</b> &mdash; opvragen welke gegevens wij van je verwerken.</span></li>
+							<li><span><b>Rectificatie</b> &mdash; onjuiste gegevens laten aanpassen of aanvullen.</span></li>
+							<li><span><b>Verwijdering</b> &mdash; je gegevens laten wissen.</span></li>
+							<li><span><b>Beperking</b> &mdash; de verwerking tijdelijk laten stilleggen.</span></li>
+							<li><span><b>Bezwaar</b> &mdash; bezwaar maken tegen verwerking op grond van
+								gerechtvaardigd belang.</span></li>
+							<li><span><b>Dataportabiliteit</b> &mdash; je gegevens in een gangbaar bestandsformaat
+								ontvangen of laten overdragen.</span></li>
+							<li><span><b>Toestemming intrekken</b> &mdash; bij verwerkingen op basis van toestemming,
+								op elk moment.</span></li>
 						</ul>
-						<p>Stuur je verzoek naar <a href="mailto:info@dh-studio.nl">info@dh-studio.nl</a>. Wij
-							reageren binnen vier weken. Om te voorkomen dat we gegevens aan de verkeerde persoon
-							geven, kunnen wij vragen om je verzoek te sturen vanaf het e-mailadres dat bij ons
-							bekend is.</p>
-						<p>Kom je er met ons niet uit, dan kun je een klacht indienen bij de Autoriteit
+						<p>Stuur je verzoek naar <a href="mailto:info@dh-studio.nl">info@dh-studio.nl</a>.
+							Wij reageren binnen 30 dagen. Om te voorkomen dat wij gegevens aan de verkeerde
+							persoon geven, kunnen wij vragen je verzoek te sturen vanaf het e-mailadres dat
+							bij ons bekend is.</p>
+						<h2 id="cookies">9. Cookies</h2>
+						<p>Wij gebruiken noodzakelijke cookies, en na jouw toestemming marketingcookies
+							voor Google Ads. Zolang je geen keuze hebt gemaakt laden wij geen enkel
+							meetscript. Je keuze beheer je via de cookiemelding of via ons
+							<a href="/cookies">cookiebeleid</a>, waar precies staat wat er wordt opgeslagen
+							en hoe lang.</p>
+						<h2 id="klacht">10. Klacht indienen</h2>
+						<p>Komen we er samen niet uit, dan kun je een klacht indienen bij de Autoriteit
 							Persoonsgegevens via <a href="https://autoriteitpersoonsgegevens.nl" rel="noopener"
 							target="_blank">autoriteitpersoonsgegevens.nl</a>.</p>
-						<h2>Wijzigingen</h2>
-						<p>Verandert de manier waarop wij met gegevens omgaan, dan passen wij deze pagina aan.
-							Bovenaan zie je wanneer dat voor het laatst gebeurd is.</p>
+						<h2 id="contact">11. Contact</h2>
+						<p>Heb je vragen over deze verklaring, of wil je weten welke gegevens wij van je
+							hebben? Neem gerust contact op.</p>
+						<ul>
+							<li><span><b>E-mail:</b> <a href="mailto:info@dh-studio.nl">info@dh-studio.nl</a></span></li>
+							<li><span><b>Post:</b> DH Studio, [adres nog invullen]</span></li>
+						</ul>
+						<p>Verandert de manier waarop wij met gegevens omgaan, dan passen wij deze pagina
+							aan. Bovenaan zie je wanneer dat voor het laatst gebeurd is.</p>
 						<p class="terug"><a href="/cookies">&rarr; Lees ook ons cookiebeleid</a></p>
 					</div>
 				</div>
