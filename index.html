@@ -685,17 +685,15 @@
 				animation: merkenLoop 22s linear infinite;
 			}
 			@keyframes merkenLoop { to { transform: translateX(-100%); } }
-			/* Elk merk krijgt een even breed vak. Het logo wordt daarbinnen
-			   ingepast, of het nu een vierkant beeldmerk of een lang woordmerk
-			   is. Zo blijft de rij rustig, ook als een bestand een andere
-			   verhouding of extra witruimte heeft. */
+			/* Geen vast vak: een breed woordmerk mag breed zijn. De hoogte
+			   wordt onderaan de pagina per logo uitgerekend, zodat elk merk
+			   ongeveer evenveel beeld inneemt. */
 			.merk {
 				display: flex;
 				align-items: center;
 				justify-content: center;
 				flex: none;
-				width: 9.5rem;
-				height: 2.25rem;
+				height: 2.75rem;
 			}
 			/* Laadt een logo niet, dan tonen we de naam in plaats van een kapot plaatje. */
 			.merk.leeg::before {
@@ -704,10 +702,9 @@
 				color: var(--muted); white-space: nowrap;
 			}
 			.merk img {
-				max-height: var(--logo-h, 22px);
-				max-width: 100%;
+				height: var(--logo-h, 22px);
 				width: auto;
-				height: auto;
+				max-width: none;
 				object-fit: contain;
 				filter: grayscale(1);
 				opacity: 0.45;
@@ -1882,5 +1879,31 @@
 			})();
 		</script>
 
+
+		<script>
+			// Logo's komen uit verschillende bronnen: het ene is een vierkant
+			// beeldmerk, het andere een lang woordmerk met witruimte eromheen.
+			// Een vaste hoogte laat die dan heel verschillend ogen. Daarom
+			// rekenen we per logo een hoogte uit waarbij elk merk ongeveer
+			// evenveel beeldoppervlak krijgt.
+			(function () {
+				var DOEL = 2300;   // gewenst oppervlak in vierkante pixels
+				var MIN = 15, MAX = 38;
+
+				function meet(img) {
+					var b = img.naturalWidth, hh = img.naturalHeight;
+					if (!b || !hh) return;
+					var verhouding = b / hh;
+					var hoogte = Math.sqrt(DOEL / verhouding);
+					hoogte = Math.max(MIN, Math.min(MAX, hoogte));
+					img.style.height = Math.round(hoogte) + "px";
+				}
+
+				[].forEach.call(document.querySelectorAll(".merk img"), function (img) {
+					if (img.complete) meet(img);
+					else img.addEventListener("load", function () { meet(img); });
+				});
+			})();
+		</script>
 	</body>
 </html>
