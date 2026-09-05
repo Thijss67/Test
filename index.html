@@ -1895,7 +1895,11 @@
 					if (!b || !hh) return;
 					var verhouding = b / hh;
 					var hoogte = Math.sqrt(DOEL / verhouding);
-					hoogte = Math.max(MIN, Math.min(MAX, hoogte));
+					// Zit er veel loze ruimte in een bestand, dan oogt het logo klein.
+					// Met data-schaal op de <li> corrigeer je dat, bijvoorbeeld "1.5".
+					var schaal = parseFloat(img.closest(".merk").getAttribute("data-schaal") || "1");
+					if (schaal > 0) hoogte *= schaal;
+					hoogte = Math.max(MIN, Math.min(MAX * (schaal > 1 ? schaal : 1), hoogte));
 					img.style.height = Math.round(hoogte) + "px";
 				}
 
