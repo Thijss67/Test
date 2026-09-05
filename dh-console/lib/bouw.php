@@ -33,6 +33,7 @@ function bouw_alles(array $cases): array
             $meldingen[] = 'Oude pagina /portfolio/' . $naam . ' verwijderd.';
         }
     }
+    $meldingen[] = bouw_sitemap();
     return $meldingen;
 }
 
@@ -315,6 +316,7 @@ function bouw_blog_alles(array $artikelen): array
             $meldingen[] = 'Oud artikel /blog/' . $naam . ' verwijderd.';
         }
     }
+    $meldingen[] = bouw_sitemap();
     return $meldingen;
 }
 
@@ -509,4 +511,73 @@ function leestijd(string $tekst): int
 {
     $woorden = preg_split('/\s+/u', trim(strip_tags($tekst))) ?: [];
     return max(1, (int) round(count(array_filter($woorden)) / 200));
+}
+
+/* ================================================================ sitemap */
+
+/**
+ * Schrijft sitemap.xml opnieuw: de vaste pagina's plus elke zichtbare case
+ * en elk gepubliceerd artikel. Wordt na elke publicatie aangeroepen, zodat
+ * de lijst nooit achterloopt.
+ */
+function bouw_sitemap(): string
+{
+    $vandaag = date('Y-m-d');
+
+    // Vaste pagina's, met hun onderlinge belangrijkheid.
+    $paginas = [
+        ['', '1.0'],
+        ['/diensten/web-design-development', '0.9'],
+        ['/diensten/seo', '0.9'],
+        ['/diensten/hosting-onderhoud', '0.9'],
+        ['/tarieven', '0.9'],
+        ['/website-concept', '0.9'],
+        ['/portfolio', '0.8'],
+        ['/over-dh-studio', '0.7'],
+        ['/contact', '0.7'],
+        ['/cookies', '0.3'],
+    ];
+
+    $rijen = [];
+    foreach ($paginas as [$pad, $gewicht]) {
+        $bestand = SITE_MAP . ($pad === '' ? '/index.html' : $pad . '/index.html');
+        if (!is_file($bestand)) {
+            continue; // pagina bestaat (nog) niet; dan ook niet aanmelden
+        }
+        $rijen[] = [BASIS_URL . ($pad === '' ? '/' : $pad), date('Y-m-d', filemtime($bestand)), $gewicht];
+    }
+
+    foreach (lees_cases() as $case) {
+        if (!empty($case['zichtbaar']) && geldige_slug($case['slug'] ?? '')) {
+            $bestand = PORTFOLIO_MAP . '/' . $case['slug'] . '/index.html';
+            $rijen[] = [BASIS_URL . '/portfolio/' . $case['slug'],
+                        is_file($bestand) ? date('Y-m-d', filemtime($bestand)) : $vandaag, '0.7'];
+        }
+    }
+
+    $artikelen = array_values(array_filter(lees_artikelen(), static fn(array $a): bool => !empty($a['zichtbaar'])));
+    if ($artikelen !== []) {
+        // Zonder artikelen staat de blogpagina op noindex; dan hoort hij hier niet.
+        $rijen[] = [BASIS_URL . '/blog', $vandaag, '0.6'];
+        foreach ($artikelen as $artikel) {
+            if (geldige_slug($artikel['slug'] ?? '')) {
+                $rijen[] = [BASIS_URL . '/blog/' . $artikel['slug'],
+                            $artikel['datum'] ?? $vandaag, '0.6'];
+            }
+        }
+    }
+
+    $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n"
+         . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+    foreach ($rijen as [$adres, $gewijzigd, $gewicht]) {
+        $xml .= "\t<url>\n"
+              . "\t\t<loc>" . esc($adres) . "</loc>\n"
+              . "\t\t<lastmod>" . esc($gewijzigd) . "</lastmod>\n"
+              . "\t\t<priority>" . $gewicht . "</priority>\n"
+              . "\t</url>\n";
+    }
+    $xml .= '</urlset>' . "\n";
+
+    schrijf_bestand(SITE_MAP . '/sitemap.xml', $xml);
+    return 'Sitemap bijgewerkt (' . count($rijen) . ' pagina\'s).';
 }

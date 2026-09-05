@@ -1,0 +1,5 @@
+# Alles mag gelezen worden.
+User-agent: *
+Allow: /
+
+Sitemap: https://dhstudio.nl/sitemap.xml
