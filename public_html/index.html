@@ -682,9 +682,35 @@
 				flex: none;
 				gap: clamp(2.25rem, 5vw, 4rem);
 				padding-right: clamp(2.25rem, 5vw, 4rem);
-				animation: merkenLoop 22s linear infinite;
 			}
-			@keyframes merkenLoop { to { transform: translateX(-100%); } }
+
+			/* De animatie gaat pas lopen als het script heeft uitgerekend hoe
+			   breed één spoor is en hoeveel kopieën de baan nodig heeft. Tot
+			   die tijd (en zonder javascript) staat er een gewone rij: nooit
+			   een halve lege baan. */
+			.merken-baan:not(.loopt) {
+				flex-wrap: wrap;
+				justify-content: center;
+				-webkit-mask-image: none;
+				mask-image: none;
+			}
+			.merken-baan:not(.loopt) .merken-spoor {
+				flex-wrap: wrap;
+				justify-content: center;
+				row-gap: 1.25rem;
+				padding-right: 0;
+			}
+			.merken-baan.loopt .merken-spoor {
+				animation: merkenLoop var(--merken-duur, 22s) linear infinite;
+			}
+			/* Schuift precies één spoorbreedte op. Daarna staat de eerstvolgende
+			   kopie exact waar dit spoor begon, dus de sprong is onzichtbaar. */
+			@keyframes merkenLoop { to { transform: translateX(calc(-1 * var(--spoor-breedte))); } }
+
+			/* Een bewegend logo is lastig aan te wijzen; stilzetten zodra de
+			   muis in de baan staat, zodat oplichten ook echt lukt. */
+			.merken-baan.loopt:hover .merken-spoor,
+			.merken-baan.loopt:focus-within .merken-spoor { animation-play-state: paused; }
 			/* Geen vast vak: een breed woordmerk mag breed zijn. De hoogte
 			   wordt onderaan de pagina per logo uitgerekend, zodat elk merk
 			   ongeveer evenveel beeld inneemt. */
@@ -712,6 +738,7 @@
 			}
 			/* Alleen het logo waar je op staat licht op. */
 			.merk:hover img { filter: none; opacity: 1; }
+			.merk.leeg:hover::before { color: var(--fg); }
 
 			.partner-regel {
 				margin-top: clamp(1rem, 2.5vw, 1.5rem);
@@ -729,10 +756,9 @@
 			.partner-groot { display: inline-flex; }
 			.partner-groot .partner-badge { height: 34px; width: auto; }
 
+			/* Beweging uit: het script laat 'loopt' er dan af, dus de rij staat
+			   al stil en gecentreerd. Alleen de logo's nog gewoon zichtbaar. */
 			@media (prefers-reduced-motion: reduce) {
-				.merken-baan { flex-wrap: wrap; justify-content: center; -webkit-mask-image: none; mask-image: none; }
-				.merken-spoor { animation: none; flex-wrap: wrap; justify-content: center; row-gap: 1.25rem; }
-				.merken-spoor[aria-hidden="true"] { display: none; }
 				.merk img { filter: none; opacity: 1; }
 			}
 
@@ -1339,23 +1365,18 @@
 				<div class="wrap">
 					<span class="eyebrow">Waarmee wij werken</span>
 
-					<!-- Eén rij die doorloopt; alleen het logo waar je op staat licht op. -->
+					<!-- Eén rij die doorloopt; alleen het logo waar je op staat licht op.
+					     Hieronder staat één spoor. Het script onderaan de pagina kopieert
+					     dat zo vaak als nodig om de baan te vullen en zet dan pas de
+					     animatie aan. Zonder script blijft het een nette stilstaande rij. -->
 					<div class="merken-baan" id="merkenBaan">
 						<ul class="merken-spoor">
-							<li class="merk" data-naam="Anthropic" style="--logo-h: 20px"><img src="/assets/logos/Anthropic_logo.svg" alt="Anthropic" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
-							<li class="merk" data-naam="OpenAI" style="--logo-h: 22px"><img src="/assets/logos/OpenAI_logo.svg" alt="OpenAI" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
+							<li class="merk" data-naam="Anthropic" style="--logo-h: 20px"><img src="/assets/logos/anthropic_logo.svg" alt="Anthropic" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
+							<li class="merk" data-naam="OpenAI" style="--logo-h: 22px"><img src="/assets/logos/openai_logo.svg" alt="OpenAI" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
 							<li class="merk" data-naam="Google" style="--logo-h: 22px"><img src="/assets/logos/google_logo.svg" alt="Google" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
-							<li class="merk" data-naam="Meta" style="--logo-h: 22px"><img src="/assets/logos/Meta_logo.svg" alt="Meta" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
+							<li class="merk" data-naam="Meta" style="--logo-h: 22px"><img src="/assets/logos/meta_logo.svg" alt="Meta" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
 							<li class="merk" data-naam="WordPress" style="--logo-h: 26px"><img src="/assets/logos/wordpress_logo.svg" alt="WordPress" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
-							<li class="merk" data-naam="Hostinger" style="--logo-h: 20px"><img src="/assets/logos/Hostinger_logo.svg" alt="Hostinger" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
-						</ul>
-						<ul class="merken-spoor" aria-hidden="true">
-							<li class="merk" data-naam="Anthropic" style="--logo-h: 20px"><img src="/assets/logos/Anthropic_logo.svg" alt="" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
-							<li class="merk" data-naam="OpenAI" style="--logo-h: 22px"><img src="/assets/logos/OpenAI_logo.svg" alt="" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
-							<li class="merk" data-naam="Google" style="--logo-h: 22px"><img src="/assets/logos/google_logo.svg" alt="" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
-							<li class="merk" data-naam="Meta" style="--logo-h: 22px"><img src="/assets/logos/Meta_logo.svg" alt="" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
-							<li class="merk" data-naam="WordPress" style="--logo-h: 26px"><img src="/assets/logos/wordpress_logo.svg" alt="" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
-							<li class="merk" data-naam="Hostinger" style="--logo-h: 20px"><img src="/assets/logos/Hostinger_logo.svg" alt="" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
+							<li class="merk" data-naam="Hostinger" style="--logo-h: 20px"><img src="/assets/logos/hostinger_logo.svg" alt="Hostinger" onerror="this.parentNode.classList.add('leeg');this.remove()" loading="lazy" decoding="async" /></li>
 						</ul>
 					</div>
 
@@ -1885,28 +1906,112 @@
 
 
 		<script>
-			// Logo's komen uit verschillende bronnen: het ene is een vierkant
-			// beeldmerk, het andere een lang woordmerk met witruimte eromheen.
-			// Een vaste hoogte laat die dan heel verschillend ogen. Daarom
-			// rekenen we per logo een hoogte uit waarbij elk merk ongeveer
-			// evenveel beeldoppervlak krijgt.
+			// De logobaan "Waarmee wij werken".
+			//
+			// Twee dingen gebeuren hier, in deze volgorde:
+			//   1. elk logo een passende hoogte geven;
+			//   2. het spoor zo vaak kopieren dat de baan altijd gevuld is,
+			//      en dan pas de animatie aanzetten.
+			//
+			// Die volgorde is niet vrijblijvend: pas als de logo's hun hoogte
+			// hebben, is de breedte van het spoor de definitieve breedte, en
+			// daar hangt zowel het aantal kopieen als de looptijd van af.
 			(function () {
+				var baan = document.getElementById("merkenBaan");
+				if (!baan) return;
+
+				var bron = baan.querySelector(".merken-spoor");
+				if (!bron) return;
+
+				var SNELHEID = 45;   // pixels per seconde; even snel op elk scherm
+
+				/* ---------------------------------------------- logohoogtes */
+				// Logo's komen uit verschillende bronnen: het ene is een vierkant
+				// beeldmerk, het andere een lang woordmerk met witruimte eromheen.
+				// Een vaste hoogte laat die dan heel verschillend ogen. Daarom
+				// rekenen we per logo een hoogte uit waarbij elk merk ongeveer
+				// evenveel beeldoppervlak krijgt.
 				var DOEL = 2300;   // gewenst oppervlak in vierkante pixels
 				var MIN = 15, MAX = 38;
 
 				function meet(img) {
-					var b = img.naturalWidth, hh = img.naturalHeight;
-					if (!b || !hh) return;
-					var verhouding = b / hh;
-					var hoogte = Math.sqrt(DOEL / verhouding);
-					hoogte = Math.max(MIN, Math.min(MAX, hoogte));
-					img.style.height = Math.round(hoogte) + "px";
+					var b = img.naturalWidth, h = img.naturalHeight;
+					if (!b || !h) return;
+					var hoogte = Math.sqrt(DOEL / (b / h));
+					img.style.height = Math.round(Math.max(MIN, Math.min(MAX, hoogte))) + "px";
 				}
 
-				[].forEach.call(document.querySelectorAll(".merk img"), function (img) {
-					if (img.complete) meet(img);
-					else img.addEventListener("load", function () { meet(img); });
+				/* -------------------------------------------------- de baan */
+				var stil = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+				function bouw() {
+					// Eerst terug naar één spoor: anders meten we bij een
+					// herberekening de kopieen van de vorige keer mee.
+					var sporen = baan.querySelectorAll(".merken-spoor");
+					for (var i = sporen.length - 1; i > 0; i--) {
+						baan.removeChild(sporen[i]);
+					}
+					baan.classList.remove("loopt");
+
+					if (stil.matches) return;
+
+					var spoor = bron.getBoundingClientRect().width;
+					var breedte = baan.getBoundingClientRect().width;
+					if (!spoor || !breedte) return;
+
+					// Hier ging het eerder mis. Met twee sporen schuift de baan
+					// één spoorbreedte op, en is er daarna alleen nog dat tweede
+					// spoor om de baan mee te vullen. Is dat smaller dan de baan,
+					// dan valt er elke ronde een gat aan de rechterkant.
+					// Dus: zoveel kopieen dat één spoor minder dan de baan nooit
+					// genoeg hoeft te zijn.
+					var nodig = Math.ceil(breedte / spoor) + 1;
+					for (var k = 1; k < nodig; k++) {
+						var kopie = bron.cloneNode(true);
+						kopie.setAttribute("aria-hidden", "true");
+						baan.appendChild(kopie);
+					}
+
+					baan.style.setProperty("--spoor-breedte", spoor + "px");
+					baan.style.setProperty("--merken-duur", (spoor / SNELHEID).toFixed(2) + "s");
+					baan.classList.add("loopt");
+				}
+
+				/* ------------------------------------------- op gang brengen */
+				// De logo's staan op loading="lazy" en de baan staat ver onder
+				// de vouw, dus meestal valt hier nog niets te meten. Zodra het
+				// laatste logo binnen is, wordt de baan opgebouwd.
+				var beelden = bron.querySelectorAll("img");
+				var wachtend = beelden.length;
+
+				function klaar() {
+					if (--wachtend <= 0) bouw();
+				}
+
+				if (wachtend === 0) {
+					bouw();
+				} else {
+					[].forEach.call(beelden, function (img) {
+						if (img.complete) {
+							meet(img);
+							klaar();
+						} else {
+							img.addEventListener("load", function () { meet(img); klaar(); });
+							// Laadt een logo niet, dan springt de terugval-tekst in;
+							// die heeft ook een breedte, dus gewoon doorrekenen.
+							img.addEventListener("error", klaar);
+						}
+					});
+				}
+
+				// De baan is zo breed als het scherm, dus bij draaien of
+				// verslepen moet het aantal kopieen opnieuw bepaald worden.
+				var timer;
+				window.addEventListener("resize", function () {
+					clearTimeout(timer);
+					timer = setTimeout(bouw, 200);
 				});
+				if (stil.addEventListener) stil.addEventListener("change", bouw);
 			})();
 		</script>
 	</body>
