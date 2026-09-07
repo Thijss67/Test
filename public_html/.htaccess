@@ -25,6 +25,47 @@ ErrorDocument 404 /404.html
 	RewriteRule ^(.*)$ https://dhstudio.nl/$1 [R=301,L]
 </IfModule>
 
+# ----------------------------------------------------------------- veiligheid
+# Geen mappenlijst als er toevallig geen index-bestand staat. Zonder dit
+# kan /assets/logos/ zijn hele inhoud tonen.
+Options -Indexes
+
+# Verbergt de precieze serverversie in foutpagina's.
+ServerSignature Off
+
+<IfModule mod_headers.c>
+	# De browser mag het bestandstype niet zelf gaan raden. Voorkomt dat een
+	# geupload bestand alsnog als script wordt uitgevoerd.
+	Header always set X-Content-Type-Options "nosniff"
+
+	# Bij het doorklikken naar een andere site gaat alleen het domein mee,
+	# niet het volledige adres van de pagina waar iemand vandaan kwam.
+	Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+	# Niemand mag de site in een frame op zijn eigen domein zetten
+	# (clickjacking). frame-ancestors is de moderne vorm, X-Frame-Options
+	# staat erbij voor oudere browsers.
+	Header always set Content-Security-Policy "frame-ancestors 'self'"
+	Header always set X-Frame-Options "SAMEORIGIN"
+
+	# Camera, microfoon en locatie worden nergens gebruikt; zet ze uit.
+	Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+
+	# Een venster dat wij openen komt niet in dezelfde browsercontext.
+	Header always set Cross-Origin-Opener-Policy "same-origin"
+
+	# Een jaar lang alleen nog via https. Bewust zonder includeSubDomains:
+	# dat geldt dan ook voor subdomeinen die misschien geen certificaat
+	# hebben. Draait alles op subdomeinen straks ook op https, dan kan
+	# "; includeSubDomains" erachter.
+	Header always set Strict-Transport-Security "max-age=31536000"
+</IfModule>
+
+# Een volledige Content-Security-Policy voor scripts staat hier bewust niet.
+# De pagina's hebben hun opmaak en scripts inline staan, dus zo'n regel zou
+# alleen met 'unsafe-inline' werken - en dan beschermt hij nergens tegen.
+# Wil je dat echt, dan moeten eerst alle inline blokken naar losse bestanden.
+
 # ----------------------------------------------------------------- inpakken
 # Scheelt ongeveer 70% aan overdracht op HTML en CSS.
 <IfModule mod_deflate.c>

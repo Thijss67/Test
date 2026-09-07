@@ -83,7 +83,7 @@ function bouw_casepagina(array $case): void
 {
     $sjabloon = (string) file_get_contents(SJABLOON_MAP . '/case.html');
     $url = BASIS_URL . '/portfolio/' . $case['slug'];
-    $titel = $case['titelEsc'] . ' | DH Studio';
+    $titel = paginatitel($case['titelEsc']);
 
     $inhoud = case_inhoud($case);
     $vervang = [
@@ -174,6 +174,19 @@ function case_inhoud(array $case): string
 				</div>
 			</section>
 HTML;
+}
+
+/**
+ * De <title> voor een gebouwde pagina.
+ *
+ * Google kapt rond de 60 tekens af. Past " | DH Studio" er niet meer bij,
+ * dan is de titel zelf belangrijker dan de merknaam erachter: die valt weg
+ * in plaats van dat de titel halverwege wordt afgebroken.
+ */
+function paginatitel(string $titel): string
+{
+    $achtervoegsel = ' | DH Studio';
+    return mb_strlen($titel . $achtervoegsel) <= 60 ? $titel . $achtervoegsel : $titel;
 }
 
 /**
@@ -430,7 +443,7 @@ function bouw_artikelpagina(array $artikel): void
 HTML;
 
     $html = strtr($sjabloon, [
-        '{{TITEL}}'        => $artikel['titelEsc'] . ' | DH Studio',
+        '{{TITEL}}'        => paginatitel($artikel['titelEsc']),
         '{{OMSCHRIJVING}}' => $artikel['omschrijvingEsc'],
         '{{URL}}'          => $url,
         '{{BEELD}}'        => BASIS_URL . $artikel['afbeelding'],
