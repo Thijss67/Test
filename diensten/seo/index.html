@@ -26,15 +26,27 @@
 		<!-- Markeert dat JS aanstaat: reveal-animaties verbergen niets als JS uitvalt -->
 		<script>document.documentElement.classList.add("js");</script>
 
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<!-- Het lettertype blokkeert het tekenen van de pagina niet meer: eerst
-		     verschijnt de tekst in de systeemletter, daarna wisselt hij. -->
-		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-		<noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
+		<!-- Het lettertype staat op onze eigen server: geen verbinding met Google
+		     voordat een bezoeker toestemming heeft gegeven. -->
+		<link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="/assets/fonts.css" />
 
-		<!-- Meetscripts laden pas na toestemming; de melding en de afhandeling
-		     staan in dit ene bestand. -->
+		<!-- Meten mag pas na toestemming. Consent Mode staat daarom standaard op
+		     "denied"; assets/cookies.js zet het om zodra de bezoeker akkoord gaat en
+		     laadt pas dan het script van Google Ads. -->
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('consent', 'default', {
+				ad_storage: 'denied',
+				ad_user_data: 'denied',
+				ad_personalization: 'denied',
+				analytics_storage: 'denied',
+				functionality_storage: 'granted',
+				security_storage: 'granted',
+				wait_for_update: 500
+			});
+		</script>
 		<script src="/assets/cookies.js" defer></script>
 
 		<!-- Alle CSS staat inline: één request, geen render-blocking stylesheet, geen FOUC.
@@ -1205,7 +1217,7 @@
 							</div>
 						</article>
 						<article class="laag reveal">
-							<h3>De techniek onder de motorkap</h3>
+							<h3>De techniek op de achtergrond</h3>
 							<div>
 								<p>Dit is de helft die niemand ziet en die het meeste kapotmaakt. Een pagina die niet ge&iuml;ndexeerd wordt, bestaat voor Google niet. Traag laden kost je posities &eacute;n bezoekers.</p>
 								<p class="details">Titels en koppen &middot; sitemap &middot; indexering &middot; snelheid &middot; gestructureerde data</p>
@@ -1411,9 +1423,9 @@
 
 				<div class="footer-col">
 					<h4>Direct contact</h4>
-					<a href="mailto:info@dh-studio.nl">
+					<a href="mailto:info@dhstudio.nl">
 						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-						info@dh-studio.nl
+						info@dhstudio.nl
 					</a>
 				</div>
 			</div>
@@ -1423,7 +1435,7 @@
 					<span>© <span id="year"></span> DH Studio. Alle rechten voorbehouden.</span>
 					<a href="/privacybeleid">Privacybeleid</a>
 					<a href="/voorwaarden">Voorwaarden</a>
-					<a href="/cookies">Cookies</a>
+					<a href="/cookies">Cookiebeleid</a>
 				</div>
 				<div>Ontworpen en ontwikkeld in Nederland</div>
 			</div>

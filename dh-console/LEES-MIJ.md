@@ -28,7 +28,7 @@ krijgen gewone statische pagina's te zien.
 2. Zorg dat PHP 8 aanstaat (hPanel → Geavanceerd → PHP-configuratie).
 3. Geef de webserver schrijfrechten op `data/`, `assets/` en `portfolio/`
    (map-rechten 755 volstaat meestal; bij twijfel 775).
-4. Ga naar `https://dh-studio.nl/dh-console/` en kies een wachtwoord van minstens
+4. Ga naar `https://dhstudio.nl/dh-console/` en kies een wachtwoord van minstens
    12 tekens. Dat kan maar één keer: daarna is de pagina afgeschermd.
 
 Wachtwoord kwijt? Verwijder `data/wachtwoord.php` via FTP of de bestandsbeheerder
@@ -69,14 +69,10 @@ verdwijnt dat blok en mag Google de pagina indexeren.
 
 ## Afbeeldingen
 
-Upload een JPG, PNG of WebP. Het paneel schaalt hem zelf terug naar 1400 px
-breed en slaat hem op als JPG, dus een groot bestand uit een camera of een
-AI-generator mag gewoon (tot 20 MB). Die komt terecht in
-`assets/werk-<webadres>.jpg` (case) of `assets/blog-<webadres>.jpg` (artikel).
-Laat het veld leeg om de bestaande afbeelding te houden.
-
-Lukt het verkleinen niet, dan mist de server de GD-extensie en wordt het
-bestand ongewijzigd opgeslagen. GD zet je aan in hPanel bij de PHP-instellingen.
+Upload een afbeelding van 1400 × 875 pixels (JPG, PNG of WebP, maximaal 5 MB).
+Die komt terecht in `assets/werk-<webadres>.jpg` (case) of
+`assets/blog-<webadres>.jpg` (artikel). Laat het veld
+leeg om de bestaande afbeelding te houden.
 
 ## Waar de opmaak vandaan komt
 

@@ -106,9 +106,8 @@ function sorteer_artikelen(array &$artikelen): void
 function publiceer_artikelen(array $artikelen): array
 {
     $klaar = [];
-    $nummer = 1;
     foreach ($artikelen as $artikel) {
-        $klaar[] = artikel_klaar($artikel, $nummer++);
+        $klaar[] = artikel_klaar($artikel);
     }
     return bouw_blog_alles($klaar);
 }
@@ -265,7 +264,7 @@ function toon_artikelformulier(array $artikel, string $oude_slug, ?string $fout)
             <label>Afbeelding
                 <input type="file" name="beeld" accept="image/jpeg,image/png,image/webp" />
                 <span class="hint">
-                    Liefst in de verhouding 16:10. Groter mag: het paneel verkleint hem zelf naar 1400&nbsp;px.
+                    Liefst 1400 &times; 875 pixels.
                     <?php if (!empty($artikel['afbeelding'])): ?>Nu ingesteld: <?= esc($artikel['afbeelding']) ?>. Leeg laten = houden.<?php endif; ?>
                 </span>
             </label>

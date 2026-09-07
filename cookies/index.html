@@ -7,7 +7,7 @@
 		<meta name="theme-color" content="#fbfaf7" />
 		<meta name="color-scheme" content="light" />
 		<title>Cookiebeleid | DH Studio</title>
-		<meta name="description" content="Welke cookies DH Studio plaatst, waarom, en hoe je je keuze wijzigt." />
+		<meta name="description" content="Welke cookies DH Studio gebruikt, waarom, en hoe je je keuze op elk moment wijzigt of intrekt." />
 		<link rel="canonical" href="https://dhstudio.nl/cookies" />
 
 		<meta property="og:type" content="website" />
@@ -15,7 +15,7 @@
 		<meta property="og:url" content="https://dhstudio.nl/cookies" />
 		<meta property="og:site_name" content="DH Studio" />
 		<meta property="og:title" content="Cookiebeleid | DH Studio" />
-		<meta property="og:description" content="Welke cookies DH Studio plaatst, waarom, en hoe je je keuze wijzigt." />
+		<meta property="og:description" content="Welke cookies DH Studio gebruikt, waarom, en hoe je je keuze op elk moment wijzigt of intrekt." />
 		<meta property="og:image" content="https://dhstudio.nl/assets/og-dh-studio.png" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
@@ -26,15 +26,27 @@
 		<!-- Markeert dat JS aanstaat: reveal-animaties verbergen niets als JS uitvalt -->
 		<script>document.documentElement.classList.add("js");</script>
 
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<!-- Het lettertype blokkeert het tekenen van de pagina niet meer: eerst
-		     verschijnt de tekst in de systeemletter, daarna wisselt hij. -->
-		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-		<noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
+		<!-- Het lettertype staat op onze eigen server: geen verbinding met Google
+		     voordat een bezoeker toestemming heeft gegeven. -->
+		<link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="/assets/fonts.css" />
 
-		<!-- Meetscripts laden pas na toestemming; de melding en de afhandeling
-		     staan in dit ene bestand. -->
+		<!-- Meten mag pas na toestemming. Consent Mode staat daarom standaard op
+		     "denied"; assets/cookies.js zet het om zodra de bezoeker akkoord gaat en
+		     laadt pas dan het script van Google Ads. -->
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('consent', 'default', {
+				ad_storage: 'denied',
+				ad_user_data: 'denied',
+				ad_personalization: 'denied',
+				analytics_storage: 'denied',
+				functionality_storage: 'granted',
+				security_storage: 'granted',
+				wait_for_update: 500
+			});
+		</script>
 		<script src="/assets/cookies.js" defer></script>
 
 		<!-- Alle CSS staat inline: één request, geen render-blocking stylesheet, geen FOUC.
@@ -928,54 +940,131 @@
 			.kruimels svg { width: 14px; height: 14px; opacity: 0.6; }
 			.kruimels [aria-current] { color: var(--fg); font-weight: 600; }
 
-			/* ---------- Cookiepagina ---------- */
-			.doc-kop { padding-block: clamp(1.5rem, 4vw, 2.5rem) clamp(1.5rem, 4vw, 2.25rem); }
-			.doc-kop .eyebrow { justify-content: flex-start; }
-			.doc-kop .eyebrow::before { display: none; }
-			.doc-kop h1 { margin-top: 0.9rem; max-width: 18ch; }
-			.doc-kop .lead { margin-top: 1.2rem; max-width: 58ch; font-size: var(--t-lead); }
-			.doc-kop .bijgewerkt { margin-top: 1rem; font-size: 0.85rem; color: var(--muted); }
-
-			.doc { max-width: 64ch; }
-			.doc h2 { margin-top: 2.75rem; padding-top: 2.5rem; border-top: 1px solid var(--line); font-size: clamp(1.35rem, 3vw, 1.85rem); letter-spacing: -0.025em; }
-			.doc h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
-			.doc h3 { margin-top: 1.75rem; font-size: 1.05rem; font-weight: 700; color: var(--fg); }
-			.doc p { margin-top: 0.9rem; color: var(--body); }
-			.doc a { color: var(--accent-text); font-weight: 600; }
-			.doc ul { margin: 1.1rem 0 0; padding: 0; list-style: none; }
-			.doc ul li { display: grid; grid-template-columns: 1.4rem 1fr; gap: 0.6rem; padding-block: 0.65rem; border-bottom: 1px solid var(--line); color: var(--body); }
-			.doc ul li::before { content: "\2014"; color: var(--line-strong); font-weight: 700; }
-			.doc ul li:first-child { border-top: 1px solid var(--line); }
-			.doc b { color: var(--fg); font-weight: 700; }
-
-			/* tabel met de cookies zelf */
-			.ctabel { margin-top: 1.25rem; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
-			.ctabel-rij { display: grid; gap: 0.2rem 1.25rem; padding: 1rem 1.15rem; border-bottom: 1px solid var(--line); }
-			.ctabel-rij:last-child { border-bottom: 0; }
-			.ctabel-rij:nth-child(odd) { background: var(--bg-soft); }
-			.ctabel-rij b { font-size: 0.95rem; }
-			.ctabel-rij span { font-size: 0.9rem; color: var(--body); }
-			.ctabel-rij .bewaar { font-size: 0.8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
-
-			.keuzeblok { margin-top: 2.5rem; padding: 1.35rem 1.4rem; border: 1px solid var(--accent-line); background: var(--accent-tint); border-radius: var(--radius-lg); }
-			.keuzeblok p { margin-top: 0; }
-			.keuzeblok .huidig { margin-top: 0.4rem; font-size: 0.9rem; color: var(--body); }
-			.keuzeblok button {
-				margin-top: 1rem; cursor: pointer; border: 1px solid var(--accent); background: var(--accent); color: #fff;
-				padding: 0.7rem 1.2rem; border-radius: 999px; font: inherit; font-weight: 700; font-size: 0.92rem; min-height: 44px;
+			/* ------------------------------------------------------------------
+			   Blog: dezelfde opzet als het portfolio. Klein label, kop groot,
+			   daaronder de artikelen als klikbare kaarten.
+			   ------------------------------------------------------------------ */
+			.blog-kop { padding-bottom: 0; }
+			.kop-label {
+				display: inline-flex; align-items: center; gap: 0.6rem;
+				font-size: 0.9rem; font-weight: 700; color: var(--body);
 			}
-			.keuzeblok button:hover { background: var(--accent-text); border-color: var(--accent-text); }
-			.keuzeblok button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+			.kop-label .stip {
+				width: 0.85rem; height: 0.85rem; flex: none;
+				background: var(--accent);
+				border-radius: 42% 58% 54% 46% / 56% 44% 56% 44%;
+			}
+			.blog-kop h1 {
+				margin-top: 0.9rem;
+				font-size: clamp(3.25rem, 12vw, 7rem);
+				line-height: 0.94;
+				letter-spacing: -0.045em;
+			}
+			.kop-lead { margin-top: 1.4rem; max-width: 56ch; font-size: var(--t-lead); color: var(--body); }
+			.kop-lead + .kop-lead { margin-top: 1rem; font-size: 1rem; }
 
-			.slot { padding-top: 1.75rem; border-top: 2px solid var(--fg); }
-			.slot h2 { max-width: 20ch; margin-top: 0; padding-top: 0; border-top: 0; }
-			.slot p { margin-top: 0.9rem; max-width: 52ch; font-size: var(--t-lead); }
+			.artikel-raster {
+				margin-top: 2.5rem;
+				display: grid;
+				gap: 1.5rem;
+				grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+			}
+			.art-kaart {
+				display: flex; flex-direction: column;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--radius-lg);
+				overflow: hidden;
+				color: inherit; text-decoration: none;
+				transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, border-color 0.2s ease;
+			}
+			.art-kaart:hover, .art-kaart:focus-visible {
+				transform: translateY(-3px);
+				border-color: var(--accent-line);
+				box-shadow: var(--shadow-lift);
+			}
+			.art-kaart:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+			.art-beeld { display: block; background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+			.art-beeld img { display: block; width: 100%; height: auto; aspect-ratio: 1.9 / 1; object-fit: cover; object-position: top center; }
+			.art-body { padding: 1.25rem 1.35rem 1.4rem; display: flex; flex-direction: column; flex: 1; }
+			.art-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+			.art-chips .soort {
+				font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+				color: #fff; background: var(--accent); border-radius: 999px; padding: 0.3rem 0.65rem;
+			}
+			.art-chips .datum {
+				font-size: 0.72rem; font-weight: 700; color: var(--body);
+				background: var(--bg-soft); border: 1px solid var(--line);
+				border-radius: 999px; padding: 0.28rem 0.65rem; font-variant-numeric: tabular-nums;
+			}
+			.art-titel { margin-top: 0.85rem; font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; color: var(--fg); }
+			.art-kaart:hover .art-titel, .art-kaart:focus-visible .art-titel { color: var(--accent-text); }
+			.art-tekst { margin-top: 0.6rem; font-size: 0.92rem; color: var(--body); }
+			.art-lees {
+				margin-top: auto; padding-top: 1.1rem;
+				display: inline-flex; align-items: center; gap: 0.4rem;
+				font-size: 0.88rem; font-weight: 700; color: var(--accent-text);
+			}
+			.art-lees svg { width: 1rem; height: 1rem; transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1); }
+			.art-kaart:hover .art-lees svg, .art-kaart:focus-visible .art-lees svg { transform: translateX(0.3rem); }
+
+			.leeg { padding-top: 1.5rem; border-top: 2px solid var(--fg); }
+			.leeg h2 { max-width: 22ch; }
+			.leeg p { margin-top: 0.9rem; max-width: 58ch; color: var(--body); }
+			.binnenkort { margin: 1.5rem 0 0; padding: 0; list-style: none; max-width: 58ch; }
+			.binnenkort li { display: flex; gap: 0.7rem; padding-block: 0.7rem; border-bottom: 1px solid var(--line); font-size: 0.95rem; color: var(--body); }
+			.binnenkort li:first-child { border-top: 1px solid var(--line); }
+			.binnenkort svg { width: 17px; height: 17px; margin-top: 0.2rem; flex: none; color: var(--accent); }
+
 			.btn-rij { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+			.slot { padding-top: 1.75rem; border-top: 2px solid var(--fg); }
+			.slot h2 { max-width: 20ch; }
+			.slot p { margin-top: 0.9rem; max-width: 52ch; font-size: var(--t-lead); }
 
-			@media (min-width: 700px) {
-				.ctabel-rij { grid-template-columns: minmax(0, 12rem) minmax(0, 1fr) minmax(0, 7rem); align-items: baseline; }
-				.ctabel-rij .bewaar { text-align: right; }
+			@media (prefers-reduced-motion: reduce) {
+				.art-kaart, .art-lees svg { transition: none; }
+				.art-kaart:hover, .art-kaart:focus-visible { transform: none; }
 			}
+
+			/* ---------- Artikelpagina ---------- */
+			.art-kop { padding-bottom: 0; }
+			.art-kop h1 { margin-top: 0.9rem; max-width: 22ch; font-size: clamp(2.1rem, 5.5vw, 3.4rem); line-height: 1.05; letter-spacing: -0.035em; }
+			.art-kop .kop-lead { margin-top: 1.2rem; max-width: 56ch; }
+			.art-hero { margin-top: 2.5rem; border: 1px solid var(--line-strong); background: var(--bg-soft); }
+			.art-hero img { display: block; width: 100%; height: auto; }
+			.lezen { max-width: 62ch; }
+			.lezen h2 { margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--line); font-size: clamp(1.4rem, 3.2vw, 1.95rem); letter-spacing: -0.025em; line-height: 1.15; }
+			.lezen h3 { margin-top: 1.75rem; font-size: 1.1rem; font-weight: 700; color: var(--fg); }
+			.lezen p { margin-top: 0.9rem; color: var(--body); }
+			.lezen blockquote { margin: 2rem 0 0; padding: 0.2rem 0 0.2rem 1.5rem; border-left: 3px solid var(--accent);
+				font-size: clamp(1.15rem, 2.6vw, 1.45rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.35; color: var(--fg); }
+			.lezen ul { margin: 1.25rem 0 0; padding: 0; list-style: none; }
+			.lezen ul li { display: grid; grid-template-columns: 1.4rem 1fr; gap: 0.6rem; padding-block: 0.65rem; border-bottom: 1px solid var(--line); color: var(--body); }
+			.lezen ul li::before { content: "\2014"; color: var(--line-strong); font-weight: 700; }
+			.lezen ul li:first-child { border-top: 1px solid var(--line); }
+			.lezen .cijfers { margin-top: 1.75rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+			.lezen .cijfers div { background: var(--surface); padding: 1.1rem 1rem; }
+			.lezen .cijfers b { display: block; font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 800; letter-spacing: -0.03em; color: var(--fg); }
+			.lezen .cijfers span { display: block; margin-top: 0.2rem; font-size: 0.82rem; color: var(--muted); }
+			.terug { margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--line); font-size: 0.95rem; }
+			.terug a { color: var(--accent-text); font-weight: 600; }
+			@media (min-width: 700px) { .lezen .cijfers { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+			/* --- cookiepagina --------------------------------------------------
+			   De knop waarmee je je keuze wijzigt, en de regel die laat zien wat
+			   je nu hebt gekozen. */
+			.lezen button.btn { border: 0; font-family: inherit; }
+			.lezen .cookie-status {
+				margin-top: 1.35rem;
+				padding: 0.95rem 1.15rem;
+				border: 1px solid var(--line);
+				border-left: 3px solid var(--accent);
+				border-radius: var(--radius);
+				background: var(--bg-soft);
+				color: var(--fg);
+				font-weight: 600;
+			}
+			.lezen .kleine { margin-top: 0.8rem; font-size: 0.85rem; color: var(--muted); }
 		</style>
 	</head>
 
@@ -1056,108 +1145,85 @@
 				<ol>
 					<li><a href="/">Home</a></li>
 					<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></li>
-					<li aria-current="page">Cookies</li>
+					<li aria-current="page">Cookiebeleid</li>
 				</ol>
 			</nav>
 
-			<section class="section doc-kop">
+			<section class="section art-kop">
 				<div class="wrap">
-					<span class="eyebrow">Cookiebeleid</span>
-					<h1>Welke cookies wij gebruiken</h1>
-					<p class="lead">
-						Kort en zonder juridisch gedoe: wat we plaatsen, waarom, en hoe je het uitzet.
-						Zolang je geen keuze hebt gemaakt, staat er niets op je computer behalve wat de
-						site nodig heeft om te werken.
-					</p>
-					<p class="bijgewerkt">Laatst bijgewerkt op 4 september 2026</p>
+					<p class="art-chips"><span class="soort">Juridisch</span><span class="datum">Bijgewerkt op <time datetime="2026-09-04">4 september 2026</time></span></p>
+					<h1>Cookiebeleid</h1>
+					<p class="kop-lead">Wij plaatsen niets voordat jij ja zegt. Op deze pagina lees je precies wat we opslaan, waarom dat nodig is en hoe je je keuze weer intrekt.</p>
 				</div>
 			</section>
 
 			<section class="section" style="padding-top: 0">
 				<div class="wrap">
-					<div class="doc">
-						<h2>Wat een cookie is</h2>
-						<p>
-							Een cookie is een klein bestandje dat een website in je browser zet. Daarmee kan
-							een site je herkennen als je terugkomt, of bijhouden welke pagina&rsquo;s je hebt
-							bekeken. Sommige daarvan zijn nodig om de site te laten werken, andere zijn
-							alleen handig voor ons.
-						</p>
-
-						<h2>Wat we plaatsen als je niets kiest</h2>
-						<p>
-							Alleen dit. Hier is geen toestemming voor nodig, en het gaat nooit naar iemand anders.
-						</p>
-						<div class="ctabel">
-							<div class="ctabel-rij">
-								<b>dh-cookiekeuze</b>
-								<span>Onthoudt of je hebt gekozen voor alle cookies of alleen de noodzakelijke, zodat we het niet elk bezoek opnieuw vragen.</span>
-								<span class="bewaar">1 jaar</span>
-							</div>
-						</div>
-
-						<h2>Wat erbij komt als je accepteert</h2>
-						<p>
-							Deze twee laden pas nadat je op <b>Alles accepteren</b> hebt geklikt. Kies je voor
-							alleen noodzakelijk, dan worden ze helemaal niet ingeladen &mdash; ze staan dus ook
-							niet stiekem uit te kijken.
-						</p>
-						<div class="ctabel">
-							<div class="ctabel-rij">
-								<b>Google Ads</b>
-								<span>Meet of iemand die via een advertentie binnenkwam ook daadwerkelijk contact opneemt. Zonder deze meting weten we niet welke advertenties werken en welke weggegooid geld zijn.</span>
-								<span class="bewaar">tot 2 jaar</span>
-							</div>
-							<div class="ctabel-rij">
-								<b>Leadinfo</b>
-								<span>Herkent aan het IP-adres welk bedrijf onze site bezoekt. Handig voor ons als zakelijke dienstverlener; het herkent bedrijven, geen personen.</span>
-								<span class="bewaar">tot 1 jaar</span>
-							</div>
-						</div>
-
-						<h2>Wat we niet doen</h2>
+					<div class="lezen">
+						<h2>Kort gezegd</h2>
+						<p>Deze website werkt zonder dat wij je hoeven te volgen. Alles wat nodig is om de
+							site te tonen gebeurt zonder cookies van derden. Daarnaast draaien wij advertenties
+							via Google Ads, en willen we graag weten welke advertentie tot een aanvraag leidt.
+							Daarvoor is een cookie nodig &mdash; en die plaatsen we alleen als jij daar ja op zegt.</p>
+						<p>Zeg je nee, dan laden we het script van Google helemaal niet. Niet uitgeschakeld,
+							maar simpelweg niet geladen.</p>
+						<h2>Wat wij opslaan</h2>
+						<h3>Noodzakelijk &mdash; staat altijd aan</h3>
 						<ul>
-							<li><span><b>Geen advertentienetwerken van derden.</b> We verkopen of delen je gegevens niet.</span></li>
-							<li><span><b>Geen cookiemuur.</b> Weiger je, dan werkt de site precies hetzelfde.</span></li>
-							<li><span><b>Geen vooraf aangevinkte vakjes.</b> Niets staat aan tot jij erop klikt.</span></li>
+							<li><span><b>dh-cookiekeuze</b> &mdash; onthoudt welke keuze je in de cookiemelding hebt
+								gemaakt, zodat we het niet elk bezoek opnieuw vragen. Staat in de opslag van je
+								eigen browser (localStorage), gaat niet naar ons of naar iemand anders toe, en
+								verloopt na een jaar.</span></li>
 						</ul>
-
-						<h2>Je keuze wijzigen</h2>
-						<p>
-							Van gedachten veranderd? Klik hieronder, dan komt de melding terug en kun je opnieuw
-							kiezen. Je kunt cookies ook altijd zelf verwijderen in de instellingen van je browser.
-						</p>
-
-						<div class="keuzeblok">
-							<p><b>Jouw huidige keuze</b></p>
-							<p class="huidig" id="cookieStatus">Aan het ophalen&hellip;</p>
-							<button type="button" id="cookieOpnieuw">Kies opnieuw</button>
-						</div>
-
-						<h2>Vragen?</h2>
-						<p>
-							Mail ons op <a href="mailto:info@dh-studio.nl">info@dh-studio.nl</a>. We leggen
-							graag uit wat we precies meten en waarom.
-						</p>
+						<h3>Marketing &mdash; alleen na jouw toestemming</h3>
+						<ul>
+							<li><span><b>Google Ads (gtag.js)</b> &mdash; meet of een klik op een advertentie ook
+								daadwerkelijk tot een aanvraag heeft geleid, en zorgt dat we niet blijven adverteren
+								bij mensen die al klant zijn. Plaatst cookies als <b>_gcl_au</b>, die maximaal
+								90 dagen blijven staan. Leverancier: Google Ireland Limited.</span></li>
+						</ul>
+						<p>Geef je geen toestemming, dan wordt dit script niet geladen en worden deze cookies
+							dus ook niet geplaatst.</p>
+						<h2>Wat wij niet doen</h2>
+						<ul>
+							<li><span>Wij verkopen je gegevens niet en verhuren ze niet.</span></li>
+							<li><span>Wij gebruiken geen bezoekersherkenning die bedrijven achter een IP-adres
+								probeert te achterhalen.</span></li>
+							<li><span>Wij laden geen trackers van sociale netwerken.</span></li>
+							<li><span>Wij plaatsen niets voordat je een keuze hebt gemaakt.</span></li>
+						</ul>
+						<h2>Je keuze wijzigen of intrekken</h2>
+						<p>Je mag altijd van gedachten veranderen. Dat heeft geen gevolgen voor het gebruik
+							van de site: alles blijft gewoon werken.</p>
+						<p id="cookieStatus" class="cookie-status">Je keuze wordt geladen&hellip;</p>
+						<p><button type="button" id="cookieWijzig" class="btn btn-primary">Mijn cookiekeuze wijzigen</button></p>
+						<p class="kleine">Werkt de knop niet? Dan staat JavaScript uit. In dat geval laden wij
+							sowieso geen enkel meetscript.</p>
+						<h2>Cookies weghalen in je browser</h2>
+						<p>Naast de keuze hierboven kun je cookies ook zelf verwijderen of blokkeren in je
+							browser. Dat staat meestal onder <i>Instellingen &rarr; Privacy</i>. Let op: wis je
+							de opslag van deze site, dan is ook je cookiekeuze weg en vragen we het opnieuw.</p>
+						<h2>Wijzigingen</h2>
+						<p>Gebruiken we ooit iets nieuws dat toestemming nodig heeft, dan passen we deze
+							pagina aan en vragen we je keuze opnieuw. Je hoeft dat niet zelf in de gaten te
+							houden.</p>
+						<p class="terug"><a href="/privacybeleid">&rarr; Lees ook ons privacybeleid</a></p>
 					</div>
 				</div>
 			</section>
 
 			<section class="section section-soft">
 				<div class="wrap slot reveal">
-					<h2>Ook een site die dit netjes regelt?</h2>
-					<p>
-						Wij bouwen websites waarbij de meetscripts pas laden als de bezoeker ja zegt.
-						Vertel kort wat je doet, dan laten we vrijblijvend zien wat er mogelijk is.
-					</p>
+					<h2>Een vraag hierover?</h2>
+					<p>Iets onduidelijk, of wil je weten welke gegevens wij van je hebben?
+						Stuur een bericht, dan reageren we zo snel mogelijk.</p>
 					<div class="btn-rij">
-						<a href="/contact" class="btn btn-primary" data-cta="cookies-contact">Gratis kennismaken <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-						<a href="/website-concept" class="btn btn-outline" data-cta="cookies-concept">Vraag gratis concept aan</a>
+						<a href="/contact" class="btn btn-primary" data-cta="juridisch-contact">Neem contact op <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+						<a href="mailto:info@dhstudio.nl" class="btn btn-outline">info@dhstudio.nl</a>
 					</div>
 				</div>
 			</section>
 		</main>
-
 
 		<footer class="site-footer">
 			<div class="wrap footer-grid">
@@ -1218,9 +1284,9 @@
 
 				<div class="footer-col">
 					<h4>Direct contact</h4>
-					<a href="mailto:info@dh-studio.nl">
+					<a href="mailto:info@dhstudio.nl">
 						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-						info@dh-studio.nl
+						info@dhstudio.nl
 					</a>
 				</div>
 			</div>
@@ -1230,7 +1296,7 @@
 					<span>© <span id="year"></span> DH Studio. Alle rechten voorbehouden.</span>
 					<a href="/privacybeleid">Privacybeleid</a>
 					<a href="/voorwaarden">Voorwaarden</a>
-					<a href="/cookies">Cookies</a>
+					<a href="/cookies">Cookiebeleid</a>
 				</div>
 				<div>Ontworpen en ontwikkeld in Nederland</div>
 			</div>
@@ -1240,31 +1306,6 @@
 		<div class="cta-bar" id="ctaBar" data-hidden="true">
 			<a href="/contact" class="btn btn-primary btn-block" data-cta="sticky">Gratis kennismaken</a>
 		</div>
-
-		<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@graph": [
-  {
-   "@type": "WebPage",
-   "@id": "https://dhstudio.nl/cookies#webpage",
-   "url": "https://dhstudio.nl/cookies",
-   "name": "Cookiebeleid",
-   "description": "Welke cookies DH Studio plaatst, waarom, en hoe je je keuze wijzigt.",
-   "inLanguage": "nl-NL",
-   "isPartOf": { "@id": "https://dhstudio.nl/#website" }
-  },
-  {
-   "@type": "BreadcrumbList",
-   "@id": "https://dhstudio.nl/cookies#kruimelpad",
-   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dhstudio.nl/" },
-    { "@type": "ListItem", "position": 2, "name": "Cookies", "item": "https://dhstudio.nl/cookies" }
-   ]
-  }
- ]
-}
-		</script>
 
 
 		<script>
@@ -1438,25 +1479,35 @@
 			})();
 		</script>
 
+		<!-- Kleine toevoeging voor deze pagina: de huidige keuze tonen en
+		     laten wijzigen. Leunt op window.dhCookies uit /assets/cookies.js. -->
 		<script>
-			// laat zien wat er nu gekozen is en biedt de melding opnieuw aan
-			(function () {
+			document.addEventListener("DOMContentLoaded", function () {
 				var status = document.getElementById("cookieStatus");
-				var knop = document.getElementById("cookieOpnieuw");
-				function toon() {
-					var k = window.dhCookies ? window.dhCookies.keuze() : null;
-					status.textContent = k === "alles"
-						? "Je hebt alle cookies geaccepteerd, dus Google Ads en Leadinfo laden mee."
-						: k === "noodzakelijk"
-						? "Je hebt gekozen voor alleen noodzakelijke cookies. Er wordt niets gemeten."
-						: "Je hebt nog geen keuze gemaakt. Er wordt op dit moment niets gemeten.";
+				var knop = document.getElementById("cookieWijzig");
+				if (!status || !knop) return;
+
+				if (!window.dhCookies) {
+					status.textContent = "De cookie-instellingen konden niet geladen worden.";
+					knop.disabled = true;
+					return;
 				}
-				knop.addEventListener("click", function () {
-					if (window.dhCookies) window.dhCookies.open();
-					window.setTimeout(toon, 400);
-				});
-				window.setTimeout(toon, 60);
-			})();
+
+				function toon() {
+					var k = window.dhCookies.keuze();
+					if (!k) {
+						status.textContent = "Je hebt nog geen keuze gemaakt. We laden op dit moment geen meetscripts.";
+					} else if (k.marketing) {
+						status.textContent = "Je huidige keuze: noodzakelijke \u00e9n marketingcookies toegestaan.";
+					} else {
+						status.textContent = "Je huidige keuze: alleen noodzakelijke cookies. Er wordt niets gemeten.";
+					}
+				}
+
+				document.addEventListener("dh-cookiekeuze", toon);
+				knop.addEventListener("click", function () { window.dhCookies.intrekken(); });
+				toon();
+			});
 		</script>
 	</body>
 </html>
