@@ -1,0 +1,40 @@
+{
+    "cases": [
+        {
+            "slug": "dh-studio",
+            "naam": "DH Studio",
+            "jaar": "2026",
+            "labels": [
+                "Website laten maken",
+                "SEO"
+            ],
+            "kaarttekst": "Voor **onszelf** bouwden we een site zonder WordPress, zonder stockfoto’s en met de prijzen gewoon zichtbaar. Ontwerp, bouw, teksten en SEO.",
+            "alt": "De homepage van dhstudio.nl",
+            "titel": "Onze eigen website",
+            "omschrijving": "Hoe we onze eigen site hebben aangepakt: geen WordPress, geen stockfoto's, prijzen gewoon op de site.",
+            "lead": "Binnen de eerste 5 seconde moet duidelijk zijn wat je doet, je eigen site het eerste wat mensen van je zien, en meteen het enige bewijs dat je hebt. Deze case laat zien hoe we hem hebben aangepakt: wat we wilden bereiken, welke keuzes daaruit volgden en wat we er expres uit hebben gelaten.",
+            "bijschrift": "De homepage. Geen slider, geen stockfoto, wel meteen duidelijk wat je hier kunt krijgen.",
+            "feiten": [
+                {
+                    "label": "Klant",
+                    "waarde": "DH Studio"
+                },
+                {
+                    "label": "Wat we deden",
+                    "waarde": "Ontwerp, bouw, teksten en SEO"
+                },
+                {
+                    "label": "Omvang",
+                    "waarde": "11 pagina’s en een eigen 404"
+                },
+                {
+                    "label": "Live",
+                    "waarde": "[dhstudio.nl](https://dhstudio.nl)"
+                }
+            ],
+            "artikel": "# Wat de site moest doen\r\nEén ding: ervoor zorgen dat iemand een gratis websiteconcept aanvraagt. Geen nieuwsbrief, geen downloads, geen tien knoppen die om aandacht vechten. Elke pagina eindigt daarom op dezelfde plek.\r\n\r\nDaarnaast moest de site zichzelf bewijzen. Wij verkopen snelle, opgeruimde websites die goed vindbaar zijn. Dan kun je zelf niet aankomen met een pagina die vier seconden staat te laden.\r\n\r\n> Als onze eigen site niet klopt, hoef je ons ook niet te geloven over die van jou.\r\n\r\n# De vijf keuzes\r\nDit zijn de beslissingen waar de rest uit volgde. We leggen ze er graag naast bij een kennismaking, want bij jouw site komen dezelfde vragen langs.\r\n\r\n## Geen WordPress\r\nDe site bestaat uit losse pagina’s: geen thema, geen paginabouwer, geen plugins. Dat scheelt laadtijd, maar vooral gedoe. Er is niets dat verouderd raakt, niets dat gehackt kan worden en niets dat na een update ineens anders staat.\r\n\r\n## Geen stockfoto’s\r\nEen lachend team achter een laptop zegt niemand iets. Het ontwerp komt daarom uit typografie, witruimte en één accentkleur. De enige afbeeldingen op de site zijn logo’s en schermafbeeldingen van echt werk.\r\n\r\n## Prijzen gewoon op de site\r\nDe meeste bureaus houden het bij ‘prijs op aanvraag’. Bij ons staan de bedragen er: Starter, Professional, en Premium in overleg omdat daar niets standaard aan is. Wie het te duur vindt, belt niet — dat scheelt ons allebei een gesprek.\r\n\r\n## Een aanvraag in stapjes\r\nEen leeg tekstvak met ‘vertel over je project’ levert korte, vage berichten op. Onze aanvraag stelt daarom gewone vragen: wat loopt er nu mis, in welke branche zit je, wat wil je bereiken. Wij weten daardoor vooraf genoeg om een concept te maken, en jij hoeft geen brief te schrijven.\r\n\r\n## Een vergelijking die op je telefoon werkt\r\nOp de tarievenpagina staan drie pakketten naast elkaar. Zo’n tabel wordt op een klein scherm meestal onleesbaar. Bij ons schakel je met één knop tussen de pakketten en blijft de kop staan terwijl je scrolt, zodat je altijd ziet waar je naar kijkt.\r\n\r\n# Wat we weglieten\r\nEen site wordt vaak niet beter van wat je erbij zet, maar van wat je eruit houdt. Dit hebben we er bewust niet in gedaan:\r\n\r\n- **Een slider op de homepage.** Bijna niemand kijkt verder dan het eerste beeld.\r\n- **Een chatwidget.** Een telefoonnummer en een mailadres zijn eerlijker dan een bot die je aan het lijntje houdt.\r\n- **Een pop-up na vijf seconden.** Je bent net binnen.\r\n- **Teksten over passie en beleving.** Daar kan een bezoeker niets mee.\r\n\r\n# Wat er nu staat\r\nNegen pagina’s, elk met een eigen doel, en een 404-pagina die je terugbrengt in plaats van je te laten stranden. De homepage weegt zo’n 42 kB over de lijn, inclusief opmaak en teksten. Er draait geen framework, er is geen bouwstap: wat er op de server staat, is precies wat je browser krijgt.\r\n\r\n= 9 | pagina’s\r\n= 42 kB | homepage over de lijn\r\n= 1 | lettertype\r\n= 0 | plugins\r\n\r\nElke pagina heeft een eigen titel, omschrijving en opmaakcode voor Google, zodat zoekresultaten kloppen met wat er op de pagina staat. Dat is precies de basis-SEO die in elk pakket zit.\r\n\r\n# Wat er nog komt\r\nEerlijk is eerlijk: de site is net live. Het blog moet nog gevuld worden en dit portfolio bevat voorlopig één case — die van onszelf. Zodra de eerste klantprojecten opgeleverd zijn, komen ze er precies zo bij te staan: met de keuzes erbij, niet alleen een plaatje.",
+            "zichtbaar": true,
+            "afbeelding": "/assets/werk-dh-studio.jpg"
+        }
+    ]
+}

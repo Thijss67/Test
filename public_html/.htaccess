@@ -1,0 +1,82 @@
+# ============================================================================
+#  DH Studio — serverinstellingen
+#  Werkt op Apache en LiteSpeed (Hostinger). Regels die de server niet kent,
+#  worden overgeslagen dankzij de <IfModule>-blokken.
+# ============================================================================
+
+# ----------------------------------------------------------------- 404
+ErrorDocument 404 /404.html
+
+# ----------------------------------------------------------------- adressen
+# Eén adres voor de site: dhstudio.nl. Zonder dit hebben dhstudio.nl,
+# www.dhstudio.nl en dh-studio.nl elk hun eigen versie: bezoekers landen op
+# de verkeerde en Google verdeelt je posities over meerdere adressen.
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+	# altijd https
+	RewriteCond %{HTTPS} !=on
+	RewriteCond %{HTTP:X-Forwarded-Proto} !https
+	RewriteRule ^(.*)$ https://dhstudio.nl/$1 [R=301,L]
+
+	# alles wat niet exact dhstudio.nl is (www, of het adres met een
+	# streepje) gaat door naar dhstudio.nl
+	RewriteCond %{HTTP_HOST} !^dhstudio\.nl$ [NC]
+	RewriteRule ^(.*)$ https://dhstudio.nl/$1 [R=301,L]
+</IfModule>
+
+# ----------------------------------------------------------------- inpakken
+# Scheelt ongeveer 70% aan overdracht op HTML en CSS.
+<IfModule mod_deflate.c>
+	AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+	AddOutputFilterByType DEFLATE application/javascript application/json
+	AddOutputFilterByType DEFLATE application/xml image/svg+xml
+</IfModule>
+<IfModule mod_brotli.c>
+	AddOutputFilterByType BROTLI_COMPRESS text/html text/css application/javascript image/svg+xml
+</IfModule>
+
+# ----------------------------------------------------------------- bewaren
+# Een week is lang genoeg om laadtijd te winnen en kort genoeg om een
+# vervangen afbeelding of logo binnen afzienbare tijd te zien. Lettertypes
+# veranderen echt nooit, die mogen een jaar. HTML wordt nooit bewaard.
+#
+# Let op: gebruik hier geen "immutable". Dan negeert de browser elke
+# controle en blijft een vervangen bestand maanden hangen.
+<IfModule mod_expires.c>
+	ExpiresActive On
+	ExpiresByType image/jpeg              "access plus 7 days"
+	ExpiresByType image/png               "access plus 7 days"
+	ExpiresByType image/webp              "access plus 7 days"
+	ExpiresByType image/svg+xml           "access plus 7 days"
+	ExpiresByType font/woff2              "access plus 1 year"
+	ExpiresByType text/css                "access plus 7 days"
+	ExpiresByType application/javascript  "access plus 7 days"
+	ExpiresByType text/html               "access plus 0 seconds"
+</IfModule>
+<IfModule mod_headers.c>
+	<FilesMatch "\.(jpg|jpeg|png|webp|svg)$">
+		Header set Cache-Control "public, max-age=604800, must-revalidate"
+	</FilesMatch>
+	<FilesMatch "\.(js|css)$">
+		Header set Cache-Control "public, max-age=604800, must-revalidate"
+	</FilesMatch>
+	<FilesMatch "\.woff2$">
+		Header set Cache-Control "public, max-age=31536000"
+	</FilesMatch>
+	<FilesMatch "\.html$">
+		Header set Cache-Control "no-cache"
+	</FilesMatch>
+</IfModule>
+
+# ----------------------------------------------------------------- afschermen
+# De map met gegevens en de code van het beheerpaneel horen niet in een browser.
+<FilesMatch "^\.">
+	<IfModule mod_authz_core.c>
+		Require all denied
+	</IfModule>
+	<IfModule !mod_authz_core.c>
+		Order allow,deny
+		Deny from all
+	</IfModule>
+</FilesMatch>
