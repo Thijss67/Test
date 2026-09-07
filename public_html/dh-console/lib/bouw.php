@@ -176,15 +176,18 @@ function case_inhoud(array $case): string
 HTML;
 }
 
-/** Vervangt alles tussen <!-- NAAM:START --> en <!-- NAAM:EIND -->. */
-function vervang_tussen(string $html, string $naam, string $nieuw): string
+/**
+ * Vervangt alles tussen <!-- NAAM:START --> en <!-- NAAM:EIND -->.
+ * $waar staat alleen in de foutmelding, zodat je ziet welk bestand klemt.
+ */
+function vervang_tussen(string $html, string $naam, string $nieuw, string $waar = 'portfolio/index.html'): string
 {
     $start = '<!-- ' . $naam . ':START -->';
     $eind = '<!-- ' . $naam . ':EIND -->';
     $a = strpos($html, $start);
     $b = strpos($html, $eind);
     if ($a === false || $b === false || $b < $a) {
-        throw new RuntimeException('De markering ' . $naam . ' ontbreekt in portfolio/index.html.');
+        throw new RuntimeException('De markering ' . $naam . ' ontbreekt in ' . $waar . '.');
     }
     return substr($html, 0, $a + strlen($start)) . "\n" . $nieuw . "\n" . substr($html, $b);
 }

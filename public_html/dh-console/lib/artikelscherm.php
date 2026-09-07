@@ -109,7 +109,9 @@ function publiceer_artikelen(array $artikelen): array
     foreach ($artikelen as $artikel) {
         $klaar[] = artikel_klaar($artikel);
     }
-    return bouw_blog_alles($klaar);
+    // Ook hier kop, voet en sitemap er meteen achteraan: een nieuw artikel
+    // hoort dezelfde dag nog in sitemap.xml te staan.
+    return array_merge(bouw_blog_alles($klaar), bouw_site(lees_cases(), $artikelen));
 }
 
 function leeg_artikel(): array

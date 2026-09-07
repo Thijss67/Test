@@ -77,20 +77,53 @@ leeg om de bestaande afbeelding te houden.
 ## Waar de opmaak vandaan komt
 
 De casepagina's worden gemaakt met `dh-console/sjablonen/case.html`, de
-artikelen met `dh-console/sjablonen/artikel.html`. Daarin zit de
-volledige opmaak van de site: koptekst, menu, stijl en voettekst. Verandert er
-iets aan het ontwerp, dan pas je dat sjabloon aan en druk je in het paneel op
-**Opnieuw publiceren**.
+artikelen met `dh-console/sjablonen/artikel.html`. Daarin zit de opmaak van
+zo'n pagina: stijl en indeling. Verandert er iets aan het ontwerp, dan pas je
+dat sjabloon aan en druk je in het paneel op **Opnieuw publiceren**.
 
-In `portfolio/index.html` en `blog/index.html` staan markeringen:
+### Het menu en de voettekst
 
-    <!-- CASES:START -->     …  <!-- CASES:EIND -->
-    <!-- ARTIKELEN:START --> …  <!-- ARTIKELEN:EIND -->
-    <!-- ROBOTS:START -->    …  <!-- ROBOTS:EIND -->
-    <!-- SCHEMA:START -->    …  <!-- SCHEMA:EIND -->
+Die staan **niet** in die twee sjablonen, maar apart:
+
+    dh-console/sjablonen/kop.html    het menu bovenaan
+    dh-console/sjablonen/voet.html   de voettekst onderaan
+
+Pas je daar iets aan — een link erbij, een ander telefoonnummer — druk dan op
+**Kop, voet en sitemap**. Die knop zet het in één keer op alle pagina's,
+inclusief de cases en de artikelen.
+
+Bewerk kop en voet dus nooit in een pagina zelf: bij de eerstvolgende keer dat
+je op die knop drukt, is je wijziging weg.
+
+Welk menu-item oplicht op welke pagina hoef je niet bij te houden. Dat volgt
+uit de lijst in `dh-console/lib/site.php`: elke link die naar de pagina zelf
+wijst, krijgt automatisch `aria-current="page"`, en onder `/diensten` klapt
+het Diensten-menu open. Komt er een nieuwe vaste pagina bij, dan zet je die in
+die lijst — dan staat hij meteen ook in `sitemap.xml`.
+
+### Markeringen in de pagina's
+
+In de pagina's staan markeringen die aangeven wat het paneel beheert:
+
+    <!-- KOP:START -->       …  <!-- KOP:EIND -->        (alle pagina's)
+    <!-- VOET:START -->      …  <!-- VOET:EIND -->       (alle pagina's)
+    <!-- CASES:START -->     …  <!-- CASES:EIND -->      (portfolio/index.html)
+    <!-- ARTIKELEN:START --> …  <!-- ARTIKELEN:EIND -->  (blog/index.html)
+    <!-- ROBOTS:START -->    …  <!-- ROBOTS:EIND -->     (blog/index.html)
+    <!-- SCHEMA:START -->    …  <!-- SCHEMA:EIND -->     (portfolio en blog)
 
 Alles daarbuiten mag je met de hand aanpassen; het paneel raakt het niet aan.
 Alles daarbinnen wordt bij elke publicatie overschreven.
+
+## Zoekmachines
+
+`robots.txt` staat vast in de hoofdmap en wijst naar `sitemap.xml`.
+
+`sitemap.xml` wordt gemaakt door het paneel en mag je niet met de hand
+bewerken. Hij bevat de vaste pagina's plus elke **zichtbare** case en elk
+zichtbaar artikel. Zet je iets op verborgen, dan verdwijnt het bij de
+volgende publicatie ook uit de sitemap. `/404.html` staat er nooit in, en
+`/blog` pas zodra er een artikel is — daarvoor staat die pagina op noindex.
 
 ## Beveiliging
 

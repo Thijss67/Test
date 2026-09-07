@@ -810,6 +810,7 @@
 	</head>
 
 	<body id="top">
+<!-- KOP:START -->
 		<header class="site-header" id="siteHeader">
 			<div class="wrap">
 				<div class="nav">
@@ -820,10 +821,10 @@
 					<nav class="nav-links" aria-label="Hoofdmenu">
 						<a href="/">Home</a>
 						<div class="nav-drop">
-							<a href="/#diensten" class="nav-drop-trigger is-actief" aria-expanded="false" aria-controls="dienstenMenu" aria-haspopup="true">Diensten <svg class="nav-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+							<a href="/#diensten" class="nav-drop-trigger" aria-expanded="false" aria-controls="dienstenMenu" aria-haspopup="true">Diensten <svg class="nav-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
 							<div class="nav-drop-menu" id="dienstenMenu" role="menu" aria-label="Diensten">
 								<div class="mega-grid">
-									<a class="mega-item" href="/diensten/web-design-development" role="menuitem" aria-current="page">
+									<a class="mega-item" href="/diensten/web-design-development" role="menuitem">
 										<span class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
 										<span class="mega-text"><strong>Web Design &amp; Development</strong><span>Maatwerk dat converteert.</span></span>
 										<svg class="mega-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -855,7 +856,7 @@
 						<a href="/blog">Blog</a>
 						<a href="/over-dh-studio">Over DH Studio</a>
 					</nav>
-					<a href="/contact" class="btn btn-primary nav-cta" aria-current="page" data-cta="header">Gratis kennismaken</a>
+					<a href="/contact" aria-current="page" class="btn btn-primary nav-cta" data-cta="header">Gratis kennismaken</a>
 					<button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Menu openen">
 						<svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
 						<svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -863,9 +864,9 @@
 				</div>
 				<nav class="mobile-nav" id="mobileNav" aria-label="Hoofdmenu (mobiel)" hidden>
 					<a href="/">Home</a>
-					<details class="mobile-sub" open>
+					<details class="mobile-sub">
 						<summary>Diensten <svg class="nav-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-						<a href="/diensten/web-design-development" aria-current="page">Web Design &amp; Development</a>
+						<a href="/diensten/web-design-development">Web Design &amp; Development</a>
 						<a href="/diensten/seo">Zichtbaarheid (SEO)</a>
 						<a href="/diensten/hosting-onderhoud">Hosting en onderhoud</a>
 						<a href="/diensten">Alle diensten</a>
@@ -876,10 +877,11 @@
 					<a href="/over-dh-studio">Over DH Studio</a>
 					<a href="/#faq">FAQ</a>
 					<a href="/website-concept">Gratis websiteconcept</a>
-					<a href="/contact" class="btn btn-primary btn-block" data-cta="mobiel-menu">Gratis kennismaken</a>
+					<a href="/contact" aria-current="page" class="btn btn-primary btn-block" data-cta="mobiel-menu">Gratis kennismaken</a>
 				</nav>
 			</div>
 		</header>
+<!-- KOP:EIND -->
 
 		<main>
 			<nav class="wrap kruimels" aria-label="Kruimelpad">
@@ -991,6 +993,7 @@
 
 		</main>
 
+<!-- VOET:START -->
 		<footer class="site-footer">
 			<div class="wrap footer-grid">
 				<div class="footer-about">
@@ -1045,7 +1048,7 @@
 					<h4>Bedrijf</h4>
 					<a href="/over-dh-studio">Over DH Studio</a>
 					<a href="/#faq">FAQ</a>
-					<a href="/contact">Neem contact op</a>
+					<a href="/contact" aria-current="page">Neem contact op</a>
 				</div>
 
 				<div class="footer-col">
@@ -1067,6 +1070,7 @@
 				<div>Ontworpen en ontwikkeld in Nederland</div>
 			</div>
 		</footer>
+<!-- VOET:EIND -->
 
 		<script type="application/ld+json">
 {

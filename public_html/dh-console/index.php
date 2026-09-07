@@ -5,6 +5,7 @@ require __DIR__ . '/config.php';
 require __DIR__ . '/lib/hulp.php';
 require __DIR__ . '/lib/auth.php';
 require __DIR__ . '/lib/bouw.php';
+require __DIR__ . '/lib/site.php';
 
 $actie = (string) ($_GET['actie'] ?? 'lijst');
 $melding = null;
@@ -167,6 +168,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: ?actie=lijst');
             exit;
         }
+
+        // Alleen kop, voet en sitemap. Hiervoor is de knop: heb je
+        // sjablonen/kop.html of voet.html aangepast, dan zet deze knop dat
+        // in één keer op alle pagina's.
+        if ($actie === 'site') {
+            $meldingen = bouw_site($cases, lees_artikelen());
+            $_SESSION['melding'] = implode(' ', $meldingen);
+            header('Location: ?actie=lijst');
+            exit;
+        }
     } catch (Throwable $e) {
         $fout = $e->getMessage();
         $actie = ($_POST['oude_slug'] ?? '') !== '' || $actie === 'opslaan' ? 'bewerken' : 'lijst';
@@ -207,7 +218,9 @@ function publiceer(array $cases): array
     foreach ($cases as $case) {
         $klaar[] = klaar_voor_bouw($case, $nummer--);
     }
-    return bouw_alles($klaar);
+    // Eerst de casepagina's, dan kop, voet en sitemap: die laatste telt de
+    // pagina's die er net bij gekomen of afgegaan zijn.
+    return array_merge(bouw_alles($klaar), bouw_site($cases, lees_artikelen()));
 }
 
 function leeg_case(): array
@@ -417,6 +430,7 @@ function toon_lijst(array $cases, ?string $melding, ?string $fout): void
     <div class="rij" style="justify-content:space-between; margin-bottom:1.25rem">
         <h1 style="margin:0">Cases</h1>
         <div class="rij">
+            <form method="post" action="?actie=site"><?= csrf_veld() ?><button class="knop stil" type="submit" title="Zet kop, voet en sitemap opnieuw op alle pagina's">Kop, voet en sitemap</button></form>
             <form method="post" action="?actie=publiceren"><?= csrf_veld() ?><button class="knop stil" type="submit">Opnieuw publiceren</button></form>
             <a class="knop" href="?actie=nieuw">Nieuwe case</a>
         </div>
