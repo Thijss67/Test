@@ -1,0 +1,8 @@
+# Bestanden die het beheerpaneel zelf op de server schrijft. Die horen niet
+# in versiebeheer: ze bevatten of een geheim, of tijdelijke werkstand, en bij
+# uitrollen zouden ze de live-versie overschrijven.
+public_html/data/wachtwoord.php
+public_html/data/pogingen.json
+
+# Werkbestanden van het paneel: nooit uitrollen, nooit committen.
+public_html/**/*.tmp*
