@@ -956,7 +956,7 @@
 			   Blog: dezelfde opzet als het portfolio. Klein label, kop groot,
 			   daaronder de artikelen als klikbare kaarten.
 			   ------------------------------------------------------------------ */
-			.blog-kop { padding-bottom: 0; }
+			.blog-kop { padding-block: clamp(1.5rem, 4vw, 2.5rem) 0; }
 			.kop-label {
 				display: inline-flex; align-items: center; gap: 0.6rem;
 				font-size: 0.9rem; font-weight: 700; color: var(--body);
@@ -1039,7 +1039,9 @@
 			}
 
 			/* ---------- Artikelpagina ---------- */
-			.art-kop { padding-bottom: 0; }
+			.art-kop { padding-block: clamp(1.5rem, 4vw, 2.5rem) 0; }
+			.art-kop .eyebrow { justify-content: flex-start; }
+			.art-kop .eyebrow::before { display: none; }
 			.art-kop h1 { margin-top: 0.9rem; max-width: 22ch; font-size: clamp(2.1rem, 5.5vw, 3.4rem); line-height: 1.05; letter-spacing: -0.035em; }
 			.art-kop .kop-lead { margin-top: 1.2rem; max-width: 56ch; }
 			.art-hero { margin-top: 2.5rem; border: 1px solid var(--line-strong); background: var(--bg-soft); }
@@ -1166,6 +1168,7 @@
 
 			<section class="section art-kop">
 				<div class="wrap">
+					<span class="eyebrow">Werkgebied</span>
 					<h1>Website laten maken in Harderwijk</h1>
 					<p class="kop-lead">Een van ons werkt vanuit Harderwijk. Dit is dus geen plaats die we &ldquo;ook bedienen&rdquo; &mdash; we zitten er.</p>
 				</div>
