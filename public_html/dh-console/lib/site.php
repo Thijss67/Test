@@ -39,6 +39,7 @@ function vaste_paginas(): array
         ['pad' => 'blog/index.html',                            'url' => '/blog',                            'wijzigt' => 'weekly',  'gewicht' => '0.8'],
         ['pad' => 'over-dh-studio/index.html',                  'url' => '/over-dh-studio',                  'wijzigt' => 'monthly', 'gewicht' => '0.7'],
         ['pad' => 'website-concept/index.html',                 'url' => '/website-concept',                 'wijzigt' => 'monthly', 'gewicht' => '0.8'],
+        ['pad' => 'werkgebied/index.html',                     'url' => '/werkgebied',                      'wijzigt' => 'yearly',  'gewicht' => '0.6'],
         ['pad' => 'contact/index.html',                         'url' => '/contact',                         'wijzigt' => 'monthly', 'gewicht' => '0.8'],
         ['pad' => 'privacybeleid/index.html',                   'url' => '/privacybeleid',                   'wijzigt' => 'yearly',  'gewicht' => '0.3'],
         ['pad' => 'voorwaarden/index.html',                     'url' => '/voorwaarden',                     'wijzigt' => 'yearly',  'gewicht' => '0.3'],

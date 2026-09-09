@@ -7,25 +7,22 @@
 		<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
 		<meta name="theme-color" content="#fbfaf7" />
 		<meta name="color-scheme" content="light" />
-		<title>{{TITEL}}</title>
-		<meta name="description" content="{{OMSCHRIJVING}}" />
-		<!-- Zolang deze pagina nog gevuld moet worden staat hij niet in Google.
-		     Haal de regel hieronder weg zodra er echte inhoud op staat. -->
-
-		<link rel="canonical" href="{{URL}}" />
+		<title>Werkgebied: Nijkerk, Amersfoort, Harderwijk | DH Studio</title>
+		<meta name="description" content="Wij zitten in Nijkerkerveen en Harderwijk en werken veel in Nijkerk, Amersfoort, Putten en Ermelo. De rest van Nederland kan ook — lees hier wat afstand wel en niet uitmaakt." />
+		<link rel="canonical" href="https://dhstudio.nl/werkgebied" />
 
 		<meta property="og:type" content="website" />
 		<meta property="og:locale" content="nl_NL" />
-		<meta property="og:url" content="{{URL}}" />
+		<meta property="og:url" content="https://dhstudio.nl/werkgebied" />
 		<meta property="og:site_name" content="DH Studio" />
-		<meta property="og:title" content="{{TITEL}}" />
-		<meta property="og:description" content="{{OMSCHRIJVING}}" />
-		<meta property="og:image" content="{{BEELD}}" />
+		<meta property="og:title" content="Werkgebied: Nijkerk, Amersfoort, Harderwijk | DH Studio" />
+		<meta property="og:description" content="Wij zitten in Nijkerkerveen en Harderwijk en werken veel in Nijkerk, Amersfoort, Putten en Ermelo. De rest van Nederland kan ook — lees hier wat afstand wel en niet uitmaakt." />
+		<meta property="og:image" content="https://dhstudio.nl/assets/og-dh-studio.png" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta property="og:image:alt" content="DH Studio — websites die jouw bedrijf vooruit helpen" />
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:image" content="{{BEELD}}" />
+		<meta name="twitter:image" content="https://dhstudio.nl/assets/og-dh-studio.png" />
 
 		<!-- Markeert dat JS aanstaat: reveal-animaties verbergen niets als JS uitvalt -->
 		<script>document.documentElement.classList.add("js");</script>
@@ -1056,6 +1053,22 @@
 			.terug { margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--line); font-size: 0.95rem; }
 			.terug a { color: var(--accent-text); font-weight: 600; }
 			@media (min-width: 700px) { .lezen .cijfers { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+			/* --- cookiepagina --------------------------------------------------
+			   De knop waarmee je je keuze wijzigt, en de regel die laat zien wat
+			   je nu hebt gekozen. */
+			.lezen button.btn { border: 0; font-family: inherit; }
+			.lezen .cookie-status {
+				margin-top: 1.35rem;
+				padding: 0.95rem 1.15rem;
+				border: 1px solid var(--line);
+				border-left: 3px solid var(--accent);
+				border-radius: var(--radius);
+				background: var(--bg-soft);
+				color: var(--fg);
+				font-weight: 600;
+			}
+			.lezen .kleine { margin-top: 0.8rem; font-size: 0.85rem; color: var(--muted); }
 		</style>
 	</head>
 
@@ -1103,7 +1116,7 @@
 							</div>
 						</div>
 						<a href="/portfolio">Portfolio</a>
-						<a href="/blog" aria-current="page">Blog</a>
+						<a href="/blog">Blog</a>
 						<a href="/over-dh-studio">Over DH Studio</a>
 					</nav>
 					<a href="/contact" class="btn btn-primary nav-cta" data-cta="header">Gratis kennismaken</a>
@@ -1123,7 +1136,7 @@
 						<a href="/tarieven">Tarieven</a>
 					</details>
 					<a href="/portfolio">Portfolio</a>
-					<a href="/blog" aria-current="page">Blog</a>
+					<a href="/blog">Blog</a>
 					<a href="/over-dh-studio">Over DH Studio</a>
 					<a href="/#faq">FAQ</a>
 					<a href="/website-concept">Gratis websiteconcept</a>
@@ -1132,9 +1145,79 @@
 			</div>
 		</header>
 <!-- KOP:EIND -->
-
 		<main>
-{{INHOUD}}
+			<nav class="wrap kruimels" aria-label="Kruimelpad">
+				<ol>
+					<li><a href="/">Home</a></li>
+					<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></li>
+					<li aria-current="page">Werkgebied</li>
+				</ol>
+			</nav>
+
+			<section class="section art-kop">
+				<div class="wrap">
+					<h1>Waar wij werken</h1>
+					<p class="kop-lead">
+						Wij zitten in Nijkerkerveen en Harderwijk. In de buurt komen we langs; daarbuiten
+						werken we op afstand, en dat gaat precies zo goed. Op deze pagina staat eerlijk
+						wat afstand wel en niet uitmaakt.
+					</p>
+				</div>
+			</section>
+
+			<section class="section" style="padding-top: 0">
+				<div class="wrap">
+					<div class="lezen">
+						<h2>Onze twee plekken</h2>
+						<p>DH Studio bestaat uit twee mensen. De een werkt vanuit <strong>Nijkerkerveen</strong>,
+							de ander vanuit <strong>Harderwijk</strong>. Dat is geen kantoor met een balie, maar
+							het betekent wel dat we in die hoek van het land zo bij je aan tafel zitten.</p>
+
+						<h2>In de buurt</h2>
+						<p>De meeste van onze gesprekken voeren we in deze plaatsen en daaromheen:</p>
+						<ul>
+							<li>Nijkerk en Nijkerkerveen</li>
+							<li>Amersfoort en Hoogland</li>
+							<li>Putten en Ermelo</li>
+							<li>Harderwijk en Hierden</li>
+							<li>Barneveld en Voorthuizen</li>
+						</ul>
+						<p>Woon of werk je hier, dan komen we voor het eerste gesprek gewoon langs. Geen
+							videocall met een onbekende, maar iemand aan je keukentafel of in je bedrijf.
+							Voor veel ondernemers is dat het verschil tussen wel en niet beginnen.</p>
+
+						<h2>En de rest van Nederland</h2>
+						<p>Zit je in Groningen, Zeeland of Limburg? Ook prima. Het grootste deel van een
+							website bouwen bestaat uit overleg, tekst en beeld heen en weer sturen, en samen
+							naar een scherm kijken. Dat werkt op afstand net zo goed als aan tafel.</p>
+						<p>De prijs is hetzelfde, de manier van werken is hetzelfde, en je krijgt dezelfde
+							twee mensen aan de lijn. Alleen dat eerste kopje koffie wordt dan een videogesprek.</p>
+
+						<h2>Maakt afstand echt uit?</h2>
+						<p>Voor het werk zelf: nauwelijks. Een website weet niet waar hij gemaakt is, en
+							Google ook niet.</p>
+						<p>Voor het contact: een beetje. Als je het prettig vindt om iemand in het echt te
+							hebben gesproken voordat je een paar duizend euro uitgeeft, dan is dichtbij
+							makkelijker. Dat is de enige reden dat we deze pagina hebben.</p>
+						<p>Waar je ook zit &mdash; vertel kort wat je bedrijf doet en wat er beter moet, dan
+							laten we vrijblijvend zien wat er mogelijk is.</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="section section-soft">
+				<div class="wrap slot reveal">
+					<h2>Even kennismaken?</h2>
+					<p>
+						In de buurt komen we langs, daarbuiten bellen we. Allebei kost het je niets en
+						zit je nergens aan vast.
+					</p>
+					<div class="btn-rij">
+						<a href="/contact" class="btn btn-primary" data-cta="werkgebied-contact">Gratis kennismaken</a>
+						<a href="/website-concept" class="btn btn-outline" data-cta="werkgebied-concept">Gratis websiteconcept</a>
+					</div>
+				</div>
+			</section>
 		</main>
 
 <!-- VOET:START -->
@@ -1203,7 +1286,7 @@
 					</a>
 					<p class="voet-plaats">
 						Nijkerkerveen en Harderwijk<br />
-						<a href="/werkgebied">Bekijk ons werkgebied</a>
+						<a href="/werkgebied" aria-current="page">Bekijk ons werkgebied</a>
 					</p>
 				</div>
 			</div>
@@ -1225,9 +1308,6 @@
 			<a href="/contact" class="btn btn-primary btn-block" data-cta="sticky">Gratis kennismaken</a>
 		</div>
 
-		<script type="application/ld+json">
-{{SCHEMA}}
-		</script>
 
 		<script>
 			(function () {
@@ -1398,6 +1478,79 @@
 					bar.setAttribute("data-hidden", "false");
 				}
 			})();
+		</script>
+
+		<!-- Kleine toevoeging voor deze pagina: de huidige keuze tonen en
+		     laten wijzigen. Leunt op window.dhCookies uit /assets/cookies.js. -->
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				var status = document.getElementById("cookieStatus");
+				var knop = document.getElementById("cookieWijzig");
+				if (!status || !knop) return;
+
+				if (!window.dhCookies) {
+					status.textContent = "De cookie-instellingen konden niet geladen worden.";
+					knop.disabled = true;
+					return;
+				}
+
+				function toon() {
+					var k = window.dhCookies.keuze();
+					if (!k) {
+						status.textContent = "Je hebt nog geen keuze gemaakt. We laden op dit moment geen meetscripts.";
+					} else if (k.marketing) {
+						status.textContent = "Je huidige keuze: noodzakelijke \u00e9n marketingcookies toegestaan.";
+					} else {
+						status.textContent = "Je huidige keuze: alleen noodzakelijke cookies. Er wordt niets gemeten.";
+					}
+				}
+
+				document.addEventListener("dh-cookiekeuze", toon);
+				knop.addEventListener("click", function () { window.dhCookies.intrekken(); });
+				toon();
+			});
+		</script>
+		<script type="application/ld+json">
+			{
+			 "@context": "https://schema.org",
+			 "@graph": [
+			  {
+			   "@type": "WebPage",
+			   "@id": "https://dhstudio.nl/werkgebied#webpage",
+			   "url": "https://dhstudio.nl/werkgebied",
+			   "name": "Werkgebied",
+			   "description": "Waar DH Studio werkt: Nijkerkerveen en Harderwijk als uitvalsbasis, veel werk in Nijkerk, Amersfoort, Putten en Ermelo, en de rest van Nederland op afstand.",
+			   "inLanguage": "nl-NL",
+			   "isPartOf": {
+			    "@id": "https://dhstudio.nl/#website"
+			   },
+			   "about": {
+			    "@id": "https://dhstudio.nl/#organisatie"
+			   },
+			   "publisher": {
+			    "@id": "https://dhstudio.nl/#organisatie"
+			   }
+			  },
+			  {
+			   "@type": "BreadcrumbList",
+			   "@id": "https://dhstudio.nl/werkgebied#kruimelpad",
+			   "itemListElement": [
+			    {
+			     "@type": "ListItem",
+			     "position": 1,
+			     "name": "Home",
+			     "item": "https://dhstudio.nl/"
+			    },
+			    {
+			     "@type": "ListItem",
+			     "position": 2,
+			     "name": "Werkgebied",
+			     "item": "https://dhstudio.nl/werkgebied"
+			    }
+			   ]
+			  }
+			 ]
+			}
 		</script>
 	</body>
 </html>
