@@ -7,7 +7,7 @@
 		<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
 		<meta name="theme-color" content="#fbfaf7" />
 		<meta name="color-scheme" content="light" />
-		<title>Webdesign & ontwikkeling op maat | DH Studio</title>
+		<title>Webdesign in Nijkerk, Amersfoort en Harderwijk | DH Studio</title>
 		<meta name="description" content="DH Studio bouwt snelle, conversiegerichte websites op maat: design, development, hosting, SEO en onderhoud. Vraag een gratis websiteconcept aan." />
 		<link rel="canonical" href="https://dhstudio.nl/" />
 
@@ -15,7 +15,7 @@
 		<meta property="og:locale" content="nl_NL" />
 		<meta property="og:url" content="https://dhstudio.nl/" />
 		<meta property="og:site_name" content="DH Studio" />
-		<meta property="og:title" content="Webdesign & ontwikkeling op maat | DH Studio" />
+		<meta property="og:title" content="Webdesign in Nijkerk, Amersfoort en Harderwijk | DH Studio" />
 		<meta property="og:description" content="DH Studio bouwt snelle, conversiegerichte websites op maat: design, development, hosting, SEO en onderhoud. Vraag een gratis websiteconcept aan." />
 		<meta property="og:image" content="https://dhstudio.nl/assets/og-dh-studio.png" />
 		<meta property="og:image:width" content="1200" />
@@ -799,6 +799,9 @@
 			.footer-col a { display: flex; align-items: center; gap: 0.6rem; min-height: 44px; font-size: 0.95rem; transition: color 0.18s ease; }
 			.footer-col a:hover { color: var(--accent-text); }
 			.footer-col svg { width: 18px; height: 18px; color: var(--accent); flex: none; }
+			/* Plaats en werkgebied onder het e-mailadres. Bewust kleiner en
+			   rustiger dan de links: het is informatie, geen actie. */
+			.footer-col .voet-plaats { margin: 0.85rem 0 0; font-size: 0.86rem; line-height: 1.55; color: var(--muted); }
 			.footer-bottom {
 				margin-top: clamp(2rem, 5vw, 3rem);
 				padding-block: 1.5rem;
@@ -1587,6 +1590,10 @@
 						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
 						info@dhstudio.nl
 					</a>
+					<p class="voet-plaats">
+						Nijkerkerveen en Harderwijk<br />
+						Werkgebied: Nijkerk, Amersfoort, Putten, Harderwijk, Ermelo en omstreken
+					</p>
 				</div>
 			</div>
 
@@ -1626,10 +1633,46 @@
 			    "url": "https://dhstudio.nl/assets/og-dh-studio.png"
 			   },
 			   "image": "https://dhstudio.nl/assets/og-dh-studio.png",
-			   "areaServed": {
-			    "@type": "Country",
-			    "name": "Nederland"
+			   "address": {
+			    "@type": "PostalAddress",
+			    "addressLocality": "Nijkerkerveen",
+			    "addressRegion": "Gelderland",
+			    "addressCountry": "NL"
 			   },
+			   "areaServed": [
+			    {
+			     "@type": "City",
+			     "name": "Nijkerkerveen"
+			    },
+			    {
+			     "@type": "City",
+			     "name": "Nijkerk"
+			    },
+			    {
+			     "@type": "City",
+			     "name": "Amersfoort"
+			    },
+			    {
+			     "@type": "City",
+			     "name": "Putten"
+			    },
+			    {
+			     "@type": "City",
+			     "name": "Harderwijk"
+			    },
+			    {
+			     "@type": "City",
+			     "name": "Ermelo"
+			    },
+			    {
+			     "@type": "City",
+			     "name": "Barneveld"
+			    },
+			    {
+			     "@type": "Country",
+			     "name": "Nederland"
+			    }
+			   ],
 			   "priceRange": "€€",
 			   "hasOfferCatalog": {
 			    "@type": "OfferCatalog",
@@ -1685,7 +1728,7 @@
 			   "@type": "WebPage",
 			   "@id": "https://dhstudio.nl/#webpage",
 			   "url": "https://dhstudio.nl/",
-			   "name": "Webdesign & ontwikkeling op maat | DH Studio",
+			   "name": "Webdesign in Nijkerk, Amersfoort en Harderwijk | DH Studio",
 			   "isPartOf": {
 			    "@id": "https://dhstudio.nl/#website"
 			   },
