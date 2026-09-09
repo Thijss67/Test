@@ -6,7 +6,20 @@
 	RewriteBase /api/
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteRule ^contact/?$ contact.php [L]
+	RewriteRule ^concept/?$ concept.php [L]
 </IfModule>
 
-# Geen mappenlijst. In deze map staat alleen contact.php.
+# Geen mappenlijst; hier hoort niemand rond te kijken.
 Options -Indexes
+
+# verzenden.php is alleen bedoeld om ingeladen te worden, niet om zelf op te
+# vragen. Los aanroepen levert een lege pagina op, maar we sluiten het af.
+<Files "verzenden.php">
+	<IfModule mod_authz_core.c>
+		Require all denied
+	</IfModule>
+	<IfModule !mod_authz_core.c>
+		Order allow,deny
+		Deny from all
+	</IfModule>
+</Files>

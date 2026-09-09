@@ -6,35 +6,15 @@
  * Elke bezoeker die het invulde kreeg "Versturen lukte niet" te zien en die
  * aanvraag was weg.
  *
- * Uitgangspunten:
- *   - niets opslaan. Het bericht gaat de deur uit en verder gebeurt er niets
- *     met de gegevens, dus er valt ook niets te lekken;
- *   - de bezoeker krijgt nooit een technische foutmelding te zien;
- *   - drie eenvoudige remmen tegen spam, zonder captcha: een honeypot, een
- *     minimale invultijd en een limiet per IP-adres.
+ * Er wordt niets opgeslagen: het bericht gaat de deur uit en daarmee is het
+ * klaar. De gedeelde afhandeling staat in verzenden.php.
  */
 declare(strict_types=1);
 
-const ONTVANGER   = 'info@dhstudio.nl';
-const AFZENDER    = 'website@dhstudio.nl';   // moet op het eigen domein staan, anders weigert SPF de mail
-const MAX_PER_UUR = 5;                        // per IP-adres
-const MIN_SECONDEN = 3;                       // sneller ingevuld dan dit is geen mens
+require __DIR__ . '/verzenden.php';
 
-header('Content-Type: application/json; charset=utf-8');
-header('X-Content-Type-Options: nosniff');
-
-/** Stopt met een nette JSON-melding. */
-function klaar(int $code, string $melding, bool $gelukt = false): never
-{
-    http_response_code($code);
-    echo json_encode(['ok' => $gelukt, 'melding' => $melding], JSON_UNESCAPED_UNICODE);
-    exit;
-}
-
-if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
-    header('Allow: POST');
-    klaar(405, 'Alleen POST.');
-}
+begin();
+$teller = rem('contact');
 
 /* ------------------------------------------------------------------ spam */
 
@@ -51,27 +31,11 @@ if ($geopend > 0 && (time() - $geopend) < MIN_SECONDEN) {
     klaar(200, 'Bedankt, je bericht is verstuurd.', true);
 }
 
-// 3. Hoeveel berichten kwamen er dit uur van dit IP-adres?
-$ip = (string) ($_SERVER['REMOTE_ADDR'] ?? 'onbekend');
-$teller = sys_get_temp_dir() . '/dh-contact-' . sha1($ip . date('YmdH')) . '.tel';
-$aantal = is_file($teller) ? (int) file_get_contents($teller) : 0;
-if ($aantal >= MAX_PER_UUR) {
-    klaar(429, 'Je hebt net al een bericht gestuurd. Mail ons gerust rechtstreeks op ' . ONTVANGER . '.');
-}
-
 /* --------------------------------------------------------------- inhoud */
 
-$leesbaar = static function (string $sleutel, int $max): string {
-    $waarde = trim((string) ($_POST[$sleutel] ?? ''));
-    // Regeleindes uit velden die op één regel horen: die kunnen anders extra
-    // kopregels in de mail smokkelen.
-    $waarde = str_replace(["\r", "\n"], ' ', $waarde);
-    return mb_substr($waarde, 0, $max);
-};
-
-$naam    = $leesbaar('naam', 100);
-$bedrijf = $leesbaar('bedrijf', 100);
-$email   = $leesbaar('email', 150);
+$naam    = een_regel((string) ($_POST['naam'] ?? ''), 100);
+$bedrijf = een_regel((string) ($_POST['bedrijf'] ?? ''), 100);
+$email   = een_regel((string) ($_POST['email'] ?? ''), 150);
 $bericht = mb_substr(trim((string) ($_POST['bericht'] ?? '')), 0, 4000);
 
 if ($naam === '' || $email === '' || $bericht === '') {
@@ -86,9 +50,7 @@ if (mb_strlen($bericht) < 10) {
 
 /* ----------------------------------------------------------------- mail */
 
-$onderwerp = 'Aanvraag via dhstudio.nl van ' . $naam;
-
-$regels = [
+$tekst = implode("\n", [
     'Naam:    ' . $naam,
     'Bedrijf: ' . ($bedrijf !== '' ? $bedrijf : '-'),
     'E-mail:  ' . $email,
@@ -98,31 +60,11 @@ $regels = [
     '',
     '--',
     'Verstuurd op ' . date('d-m-Y H:i') . ' via het contactformulier op dhstudio.nl.',
-];
+]);
 
-// Reply-To op het adres van de bezoeker, zodat je direct kunt antwoorden.
-// From blijft het eigen domein: een From op het adres van de bezoeker laat
-// de mail bij veel providers in de spambox belanden.
-$kop = [
-    'From: DH Studio website <' . AFZENDER . '>',
-    'Reply-To: ' . mb_encode_mimeheader($naam, 'UTF-8') . ' <' . $email . '>',
-    'Content-Type: text/plain; charset=UTF-8',
-    'MIME-Version: 1.0',
-    'X-Mailer: dhstudio.nl',
-];
-
-$gelukt = @mail(
-    ONTVANGER,
-    mb_encode_mimeheader($onderwerp, 'UTF-8'),
-    implode("\n", $regels),
-    implode("\r\n", $kop),
-    '-f' . AFZENDER
-);
-
-if (!$gelukt) {
+if (!verstuur('Aanvraag via dhstudio.nl van ' . $naam, $tekst, $naam, $email)) {
     klaar(502, 'Versturen lukte niet. Mail ons gerust rechtstreeks op ' . ONTVANGER . '.');
 }
 
-@file_put_contents($teller, (string) ($aantal + 1), LOCK_EX);
-
+tel_op($teller);
 klaar(200, 'Bedankt, je bericht is verstuurd.', true);
