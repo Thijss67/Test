@@ -33,8 +33,9 @@
 		<link rel="stylesheet" href="/assets/fonts.css" />
 
 		<!-- Meten mag pas na toestemming. Consent Mode staat daarom standaard op
-		     "denied"; assets/cookies.js zet het om zodra de bezoeker akkoord gaat en
-		     laadt pas dan het script van Google Ads. -->
+		     "denied"; assets/cookies.js zet alleen analytics_storage om zodra de
+		     bezoeker akkoord gaat, en laadt pas dan Google Analytics. De
+		     ad_*-regels blijven geweigerd: wij adverteren niet. -->
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
@@ -1176,9 +1177,10 @@
 					<div class="lezen">
 						<h2>Kort gezegd</h2>
 						<p>Deze website werkt zonder dat wij je hoeven te volgen. Alles wat nodig is om de
-							site te tonen gebeurt zonder cookies van derden. Daarnaast draaien wij advertenties
-							via Google Ads, en willen we graag weten welke advertentie tot een aanvraag leidt.
-							Daarvoor is een cookie nodig &mdash; en die plaatsen we alleen als jij daar ja op zegt.</p>
+							site te tonen gebeurt zonder cookies van derden. Wij adverteren niet. Wel willen we
+							graag weten welke pagina&rsquo;s bekeken worden en waar mensen afhaken, zodat we de
+							site kunnen verbeteren. Daarvoor gebruiken we Google Analytics &mdash; en dat laden
+							we alleen als jij daar ja op zegt.</p>
 						<p>Zeg je nee, dan laden we het script van Google helemaal niet. Niet uitgeschakeld,
 							maar simpelweg niet geladen.</p>
 						<h2>Wat wij opslaan</h2>
@@ -1189,12 +1191,14 @@
 								eigen browser (localStorage), gaat niet naar ons of naar iemand anders toe, en
 								verloopt na een jaar.</span></li>
 						</ul>
-						<h3>Marketing &mdash; alleen na jouw toestemming</h3>
+						<h3>Statistieken &mdash; alleen na jouw toestemming</h3>
 						<ul>
-							<li><span><b>Google Ads (gtag.js)</b> &mdash; meet of een klik op een advertentie ook
-								daadwerkelijk tot een aanvraag heeft geleid, en zorgt dat we niet blijven adverteren
-								bij mensen die al klant zijn. Plaatst cookies als <b>_gcl_au</b>, die maximaal
-								90 dagen blijven staan. Leverancier: Google Ireland Limited.</span></li>
+							<li><span><b>Google Analytics (gtag.js)</b> &mdash; telt bezoeken en laat zien welke
+								pagina&rsquo;s bekeken worden en waar mensen afhaken. Plaatst cookies als
+								<b>_ga</b> en <b>_ga_&lt;id&gt;</b>, die maximaal twee jaar blijven staan.
+								Wij zetten de advertentiesignalen van Google uit, dus je gegevens worden niet
+								gebruikt om je elders advertenties te tonen. Leverancier: Google Ireland
+								Limited.</span></li>
 						</ul>
 						<p>Geef je geen toestemming, dan wordt dit script niet geladen en worden deze cookies
 							dus ook niet geplaatst.</p>
@@ -1204,6 +1208,7 @@
 							<li><span>Wij gebruiken geen bezoekersherkenning die bedrijven achter een IP-adres
 								probeert te achterhalen.</span></li>
 							<li><span>Wij laden geen trackers van sociale netwerken.</span></li>
+							<li><span>Wij adverteren niet en plaatsen dus ook geen advertentiecookies.</span></li>
 							<li><span>Wij plaatsen niets voordat je een keuze hebt gemaakt.</span></li>
 						</ul>
 						<h2>Je keuze wijzigen of intrekken</h2>
@@ -1528,8 +1533,8 @@
 					var k = window.dhCookies.keuze();
 					if (!k) {
 						status.textContent = "Je hebt nog geen keuze gemaakt. We laden op dit moment geen meetscripts.";
-					} else if (k.marketing) {
-						status.textContent = "Je huidige keuze: noodzakelijke \u00e9n marketingcookies toegestaan.";
+					} else if (k.statistiek) {
+						status.textContent = "Je huidige keuze: noodzakelijke \u00e9n statistiekcookies toegestaan.";
 					} else {
 						status.textContent = "Je huidige keuze: alleen noodzakelijke cookies. Er wordt niets gemeten.";
 					}

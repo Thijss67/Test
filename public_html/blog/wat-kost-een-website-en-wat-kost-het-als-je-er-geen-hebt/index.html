@@ -36,8 +36,9 @@
 		<link rel="stylesheet" href="/assets/fonts.css" />
 
 		<!-- Meten mag pas na toestemming. Consent Mode staat daarom standaard op
-		     "denied"; assets/cookies.js zet het om zodra de bezoeker akkoord gaat en
-		     laadt pas dan het script van Google Ads. -->
+		     "denied"; assets/cookies.js zet alleen analytics_storage om zodra de
+		     bezoeker akkoord gaat, en laadt pas dan Google Analytics. De
+		     ad_*-regels blijven geweigerd: wij adverteren niet. -->
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}

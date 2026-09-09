@@ -33,8 +33,9 @@
 		<link rel="stylesheet" href="/assets/fonts.css" />
 
 		<!-- Meten mag pas na toestemming. Consent Mode staat daarom standaard op
-		     "denied"; assets/cookies.js zet het om zodra de bezoeker akkoord gaat en
-		     laadt pas dan het script van Google Ads. -->
+		     "denied"; assets/cookies.js zet alleen analytics_storage om zodra de
+		     bezoeker akkoord gaat, en laadt pas dan Google Analytics. De
+		     ad_*-regels blijven geweigerd: wij adverteren niet. -->
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
@@ -1255,10 +1256,12 @@
 							<li><span>Serverlogboeken van onze hostingpartij: IP-adres, opgevraagd adres,
 								tijdstip en browsertype. Nodig om de site te laten werken en misbruik te
 								kunnen opsporen.</span></li>
-							<li><span>Advertentiegegevens van Google Ads: welke advertentie tot een bezoek
-								leidde. <b>Alleen na jouw toestemming</b> via de cookiemelding.</span></li>
+							<li><span>Bezoekstatistieken van Google Analytics: welke pagina&rsquo;s bekeken
+								worden, hoe lang, en via welke bron iemand binnenkwam. <b>Alleen na jouw
+								toestemming</b> via de cookiemelding.</span></li>
 						</ul>
-						<p>Wij gebruiken geen analytics-pakket dat bezoekers over de site volgt, en geen
+						<p>Wij adverteren niet, dus wij verwerken geen advertentiegegevens. De
+							advertentiesignalen van Google staan uit, en wij gebruiken geen
 							bezoekersherkenning die bedrijven achter een IP-adres probeert te achterhalen.</p>
 						<h2 id="doeleinden">3. Doeleinden en grondslagen</h2>
 						<p>Wij verwerken gegevens alleen voor duidelijke doelen, en telkens op een
@@ -1294,7 +1297,7 @@
 								</thead>
 								<tbody>
 									<tr><td>Hostinger</td><td>Hosting van de website en de e-mail</td><td>EU</td></tr>
-									<tr><td>Google Ireland Limited</td><td>Advertenties via Google Ads en het meten daarvan &mdash; alleen na jouw toestemming</td><td>EU / VS</td></tr>
+									<tr><td>Google Ireland Limited</td><td>Bezoekstatistieken via Google Analytics &mdash; alleen na jouw toestemming</td><td>EU / VS</td></tr>
 									<tr><td>Anthropic</td><td>Verwerking van tekst door een AI-assistent die wij bij ons werk gebruiken</td><td>EU / VS</td></tr>
 									<tr><td>OpenAI</td><td>Verwerking van tekst door een AI-assistent die wij bij ons werk gebruiken</td><td>EU / VS</td></tr>
 									<tr><td>WhatsApp (Meta)</td><td>Contact via WhatsApp Business</td><td>EU / VS</td></tr>
@@ -1312,7 +1315,7 @@
 							Commissie (Standard Contractual Clauses).</p>
 						<p>Wij beperken die doorgifte zo veel mogelijk:</p>
 						<ul>
-							<li><span>Geef je geen toestemming voor marketingcookies, dan laden wij het script
+							<li><span>Geef je geen toestemming voor statistiekcookies, dan laden wij het script
 								van Google niet en gaat er in dat kader helemaal niets naar buiten de EU.</span></li>
 							<li><span>Wij zetten geen persoonsgegevens in een AI-assistent als dat niet nodig is,
 								en nooit meer dan voor de vraag nodig is.</span></li>
@@ -1371,8 +1374,8 @@
 							persoon geven, kunnen wij vragen je verzoek te sturen vanaf het e-mailadres dat
 							bij ons bekend is.</p>
 						<h2 id="cookies">9. Cookies</h2>
-						<p>Wij gebruiken noodzakelijke cookies, en na jouw toestemming marketingcookies
-							voor Google Ads. Zolang je geen keuze hebt gemaakt laden wij geen enkel
+						<p>Wij gebruiken noodzakelijke cookies, en na jouw toestemming statistiekcookies
+							voor Google Analytics. Zolang je geen keuze hebt gemaakt laden wij geen enkel
 							meetscript. Je keuze beheer je via de cookiemelding of via ons
 							<a href="/cookies">cookiebeleid</a>, waar precies staat wat er wordt opgeslagen
 							en hoe lang.</p>

@@ -27,15 +27,30 @@
 		<!-- Markeert dat JS aanstaat: reveal-animaties verbergen niets als JS uitvalt -->
 		<script>document.documentElement.classList.add("js");</script>
 
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<!-- Het lettertype blokkeert het tekenen van de pagina niet meer: eerst
-		     verschijnt de tekst in de systeemletter, daarna wisselt hij. -->
-		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-		<noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
+		<!-- Het lettertype staat op onze eigen server. Zo gaat het IP-adres van een
+		     bezoeker niet naar Google voordat er toestemming is gegeven, en scheelt
+		     het een externe verbinding. De rest van de site deed dit al; alleen deze
+		     pagina hing nog aan Google Fonts. -->
+		<link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="/assets/fonts.css" />
 
-		<!-- Meetscripts laden pas na toestemming; de melding en de afhandeling
-		     staan in dit ene bestand. -->
+		<!-- Meten mag pas na toestemming. Consent Mode staat daarom standaard op
+		     "denied"; assets/cookies.js zet alleen analytics_storage om zodra de
+		     bezoeker akkoord gaat, en laadt pas dan Google Analytics. De
+		     ad_*-regels blijven geweigerd: wij adverteren niet. -->
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('consent', 'default', {
+				ad_storage: 'denied',
+				ad_user_data: 'denied',
+				ad_personalization: 'denied',
+				analytics_storage: 'denied',
+				functionality_storage: 'granted',
+				security_storage: 'granted',
+				wait_for_update: 500
+			});
+		</script>
 		<script src="/assets/cookies.js" defer></script>
 
 		<!-- Alle CSS staat inline: één request, geen render-blocking stylesheet, geen FOUC.

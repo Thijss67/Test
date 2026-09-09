@@ -4,7 +4,9 @@
    Uitgangspunt: niets meten voordat de bezoeker ja zegt. Zolang er geen keuze
    is gemaakt laden we geen enkel meetscript, en staat Google Consent Mode op
    "denied" (dat zetten we al in de <head> van iedere pagina). Pas na
-   "Alles accepteren" laden we Google Ads en zetten we de toestemming om.
+   "Alles accepteren" laden we Google Analytics en zetten we de toestemming om.
+
+   Wij adverteren niet, dus de ad_*-toestemmingen blijven altijd geweigerd.
 
    Kiest iemand voor alleen noodzakelijk, dan blijft de site helemaal schoon:
    er wordt geen script geladen en er komt geen cookie van derden binnen.
@@ -17,10 +19,18 @@
 
 	var SLEUTEL = "dh-cookiekeuze";
 	var GELDIG = 365 * 24 * 60 * 60 * 1000; // een jaar
-	var VERSIE = 2;                          // omhoog = opnieuw vragen
 
-	// Het enige script dat toestemming nodig heeft.
-	var GOOGLE_ADS = "AW-18237624823";
+	// Versie 3: hiervoor werd toestemming gevraagd voor Google Ads. Wij
+	// adverteren niet meer, maar meten wel bezoek met Google Analytics. Dat is
+	// een ander doel, dus de eerdere toestemming geldt er niet voor en vragen
+	// we het opnieuw.
+	var VERSIE = 3;
+
+	// Het enige script dat toestemming nodig heeft. Vul hier je meet-ID in
+	// (die van de vorm G-XXXXXXXXXX uit Google Analytics). Staat hier niets,
+	// dan laadt er ook niets: de melding werkt dan gewoon, maar er wordt niet
+	// gemeten. Zo kan de site nooit stukgaan op een ontbrekende code.
+	var GOOGLE_ANALYTICS = "";
 
 	/* ------------------------------------------------------------ keuze bewaren */
 
@@ -29,16 +39,16 @@
 			var rij = JSON.parse(localStorage.getItem(SLEUTEL) || "null");
 			if (!rij || rij.versie !== VERSIE) return null;
 			if (Date.now() - rij.tijd > GELDIG) return null;
-			return { marketing: rij.marketing === true, tijd: rij.tijd };
+			return { statistiek: rij.statistiek === true, tijd: rij.tijd };
 		} catch (e) {
 			return null; // privémodus of storage vol: dan vragen we het opnieuw
 		}
 	}
 
-	function bewaarKeuze(marketing) {
+	function bewaarKeuze(statistiek) {
 		try {
 			localStorage.setItem(SLEUTEL, JSON.stringify({
-				marketing: marketing === true, tijd: Date.now(), versie: VERSIE
+				statistiek: statistiek === true, tijd: Date.now(), versie: VERSIE
 			}));
 		} catch (e) { /* niets te doen: de volgende keer vragen we het weer */ }
 	}
@@ -57,33 +67,26 @@
 	}
 
 	var geladen = false;
-	function laadMarketing() {
-		gtag("consent", "update", {
-			ad_storage: "granted",
-			ad_user_data: "granted",
-			ad_personalization: "granted",
-			analytics_storage: "granted"
-		});
+	function laadStatistiek() {
+		gtag("consent", "update", { analytics_storage: "granted" });
 
-		if (geladen) return;
+		if (geladen || !GOOGLE_ANALYTICS) return;
 		geladen = true;
 
 		var s = document.createElement("script");
 		s.async = true;
-		s.src = "https://www.googletagmanager.com/gtag/js?id=" + GOOGLE_ADS;
+		s.src = "https://www.googletagmanager.com/gtag/js?id=" + GOOGLE_ANALYTICS;
 		document.head.appendChild(s);
 
 		gtag("js", new Date());
-		gtag("config", GOOGLE_ADS);
+		// Google zet het IP-adres van bezoekers standaard al in of neemt het
+		// niet volledig op; deze regel houdt het bij de basis en zet
+		// advertentiesignalen uit, want daar doen we niets mee.
+		gtag("config", GOOGLE_ANALYTICS, { allow_google_signals: false });
 	}
 
-	function weigerMarketing() {
-		gtag("consent", "update", {
-			ad_storage: "denied",
-			ad_user_data: "denied",
-			ad_personalization: "denied",
-			analytics_storage: "denied"
-		});
+	function weigerStatistiek() {
+		gtag("consent", "update", { analytics_storage: "denied" });
 	}
 
 	/* ------------------------------------------------------------ opmaak
@@ -157,10 +160,10 @@
 		}, 320);
 	}
 
-	function kies(marketing) {
-		bewaarKeuze(marketing);
-		if (marketing) laadMarketing();
-		else weigerMarketing();
+	function kies(statistiek) {
+		bewaarKeuze(statistiek);
+		if (statistiek) laadStatistiek();
+		else weigerStatistiek();
 		sluit();
 		meld();
 	}
@@ -193,7 +196,7 @@
 		kaart.innerHTML =
 			'<h2 id="dhCookieKop">Even over cookies</h2>' +
 			"<p>Noodzakelijke cookies staan altijd aan. Met jouw toestemming meten we " +
-			"via Google Ads welke advertentie iets oplevert. " +
+			"met Google Analytics hoe de site gebruikt wordt. Adverteren doen we niet. " +
 			'<a href="/cookies">Cookiebeleid</a>.</p>' +
 
 			'<div class="dh-cookie-keuzes" id="dhCookieKeuzes" hidden>' +
@@ -204,10 +207,10 @@
 					"Staat altijd aan en is niet uit te zetten.</span></label>" +
 				"</div>" +
 				'<div class="dh-cookie-rij">' +
-					'<input type="checkbox" id="dhCookieMarketing"' + (vorige && vorige.marketing ? " checked" : "") + " />" +
-					'<label for="dhCookieMarketing"><b>Marketing</b>' +
-					"<span>Google Ads meet welke advertentie tot een aanvraag leidt. " +
-					"Zonder deze keuze laden we dat script niet.</span></label>" +
+					'<input type="checkbox" id="dhCookieStatistiek"' + (vorige && vorige.statistiek ? " checked" : "") + " />" +
+					'<label for="dhCookieStatistiek"><b>Statistieken</b>' +
+					"<span>Google Analytics laat ons zien welke pagina's bekeken worden " +
+					"en waar mensen afhaken. Zonder deze keuze laden we dat script niet.</span></label>" +
 				"</div>" +
 			"</div>" +
 
@@ -224,7 +227,7 @@
 		var neeKnop = kaart.querySelector(".nee");
 		var meerKnop = kaart.querySelector(".meer");
 		var keuzes = kaart.querySelector("#dhCookieKeuzes");
-		var marketingVink = kaart.querySelector("#dhCookieMarketing");
+		var statistiekVink = kaart.querySelector("#dhCookieStatistiek");
 
 		jaKnop.addEventListener("click", function () { kies(true); });
 
@@ -236,9 +239,9 @@
 				meerKnop.setAttribute("aria-expanded", "true");
 				meerKnop.textContent = "Mijn keuze bewaren";
 				neeKnop.textContent = "Alles weigeren";
-				marketingVink.focus();
+				statistiekVink.focus();
 			} else {
-				kies(marketingVink.checked);
+				kies(statistiekVink.checked);
 			}
 		});
 
@@ -255,8 +258,8 @@
 
 	function start() {
 		var keuze = leesKeuze();
-		if (keuze && keuze.marketing) laadMarketing();
-		else if (keuze) weigerMarketing();
+		if (keuze && keuze.statistiek) laadStatistiek();
+		else if (keuze) weigerStatistiek();
 		else toon();
 	}
 
@@ -273,7 +276,7 @@
 		},
 		intrekken: function () {
 			wisKeuze();
-			weigerMarketing();
+			weigerStatistiek();
 			meld();
 			toon();
 		}
