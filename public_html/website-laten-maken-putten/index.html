@@ -7,21 +7,16 @@
 		<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
 		<meta name="theme-color" content="#fbfaf7" />
 		<meta name="color-scheme" content="light" />
-		<title>Blog | DH Studio</title>
-		<meta name="description" content="Praktische artikelen over websites, vindbaarheid en snelheid, geschreven voor ondernemers." />
-		<!-- Zolang deze pagina nog gevuld moet worden staat hij niet in Google.
-		     Haal de regel hieronder weg zodra er echte inhoud op staat. -->
-<!-- ROBOTS:START -->
-
-<!-- ROBOTS:EIND -->
-		<link rel="canonical" href="https://dhstudio.nl/blog" />
+		<title>Website laten maken in Putten | DH Studio</title>
+		<meta name="description" content="Putten ligt precies tussen onze twee werkplekken in. Website laten maken bij twee mensen uit de buurt. Vanaf €995." />
+		<link rel="canonical" href="https://dhstudio.nl/website-laten-maken-putten" />
 
 		<meta property="og:type" content="website" />
 		<meta property="og:locale" content="nl_NL" />
-		<meta property="og:url" content="https://dhstudio.nl/blog" />
+		<meta property="og:url" content="https://dhstudio.nl/website-laten-maken-putten" />
 		<meta property="og:site_name" content="DH Studio" />
-		<meta property="og:title" content="Blog | DH Studio" />
-		<meta property="og:description" content="Praktische artikelen over websites, vindbaarheid en snelheid, geschreven voor ondernemers." />
+		<meta property="og:title" content="Website laten maken in Putten | DH Studio" />
+		<meta property="og:description" content="Putten ligt precies tussen onze twee werkplekken in. Website laten maken bij twee mensen uit de buurt. Vanaf €995." />
 		<meta property="og:image" content="https://dhstudio.nl/assets/og-dh-studio.png" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
@@ -962,10 +957,15 @@
 			   daaronder de artikelen als klikbare kaarten.
 			   ------------------------------------------------------------------ */
 			.blog-kop { padding-bottom: 0; }
-			/* zelfde streepje als de eyebrows op de rest van de site,
-			   maar links uitgelijnd in plaats van gecentreerd */
-			.blog-kop .eyebrow { justify-content: flex-start; }
-			.blog-kop .eyebrow::before { display: none; }
+			.kop-label {
+				display: inline-flex; align-items: center; gap: 0.6rem;
+				font-size: 0.9rem; font-weight: 700; color: var(--body);
+			}
+			.kop-label .stip {
+				width: 0.85rem; height: 0.85rem; flex: none;
+				background: var(--accent);
+				border-radius: 42% 58% 54% 46% / 56% 44% 56% 44%;
+			}
 			.blog-kop h1 {
 				margin-top: 0.9rem;
 				font-size: clamp(3.25rem, 12vw, 7rem);
@@ -979,7 +979,7 @@
 				margin-top: 2.5rem;
 				display: grid;
 				gap: 1.5rem;
-				grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+				grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
 			}
 			.art-kaart {
 				display: flex; flex-direction: column;
@@ -997,8 +997,8 @@
 			}
 			.art-kaart:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 			.art-beeld { display: block; background: var(--bg-soft); border-bottom: 1px solid var(--line); }
-			.art-beeld img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top center; }
-			.art-body { padding: 1.1rem 1.15rem 1.25rem; display: flex; flex-direction: column; flex: 1; }
+			.art-beeld img { display: block; width: 100%; height: auto; aspect-ratio: 1.9 / 1; object-fit: cover; object-position: top center; }
+			.art-body { padding: 1.25rem 1.35rem 1.4rem; display: flex; flex-direction: column; flex: 1; }
 			.art-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 			.art-chips .soort {
 				font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
@@ -1009,7 +1009,7 @@
 				background: var(--bg-soft); border: 1px solid var(--line);
 				border-radius: 999px; padding: 0.28rem 0.65rem; font-variant-numeric: tabular-nums;
 			}
-			.art-titel { margin-top: 0.8rem; font-size: 1.08rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; color: var(--fg); }
+			.art-titel { margin-top: 0.85rem; font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; color: var(--fg); }
 			.art-kaart:hover .art-titel, .art-kaart:focus-visible .art-titel { color: var(--accent-text); }
 			.art-tekst { margin-top: 0.6rem; font-size: 0.92rem; color: var(--body); }
 			.art-lees {
@@ -1037,6 +1037,46 @@
 				.art-kaart, .art-lees svg { transition: none; }
 				.art-kaart:hover, .art-kaart:focus-visible { transform: none; }
 			}
+
+			/* ---------- Artikelpagina ---------- */
+			.art-kop { padding-bottom: 0; }
+			.art-kop h1 { margin-top: 0.9rem; max-width: 22ch; font-size: clamp(2.1rem, 5.5vw, 3.4rem); line-height: 1.05; letter-spacing: -0.035em; }
+			.art-kop .kop-lead { margin-top: 1.2rem; max-width: 56ch; }
+			.art-hero { margin-top: 2.5rem; border: 1px solid var(--line-strong); background: var(--bg-soft); }
+			.art-hero img { display: block; width: 100%; height: auto; }
+			.lezen { max-width: 62ch; }
+			.lezen h2 { margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--line); font-size: clamp(1.4rem, 3.2vw, 1.95rem); letter-spacing: -0.025em; line-height: 1.15; }
+			.lezen h3 { margin-top: 1.75rem; font-size: 1.1rem; font-weight: 700; color: var(--fg); }
+			.lezen p { margin-top: 0.9rem; color: var(--body); }
+			.lezen blockquote { margin: 2rem 0 0; padding: 0.2rem 0 0.2rem 1.5rem; border-left: 3px solid var(--accent);
+				font-size: clamp(1.15rem, 2.6vw, 1.45rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.35; color: var(--fg); }
+			.lezen ul { margin: 1.25rem 0 0; padding: 0; list-style: none; }
+			.lezen ul li { display: grid; grid-template-columns: 1.4rem 1fr; gap: 0.6rem; padding-block: 0.65rem; border-bottom: 1px solid var(--line); color: var(--body); }
+			.lezen ul li::before { content: "\2014"; color: var(--line-strong); font-weight: 700; }
+			.lezen ul li:first-child { border-top: 1px solid var(--line); }
+			.lezen .cijfers { margin-top: 1.75rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+			.lezen .cijfers div { background: var(--surface); padding: 1.1rem 1rem; }
+			.lezen .cijfers b { display: block; font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 800; letter-spacing: -0.03em; color: var(--fg); }
+			.lezen .cijfers span { display: block; margin-top: 0.2rem; font-size: 0.82rem; color: var(--muted); }
+			.terug { margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--line); font-size: 0.95rem; }
+			.terug a { color: var(--accent-text); font-weight: 600; }
+			@media (min-width: 700px) { .lezen .cijfers { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+			/* --- cookiepagina --------------------------------------------------
+			   De knop waarmee je je keuze wijzigt, en de regel die laat zien wat
+			   je nu hebt gekozen. */
+			.lezen button.btn { border: 0; font-family: inherit; }
+			.lezen .cookie-status {
+				margin-top: 1.35rem;
+				padding: 0.95rem 1.15rem;
+				border: 1px solid var(--line);
+				border-left: 3px solid var(--accent);
+				border-radius: var(--radius);
+				background: var(--bg-soft);
+				color: var(--fg);
+				font-weight: 600;
+			}
+			.lezen .kleine { margin-top: 0.8rem; font-size: 0.85rem; color: var(--muted); }
 		</style>
 	</head>
 
@@ -1084,7 +1124,7 @@
 							</div>
 						</div>
 						<a href="/portfolio">Portfolio</a>
-						<a href="/blog" aria-current="page">Blog</a>
+						<a href="/blog">Blog</a>
 						<a href="/over-dh-studio">Over DH Studio</a>
 					</nav>
 					<a href="/contact" class="btn btn-primary nav-cta" data-cta="header">Gratis kennismaken</a>
@@ -1104,7 +1144,7 @@
 						<a href="/tarieven">Tarieven</a>
 					</details>
 					<a href="/portfolio">Portfolio</a>
-					<a href="/blog" aria-current="page">Blog</a>
+					<a href="/blog">Blog</a>
 					<a href="/over-dh-studio">Over DH Studio</a>
 					<a href="/#faq">FAQ</a>
 					<a href="/website-concept">Gratis websiteconcept</a>
@@ -1113,68 +1153,59 @@
 			</div>
 		</header>
 <!-- KOP:EIND -->
-
 		<main>
 			<nav class="wrap kruimels" aria-label="Kruimelpad">
 				<ol>
 					<li><a href="/">Home</a></li>
 					<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></li>
-					<li aria-current="page">Blog</li>
+					<li><a href="/werkgebied">Werkgebied</a></li>
+					<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></li>
+					<li aria-current="page">Putten</li>
 				</ol>
 			</nav>
 
-			<section class="section blog-kop">
+			<section class="section art-kop">
 				<div class="wrap">
-					<span class="eyebrow">Kennis</span>
-					<h1>Blog</h1>
-					<p class="kop-lead">
-						Ontdek praktische tips en uitleg om meer uit je website te halen. Wat kost er nou
-						echt een website, waarom levert snelheid meer op dan een mooi plaatje, en wat kun
-						je prima zelf bijhouden?
-					</p>
-					<p class="kop-lead">
-						Geen ingewikkelde theorie, maar duidelijke uitleg en voorbeelden uit de praktijk.
-						Geschreven voor ondernemers, niet voor collega-bureaus.
-					</p>
+					<h1>Website laten maken in Putten</h1>
+					<p class="kop-lead">Putten ligt precies tussen onze twee werkplekken in. We komen er sowieso langs.</p>
 				</div>
 			</section>
 
 			<section class="section" style="padding-top: 0">
 				<div class="wrap">
-<!-- ARTIKELEN:START -->
-					<div class="artikel-raster">
-					<a class="art-kaart reveal" href="/blog/wat-kost-een-website-en-wat-kost-het-als-je-er-geen-hebt" data-cta="blog-wat-kost-een-website-en-wat-kost-het-als-je-er-geen-hebt">
-						<span class="art-beeld">
-							<img src="/assets/blog-wat-kost-een-website-en-wat-kost-het-als-je-er-geen-hebt.jpg" width="1400" height="875" loading="lazy" decoding="async" alt="DHStudio website" />
-						</span>
-						<span class="art-body">
-							<span class="art-chips">
-								<span class="soort">Blog</span>
-								<span class="datum">03-09-2026</span>
-							</span>
-							<span class="art-titel">Wat kost een website? En wat kost het als je er geen hebt?</span>
-							<span class="art-tekst">Een website kost geld, maar een slechte of ontbrekende website kan je uiteindelijk veel meer kosten. Potentiële klanten zoeken online naar bedrijven en maken vaak al een eerste keuze voordat ze contact opnemen.</span>
-							<span class="art-lees">
-								Lees verder
-								<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-							</span>
-						</span>
-					</a>
+					<div class="lezen">
+						<h2>Letterlijk onderweg</h2>
+						<p>De een van ons werkt vanuit Nijkerkerveen, de ander vanuit Harderwijk. Wie de route daartussen kent, weet dat je dan door Putten rijdt.</p>
+						<p>Dat is geen verkooppraatje maar een handig toeval: langskomen kost ons hier geen extra reistijd, dus we doen het makkelijk nog een keer als dat helpt.</p>
+
+						<h2>Wat je van ons krijgt</h2>
+						<p>Een website die snel laadt, op een telefoon net zo goed werkt als op een laptop, en waar je zelf niets technisch aan hoeft te doen. Domein, hosting en updates regelen wij.</p>
+
+						<h2>Wat het kost</h2>
+						<p>Onze pakketten beginnen bij &euro;995 en staan met prijs en al op de
+							<a href="/tarieven">tarievenpagina</a>. Geen offertegesprek nodig om te weten
+							waar je aan toe bent. Hosting en onderhoud kosten &euro;50 per maand.</p>
+						<p>Wat we precies doen &mdash; ontwerp, bouw, zichtbaarheid in Google en het onderhoud
+							daarna &mdash; staat op <a href="/diensten">de dienstenpagina</a>.</p>
+
+						<h2>Wij zijn een klein bedrijf. Is dat niet te klein voor jullie?</h2>
+						<p>Nee. Wij zijn zelf met z&rsquo;n twee&euml;n, dus een eenmanszaak of een bedrijf met vijf man is precies waar wij op ingericht zijn.</p>
+
+						<p class="terug"><a href="/werkgebied">&larr; Bekijk ons hele werkgebied</a></p>
 					</div>
-<!-- ARTIKELEN:EIND -->
 				</div>
 			</section>
 
 			<section class="section section-soft">
 				<div class="wrap slot reveal">
-					<h2>Liever meteen sparren?</h2>
+					<h2>Even kennismaken in Putten?</h2>
 					<p>
 						Vertel kort wat je bedrijf doet en wat er beter moet. Wij laten vrijblijvend zien
-						wat er mogelijk is.
+						wat er mogelijk is &mdash; kosteloos en zonder verplichtingen.
 					</p>
 					<div class="btn-rij">
-						<a href="/contact" class="btn btn-primary" data-cta="blog-contact">Gratis kennismaken <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-						<a href="/website-concept" class="btn btn-outline" data-cta="blog-concept">Gratis websiteconcept</a>
+						<a href="/contact" class="btn btn-primary" data-cta="plaats-putten-contact">Gratis kennismaken</a>
+						<a href="/website-concept" class="btn btn-outline" data-cta="plaats-putten-concept">Gratis websiteconcept</a>
 					</div>
 				</div>
 			</section>
@@ -1256,7 +1287,7 @@
 				<ul>
 					<li><a href="/website-laten-maken-nijkerk">Nijkerk</a></li>
 					<li><a href="/website-laten-maken-amersfoort">Amersfoort</a></li>
-					<li><a href="/website-laten-maken-putten">Putten</a></li>
+					<li><a href="/website-laten-maken-putten" aria-current="page">Putten</a></li>
 					<li><a href="/website-laten-maken-ermelo">Ermelo</a></li>
 					<li><a href="/website-laten-maken-harderwijk">Harderwijk</a></li>
 				</ul>
@@ -1279,55 +1310,6 @@
 			<a href="/contact" class="btn btn-primary btn-block" data-cta="sticky">Gratis kennismaken</a>
 		</div>
 
-<!-- SCHEMA:START -->
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@graph": [
-        {
-            "@type": "CollectionPage",
-            "@id": "https://dhstudio.nl/blog#webpage",
-            "url": "https://dhstudio.nl/blog",
-            "name": "Blog",
-            "description": "Praktische stukken over wat een website wel en niet voor je kan doen.",
-            "inLanguage": "nl-NL",
-            "isPartOf": {
-                "@id": "https://dhstudio.nl/#website"
-            },
-            "mainEntity": {
-                "@type": "ItemList",
-                "itemListElement": [
-                    {
-                        "@type": "ListItem",
-                        "position": 1,
-                        "url": "https://dhstudio.nl/blog/wat-kost-een-website-en-wat-kost-het-als-je-er-geen-hebt",
-                        "name": "Wat kost een website? En wat kost het als je er geen hebt?"
-                    }
-                ]
-            }
-        },
-        {
-            "@type": "BreadcrumbList",
-            "@id": "https://dhstudio.nl/blog#kruimelpad",
-            "itemListElement": [
-                {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Home",
-                    "item": "https://dhstudio.nl/"
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "Blog",
-                    "item": "https://dhstudio.nl/blog"
-                }
-            ]
-        }
-    ]
-}
-		</script>
-<!-- SCHEMA:EIND -->
 
 		<script>
 			(function () {
@@ -1498,6 +1480,85 @@
 					bar.setAttribute("data-hidden", "false");
 				}
 			})();
+		</script>
+
+		<!-- Kleine toevoeging voor deze pagina: de huidige keuze tonen en
+		     laten wijzigen. Leunt op window.dhCookies uit /assets/cookies.js. -->
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				var status = document.getElementById("cookieStatus");
+				var knop = document.getElementById("cookieWijzig");
+				if (!status || !knop) return;
+
+				if (!window.dhCookies) {
+					status.textContent = "De cookie-instellingen konden niet geladen worden.";
+					knop.disabled = true;
+					return;
+				}
+
+				function toon() {
+					var k = window.dhCookies.keuze();
+					if (!k) {
+						status.textContent = "Je hebt nog geen keuze gemaakt. We laden op dit moment geen meetscripts.";
+					} else if (k.marketing) {
+						status.textContent = "Je huidige keuze: noodzakelijke \u00e9n marketingcookies toegestaan.";
+					} else {
+						status.textContent = "Je huidige keuze: alleen noodzakelijke cookies. Er wordt niets gemeten.";
+					}
+				}
+
+				document.addEventListener("dh-cookiekeuze", toon);
+				knop.addEventListener("click", function () { window.dhCookies.intrekken(); });
+				toon();
+			});
+		</script>
+		<script type="application/ld+json">
+			{
+			 "@context": "https://schema.org",
+			 "@graph": [
+			  {
+			   "@type": "WebPage",
+			   "@id": "https://dhstudio.nl/website-laten-maken-putten#webpage",
+			   "url": "https://dhstudio.nl/website-laten-maken-putten",
+			   "name": "Website laten maken in Putten",
+			   "description": "Putten ligt precies tussen onze twee werkplekken in. Website laten maken bij twee mensen uit de buurt. Vanaf €995.",
+			   "inLanguage": "nl-NL",
+			   "isPartOf": {
+			    "@id": "https://dhstudio.nl/#website"
+			   },
+			   "about": {
+			    "@id": "https://dhstudio.nl/#organisatie"
+			   },
+			   "publisher": {
+			    "@id": "https://dhstudio.nl/#organisatie"
+			   }
+			  },
+			  {
+			   "@type": "BreadcrumbList",
+			   "@id": "https://dhstudio.nl/website-laten-maken-putten#kruimelpad",
+			   "itemListElement": [
+			    {
+			     "@type": "ListItem",
+			     "position": 1,
+			     "name": "Home",
+			     "item": "https://dhstudio.nl/"
+			    },
+			    {
+			     "@type": "ListItem",
+			     "position": 2,
+			     "name": "Werkgebied",
+			     "item": "https://dhstudio.nl/werkgebied"
+			    },
+			    {
+			     "@type": "ListItem",
+			     "position": 3,
+			     "name": "Putten",
+			     "item": "https://dhstudio.nl/website-laten-maken-putten"
+			    }
+			   ]
+			  }
+			 ]
+			}
 		</script>
 	</body>
 </html>

@@ -689,6 +689,14 @@
 			/* Plaats en werkgebied onder het e-mailadres. Bewust kleiner en
 			   rustiger dan de links: het is informatie, geen actie. */
 			.footer-col .voet-plaats { margin: 0.85rem 0 0; font-size: 0.86rem; line-height: 1.55; color: var(--muted); }
+			/* Rij met plaatslinks onder de kolommen. Bewust een gewone lijst en
+			   geen vijfde kolom: het raster staat op vier kolommen en die zou
+			   ik dan in negentien bestanden moeten omgooien. */
+			.footer-plaatsen { padding-top: 1.75rem; margin-top: 2rem; border-top: 1px solid var(--line); }
+			.footer-plaatsen h2 { margin-bottom: 0.85rem; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+			.footer-plaatsen ul { display: flex; flex-wrap: wrap; gap: 0.4rem 1.6rem; margin: 0; padding: 0; list-style: none; }
+			.footer-plaatsen a { display: inline-flex; align-items: center; min-height: 32px; font-size: 0.95rem; transition: color 0.18s ease; }
+			.footer-plaatsen a:hover { color: var(--accent-text); }
 			.footer-bottom {
 				margin-top: clamp(2rem, 5vw, 3rem);
 				padding-block: 1.5rem;
@@ -1286,6 +1294,17 @@
 						<a href="/werkgebied">Bekijk ons werkgebied</a>
 					</p>
 				</div>
+			</div>
+
+			<div class="wrap footer-plaatsen">
+				<h2>Website laten maken in de regio</h2>
+				<ul>
+					<li><a href="/website-laten-maken-nijkerk">Nijkerk</a></li>
+					<li><a href="/website-laten-maken-amersfoort">Amersfoort</a></li>
+					<li><a href="/website-laten-maken-putten">Putten</a></li>
+					<li><a href="/website-laten-maken-ermelo">Ermelo</a></li>
+					<li><a href="/website-laten-maken-harderwijk">Harderwijk</a></li>
+				</ul>
 			</div>
 
 			<div class="wrap footer-bottom">
