@@ -25,6 +25,11 @@ ErrorDocument 404 /404.html
 	RewriteRule ^(.*)$ https://dhstudio.nl/$1 [R=301,L]
 </IfModule>
 
+# ----------------------------------------------------------------- tekens
+# De charset staat al in een meta-tag, maar een browser leest de HTTP-header
+# eerder. Zonder deze regel moet hij eerst gokken en daarna corrigeren.
+AddDefaultCharset UTF-8
+
 # ----------------------------------------------------------------- veiligheid
 # Geen mappenlijst als er toevallig geen index-bestand staat. Zonder dit
 # kan /assets/logos/ zijn hele inhoud tonen.

@@ -920,6 +920,7 @@
 					     dat en stuurt hetzelfde bericht met fetch, zodat de bezoeker op de
 					     pagina blijft. Zonder JS werkt de gewone POST gewoon door. -->
 					<form class="contact-form" id="contactForm" method="post" action="/api/contact">
+						<input type="hidden" name="geopend" id="geopendOp" value="" />
 						<div class="veld">
 							<label for="naam">Je naam</label>
 							<input type="text" id="naam" name="naam" autocomplete="name" required maxlength="60" />
@@ -1332,6 +1333,11 @@
 			// mailtje. Alles is aanvulling — zonder JS werkt het formulier gewoon
 			// via een normale POST en blijft de tekst in de HTML staan.
 			(function () {
+				// Wanneer de pagina geopend is. Het eindpunt weigert een formulier
+				// dat binnen een paar seconden is ingevuld; dat is geen mens.
+				var tijd = document.getElementById("geopendOp");
+				if (tijd) tijd.value = String(Math.floor(Date.now() / 1000));
+
 				var form = document.getElementById("contactForm");
 				var ok = document.getElementById("formOk");
 				if (!form) return;

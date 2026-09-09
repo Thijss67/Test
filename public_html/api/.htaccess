@@ -1,0 +1,12 @@
+# Het formulier stuurt naar /api/contact zonder extensie; hier vertalen we
+# dat naar het php-bestand. Zo blijft het adres netjes en verandert er niets
+# aan de pagina zelf.
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /api/
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^contact/?$ contact.php [L]
+</IfModule>
+
+# Geen mappenlijst. In deze map staat alleen contact.php.
+Options -Indexes
