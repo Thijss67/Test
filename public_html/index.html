@@ -185,70 +185,83 @@
 			.section-head p { margin-top: 1rem; font-size: var(--t-lead); }
 			.section-head p + p { margin-top: 0.85rem; }
 
-			/* ---------- Waar je het verschil merkt ----------
-			   Bewust geen tegels met iconen. Dit is een vergelijking, en die
-			   leest als rijen: links hoe het meestal gaat, rechts hoe het hier
-			   gaat. De rechterkolom heeft de accentkleur, want daar moet het
-			   oog landen. Op een telefoon stapelt het en krijgen de twee
-			   kolommen een eigen kopje, anders weet je niet meer wat wat is. */
-			.verschil {
-				margin-top: clamp(2rem, 5vw, 3rem);
+			/* ---------- Wat ons anders maakt ----------
+			   Bewust niet gecentreerd zoals de andere secties, en zonder kaders.
+			   De pagina staat vol met gecentreerde koppen boven een raster; door
+			   dit blok links uit te lijnen en in twee ongelijke kolommen te zetten
+			   valt het op zonder dat er een enkel randje aan te pas komt.
+
+			   De getallen dragen het blok. Die zijn hard en na te kijken, waar
+			   woorden als "expertise" dat niet zijn. */
+			.anders-wrap { display: grid; gap: clamp(2rem, 5vw, 3.5rem); }
+			.anders-kop { max-width: 34ch; }
+			/* het label links uitlijnen; de streep ervoor hoort bij de
+			   gecentreerde varianten elders op de pagina */
+			.anders-kop .eyebrow { justify-content: flex-start; }
+			.anders-kop .eyebrow::before { display: none; }
+			.anders-kop h2 { margin-top: 1.1rem; }
+			.anders-kop p { margin-top: 1rem; font-size: var(--t-lead); }
+			.anders-cta { margin-top: 1.25rem; }
+			.anders-cta a {
+				font-weight: 700;
+				color: var(--accent-text);
+				border-bottom: 2px solid var(--accent-line);
+				padding-bottom: 2px;
+				transition: border-color 0.18s ease;
+			}
+			.anders-cta a:hover { border-bottom-color: var(--accent); }
+
+			.anders-cijfers { margin: 0; display: grid; gap: 0; }
+			.anders-cijfers > div {
+				display: grid;
+				gap: 0.3rem;
+				padding: clamp(1.1rem, 2.6vw, 1.5rem) 0;
 				border-top: 1px solid var(--line);
 			}
-			.verschil-hoofd { display: none; }
-			.verschil-rij {
-				display: grid;
-				gap: 0.35rem 2rem;
-				padding: clamp(1.25rem, 3vw, 1.6rem) 0;
-				border-bottom: 1px solid var(--line);
+			.anders-cijfers > div:last-child { border-bottom: 1px solid var(--line); }
+			.anders-cijfers dt {
+				display: flex;
+				align-items: baseline;
+				gap: 0.6rem;
+				font-size: 0.95rem;
+				font-weight: 600;
+				color: var(--muted);
 			}
-			.verschil-rij h3 {
-				margin: 0 0 0.35rem;
-				font-size: 1.02rem;
-				font-weight: 700;
-				letter-spacing: -0.015em;
-				color: var(--fg);
-			}
-			.verschil-rij p { margin: 0; font-size: 0.95rem; line-height: 1.6; }
-			.verschil-rij .anders { color: var(--muted); }
-			.verschil-rij .wij { color: var(--fg); font-weight: 500; }
-			.verschil-rij .wij a { color: var(--accent-text); font-weight: 700; }
-
-			/* op smalle schermen benoemen we welke kant wat is */
-			.verschil-rij .anders::before,
-			.verschil-rij .wij::before {
-				display: block;
-				margin-bottom: 0.15rem;
-				font-size: 0.68rem;
+			.anders-cijfers .getal {
+				font-size: clamp(2.4rem, 6vw, 3.4rem);
 				font-weight: 800;
-				letter-spacing: 0.12em;
-				text-transform: uppercase;
+				line-height: 1;
+				letter-spacing: -0.04em;
+				color: var(--accent);
+				font-variant-numeric: tabular-nums;
 			}
-			.verschil-rij .anders::before { content: "Meestal"; color: var(--muted); }
-			.verschil-rij .wij::before { content: "Bij ons"; color: var(--accent-text); }
+			.anders-cijfers dd {
+				margin: 0;
+				font-size: 0.98rem;
+				line-height: 1.6;
+				color: var(--body);
+				max-width: 46ch;
+			}
+			.anders-cijfers dd a { color: var(--accent-text); font-weight: 700; }
 
-			@media (min-width: 860px) {
-				.verschil-hoofd,
-				.verschil-rij {
-					grid-template-columns: minmax(0, 15rem) 1fr 1fr;
+			@media (min-width: 900px) {
+				.anders-wrap {
+					grid-template-columns: minmax(0, 27rem) 1fr;
+					gap: clamp(3rem, 7vw, 6rem);
 					align-items: start;
-					gap: 0 2.5rem;
 				}
-				.verschil-hoofd {
-					display: grid;
-					padding-bottom: 0.7rem;
-					font-size: 0.68rem;
-					font-weight: 800;
-					letter-spacing: 0.12em;
-					text-transform: uppercase;
-					color: var(--muted);
+				/* de kop blijft staan terwijl je langs de cijfers scrolt */
+				.anders-kop { position: sticky; top: 6.5rem; }
+				.anders-cijfers > div {
+					grid-template-columns: minmax(0, 13rem) 1fr;
+					gap: 0 2rem;
+					align-items: baseline;
 				}
-				.verschil-hoofd span:last-child { color: var(--accent-text); }
-				.verschil-rij h3 { margin: 0; }
-				/* de kopjes zijn dan overbodig: ze staan boven de kolommen */
-				.verschil-rij .anders::before,
-				.verschil-rij .wij::before { display: none; }
 			}
+			@media (prefers-reduced-motion: reduce) {
+				.anders-kop { position: static; }
+			}
+
 
 			/* ---------- Knoppen ---------- */
 			.btn {
@@ -1417,54 +1430,38 @@
 
 			<!-- WAAROM ONS -->
 			<section class="section" id="waarom-ons">
-				<div class="wrap">
-					<div class="section-head reveal">
+				<div class="wrap anders-wrap">
+					<div class="anders-kop reveal">
 						<span class="eyebrow">Waarom ons</span>
-						<h2>Waar je het verschil merkt</h2>
+						<h2>Twee mensen. Dat is het hele bedrijf.</h2>
 						<p>
-							Wij zijn met z&rsquo;n twee&euml;n. Dat klinkt klein, en dat is het ook &mdash;
-							maar het verandert vijf momenten in een project die je bij een groter bureau
-							anders meemaakt.
+							Geen vestiging, geen tussenlaag, geen team dat wisselt halverwege. Thijs en
+							Lucas, vanuit Nijkerkerveen en Harderwijk. Dat is geen bescheidenheid maar
+							de reden dat de rest hieronder klopt.
+						</p>
+						<p class="anders-cta">
+							<a href="/over-dh-studio">Lees wie we zijn</a>
 						</p>
 					</div>
 
-					<div class="verschil reveal">
-						<div class="verschil-hoofd" aria-hidden="true">
-							<span></span>
-							<span>Hoe het meestal gaat</span>
-							<span>Hoe het bij ons gaat</span>
+					<dl class="anders-cijfers reveal">
+						<div>
+							<dt><span class="getal">2</span> mensen</dt>
+							<dd>Wie je aan de lijn krijgt, is ook wie je website bouwt. Altijd.</dd>
 						</div>
-
-						<div class="verschil-rij">
-							<h3>Wie je aan de lijn krijgt</h3>
-							<p class="anders">Een accountmanager die je wensen doorgeeft aan iemand die jij nooit spreekt.</p>
-							<p class="wij">Ons twee. Wie je belt, is ook wie het bouwt.</p>
+						<div>
+							<dt><span class="getal">0</span> accountmanagers</dt>
+							<dd>Er zit niemand tussen die jouw wensen moet doorgeven aan een ander.</dd>
 						</div>
-
-						<div class="verschil-rij">
-							<h3>Wat het gaat kosten</h3>
-							<p class="anders">Dat hoor je na een intakegesprek, als offerte.</p>
-							<p class="wij">Vanaf &euro;995, en alle pakketten staan met prijs en al op <a href="/tarieven">de tarievenpagina</a>.</p>
+						<div>
+							<dt><span class="getal">&euro;995</span> vanaf</dt>
+							<dd>De hele prijslijst staat gewoon op <a href="/tarieven">de tarievenpagina</a>. Bellen hoeft niet.</dd>
 						</div>
-
-						<div class="verschil-rij">
-							<h3>Als er iets stuk gaat</h3>
-							<p class="anders">Een formulier, een ticketnummer en afwachten.</p>
-							<p class="wij">Je belt. Of het meteen opgelost is hangt ervan af &mdash; maar je krijgt iemand te pakken.</p>
+						<div>
+							<dt><span class="getal">&euro;50</span> per maand</dt>
+							<dd>Domein, hosting, beveiliging en back-ups nemen wij over. Jij kijkt er niet naar om.</dd>
 						</div>
-
-						<div class="verschil-rij">
-							<h3>Domein, hosting en back-ups</h3>
-							<p class="anders">Jouw probleem, of los ondergebracht bij een derde partij.</p>
-							<p class="wij">Dat nemen wij over voor &euro;50 per maand. Jij hoeft er niet naar om te kijken.</p>
-						</div>
-
-						<div class="verschil-rij">
-							<h3>Na de oplevering</h3>
-							<p class="anders">Het contact stopt bij de laatste factuur.</p>
-							<p class="wij">We blijven bereikbaar. Zien we iets dat beter kan, dan zeggen we het.</p>
-						</div>
-					</div>
+					</dl>
 				</div>
 			</section>
 
