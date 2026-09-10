@@ -1,9 +1,9 @@
 # DH Studio — instructies voor zoekmachines
 #
-# Alles mag geïndexeerd worden. Pagina's die er niet in horen (/404 en, zolang
-# er nog geen artikelen zijn, /blog) regelen we met een noindex-tag op de
-# pagina zelf. Dat is de juiste plek: een pagina die hier geblokkeerd staat,
-# mag Google niet ophalen en dus ook de noindex niet lezen.
+# Alles mag geïndexeerd worden. De enige pagina die er niet in hoort (/404)
+# heeft een noindex-tag op de pagina zelf. Dat is de juiste plek: een pagina
+# die hier geblokkeerd staat, mag Google niet ophalen en dus ook de noindex
+# niet lezen.
 #
 # Het beheerpaneel staat hier bewust niet in. Dit bestand is voor iedereen
 # leesbaar, dus een regel erover zou het adres juist bekendmaken. Dat paneel

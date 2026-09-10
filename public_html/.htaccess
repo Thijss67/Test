@@ -25,6 +25,22 @@ ErrorDocument 404 /404.html
 	RewriteRule ^(.*)$ https://dhstudio.nl/$1 [R=301,L]
 </IfModule>
 
+# ----------------------------------------------------------------- oude adressen
+# Pagina's die op dh-studio.nl bestonden maar hier niet meer. De regel
+# hierboven zet dh-studio.nl/werkwijze om naar dhstudio.nl/werkwijze, en dat
+# adres bestaat niet: dan krijgt de bezoeker een 404 en laat Google de pagina
+# uit de index vallen zonder de waarde door te geven. Een 301 naar de pagina
+# die het onderwerp overnam, houdt die waarde wel vast.
+#
+# Staat er een oud adres in Search Console dat hier nog niet bij staat, zet
+# het er dan onder in dezelfde vorm. NE zorgt dat het #-teken blijft staan
+# en niet als %23 doorgegeven wordt.
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+	RewriteRule ^werkwijze/?$ /over-dh-studio#werkwijze [R=301,NE,L]
+</IfModule>
+
 # ----------------------------------------------------------------- tekens
 # De charset staat al in een meta-tag, maar een browser leest de HTTP-header
 # eerder. Zonder deze regel moet hij eerst gokken en daarna corrigeren.
