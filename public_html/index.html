@@ -185,6 +185,71 @@
 			.section-head p { margin-top: 1rem; font-size: var(--t-lead); }
 			.section-head p + p { margin-top: 0.85rem; }
 
+			/* ---------- Waar je het verschil merkt ----------
+			   Bewust geen tegels met iconen. Dit is een vergelijking, en die
+			   leest als rijen: links hoe het meestal gaat, rechts hoe het hier
+			   gaat. De rechterkolom heeft de accentkleur, want daar moet het
+			   oog landen. Op een telefoon stapelt het en krijgen de twee
+			   kolommen een eigen kopje, anders weet je niet meer wat wat is. */
+			.verschil {
+				margin-top: clamp(2rem, 5vw, 3rem);
+				border-top: 1px solid var(--line);
+			}
+			.verschil-hoofd { display: none; }
+			.verschil-rij {
+				display: grid;
+				gap: 0.35rem 2rem;
+				padding: clamp(1.25rem, 3vw, 1.6rem) 0;
+				border-bottom: 1px solid var(--line);
+			}
+			.verschil-rij h3 {
+				margin: 0 0 0.35rem;
+				font-size: 1.02rem;
+				font-weight: 700;
+				letter-spacing: -0.015em;
+				color: var(--fg);
+			}
+			.verschil-rij p { margin: 0; font-size: 0.95rem; line-height: 1.6; }
+			.verschil-rij .anders { color: var(--muted); }
+			.verschil-rij .wij { color: var(--fg); font-weight: 500; }
+			.verschil-rij .wij a { color: var(--accent-text); font-weight: 700; }
+
+			/* op smalle schermen benoemen we welke kant wat is */
+			.verschil-rij .anders::before,
+			.verschil-rij .wij::before {
+				display: block;
+				margin-bottom: 0.15rem;
+				font-size: 0.68rem;
+				font-weight: 800;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+			}
+			.verschil-rij .anders::before { content: "Meestal"; color: var(--muted); }
+			.verschil-rij .wij::before { content: "Bij ons"; color: var(--accent-text); }
+
+			@media (min-width: 860px) {
+				.verschil-hoofd,
+				.verschil-rij {
+					grid-template-columns: minmax(0, 15rem) 1fr 1fr;
+					align-items: start;
+					gap: 0 2.5rem;
+				}
+				.verschil-hoofd {
+					display: grid;
+					padding-bottom: 0.7rem;
+					font-size: 0.68rem;
+					font-weight: 800;
+					letter-spacing: 0.12em;
+					text-transform: uppercase;
+					color: var(--muted);
+				}
+				.verschil-hoofd span:last-child { color: var(--accent-text); }
+				.verschil-rij h3 { margin: 0; }
+				/* de kopjes zijn dan overbodig: ze staan boven de kolommen */
+				.verschil-rij .anders::before,
+				.verschil-rij .wij::before { display: none; }
+			}
+
 			/* ---------- Knoppen ---------- */
 			.btn {
 				display: inline-flex;
@@ -1355,63 +1420,50 @@
 				<div class="wrap">
 					<div class="section-head reveal">
 						<span class="eyebrow">Waarom ons</span>
-						<h2>Waarom kiezen bedrijven voor DH Studio?</h2>
+						<h2>Waar je het verschil merkt</h2>
 						<p>
-							Bedrijven kiezen voor ons vanwege onze no-nonsense aanpak en maatwerk design.
-							Wij zijn geen bureau met 10 mensen die aan 1 project werken. Wij staan voor persoonlijkheid en
-							zeggen waar het op staat.
+							Wij zijn met z&rsquo;n twee&euml;n. Dat klinkt klein, en dat is het ook &mdash;
+							maar het verandert vijf momenten in een project die je bij een groter bureau
+							anders meemaakt.
 						</p>
-						<p>Wegens deze korte communicatielijnen hebben wij snelle opleveringen en focus op kwaliteit.</p>
 					</div>
 
-					<div class="grid grid-3">
-						<article class="tile reveal">
-							<div class="icon">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z"/></svg>
-							</div>
-							<h3>Langdurige samenwerking</h3>
-							<p>Ook na oplevering blijven we betrokken en denken we proactief mee.</p>
-						</article>
+					<div class="verschil reveal">
+						<div class="verschil-hoofd" aria-hidden="true">
+							<span></span>
+							<span>Hoe het meestal gaat</span>
+							<span>Hoe het bij ons gaat</span>
+						</div>
 
-						<article class="tile reveal">
-							<div class="icon">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
-							</div>
-							<h3>Continue optimalisatie</h3>
-							<p>We monitoren en optimaliseren voor maximaal resultaat.</p>
-						</article>
+						<div class="verschil-rij">
+							<h3>Wie je aan de lijn krijgt</h3>
+							<p class="anders">Een accountmanager die je wensen doorgeeft aan iemand die jij nooit spreekt.</p>
+							<p class="wij">Ons twee. Wie je belt, is ook wie het bouwt.</p>
+						</div>
 
-						<article class="tile reveal">
-							<div class="icon">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2" y="14" width="5" height="6" rx="2"/><rect x="17" y="14" width="5" height="6" rx="2"/><path d="M20 20a3 3 0 0 1-3 3h-3"/></svg>
-							</div>
-							<h3>Support</h3>
-							<p>Vragen of aanpassingen? Wij staan voor je klaar.</p>
-						</article>
+						<div class="verschil-rij">
+							<h3>Wat het gaat kosten</h3>
+							<p class="anders">Dat hoor je na een intakegesprek, als offerte.</p>
+							<p class="wij">Vanaf &euro;995, en alle pakketten staan met prijs en al op <a href="/tarieven">de tarievenpagina</a>.</p>
+						</div>
 
-						<article class="tile reveal">
-							<div class="icon">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg>
-							</div>
-							<h3>Resultaatgericht</h3>
-							<p>Wij werken doelgericht aan zichtbaar resultaat voor jouw bedrijf.</p>
-						</article>
+						<div class="verschil-rij">
+							<h3>Als er iets stuk gaat</h3>
+							<p class="anders">Een formulier, een ticketnummer en afwachten.</p>
+							<p class="wij">Je belt. Of het meteen opgelost is hangt ervan af &mdash; maar je krijgt iemand te pakken.</p>
+						</div>
 
-						<article class="tile reveal">
-							<div class="icon">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.4.9 1 .9 1.6V16h5.2v-.5c0-.6.3-1.2.9-1.6A6 6 0 0 0 12 3z"/></svg>
-							</div>
-							<h3>Proactief meedenken</h3>
-							<p>Zien we kansen? Dan adviseren we je direct.</p>
-						</article>
+						<div class="verschil-rij">
+							<h3>Domein, hosting en back-ups</h3>
+							<p class="anders">Jouw probleem, of los ondergebracht bij een derde partij.</p>
+							<p class="wij">Dat nemen wij over voor &euro;50 per maand. Jij hoeft er niet naar om te kijken.</p>
+						</div>
 
-						<article class="tile reveal">
-							<div class="icon">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg>
-							</div>
-							<h3>Expertise</h3>
-							<p>Met onze IT-kennis zorgen we voor een technisch sterke basis.</p>
-						</article>
+						<div class="verschil-rij">
+							<h3>Na de oplevering</h3>
+							<p class="anders">Het contact stopt bij de laatste factuur.</p>
+							<p class="wij">We blijven bereikbaar. Zien we iets dat beter kan, dan zeggen we het.</p>
+						</div>
 					</div>
 				</div>
 			</section>
