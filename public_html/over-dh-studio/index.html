@@ -1017,25 +1017,35 @@
 			.reason h3 { font-size: 1rem; margin-bottom: 0.35rem; }
 			.reason p { font-size: 0.93rem; }
 			.founders { max-width: 62ch; margin-inline: auto; text-align: center; font-size: var(--t-lead); }
-			.founder-names { margin-top: 1.75rem; display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
-			.founder-names span {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.5rem;
-				padding: 0.5rem 1.1rem 0.5rem 0.5rem;
-				border: 1px solid var(--line);
-				border-radius: 999px;
-				background: var(--surface);
-				font-weight: 700;
-				font-size: 0.95rem;
-			}
-			.founder-names b {
+			/* Portretten van Thijs en Lucas, gecentreerd onder de tekst.
+			   Zelfde uitsnede en afronding als op de homepage. */
+			.founder-names {
+				margin: 2rem auto 0;
+				padding: 0;
+				list-style: none;
+				max-width: 30rem;
 				display: grid;
-				place-items: center;
-				width: 32px; height: 32px;
-				border-radius: 50%;
-				background: var(--accent-tint);
-				color: var(--accent-text);
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: clamp(0.9rem, 3vw, 1.5rem);
+			}
+			.founder-names figure { margin: 0; }
+			.founder-names img {
+				display: block;
+				width: 100%;
+				height: auto;
+				aspect-ratio: 4 / 5;
+				object-fit: cover;
+				object-position: 50% 30%;
+				border-radius: var(--radius);
+				background: var(--bg-soft);
+			}
+			.founder-names figcaption {
+				margin-top: 0.7rem;
+				text-align: center;
+				font-size: 1rem;
+				font-weight: 700;
+				line-height: 1.3;
+				color: var(--fg);
 			}
 
 			@media (min-width: 960px) {
@@ -1185,10 +1195,26 @@
 						moderne websites voor ondernemers die online willen groeien. Geen groot bureau met onnodige
 						lagen, maar direct contact en korte lijnen.
 					</p>
-					<div class="founder-names reveal">
-						<span><b>T</b> Thijs</span>
-						<span><b>L</b> Lucas</span>
-					</div>
+					<ul class="founder-names reveal">
+						<li>
+							<figure>
+								<picture>
+									<source srcset="/assets/team/thijs-560.webp" type="image/webp" />
+									<img src="/assets/team/thijs-560.jpg" alt="Portretfoto van Thijs" width="560" height="560" loading="lazy" decoding="async" />
+								</picture>
+								<figcaption>Thijs</figcaption>
+							</figure>
+						</li>
+						<li>
+							<figure>
+								<picture>
+									<source srcset="/assets/team/lucas-560.webp" type="image/webp" />
+									<img src="/assets/team/lucas-560.jpg" alt="Portretfoto van Lucas" width="560" height="560" loading="lazy" decoding="async" />
+								</picture>
+								<figcaption>Lucas</figcaption>
+							</figure>
+						</li>
+					</ul>
 				</div>
 			</section>
 
@@ -1467,11 +1493,13 @@
    "founder": [
     {
      "@type": "Person",
-     "name": "Thijs"
+     "name": "Thijs",
+     "image": "https://dhstudio.nl/assets/team/thijs-560.jpg"
     },
     {
      "@type": "Person",
-     "name": "Lucas"
+     "name": "Lucas",
+     "image": "https://dhstudio.nl/assets/team/lucas-560.jpg"
     }
    ]
   },
