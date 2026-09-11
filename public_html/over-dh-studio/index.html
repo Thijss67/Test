@@ -1047,6 +1047,13 @@
 				line-height: 1.3;
 				color: var(--fg);
 			}
+			.founder-names figcaption span {
+				display: block;
+				margin-top: 0.15rem;
+				font-size: 0.88rem;
+				font-weight: 500;
+				color: var(--muted);
+			}
 
 			@media (min-width: 960px) {
 				.split { grid-template-columns: 0.85fr 1.15fr; gap: 3.5rem; }
@@ -1202,7 +1209,7 @@
 									<source srcset="/assets/team/thijs-560.webp" type="image/webp" />
 									<img src="/assets/team/thijs-560.jpg" alt="Portretfoto van Thijs" width="560" height="560" loading="lazy" decoding="async" />
 								</picture>
-								<figcaption>Thijs</figcaption>
+								<figcaption>Thijs <span>Contact &amp; optimalisatie</span></figcaption>
 							</figure>
 						</li>
 						<li>
@@ -1211,7 +1218,7 @@
 									<source srcset="/assets/team/lucas-560.webp" type="image/webp" />
 									<img src="/assets/team/lucas-560.jpg" alt="Portretfoto van Lucas" width="560" height="560" loading="lazy" decoding="async" />
 								</picture>
-								<figcaption>Lucas</figcaption>
+								<figcaption>Lucas <span>Ontwerp &amp; bouw</span></figcaption>
 							</figure>
 						</li>
 					</ul>
@@ -1494,11 +1501,13 @@
     {
      "@type": "Person",
      "name": "Thijs",
+						"jobTitle": "Contact & optimalisatie",
      "image": "https://dhstudio.nl/assets/team/thijs-560.jpg"
     },
     {
      "@type": "Person",
      "name": "Lucas",
+						"jobTitle": "Ontwerp & bouw",
      "image": "https://dhstudio.nl/assets/team/lucas-560.jpg"
     }
    ]
