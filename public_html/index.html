@@ -535,13 +535,21 @@
 			   echte gezichten met hun naam tonen hetzelfde, maar dan aantoonbaar. */
 			.hero-mensen {
 				margin-top: 2.25rem;
-				display: flex;
+				/* Op een smal scherm valt de tekst onder de koppen; dan moet hij
+				   mee met de rest van de hero, die gecentreerd staat. */
+				text-align: center;
+			}
+			/* De hele regel is de link, koppen inbegrepen: een groter doel dan
+			   alleen de woorden, en op een telefoon scheelt dat missers. */
+			.hero-mensen a {
+				display: inline-flex;
 				align-items: center;
 				justify-content: center;
 				gap: 0.9rem;
 				flex-wrap: wrap;
+				color: var(--body);
 			}
-			.hero-koppen { display: flex; flex: none; }
+			.hero-koppen { display: inline-flex; flex: none; }
 			.hero-koppen picture { display: block; }
 			.hero-koppen picture + picture { margin-left: -0.85rem; }
 			.hero-koppen img {
@@ -553,21 +561,31 @@
 				object-position: 50% 22%;
 				border: 3px solid var(--bg);
 				background: var(--bg-soft);
+				transition: border-color 0.18s ease;
 			}
-			.hero-mensen p {
-				margin: 0;
-				max-width: 23rem;
-				/* Op een smal scherm vallen de koppen boven de zin; dan moet de
-				   tekst mee met de rest van de hero, die gecentreerd staat. */
-				text-align: center;
+			.hero-mensen a:hover .hero-koppen img { border-color: var(--accent-tint); }
+			.hero-mensen-tekst {
 				font-size: 0.95rem;
 				line-height: 1.45;
-				color: var(--body);
 			}
+			.hero-mensen-tekst b {
+				display: block;
+				width: max-content;
+				max-width: 100%;
+				margin-inline: auto;
+				color: var(--accent-text);
+				font-weight: 700;
+				border-bottom: 2px solid var(--accent-line);
+				padding-bottom: 1px;
+				transition: border-color 0.18s ease;
+			}
+			.hero-mensen a:hover .hero-mensen-tekst b { border-bottom-color: var(--accent); }
 			@media (min-width: 640px) {
-				.hero-mensen p { text-align: left; }
+				/* Vanaf hier staan de koppen naast de tekst; dan hoort de tekst
+				   links uitgelijnd, maar het blok zelf blijft gecentreerd. */
+				.hero-mensen-tekst { text-align: left; }
+				.hero-mensen-tekst b { margin-inline: 0; }
 			}
-			.hero-mensen b { color: var(--fg); font-weight: 700; }
 
 			/* ---------- Intro ---------- */
 
@@ -1300,17 +1318,22 @@
 					<p class="btn-note">Beschikbaar voor nieuwe projecten in 2026</p>
 
 					<div class="hero-mensen">
-						<div class="hero-koppen" aria-hidden="true">
-							<picture>
-								<source srcset="/assets/team/thijs-128.webp" type="image/webp" />
-								<img src="/assets/team/thijs-128.jpg" alt="" width="128" height="128" decoding="async" />
-							</picture>
-							<picture>
-								<source srcset="/assets/team/lucas-128.webp" type="image/webp" />
-								<img src="/assets/team/lucas-128.jpg" alt="" width="128" height="128" decoding="async" />
-							</picture>
-						</div>
-						<p>Je spreekt <b>Thijs</b> of <b>Lucas</b> &mdash; dezelfde twee die je website bouwen.</p>
+						<a href="/over-dh-studio">
+							<span class="hero-koppen" aria-hidden="true">
+								<picture>
+									<source srcset="/assets/team/thijs-128.webp" type="image/webp" />
+									<img src="/assets/team/thijs-128.jpg" alt="" width="128" height="128" decoding="async" />
+								</picture>
+								<picture>
+									<source srcset="/assets/team/lucas-128.webp" type="image/webp" />
+									<img src="/assets/team/lucas-128.jpg" alt="" width="128" height="128" decoding="async" />
+								</picture>
+							</span>
+							<span class="hero-mensen-tekst">
+								<b>Ontmoet Thijs &amp; Lucas</b>
+								de mensen achter je website
+							</span>
+						</a>
 					</div>
 				</div>
 			</section>
