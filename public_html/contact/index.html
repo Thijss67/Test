@@ -370,6 +370,12 @@
 			.footer-legal a { display: inline-flex; align-items: center; min-height: 44px; }
 			.footer-legal a:hover { color: var(--accent-text); }
 			.cta-bar[data-hidden="true"] { transform: translateY(115%); opacity: 0; pointer-events: none; }
+			/* Naast de hoofdknop een belknop: op een telefoon is bellen vaak
+			   de kortste weg, en het nummer staat verder alleen in de voet. */
+			.cta-bar { display: flex; align-items: center; gap: 0.6rem; }
+			.cta-bar > .btn-block { flex: 1 1 auto; width: auto; }
+			.cta-bar-bel { flex: none; gap: 0.45rem; padding-inline: 1.15rem; }
+			.cta-bar-bel svg { width: 20px; height: 20px; }
 
 			/* ---------- Vanaf tablet ---------- */
 			@media (min-width: 640px) {

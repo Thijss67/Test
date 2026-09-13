@@ -721,6 +721,12 @@
 				transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
 			}
 			.cta-bar[data-hidden="true"] { transform: translateY(115%); opacity: 0; pointer-events: none; }
+			/* Naast de hoofdknop een belknop: op een telefoon is bellen vaak
+			   de kortste weg, en het nummer staat verder alleen in de voet. */
+			.cta-bar { display: flex; align-items: center; gap: 0.6rem; }
+			.cta-bar > .btn-block { flex: 1 1 auto; width: auto; }
+			.cta-bar-bel { flex: none; gap: 0.45rem; padding-inline: 1.15rem; }
+			.cta-bar-bel svg { width: 20px; height: 20px; }
 
 			/* ---------- Vanaf tablet ---------- */
 			@media (min-width: 640px) {
@@ -1276,6 +1282,7 @@
 
 		<!-- Vaste CTA op mobiel: dezelfde tekst als alle andere conversieknoppen -->
 		<div class="cta-bar" id="ctaBar" data-hidden="true">
+			<a href="tel:+31618561314" class="btn btn-outline cta-bar-bel" data-cta="sticky-bellen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 6.5 6.5L17 13l4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3Z"/></svg>Bellen</a>
 			<a href="/contact" class="btn btn-primary btn-block" data-cta="sticky">Gratis kennismaken</a>
 		</div>
 
