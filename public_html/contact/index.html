@@ -658,6 +658,28 @@
 			.contact-kop .eyebrow::before { display: none; }
 			.contact-kop h1 { margin-top: 0.9rem; max-width: 14ch; }
 			.contact-kop .lead { margin-top: 1rem; max-width: 52ch; font-size: var(--t-lead); }
+			/* De pagina zegt "bellen of mailen"; dan moet allebei er ook staan,
+			   en niet alleen onderaan in de voettekst. */
+			.contact-direct {
+				margin: 1.25rem 0 0;
+				padding: 0;
+				list-style: none;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.6rem 1.75rem;
+			}
+			.contact-direct a {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				font-weight: 700;
+				color: var(--accent-text);
+				border-bottom: 2px solid var(--accent-line);
+				padding-bottom: 2px;
+				transition: border-color 0.18s ease;
+			}
+			.contact-direct a:hover { border-bottom-color: var(--accent); }
+			.contact-direct svg { width: 20px; height: 20px; flex: none; color: var(--accent); }
 			.contact-kop h1 .mark { position: relative; display: inline-block; }
 			.contact-kop h1 .mark svg {
 				position: absolute; left: 0; right: 0; bottom: -0.14em;
@@ -912,6 +934,20 @@
 					<p class="lead">
 						Laat weten wat je nodig hebt. Bellen of mailen, zeg maar wat je handiger vindt.
 					</p>
+					<ul class="contact-direct">
+						<li>
+							<a href="tel:+31618561314">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 6.5 6.5L17 13l4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3Z"/></svg>
+								06 18 56 13 14
+							</a>
+						</li>
+						<li>
+							<a href="mailto:info@dhstudio.nl">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+								info@dhstudio.nl
+							</a>
+						</li>
+					</ul>
 				</div>
 			</section>
 
@@ -1067,6 +1103,10 @@
 
 				<div class="footer-col">
 					<h2>Direct contact</h2>
+					<a href="tel:+31618561314">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 6.5 6.5L17 13l4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3Z"/></svg>
+						06 18 56 13 14
+					</a>
 					<a href="mailto:info@dhstudio.nl">
 						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
 						info@dhstudio.nl
@@ -1122,6 +1162,7 @@
    "name": "DH Studio",
    "url": "https://dhstudio.nl/",
    "email": "info@dhstudio.nl",
+   "telephone": "+31618561314",
    "areaServed": {
     "@type": "Country",
     "name": "Nederland"
@@ -1130,6 +1171,7 @@
     "@type": "ContactPoint",
     "contactType": "klantenservice",
     "email": "info@dhstudio.nl",
+    "telephone": "+31618561314",
     "availableLanguage": [
      "nl"
     ],
