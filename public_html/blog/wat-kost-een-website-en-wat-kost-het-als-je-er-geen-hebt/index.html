@@ -1062,8 +1062,11 @@
 			.lezen blockquote { margin: 2rem 0 0; padding: 0.2rem 0 0.2rem 1.5rem; border-left: 3px solid var(--accent);
 				font-size: clamp(1.15rem, 2.6vw, 1.45rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.35; color: var(--fg); }
 			.lezen ul { margin: 1.25rem 0 0; padding: 0; list-style: none; }
-			.lezen ul li { display: grid; grid-template-columns: 1.4rem 1fr; gap: 0.6rem; padding-block: 0.65rem; border-bottom: 1px solid var(--line); color: var(--body); }
-			.lezen ul li::before { content: "\2014"; color: var(--line-strong); font-weight: 700; }
+			/* Flex en geen grid: bij een grid valt alles na het eerste element in
+			   de streepkolom van 1,4rem, en dan breekt de tekst per woord af. */
+			.lezen ul li { display: flex; gap: 0.6rem; padding-block: 0.65rem; border-bottom: 1px solid var(--line); color: var(--body); }
+			.lezen ul li::before { content: "\2014"; flex: none; width: 1.4rem; color: var(--line-strong); font-weight: 700; }
+			.lezen ul li > * { min-width: 0; }
 			.lezen ul li:first-child { border-top: 1px solid var(--line); }
 			.lezen .cijfers { margin-top: 1.75rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
 			.lezen .cijfers div { background: var(--surface); padding: 1.1rem 1rem; }
